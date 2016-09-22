@@ -1,12 +1,431 @@
-﻿<Window x:Class="MedLaunch.MainWindow"
+﻿<Controls:MetroWindow x:Class="MedLaunch.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MedLaunch"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        xmlns:local="clr-namespace:MedLaunch.ViewModels"
         
+        mc:Ignorable="d"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="MedLaunch" 
+                      Height="768" 
+                      Width="1024"
+                      BorderThickness="0" 
+                      GlowBrush="Black"
+                      ResizeMode="CanResizeWithGrip"
+
+                      WindowTransitionsEnabled="False"
+                      WindowStartupLocation="CenterScreen" Loaded="MetroWindow_Loaded">
+    
+    
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Content="Application Settings" />
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
+    <Grid>
+        <TabControl>
+            <TabItem Header="Games">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="0" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.3*" />
+                    </Grid.ColumnDefinitions>
+                    <!--<TextBlock FontSize="55" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">Left side</TextBlock>-->
+                    <StackPanel Grid.Column="0">
+
+                        <Label HorizontalContentAlignment="Center">
+                            <TextBlock TextDecorations="Underline">Filter by System</TextBlock>
+                        </Label>
+
+                        <RadioButton x:Name="btnShowAll" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnShowAll_Checked">Show All</RadioButton>
+                        <RadioButton x:Name="btnFavorites" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnFavorites_Checked">Favorites</RadioButton>
+                        <RadioButton x:Name="btnNes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnNes_Checked">NES</RadioButton>
+                        <RadioButton x:Name="btnSnes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnSnes_Checked">SNES</RadioButton>
+                        <RadioButton x:Name="btnSms" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnSms_Checked">Master System</RadioButton>
+                        <RadioButton x:Name="btnMd" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnMd_Checked">MegaDrive</RadioButton>
+                        <!-- 
+                        <RadioButton x:Name="btnSs" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnSs_Checked">Saturn</RadioButton>                        
+                        <RadioButton x:Name="btnPsx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnPsx_Checked">Playstation</RadioButton>
+                        -->
+                        <RadioButton x:Name="btnPce" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnPce_Checked">PC-Engine</RadioButton>
+                        <RadioButton x:Name="btnPcfx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnPcfx_Checked">PC-FX</RadioButton>
+                        <RadioButton x:Name="btnVb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnVb_Checked">Virtual Boy</RadioButton>
+                        <RadioButton x:Name="btnNgp" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnNgp_Checked">NeoGeo Pocket</RadioButton>
+                        <RadioButton x:Name="btnWswan" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnWswan_Checked">WonderSwan</RadioButton>
+                        <RadioButton x:Name="btnGb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnGb_Checked">Gameboy Color</RadioButton>
+                        <RadioButton x:Name="btnGba" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnGba_Checked">Gameboy Advance</RadioButton>
+                        <RadioButton x:Name="btnGg" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnGg_Checked">Game Gear</RadioButton>
+                        <RadioButton x:Name="btnLynx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnLynx_Checked">Atari Lynx</RadioButton>
+                        <!--
+                        <Separator/>
+                        <Rectangle HorizontalAlignment="Stretch" Fill="{DynamicResource AccentColorBrush}" Height="4"/>
+                        
+                        -->
+
+                        <Separator Margin="10"/>
+
+                        <Button x:Name="btnRescanRoms" HorizontalContentAlignment="Left" Background="{DynamicResource AccentColorBrush}" Click="RescanRoms">Rescan Roms</Button>
+                        <Button x:Name="btnClearFilters" HorizontalContentAlignment="Left" Background="{DynamicResource AccentColorBrush}" Click="btnClearFilters_Click">Clear All Filters</Button>
+
+                        <Separator Margin="10"/>
+
+                        <Label HorizontalContentAlignment="Center">
+                            <TextBlock TextDecorations="Underline" TextWrapping="Wrap" TextAlignment="Center">Global Launch Settings</TextBlock>
+                        </Label>
+
+                        <StackPanel x:Name="spGlobalSettings">
+                            <CheckBox x:Name="chkEnableNetplay" Checked="chkEnableNetplay_Checked" Unchecked="chkEnableNetplay_Unchecked">Enable Netplay</CheckBox>
+                            <CheckBox x:Name="chkFullScreen" Checked="chkFullScreen_Checked" Unchecked="chkFullScreen_Unchecked">Play Fullscreen</CheckBox>
+                            <CheckBox x:Name="chkBypassConfig" Checked="chkBypassConfig_Checked" Unchecked="chkBypassConfig_Unchecked">
+                                <AccessText TextWrapping="Wrap"  
+              Text="Bypass Launcher Config"/>
+                            </CheckBox>
+                        </StackPanel>
+                        <Separator Margin="10"/>
+
+                    </StackPanel>
+                    <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+                    <!--<TextBlock Grid.Column="2" FontSize="55" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">Right side</TextBlock> -->
+
+                    <Grid Margin="10" Grid.Column="2">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="1" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <TextBox Grid.Row="0" x:Name="tbFilterDatagrid" Text="" TextChanged="tbFilterDatagrid_TextChanged" Controls:TextBoxHelper.ClearTextButton="True" 
+                                     Controls:TextBoxHelper.Watermark="Dynamic Search" />
+                            <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
+
+                            <DataGrid Grid.Row="2" Name="dgGameList" IsReadOnly="True" SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Single" ContextMenuOpening="dgGameList_ContextMenuOpening">
+                                <DataGrid.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Play Game" />
+                                        <MenuItem Header="Favorites" Click="MenuItemFavorite_Click" />
+                                    </ContextMenu>
+                                </DataGrid.ContextMenu>
+                            </DataGrid>
+                        </Grid>
+
+
+                    </Grid>
+
+                    <StackPanel Grid.Column="3">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="200" />
+                                <RowDefinition Height="200" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" TextWrapping="Wrap" TextAlignment="Center" FontSize="15" TextDecorations="underline">Game and System Information</TextBlock>
+                            <TextBlock Grid.Row="1" TextWrapping="Wrap">This is where the game information goes</TextBlock>
+                            <!-- Game System Info -->
+
+                            <Label Grid.Row="2" x:Name="lblSystemName" HorizontalAlignment="Center"></Label>
+                            <Image
+                                HorizontalAlignment="Center"
+                                
+                                Width="100"
+                                Loaded="System_Image_Loaded"
+                                x:Name="imgSystem"/>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Height="auto"
+                                Width="auto"
+                                x:Name="taSystemDescription"
+                                TextWrapping="Wrap"/>
+
+                            <!-- Game Info -->
+
+                            <!--<TextBlock Grid.Row="3" TextWrapping="Wrap">This is where the game information goes</TextBlock>-->
+
+                        </Grid>
+
+                    </StackPanel>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Paths">
+
+                <Grid Margin="100,0,100,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Margin="20" Grid.ColumnSpan="2" Grid.Row="0" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap">System Paths</TextBlock>
+
+                    <Label Grid.Column="0" Grid.Row="1" Margin="0,0,0,15">MednaFen Directory</Label>
+                    <TextBox x:Name="tbPathMednafen" Grid.Column="1" Grid.Row="1" Margin="0,0,0,15"></TextBox>
+                    <Button x:Name="btnPathMednafen" Grid.Column="2" Grid.Row="1" Margin="0,0,0,15" Click="btnPathMednafen_Click">... </Button>
+
+                    <Label Grid.Column="0" Grid.Row="2">Gameboy Rom Directory</Label>
+                    <TextBox x:Name="tbPathGb" Grid.Column="1" Grid.Row="2"></TextBox>
+                    <Button x:Name="btnPathGb" Grid.Column="2" Grid.Row="2" Click="btnPathGb_Click">...</Button>
+
+                    <Label Grid.Column="0" Grid.Row="3">Gameboy Advance Rom Directory</Label>
+                    <TextBox x:Name="tbPathGba" Grid.Column="1" Grid.Row="3"></TextBox>
+                    <Button x:Name="btnPathGba" Grid.Column="2" Grid.Row="3" Click="btnPathGba_Click">...</Button>
+
+                    <Label Grid.Column="0" Grid.Row="4">Game Gear Rom Directory</Label>
+                    <TextBox x:Name="tbPathGg" Grid.Column="1" Grid.Row="4"></TextBox>
+                    <Button x:Name="btnPathGg" Grid.Column="2" Grid.Row="4" Click="btnPathGg_Click">...</Button>
+
+                    <Label Grid.Column="0" Grid.Row="5">Atari Lynx Rom Directory</Label>
+                    <TextBox x:Name="tbPathLynx" Grid.Column="1" Grid.Row="5"></TextBox>
+                    <Button x:Name="btnPathLynx" Grid.Column="2" Grid.Row="5" Click="btnPathLynx_Click">...</Button>
+                    
+                    <Label Grid.Column="0" Grid.Row="6">Sega MegaDrive Rom Directory</Label>
+                    <TextBox x:Name="tbPathMd" Grid.Column="1" Grid.Row="6"></TextBox>
+                    <Button x:Name="btnPathMd" Grid.Column="2" Grid.Row="6" Click="btnPathMd_Click">...</Button>
+
+                    <Label Grid.Column="0" Grid.Row="7">NES Rom Directory</Label>
+                    <TextBox x:Name="tbPathNes" Grid.Column="1" Grid.Row="7"></TextBox>
+                    <Button x:Name="btnPathNes" Grid.Column="2" Grid.Row="7" Click="btnPathNes_Click">...</Button>
+
+                    <Label Grid.Column="0" Grid.Row="8">SNES Rom Directory</Label>
+                    <TextBox x:Name="tbPathSnes" Grid.Column="1" Grid.Row="8"></TextBox>
+                    <Button x:Name="btnPathSnes" Grid.Column="2" Grid.Row="8" Click="btnPathSnes_Click">...</Button>
+
+                    <Label Grid.Column="0" Grid.Row="9">NeoGeo Pocket Color Rom Directory</Label>
+                    <TextBox x:Name="tbPathNgp" Grid.Column="1" Grid.Row="9"></TextBox>
+                    <Button x:Name="btnPathNgp" Grid.Column="2" Grid.Row="9" Click="btnPathNgp_Click">...</Button>
+
+                    <Label Grid.Column="0" Grid.Row="10">PC Engine Rom Directory</Label>
+                    <TextBox x:Name="tbPathPce" Grid.Column="1" Grid.Row="10"></TextBox>
+                    <Button x:Name="btnPathPce" Grid.Column="2" Grid.Row="10" Click="btnPathPce_Click">...</Button>
+
+                    <Label Grid.Column="0" Grid.Row="11">PC-FX Rom Directory</Label>
+                    <TextBox x:Name="tbPathPcfx" Grid.Column="1" Grid.Row="11"></TextBox>
+                    <Button x:Name="btnPathPcfx" Grid.Column="2" Grid.Row="11" Click="btnPathPcfx_Click">...</Button>
+<!--
+                    <Label Grid.Column="0" Grid.Row="12">Sony Playstation Rom Directory</Label>
+                    <TextBox x:Name="tbPathPsx" Grid.Column="1" Grid.Row="12"></TextBox>
+                    <Button x:Name="btnPathPsx" Grid.Column="2" Grid.Row="12" Click="btnPathPsx_Click">...</Button>
+                    
+                    <Label Grid.Column="0" Grid.Row="14">Sega Saturn Rom Directory</Label>
+                    <TextBox x:Name="tbPathSs" Grid.Column="1" Grid.Row="14"></TextBox>
+                    <Button x:Name="btnPathSs" Grid.Column="2" Grid.Row="14" Click="btnPathSs_Click">...</Button>
+ -->
+                    <Label Grid.Column="0" Grid.Row="13">Sega Master System Rom Directory</Label>
+                    <TextBox x:Name="tbPathMs" Grid.Column="1" Grid.Row="13"></TextBox>
+                    <Button x:Name="btnPathMs" Grid.Column="2" Grid.Row="13" Click="btnPathMs_Click">...</Button>
+                    
+                    
+
+                    <Label Grid.Column="0" Grid.Row="15">Virtual Boy Rom Directory</Label>
+                    <TextBox x:Name="tbPathVb" Grid.Column="1" Grid.Row="15"></TextBox>
+                    <Button x:Name="btnPathVb" Grid.Column="2" Grid.Row="15" Click="btnPathVb_Click">...</Button>
+
+                    <Label Grid.Column="0" Grid.Row="16">WonderSwan Rom Directory</Label>
+                    <TextBox x:Name="tbPathWswan" Grid.Column="1" Grid.Row="16"></TextBox>
+                    <Button x:Name="btnPathWswan" Grid.Column="2" Grid.Row="16" Click="btnPathWswan_Click">...</Button>
+
+                    <StackPanel Grid.ColumnSpan="3" Grid.Row="17" Margin="200,30,200,0">
+                        <Button x:Name="btnPathsSaveChanges" Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnPathsSaveChanges_Click" ></Button>
+                        <Button x:Name="btnPathsCancelChanges" Content="Cancel Changes" Background="Red" Click="btnPathsCancelChanges_Click" ></Button>
+                        <Label x:Name="lblPathsSettingsSave" HorizontalContentAlignment="Center"></Label>
+                    </StackPanel>
+
+                </Grid>
+
+            </TabItem>
+
+            <TabItem Header="Configs">
+
+            </TabItem>
+            <TabItem Header="Netplay">
+
+                <Grid Margin="20">
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap">Netplay Settings</TextBlock>
+                    <StackPanel x:Name="spNetplaySettings">
+                        <Grid Margin="80">
+                      
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="1">Nickname</Label>
+                            <TextBox x:Name="tbNetplayNick" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" />
+
+                            <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="20">
+                                <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Console Font</Label>
+                                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    
+                                    <RadioButton x:Name="resOne" GroupName="ConsoleFont" Content="5x7" Margin="4"/>
+                                    <RadioButton x:Name="resTwo" GroupName="ConsoleFont" Content="6x9" Margin="4"/>
+                                    <RadioButton x:Name="resThree" GroupName="ConsoleFont" Content="6x12" Margin="4"/>
+                                    <RadioButton x:Name="resFour" GroupName="ConsoleFont" Content="6x13" Margin="4"/>
+                                    <RadioButton x:Name="resFive" GroupName="ConsoleFont" Content="9x18" Margin="4" />
+                                    
+                                </StackPanel>
+                            </DockPanel>
+
+                            <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="20">
+                                <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Number of Local Players</Label>
+                                <TextBox Text="{Binding ElementName=slLocalPlayersValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                <Slider Maximum="16" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="slLocalPlayersValue"/>
+                            </DockPanel>
+                            <DockPanel Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Center" Margin="20">
+                                <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Number of Console Lines</Label>
+                                <TextBox Text="{Binding ElementName=slConsoleLinesValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                <Slider Maximum="64" Minimum="5" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="slConsoleLinesValue"  />
+                            </DockPanel>
+                            <DockPanel Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Center" Margin="20">
+                                <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Console Scale</Label>
+                                <TextBox Text="{Binding ElementName=slConsoleScaleValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                <Slider Maximum="16" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="slConsoleScaleValue" />
+                            </DockPanel>
+
+                            <StackPanel Grid.ColumnSpan="2" Grid.Row="6">
+                                <Button x:Name="btnNetplaySaveChanges" Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnNetplaySaveChanges_Click"></Button>
+                                <Button x:Name="btnNetplayCancelChanges" Content="Cancel Changes" Background="Red" Click="btnNetplayCancelChanges_Click"></Button>
+                                <Label x:Name="lblNpSettingsSave" HorizontalContentAlignment="Center"></Label>
+                            </StackPanel>
+
+                        </Grid>
+                    </StackPanel>
+
+                    <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+
+                    <TextBlock Grid.Column="2" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap">Servers</TextBlock>
+
+                    <StackPanel x:Name="spServerSettings" Grid.Column="2">
+                        <Grid Margin="65">
+                            
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+<!-- 
+                            <ComboBox x:Name="cbServers" Grid.ColumnSpan="2" Margin="20" DataContext="ServersDataObject" ItemsSource="{Binding ListOfServers}"></ComboBox>
+-->
+                            
+                            <RadioButton Name="rbSrv01" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Checked="rbSrv01_Checked" />
+                            <RadioButton Name="rbSrv02" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Checked="rbSrv02_Checked" />
+                            <RadioButton Name="rbSrv03" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Checked="rbSrv03_Checked" />
+                            <RadioButton Name="rbSrv04" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Checked="rbSrv04_Checked" />
+                            <RadioButton Name="rbSrvCustom" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Checked="rbSrvCustom_Checked" Unchecked="rbSrvCustom_UnChecked" Content="Custom:" />
+
+                            
+
+                            <Label Name="lblServerDesc" Grid.Row="6" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">Server Description</Label>
+                            <TextBox x:Name="tbServerDesc" Grid.Row="6" Grid.Column="1" Margin="10" />
+
+                            <Label Name="lblHostname" Grid.Row="7" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">Host/IP</Label>
+                            <TextBox x:Name="tbHostname" Grid.Row="7" Grid.Column="1" Margin="10" />
+
+                            <DockPanel Grid.ColumnSpan="2" Grid.Row="8" VerticalAlignment="Center" Margin="10">
+                                <Label Name="lblServerPort" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Port</Label>
+                                <TextBox Name="lblServerPortTxt" Text="{Binding ElementName=slServerPort, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                <Slider Maximum="65535" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="slServerPort"/>
+                            </DockPanel>
+
+                            <Label Name="lblPassword" Grid.Row="9" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">Password</Label>
+                            <TextBox x:Name="tbPassword" Grid.Row="9" Grid.Column="1" Margin="10" />
+
+                            <Label Name="lblGamekey" Grid.Row="10" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">GameKey</Label>
+                            <TextBox x:Name="tbGameKey" Grid.Row="10" Grid.Column="1" Margin="10" />
+
+
+
+
+
+
+                            <StackPanel Grid.ColumnSpan="2" Grid.Row="11">
+                                <Button x:Name="btnServerSaveChanges" Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnServerSaveChanges_Click" ></Button>
+                                <Button x:Name="btnServerCancelChanges" Content="Cancel Changes" Background="Red" Click="btnServerCancelChanges_Click" ></Button>
+                                <Label x:Name="lblServerSettingsSave" HorizontalContentAlignment="Center"></Label>
+                            </StackPanel>
+
+                        </Grid>
+                    </StackPanel>
+
+                </Grid>
+
+
+            </TabItem>
+            <TabItem Header="Scraping">
+
+            </TabItem>
+            
+
+            <TabItem Header="About">
+
+            </TabItem>
+        </TabControl>
+
     </Grid>
-</Window>
+</Controls:MetroWindow>
+
