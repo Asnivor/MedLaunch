@@ -197,7 +197,7 @@ namespace MedLaunch
 
         private void btnWbMedLaunch_Click(object sender, RoutedEventArgs e)
         {
-            wb.Navigate("http://asnitech.co.uk");
+            wb.Navigate("http://medlaunch.asnitech.co.uk/");
         }
 
         private void btnWbMednafenHome_Click(object sender, RoutedEventArgs e)

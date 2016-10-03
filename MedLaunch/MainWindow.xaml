@@ -2589,14 +2589,15 @@
 
                     </ToolBar>
                         <WrapPanel Grid.Column="1" Grid.Row="0">
+                            <Button VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="btnWbMedLaunch" Click="btnWbMedLaunch_Click">MedLaunch Homepage</Button>
+                            <Separator />
                             <Button VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="btnWbMednafenHome" Click="btnWbMednafenHome_Click">Mednafen Homepage</Button>
                             <Separator />
                             <Button VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="btnWbMednafenDoc" Click="btnWbMednafenDoc_Click">Mednafen Documentation</Button>
                             <Separator />
                             <Button VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="btnWbMednafenForum" Click="btnWbMednafenForum_Click">Mednafen Forums</Button>
                             <Separator />
-                            <Button VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="btnWbMedLaunch" Click="btnWbMedLaunch_Click">MedLaunch Homepage</Button>
-                            <Separator />
+                            
                         </WrapPanel>
                         <WebBrowser Name="wb" Navigating="wb_Navigating" Margin="0,0,0,10" Grid.Row="1" Grid.ColumnSpan="2"></WebBrowser>
                     </Grid>
@@ -2604,34 +2605,11 @@
                 </DockPanel>
             </TabItem>
 
-
+<!--
             <TabItem Header="About">
-                <!-- 
-                <Grid>
-                    <Grid.Resources>
-                        <Image x:Key="MedLogo" Source="/Data/Graphics/medicon.png" Opacity="0.2" />                   
-
-                        <VisualBrush x:Key="MedBrush"  Visual="{StaticResource MedLogo}"/>
-                    </Grid.Resources>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                        <WrapPanel Background="{StaticResource MedBrush}">
-                            <TextBlock>
-                            test
-                            </TextBlock>
-                        </WrapPanel>
-
-
-                </Grid>
-               
-
--->
+                
             </TabItem>
+            -->
         </TabControl>
 
     </Grid>
