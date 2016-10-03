@@ -46,7 +46,7 @@ namespace MedLaunch.Classes
                 if (Global.enableSnes_faust == true)
                 {
                     SystemId = 16;
-                    MessageBoxResult result = MessageBox.Show("FAUST DETECTED");
+                    //MessageBoxResult result = MessageBox.Show("FAUST DETECTED");
                 }
                 else
                 {
@@ -286,10 +286,23 @@ namespace MedLaunch.Classes
             // gamekey
             baseStr += "-netplay.gamekey " + Server.netplay__gamekey + sep;
 
+            // faust 
+            if (SystemId == 16)
+            {
+                // force faust
+                baseStr += "-force_module snes_faust" + sep;
+            }
+            // pce_fast
+            if (SystemId == 17)
+            {
+                // force pce_fast
+                baseStr += "-force_module pce_fast" + sep;
+            }
+
 
             // add rompath to end of connection string
             baseStr += "\"" + BuildFullGamePath(RomFolder, RomPath) + "\"";
-            MessageBoxResult result = MessageBox.Show(baseStr);
+            //MessageBoxResult result = MessageBox.Show(baseStr);
             return baseStr;
         }
 
