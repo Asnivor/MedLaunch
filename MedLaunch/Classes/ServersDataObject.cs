@@ -11,7 +11,7 @@ namespace MedLaunch.Classes
     {
         public ServersDataObject()
         {
-            ListOfServers = DbEF.GetServers();
+            ListOfServers = ConfigServerSettings.GetServers();
         }
         public IList<ConfigServerSettings> ListOfServers { get; set; }
     }

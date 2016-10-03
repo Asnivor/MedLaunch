@@ -37,6 +37,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>medicon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework.Core, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.Core.7.0.0-rc1-final\lib\net451\EntityFramework.Core.dll</HintPath>
@@ -130,6 +133,8 @@
       <HintPath>..\packages\Ix-Async.1.2.5\lib\net45\System.Interactive.Async.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -155,9 +160,15 @@
     </ApplicationDefinition>
     <Compile Include="Classes\CMenu.cs" />
     <Compile Include="Classes\DataGridServersView.cs" />
+    <Compile Include="Models\GameFile.cs" />
+    <Compile Include="Classes\GameLauncher.cs" />
     <Compile Include="Classes\Rom.cs" />
     <Compile Include="Classes\RomScanner.cs" />
     <Compile Include="Classes\ServersDataObject.cs" />
+    <Compile Include="Classes\UIHandler.cs" />
+    <Compile Include="Controls\ConfigUserControl.xaml.cs">
+      <DependentUpon>ConfigUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\ConvertConsoleFont.cs" />
     <Compile Include="Enums\NetplayConsoleFontEnum.cs" />
     <Compile Include="Models\ConfigBaseSettings.cs" />
@@ -173,6 +184,10 @@
     <Compile Include="ViewModels\ServersViewModel.cs" />
     <Compile Include="ViewModels\TemplateViewModel.cs" />
     <Compile Include="ViewModels\GlobalSettingsViewModel.cs" />
+    <Page Include="Controls\ConfigUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -231,7 +246,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controls\" />
     <Folder Include="Data\Settings\" />
     <Folder Include="Helpers\" />
     <Folder Include="_Content\" />
@@ -261,6 +275,12 @@
   <ItemGroup>
     <Resource Include="Resources\Entypo-license.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="medicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Graphics\medicon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -275,4 +295,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <MoveToLibFolder Include="$(OutputPath)*.dll ; $(OutputPath)*.pdb ; $(OutputPath)*.xml" />
+    </ItemGroup>
+    <Move SourceFiles="@(MoveToLibFolder)" DestinationFolder="$(OutputPath)lib" OverwriteReadOnlyFiles="true" />
+  </Target>
 </Project>

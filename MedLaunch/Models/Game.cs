@@ -17,5 +17,27 @@ namespace MedLaunch.Models
         public bool isFavorite { get; set; }
         public int configId { get; set; }
         public bool hidden { get; set; }
-    }
+        public string disks { get; set; }
+        public bool isDiskBased { get; set; }
+
+        public static Game GetGame(int gameId)
+        {
+            using (var context = new MyDbContext())
+            {
+                var cData = (from g in context.Game
+                             where g.gameId == gameId
+                             select g).SingleOrDefault();
+                return cData;
+            }
+        }
+
+        public static void SetGame(Game game)
+        {
+            using (var cfDef = new MyDbContext())
+            {
+                cfDef.Entry(game).State = Microsoft.Data.Entity.EntityState.Modified;
+                cfDef.SaveChanges();
+            }
+        }
+    }    
 }
