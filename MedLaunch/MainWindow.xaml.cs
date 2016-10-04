@@ -247,7 +247,7 @@ namespace MedLaunch
             int updatedStats = 0;
             int untouchedStats = 0;
 
-            RomScanner rs = new RomScanner();
+            GameScanner rs = new GameScanner();
 
             // mark all roms in database as hidden where the system path is not set            
             await Task.Delay(100);
@@ -1032,7 +1032,7 @@ namespace MedLaunch
                 if ((String)mi.Header == "Favorites")
                 {
                     // check the favorite status
-                    if (RomScanner.GetFavoriteStatus(romId) == 1)
+                    if (GameScanner.GetFavoriteStatus(romId) == 1)
                         mi.Header = "Add/Remove From Favorites";
                     else
                         mi.Header = "Add/Remove From Favorites";
@@ -1046,7 +1046,7 @@ namespace MedLaunch
         {
             DataGridGamesView drv = (DataGridGamesView)dgGameList.SelectedItem;
             int romId = drv.ID;
-            RomScanner.FavoriteToggle(romId);
+            GameScanner.FavoriteToggle(romId);
             dgGameList.Items.Refresh();
             dgGameList.InvalidateVisual();
                                

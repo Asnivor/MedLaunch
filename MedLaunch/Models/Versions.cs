@@ -11,5 +11,6 @@ namespace MedLaunch.Models
         public int versionId { get; set; }
         public string guiVersion { get; set; }
         public string dbVersion { get; set; }
+        public string mednafenVersion { get; set; }
     }
 }

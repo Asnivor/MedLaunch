@@ -12,12 +12,12 @@ using System.Windows;
 
 namespace MedLaunch.Classes
 {
-    public class RomScanner
+    public class GameScanner
     {
         private MyDbContext db;
 
         // constructor
-        public RomScanner()
+        public GameScanner()
         {
             db = new MyDbContext();
 
@@ -150,8 +150,10 @@ namespace MedLaunch.Classes
 
 
 
-            GamesToUpdate = new List<Game>();
-            GamesToAdd = new List<Game>();
+            RomsToUpdate = new List<Game>();
+            RomsToAdd = new List<Game>();
+            DisksToUpdate = new List<Game>();
+            DisksToAdd = new List<Game>();
             AddedStats = 0;
             HiddenStats = 0;
             UpdatedStats = 0;
@@ -184,8 +186,12 @@ namespace MedLaunch.Classes
         public List<Game> GamesPCECD { get; private set; }
 
         public List<Paths> NonNullPaths { get; private set; }
-        public List<Game> GamesToUpdate { get; set; }
-        public List<Game> GamesToAdd { get; set; }
+
+        public List<Game> RomsToUpdate { get; set; }
+        public List<Game> RomsToAdd { get; set; }
+
+        public List<Game> DisksToUpdate { get; set; }
+        public List<Game> DisksToAdd { get; set; }
 
         public int AddedStats { get; set; }
         public int HiddenStats { get; set; }
@@ -326,23 +332,32 @@ namespace MedLaunch.Classes
                 {
                     //MessageBoxResult result2 = MessageBox.Show(fileName);
                     bool isAllowed = false;
-                    using (ZipArchive zip = ZipFile.OpenRead(file))
+                    try
                     {
-                        foreach (ZipArchiveEntry entry in zip.Entries)
+                        using (ZipArchive zip = ZipFile.OpenRead(file))
                         {
-                            if (IsFileAllowed(entry.FullName, systemId) == true)
+                            foreach (ZipArchiveEntry entry in zip.Entries)
                             {
-                                //MessageBoxResult result3 = MessageBox.Show(entry.FullName);
-                                // zip file contains at least one recognised filetype for this system
-                                isAllowed = true;
-                                break;
-                            }
-                            else
-                            {
-                                continue;
+                                if (IsFileAllowed(entry.FullName, systemId) == true)
+                                {
+                                    //MessageBoxResult result3 = MessageBox.Show(entry.FullName);
+                                    // zip file contains at least one recognised filetype for this system
+                                    isAllowed = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
                             }
                         }
                     }
+                    catch (System.IO.InvalidDataException ex)
+                    {
+                        // problem with the zip file
+                    }
+                    finally { }
+                    
                     if (isAllowed == false) { continue; }
                 }
 
@@ -363,7 +378,7 @@ namespace MedLaunch.Classes
                     newGame.systemId = systemId;
 
                     // add to finaGames list
-                    GamesToAdd.Add(newGame);
+                    RomsToAdd.Add(newGame);
                     // increment the added counter
                     AddedStats++;
                 }
@@ -384,7 +399,7 @@ namespace MedLaunch.Classes
                         newGame.hidden = false;
 
                         // add to finalGames list
-                        GamesToUpdate.Add(newGame);
+                        RomsToUpdate.Add(newGame);
                         // increment updated counter
                         UpdatedStats++;
                     }                  
@@ -397,8 +412,8 @@ namespace MedLaunch.Classes
         {
             using (var ndb = new MyDbContext())
             {
-                db.AddRange(GamesToAdd);
-                db.UpdateRange(GamesToUpdate);
+                db.AddRange(RomsToAdd);
+                db.UpdateRange(RomsToUpdate);
                 db.SaveChanges();
             }
                 
@@ -453,11 +468,11 @@ namespace MedLaunch.Classes
             
         }
 
-        // mark all from a system as hidden
+        // mark all ROMS from a system as hidden (as long as it is not a disk based game)
         public void MarkAllRomsAsHidden(int systemId)
         {
             List<Game> games = (from g in Games
-                               where g.systemId == systemId
+                                where g.systemId == systemId && (g.isDiskBased =! true)
                                select g).ToList();
             if (games == null)
             {
@@ -473,7 +488,7 @@ namespace MedLaunch.Classes
                     {
                         newGame.hidden = true;
                         // add to GamesToUpdate to be processed later
-                        GamesToUpdate.Add(newGame);
+                        RomsToUpdate.Add(newGame);
                         HiddenStats++;
                     }
                     else
@@ -502,7 +517,7 @@ namespace MedLaunch.Classes
                 {
                     newGame.hidden = true;
                     // add to GamesToUpdate to be processed later
-                    GamesToUpdate.Add(newGame);
+                    RomsToUpdate.Add(newGame);
                     HiddenStats++;
                 } 
                 else
