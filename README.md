@@ -15,6 +15,7 @@
 * Local (SQLite) auto-generated database where all settings are saved
 * Built-in games library (with system filters and dynamic search)
 * ROM scanner (for games library import)
+* Manual import of disk-based games (both single and multiple disk games with auto-m3u playlist generation)
 * (Nearly) All Mednafen command line parameters available and configurable
 * So far uses only Mednafen command line options (and not local configuration files)
 * Optional per-system configuration options
@@ -22,17 +23,15 @@
 * Built-in static netplay server selection along with the ability to specify a custom Mednafen netplay server to connect to
 
 ### Broken Features
-* MedLaunch currently **only works for ROM based systems** as the CD image scanning import function has yet to be designed & implemented. Getting the disk-based systems (PSX, SS, PCFX etc) into the games library is currently the number one priority
 * The launcher currently only handles absolute paths correctly. Relative path handling may or may not work but this part of the code needs a proper overhaul
-* The 'About' tab is currently empty
 
 ### To Do
-* Implement scanning (and importing into the games library) of disk images. This should include auto-detection of multi-disk games (and auto-generation of .m3u files)
 * Implement data scraping from external sources (thegamesdb etc.)
 * Add debugger config options
 * Auto-hide system specific config option controls that are invalid (eg, nes.forcemono etc.)
-* Add data to 'About' page
 * Code option to import existing configuration information from Mednafen config files (default & system specific configs) into the MedLaunch database
+
+Current roadmap can be found [here](http://medlaunch.asnitech.co.uk/roadmap).
 
 ### Requirements
 * [Microsoft .NET Framework 4.5.2](https://www.microsoft.com/en-gb/download/details.aspx?id=42643)
