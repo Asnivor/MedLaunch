@@ -1,11 +1,11 @@
 # MedLaunch
 ## A Windows Front-End for Mednafen
 
+<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/GameLibrary.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/GameLibrary.png" width="200" /></a><a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/RomScanComplete.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/RomScanComplete.png" width="200" /></a><a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/Configs.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/Configs.png" width="200" /></a><a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/Paths.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/Paths.png" width="200" /></a><a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/GameLaunch.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/GameLaunch.png" width="200" /></a>
+
 [http://medlaunch.asnitech.co.uk/](http://medlaunch.asnitech.co.uk/)
 
 **MedLaunch** is a .NET (Windows only) front-end for the excellent [Mednafen](http://mednafen.fobby.net/) multi-system emulator. I'm not a developer by profession so it started as a means to learn a bit more about C# .NET and to start learning about Windows Presentation Foundation (WPF). It really has been a steep learning curve and as such, there are a vast swathe of things in the code that are certainly not 'best-practice'. Top of this list is the fact that I have not used the 'Model-View-ViewModel' design pattern (MVVM) which means the source is pretty hard to decipher in places. I may or may not address this with a major re-write in the future.
-
-As soon as I am ready for some kind of release (and I can work out GitHub) MedLaunch will be Open Source.
 
 ! Please Note: You should consider this software very much pre-alpha. There are a number of core things that are not yet implemented properly (or in some cases not implemented at all). Some of these can be found in the '**Broken Features**' & '**To Do**' sections further down this page.
 
@@ -45,6 +45,3 @@ As soon as I am ready for some kind of release (and I can work out GitHub) MedLa
 * Run MedLaunch.exe and select the location of your Mednafen folder
 
 ! It is recommended that you use a brand new Mednafen instance for the time being. You can download the latest version of Mednafen from the [**Mednafen website**](http://mednafen.fobby.net/releases/). If you do not do this you might experience issues with already existing system specific configuration files in the Mednafen folder. Specifically, these will override base settings in MedLaunch until said system configuration is enabled in the launcher. This will be addressed in future releases.
-
-### Download
-MedLaunch has not yet been released. This should happen very soon and will be found on the [**Releases**](http://medlaunch.asnitech.co.uk/releases) page when it has been.
