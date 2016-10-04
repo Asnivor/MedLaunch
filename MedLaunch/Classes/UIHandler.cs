@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using MedLaunch.Models;
+using System.Windows.Controls.Primitives;
 
 namespace MedLaunch.Classes
 {
@@ -21,12 +22,16 @@ namespace MedLaunch.Classes
         public List<Slider> Sliders { get; set; }
         public List<ComboBox> ComboBoxes { get; set; }
         public List<NumericUpDown> NumericUpDowns { get; set; }
+        public List<ToggleButton> ToggleButtons { get; set; }
 
        
 
         // Populate UIHandler Object
         public static UIHandler GetChildren(WrapPanel wp)
         {
+                       
+            
+
             // create a new instance of UIHandler class
             UIHandler ui = new UIHandler();
 

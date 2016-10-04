@@ -283,56 +283,56 @@ namespace MedLaunch.Models
 
         public string psx__input__port1 { get; set; }
         public double? psx__input__port1__analogjoy__axis_scale { get; set; }       // 1 through 1.5
-        public double? psx__input__port1__dualanalogjoy__axis_scale { get; set; }       // 1 through 1.5
+        public double? psx__input__port1__dualanalog__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port1__dualshock__axis_scale { get; set; }       // 1 through 1.5
         public string psx__input__port1__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public bool? psx__input__port1__memcard { get; set; }
 
         public string psx__input__port2 { get; set; }
         public double? psx__input__port2__analogjoy__axis_scale { get; set; }       // 1 through 1.5
-        public double? psx__input__port2__dualanalogjoy__axis_scale { get; set; }       // 1 through 1.5
+        public double? psx__input__port2__dualanalog__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port2__dualshock__axis_scale { get; set; }       // 1 through 1.5
         public string psx__input__port2__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public bool? psx__input__port2__memcard { get; set; }
 
         public string psx__input__port3 { get; set; }
         public double? psx__input__port3__analogjoy__axis_scale { get; set; }       // 1 through 1.5
-        public double? psx__input__port3__dualanalogjoy__axis_scale { get; set; }       // 1 through 1.5
+        public double? psx__input__port3__dualanalog__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port3__dualshock__axis_scale { get; set; }       // 1 through 1.5
         public string psx__input__port3__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public bool? psx__input__port3__memcard { get; set; }
 
         public string psx__input__port4 { get; set; }
         public double? psx__input__port4__analogjoy__axis_scale { get; set; }       // 1 through 1.5
-        public double? psx__input__port4__dualanalogjoy__axis_scale { get; set; }       // 1 through 1.5
+        public double? psx__input__port4__dualanalog__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port4__dualshock__axis_scale { get; set; }       // 1 through 1.5
         public string psx__input__port4__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public bool? psx__input__port4__memcard { get; set; }
 
         public string psx__input__port5 { get; set; }
         public double? psx__input__port5__analogjoy__axis_scale { get; set; }       // 1 through 1.5
-        public double? psx__input__port5__dualanalogjoy__axis_scale { get; set; }       // 1 through 1.5
+        public double? psx__input__port5__dualanalog__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port5__dualshock__axis_scale { get; set; }       // 1 through 1.5
         public string psx__input__port5__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public bool? psx__input__port5__memcard { get; set; }
 
         public string psx__input__port6 { get; set; }
         public double? psx__input__port6__analogjoy__axis_scale { get; set; }       // 1 through 1.5
-        public double? psx__input__port6__dualanalogjoy__axis_scale { get; set; }       // 1 through 1.5
+        public double? psx__input__port6__dualanalog__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port6__dualshock__axis_scale { get; set; }       // 1 through 1.5
         public string psx__input__port6__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public bool? psx__input__port6__memcard { get; set; }
 
         public string psx__input__port7 { get; set; }
         public double? psx__input__port7__analogjoy__axis_scale { get; set; }       // 1 through 1.5
-        public double? psx__input__port7__dualanalogjoy__axis_scale { get; set; }       // 1 through 1.5
+        public double? psx__input__port7__dualanalog__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port7__dualshock__axis_scale { get; set; }       // 1 through 1.5
         public string psx__input__port7__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public bool? psx__input__port7__memcard { get; set; }
 
         public string psx__input__port8 { get; set; }
         public double? psx__input__port8__analogjoy__axis_scale { get; set; }       // 1 through 1.5
-        public double? psx__input__port8__dualanalogjoy__axis_scale { get; set; }       // 1 through 1.5
+        public double? psx__input__port8__dualanalog__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port8__dualshock__axis_scale { get; set; }       // 1 through 1.5
         public string psx__input__port8__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public bool? psx__input__port8__memcard { get; set; }
@@ -635,49 +635,49 @@ namespace MedLaunch.Models
                 psx__input__mouse_sensitivity = 1,
                 psx__input__port1 = "gamepad",
                 psx__input__port1__analogjoy__axis_scale = 1,
-                psx__input__port1__dualanalogjoy__axis_scale = 1,
+                psx__input__port1__dualanalog__axis_scale = 1,
                 psx__input__port1__dualshock__axis_scale = 1,
                 psx__input__port1__gun_chairs = "0xFF0000",
                 psx__input__port1__memcard = true,
                 psx__input__port2 = "gamepad",
                 psx__input__port2__analogjoy__axis_scale = 1,
-                psx__input__port2__dualanalogjoy__axis_scale = 1,
+                psx__input__port2__dualanalog__axis_scale = 1,
                 psx__input__port2__dualshock__axis_scale = 1,
                 psx__input__port2__gun_chairs = "0xFF0000",
                 psx__input__port2__memcard = true,
                 psx__input__port3 = "gamepad",
                 psx__input__port3__analogjoy__axis_scale = 1,
-                psx__input__port3__dualanalogjoy__axis_scale = 1,
+                psx__input__port3__dualanalog__axis_scale = 1,
                 psx__input__port3__dualshock__axis_scale = 1,
                 psx__input__port3__gun_chairs = "0xFF0000",
                 psx__input__port3__memcard = true,
                 psx__input__port4 = "gamepad",
                 psx__input__port4__analogjoy__axis_scale = 1,
-                psx__input__port4__dualanalogjoy__axis_scale = 1,
+                psx__input__port4__dualanalog__axis_scale = 1,
                 psx__input__port4__dualshock__axis_scale = 1,
                 psx__input__port4__gun_chairs = "0xFF0000",
                 psx__input__port4__memcard = true,
                 psx__input__port5 = "gamepad",
                 psx__input__port5__analogjoy__axis_scale = 1,
-                psx__input__port5__dualanalogjoy__axis_scale = 1,
+                psx__input__port5__dualanalog__axis_scale = 1,
                 psx__input__port5__dualshock__axis_scale = 1,
                 psx__input__port5__gun_chairs = "0xFF0000",
                 psx__input__port5__memcard = true,
                 psx__input__port6 = "gamepad",
                 psx__input__port6__analogjoy__axis_scale = 1,
-                psx__input__port6__dualanalogjoy__axis_scale = 1,
+                psx__input__port6__dualanalog__axis_scale = 1,
                 psx__input__port6__dualshock__axis_scale = 1,
                 psx__input__port6__gun_chairs = "0xFF0000",
                 psx__input__port6__memcard = true,
                 psx__input__port7 = "gamepad",
                 psx__input__port7__analogjoy__axis_scale = 1,
-                psx__input__port7__dualanalogjoy__axis_scale = 1,
+                psx__input__port7__dualanalog__axis_scale = 1,
                 psx__input__port7__dualshock__axis_scale = 1,
                 psx__input__port7__gun_chairs = "0xFF0000",
                 psx__input__port7__memcard = true,
                 psx__input__port8 = "gamepad",
                 psx__input__port8__analogjoy__axis_scale = 1,
-                psx__input__port8__dualanalogjoy__axis_scale = 1,
+                psx__input__port8__dualanalog__axis_scale = 1,
                 psx__input__port8__dualshock__axis_scale = 1,
                 psx__input__port8__gun_chairs = "0xFF0000",
                 psx__input__port8__memcard = true,

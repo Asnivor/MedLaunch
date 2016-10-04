@@ -300,8 +300,20 @@ namespace MedLaunch.Classes
             }
 
 
+            // check whether relative or absolute path has been set in the database for this game
+            if (RomPath.StartsWith("."))
+            {
+                // path is relative - add paths together
+                baseStr += "\"" + BuildFullGamePath(RomFolder, RomPath) + "\"";
+            }
+            else
+            {
+                // path is absolute - just use the db gamepath
+                baseStr += "\"" + RomPath + "\"";
+            }
+
             // add rompath to end of connection string
-            baseStr += "\"" + BuildFullGamePath(RomFolder, RomPath) + "\"";
+            
             //MessageBoxResult result = MessageBox.Show(baseStr);
             return baseStr;
         }

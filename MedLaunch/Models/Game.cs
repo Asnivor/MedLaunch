@@ -39,5 +39,15 @@ namespace MedLaunch.Models
                 cfDef.SaveChanges();
             }
         }
+
+        public static void DeleteGame(Game game)
+        {
+            using (var cont = new MyDbContext())
+            {
+                cont.Game.Remove(game);
+                cont.SaveChanges();
+            }
+
+        }
     }    
 }

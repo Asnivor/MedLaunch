@@ -39,7 +39,7 @@
         </Grid.Background>
         <TabControl>
             <TabItem Header="Games">
-                <Grid>
+                <Grid x:Name="grdGameLibrary">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="0" />
@@ -47,7 +47,7 @@
                         <ColumnDefinition Width="0" />
                     </Grid.ColumnDefinitions>
                     <!--<TextBlock FontSize="55" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">Left side</TextBlock>-->
-                    <WrapPanel Orientation="Vertical" Grid.Column="0" Margin="0">
+                    <WrapPanel Orientation="Vertical" Grid.Column="0" Margin="0" x:FieldModifier="public" x:Name="wpGamesList">
                         <Button x:Name="btnClearFilters" HorizontalContentAlignment="Left" Background="{DynamicResource AccentColorBrush}" Click="btnClearFilters_Click">Clear All Filters</Button>
                         <RadioButton GroupName="flt" x:Name="btnShowAll" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnShowAll_Checked">Show All Games</RadioButton>
                         <RadioButton GroupName="flt" x:Name="btnFavorites" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnFavorites_Checked">Favorites</RadioButton>
@@ -149,6 +149,7 @@
                                     <RadioButton GroupName="flt" x:Name="btnSs" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnSs_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
+                                                <MenuItem x:Name="ManualAddGame13" Click="ManualAddGame_Click" Header="Manually Import a Saturn Game"  />
                                                 <MenuItem x:Name="ScanDisks13" Click="ScanDisks_Click" Header="Rescan SS Disks"  />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
@@ -156,6 +157,7 @@
                                     <RadioButton GroupName="flt" x:Name="btnPsx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnPsx_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
+                                                <MenuItem x:Name="ManualAddGame9" Click="ManualAddGame_Click" Header="Manually Import a PSX Game"  />
                                                 <MenuItem x:Name="ScanDisks9" Click="ScanDisks_Click" Header="Rescan PSX Disks" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
@@ -164,6 +166,7 @@
                                     <RadioButton GroupName="flt" x:Name="btnPcecd" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnPcecd_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
+                                                <MenuItem x:Name="ManualAddGame18" Click="ManualAddGame_Click" Header="Manually Import a PCE Game"  />
                                                 <MenuItem x:Name="ScanDisks18" Click="ScanDisks_Click" Header="Rescan PCE Disks"  />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
@@ -171,6 +174,7 @@
                                     <RadioButton GroupName="flt" x:Name="btnPcfx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnPcfx_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
+                                                <MenuItem x:Name="ManualAddGame8" Click="ManualAddGame_Click" Header="Manually Import a PC-FX Game"  />
                                                 <MenuItem x:Name="ScanDisks8" Click="ScanDisks_Click" Header="Rescan PCFX Disks"  />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
@@ -221,11 +225,13 @@
                                      Controls:TextBoxHelper.Watermark="Dynamic Search" />
                             <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
 
-                            <DataGrid Background="Transparent" Grid.Row="2" Name="dgGameList" IsReadOnly="True" SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Single" ContextMenuOpening="dgGameList_ContextMenuOpening">
+                            <DataGrid Background="Transparent" MouseDoubleClick="LaunchRom_Click" Grid.Row="2" Name="dgGameList" IsReadOnly="True" SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Single" ContextMenuOpening="dgGameList_ContextMenuOpening">
                                 <DataGrid.ContextMenu>
                                     <ContextMenu>
                                         <MenuItem x:Name="LaunchRom" Header="Play Game" Click="LaunchRom_Click" />
                                         <MenuItem Header="Favorites" Click="MenuItemFavorite_Click" />
+                                       
+                                        <MenuItem x:Name="DeleteRom" Header="Delete From Games Library" Click="DeleteRom_Click" />
                                     </ContextMenu>
                                 </DataGrid.ContextMenu>
                             </DataGrid>

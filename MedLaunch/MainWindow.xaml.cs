@@ -139,6 +139,10 @@ namespace MedLaunch
             // load mednafen help page
             wb.Navigate("http://mednafen.fobby.net/");
 
+
+            // hide certain controls (whilst they are being developed)
+            btnRescanDisks.Visibility = Visibility.Collapsed;
+
         }
 
         // web browser
@@ -205,7 +209,7 @@ namespace MedLaunch
             wb.Navigate("http://mednafen.fobby.net/");
         }
 
-        private async void RescanDisks(object sender, RoutedEventArgs e)
+        private async void RescanSystemDisks(int sysId)
         {
             var mySettings = new MetroDialogSettings()
             {
@@ -223,6 +227,11 @@ namespace MedLaunch
             btnShowAll.IsChecked = true;
 
             await controller.CloseAsync();
+        }
+
+        private void RescanDisks(object sender, RoutedEventArgs e)
+        {
+            RescanSystemDisks(0);
         }
 
         private async void RescanSystemRoms(int sysId)
@@ -345,8 +354,11 @@ namespace MedLaunch
 
             //Update list
             // ensure 'show all' filter is checked on startup
-            btnFavorites.IsChecked = true;
-            btnShowAll.IsChecked = true;
+            //btnFavorites.IsChecked = true;
+            //btnShowAll.IsChecked = true;
+
+            // refresh library view
+            GamesLibraryVisualHandler.RefreshGamesLibrary();
 
 
             /*
@@ -479,14 +491,21 @@ namespace MedLaunch
             */
             //Update list
             // ensure 'show all' filter is checked on startup
-            btnFavorites.IsChecked = true;
-            btnShowAll.IsChecked = true;
+            //btnFavorites.IsChecked = true;
+            //btnShowAll.IsChecked = true;
+
+            // refresh library view
+            GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 
         private void RescanRoms(object sender, RoutedEventArgs e)
         {
             RescanSystemRoms(0);
         }
+
+        
+
+
 
         /*********** 
          * EVENTS
@@ -609,6 +628,16 @@ namespace MedLaunch
             int sysId = Convert.ToInt32(menuName.Replace("ScanDisks", ""));
         }
 
+        private void ManualAddGame_Click(object sender, RoutedEventArgs e)
+        {
+            string menuName = (sender as MenuItem).Name;
+            int sysId = Convert.ToInt32(menuName.Replace("ManualAddGame", ""));
+            GameScanner gs = new GameScanner();
+            gs.BeginManualImport(sysId);
+            // refresh library view
+            GamesLibraryVisualHandler.RefreshGamesLibrary();
+        }
+
 
         // Games grid filter text box event
         private void tbFilterDatagrid_TextChanged(object sender, TextChangedEventArgs e)
@@ -660,7 +689,7 @@ namespace MedLaunch
             {
                 system = 7;
             }
-            /*
+           
             if (btnPsx.IsChecked == true)
             {
                 system = 9;
@@ -669,7 +698,7 @@ namespace MedLaunch
             {
                 system = 13;
             }
-            */
+          
             if (btnMd.IsChecked == true)
             {
                 system = 4;
@@ -686,12 +715,16 @@ namespace MedLaunch
             {
                 system = 11;
             }
+            if (btnPcecd.IsChecked == true)
+            {
+                system = 18;
+            }
 
             DbEF.GetGames(dgGameList, system, textbox.Text);
         }
 
         // Clear all filters button click
-        private void btnClearFilters_Click(object sender, RoutedEventArgs e)
+        public void btnClearFilters_Click(object sender, RoutedEventArgs e)
         {
             btnShowAll.IsChecked = true;
             tbFilterDatagrid.Clear();
@@ -1037,6 +1070,12 @@ namespace MedLaunch
                     else
                         mi.Header = "Add/Remove From Favorites";
                 }
+
+                // remove game
+                if ((String)mi.Header == "Delete From Games Library")
+                {
+                    mi.Header = "Delete From Games Library"; // + romName;
+                }
             }
 
             //fe.ContextMenu = CMenu.BuildGamesMenu(dgGameList);
@@ -1047,10 +1086,22 @@ namespace MedLaunch
             DataGridGamesView drv = (DataGridGamesView)dgGameList.SelectedItem;
             int romId = drv.ID;
             GameScanner.FavoriteToggle(romId);
-            dgGameList.Items.Refresh();
-            dgGameList.InvalidateVisual();
-                               
-            
+            // refresh library view
+            GamesLibraryVisualHandler.RefreshGamesLibrary();
+
+
+        }
+
+        private void DeleteRom_Click(object sender, RoutedEventArgs e)
+        {
+            DataGridGamesView drv = (DataGridGamesView)dgGameList.SelectedItem;
+            int romId = drv.ID;
+            Game game = Game.GetGame(romId);
+            // delete from library
+            Game.DeleteGame(game);
+
+            // refresh library view
+            GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 
         private async void LaunchRom_Click(object sender, RoutedEventArgs e)
@@ -1131,6 +1182,9 @@ namespace MedLaunch
                 Game game = Game.GetGame(gl.GameId);
                 game.gameLastPlayed = DateTime.Now;
                 Game.SetGame(game);
+
+                // refresh library view
+                GamesLibraryVisualHandler.RefreshGamesLibrary();
 
             }
 
@@ -1765,6 +1819,8 @@ namespace MedLaunch
             // re-load config changes
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, configId);
         }
+
+
 
         
     }

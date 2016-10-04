@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO.Compression;
 using System.Windows;
+using Ookii.Dialogs.Wpf;
+using Microsoft.Win32;
 
 namespace MedLaunch.Classes
 {
@@ -19,7 +21,7 @@ namespace MedLaunch.Classes
         // constructor
         public GameScanner()
         {
-            db = new MyDbContext();
+            db = new MyDbContext();            
 
             Games = (from g in db.Game
                      select g).ToList();
@@ -414,6 +416,10 @@ namespace MedLaunch.Classes
             {
                 db.AddRange(RomsToAdd);
                 db.UpdateRange(RomsToUpdate);
+
+                db.AddRange(DisksToAdd);
+                db.UpdateRange(DisksToUpdate);
+
                 db.SaveChanges();
             }
                 
@@ -674,6 +680,216 @@ namespace MedLaunch.Classes
                 UpdateRom(rom);
 
                 romaContext.Dispose();
+            }
+        }
+        public void BeginManualImport(int sysId)
+        {
+            // Start manual import process for a game based on sysId
+            DiskGameFile gameFile = SelectGameFile(sysId);
+            if (gameFile == null)
+            {
+                MessageBox.Show("No valid file was selected", "MedLaunch: Error");
+                return;
+            }
+            else
+            {
+                // Add or update the returned GameFile to the database
+                InsertOrUpdateDisk(gameFile, sysId);
+                SaveToDatabase();
+                MessageBox.Show("Game: " + gameFile.FileName + " has added to (or updated in) the library", "MedLaunch: Import or Update Completed");
+            }          
+
+        }
+
+        public DiskGameFile SelectGameFile(int sysId)
+        {
+            // get allowed file types for this system
+            List<string> exts = (GetAllowedFileExtensions(sysId)).ToList();
+
+            // convert allowed types to filter string
+            string filter = "";
+            string fStart = "Allowed Types (";
+            string fEnd = "";
+            foreach (string i in exts)
+            {
+                if (i == "") { continue; }
+                    
+                fStart += "*" + i + ",";
+                fEnd += "*" + i + ";";
+            }
+            char comma = ',';
+            char semi = ';';
+            filter = (fStart.TrimEnd(comma)) + ")|" + (fEnd.TrimEnd(semi));
+            //MessageBox.Show(filter);
+
+            // open the file dialog showing only allowed file types - multi-select enabled
+            OpenFileDialog filePath = new OpenFileDialog();
+            filePath.Multiselect = true;
+            filePath.Filter = filter;
+            filePath.ShowDialog();
+
+            if (filePath.FileNames.Length > 0)
+            {
+                // file(s) have been selected
+                List<string> files = filePath.FileNames.ToList();
+
+                // single or multiple files?
+                if (files.Count > 1)
+                {
+                    // Create a list of GameFile Objects to process
+                    List<DiskGameFile> games = new List<DiskGameFile>();
+
+                    // iterate through each game
+                    foreach (string game in files)
+                    {
+                        // Create a new DiskGameFile instance with all path details
+                        DiskGameFile g = new DiskGameFile(game, sysId);
+                        // add to list
+                        games.Add(g);
+                    }
+
+                    // process the list and create an m3u playlist file - all selected files have to be in the same directory
+                    List<DiskGameFile> ordered = (from a in games
+                                   select a).OrderBy(a => a.FileName).ToList();
+
+                    // check whether an m3u playlist file already exists
+                    var firstEntry = (from a in ordered
+                                       select a).First();
+
+                    // create string for the new m3u path
+                    string m3uPath = firstEntry.FolderPath + "\\" + firstEntry.GameName + ".m3u";
+                    //MessageBox.Show(m3uPath);
+
+                    // create GameFIle object for the m3u playlist
+                    DiskGameFile mf = new DiskGameFile(m3uPath, sysId);
+
+                    // Attempt M3U creation
+                    bool create = CreateM3uPlaylist(ordered, m3uPath);
+
+                    if (create == false)
+                    {
+                        // user cancelled import, return null
+                        return null;
+                    }
+                    else
+                    {
+                        // method returned true - begin to import m3u to games library
+                        return mf;                       
+                    }
+                }
+                else
+                {
+                    // single file selected - create GameFile object and return it
+                    DiskGameFile g = new DiskGameFile(files[0], sysId, true);
+                    return g;
+                }
+            }
+            else
+            {
+                // no files selected - return empty string
+                return null;
+            }
+        }
+
+        public void InsertOrUpdateDisk(DiskGameFile f, int sysId)
+        {
+            // check whether game already exists (by gameName and systemId)
+            Game chkGame = (from g in Games
+                            where g.systemId == sysId && g.gameName == f.GameName
+                            select g).SingleOrDefault();
+
+            // create new Game object for import
+            Game newGame = new Game();
+
+            if (chkGame == null)
+            {
+                // does not already exist - create new game
+                newGame.configId = 1;
+                newGame.gameName = f.GameName;
+                newGame.gamePath = f.FullPath;
+                newGame.hidden = false;
+                newGame.isDiskBased = true;
+                newGame.isFavorite = false;
+                newGame.systemId = sysId;
+
+                // add to finaGames list
+                DisksToAdd.Add(newGame);
+                // increment the added counter
+                AddedStats++;
+            }
+            else
+            {
+                // matching game found - update it
+                if ((chkGame.gamePath == f.FullPath || chkGame.gamePath == PathUtil.GetRelativePath(GetPath(sysId), f.FullPath) && chkGame.hidden == false))
+                {
+                    //nothing to update - Path is either identical either absoultely or relatively (against the systemPath set in the database)
+                    UntouchedStats++;
+                }
+                else
+                {
+                    newGame = chkGame;
+                    // update path in case it has changed location
+                    newGame.gamePath = f.FullPath;
+                    // mark as not hidden
+                    newGame.hidden = false;
+                    newGame.isDiskBased = true;
+
+                    // add to finalGames list
+                    DisksToUpdate.Add(newGame);
+                    // increment updated counter
+                    UpdatedStats++;
+                }
+
+            }
+        }
+
+        public bool CreateM3uPlaylist(List<DiskGameFile> files, string m3uPath)
+        {
+            // does the file already exist
+            if (!File.Exists(m3uPath))
+            {
+                // file does not exist - create file and populate
+                using (StreamWriter sw = File.CreateText(m3uPath))
+                {
+                    foreach (var f in files)
+                    {
+                        sw.WriteLine(f.FileName);
+                    }
+                }
+                return true;
+            }
+            else
+            {
+                // file already exists - check whether we want to overwrite or not
+                MessageBoxResult result = MessageBox.Show("File Name: " + Path.GetFileName(m3uPath) + "\n\nDo you want to replace this file?\n(Yes overwrites, No uses existing file, Cancel aborts the import process)", "M3U Playlist File Already Exists", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                if (result == MessageBoxResult.No)
+                {
+                    // dont overwrite, just return
+                    return true;
+                }
+                if (result == MessageBoxResult.Cancel)
+                {
+                    // cancel import process
+                    return false;
+                }
+                if (result == MessageBoxResult.Yes)
+                {
+                    // overwrite
+
+                    // clear file first
+                    File.Create(m3uPath).Close();
+
+                    // create and populate file
+                    using (StreamWriter sw = File.CreateText(m3uPath))
+                    {
+                        foreach (var f in files)
+                        {
+                            sw.WriteLine(f.FileName);
+                        }
+                    }
+                    return true;
+                }
+                return false;
             }
         }
     }
