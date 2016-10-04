@@ -45,3 +45,9 @@
 * Run MedLaunch.exe and select the location of your Mednafen folder
 
 ! It is recommended that you use a brand new Mednafen instance for the time being. You can download the latest version of Mednafen from the [**Mednafen website**](http://mednafen.fobby.net/releases/). If you do not do this you might experience issues with already existing system specific configuration files in the Mednafen folder. Specifically, these will override base settings in MedLaunch until said system configuration is enabled in the launcher. This will be addressed in future releases.
+
+## Build From Source
+The project has been built using Visual Studio Community 2015. It may or may not work with previous versions.
+* Clone the Master branch (or download as zip)
+* Open MedLaunch.sln in VisualStudio
+* Restore NuGet packages
