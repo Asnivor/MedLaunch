@@ -140,8 +140,16 @@ namespace MedLaunch
             wb.Navigate("http://mednafen.fobby.net/");
 
 
-            // hide certain controls (whilst they are being developed)
+            /* hide certain controls (whilst they are being developed) */
+
+            // rescan all disk systems button
             btnRescanDisks.Visibility = Visibility.Collapsed;
+
+            // Rescan specific disk system menu item
+            ScanDisks13.Visibility = Visibility.Collapsed;
+            ScanDisks9.Visibility = Visibility.Collapsed;
+            ScanDisks18.Visibility = Visibility.Collapsed;
+            ScanDisks8.Visibility = Visibility.Collapsed;
 
         }
 
