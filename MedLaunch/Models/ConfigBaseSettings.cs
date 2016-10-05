@@ -924,14 +924,8 @@ namespace MedLaunch.Models
 
         public static int GetSystemIdFromSystemCode(string systemCode)
         {
-            using (var con = new MyDbContext())
-            {
-                var c = (from a in con.GameSystem
-                         where a.systemCode == systemCode
-                         select a).SingleOrDefault();
-
-                return c.systemId;
-            }
+            GSystem gs = new GSystem(systemCode);
+            return gs.systemId;
         }
 
         public static string ConvertControlNameToConfigName(string controlName)

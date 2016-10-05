@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MedLaunch.Models
 {
+    /*
     public class GameSystem
     {
         public int systemId { get; set; }
@@ -96,6 +97,6 @@ namespace MedLaunch.Models
             return gSystems;
         }
     }
-
+    */
     
 }

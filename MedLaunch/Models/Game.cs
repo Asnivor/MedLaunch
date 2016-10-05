@@ -13,7 +13,7 @@ namespace MedLaunch.Models
         public string gameName { get; set; }
         public DateTime gameLastPlayed { get; set; }
         public int systemId { get; set; }
-        public GameSystem GameSystem { get; set; }
+        //public GSystem GameSystem { get; set; }
         public bool isFavorite { get; set; }
         public int configId { get; set; }
         public bool hidden { get; set; }

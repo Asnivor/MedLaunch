@@ -23,7 +23,7 @@ namespace MedLaunch.Models
         public DbSet<ConfigServerSettings> ConfigServerSettings { get; set; }                   // table containing mednafen netplay server info
         public DbSet<Versions> Versions { get; set; }                                           // table containing app and database version information
         public DbSet<Paths> Paths { get; set; }                                                 // table containing filesystem paths
-        public DbSet<GameSystem> GameSystem { get; set; }                                       // table containing list of different systems
+        //public GSystem GSystem { get; set; }                                                    // Non-DB table containing list of different systems
         public DbSet<Game> Game { get; set; }                                                   // table containing list of imported ROMs
         public DbSet<GlobalSettings> GlobalSettings { get; set; }                               // launcher settings
 
@@ -47,10 +47,10 @@ namespace MedLaunch.Models
 
             modelBuilder.Entity<Paths>()
                 .HasKey(c => c.pathId);
-
+            /*
             modelBuilder.Entity<GameSystem>()
                 .HasKey(c => c.systemId);
-
+*/
             modelBuilder.Entity<Game>()
                 .HasKey(c => c.gameId);
 

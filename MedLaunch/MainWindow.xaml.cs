@@ -152,7 +152,7 @@ namespace MedLaunch
             ScanDisks8.Visibility = Visibility.Collapsed;
 
         }
-
+        
         // web browser
         
         private void txtUrl_KeyUp(object sender, KeyEventArgs e)
@@ -279,7 +279,7 @@ namespace MedLaunch
                 }
             }
 
-            List<GameSystem> scanRoms = new List<GameSystem>();
+            List<GSystem> scanRoms = new List<GSystem>();
             if (sysId == 0)
             {
                 // scan of all roms has been selected
@@ -1131,7 +1131,7 @@ namespace MedLaunch
             var controller = await this.ShowProgressAsync("Launching " + gl.SystemName + " Game", "Starting: " + gl.RomName, settings: mySettings);
             controller.SetIndeterminate();
 
-            await Task.Delay(1000);
+            await Task.Delay(100);
 
             controller.SetCancelable(false);
 
@@ -1145,14 +1145,14 @@ namespace MedLaunch
                     o += s + "\n";
                 }
                 controller.SetMessage(o + "\n...Cancelling Operation...");
-                await Task.Delay(1000);
+                await Task.Delay(100);
                 await controller.CloseAsync();
             }
             else
             {
                 string status = "...Building config...\n";
                 controller.SetMessage(status);
-                await Task.Delay(300);
+                await Task.Delay(50);
 
                 string cfgName;
                 if (gl.ConfigId == 2000000000)
@@ -1162,7 +1162,7 @@ namespace MedLaunch
 
                 status += "Using " + cfgName + "\n";
                 controller.SetMessage(status);
-                await Task.Delay(300);
+                await Task.Delay(50);
 
                 string netplayEnabled;
                 if (gl.Global.enableNetplay == true)
@@ -1171,7 +1171,7 @@ namespace MedLaunch
                     netplayEnabled = "Netplay Enabled: No";
                 status += netplayEnabled + "\n";
                 controller.SetMessage(status);
-                await Task.Delay(300);
+                await Task.Delay(50);
 
                 // get base config params
                 string configCmdString = gl.GetCommandLineArguments();
@@ -1179,7 +1179,7 @@ namespace MedLaunch
                 string launchGame = "...Launching Game...";
                 status += launchGame + "\n";
                 controller.SetMessage(status);
-                await Task.Delay(300);
+                await Task.Delay(50);
 
                 // launch game
                 gl.RunGame(configCmdString);

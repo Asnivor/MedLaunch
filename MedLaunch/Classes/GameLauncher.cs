@@ -75,9 +75,7 @@ namespace MedLaunch.Classes
 
             // get GameSystems
 
-            GameSystem gSys = (from Gs in db.GameSystem
-                               where Gs.systemId == SystemId
-                               select Gs).SingleOrDefault();
+            GSystem gSys = new GSystem(SystemId);
             SystemName = gSys.systemName;
 
             if (gSys.systemId == 18)
@@ -321,7 +319,7 @@ namespace MedLaunch.Classes
         public bool DoesParamContainSystemCode(string param)
         {
             // convert list of systemcodes to hashset
-            var s = (from z in db.GameSystem
+            var s = (from z in GSystem.GetSystems()
                      select z.systemCode);
             bool itDoes = false;
             foreach (string code in s)

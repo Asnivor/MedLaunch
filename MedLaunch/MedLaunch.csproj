@@ -180,6 +180,7 @@
     <Compile Include="Models\GameSystem.cs" />
     <Compile Include="Models\GlobalSettings.cs" />
     <Compile Include="Models\Paths.cs" />
+    <Compile Include="Models\GSystem.cs" />
     <Compile Include="Models\Versions.cs" />
     <Compile Include="ViewModels\ConfigNetplaySettingsViewModel.cs" />
     <Compile Include="ViewModels\ServersViewModel.cs" />

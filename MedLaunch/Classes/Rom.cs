@@ -9,7 +9,7 @@ namespace MedLaunch.Classes
 {
     public class Rom
     {
-        public GameSystem gameSystem { get; set; }
+        public GSystem gameSystem { get; set; }
         public string path { get; set; }
     }
 }

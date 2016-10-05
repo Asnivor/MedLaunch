@@ -29,6 +29,7 @@ namespace MedLaunch.Classes
 
             if (doSeed == true)
             {
+                /*
                 // Create systems
                 List<GameSystem> gSystems = GameSystem.GetGameSystemDefaults();
                 using (var context = new MyDbContext())
@@ -53,6 +54,7 @@ namespace MedLaunch.Classes
                     }
                     context.SaveChanges();
                 }
+                */
 
                 // populate Versions table
 
@@ -77,17 +79,12 @@ namespace MedLaunch.Classes
                 }
 
                 // create system specific configs (set to disabled by default)
-                List<GameSystem> gamesystems = new List<GameSystem>();
+                List<GSystem> gamesystems = GSystem.GetSystems();
                 using (var gsContext = new MyDbContext())
                 {
-                    // get list of game systems from database
-                    var gsv = from s in gsContext.GameSystem
-                              select s;
-                    gamesystems.AddRange(gsv);                               
-                
                     // iterate through each system and create a default config for them - setting them to disabled, setting their ID to 2000000000 + SystemID
                     // and setting their systemident to systemid
-                    foreach (GameSystem System in gamesystems)
+                    foreach (GSystem System in gamesystems)
                     {
                         int def = 2000000000;
                         ConfigBaseSettings c = ConfigBaseSettings.GetConfigDefaults();
@@ -172,10 +169,11 @@ namespace MedLaunch.Classes
 
             using (var context = new MyDbContext())
             {
+
                 //var gameList = context.Game.AsNoTracking().ToList();
                 var gameList = from p in context.Game
-                               where p.gameId > 0 && p.GameSystem.systemId == p.systemId
-                               select new { p.gameId, p.gameName, p.gameLastPlayed, p.gamePath, p.systemId, p.GameSystem.systemName, p.GameSystem.systemDescription };
+                               where p.gameId > 0 && p.systemId == p.systemId
+                               select new { p.gameId, p.gameName, p.gameLastPlayed, p.gamePath, p.systemId }; //, p.GameSystem.systemName, p.GameSystem.systemDescription };
 
                 foreach (var g in gameList)
                 {
@@ -185,8 +183,8 @@ namespace MedLaunch.Classes
                     gameRecord.GameLastPlayed = g.gameLastPlayed;
                     gameRecord.GameName = g.gameName;
                     gameRecord.GamePath = g.gamePath;
-                    gameRecord.SystemName = g.systemName;
-                    gameRecord.SystemDescription = g.systemDescription;
+                    gameRecord.SystemName = GSystem.GetSystemName(g.systemId);
+                    gameRecord.SystemDescription = GSystem.GetSystemDesc(g.systemId);
                     gameRecord.SystemId = g.systemId;
 
                     initialList.Add(gameRecord);
@@ -208,13 +206,13 @@ namespace MedLaunch.Classes
                     // show all games
                     var query = from g in context.Game
                                 orderby g.gameName
-                                select new { g.gameId, g.gameName, g.GameSystem.systemName, g.gameLastPlayed, g.isFavorite };
+                                select new { g.gameId, g.gameName, g.gameLastPlayed, g.isFavorite };
                     foreach (var g in query)
                     {
                         DataGridGamesView dgGamesList = new DataGridGamesView();
                         dgGamesList.ID = g.gameId;
                         dgGamesList.Game = g.gameName;
-                        dgGamesList.System = g.systemName;
+                        dgGamesList.System = GSystem.GetSystemName(systemId);
                         dgGamesList.Favorite = g.isFavorite;
                         string lp;
                         if (g.gameLastPlayed.ToString("yyyy-MM-dd HH:mm:ss") == "0001-01-01 00:00:00")
@@ -236,13 +234,13 @@ namespace MedLaunch.Classes
                     var query = from g in context.Game
                                 where g.systemId == systemId
                                 orderby g.gameName
-                                select new { g.gameId, g.gameName, g.GameSystem.systemName, g.gameLastPlayed, g.isFavorite };
+                                select new { g.gameId, g.gameName, g.gameLastPlayed, g.isFavorite };
                     foreach (var g in query)
                     {
                         DataGridGamesView dgGamesList = new DataGridGamesView();
                         dgGamesList.ID = g.gameId;
                         dgGamesList.Game = g.gameName;
-                        dgGamesList.System = g.systemName;
+                        dgGamesList.System = GSystem.GetSystemName(systemId);
                         dgGamesList.Favorite = g.isFavorite;
                         string lp;
                         if (g.gameLastPlayed.ToString("yyyy-MM-dd HH:mm:ss") == "0001-01-01 00:00:00")
@@ -277,13 +275,13 @@ namespace MedLaunch.Classes
                     // show all games
                     var query = from g in context.Game
                                 orderby g.gameName
-                                select new { g.gameId, g.gameName, g.GameSystem.systemName, g.gameLastPlayed, g.isFavorite };
+                                select new { g.gameId, g.gameName, g.gameLastPlayed, g.isFavorite };
                     foreach (var g in query)
                     {
                         DataGridGamesView dgGamesList = new DataGridGamesView();
                         dgGamesList.ID = g.gameId;
                         dgGamesList.Game = g.gameName;
-                        dgGamesList.System = g.systemName;
+                        dgGamesList.System = GSystem.GetSystemName(systemId);
                         dgGamesList.Favorite = g.isFavorite;
                         string lp;
                         if (g.gameLastPlayed.ToString("yyyy-MM-dd HH:mm:ss") == "0001-01-01 00:00:00")
@@ -305,13 +303,13 @@ namespace MedLaunch.Classes
                     var query = from g in context.Game
                                 where g.systemId == systemId
                                 orderby g.gameName
-                                select new { g.gameId, g.gameName, g.GameSystem.systemName, g.gameLastPlayed, g.isFavorite };
+                                select new { g.gameId, g.gameName, g.gameLastPlayed, g.isFavorite };
                     foreach (var g in query)
                     {
                         DataGridGamesView dgGamesList = new DataGridGamesView();
                         dgGamesList.ID = g.gameId;
                         dgGamesList.Game = g.gameName;
-                        dgGamesList.System = g.systemName;
+                        dgGamesList.System = GSystem.GetSystemName(systemId);
                         dgGamesList.Favorite = g.isFavorite;
                         string lp;
                         if (g.gameLastPlayed.ToString("yyyy-MM-dd HH:mm:ss") == "0001-01-01 00:00:00")
@@ -345,15 +343,15 @@ namespace MedLaunch.Classes
                 {
                     // show all games
                     var favQuery = from g in context.Game
-                                   where (g.gameName.Contains(search) || g.GameSystem.systemName.Contains(search)) && g.isFavorite == true && g.hidden == false
+                                   where (g.gameName.Contains(search) || GSystem.GetSystemName(g.systemId).Contains(search)) && g.isFavorite == true && g.hidden == false
                                    orderby g.gameName
-                                   select new { g.gameId, g.gameName, g.GameSystem.systemName, g.gameLastPlayed, g.isFavorite };
+                                   select new { g.gameId, g.gameName, g.gameLastPlayed, g.isFavorite, g.systemId };
                     foreach (var g in favQuery)
                     {
                         DataGridGamesView dgGamesList = new DataGridGamesView();
                         dgGamesList.ID = g.gameId;
                         dgGamesList.Game = g.gameName;
-                        dgGamesList.System = g.systemName;
+                        dgGamesList.System = GSystem.GetSystemName(g.systemId);
                         dgGamesList.Favorite = g.isFavorite;
                         string lp;
                         if (g.gameLastPlayed.ToString("yyyy-MM-dd HH:mm:ss") == "0001-01-01 00:00:00")
@@ -375,15 +373,15 @@ namespace MedLaunch.Classes
                     {
                         // show all games
                         var query = from g in context.Game
-                                    where (g.gameName.Contains(search) || g.GameSystem.systemName.Contains(search)) && g.hidden == false
+                                    where (g.gameName.Contains(search) || GSystem.GetSystemName(g.systemId).Contains(search)) && g.hidden == false
                                     orderby g.gameName
-                                    select new { g.gameId, g.gameName, g.GameSystem.systemName, g.gameLastPlayed, g.isFavorite };
+                                    select new { g.gameId, g.gameName, g.gameLastPlayed, g.isFavorite, g.systemId };
                         foreach (var g in query)
                         {
                             DataGridGamesView dgGamesList = new DataGridGamesView();
                             dgGamesList.ID = g.gameId;
                             dgGamesList.Game = g.gameName;
-                            dgGamesList.System = g.systemName;
+                            dgGamesList.System = GSystem.GetSystemName(g.systemId);
                             dgGamesList.Favorite = g.isFavorite;
                             string lp;
                             if (g.gameLastPlayed.ToString("yyyy-MM-dd HH:mm:ss") == "0001-01-01 00:00:00")
@@ -403,15 +401,15 @@ namespace MedLaunch.Classes
                     {
                         // filter based on systemId
                         var query = from g in context.Game
-                                    where (g.systemId == systemId && (g.gameName.Contains(search) || g.GameSystem.systemName.Contains(search))) && g.hidden == false
+                                    where (g.systemId == systemId && (g.gameName.Contains(search) || GSystem.GetSystemName(g.systemId).Contains(search))) && g.hidden == false
                                     orderby g.gameName
-                                    select new { g.gameId, g.gameName, g.GameSystem.systemName, g.gameLastPlayed, g.isFavorite };
+                                    select new { g.gameId, g.gameName, g.gameLastPlayed, g.isFavorite };
                         foreach (var g in query)
                         {
                             DataGridGamesView dgGamesList = new DataGridGamesView();
                             dgGamesList.ID = g.gameId;
                             dgGamesList.Game = g.gameName;
-                            dgGamesList.System = g.systemName;
+                            dgGamesList.System = GSystem.GetSystemName(systemId);
                             dgGamesList.Favorite = g.isFavorite;
                             string lp;
                             if (g.gameLastPlayed.ToString("yyyy-MM-dd HH:mm:ss") == "0001-01-01 00:00:00")
@@ -448,8 +446,8 @@ namespace MedLaunch.Classes
                 var gameInfo = (from g in context.Game
                                where g.gameId == gameID
                                select g).FirstOrDefault();
-
-                var sysInfo = (from s in context.GameSystem
+                List<GSystem> si = GSystem.GetSystems();
+                var sysInfo = (from s in si
                                where s.systemId == gameInfo.systemId
                                select new { s.systemName, s.systemDescription, s.systemId }).FirstOrDefault();
 

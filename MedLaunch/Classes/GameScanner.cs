@@ -30,14 +30,13 @@ namespace MedLaunch.Classes
                      where p.pathId == 1
                      select p).ToList().SingleOrDefault();
 
-            Systems = (from s in db.GameSystem
-                       select s).ToList();
+            Systems = GSystem.GetSystems();
 
-            RomSystems = new List<GameSystem>();
-            DiskSystems = new List<GameSystem>();
+            RomSystems = new List<GSystem>();
+            DiskSystems = new List<GSystem>();
 
             // populate RomSystems and DiskSystems
-            foreach (GameSystem gs in Systems)
+            foreach (GSystem gs in Systems)
             {
                 // exlude non-path systems
                 if (gs.systemId == 16 || gs.systemId == 17)
@@ -53,8 +52,8 @@ namespace MedLaunch.Classes
                     RomSystems.Add(gs);
             }
 
-            RomSystemsWithPaths = new List<GameSystem>();
-            DiskSystemsWithPaths = new List<GameSystem>();
+            RomSystemsWithPaths = new List<GSystem>();
+            DiskSystemsWithPaths = new List<GSystem>();
 
             // populate RomSystemsWithPaths with only entries that only have Rom paths set (and are not non-path systems like snes_faust and pce_fast)
             foreach (var sys in RomSystems)
@@ -165,11 +164,11 @@ namespace MedLaunch.Classes
         // properties
         public List<Game> Games { get; private set; }
         public Paths Paths { get; private set; }
-        public List<GameSystem> Systems { get; private set; }
-        public List<GameSystem> RomSystems { get; private set; }
-        public List<GameSystem> DiskSystems { get; private set; }
-        public List<GameSystem> RomSystemsWithPaths { get; private set; }
-        public List<GameSystem> DiskSystemsWithPaths { get; private set; }
+        public List<GSystem> Systems { get; private set; }
+        public List<GSystem> RomSystems { get; private set; }
+        public List<GSystem> DiskSystems { get; private set; }
+        public List<GSystem> RomSystemsWithPaths { get; private set; }
+        public List<GSystem> DiskSystemsWithPaths { get; private set; }
         public List<Game> GamesGB { get; private set; }
         public List<Game> GamesGBA { get; private set; }
         public List<Game> GamesLYNX { get; private set; }
@@ -538,14 +537,13 @@ namespace MedLaunch.Classes
 
 
 
-        public static List<GameSystem> GetSystems()
+        public static List<GSystem> GetSystems()
         {
-            List<GameSystem> systems = new List<GameSystem>();
+            List<GSystem> systems = new List<GSystem>();
             using (var sysCon = new MyDbContext())
             {
-                var sys = from s in sysCon.GameSystem
-                          select s;
-                foreach (GameSystem g in sys)
+                var sys = GSystem.GetSystems();
+                foreach (GSystem g in sys)
                 {
                     systems.Add(g);
                 }
@@ -561,7 +559,7 @@ namespace MedLaunch.Classes
             using (var romContext = new MyDbContext())
             {
                 var rom = (from r in romContext.Game
-                          where (r.gameName == romName) && (r.GameSystem.systemId == systemRom.gameSystem.systemId)
+                          where (r.gameName == romName) && (r.systemId == systemRom.gameSystem.systemId)
                           select r).SingleOrDefault();
 
                 if (rom != null)
