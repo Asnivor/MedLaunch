@@ -134,6 +134,8 @@ namespace MedLaunch
             brdSpecificSnes_faust.Visibility = Visibility.Collapsed;
             brdSpecificSnes.Visibility = Visibility.Collapsed;
             brdSpecificVb.Visibility = Visibility.Collapsed;
+            brdSpecificSs1.Visibility = Visibility.Collapsed;
+            brdSpecificSs2.Visibility = Visibility.Collapsed;
 
 
             // load mednafen help page
@@ -1502,6 +1504,8 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
+            brdSpecificSs1.Visibility = Visibility.Visible;
+            brdSpecificSs2.Visibility = Visibility.Visible;
         }
 
         private void btnConfigPsx_Checked(object sender, RoutedEventArgs e)
@@ -1693,6 +1697,8 @@ namespace MedLaunch
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
             // Hide specific items
+            brdSpecificSs1.Visibility = Visibility.Collapsed;
+            brdSpecificSs2.Visibility = Visibility.Collapsed;
         }
         
         private void btnConfigPsx_Unchecked(object sender, RoutedEventArgs e)

@@ -2257,6 +2257,254 @@
                                     </Expander>
                                 </Border>
 
+                                <!-- ss -->
+                                <Border x:Name="brdSpecificSs1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="Saturn Specific Settings">
+                                        <StackPanel Margin="10">
+                                            <CheckBox x:Name="cfg_ss__bios_sanity">Enable BIOS (ROM) Sanity Checks</CheckBox>
+                                            <CheckBox x:Name="cfg_ss__cd_sanity">Enable CD (Image) Sanity Checks</CheckBox>
+                                            <CheckBox x:Name="cfg_ss__region_autodetect">Attempt Region Auto-Detection</CheckBox>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+
+                                                <Label Grid.Column="0" Grid.Row="0">Default Region</Label>
+                                                <ComboBox x:Name="cfg_ss__region_default" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="0">
+                                                    <ComboBoxItem Tag="jp">Japan</ComboBoxItem>
+                                                    <ComboBoxItem Tag="na">North America</ComboBoxItem>
+                                                    <ComboBoxItem Tag="eu">Europe</ComboBoxItem>
+                                                    <ComboBoxItem Tag="kr">South Korea</ComboBoxItem>
+                                                    <ComboBoxItem Tag="tw">Taiwan</ComboBoxItem>
+                                                    <ComboBoxItem Tag="as">China</ComboBoxItem>
+                                                    <ComboBoxItem Tag="br">Brazil</ComboBoxItem>
+                                                    <ComboBoxItem Tag="la">Latin America</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="1">BIOS Language</Label>
+                                                <ComboBox x:Name="cfg_ss__smpc__autortc__lang" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="1">
+                                                    <ComboBoxItem Tag="english">English</ComboBoxItem>
+                                                    <ComboBoxItem Tag="german">German</ComboBoxItem>
+                                                    <ComboBoxItem Tag="french">French</ComboBoxItem>
+                                                    <ComboBoxItem Tag="spanish">Spanish</ComboBoxItem>
+                                                    <ComboBoxItem Tag="italian">Italian</ComboBoxItem>
+                                                    <ComboBoxItem Tag="japanese">Japanese</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="2">Expansion Cart</Label>
+                                                <ComboBox x:Name="cfg_ss__cart" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="2">
+                                                    <ComboBoxItem Tag="auto">Automatic</ComboBoxItem>
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="backup">Backup Memory(512KiB)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="extram1">1MiB Extended RAM</ComboBoxItem>
+                                                    <ComboBoxItem Tag="extram4">4MiB Extended RAM</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <CheckBox x:Name="cfg_ss__smpc__autortc" Grid.Row="3" Grid.ColumnSpan="2">Auto Set RTC on Game Load</CheckBox>
+                                                <CheckBox x:Name="cfg_ss__midsync" Grid.Row="4" Grid.ColumnSpan="2">Enable Mid-Frame Sync</CheckBox>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">SCSP Output Resampler Quality</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_ss__scsp__resamp_quality, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="10" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_ss__scsp__resamp_quality"/>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">First Displayed Scanline (NTSC)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_ss__slstart, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="239" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_ss__slstart"/>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="7" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Last Displayed Scanline (NTSC)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_ss__slend, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="239" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_ss__slend"/>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="8" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">First Displayed Scanline (PAL)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_ss__slstartp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="271" Minimum="-16" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_ss__slstartp"/>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="9" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Last Displayed Scanline (PAL)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_ss__slendp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="271" Minimum="-16" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_ss__slendp"/>
+                                                </DockPanel>
+
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdSpecificSs2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="Saturn Controller Settings">
+                                        <StackPanel Margin="10">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Emulated Mouse Sensitivity</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_ss__input__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="0.125" TickPlacement="BottomRight" TickFrequency="0.005" IsSnapToTickEnabled="True" 
+                                        Name="cfg_ss__input__mouse_sensitivity"/>
+                                                </DockPanel>
+
+                                                <Label Grid.Column="0" Grid.Row="1">Input Device (Virtual) Port 1</Label>
+                                                <ComboBox x:Name="cfg_ss__input__port1" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="1">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="2">Input Device (Virtual) Port 2</Label>
+                                                <ComboBox x:Name="cfg_ss__input__port2" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="2">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="3">Input Device (Virtual) Port 3</Label>
+                                                <ComboBox x:Name="cfg_ss__input__port3" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="3">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="4">Input Device (Virtual) Port 4</Label>
+                                                <ComboBox x:Name="cfg_ss__input__port4" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="4">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="5">Input Device (Virtual) Port 5</Label>
+                                                <ComboBox x:Name="cfg_ss__input__port5" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="5">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="6">Input Device (Virtual) Port 6</Label>
+                                                <ComboBox x:Name="cfg_ss__input__port6" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="6">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="7">Input Device (Virtual) Port 7</Label>
+                                                <ComboBox x:Name="cfg_ss__input__port7" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="7">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="8">Input Device (Virtual) Port 8</Label>
+                                                <ComboBox x:Name="cfg_ss__input__port8" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="8">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="9">Input Device (Virtual) Port 9</Label>
+                                                <ComboBox x:Name="cfg_ss__input__port9" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="9">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="10">Input Device (Virtual) Port 10</Label>
+                                                <ComboBox x:Name="cfg_ss__input__port10" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="10">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="11">Input Device (Virtual) Port 11</Label>
+                                                <ComboBox x:Name="cfg_ss__input__port11" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="11">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="12">Input Device (Virtual) Port 12</Label>
+                                                <ComboBox x:Name="cfg_ss__input__port12" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="12">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                </ComboBox>
+
+
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
 
 
                             </WrapPanel>
