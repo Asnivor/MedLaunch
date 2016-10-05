@@ -2505,6 +2505,582 @@
                                     </Expander>
                                 </Border>
 
+                                <!-- psx -->
+                                <Border x:Name="brdSpecificPsx1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="Playstation Specific Settings">
+                                        <StackPanel Margin="10">
+                                            <CheckBox x:Name="cfg_psx__bios_sanity">Enable BIOS (ROM) Sanity Checks</CheckBox>
+                                            <CheckBox x:Name="cfg_psx__cd_sanity">Enable CD (Image) Sanity Checks</CheckBox>
+                                            <CheckBox x:Name="cfg_psx__h_overscan">Show Horizontal Overscan Area</CheckBox>
+                                            <CheckBox x:Name="cfg_psx__region_autodetect">Attempt Region Auto-Detection</CheckBox>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+
+                                                <Label Grid.Column="0" Grid.Row="0">Default Region</Label>
+                                                <ComboBox x:Name="cfg_psx__region_default" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="0">
+                                                    <ComboBoxItem Tag="jp">Japan</ComboBoxItem>
+                                                    <ComboBoxItem Tag="na">North America</ComboBoxItem>
+                                                    <ComboBoxItem Tag="eu">Europe</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Debug (printf) Verbosity Level</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__dbg_level, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="4" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__dbg_level"/>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">SPU Output Resampler Quality</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__spu__resamp_quality, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="10" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__spu__resamp_quality"/>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">First Displayed Scanline (NTSC)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__slstart, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="239" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__slstart"/>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Last Displayed Scanline (NTSC)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__slend, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="239" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__slend"/>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">First Displayed Scanline (PAL)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__slstartp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="287" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__slstartp"/>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Last Displayed Scanline (PAL)</Label>
+                                                    <TextBox Text="{Binding ElementName=psx__slendp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="287" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="psx__slendp"/>
+                                                </DockPanel>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdSpecificPsx2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX Control Settings">
+                                        <StackPanel Margin="10">
+                                            <CheckBox x:Name="cfg_psx__input__analog_mode_ct">Analog Mode Combo-Button Toggle</CheckBox>
+                                            <CheckBox x:Name="cfg_psx__input__pport1__multitap">Enable MultiTap on PSX Port 1</CheckBox>
+                                            <CheckBox x:Name="cfg_psx__input__pport2__multitap">Enable MultiTap on PSX Port 2</CheckBox>
+                                            <Grid Margin="0">                                              
+                                                
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Emulated Mouse Sensitivity</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="4" Minimum="0.25" TickPlacement="BottomRight" TickFrequency="0.05" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__mouse_sensitivity"/>
+                                                </DockPanel>
+
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdSpecificPsxController1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 1">
+                                        <StackPanel Margin="10">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />                                                    
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Column="0" Grid.Row="0">Input Device (Virtual) Port 1</Label>
+                                                <ComboBox x:Name="cfg_psx__input__port1" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="0">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dualshock">DualShock</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dualanalog">Dual Analog</ComboBoxItem>
+                                                    <ComboBoxItem Tag="analogjoy">Analog Joystick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="negcon">neGcon</ComboBoxItem>
+                                                    <ComboBoxItem Tag="guncon">GunCon</ComboBoxItem>
+                                                    <ComboBoxItem Tag="justifier">Konami Justifier</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dancepad">Dance Pad</ComboBoxItem>
+                                                </ComboBox>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (AnalogJoystick - Port 1)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port1__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port1__analogjoy__axis_scale"/>
+                                                </DockPanel>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualAnalog - Port 1)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port1__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port1__dualanalog__axis_scale"/>
+                                                </DockPanel>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualShock - Port 1)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port1__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port1__dualshock__axis_scale"/>
+                                                </DockPanel>
+                                                <Label Grid.Column="0" Grid.Row="4">Crosshair Color (Lightgun - Port 1)</Label>
+                                                <TextBox x:Name="cfg_psx__input__port1__gun_chairs" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                <CheckBox x:Name="cfg_psx__input__port1__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 1</CheckBox>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdSpecificPsxController2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 2">
+                                        <StackPanel Margin="10">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Column="0" Grid.Row="0">Input Device (Virtual) Port 2</Label>
+                                                <ComboBox x:Name="cfg_psx__input__port2" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="0">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dualshock">DualShock</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dualanalog">Dual Analog</ComboBoxItem>
+                                                    <ComboBoxItem Tag="analogjoy">Analog Joystick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="negcon">neGcon</ComboBoxItem>
+                                                    <ComboBoxItem Tag="guncon">GunCon</ComboBoxItem>
+                                                    <ComboBoxItem Tag="justifier">Konami Justifier</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dancepad">Dance Pad</ComboBoxItem>
+                                                </ComboBox>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (AnalogJoystick - Port 2)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port2__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port2__analogjoy__axis_scale"/>
+                                                </DockPanel>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualAnalog - Port 2)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port2__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port2__dualanalog__axis_scale"/>
+                                                </DockPanel>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualShock - Port 2)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port2__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port2__dualshock__axis_scale"/>
+                                                </DockPanel>
+                                                <Label Grid.Column="0" Grid.Row="4">Crosshair Color (Lightgun - Port 2)</Label>
+                                                <TextBox x:Name="cfg_psx__input__port2__gun_chairs" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                <CheckBox x:Name="cfg_psx__input__port2__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 2</CheckBox>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdSpecificPsxController3" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 3">
+                                        <StackPanel Margin="10">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Column="0" Grid.Row="0">Input Device (Virtual) Port 3</Label>
+                                                <ComboBox x:Name="cfg_psx__input__port3" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="0">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dualshock">DualShock</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dualanalog">Dual Analog</ComboBoxItem>
+                                                    <ComboBoxItem Tag="analogjoy">Analog Joystick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="negcon">neGcon</ComboBoxItem>
+                                                    <ComboBoxItem Tag="guncon">GunCon</ComboBoxItem>
+                                                    <ComboBoxItem Tag="justifier">Konami Justifier</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dancepad">Dance Pad</ComboBoxItem>
+                                                </ComboBox>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (AnalogJoystick - Port 3)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port3__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port3__analogjoy__axis_scale"/>
+                                                </DockPanel>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualAnalog - Port 3)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port3__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port3__dualanalog__axis_scale"/>
+                                                </DockPanel>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualShock - Port 3)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port3__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port3__dualshock__axis_scale"/>
+                                                </DockPanel>
+                                                <Label Grid.Column="0" Grid.Row="4">Crosshair Color (Lightgun - Port 3)</Label>
+                                                <TextBox x:Name="cfg_psx__input__port3__gun_chairs" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                <CheckBox x:Name="cfg_psx__input__port3__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 3</CheckBox>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdSpecificPsxController4" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 4">
+                                        <StackPanel Margin="10">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Column="0" Grid.Row="0">Input Device (Virtual) Port 4</Label>
+                                                <ComboBox x:Name="cfg_psx__input__port4" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="0">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dualshock">DualShock</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dualanalog">Dual Analog</ComboBoxItem>
+                                                    <ComboBoxItem Tag="analogjoy">Analog Joystick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="negcon">neGcon</ComboBoxItem>
+                                                    <ComboBoxItem Tag="guncon">GunCon</ComboBoxItem>
+                                                    <ComboBoxItem Tag="justifier">Konami Justifier</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dancepad">Dance Pad</ComboBoxItem>
+                                                </ComboBox>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (AnalogJoystick - Port 4)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port4__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port4__analogjoy__axis_scale"/>
+                                                </DockPanel>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualAnalog - Port 4)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port4__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port4__dualanalog__axis_scale"/>
+                                                </DockPanel>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualShock - Port 4)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port4__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port4__dualshock__axis_scale"/>
+                                                </DockPanel>
+                                                <Label Grid.Column="0" Grid.Row="4">Crosshair Color (Lightgun - Port 4)</Label>
+                                                <TextBox x:Name="cfg_psx__input__port4__gun_chairs" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                <CheckBox x:Name="cfg_psx__input__port4__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 4</CheckBox>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdSpecificPsxController5" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 5">
+                                        <StackPanel Margin="10">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Column="0" Grid.Row="0">Input Device (Virtual) Port 5</Label>
+                                                <ComboBox x:Name="cfg_psx__input__port5" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="0">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dualshock">DualShock</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dualanalog">Dual Analog</ComboBoxItem>
+                                                    <ComboBoxItem Tag="analogjoy">Analog Joystick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="negcon">neGcon</ComboBoxItem>
+                                                    <ComboBoxItem Tag="guncon">GunCon</ComboBoxItem>
+                                                    <ComboBoxItem Tag="justifier">Konami Justifier</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dancepad">Dance Pad</ComboBoxItem>
+                                                </ComboBox>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (AnalogJoystick - Port 5)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port5__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port5__analogjoy__axis_scale"/>
+                                                </DockPanel>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualAnalog - Port 5)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port5__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port5__dualanalog__axis_scale"/>
+                                                </DockPanel>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualShock - Port 5)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port5__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port5__dualshock__axis_scale"/>
+                                                </DockPanel>
+                                                <Label Grid.Column="0" Grid.Row="4">Crosshair Color (Lightgun - Port 5)</Label>
+                                                <TextBox x:Name="cfg_psx__input__port5__gun_chairs" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                <CheckBox x:Name="cfg_psx__input__port5__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 5</CheckBox>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdSpecificPsxController6" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 6">
+                                        <StackPanel Margin="10">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Column="0" Grid.Row="0">Input Device (Virtual) Port 6</Label>
+                                                <ComboBox x:Name="cfg_psx__input__port6" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="0">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dualshock">DualShock</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dualanalog">Dual Analog</ComboBoxItem>
+                                                    <ComboBoxItem Tag="analogjoy">Analog Joystick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="negcon">neGcon</ComboBoxItem>
+                                                    <ComboBoxItem Tag="guncon">GunCon</ComboBoxItem>
+                                                    <ComboBoxItem Tag="justifier">Konami Justifier</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dancepad">Dance Pad</ComboBoxItem>
+                                                </ComboBox>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (AnalogJoystick - Port 6)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port6__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port6__analogjoy__axis_scale"/>
+                                                </DockPanel>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualAnalog - Port 6)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port6__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port6__dualanalog__axis_scale"/>
+                                                </DockPanel>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualShock - Port 6)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port6__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port6__dualshock__axis_scale"/>
+                                                </DockPanel>
+                                                <Label Grid.Column="0" Grid.Row="4">Crosshair Color (Lightgun - Port 6)</Label>
+                                                <TextBox x:Name="cfg_psx__input__port6__gun_chairs" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                <CheckBox x:Name="cfg_psx__input__port6__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 6</CheckBox>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdSpecificPsxController7" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 7">
+                                        <StackPanel Margin="10">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Column="0" Grid.Row="0">Input Device (Virtual) Port 7</Label>
+                                                <ComboBox x:Name="cfg_psx__input__port7" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="0">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dualshock">DualShock</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dualanalog">Dual Analog</ComboBoxItem>
+                                                    <ComboBoxItem Tag="analogjoy">Analog Joystick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="negcon">neGcon</ComboBoxItem>
+                                                    <ComboBoxItem Tag="guncon">GunCon</ComboBoxItem>
+                                                    <ComboBoxItem Tag="justifier">Konami Justifier</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dancepad">Dance Pad</ComboBoxItem>
+                                                </ComboBox>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (AnalogJoystick - Port 7)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port7__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port7__analogjoy__axis_scale"/>
+                                                </DockPanel>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualAnalog - Port 7)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port7__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port7__dualanalog__axis_scale"/>
+                                                </DockPanel>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualShock - Port 7)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port7__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port7__dualshock__axis_scale"/>
+                                                </DockPanel>
+                                                <Label Grid.Column="0" Grid.Row="4">Crosshair Color (Lightgun - Port 7)</Label>
+                                                <TextBox x:Name="cfg_psx__input__port7__gun_chairs" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                <CheckBox x:Name="cfg_psx__input__port7__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 7</CheckBox>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdSpecificPsxController8" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 8">
+                                        <StackPanel Margin="10">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Column="0" Grid.Row="0">Input Device (Virtual) Port 8</Label>
+                                                <ComboBox x:Name="cfg_psx__input__port8" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="0">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dualshock">DualShock</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dualanalog">Dual Analog</ComboBoxItem>
+                                                    <ComboBoxItem Tag="analogjoy">Analog Joystick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="negcon">neGcon</ComboBoxItem>
+                                                    <ComboBoxItem Tag="guncon">GunCon</ComboBoxItem>
+                                                    <ComboBoxItem Tag="justifier">Konami Justifier</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dancepad">Dance Pad</ComboBoxItem>
+                                                </ComboBox>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (AnalogJoystick - Port 8)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port8__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port8__analogjoy__axis_scale"/>
+                                                </DockPanel>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualAnalog - Port 8)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port8__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port8__dualanalog__axis_scale"/>
+                                                </DockPanel>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualShock - Port 8)</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port8__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__input__port8__dualshock__axis_scale"/>
+                                                </DockPanel>
+                                                <Label Grid.Column="0" Grid.Row="4">Crosshair Color (Lightgun - Port 8)</Label>
+                                                <TextBox x:Name="cfg_psx__input__port8__gun_chairs" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                <CheckBox x:Name="cfg_psx__input__port8__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 8</CheckBox>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+
 
 
                             </WrapPanel>

@@ -136,6 +136,17 @@ namespace MedLaunch
             brdSpecificVb.Visibility = Visibility.Collapsed;
             brdSpecificSs1.Visibility = Visibility.Collapsed;
             brdSpecificSs2.Visibility = Visibility.Collapsed;
+            brdSpecificPsx1.Visibility = Visibility.Collapsed;
+            brdSpecificPsx2.Visibility = Visibility.Collapsed;
+            brdSpecificPsxController1.Visibility = Visibility.Collapsed;
+            brdSpecificPsxController2.Visibility = Visibility.Collapsed;
+            brdSpecificPsxController3.Visibility = Visibility.Collapsed;
+            brdSpecificPsxController4.Visibility = Visibility.Collapsed;
+            brdSpecificPsxController5.Visibility = Visibility.Collapsed;
+            brdSpecificPsxController6.Visibility = Visibility.Collapsed;
+            brdSpecificPsxController7.Visibility = Visibility.Collapsed;
+            brdSpecificPsxController8.Visibility = Visibility.Collapsed;
+
 
 
             // load mednafen help page
@@ -1515,6 +1526,16 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
+            brdSpecificPsx1.Visibility = Visibility.Visible;
+            brdSpecificPsx2.Visibility = Visibility.Visible;
+            brdSpecificPsxController1.Visibility = Visibility.Visible;
+            brdSpecificPsxController2.Visibility = Visibility.Visible;
+            brdSpecificPsxController3.Visibility = Visibility.Visible;
+            brdSpecificPsxController4.Visibility = Visibility.Visible;
+            brdSpecificPsxController5.Visibility = Visibility.Visible;
+            brdSpecificPsxController6.Visibility = Visibility.Visible;
+            brdSpecificPsxController7.Visibility = Visibility.Visible;
+            brdSpecificPsxController8.Visibility = Visibility.Visible;
         }
 
 
@@ -1709,6 +1730,16 @@ namespace MedLaunch
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
             // Hide specific items
+            brdSpecificPsx1.Visibility = Visibility.Collapsed;
+            brdSpecificPsx2.Visibility = Visibility.Collapsed;
+            brdSpecificPsxController1.Visibility = Visibility.Collapsed;
+            brdSpecificPsxController2.Visibility = Visibility.Collapsed;
+            brdSpecificPsxController3.Visibility = Visibility.Collapsed;
+            brdSpecificPsxController4.Visibility = Visibility.Collapsed;
+            brdSpecificPsxController5.Visibility = Visibility.Collapsed;
+            brdSpecificPsxController6.Visibility = Visibility.Collapsed;
+            brdSpecificPsxController7.Visibility = Visibility.Collapsed;
+            brdSpecificPsxController8.Visibility = Visibility.Collapsed;
         }
 
         // UI Methods
