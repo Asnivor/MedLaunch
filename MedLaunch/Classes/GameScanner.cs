@@ -726,6 +726,7 @@ namespace MedLaunch.Classes
             OpenFileDialog filePath = new OpenFileDialog();
             filePath.Multiselect = true;
             filePath.Filter = filter;
+            filePath.Title = "Select a single (or multiple in the same directory) .cue or .ccd or .toc file(s)";
             filePath.ShowDialog();
 
             if (filePath.FileNames.Length > 0)
