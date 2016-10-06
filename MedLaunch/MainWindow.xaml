@@ -55,7 +55,7 @@
                         <RadioButton GroupName="flt" x:Name="btnFavorites" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnFavorites_Checked">Favorites</RadioButton>
 
                         <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0">
-                            <Expander IsExpanded="True" BorderThickness="0" Header="Roms" >
+                            <Expander IsExpanded="True" BorderThickness="0" Header="Roms">
                                 <StackPanel x:Name="spRomFilters">                                    
                                     <RadioButton GroupName="flt" x:Name="btnNes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnNes_Checked">
                                         <RadioButton.ContextMenu>
@@ -3108,302 +3108,425 @@
 
             </TabItem>
 -->
-            
-          
+
             <TabItem Header="Settings">
-                <Grid x:Name="SettingGrid">
+                <Grid x:Name="grdSettings">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="0" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <!--<RowDefinition Height="Auto" /> -->
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+                    <WrapPanel Orientation="Vertical" Grid.Column="0" Margin="0" x:FieldModifier="public" x:Name="wpSettingsLeftPane">
+                        <RadioButton GroupName="grpSettings" x:Name="btnAllSettings" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" 
+                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
+                            Show All Settings
+                        </RadioButton>
+                        
+                        <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0">
+                            <Expander IsExpanded="True" BorderThickness="0" Header="Filters" >
+                                <WrapPanel Orientation="Vertical" x:Name="SettingsSelectorWrapPanel">
+                                    
 
-                    <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Width="{Binding ElementName=SettingGrid, Path=ActualWidth}" Height="{Binding ElementName=settingGrid, Path=ActualHeight}">
-                        <WrapPanel HorizontalAlignment="Left" Orientation="Vertical" x:Name="SettingWrapPanel">
+                                    <RadioButton GroupName="grpSettings" x:Name="btnMednafenPaths" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" 
+                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
+                                        Mednafen Paths
+                                    </RadioButton>
 
-                            <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
-                                <Expander IsExpanded="True" BorderThickness="0" Header="Mednafen Folder" >
-                                    <StackPanel x:Name="spMedPathSettings">
-                                        <Grid Margin="0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="90" />
-                                                <ColumnDefinition Width="300" />
+                                    <RadioButton GroupName="grpSettings" x:Name="btnGameFolders" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked"  ContextMenuService.ShowOnDisabled="True" 
+                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
+                                        Game Folders
+                                    </RadioButton>
 
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="*" />
-                                            </Grid.RowDefinitions>
-                                            <Button HorizontalContentAlignment="Left" x:Name="btnPathMednafen" Grid.Column="0" Grid.Row="1" Click="btnPathMednafen_Click">Mednafen</Button>
-                                            <TextBox x:Name="tbPathMednafen" Grid.Column="1" Grid.Row="1"></TextBox>
-                                        </Grid>
-                                    </StackPanel>
-                                </Expander>
-                            </Border>
+                                    <RadioButton GroupName="grpSettings" x:Name="btnSystemBios" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked"  ContextMenuService.ShowOnDisabled="True" 
+                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
+                                        System BIOS/ROMs
+                                    </RadioButton>
 
-                            <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
-                                <Expander IsExpanded="True" BorderThickness="0" Header="Game Folders" >
-                                    <StackPanel x:Name="spPathSettings">
-                                        <Grid Margin="0">
+                                    <RadioButton GroupName="grpSettings" x:Name="btnNetplay" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked"  ContextMenuService.ShowOnDisabled="True" 
+                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
+                                        Netplay
+                                    </RadioButton>
 
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="90" />
-                                                <ColumnDefinition Width="300" />
-                                                
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="*" />
-                                            </Grid.RowDefinitions>
+                                    <RadioButton GroupName="grpSettings" x:Name="btnEmulator" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked"  ContextMenuService.ShowOnDisabled="True" 
+                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
+                                        Emulator Engine
+                                    </RadioButton>
 
-                                            <TextBox x:Name="tbPathGb" Grid.Column="1" Grid.Row="0"></TextBox>
-                                            <Button x:Name="btnPathGb" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="0" Click="btnPathGb_Click">GameBoy</Button>
+                                    <RadioButton GroupName="grpSettings" x:Name="btnMedLaunch" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" 
+                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
+                                        MedLaunch
+                                    </RadioButton>
 
-                                            <TextBox x:Name="tbPathGba" Grid.Column="1" Grid.Row="1"></TextBox>
-                                            <Button x:Name="btnPathGba" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="1" Click="btnPathGba_Click">GB Advance</Button>
-
-                                            <TextBox x:Name="tbPathGg" Grid.Column="1" Grid.Row="2"></TextBox>
-                                            <Button x:Name="btnPathGg" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="2" Click="btnPathGg_Click">GameGear</Button>
-
-                                            <TextBox x:Name="tbPathLynx" Grid.Column="1" Grid.Row="3"></TextBox>
-                                            <Button x:Name="btnPathLynx" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="3" Click="btnPathLynx_Click">Lynx</Button>
-
-                                            <TextBox x:Name="tbPathMd" Grid.Column="1" Grid.Row="4"></TextBox>
-                                            <Button x:Name="btnPathMd" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="4" Click="btnPathMd_Click">MegaDrive</Button>
-
-                                            <TextBox x:Name="tbPathNes" Grid.Column="1" Grid.Row="5"></TextBox>
-                                            <Button x:Name="btnPathNes" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="5" Click="btnPathNes_Click">NES</Button>
-
-                                            <TextBox x:Name="tbPathSnes" Grid.Column="1" Grid.Row="6"></TextBox>
-                                            <Button x:Name="btnPathSnes" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="6" Click="btnPathSnes_Click">SNES</Button>
-
-                                            <TextBox x:Name="tbPathNgp" Grid.Column="1" Grid.Row="7"></TextBox>
-                                            <Button x:Name="btnPathNgp" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="7" Click="btnPathNgp_Click">NeoGeo PC</Button>
-
-                                            <TextBox x:Name="tbPathPce" Grid.Column="1" Grid.Row="8"></TextBox>
-                                            <Button x:Name="btnPathPce" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="8" Click="btnPathPce_Click">PC-Engine</Button>
-
-                                            <TextBox x:Name="tbPathPcfx" Grid.Column="1" Grid.Row="9"></TextBox>
-                                            <Button x:Name="btnPathPcfx" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="9" Click="btnPathPcfx_Click">PC-FX</Button>
-
-                                            <TextBox x:Name="tbPathPsx" Grid.Column="1" Grid.Row="10"></TextBox>
-                                            <Button x:Name="btnPathPsx" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="10" Click="btnPathPsx_Click">PSX</Button>
-
-                                            <TextBox x:Name="tbPathSs" Grid.Column="1" Grid.Row="11"></TextBox>
-                                            <Button x:Name="btnPathSs" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="11" Click="btnPathSs_Click">Saturn</Button>           
-
-                                            <TextBox x:Name="tbPathMs" Grid.Column="1" Grid.Row="12"></TextBox>
-                                            <Button x:Name="btnPathMs" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="12" Click="btnPathMs_Click">MasterSystem</Button>
-
-                                            <TextBox x:Name="tbPathVb" Grid.Column="1" Grid.Row="13"></TextBox>
-                                            <Button x:Name="btnPathVb" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="13" Click="btnPathVb_Click">VirtualBoy</Button>
-
-                                            <TextBox x:Name="tbPathWswan" Grid.Column="1" Grid.Row="14"></TextBox>
-                                            <Button x:Name="btnPathWswan" Grid.Column="0" Grid.Row="14" Click="btnPathWswan_Click">WonderSwan</Button>
-
-                                            <StackPanel Grid.ColumnSpan="2" Grid.Row="17">
-                                                <Button x:Name="btnPathsSaveChanges" Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnPathsSaveChanges_Click" ></Button>
-                                                <Button x:Name="btnPathsCancelChanges" Content="Cancel Changes" Background="Red" Click="btnPathsCancelChanges_Click" ></Button>
-                                                <Label x:Name="lblPathsSettingsSave" HorizontalContentAlignment="Center"></Label>
-                                            </StackPanel>
-
-                                        </Grid>
-                                        
-                                        
-                                    </StackPanel>
-                                </Expander>
-                            </Border>
-
-                            <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
-                            <Expander IsExpanded="True" BorderThickness="0" Header="Netplay Settings" >
-
-
-                                <StackPanel x:Name="spNetplaySettings">
-                                    <Grid Margin="0">
-
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="*" />
-                                        </Grid.RowDefinitions>
-
-                                        <Label Grid.Row="1">Nickname</Label>
-                                        <TextBox x:Name="tbNetplayNick" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" />
-
-                                        <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="20">
-                                            <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Console Font</Label>
-                                            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
-
-                                                <RadioButton x:Name="resOne" GroupName="ConsoleFont" Content="5x7" Margin="4"/>
-                                                <RadioButton x:Name="resTwo" GroupName="ConsoleFont" Content="6x9" Margin="4"/>
-                                                <RadioButton x:Name="resThree" GroupName="ConsoleFont" Content="6x12" Margin="4"/>
-                                                <RadioButton x:Name="resFour" GroupName="ConsoleFont" Content="6x13" Margin="4"/>
-                                                <RadioButton x:Name="resFive" GroupName="ConsoleFont" Content="9x18" Margin="4" />
-
-                                            </StackPanel>
-                                        </DockPanel>
-
-                                        <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="20">
-                                            <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Number of Local Players</Label>
-                                            <TextBox Text="{Binding ElementName=slLocalPlayersValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                            <Slider Maximum="16" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
-                                        Name="slLocalPlayersValue"/>
-                                        </DockPanel>
-                                        <DockPanel Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Center" Margin="20">
-                                            <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Number of Console Lines</Label>
-                                            <TextBox Text="{Binding ElementName=slConsoleLinesValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                            <Slider Maximum="64" Minimum="5" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
-                                        Name="slConsoleLinesValue"  />
-                                        </DockPanel>
-                                        <DockPanel Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Center" Margin="20">
-                                            <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Console Scale</Label>
-                                            <TextBox Text="{Binding ElementName=slConsoleScaleValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                            <Slider Maximum="16" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
-                                        Name="slConsoleScaleValue" />
-                                        </DockPanel>
-
-                                        <StackPanel Grid.ColumnSpan="2" Grid.Row="6">
-                                            <Button x:Name="btnNetplaySaveChanges" Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnNetplaySaveChanges_Click"></Button>
-                                            <Button x:Name="btnNetplayCancelChanges" Content="Cancel Changes" Background="Red" Click="btnNetplayCancelChanges_Click"></Button>
-                                            <Label x:Name="lblNpSettingsSave" HorizontalContentAlignment="Center"></Label>
-                                        </StackPanel>
-
-                                    </Grid>
-                                </StackPanel>
+                                </WrapPanel>
                             </Expander>
                         </Border>
+                        
+                        
+                    </WrapPanel>
 
-                        <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="2">
-                            <Expander IsExpanded="True" BorderThickness="0" Header="Netplay Server Settings" >
+                    <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+
+                    <Grid x:Name="SettingGrid" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <!--<RowDefinition Height="Auto" /> -->
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Width="{Binding ElementName=SettingGrid, Path=ActualWidth}" Height="{Binding ElementName=settingGrid, Path=ActualHeight}">
+                            <WrapPanel HorizontalAlignment="Left" Orientation="Vertical" x:Name="SettingWrapPanel">
+
+                                <Border x:Name="brdMednafenPaths" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="Mednafen Paths" >
+                                        <StackPanel x:Name="spMedPathSettings">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="90" />
+                                                    <ColumnDefinition Width="300" />
+
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Button HorizontalContentAlignment="Left" x:Name="btnPathMednafen" Grid.Column="0" Grid.Row="1" Click="btnPathMednafen_Click">Mednafen</Button>
+                                                <TextBox x:Name="tbPathMednafen" Grid.Column="1" Grid.Row="1"></TextBox>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdGameFolders" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="Game Folders" >
+                                        <StackPanel x:Name="spPathSettings">
+                                            <Grid Margin="0">
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="90" />
+                                                    <ColumnDefinition Width="300" />
+
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+
+                                                <TextBox x:Name="tbPathGb" Grid.Column="1" Grid.Row="0"></TextBox>
+                                                <Button x:Name="btnPathGb" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="0" Click="btnPathGb_Click">GameBoy</Button>
+
+                                                <TextBox x:Name="tbPathGba" Grid.Column="1" Grid.Row="1"></TextBox>
+                                                <Button x:Name="btnPathGba" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="1" Click="btnPathGba_Click">GB Advance</Button>
+
+                                                <TextBox x:Name="tbPathGg" Grid.Column="1" Grid.Row="2"></TextBox>
+                                                <Button x:Name="btnPathGg" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="2" Click="btnPathGg_Click">GameGear</Button>
+
+                                                <TextBox x:Name="tbPathLynx" Grid.Column="1" Grid.Row="3"></TextBox>
+                                                <Button x:Name="btnPathLynx" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="3" Click="btnPathLynx_Click">Lynx</Button>
+
+                                                <TextBox x:Name="tbPathMd" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                <Button x:Name="btnPathMd" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="4" Click="btnPathMd_Click">MegaDrive</Button>
+
+                                                <TextBox x:Name="tbPathNes" Grid.Column="1" Grid.Row="5"></TextBox>
+                                                <Button x:Name="btnPathNes" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="5" Click="btnPathNes_Click">NES</Button>
+
+                                                <TextBox x:Name="tbPathSnes" Grid.Column="1" Grid.Row="6"></TextBox>
+                                                <Button x:Name="btnPathSnes" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="6" Click="btnPathSnes_Click">SNES</Button>
+
+                                                <TextBox x:Name="tbPathNgp" Grid.Column="1" Grid.Row="7"></TextBox>
+                                                <Button x:Name="btnPathNgp" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="7" Click="btnPathNgp_Click">NeoGeo PC</Button>
+
+                                                <TextBox x:Name="tbPathPce" Grid.Column="1" Grid.Row="8"></TextBox>
+                                                <Button x:Name="btnPathPce" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="8" Click="btnPathPce_Click">PC-Engine</Button>
+
+                                                <TextBox x:Name="tbPathPcfx" Grid.Column="1" Grid.Row="9"></TextBox>
+                                                <Button x:Name="btnPathPcfx" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="9" Click="btnPathPcfx_Click">PC-FX</Button>
+
+                                                <TextBox x:Name="tbPathPsx" Grid.Column="1" Grid.Row="10"></TextBox>
+                                                <Button x:Name="btnPathPsx" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="10" Click="btnPathPsx_Click">PSX</Button>
+
+                                                <TextBox x:Name="tbPathSs" Grid.Column="1" Grid.Row="11"></TextBox>
+                                                <Button x:Name="btnPathSs" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="11" Click="btnPathSs_Click">Saturn</Button>
+
+                                                <TextBox x:Name="tbPathMs" Grid.Column="1" Grid.Row="12"></TextBox>
+                                                <Button x:Name="btnPathMs" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="12" Click="btnPathMs_Click">MasterSystem</Button>
+
+                                                <TextBox x:Name="tbPathVb" Grid.Column="1" Grid.Row="13"></TextBox>
+                                                <Button x:Name="btnPathVb" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="13" Click="btnPathVb_Click">VirtualBoy</Button>
+
+                                                <TextBox x:Name="tbPathWswan" Grid.Column="1" Grid.Row="14"></TextBox>
+                                                <Button x:Name="btnPathWswan" Grid.Column="0" Grid.Row="14" Click="btnPathWswan_Click">WonderSwan</Button>
+
+                                                <StackPanel Grid.ColumnSpan="2" Grid.Row="17">
+                                                    <Button x:Name="btnPathsSaveChanges" Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnPathsSaveChanges_Click" ></Button>
+                                                    <Button x:Name="btnPathsCancelChanges" Content="Cancel Changes" Background="Red" Click="btnPathsCancelChanges_Click" ></Button>
+                                                    <Label x:Name="lblPathsSettingsSave" HorizontalContentAlignment="Center"></Label>
+                                                </StackPanel>
+
+                                            </Grid>
 
 
-                                <StackPanel x:Name="spServerSettings" Grid.Column="2">
-                                    <Grid Margin="0">
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdSystemBios" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="System BIOS/ROMs" >
+                                        <StackPanel x:Name="spSysBiosSettings">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="90" />
+                                                    <ColumnDefinition Width="300" />
+
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />                                                   
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdNetplay1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="Netplay Settings" >
 
 
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="*" />
-                                        </Grid.RowDefinitions>
-                                        <!-- 
+                                        <StackPanel x:Name="spNetplaySettings">
+                                            <Grid Margin="0">
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+
+                                                <Label Grid.Row="1">Nickname</Label>
+                                                <TextBox x:Name="tbNetplayNick" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" />
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="20">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Console Font</Label>
+                                                    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
+
+                                                        <RadioButton x:Name="resOne" GroupName="ConsoleFont" Content="5x7" Margin="4"/>
+                                                        <RadioButton x:Name="resTwo" GroupName="ConsoleFont" Content="6x9" Margin="4"/>
+                                                        <RadioButton x:Name="resThree" GroupName="ConsoleFont" Content="6x12" Margin="4"/>
+                                                        <RadioButton x:Name="resFour" GroupName="ConsoleFont" Content="6x13" Margin="4"/>
+                                                        <RadioButton x:Name="resFive" GroupName="ConsoleFont" Content="9x18" Margin="4" />
+
+                                                    </StackPanel>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="20">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Number of Local Players</Label>
+                                                    <TextBox Text="{Binding ElementName=slLocalPlayersValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="16" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="slLocalPlayersValue"/>
+                                                </DockPanel>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Center" Margin="20">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Number of Console Lines</Label>
+                                                    <TextBox Text="{Binding ElementName=slConsoleLinesValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="64" Minimum="5" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="slConsoleLinesValue"  />
+                                                </DockPanel>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Center" Margin="20">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Console Scale</Label>
+                                                    <TextBox Text="{Binding ElementName=slConsoleScaleValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="16" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="slConsoleScaleValue" />
+                                                </DockPanel>
+
+                                                <StackPanel Grid.ColumnSpan="2" Grid.Row="6">
+                                                    <Button x:Name="btnNetplaySaveChanges" Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnNetplaySaveChanges_Click"></Button>
+                                                    <Button x:Name="btnNetplayCancelChanges" Content="Cancel Changes" Background="Red" Click="btnNetplayCancelChanges_Click"></Button>
+                                                    <Label x:Name="lblNpSettingsSave" HorizontalContentAlignment="Center"></Label>
+                                                </StackPanel>
+
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdNetplay2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="2">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="Netplay Server Settings" >
+
+
+                                        <StackPanel x:Name="spServerSettings" Grid.Column="2">
+                                            <Grid Margin="0">
+
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <!-- 
                             <ComboBox x:Name="cbServers" Grid.ColumnSpan="2" Margin="20" DataContext="ServersDataObject" ItemsSource="{Binding ListOfServers}"></ComboBox>
 -->
 
-                                        <RadioButton Name="rbSrv01" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Checked="rbSrv01_Checked" />
-                                        <RadioButton Name="rbSrv02" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Checked="rbSrv02_Checked" />
-                                        <RadioButton Name="rbSrv03" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Checked="rbSrv03_Checked" />
-                                        <RadioButton Name="rbSrv04" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Checked="rbSrv04_Checked" />
-                                        <RadioButton Name="rbSrvCustom" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Checked="rbSrvCustom_Checked" Unchecked="rbSrvCustom_UnChecked" Content="Custom:" />
+                                                <RadioButton Name="rbSrv01" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Checked="rbSrv01_Checked" />
+                                                <RadioButton Name="rbSrv02" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Checked="rbSrv02_Checked" />
+                                                <RadioButton Name="rbSrv03" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Checked="rbSrv03_Checked" />
+                                                <RadioButton Name="rbSrv04" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Checked="rbSrv04_Checked" />
+                                                <RadioButton Name="rbSrvCustom" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Checked="rbSrvCustom_Checked" Unchecked="rbSrvCustom_UnChecked" Content="Custom:" />
 
 
 
-                                        <Label Name="lblServerDesc" Grid.Row="6" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">Server Description</Label>
-                                        <TextBox x:Name="tbServerDesc" Grid.Row="6" Grid.Column="1" Margin="10" />
+                                                <Label Name="lblServerDesc" Grid.Row="6" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">Server Description</Label>
+                                                <TextBox x:Name="tbServerDesc" Grid.Row="6" Grid.Column="1" Margin="10" />
 
-                                        <Label Name="lblHostname" Grid.Row="7" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">Host/IP</Label>
-                                        <TextBox x:Name="tbHostname" Grid.Row="7" Grid.Column="1" Margin="10" />
+                                                <Label Name="lblHostname" Grid.Row="7" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">Host/IP</Label>
+                                                <TextBox x:Name="tbHostname" Grid.Row="7" Grid.Column="1" Margin="10" />
 
-                                        <DockPanel Grid.ColumnSpan="2" Grid.Row="8" VerticalAlignment="Center" Margin="10">
-                                            <Label Name="lblServerPort" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Port</Label>
-                                            <TextBox Name="lblServerPortTxt" Text="{Binding ElementName=slServerPort, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                            <Slider Maximum="65535" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="8" VerticalAlignment="Center" Margin="10">
+                                                    <Label Name="lblServerPort" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Port</Label>
+                                                    <TextBox Name="lblServerPortTxt" Text="{Binding ElementName=slServerPort, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="65535" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="slServerPort"/>
-                                        </DockPanel>
+                                                </DockPanel>
 
-                                        <Label Name="lblPassword" Grid.Row="9" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">Password</Label>
-                                        <TextBox x:Name="tbPassword" Grid.Row="9" Grid.Column="1" Margin="10" />
+                                                <Label Name="lblPassword" Grid.Row="9" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">Password</Label>
+                                                <TextBox x:Name="tbPassword" Grid.Row="9" Grid.Column="1" Margin="10" />
 
-                                        <Label Name="lblGamekey" Grid.Row="10" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">GameKey</Label>
-                                        <TextBox x:Name="tbGameKey" Grid.Row="10" Grid.Column="1" Margin="10" />
-
-
+                                                <Label Name="lblGamekey" Grid.Row="10" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">GameKey</Label>
+                                                <TextBox x:Name="tbGameKey" Grid.Row="10" Grid.Column="1" Margin="10" />
 
 
 
 
-                                        <StackPanel Grid.ColumnSpan="2" Grid.Row="11">
-                                            <Button x:Name="btnServerSaveChanges" Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnServerSaveChanges_Click" ></Button>
-                                            <Button x:Name="btnServerCancelChanges" Content="Cancel Changes" Background="Red" Click="btnServerCancelChanges_Click" ></Button>
-                                            <Label x:Name="lblServerSettingsSave" HorizontalContentAlignment="Center"></Label>
+
+
+                                                <StackPanel Grid.ColumnSpan="2" Grid.Row="11">
+                                                    <Button x:Name="btnServerSaveChanges" Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnServerSaveChanges_Click" ></Button>
+                                                    <Button x:Name="btnServerCancelChanges" Content="Cancel Changes" Background="Red" Click="btnServerCancelChanges_Click" ></Button>
+                                                    <Label x:Name="lblServerSettingsSave" HorizontalContentAlignment="Center"></Label>
+                                                </StackPanel>
+
+                                            </Grid>
                                         </StackPanel>
 
-                                    </Grid>
-                                </StackPanel>
+                                    </Expander>
+                                </Border>
 
-                            </Expander>
-                        </Border>
+                                <Border x:Name="brdEmulator" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="Emulator Engine" >
+                                        <StackPanel x:Name="spEmulatorSettings">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="90" />
+                                                    <ColumnDefinition Width="300" />
 
-                    </WrapPanel>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdMedLaunch" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="MedLaunch Settings" >
+                                        <StackPanel x:Name="spMedLaunchSettings">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="90" />
+                                                    <ColumnDefinition Width="300" />
+
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                            </WrapPanel>
                         </ScrollViewer>
+                    </Grid>
+
+
                 </Grid>
-                
-
-
-                
-
             </TabItem>
+
+
+
             <!-- 
             <TabItem Header="Scraping">
 

@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using MedLaunch.Models;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace MedLaunch.Classes
 {
@@ -136,6 +137,45 @@ namespace MedLaunch.Classes
                         logicalCollection.Add(child as T);
                     }
                     GetLogicalChildCollection(depChild, logicalCollection);
+                }
+            }
+        }
+
+        public static List<T> GetVisualChildCollection<T>(object parent) where T : DependencyObject
+        {
+            List<T> visualCollection = new List<T>();
+            GetVisualChildCollection(parent as DependencyObject, visualCollection);
+            return visualCollection;
+        }
+
+        private static void GetVisualChildCollection<T>(DependencyObject parent, List<T> visualCollection) where T : DependencyObject
+        {
+            DependencyObject children;
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                children = VisualTreeHelper.GetChild(parent, i);
+                
+            }
+            
+        }
+
+        public static IEnumerable<T> FindVisualChildren<T>(DependencyObject parent)
+        where T : DependencyObject
+        {
+            //int childrenCount = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+
+                var childType = child as T;
+                if (childType != null)
+                {
+                    yield return (T)child;
+                }
+
+                foreach (var other in FindVisualChildren<T>(child))
+                {
+                    yield return other;
                 }
             }
         }
