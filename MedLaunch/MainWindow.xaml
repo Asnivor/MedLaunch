@@ -632,6 +632,7 @@
 
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_sound__rate" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="22050">22050Hz</ComboBoxItem>
+                                                    <ComboBoxItem Tag="22050">32000Hz</ComboBoxItem>
                                                     <ComboBoxItem Tag="44100">44100Hz</ComboBoxItem>
                                                     <ComboBoxItem Tag="48000">48000Hz</ComboBoxItem>
                                                 </ComboBox>
