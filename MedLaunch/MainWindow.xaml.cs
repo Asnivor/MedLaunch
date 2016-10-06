@@ -62,11 +62,12 @@ namespace MedLaunch
             string versionMajor = fvi.ProductMajorPart.ToString();
             string versionMinor = fvi.ProductMinorPart.ToString();
             string versionBuild = fvi.ProductBuildPart.ToString();
+            string versionPrivate = fvi.ProductPrivatePart.ToString();
             
             string fVersion = fvi.FileVersion;
 
             // set title
-            this.Title = "MedLaunch - Windows Front-End for Mednafen (v" + versionMajor + "." + versionMinor + "." + versionBuild + ")";
+            this.Title = "MedLaunch - Windows Front-End for Mednafen (v" + versionMajor + "." + versionMinor + "." + versionBuild + "." + versionPrivate + ")";
             //this.Title = "MedLaunch - Windows Front-End for Mednafen (" + fVersion + ")";
 
             // Startup checks
@@ -1350,6 +1351,9 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
+
+            // set background color
+            rb.Background = Brushes.Red;
         }
 
         private void btnConfigNes_Checked(object sender, RoutedEventArgs e)

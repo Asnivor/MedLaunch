@@ -25,6 +25,8 @@
         <CommandBinding Command="NavigationCommands.BrowseForward" CanExecute="BrowseForward_CanExecute" Executed="BrowseForward_Executed" />
         <CommandBinding Command="NavigationCommands.GoToPage" CanExecute="GoToPage_CanExecute" Executed="GoToPage_Executed" />
     </Window.CommandBindings>
+    
+    
 
 <!--
     <Controls:MetroWindow.RightWindowCommands>
@@ -278,260 +280,236 @@
 
                 </Grid>
             </TabItem>
-<!--
-            <TabItem Header="Paths">
 
-                <Grid Margin="100,0,100,0">
+            <TabItem Header="Configs">
+                <Grid x:Name="grdMednafenConfig">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="0" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="0.1*" />
                     </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-
-                    <TextBlock Margin="20" Grid.ColumnSpan="2" Grid.Row="0" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap">System Paths</TextBlock>
-
-                    
-
-                </Grid>
-
-            </TabItem>
--->
-            <TabItem Header="Configs">
-
-                <DockPanel>
-                    <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Right">
-                        <Button x:Name="btnConfigSaveChanges" Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnConfigSaveChanges_Click" ></Button>
-                        <Button x:Name="btnConfigCancelChanges" Content="Revert Changes" Background="Red" Click="btnConfigCancelChanges_Click" ></Button>
-                    </WrapPanel>
-                    <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Left" x:Name="ConfigSelectorWrapPanel">
-                        
-                        <RadioButton x:Name="btnConfigBase" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                    <WrapPanel Orientation="Vertical" Grid.Column="0" Margin="0" x:FieldModifier="public" x:Name="wpConfigLeftPane">                        
+                        <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0">
+                            <Expander IsExpanded="True" BorderThickness="0" Header="Configs" >
+                                <WrapPanel Orientation="Vertical" x:Name="ConfigSelectorWrapPanel">
+                                    <RadioButton x:Name="btnConfigBase" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnConfigBase_Checked" Unchecked="btnConfigBase_Unchecked" ContextMenuService.ShowOnDisabled="True" 
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                            Base Configuration
-                            <RadioButton.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem x:Name="MenuItemDefaultBase" Header="Reset to Defaults" Click="MenuItemDefault_Click" />
-                                </ContextMenu>
-                            </RadioButton.ContextMenu>                        
-                        </RadioButton>
-                        <RadioButton Margin="1" x:Name="btnConfigNes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                        BASE CONFIGURATION
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem x:Name="MenuItemDefaultBase" Header="Reset to Defaults" Click="MenuItemDefault_Click" />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
+                                    <RadioButton Margin="1" x:Name="btnConfigNes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnConfigNes_Checked" Unchecked="btnConfigNes_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                            NES
-                            <RadioButton.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
-                                    <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                </ContextMenu>
-                            </RadioButton.ContextMenu>
-                        </RadioButton>
-                        <RadioButton Margin="1" x:Name="btnConfigSnes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                        NES/Famicon
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
+                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
+                                    <RadioButton Margin="1" x:Name="btnConfigSnes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnConfigSnes_Checked" Unchecked="btnConfigSnes_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                            SNES
-                            <RadioButton.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
-                                    <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                </ContextMenu>
-                            </RadioButton.ContextMenu>
-                        </RadioButton>
-                        <RadioButton Margin="1" x:Name="btnConfigSnes_Faust" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                        SNES/Super Famicon
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
+                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
+                                    <RadioButton Margin="1" x:Name="btnConfigSnes_Faust" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnConfigSnes_Faust_Checked" Unchecked="btnConfigSnes_Faust_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                            SNES (Faust)
-                            <RadioButton.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
-                                    <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                </ContextMenu>
-                            </RadioButton.ContextMenu>
-                        </RadioButton>
-                        <RadioButton Margin="1" x:Name="btnConfigSms" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                        SNES/Super Famicon (Faust)
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
+                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
+                                    <RadioButton Margin="1" x:Name="btnConfigSms" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnConfigSms_Checked" Unchecked="btnConfigSms_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                            MasterSystem
-                            <RadioButton.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
-                                    <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                </ContextMenu>
-                            </RadioButton.ContextMenu>
-                        </RadioButton>
-                        <RadioButton Margin="1" x:Name="btnConfigMd" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                        Sega Master System
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
+                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
+                                    <RadioButton Margin="1" x:Name="btnConfigMd" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnConfigMd_Checked" Unchecked="btnConfigMd_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                            MegaDrive
-                            <RadioButton.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
-                                    <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                </ContextMenu>
-                            </RadioButton.ContextMenu>
-                        </RadioButton>
-                        <RadioButton Margin="1" x:Name="btnConfigPce" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                        Sega MegaDrive/Genesis
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
+                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
+                                    <RadioButton Margin="1" x:Name="btnConfigPce" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnConfigPce_Checked" Unchecked="btnConfigPce_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                            PC-Engine
-                            <RadioButton.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
-                                    <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                </ContextMenu>
-                            </RadioButton.ContextMenu>
-                        </RadioButton>
-                        <RadioButton Margin="1" x:Name="btnConfigPce_Fast" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                        NEC PC-Engine
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
+                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
+                                    <RadioButton Margin="1" x:Name="btnConfigPce_Fast" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnConfigPce_Fast_Checked" Unchecked="btnConfigPce_Fast_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                            PC-E (fast)
-                            <RadioButton.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
-                                    <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                </ContextMenu>
-                            </RadioButton.ContextMenu>
-                        </RadioButton>
-                        <RadioButton Margin="1" x:Name="btnConfigPcfx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigPcfx_Checked" Unchecked="btnConfigPcfx_Unchecked" ContextMenuService.ShowOnDisabled="True"
-                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                            PC-FX
-                            <RadioButton.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
-                                    <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                </ContextMenu>
-                            </RadioButton.ContextMenu>
-                        </RadioButton>
-                        <RadioButton Margin="1" x:Name="btnConfigVb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                        NEC PC-Engine (fast)
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
+                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
+                                    <RadioButton Margin="1" x:Name="btnConfigVb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnConfigVb_Checked" Unchecked="btnConfigVb_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                            Virtual Boy
-                            <RadioButton.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
-                                    <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                </ContextMenu>
-                            </RadioButton.ContextMenu>
-                        </RadioButton>
-                        <RadioButton Margin="1" x:Name="btnConfigSs" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigSs_Checked" Unchecked="btnConfigSs_Unchecked" ContextMenuService.ShowOnDisabled="True"
-                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                            Saturn
-                            <RadioButton.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
-                                    <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                </ContextMenu>
-                            </RadioButton.ContextMenu>
-                        </RadioButton>
-                        <RadioButton Margin="1" x:Name="btnConfigPsx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigPsx_Checked" Unchecked="btnConfigPsx_Unchecked" ContextMenuService.ShowOnDisabled="True"
-                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                            Playstation
-                            <RadioButton.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
-                                    <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                </ContextMenu>
-                            </RadioButton.ContextMenu>
-                        </RadioButton>
-                        <RadioButton Margin="1" x:Name="btnConfigNgp" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                        Nintendo Virtual Boy
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
+                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
+                                    <RadioButton Margin="1" x:Name="btnConfigNgp" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnConfigNgp_Checked" Unchecked="btnConfigNgp_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                            NeoGeo Pocket
-                            <RadioButton.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
-                                    <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                </ContextMenu>
-                            </RadioButton.ContextMenu>
-                        </RadioButton>
-                        <RadioButton Margin="1" x:Name="btnConfigWswan" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                        NeoGeo Pocket Color
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
+                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
+                                    <RadioButton Margin="1" x:Name="btnConfigWswan" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnConfigWswan_Checked" Unchecked="btnConfigWswan_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                            WonderSwan
-                            <RadioButton.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
-                                    <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                </ContextMenu>
-                            </RadioButton.ContextMenu>
-                        </RadioButton>
-                        <RadioButton Margin="1" x:Name="btnConfigGb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                        Bandai WonderSwan
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
+                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
+                                    <RadioButton Margin="1" x:Name="btnConfigGb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnConfigGb_Checked" Unchecked="btnConfigGb_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                            GameBoy
-                            <RadioButton.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
-                                    <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                </ContextMenu>
-                            </RadioButton.ContextMenu>
-                        </RadioButton>
-                        <RadioButton Margin="1" x:Name="btnConfigGba" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                        GameBoy Color
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
+                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
+                                    <RadioButton Margin="1" x:Name="btnConfigGba" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnConfigGba_Checked" Unchecked="btnConfigGba_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                            GameBoy Advance
-                            <RadioButton.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
-                                    <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                </ContextMenu>
-                            </RadioButton.ContextMenu>
-                        </RadioButton>
-                        <RadioButton Margin="1" x:Name="btnConfigGg" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                        Nintendo GBA
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
+                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
+                                    <RadioButton Margin="1" x:Name="btnConfigGg" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnConfigGg_Checked" Unchecked="btnConfigGg_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                            GameGear
-                            <RadioButton.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
-                                    <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                </ContextMenu>
-                            </RadioButton.ContextMenu>
-                        </RadioButton>
-                        <RadioButton Margin="1" x:Name="btnConfigLynx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                        Sega Game Gear
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
+                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
+                                    <RadioButton Margin="1" x:Name="btnConfigLynx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnConfigLynx_Checked" Unchecked="btnConfigLynx_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                            Lynx
-                            <RadioButton.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
-                                    <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                </ContextMenu>
-                            </RadioButton.ContextMenu>
-                        </RadioButton>
+                                        Atari Lynx
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
+                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
+                                   
+                                    
+                                    <RadioButton Margin="1" x:Name="btnConfigSs" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnConfigSs_Checked" Unchecked="btnConfigSs_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
+                                        Sega Saturn
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
+                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
+                                    <RadioButton Margin="1" x:Name="btnConfigPsx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnConfigPsx_Checked" Unchecked="btnConfigPsx_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
+                                        Sony PSX
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
+                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
+                                    <RadioButton Margin="1" x:Name="btnConfigPcfx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnConfigPcfx_Checked" Unchecked="btnConfigPcfx_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
+                                        NEC PC-FX
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
+                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
 
+
+
+                                </WrapPanel>
+                            </Expander>
+                        </Border>
                         
+                        <Button x:Name="btnConfigSaveChanges" HorizontalContentAlignment="Left" Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnConfigSaveChanges_Click" ></Button>
+                        <Button x:Name="btnConfigCancelChanges" HorizontalContentAlignment="Left" Content="Revert Changes" Background="Red" Click="btnConfigCancelChanges_Click" ></Button>
 
                         <Label x:Name="lblConfigStatus" />
 
                     </WrapPanel>
 
-                    <Grid x:Name="configGrid">
+                    <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+
+                    <Grid Grid.Column="3" x:Name="configGrid">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />                            
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <!--<RowDefinition Height="Auto" /> -->
@@ -864,7 +842,7 @@
                                 <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Video Filters">
                                         <StackPanel Margin="10">
-                                            
+
                                             <Grid Margin="0">
 
                                                 <Grid.ColumnDefinitions>
@@ -968,7 +946,7 @@
                                 <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Control">
                                         <StackPanel Margin="10">
-                                            
+
 
                                             <CheckBox x:Name="cfg_input__joystick__global_focus">Joystick Global Focus</CheckBox>
                                             <Grid Margin="0">
@@ -1012,10 +990,10 @@
                                         </StackPanel>
                                     </Expander>
                                 </Border>
-                            
-                            <!-- System specific settings - only show when system config is selected -->
 
-                            <!-- lynx -->
+                                <!-- System specific settings - only show when system config is selected -->
+
+                                <!-- lynx -->
                                 <Border x:Name="brdSpecificLynx" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Lynx Specific Settings">
                                         <StackPanel Margin="10">
@@ -1024,7 +1002,7 @@
                                         </StackPanel>
                                     </Expander>
                                 </Border>
-                            <!-- gb -->
+                                <!-- gb -->
                                 <Border x:Name="brdSpecificGb" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Gameboy Specific Settings">
                                         <StackPanel Margin="10">
@@ -1034,7 +1012,7 @@
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
                                                 <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto" />                                                    
+                                                    <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Column="0">GB Type</Label>
                                                 <ComboBox x:Name="cfg_gb__system_type" SelectedValuePath="Tag" Grid.Column="1">
@@ -1047,7 +1025,7 @@
                                         </StackPanel>
                                     </Expander>
                                 </Border>
-                            <!-- ngp -->
+                                <!-- ngp -->
                                 <Border x:Name="brdSpecificNgp" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="NeoGeo Pocket Specific Settings">
                                         <StackPanel Margin="10">
@@ -1068,7 +1046,7 @@
                                         </StackPanel>
                                     </Expander>
                                 </Border>
-                            <!-- nes -->
+                                <!-- nes -->
                                 <Border x:Name="brdSpecificNes1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="NES Specific General Settings">
                                         <StackPanel Margin="10">
@@ -1080,7 +1058,7 @@
                                             <CheckBox x:Name="cfg_nes__n106bs">Namco 106(mapper 19) Sound Emulation</CheckBox>
                                             <CheckBox x:Name="cfg_nes__no8lim">Remove 8-Spr per Scanline HW Limit</CheckBox>
                                             <CheckBox x:Name="cfg_nes__nofs">Disable Four-Score Emulation</CheckBox>
-                                            
+
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
@@ -1136,7 +1114,7 @@
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
                                                     <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
                                                 </ComboBox>
-                                                
+
                                                 <Label Grid.Column="0" Grid.Row="4">Port 1 Input Device</Label>
                                                 <ComboBox x:Name="cfg_nes__input__port4" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="4">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
@@ -1182,7 +1160,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
-                                                                                       
+
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 0</Label>
@@ -1236,7 +1214,7 @@
                                         <StackPanel Margin="10">
 
                                             <CheckBox x:Name="cfg_nes__pal">Enable PAL (50Hz) Emulation</CheckBox>
-                                            
+
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
@@ -1255,9 +1233,9 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
-                                                </Grid.RowDefinitions>                     
+                                                </Grid.RowDefinitions>
 
-                                               <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">PAL 1st Displayed Scanline</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__slstartp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="239" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
@@ -1296,7 +1274,7 @@
 
                                                 <CheckBox x:Name="cfg_nes__ntscblitter" Grid.ColumnSpan="2" Grid.Row="5">Enable NTSC Color Gen. and Blitter</CheckBox>
                                                 <CheckBox x:Name="cfg_nes__ntsc__mergefields" Grid.ColumnSpan="2" Grid.Row="6">NTSC Merge Fields</CheckBox>
-                                                
+
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="7" VerticalAlignment="Center" Margin="3">
                                                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Composite Blitter Brightness</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__ntsc__brightness, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
@@ -1336,8 +1314,8 @@
                                         </StackPanel>
                                     </Expander>
                                 </Border>
-                            
-                            <!-- pce_fast -->
+
+                                <!-- pce_fast -->
                                 <Border x:Name="brdSpecificPce_fast1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PC-Engine (fast) Specific Settings">
                                         <StackPanel Margin="10">
@@ -1395,7 +1373,7 @@
                                                     <TextBox Text="{Binding ElementName=cfg_pce_fast__cdspeed, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce_fast__cdspeed"/>
-                                                </DockPanel>                                                
+                                                </DockPanel>
 
                                             </Grid>
                                         </StackPanel>
@@ -1425,7 +1403,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
 
-                                                
+
 
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Center" Margin="3">
@@ -1505,7 +1483,7 @@
                                             <CheckBox x:Name="cfg_pce__disable_bram_hucard">Disable BRAM for HuCard Games</CheckBox>
                                             <CheckBox x:Name="cfg_pce__forcesgx">Force SuperGrafx Emulation</CheckBox>
                                             <CheckBox x:Name="cfg_pce__adpcmextraprec">Output Full 12-bit ADPCM Predictor</CheckBox>
-                                            
+
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
@@ -1556,9 +1534,9 @@
                                 <Border x:Name="brdSpecificPce2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PC-Engine Continued">
                                         <StackPanel Margin="10">
-                                            
-                                           
-                                            
+
+
+
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
@@ -1595,7 +1573,7 @@
                                                 </DockPanel>
 
                                                 <CheckBox x:Name="cfg_pce__input__multitap" Grid.ColumnSpan="2" Grid.Row="2">Enable MultiTap Emulation</CheckBox>
-                                                
+
                                                 <Label Grid.Column="0" Grid.Row="3">Port 1 Input Device</Label>
                                                 <ComboBox x:Name="cfg_pce__input__port1" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="3">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
@@ -1685,7 +1663,7 @@
                                             <CheckBox x:Name="cfg_pcfx__disable_bram">Disable Internal and External BRAM</CheckBox>
                                             <CheckBox x:Name="cfg_pcfx__nospritelimit">Remove 16-Sprites-per-Scanline Limit</CheckBox>
                                             <CheckBox x:Name="cfg_pcfx__rainbow__chromaip">Enable BiLinear Int. on Chroma Channel</CheckBox>
-                                            
+
 
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
@@ -1802,7 +1780,7 @@
                                                 </DockPanel>
 
                                                 <CheckBox x:Name="cfg_pcfx__input__port1__multitap" Grid.ColumnSpan="2" Grid.Row="2">Enable Port 1 MultiTap</CheckBox>
-                                                
+
 
                                                 <Label Grid.Column="0" Grid.Row="3">Port 1 Input Device</Label>
                                                 <ComboBox x:Name="cfg_pcfx__input__port1" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="3">
@@ -1860,7 +1838,7 @@
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
                                                     <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
                                                     <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
-                                                </ComboBox>                                               
+                                                </ComboBox>
                                             </Grid>
                                         </StackPanel>
                                     </Expander>
@@ -2248,7 +2226,7 @@
 
                                                 <Label Grid.Column="0" Grid.Row="6">Max-Brightness (Anaglyph) Left View</Label>
                                                 <TextBox x:Name="cfg_vb__anaglyph__lcolor" Grid.Column="1" Grid.Row="6"></TextBox>
-                                                
+
                                                 <Label Grid.Column="0" Grid.Row="7">Max-Brightness (Anaglyph) Right View</Label>
                                                 <TextBox x:Name="cfg_vb__anaglyph__rcolor" Grid.Column="1" Grid.Row="7"></TextBox>
 
@@ -2600,8 +2578,8 @@
                                             <CheckBox x:Name="cfg_psx__input__analog_mode_ct">Analog Mode Combo-Button Toggle</CheckBox>
                                             <CheckBox x:Name="cfg_psx__input__pport1__multitap">Enable MultiTap on PSX Port 1</CheckBox>
                                             <CheckBox x:Name="cfg_psx__input__pport2__multitap">Enable MultiTap on PSX Port 2</CheckBox>
-                                            <Grid Margin="0">                                              
-                                                
+                                            <Grid Margin="0">
+
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
                                                     <ColumnDefinition Width="*" />
@@ -2654,7 +2632,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />                                                    
+                                                    <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Column="0" Grid.Row="0">Input Device (Virtual) Port 1</Label>
                                                 <ComboBox x:Name="cfg_psx__input__port1" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="0">
@@ -3084,12 +3062,54 @@
 
 
                             </WrapPanel>
-                    </ScrollViewer>
+                        </ScrollViewer>
                     </Grid>
+
+
+                </Grid>
+            </TabItem>
+
+
+            <!--
+            <TabItem Header="Paths">
+
+                <Grid Margin="100,0,100,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Margin="20" Grid.ColumnSpan="2" Grid.Row="0" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap">System Paths</TextBlock>
+
                     
-                </DockPanel>
+
+                </Grid>
 
             </TabItem>
+-->
+            
+          
             <TabItem Header="Settings">
                 <Grid x:Name="SettingGrid">
                     <Grid.ColumnDefinitions>

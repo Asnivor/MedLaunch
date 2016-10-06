@@ -7,7 +7,7 @@
     <Application.Resources>
         
         <ResourceDictionary>
-
+            
             
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,
@@ -28,6 +28,8 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
 
                 <ResourceDictionary Source="/Resources/Icons.xaml" />
+                
+                
                 
                 
 
