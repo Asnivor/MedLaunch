@@ -162,6 +162,7 @@
     <Compile Include="Classes\DataGridServersView.cs" />
     <Compile Include="Classes\EventArgs.cs" />
     <Compile Include="Classes\GamesLibraryVisualHandler.cs" />
+    <Compile Include="Classes\SettingsHandler.cs" />
     <Compile Include="Classes\SettingsVisualHandler.cs" />
     <Compile Include="Models\DiskGameFile.cs" />
     <Compile Include="Classes\GameLauncher.cs" />

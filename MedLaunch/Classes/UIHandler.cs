@@ -15,6 +15,7 @@ namespace MedLaunch.Classes
 {
     public class UIHandler
     {
+        // properties
         public List<Button> Buttons { get; set; }
         public List<RadioButton> RadioButtons { get; set; }
         public List<Label> Labels { get; set; }
@@ -100,6 +101,24 @@ namespace MedLaunch.Classes
             return ui;
         }
         public static UIHandler GetChildren(DockPanel wp)
+        {
+            // create a new instance of UIHandler class
+            UIHandler ui = new UIHandler();
+
+            // get all child buttons
+            ui.Buttons = GetLogicalChildCollection<Button>(wp);
+            ui.RadioButtons = GetLogicalChildCollection<RadioButton>(wp);
+            ui.Labels = GetLogicalChildCollection<Label>(wp);
+            ui.CheckBoxes = GetLogicalChildCollection<CheckBox>(wp);
+            ui.TextBoxes = GetLogicalChildCollection<TextBox>(wp);
+            ui.Sliders = GetLogicalChildCollection<Slider>(wp);
+            ui.ComboBoxes = GetLogicalChildCollection<ComboBox>(wp);
+            ui.NumericUpDowns = GetLogicalChildCollection<NumericUpDown>(wp);
+
+            return ui;
+        }
+
+        public static UIHandler GetChildren(Border wp)
         {
             // create a new instance of UIHandler class
             UIHandler ui = new UIHandler();

@@ -31,7 +31,7 @@ namespace MedLaunch.Models
         }
 
         // return Netplay Settings entry from DB
-        private static ConfigNetplaySettings GetNetplay()
+        public static ConfigNetplaySettings GetNetplay()
         {
             ConfigNetplaySettings nps = new ConfigNetplaySettings();
             using (var context = new MyDbContext())
@@ -45,7 +45,7 @@ namespace MedLaunch.Models
         }
 
         // write Global Settings object to DB
-        private static void SetNetplay(ConfigNetplaySettings nps)
+        public static void SetNetplay(ConfigNetplaySettings nps)
         {
             using (var context = new MyDbContext())
             {

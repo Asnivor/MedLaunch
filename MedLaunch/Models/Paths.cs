@@ -36,7 +36,7 @@ namespace MedLaunch.Models
 
 
         // return Paths entry from DB
-        private static Paths GetPaths()
+        public static Paths GetPaths()
         {
             Paths paths = new Paths();
             using (var context = new MyDbContext())
@@ -50,7 +50,7 @@ namespace MedLaunch.Models
         }
 
         // write paths object to DB
-        private static void SetPaths(Paths paths)
+        public static void SetPaths(Paths paths)
         {
             using (var context = new MyDbContext())
             {

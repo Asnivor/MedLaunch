@@ -155,6 +155,10 @@ namespace MedLaunch
             SettingsVisualHandler svh = new SettingsVisualHandler();
             // get the button state and active/deativate required panels
             svh.SetFilter();
+            // load all settings
+            SettingsHandler sh = new SettingsHandler();
+            sh.LoadAllSettings();
+
 
 
 
@@ -172,6 +176,14 @@ namespace MedLaunch
             ScanDisks9.Visibility = Visibility.Collapsed;
             ScanDisks18.Visibility = Visibility.Collapsed;
             ScanDisks8.Visibility = Visibility.Collapsed;
+
+            // settings buttons and borders
+            btnMednafenPaths.Visibility = Visibility.Collapsed;
+            btnSystemBios.Visibility = Visibility.Collapsed;
+            btnEmulator.Visibility = Visibility.Collapsed;
+            brdMednafenPaths.Visibility = Visibility.Collapsed;
+            brdSystemBios.Visibility = Visibility.Collapsed;
+            brdEmulator.Visibility = Visibility.Collapsed;
 
             wb.Navigated += new NavigatedEventHandler(wb_Navigated);
 
@@ -836,13 +848,13 @@ namespace MedLaunch
         private void btnNetplaySaveChanges_Click(object sender, RoutedEventArgs e)
         {
             ConfigNetplaySettings.SaveNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
-            lblNpSettingsSave.Content = "***Netplay Settings Saved***";
+            //lblNpSettingsSave.Content = "***Netplay Settings Saved***";
         }
 
         private void btnNetplayCancelChanges_Click(object sender, RoutedEventArgs e)
         {
             ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
-            lblNpSettingsSave.Content = "***Netplay Settings Reverted***";
+            //lblNpSettingsSave.Content = "***Netplay Settings Reverted***";
         }
 
         // Global Settings - Game page
@@ -1095,13 +1107,13 @@ namespace MedLaunch
         private void btnPathsSaveChanges_Click(object sender, RoutedEventArgs e)
         {
             Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathMs, tbPathVb, tbPathWswan); // tbPathPsx, tbPathSs);
-            lblPathsSettingsSave.Content = "***Path Settings Saved***";
+            //lblPathsSettingsSave.Content = "***Path Settings Saved***";
         }
 
         private void btnPathsCancelChanges_Click(object sender, RoutedEventArgs e)
         {
             Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathMs, tbPathVb, tbPathWswan); // tbPathPsx, tbPathSs);
-            lblPathsSettingsSave.Content = "***Path Settings Reverted***";
+            //lblPathsSettingsSave.Content = "***Path Settings Reverted***";
         }
 
         // games list context menu
@@ -1397,7 +1409,7 @@ namespace MedLaunch
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
 
             // set background color
-            rb.Background = Brushes.Red;
+            //rb.Background = Brushes.Red;
         }
 
         private void btnConfigNes_Checked(object sender, RoutedEventArgs e)
@@ -1914,9 +1926,32 @@ namespace MedLaunch
         }
 
 
+        // settings tab events
         private void btnSettings_Checked(object sender, RoutedEventArgs e)
         {
             SettingsVisualHandler.ButtonClick();
+        }
+
+        private void btnSettingsSaveAllChanges_Click(object sender, RoutedEventArgs e)
+        {
+            //SettingsHandler sh = new SettingsHandler();
+            //sh.SaveAllSettings();
+
+            Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathMs, tbPathVb, tbPathWswan);
+            ConfigNetplaySettings.SaveNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
+            ConfigServerSettings.SaveCustomServerSettings(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
+
+        }
+
+        private void btnSettingsCancelAllChanges_Click(object sender, RoutedEventArgs e)
+        {
+            //SettingsHandler sh = new SettingsHandler();
+            //sh.LoadAllSettings();
+
+            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathMs, tbPathVb, tbPathWswan);
+            ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
+            ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
+
         }
     }
 }

@@ -405,6 +405,16 @@ namespace MedLaunch.Models
                 ffspeed = 4,                                        // control placed
                 fftoggle = false,                                   // control placed
 
+                filesys__path_cheat = "cheats",            
+                filesys__path_firmware = "firmware",
+                filesys__path_movie = "mcm",
+                filesys__path_palette = "palettes",
+                filesys__path_pgconfig = "pgconfig",
+                filesys__path_sav = "sav",
+                filesys__path_savbackup = "b",
+                filesys__path_snap = "snaps",
+                filesys__path_state = "mcs",
+
                 filesys__state_comp_level = 6,
                 filesys__untrusted_fip_check = true,
                 input__autofirefreq = 3,                            // control placed

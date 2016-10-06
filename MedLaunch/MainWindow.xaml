@@ -25,10 +25,10 @@
         <CommandBinding Command="NavigationCommands.BrowseForward" CanExecute="BrowseForward_CanExecute" Executed="BrowseForward_Executed" />
         <CommandBinding Command="NavigationCommands.GoToPage" CanExecute="GoToPage_CanExecute" Executed="GoToPage_Executed" />
     </Window.CommandBindings>
-    
-    
 
-<!--
+
+
+    <!--
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
             <Button Content="Application Settings" />
@@ -56,91 +56,103 @@
 
                         <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Roms">
-                                <StackPanel x:Name="spRomFilters">                                    
+                                <StackPanel x:Name="spRomFilters">
                                     <RadioButton GroupName="flt" x:Name="btnNes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnNes_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms11" Click="ScanRoms_Click" Header="Rescan NES ROMs" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
-                                        NES</RadioButton>
+                                        NES
+                                    </RadioButton>
                                     <RadioButton GroupName="flt" x:Name="btnSnes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnSnes_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms12" Click="ScanRoms_Click" Header="Rescan SNES ROMs" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
-                                        SNES</RadioButton>
+                                        SNES
+                                    </RadioButton>
                                     <RadioButton GroupName="flt" x:Name="btnSms" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnSms_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms10" Click="ScanRoms_Click" Header="Rescan SMS ROMs" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
-                                        Master System</RadioButton>
+                                        Master System
+                                    </RadioButton>
                                     <RadioButton GroupName="flt" x:Name="btnMd" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnMd_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms4" Click="ScanRoms_Click" Header="Rescan MD ROMs" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
-                                        MegaDrive</RadioButton>
+                                        MegaDrive
+                                    </RadioButton>
                                     <RadioButton GroupName="flt" x:Name="btnPce" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnPce_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms7" Click="ScanRoms_Click" Header="Rescan PCE ROMs"  />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
-                                        PC-Engine</RadioButton>
+                                        PC-Engine
+                                    </RadioButton>
                                     <RadioButton GroupName="flt" x:Name="btnVb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnVb_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms14" Click="ScanRoms_Click" Header="Rescan VB ROMs" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
-                                        Virtual Boy</RadioButton>
+                                        Virtual Boy
+                                    </RadioButton>
                                     <RadioButton GroupName="flt" x:Name="btnNgp" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnNgp_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms6" Click="ScanRoms_Click" Header="Rescan NGP ROMs" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
-                                        NeoGeo Pocket</RadioButton>
+                                        NeoGeo Pocket
+                                    </RadioButton>
                                     <RadioButton GroupName="flt" x:Name="btnWswan" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnWswan_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms15" Click="ScanRoms_Click" Header="Rescan WSWAN ROMs" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
-                                        WonderSwan</RadioButton>
+                                        WonderSwan
+                                    </RadioButton>
                                     <RadioButton GroupName="flt" x:Name="btnGb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnGb_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms1" Click="ScanRoms_Click" Header="Rescan GB ROMs" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
-                                        Gameboy Color</RadioButton>
+                                        Gameboy Color
+                                    </RadioButton>
                                     <RadioButton GroupName="flt" x:Name="btnGba" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnGba_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms2" Click="ScanRoms_Click" Header="Rescan GBA ROMs" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
-                                        Gameboy Advance</RadioButton>
+                                        Gameboy Advance
+                                    </RadioButton>
                                     <RadioButton GroupName="flt" x:Name="btnGg" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnGg_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms5" Click="ScanRoms_Click" Header="Rescan GG ROMs" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
-                                        Game Gear</RadioButton>
+                                        Game Gear
+                                    </RadioButton>
                                     <RadioButton GroupName="flt" x:Name="btnLynx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnLynx_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms3" Click="ScanRoms_Click" Header="Rescan LYNX ROMs" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
-                                        Atari Lynx</RadioButton>
+                                        Atari Lynx
+                                    </RadioButton>
                                 </StackPanel>
                             </Expander>
                         </Border>
@@ -155,7 +167,8 @@
                                                 <MenuItem x:Name="ScanDisks13" Click="ScanDisks_Click" Header="Rescan SS Disks"  />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
-                                        Saturn</RadioButton>
+                                        Saturn
+                                    </RadioButton>
                                     <RadioButton GroupName="flt" x:Name="btnPsx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnPsx_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
@@ -163,7 +176,8 @@
                                                 <MenuItem x:Name="ScanDisks9" Click="ScanDisks_Click" Header="Rescan PSX Disks" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
-                                        Playstation</RadioButton>
+                                        Playstation
+                                    </RadioButton>
 
                                     <RadioButton GroupName="flt" x:Name="btnPcecd" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnPcecd_Checked">
                                         <RadioButton.ContextMenu>
@@ -172,7 +186,8 @@
                                                 <MenuItem x:Name="ScanDisks18" Click="ScanDisks_Click" Header="Rescan PCE Disks"  />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
-                                        PC-Engine (CD)</RadioButton>
+                                        PC-Engine (CD)
+                                    </RadioButton>
                                     <RadioButton GroupName="flt" x:Name="btnPcfx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnPcfx_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
@@ -180,7 +195,8 @@
                                                 <MenuItem x:Name="ScanDisks8" Click="ScanDisks_Click" Header="Rescan PCFX Disks"  />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
-                                        PC-FX</RadioButton>
+                                        PC-FX
+                                    </RadioButton>
                                 </StackPanel>
                             </Expander>
                         </Border>
@@ -232,7 +248,7 @@
                                     <ContextMenu>
                                         <MenuItem x:Name="LaunchRom" Header="Play Game" Click="LaunchRom_Click" />
                                         <MenuItem Header="Favorites" Click="MenuItemFavorite_Click" />
-                                       
+
                                         <MenuItem x:Name="DeleteRom" Header="Delete From Games Library" Click="DeleteRom_Click" />
                                     </ContextMenu>
                                 </DataGrid.ContextMenu>
@@ -250,7 +266,7 @@
                                 <RowDefinition Height="200" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-<!--
+                            <!--
                             <TextBlock Grid.Row="0" TextWrapping="Wrap" TextAlignment="Center" FontSize="15" TextDecorations="underline">Game and System Information</TextBlock>
                             <TextBlock Grid.Row="1" TextWrapping="Wrap">This is where the game information goes</TextBlock>
                             -->
@@ -288,7 +304,7 @@
                         <ColumnDefinition Width="0" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <WrapPanel Orientation="Vertical" Grid.Column="0" Margin="0" x:FieldModifier="public" x:Name="wpConfigLeftPane">                        
+                    <WrapPanel Orientation="Vertical" Grid.Column="0" Margin="0" x:FieldModifier="public" x:Name="wpConfigLeftPane">
                         <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Configs" >
                                 <WrapPanel Orientation="Vertical" x:Name="ConfigSelectorWrapPanel">
@@ -456,8 +472,8 @@
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
-                                   
-                                    
+
+
                                     <RadioButton Margin="1" x:Name="btnConfigSs" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnConfigSs_Checked" Unchecked="btnConfigSs_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
@@ -497,9 +513,9 @@
                                 </WrapPanel>
                             </Expander>
                         </Border>
-                        
-                        <Button x:Name="btnConfigSaveChanges" HorizontalContentAlignment="Left" Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnConfigSaveChanges_Click" ></Button>
-                        <Button x:Name="btnConfigCancelChanges" HorizontalContentAlignment="Left" Content="Revert Changes" Background="Red" Click="btnConfigCancelChanges_Click" ></Button>
+
+                        <Button x:Name="btnConfigSaveChanges"  Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnConfigSaveChanges_Click" ></Button>
+                        <Button x:Name="btnConfigCancelChanges"  Content="Revert Changes" Background="Red" Click="btnConfigCancelChanges_Click" ></Button>
 
                         <Label x:Name="lblConfigStatus" />
 
@@ -3122,53 +3138,46 @@
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                             Show All Settings
                         </RadioButton>
-                        
+
                         <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Filters" >
                                 <WrapPanel Orientation="Vertical" x:Name="SettingsSelectorWrapPanel">
-                                    
 
-                                    <RadioButton GroupName="grpSettings" x:Name="btnMednafenPaths" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" 
-                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                                        Mednafen Paths
-                                    </RadioButton>
-
-                                    <RadioButton GroupName="grpSettings" x:Name="btnGameFolders" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked"  ContextMenuService.ShowOnDisabled="True" 
-                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                                        Game Folders
-                                    </RadioButton>
-
-                                    <RadioButton GroupName="grpSettings" x:Name="btnSystemBios" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked"  ContextMenuService.ShowOnDisabled="True" 
-                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                                        System BIOS/ROMs
-                                    </RadioButton>
-
-                                    <RadioButton GroupName="grpSettings" x:Name="btnNetplay" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked"  ContextMenuService.ShowOnDisabled="True" 
-                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                                        Netplay
-                                    </RadioButton>
-
-                                    <RadioButton GroupName="grpSettings" x:Name="btnEmulator" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked"  ContextMenuService.ShowOnDisabled="True" 
-                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                                        Emulator Engine
-                                    </RadioButton>
 
                                     <RadioButton GroupName="grpSettings" x:Name="btnMedLaunch" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" 
-                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                                        MedLaunch
-                                    </RadioButton>
+                                     CommandParameter="{Binding Parent, RelativeSource={RelativeSource Self}}" Content="MedLaunch"/>
+
+
+                                    <RadioButton GroupName="grpSettings" x:Name="btnMednafenPaths" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" 
+                                     CommandParameter="{Binding Parent, RelativeSource={RelativeSource Self}}" Content="Mednafen Paths"/>
+
+                                    <RadioButton GroupName="grpSettings" x:Name="btnGameFolders" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked"  ContextMenuService.ShowOnDisabled="True" 
+                                     CommandParameter="{Binding Parent, RelativeSource={RelativeSource Self}}" Content="Game Folders"/>
+
+                                    <RadioButton GroupName="grpSettings" x:Name="btnSystemBios" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked"  ContextMenuService.ShowOnDisabled="True" 
+                                     CommandParameter="{Binding Parent, RelativeSource={RelativeSource Self}}" Content="System BIOS/ROMs"/>
+
+                                    <RadioButton GroupName="grpSettings" x:Name="btnNetplay" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked"  ContextMenuService.ShowOnDisabled="True" 
+                                     CommandParameter="{Binding Parent, RelativeSource={RelativeSource Self}}" Content="Netplay"/>
+
+                                    <RadioButton GroupName="grpSettings" x:Name="btnEmulator" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked"  ContextMenuService.ShowOnDisabled="True" 
+                                     CommandParameter="{Binding Parent, RelativeSource={RelativeSource Self}}" Content="Emulator Engine"/>
 
                                 </WrapPanel>
                             </Expander>
                         </Border>
-                        
-                        
+
+                        <Button x:Name="btnSettingsSaveAllChanges"  Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnSettingsSaveAllChanges_Click" ></Button>
+                        <Button x:Name="btnSettingsCancelAllChanges" Content="Cancel Changes" Background="Red" Click="btnSettingsCancelAllChanges_Click" ></Button>
+                        <Label x:Name="lblSettingsLabel" HorizontalContentAlignment="Center"></Label>
+
+
                     </WrapPanel>
 
                     <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
@@ -3185,13 +3194,39 @@
                         <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Width="{Binding ElementName=SettingGrid, Path=ActualWidth}" Height="{Binding ElementName=settingGrid, Path=ActualHeight}">
                             <WrapPanel HorizontalAlignment="Left" Orientation="Vertical" x:Name="SettingWrapPanel">
 
+                                <Border x:Name="brdMedLaunch" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="MedLaunch Settings" >
+                                        <StackPanel x:Name="spMedLaunchSettings">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="105" />
+                                                    <ColumnDefinition Width="280" />
+
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+
+                                                <Button HorizontalContentAlignment="Left" x:Name="btnPathMednafen" Grid.Column="0" Grid.Row="1" Click="btnPathMednafen_Click">Mednafen Folder</Button>
+                                                <TextBox x:Name="tbPathMednafen" Grid.Column="1" Grid.Row="1"></TextBox>
+
+                                                <StackPanel Grid.ColumnSpan="2" Grid.Row="17">
+                                                    
+                                                </StackPanel>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+                                
                                 <Border x:Name="brdMednafenPaths" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Mednafen Paths" >
                                         <StackPanel x:Name="spMedPathSettings">
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="90" />
-                                                    <ColumnDefinition Width="300" />
+                                                    <ColumnDefinition Width="110" />
+                                                    <ColumnDefinition Width="280" />
 
                                                 </Grid.ColumnDefinitions>
                                                 <Grid.RowDefinitions>
@@ -3215,8 +3250,36 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
-                                                <Button HorizontalContentAlignment="Left" x:Name="btnPathMednafen" Grid.Column="0" Grid.Row="1" Click="btnPathMednafen_Click">Mednafen</Button>
-                                                <TextBox x:Name="tbPathMednafen" Grid.Column="1" Grid.Row="1"></TextBox>
+
+                                                <Button HorizontalContentAlignment="Left" x:Name="btnPathCheats" Grid.Column="0" Grid.Row="1" Click="btnPathMednafen_Click">Cheats</Button>
+                                                <TextBox x:Name="cfg_filesys__path_cheat" Grid.Column="1" Grid.Row="1"></TextBox>
+
+                                                <Button HorizontalContentAlignment="Left" x:Name="btnPathFirmware" Grid.Column="0" Grid.Row="2" Click="btnPathMednafen_Click">Firmware</Button>
+                                                <TextBox x:Name="cfg_filesys__path_firmware" Grid.Column="1" Grid.Row="2"></TextBox>
+
+                                                <Button HorizontalContentAlignment="Left" x:Name="btnPathMovies" Grid.Column="0" Grid.Row="3" Click="btnPathMednafen_Click">Movies</Button>
+                                                <TextBox x:Name="cfg_filesys__path_movie" Grid.Column="1" Grid.Row="3"></TextBox>
+
+                                                <Button HorizontalContentAlignment="Left" x:Name="btnPathPalettes" Grid.Column="0" Grid.Row="4" Click="btnPathMednafen_Click">Palettes</Button>
+                                                <TextBox x:Name="cfg_filesys__path_palette" Grid.Column="1" Grid.Row="4"></TextBox>
+
+                                                <Button HorizontalContentAlignment="Left" x:Name="btnPathPgconfigs" Grid.Column="0" Grid.Row="5" Click="btnPathMednafen_Click">Per-Game Configs</Button>
+                                                <TextBox x:Name="cfg_filesys__path_pgconfig" Grid.Column="1" Grid.Row="5"></TextBox>
+
+                                                <Button HorizontalContentAlignment="Left" x:Name="btnPathSaves" Grid.Column="0" Grid.Row="6" Click="btnPathMednafen_Click">Saves</Button>
+                                                <TextBox x:Name="cfg_filesys__path_save" Grid.Column="1" Grid.Row="6"></TextBox>
+
+                                                <Button HorizontalContentAlignment="Left" x:Name="btnPathSavbackup" Grid.Column="0" Grid.Row="7" Click="btnPathMednafen_Click">Save Backup</Button>
+                                                <TextBox x:Name="cfg_filesys__path_savbackup" Grid.Column="1" Grid.Row="7"></TextBox>
+
+                                                <Button HorizontalContentAlignment="Left" x:Name="btnPathSnapshots" Grid.Column="0" Grid.Row="8" Click="btnPathMednafen_Click">Snapshots</Button>
+                                                <TextBox x:Name="cfg_filesys__path_snap" Grid.Column="1" Grid.Row="8"></TextBox>
+
+                                                <Button HorizontalContentAlignment="Left" x:Name="btnPathStates" Grid.Column="0" Grid.Row="9" Click="btnPathMednafen_Click">Save States</Button>
+                                                <TextBox x:Name="cfg_filesys__path_state" Grid.Column="1" Grid.Row="9"></TextBox>
+
+
+
                                             </Grid>
                                         </StackPanel>
                                     </Expander>
@@ -3300,9 +3363,11 @@
                                                 <Button x:Name="btnPathWswan" Grid.Column="0" Grid.Row="14" Click="btnPathWswan_Click">WonderSwan</Button>
 
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="17">
+                                                    <!-- 
                                                     <Button x:Name="btnPathsSaveChanges" Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnPathsSaveChanges_Click" ></Button>
                                                     <Button x:Name="btnPathsCancelChanges" Content="Cancel Changes" Background="Red" Click="btnPathsCancelChanges_Click" ></Button>
                                                     <Label x:Name="lblPathsSettingsSave" HorizontalContentAlignment="Center"></Label>
+                                                    -->
                                                 </StackPanel>
 
                                             </Grid>
@@ -3323,10 +3388,10 @@
                                                 </Grid.ColumnDefinitions>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />                                                   
+                                                    <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
-                                                
+
                                             </Grid>
                                         </StackPanel>
                                     </Expander>
@@ -3389,9 +3454,11 @@
                                                 </DockPanel>
 
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="6">
+                                                    <!-- 
                                                     <Button x:Name="btnNetplaySaveChanges" Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnNetplaySaveChanges_Click"></Button>
                                                     <Button x:Name="btnNetplayCancelChanges" Content="Cancel Changes" Background="Red" Click="btnNetplayCancelChanges_Click"></Button>
                                                     <Label x:Name="lblNpSettingsSave" HorizontalContentAlignment="Center"></Label>
+                                                    -->
                                                 </StackPanel>
 
                                             </Grid>
@@ -3497,25 +3564,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdMedLaunch" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="MedLaunch Settings" >
-                                        <StackPanel x:Name="spMedLaunchSettings">
-                                            <Grid Margin="0">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="90" />
-                                                    <ColumnDefinition Width="300" />
-
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="*" />
-                                                </Grid.RowDefinitions>
-
-                                            </Grid>
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
+                                
 
                             </WrapPanel>
                         </ScrollViewer>
@@ -3532,7 +3581,7 @@
 
             </TabItem>
 -->
-            
+
             <TabItem Header="Help">
                 <DockPanel x:Name="brws_Dp">
                     <Grid DockPanel.Dock="Top" Width="{Binding ElementName=brws_Dp, Path=ActualWidth}">
@@ -3544,23 +3593,23 @@
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                    
-                    <ToolBar DockPanel.Dock="Top" Grid.Column="0">
-                        <Button Command="NavigationCommands.BrowseBack">
-                            &lt;-- Back
-                        </Button>
-                        <Button Command="NavigationCommands.BrowseForward">
-                            Forward -->
-                        </Button>
-                        <Separator />
-                        <TextBox Name="txtUrl" Width="300" KeyUp="txtUrl_KeyUp" IsReadOnly="True" />
-                        <Button Command="NavigationCommands.GoToPage">
-                            GO
-                        </Button>
-                        <Separator Margin="30,0,0,0" />
-                        
 
-                    </ToolBar>
+                        <ToolBar DockPanel.Dock="Top" Grid.Column="0">
+                            <Button Command="NavigationCommands.BrowseBack">
+                                &lt;-- Back
+                            </Button>
+                            <Button Command="NavigationCommands.BrowseForward">
+                                Forward -->
+                            </Button>
+                            <Separator />
+                            <TextBox Name="txtUrl" Width="300" KeyUp="txtUrl_KeyUp" IsReadOnly="True" />
+                            <Button Command="NavigationCommands.GoToPage">
+                                GO
+                            </Button>
+                            <Separator Margin="30,0,0,0" />
+
+
+                        </ToolBar>
                         <WrapPanel Grid.Column="1" Grid.Row="0">
                             <Button VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="btnWbMedLaunch" Click="btnWbMedLaunch_Click">MedLaunch Homepage</Button>
                             <Separator />
@@ -3570,15 +3619,15 @@
                             <Separator />
                             <Button VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="btnWbMednafenForum" Click="btnWbMednafenForum_Click">Mednafen Forums</Button>
                             <Separator />
-                            
+
                         </WrapPanel>
                         <WebBrowser Name="wb" Navigating="wb_Navigating" Margin="0,0,0,10" Grid.Row="1" Grid.ColumnSpan="2"></WebBrowser>
                     </Grid>
-                    
+
                 </DockPanel>
             </TabItem>
 
-<!--
+            <!--
             <TabItem Header="About">
                 
             </TabItem>

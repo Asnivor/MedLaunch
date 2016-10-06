@@ -59,19 +59,19 @@ namespace MedLaunch.Classes
                         MednafenPaths.Add(b);
                         break;
                     case "GameFolders":
-                        MednafenPaths.Add(b);
+                        GameFolders.Add(b);
                         break;
                     case "SystemBios":
-                        MednafenPaths.Add(b);
+                        SystemBios.Add(b);
                         break;
                     case "Netplay":
-                        MednafenPaths.Add(b);
+                        Netplay.Add(b);
                         break;
                     case "Emulator":
-                        MednafenPaths.Add(b);
+                        Emulator.Add(b);
                         break;
                     case "MedLaunch":
-                        MednafenPaths.Add(b);
+                        MedLaunch.Add(b);
                         break;
                     default:
                         // do nothing
@@ -99,6 +99,7 @@ namespace MedLaunch.Classes
 
         public void SetFilter()
         {
+
             // get active button
             RadioButton _activeRadio = FilterButtons.Where(a => a.IsChecked == true).Single();
 
@@ -110,25 +111,30 @@ namespace MedLaunch.Classes
                                     where b.Name.Contains(brdName)
                                     select b).ToList();
             
-            if (name == "brdAllSettings")
+            if (name == "AllSettings")
             {
                 // all settings - show all
                 foreach (Border b in AllSettingPanels)
                 {
                     b.Visibility = Visibility.Visible;
+                    if (b.Name == "MednafenPaths" || b.Name == "SystemBios" || b.Name == "Emulator")
+                        b.Visibility = Visibility.Collapsed;
                 }
             }
             else
             {
                 // active the border boxes relating to this filter button and deactivate the rest
+                List<Border> newList = new List<Border>();
+                newList = AllSettingPanels.ToList();
+
                 foreach (Border b in _borders)
                 {
                     // set visibility visible
                     b.Visibility = Visibility.Visible;
                     // remove from AllSettingsPanels
-                    AllSettingPanels.Remove(b);
+                    newList.Remove(b);
                 }
-                foreach (Border b in AllSettingPanels)
+                foreach (Border b in newList)
                 {
                     // set visibility collapsed
                     b.Visibility = Visibility.Collapsed;
@@ -138,9 +144,9 @@ namespace MedLaunch.Classes
 
 
         // Properties
-        private MainWindow MWindow { get; set; }
-        private List<RadioButton> FilterButtons { get; set; }
-        private List<Border> AllSettingPanels { get; set; }
+        public MainWindow MWindow { get; set; }
+        public List<RadioButton> FilterButtons { get; set; }
+        public List<Border> AllSettingPanels { get; set; }
         public List<Border> MednafenPaths { get; set; }
         public List<Border> GameFolders { get; set; }
         public List<Border> SystemBios { get; set; }
