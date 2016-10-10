@@ -11,6 +11,7 @@ using System.IO.Compression;
 using System.Windows;
 using Ookii.Dialogs.Wpf;
 using Microsoft.Win32;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace MedLaunch.Classes
 {
@@ -279,7 +280,7 @@ namespace MedLaunch.Classes
         }
 
         // Start ROM scan and import process for specific system
-        public void BeginRomImport(int systemId)
+        public void BeginRomImport(int systemId, ProgressDialogController dialog)
         {
             // get path to ROM folder
             string romFolderPath = GetPath(systemId);
@@ -322,6 +323,16 @@ namespace MedLaunch.Classes
                 */             
             }
 
+            // calculate the number of files to be processed
+            int numFiles = allowedFiles.Count;
+            // set the progress bar limits
+            //dialog.Minimum = 0;
+            //dialog.Maximum = numFiles;
+            int progress = 0;
+            // set base dialog message
+            string strBase = "Scanning: ";
+
+
             // create new final list to be populated with approved files
             List<Game> finalGames = new List<Game>();
 
@@ -336,6 +347,12 @@ namespace MedLaunch.Classes
                 string extension = System.IO.Path.GetExtension(file).ToLower();
                 // get rom name wihout extension
                 string romName = fileName.Replace(extension, "");
+
+                // update UI
+                progress++;
+                string uiUpdate = strBase + fileName + "\n(" + progress + " of " + numFiles + ")";
+                dialog.SetMessage(uiUpdate);
+                //dialog.SetProgress(progress);
 
                 Game newGame = new Game();
                 

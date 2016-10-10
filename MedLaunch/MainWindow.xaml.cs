@@ -323,7 +323,7 @@ namespace MedLaunch
             };
 
             var controller = await this.ShowProgressAsync("Scanning ROM Directories", "Determining Paths and Counting Files...", settings: mySettings);
-            controller.SetIndeterminate();
+            //controller.SetIndeterminate();
 
             await Task.Delay(100);
 
@@ -385,40 +385,55 @@ namespace MedLaunch
             // check whether scanroms is null
             if (scanRoms.Count > 0)
             {
-                // data has been returned
-                // iterate through each system that has a system ROM path set
-                foreach (var s in scanRoms)
+                // start the operations on a different thread
+                await Task.Run(async () =>
                 {
-                    //MessageBoxResult result2 = MessageBox.Show(s.systemId.ToString());
+                    // data has been returned
 
-                    // start scanning
-                    controller.SetTitle("Starting " + s.systemName + " (" + s.systemCode + ") Scan");
-                    await Task.Delay(100);
-                    output += "Scanning....";
-                    controller.SetMessage(output);
+                    // how many systems returned
+                    int sysCount = scanRoms.Count;
+                    controller.Minimum = 0;
+                    controller.Maximum = sysCount;
+                    int progress = 0;
 
-                    // Start ROM scan for this system
-                    rs.BeginRomImport(s.systemId);
+                    // iterate through each system that has a system ROM path set
+                    foreach (var s in scanRoms)
+                    {
+                        //MessageBoxResult result2 = MessageBox.Show(s.systemId.ToString());
 
-                    output += ".....Completed\n\n";
+                        // start scanning
+                        controller.SetTitle("Starting " + s.systemName + " (" + s.systemCode + ") Scan");
+                        await Task.Delay(100);
+                        //output += "Scanning....";
+                        controller.SetMessage(output);
 
-                    // update totals
-                    addedStats += rs.AddedStats;
-                    updatedStats += rs.UpdatedStats;
-                    untouchedStats += rs.UntouchedStats;
-                    hiddenStats += rs.HiddenStats;
+                        progress++;
+                        controller.SetProgress(progress);
 
-                    output += rs.AddedStats + " ROMs Added\n" + rs.UpdatedStats + " ROMs Updated\n" + rs.UntouchedStats + " ROMs Skipped\n" + rs.HiddenStats + " ROMs Missing (marked as hidden)\n";
-                    controller.SetMessage(output);
+                        // Start ROM scan for this system
+                        rs.BeginRomImport(s.systemId, controller);
 
-                    // reset class totals
-                    rs.AddedStats = 0;
-                    rs.UpdatedStats = 0;
-                    rs.UntouchedStats = 0;
-                    rs.HiddenStats = 0;
+                        //output += ".....Completed\n\n";
 
-                    await Task.Delay(200);
-                }
+                        // update totals
+                        addedStats += rs.AddedStats;
+                        updatedStats += rs.UpdatedStats;
+                        untouchedStats += rs.UntouchedStats;
+                        hiddenStats += rs.HiddenStats;
+
+                        //output += rs.AddedStats + " ROMs Added\n" + rs.UpdatedStats + " ROMs Updated\n" + rs.UntouchedStats + " ROMs Skipped\n" + rs.HiddenStats + " ROMs Missing (marked as hidden)\n";
+                        //controller.SetMessage(output);
+
+                        // reset class totals
+                        rs.AddedStats = 0;
+                        rs.UpdatedStats = 0;
+                        rs.UntouchedStats = 0;
+                        rs.HiddenStats = 0;
+
+                        await Task.Delay(500);
+                    }
+                });
+                
             }
             else
             {
