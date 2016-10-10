@@ -162,7 +162,7 @@ namespace MedLaunch.Classes
                 }
             }
         }
-
+        /*
         public static List<GameListView> FetchGames()
         {
             List<GameListView> initialList = new List<GameListView>();
@@ -332,6 +332,7 @@ namespace MedLaunch.Classes
             datagrid.ItemsSource = gms;
             
         }
+        */
         // update game data for games datagrid including search
         public static void GetGames(DataGrid datagrid, int systemId, string search)
         {
@@ -343,7 +344,7 @@ namespace MedLaunch.Classes
                 {
                     // show all games
                     var favQuery = from g in context.Game
-                                   where (g.gameName.Contains(search) || GSystem.GetSystemName(g.systemId).Contains(search)) && g.isFavorite == true && g.hidden == false
+                                   where (g.gameName.ToLower().Contains(search.ToLower()) || GSystem.GetSystemName(g.systemId).ToLower().Contains(search.ToLower())) && g.isFavorite == true && g.hidden == false
                                    orderby g.gameName
                                    select new { g.gameId, g.gameName, g.gameLastPlayed, g.isFavorite, g.systemId };
                     foreach (var g in favQuery)
@@ -373,7 +374,7 @@ namespace MedLaunch.Classes
                     {
                         // show all games
                         var query = from g in context.Game
-                                    where (g.gameName.Contains(search) || GSystem.GetSystemName(g.systemId).Contains(search)) && g.hidden == false
+                                    where (g.gameName.ToLower().Contains(search.ToLower()) || GSystem.GetSystemName(g.systemId).ToLower().Contains(search.ToLower())) && g.hidden == false
                                     orderby g.gameName
                                     select new { g.gameId, g.gameName, g.gameLastPlayed, g.isFavorite, g.systemId };
                         foreach (var g in query)
@@ -401,7 +402,7 @@ namespace MedLaunch.Classes
                     {
                         // filter based on systemId
                         var query = from g in context.Game
-                                    where (g.systemId == systemId && (g.gameName.Contains(search) || GSystem.GetSystemName(g.systemId).Contains(search))) && g.hidden == false
+                                    where (g.systemId == systemId && (g.gameName.ToLower().Contains(search.ToLower()) || GSystem.GetSystemName(g.systemId).ToLower().Contains(search.ToLower()))) && g.hidden == false
                                     orderby g.gameName
                                     select new { g.gameId, g.gameName, g.gameLastPlayed, g.isFavorite };
                         foreach (var g in query)

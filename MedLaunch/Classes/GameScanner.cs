@@ -288,9 +288,15 @@ namespace MedLaunch.Classes
 
             // get all files from romfolderpath and sub directories that have an allowed extension
             IEnumerable<string> romFiles = GetFiles(romFolderPath, true);
+
+            // if romfiles is null break
+            if (romFiles == null)
+                return;
+
             List<string> allowedFiles = new List<string>();
             foreach (string s in exts)
             {
+                
                 foreach (string p in romFiles)
                 {
                     if (p.EndsWith(s))
@@ -462,8 +468,19 @@ namespace MedLaunch.Classes
             if (usingRecursion == true)
             {
                 //MessageBoxResult result = MessageBox.Show(path);
-                var files = Directory.GetFiles(@path, "*.*", SearchOption.AllDirectories);
-                return files;
+
+                // check first whether directory exists
+                if (Directory.Exists(@path))
+                {
+                    var files = Directory.GetFiles(@path, "*.*", SearchOption.AllDirectories);
+                    return files;
+                }
+                else
+                {
+                    // directory no longer exists - return null
+                    return null;
+                }            
+                
             }
             else
             {

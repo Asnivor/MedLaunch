@@ -336,7 +336,7 @@ namespace MedLaunch
 
             GameScanner rs = new GameScanner();
 
-            // mark all roms in database as hidden where the system path is not set            
+            // mark all roms in database as hidden where the system path is not set or if path no longer exists           
             await Task.Delay(100);
             foreach (var hs in rs.Systems)
             {
@@ -347,6 +347,14 @@ namespace MedLaunch
                     rs.MarkAllRomsAsHidden(hs.systemId);
                     continue;
                 }
+               
+            }
+
+            // if the path for this system is no longer correct, mark all roms as hidden
+            string sPath = rs.GetPath(sysId);
+            if (!Directory.Exists(sPath))
+            {
+                rs.MarkAllRomsAsHidden(sysId);
             }
 
             List<GSystem> scanRoms = new List<GSystem>();
