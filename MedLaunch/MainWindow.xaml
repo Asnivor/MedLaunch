@@ -617,6 +617,7 @@
                                             <CheckBox Name="cfg_fftoggle" Grid.Row="2" Grid.ColumnSpan="2">Fast-Forward Toggle</CheckBox>
                                             <CheckBox Name="cfg_ffnosound" Grid.Row="2" Grid.ColumnSpan="2">Fast-Forward Sound Disable</CheckBox>
                                             <CheckBox Name="cfg_sftoggle" Grid.Row="3" Grid.ColumnSpan="2">Slow-Forward Toggle</CheckBox>
+                                            <CheckBox Name="cfg_debugger__autostepmode" Grid.Row="4" Grid.ColumnSpan="2">Debugger Auto-Step Mode</CheckBox>
 
                                         </StackPanel>
                                     </Expander>
@@ -1115,6 +1116,16 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Column="0">Expansion Port Input Device</Label>
                                                 <ComboBox x:Name="cfg_nes__input__fcexp" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="0">
@@ -1177,6 +1188,18 @@
                                                     <Slider Maximum="0.01" Minimum="0.0000001" TickPlacement="BottomRight" TickFrequency="0.00004" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__sound_rate_error"/>
                                                 </DockPanel>
+
+                                                <Label Grid.Column="0" Grid.Row="7">Disassembly Font Size</Label>
+                                                <ComboBox x:Name="cfg_nes__debugger_disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="7">
+                                                    <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x13">6x13 (CJK Support)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="9x18">9x18 (CJK Support)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="8">Debugger Char Encoding</Label>
+                                                <TextBox x:Name="cfg_nes__debugger_memcharenc" Grid.Column="1" Grid.Row="8" />
 
                                             </Grid>
                                         </StackPanel>
@@ -1545,6 +1568,10 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
@@ -1586,6 +1613,9 @@
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
                                                 <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
@@ -1676,19 +1706,31 @@
                                         Name="cfg_pce__resamp_rate_error"/>
                                                 </DockPanel>
 
-                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="8" VerticalAlignment="Center" Margin="3">
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="12" VerticalAlignment="Center" Margin="3">
                                                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">First Rendered Scanline</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_pce__slstart, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="239" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce__slstart"/>
                                                 </DockPanel>
 
-                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="9" VerticalAlignment="Center" Margin="3">
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="13" VerticalAlignment="Center" Margin="3">
                                                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Last Rendered Scanline</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_pce__slend, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="239" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce__slend"/>
                                                 </DockPanel>
+
+                                                <Label Grid.Column="0" Grid.Row="14">Disassembly Font Size</Label>
+                                                <ComboBox x:Name="cfg_pce__debugger_disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="14">
+                                                    <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x13">6x13 (CJK Support)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="9x18">9x18 (CJK Support)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="15">Debugger Char Encoding</Label>
+                                                <TextBox x:Name="cfg_pce__debugger_memcharenc" Grid.Column="1" Grid.Row="15" />
                                             </Grid>
                                         </StackPanel>
                                     </Expander>
@@ -1769,6 +1811,19 @@
                                                     <Slider Maximum="239" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_pcfx__slend"/>
                                                 </DockPanel>
+                                                
+                                                <Label Grid.Column="0" Grid.Row="6">Disassembly Font Size</Label>
+                                                <ComboBox x:Name="cfg_pcfx__debugger_disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="6">
+                                                    <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x13">6x13 (CJK Support)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="9x18">9x18 (CJK Support)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="7">Debugger Char Encoding</Label>
+                                                <TextBox x:Name="cfg_pcfx__debugger_memcharenc" Grid.Column="1" Grid.Row="7" />
+
 
 
                                             </Grid>
@@ -1942,6 +1997,11 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Column="0" Grid.Row="0">System Region</Label>
                                                 <ComboBox x:Name="cfg_md__region" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="0">
@@ -2048,6 +2108,18 @@
                                                     <ComboBoxItem Tag="gamepad6">6-Button Gamepad</ComboBoxItem>
                                                     <ComboBoxItem Tag="megamouse">Sega Mega Mouse</ComboBoxItem>
                                                 </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="12">Disassembly Font Size</Label>
+                                                <ComboBox x:Name="cfg_md__debugger_disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="12">
+                                                    <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x13">6x13 (CJK Support)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="9x18">9x18 (CJK Support)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="13">Debugger Char Encoding</Label>
+                                                <TextBox x:Name="cfg_md__debugger_memcharenc" Grid.Column="1" Grid.Row="13" />
 
                                             </Grid>
                                         </StackPanel>
@@ -2273,6 +2345,20 @@
                                                 <Label Grid.Column="0" Grid.Row="7">Max-Brightness (Anaglyph) Right View</Label>
                                                 <TextBox x:Name="cfg_vb__anaglyph__rcolor" Grid.Column="1" Grid.Row="7"></TextBox>
 
+                                                <Label Grid.Column="0" Grid.Row="8">Disassembly Font Size</Label>
+                                                <ComboBox x:Name="cfg_vb__debugger_disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="8">
+                                                    <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x13">6x13 (CJK Support)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="9x18">9x18 (CJK Support)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="9">Debugger Char Encoding</Label>
+                                                <TextBox x:Name="cfg_vb__debugger_memcharenc" Grid.Column="1" Grid.Row="9" />
+
+
+
                                             </Grid>
                                         </StackPanel>
                                     </Expander>
@@ -2292,6 +2378,9 @@
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
                                                 <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
@@ -2381,6 +2470,19 @@
                                                     <Slider Maximum="271" Minimum="-16" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_ss__slendp"/>
                                                 </DockPanel>
+
+                                                <Label Grid.Column="0" Grid.Row="10">Disassembly Font Size</Label>
+                                                <ComboBox x:Name="cfg_ss__debugger_disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="10">
+                                                    <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x13">6x13 (CJK Support)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="9x18">9x18 (CJK Support)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="11">Debugger Char Encoding</Label>
+                                                <TextBox x:Name="cfg_ss__debugger_memcharenc" Grid.Column="1" Grid.Row="11" />
+
 
                                             </Grid>
                                         </StackPanel>
@@ -2560,6 +2662,8 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
 
                                                 <Label Grid.Column="0" Grid.Row="0">Default Region</Label>
@@ -2610,6 +2714,19 @@
                                                     <Slider Maximum="287" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="psx__slendp"/>
                                                 </DockPanel>
+
+                                                <Label Grid.Column="0" Grid.Row="7">Disassembly Font Size</Label>
+                                                <ComboBox x:Name="cfg_psx__debugger_disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="7">
+                                                    <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x13">6x13 (CJK Support)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="9x18">9x18 (CJK Support)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="8">Debugger Char Encoding</Label>
+                                                <TextBox x:Name="cfg_psx__debugger_memcharenc" Grid.Column="1" Grid.Row="8" />
+
                                             </Grid>
                                         </StackPanel>
                                     </Expander>
@@ -3096,6 +3213,104 @@
                                                 <Label Grid.Column="0" Grid.Row="4">Crosshair Color (Lightgun - Port 8)</Label>
                                                 <TextBox x:Name="cfg_psx__input__port8__gun_chairs" Grid.Column="1" Grid.Row="4"></TextBox>
                                                 <CheckBox x:Name="cfg_psx__input__port8__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 8</CheckBox>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <!-- wswan -->
+                                <Border x:Name="brdSpecificWswan" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="WonderSwan Specific Settings">
+                                        <StackPanel Margin="10">
+                                            <CheckBox x:Name="cfg_wswan__rotateinput">Virtually Rotate D-Pads With Screen</CheckBox>
+                                            
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Birth Day</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_wswan__bday, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="31" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_wswan__bday"/>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Birth Month</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_wswan__bmonth, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="12" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_wswan__bmonth"/>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Birth Year</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_wswan__byear, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="9999" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_wswan__byear"/>
+                                                </DockPanel>
+
+                                                <Label Grid.Column="0" Grid.Row="3">Name</Label>
+                                                <TextBox x:Name="cfg_wswan__name" Grid.Column="1" Grid.Row="3" />
+
+                                                <Label Grid.Column="0" Grid.Row="4">Sex</Label>
+                                                <ComboBox x:Name="cfg_wswan__sex" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="4">
+                                                    <ComboBoxItem Tag="male">Male</ComboBoxItem>
+                                                    <ComboBoxItem Tag="female">Female</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="5">Blood Type</Label>
+                                                <ComboBox x:Name="cfg_wswan__blood" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="5">
+                                                    <ComboBoxItem Tag="a">A</ComboBoxItem>
+                                                    <ComboBoxItem Tag="b">B</ComboBoxItem>
+                                                    <ComboBoxItem Tag="o">O</ComboBoxItem>
+                                                    <ComboBoxItem Tag="ab">AB</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="6">Language</Label>
+                                                <ComboBox x:Name="cfg_wswan__language" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="6">
+                                                    <ComboBoxItem Tag="japanese">Japanese</ComboBoxItem>
+                                                    <ComboBoxItem Tag="english">English</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="7">Disassembly Font Size</Label>
+                                                <ComboBox x:Name="cfg_wswan__debugger_disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="7">
+                                                    <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x13">6x13 (CJK Support)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="9x18">9x18 (CJK Support)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Grid.Column="0" Grid.Row="8">Debugger Char Encoding</Label>
+                                                <TextBox x:Name="cfg_wswan__debugger_memcharenc" Grid.Column="1" Grid.Row="8" />
                                             </Grid>
                                         </StackPanel>
                                     </Expander>

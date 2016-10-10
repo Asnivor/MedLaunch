@@ -148,6 +148,7 @@ namespace MedLaunch
             brdSpecificPsxController6.Visibility = Visibility.Collapsed;
             brdSpecificPsxController7.Visibility = Visibility.Collapsed;
             brdSpecificPsxController8.Visibility = Visibility.Collapsed;
+            brdSpecificWswan.Visibility = Visibility.Collapsed;
 
 
             // settings tab
@@ -1565,6 +1566,8 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
+            brdSpecificWswan.Visibility = Visibility.Visible;
+            
         }
 
         private void btnConfigGb_Checked(object sender, RoutedEventArgs e)
@@ -1761,6 +1764,7 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
+            brdSpecificWswan.Visibility = Visibility.Collapsed;
         }
 
         private void btnConfigGb_Unchecked(object sender, RoutedEventArgs e)
