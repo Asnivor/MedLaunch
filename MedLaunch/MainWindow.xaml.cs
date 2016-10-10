@@ -55,6 +55,23 @@ namespace MedLaunch
             }
 
             InitializeComponent();
+            //this.WindowState = WindowState.Normal;
+
+
+            // set window size
+            this.Height = 850;
+            this.Width = 1100;
+
+            // check workspace size, if mahapps resolution is too big - go full screen
+            int wWidth = Convert.ToInt32(SystemParameters.WorkArea.Width);
+            int wHeight = Convert.ToInt32(SystemParameters.WorkArea.Height);
+
+            if (this.Height > wHeight || this.Width > wWidth)
+            {
+                // maximise window
+                this.WindowState = WindowState.Maximized;
+            }
+
 
             // get application version
 
@@ -1256,111 +1273,115 @@ namespace MedLaunch
             };
 
             var controller = await this.ShowProgressAsync("Launching " + gl.SystemName + " Game", "Starting: " + gl.RomName, settings: mySettings);
-            controller.SetIndeterminate();
 
-            await Task.Delay(100);
+           
+                controller.SetIndeterminate();
 
-            controller.SetCancelable(false);
-
-            string[] returnStr = gl.PathChecks();
-
-            if (returnStr != null && returnStr.Length > 0)
-            {
-                string o = "";
-                foreach (string s in returnStr)
-                {
-                    o += s + "\n";
-                }
-                controller.SetMessage(o + "\n...Cancelling Operation...");
                 await Task.Delay(100);
-                await controller.CloseAsync();
-            }
-            else
-            {
-                string status = "...Building config...\n";
-                controller.SetMessage(status);
-                await Task.Delay(50);
 
-                string cfgName;
-                if (gl.ConfigId == 2000000000)
-                    cfgName = "Base Configuration";
+                controller.SetCancelable(false);
+
+                string[] returnStr = gl.PathChecks();
+
+                if (returnStr != null && returnStr.Length > 0)
+                {
+                    string o = "";
+                    foreach (string s in returnStr)
+                    {
+                        o += s + "\n";
+                    }
+                    controller.SetMessage(o + "\n...Cancelling Operation...");
+                    await Task.Delay(100);
+                    await controller.CloseAsync();
+                }
                 else
-                    cfgName = gl.SystemName + " Configuration";
+                {
+                    string status = "...Building config...\n";
+                    controller.SetMessage(status);
+                    await Task.Delay(50);
 
-                status += "Using " + cfgName + "\n";
-                controller.SetMessage(status);
-                await Task.Delay(50);
+                    string cfgName;
+                    if (gl.ConfigId == 2000000000)
+                        cfgName = "Base Configuration";
+                    else
+                        cfgName = gl.SystemName + " Configuration";
 
-                string netplayEnabled;
-                if (gl.Global.enableNetplay == true)
-                    netplayEnabled = "Netplay Enabled: Yes\nHost: "+ gl.Server.ConfigServerDesc;
+                    status += "Using " + cfgName + "\n";
+                    controller.SetMessage(status);
+                    await Task.Delay(50);
+
+                    string netplayEnabled;
+                    if (gl.Global.enableNetplay == true)
+                        netplayEnabled = "Netplay Enabled: Yes\nHost: " + gl.Server.ConfigServerDesc;
+                    else
+                        netplayEnabled = "Netplay Enabled: No";
+                    status += netplayEnabled + "\n";
+                    controller.SetMessage(status);
+                    await Task.Delay(50);
+
+                    // get base config params
+                    string configCmdString = gl.GetCommandLineArguments();
+
+                    string launchGame = "...Launching Game...";
+                    status += launchGame + "\n";
+                    controller.SetMessage(status);
+                    await Task.Delay(50);
+
+                    // launch game
+                    gl.RunGame(configCmdString);
+
+                    await controller.CloseAsync();
+
+                    // update lastplayed time
+                    Game game = Game.GetGame(gl.GameId);
+                    game.gameLastPlayed = DateTime.Now;
+                    Game.SetGame(game);
+
+                    // update gameslibrary data as change has been made
+                    GamesLibData.ForceUpdate();
+
+                    // refresh library view
+                    GamesLibraryVisualHandler.RefreshGamesLibrary();
+
+                }
+
+
+
+
+                //controller.SetMessage(totalFiles + " files found across all ROM directories");
+
+
+
+
+
+                /*
+                if (controller.IsCanceled)
+                {
+                    await this.ShowMessageAsync("The operation was cancelled!", romsInserted +  " ROMS have been added \n" + romsUpdated + " ROMS have been updated \n" + romsSkipped + " ROMS have been skipped");
+                }
                 else
-                    netplayEnabled = "Netplay Enabled: No";
-                status += netplayEnabled + "\n";
-                controller.SetMessage(status);
-                await Task.Delay(50);
+                {
+                    await this.ShowMessageAsync("Operation completed", romsInserted + " ROMS have been added \n" + romsUpdated + " ROMS have been updated \n" + romsSkipped + " ROMS have been skipped");
+                }
 
-                // get base config params
-                string configCmdString = gl.GetCommandLineArguments();
+                //Update list
+                // ensure 'show all' filter is checked on startup
+                btnFavorites.IsChecked = true;
+                btnShowAll.IsChecked = true;
 
-                string launchGame = "...Launching Game...";
-                status += launchGame + "\n";
-                controller.SetMessage(status);
-                await Task.Delay(50);
-
-                // launch game
-                gl.RunGame(configCmdString);
-
-                await controller.CloseAsync();
-
-                // update lastplayed time
-                Game game = Game.GetGame(gl.GameId);
-                game.gameLastPlayed = DateTime.Now;
-                Game.SetGame(game);
-
-                // update gameslibrary data as change has been made
-                GamesLibData.ForceUpdate();
-
-                // refresh library view
-                GamesLibraryVisualHandler.RefreshGamesLibrary();
-
-            }
-
-            
-            
-
-            //controller.SetMessage(totalFiles + " files found across all ROM directories");
+                */
+                /*
+                MessageBoxResult result = MessageBox.Show("RomId: " + gl.GameId.ToString());
+                MessageBoxResult result1 = MessageBox.Show("SystemId: " + gl.SystemId.ToString());
+                MessageBoxResult result2 = MessageBox.Show("RomName: " + gl.RomName.ToString());
+                MessageBoxResult result3 = MessageBox.Show("RomFolder: " + gl.RomFolder.ToString());
+                MessageBoxResult result4 = MessageBox.Show("RomPath: " + gl.RomPath.ToString());
+                MessageBoxResult result5 = MessageBox.Show("MednafenPath: " + gl.MednafenFolder.ToString());
+                */
 
 
 
-
-
-            /*
-            if (controller.IsCanceled)
-            {
-                await this.ShowMessageAsync("The operation was cancelled!", romsInserted +  " ROMS have been added \n" + romsUpdated + " ROMS have been updated \n" + romsSkipped + " ROMS have been skipped");
-            }
-            else
-            {
-                await this.ShowMessageAsync("Operation completed", romsInserted + " ROMS have been added \n" + romsUpdated + " ROMS have been updated \n" + romsSkipped + " ROMS have been skipped");
-            }
-
-            //Update list
-            // ensure 'show all' filter is checked on startup
-            btnFavorites.IsChecked = true;
-            btnShowAll.IsChecked = true;
-
-            */
-            /*
-            MessageBoxResult result = MessageBox.Show("RomId: " + gl.GameId.ToString());
-            MessageBoxResult result1 = MessageBox.Show("SystemId: " + gl.SystemId.ToString());
-            MessageBoxResult result2 = MessageBox.Show("RomName: " + gl.RomName.ToString());
-            MessageBoxResult result3 = MessageBox.Show("RomFolder: " + gl.RomFolder.ToString());
-            MessageBoxResult result4 = MessageBox.Show("RomPath: " + gl.RomPath.ToString());
-            MessageBoxResult result5 = MessageBox.Show("MednafenPath: " + gl.MednafenFolder.ToString());
-            */
-
-
+                
         }
 
 
@@ -1413,10 +1434,12 @@ namespace MedLaunch
             lblServerPort.Visibility = Visibility.Visible;
             lblServerPortTxt.Visibility = Visibility.Visible;
             lblPassword.Visibility = Visibility.Visible;
-            lblGamekey.Visibility = Visibility.Visible;
+            //lblGamekey.Visibility = Visibility.Visible;
 
-            btnServerSaveChanges.Visibility = Visibility.Visible;
-            btnServerCancelChanges.Visibility = Visibility.Visible;
+            //btnServerSaveChanges.Visibility = Visibility.Visible;
+            //btnServerCancelChanges.Visibility = Visibility.Visible;
+            btnServerSaveChanges.Visibility = Visibility.Collapsed;
+            btnServerCancelChanges.Visibility = Visibility.Collapsed;
         }
         private void rbSrvCustom_UnChecked(object sender, RoutedEventArgs e)
         {
@@ -1430,17 +1453,17 @@ namespace MedLaunch
             tbHostname.Visibility = Visibility.Collapsed;
             slServerPort.IsEnabled = false;
             slServerPort.Visibility = Visibility.Collapsed;
-            tbPassword.IsEnabled = false;
-            tbPassword.Visibility = Visibility.Collapsed;
-            tbGameKey.IsEnabled = false;
-            tbGameKey.Visibility = Visibility.Collapsed;
+            //tbPassword.IsEnabled = false;
+            //tbPassword.Visibility = Visibility.Collapsed;
+            //tbGameKey.IsEnabled = false;
+            //tbGameKey.Visibility = Visibility.Collapsed;
 
             lblServerDesc.Visibility = Visibility.Collapsed;
             lblHostname.Visibility = Visibility.Collapsed;
             lblServerPort.Visibility = Visibility.Collapsed;
             lblServerPortTxt.Visibility = Visibility.Collapsed;
-            lblPassword.Visibility = Visibility.Collapsed;
-            lblGamekey.Visibility = Visibility.Collapsed;
+            //lblPassword.Visibility = Visibility.Collapsed;
+            //lblGamekey.Visibility = Visibility.Collapsed;
 
             btnServerSaveChanges.Visibility = Visibility.Collapsed;
             btnServerCancelChanges.Visibility = Visibility.Collapsed;

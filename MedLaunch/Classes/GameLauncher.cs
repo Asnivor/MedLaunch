@@ -129,7 +129,12 @@ namespace MedLaunch.Classes
             // get server
             Server = (from s in db.ConfigServerSettings
                       where s.ConfigServerId == Global.serverSelected
-                      select s).SingleOrDefault();     
+                      select s).SingleOrDefault();
+
+            // get overide server settings (password and gamekey from custom
+            ServerOveride = (from s in db.ConfigServerSettings
+                             where s.ConfigServerId == 100
+                             select s).SingleOrDefault();   
             
                              
         }
@@ -279,10 +284,17 @@ namespace MedLaunch.Classes
             baseStr += "-netplay.host " + Server.netplay__host + sep;
             // port
             baseStr += "-netplay.port " + Server.netplay__port + sep;
+
+            // add password and gamekey fiedls from id 100
+            
+            baseStr += "-netplay.password " + ServerOveride.netplay__password + sep;
+            baseStr += "-netplay.gamekey " + ServerOveride.netplay__gamekey + sep;
+            /*
             // password
             baseStr += "-netplay.password " + Server.netplay__password + sep;
             // gamekey
             baseStr += "-netplay.gamekey " + Server.netplay__gamekey + sep;
+            */
 
             // faust 
             if (SystemId == 16)
@@ -489,6 +501,7 @@ namespace MedLaunch.Classes
         public ConfigBaseSettings Config { get; set; }
         public ConfigNetplaySettings Netplay { get; set; }
         public ConfigServerSettings Server { get; set; }
+        public ConfigServerSettings ServerOveride { get; set; }
         public GlobalSettings Global { get; set; }
     }
 }

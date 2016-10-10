@@ -9,8 +9,7 @@
         mc:Ignorable="d"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="MedLaunch - Windows Front-End for Mednafen (0.0.3.1)" 
-                      Height="850" 
-                      Width="1100"
+                      
                       BorderThickness="0" 
                       GlowBrush="Black"
                       ResizeMode="CanResizeWithGrip"
@@ -238,7 +237,9 @@
                         <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Misc" >
                                 <StackPanel x:Name="spGlobalSettings">
+                                    <!--
                                     <CheckBox x:Name="chkEnableNetplay" Checked="chkEnableNetplay_Checked" Unchecked="chkEnableNetplay_Unchecked">Enable Netplay</CheckBox>
+                                    -->
                                     <CheckBox x:Name="chkEnableSnes_faust" Checked="chkEnableSnes_faust_Checked" Unchecked="chkEnableSnes_faust_Unchecked">Use SNES Faust</CheckBox>
                                     <CheckBox x:Name="chkEnablePce_fast" Checked="chkEnablePce_fast_Checked" Unchecked="chkEnablePce_fast_Unchecked">Use PCE Fast</CheckBox>
                                     <!--<CheckBox x:Name="chkFullScreen" Checked="chkFullScreen_Checked" Unchecked="chkFullScreen_Unchecked">Play Fullscreen</CheckBox> -->
@@ -3641,6 +3642,7 @@
 
                                 <Border x:Name="brdNetplay1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Netplay Settings" >
+                                                                             
 
 
                                         <StackPanel x:Name="spNetplaySettings">
@@ -3660,10 +3662,13 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
 
-                                                <Label Grid.Row="1">Nickname</Label>
-                                                <TextBox x:Name="tbNetplayNick" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" />
+                                                <CheckBox x:Name="chkEnableNetplay" Checked="chkEnableNetplay_Checked" Unchecked="chkEnableNetplay_Unchecked" Grid.Row="0" Grid.ColumnSpan="2">Enable Netplay</CheckBox>
+                                                <Separator Grid.ColumnSpan="2" Grid.Row="1" />
 
-                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="20">
+                                                <Label Grid.Row="2">Nickname</Label>
+                                                <TextBox x:Name="tbNetplayNick" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" />
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="20">
                                                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Console Font</Label>
                                                     <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
 
@@ -3676,26 +3681,26 @@
                                                     </StackPanel>
                                                 </DockPanel>
 
-                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="20">
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Center" Margin="20">
                                                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Number of Local Players</Label>
                                                     <TextBox Text="{Binding ElementName=slLocalPlayersValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="16" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="slLocalPlayersValue"/>
                                                 </DockPanel>
-                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Center" Margin="20">
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Center" Margin="20">
                                                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Number of Console Lines</Label>
                                                     <TextBox Text="{Binding ElementName=slConsoleLinesValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="64" Minimum="5" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="slConsoleLinesValue"  />
                                                 </DockPanel>
-                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Center" Margin="20">
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Center" Margin="20">
                                                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Console Scale</Label>
                                                     <TextBox Text="{Binding ElementName=slConsoleScaleValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="16" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="slConsoleScaleValue" />
                                                 </DockPanel>
 
-                                                <StackPanel Grid.ColumnSpan="2" Grid.Row="6">
+                                                <StackPanel Grid.ColumnSpan="2" Grid.Row="7">
                                                     <!-- 
                                                     <Button x:Name="btnNetplaySaveChanges" Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnNetplaySaveChanges_Click"></Button>
                                                     <Button x:Name="btnNetplayCancelChanges" Content="Cancel Changes" Background="Red" Click="btnNetplayCancelChanges_Click"></Button>
