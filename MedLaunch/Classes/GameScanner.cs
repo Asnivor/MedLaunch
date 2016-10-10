@@ -274,6 +274,7 @@ namespace MedLaunch.Classes
                     List<Game> roms = (from a in context.Game
                                        select a).ToList();
                     Game.DeleteGames(roms);
+                    
                 }
             }            
         }
@@ -291,6 +292,7 @@ namespace MedLaunch.Classes
                                        where a.systemId == sysId
                                        select a).ToList();
                     Game.DeleteGames(roms);
+
                 }
             }                         
         }
@@ -514,6 +516,8 @@ namespace MedLaunch.Classes
                 db.UpdateRange(DisksToUpdate);
 
                 db.SaveChanges();
+
+                GamesLibData.ForceUpdate();
             }
                 
                

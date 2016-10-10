@@ -1317,6 +1317,9 @@ namespace MedLaunch
                 game.gameLastPlayed = DateTime.Now;
                 Game.SetGame(game);
 
+                // update gameslibrary data as change has been made
+                GamesLibData.ForceUpdate();
+
                 // refresh library view
                 GamesLibraryVisualHandler.RefreshGamesLibrary();
 

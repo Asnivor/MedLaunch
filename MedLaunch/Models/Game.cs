@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedLaunch.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,6 +38,7 @@ namespace MedLaunch.Models
             {
                 cfDef.Entry(game).State = Microsoft.Data.Entity.EntityState.Modified;
                 cfDef.SaveChanges();
+                GamesLibData.ForceUpdate();
             }
         }
 
@@ -46,6 +48,7 @@ namespace MedLaunch.Models
             {
                 cont.Game.Remove(game);
                 cont.SaveChanges();
+                GamesLibData.ForceUpdate();
             }
 
         }
@@ -56,6 +59,7 @@ namespace MedLaunch.Models
             {
                 cont.Game.RemoveRange(games);
                 cont.SaveChanges();
+                GamesLibData.ForceUpdate();
             }
         }
     }    
