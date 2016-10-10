@@ -56,11 +56,17 @@
 
                         <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Roms">
+                                <Expander.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Click="RemoveAllGames_Click" Header="Remove All Games From Database" />
+                                    </ContextMenu>
+                                </Expander.ContextMenu>
                                 <StackPanel x:Name="spRomFilters">
                                     <RadioButton GroupName="flt" x:Name="btnNes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnNes_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms11" Click="ScanRoms_Click" Header="Rescan NES ROMs" />
+                                                <MenuItem x:Name="RemoveRoms11" Click="RemoveRoms_Click" Header="Remove All NES ROMs from Database" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         NES
@@ -69,6 +75,7 @@
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms12" Click="ScanRoms_Click" Header="Rescan SNES ROMs" />
+                                                <MenuItem x:Name="RemoveRoms12" Click="RemoveRoms_Click" Header="Remove All SNES ROMs from Database" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         SNES
@@ -77,6 +84,7 @@
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms10" Click="ScanRoms_Click" Header="Rescan SMS ROMs" />
+                                                <MenuItem x:Name="RemoveRoms10" Click="RemoveRoms_Click" Header="Remove All SMS ROMs from Database" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         Master System
@@ -85,6 +93,7 @@
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms4" Click="ScanRoms_Click" Header="Rescan MD ROMs" />
+                                                <MenuItem x:Name="RemoveRoms4" Click="RemoveRoms_Click" Header="Remove All MD ROMs from Database" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         MegaDrive
@@ -93,6 +102,7 @@
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms7" Click="ScanRoms_Click" Header="Rescan PCE ROMs"  />
+                                                <MenuItem x:Name="RemoveRoms7" Click="RemoveRoms_Click" Header="Remove All PCE ROMs from Database" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         PC-Engine
@@ -101,6 +111,7 @@
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms14" Click="ScanRoms_Click" Header="Rescan VB ROMs" />
+                                                <MenuItem x:Name="RemoveRoms14" Click="RemoveRoms_Click" Header="Remove All VB ROMs from Database" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         Virtual Boy
@@ -109,6 +120,7 @@
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms6" Click="ScanRoms_Click" Header="Rescan NGP ROMs" />
+                                                <MenuItem x:Name="RemoveRoms6" Click="RemoveRoms_Click" Header="Remove All NGP ROMs from Database" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         NeoGeo Pocket
@@ -117,6 +129,7 @@
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms15" Click="ScanRoms_Click" Header="Rescan WSWAN ROMs" />
+                                                <MenuItem x:Name="RemoveRoms15" Click="RemoveRoms_Click" Header="Remove All WSWAN ROMs from Database" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         WonderSwan
@@ -125,6 +138,7 @@
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms1" Click="ScanRoms_Click" Header="Rescan GB ROMs" />
+                                                <MenuItem x:Name="RemoveRoms1" Click="RemoveRoms_Click" Header="Remove All GB ROMs from Database" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         Gameboy Color
@@ -133,6 +147,7 @@
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms2" Click="ScanRoms_Click" Header="Rescan GBA ROMs" />
+                                                <MenuItem x:Name="RemoveRoms2" Click="RemoveRoms_Click" Header="Remove All GBA ROMs from Database" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         Gameboy Advance
@@ -141,6 +156,7 @@
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms5" Click="ScanRoms_Click" Header="Rescan GG ROMs" />
+                                                <MenuItem x:Name="RemoveRoms5" Click="RemoveRoms_Click" Header="Remove All GG ROMs from Database" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         Game Gear
@@ -149,6 +165,7 @@
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms3" Click="ScanRoms_Click" Header="Rescan LYNX ROMs" />
+                                                <MenuItem x:Name="RemoveRoms3" Click="RemoveRoms_Click" Header="Remove All LYNX ROMs from Database" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         Atari Lynx
@@ -159,12 +176,18 @@
 
                         <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Disks" >
+                                <Expander.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Click="RemoveAllGames_Click" Header="Remove All Games From Database" />
+                                    </ContextMenu>
+                                </Expander.ContextMenu>
                                 <StackPanel x:Name="spDiskFilters">
                                     <RadioButton GroupName="flt" x:Name="btnSs" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnSs_Checked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ManualAddGame13" Click="ManualAddGame_Click" Header="Manually Import a Saturn Game"  />
                                                 <MenuItem x:Name="ScanDisks13" Click="ScanDisks_Click" Header="Rescan SS Disks"  />
+                                                <MenuItem x:Name="RemoveDisks13" Click="RemoveDisks_Click" Header="Remove All SS Games From Database" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         Saturn
@@ -174,6 +197,7 @@
                                             <ContextMenu>
                                                 <MenuItem x:Name="ManualAddGame9" Click="ManualAddGame_Click" Header="Manually Import a PSX Game"  />
                                                 <MenuItem x:Name="ScanDisks9" Click="ScanDisks_Click" Header="Rescan PSX Disks" />
+                                                <MenuItem x:Name="RemoveDisks9" Click="RemoveDisks_Click" Header="Remove All PSX Games From Database" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         Playstation
@@ -184,6 +208,7 @@
                                             <ContextMenu>
                                                 <MenuItem x:Name="ManualAddGame18" Click="ManualAddGame_Click" Header="Manually Import a PCE Game"  />
                                                 <MenuItem x:Name="ScanDisks18" Click="ScanDisks_Click" Header="Rescan PCE Disks"  />
+                                                <MenuItem x:Name="RemoveDisks18" Click="RemoveDisks_Click" Header="Remove All PCE(CD) Games From Database" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         PC-Engine (CD)
@@ -193,6 +218,7 @@
                                             <ContextMenu>
                                                 <MenuItem x:Name="ManualAddGame8" Click="ManualAddGame_Click" Header="Manually Import a PC-FX Game"  />
                                                 <MenuItem x:Name="ScanDisks8" Click="ScanDisks_Click" Header="Rescan PCFX Disks"  />
+                                                <MenuItem x:Name="RemoveDisks8" Click="RemoveDisks_Click" Header="Remove All PCFX Games From Database" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         PC-FX

@@ -261,7 +261,56 @@ namespace MedLaunch.Classes
                     break;
             }
             return path;
-        }        
+        }
+        // remove ALL GAMES from db for all systems
+        public static void RemoveAllGames()
+        {
+            MessageBoxResult result = MessageBox.Show("This operation will wipe out ALL the games in your games library database (but they will not be deleted from disk)\n\nAre you sure you wish to continue?", "WARNING", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.OK)
+            {
+                // get all roms for specific system
+                using (var context = new MyDbContext())
+                {
+                    List<Game> roms = (from a in context.Game
+                                       select a).ToList();
+                    Game.DeleteGames(roms);
+                }
+            }            
+        }
+
+        // remove all roms from db for a certain system
+        public static void RemoveRoms(int sysId)
+        {
+            MessageBoxResult result = MessageBox.Show("This operation will wipe out ALL the " + GSystem.GetSystemName(sysId) +  " games in your library database (but they will not be deleted from disk)\n\nAre you sure you wish to continue?", "WARNING", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.OK)
+            {
+                // get all roms for specific system
+                using (var context = new MyDbContext())
+                {
+                    List<Game> roms = (from a in context.Game
+                                       where a.systemId == sysId
+                                       select a).ToList();
+                    Game.DeleteGames(roms);
+                }
+            }                         
+        }
+
+        // remove all disk-based games from db for a certain system
+        public static void RemoveDisks(int sysId)
+        {
+            MessageBoxResult result = MessageBox.Show("This operation will wipe out ALL the " + GSystem.GetSystemName(sysId) + " games in your library database (but they will not be deleted from disk)\n\nAre you sure you wish to continue?", "WARNING", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.OK)
+            {
+                // get all disks for specific system
+                using (var context = new MyDbContext())
+                {
+                    List<Game> disks = (from a in context.Game
+                                        where a.systemId == sysId
+                                        select a).ToList();
+                    Game.DeleteGames(disks);
+                }
+            }                
+        }
 
         // return number of files found in a directory and sub-directory (based on usingRecursion bool)
         public static int CountFiles(string path, bool usingRecursion)

@@ -49,5 +49,14 @@ namespace MedLaunch.Models
             }
 
         }
+
+        public static void DeleteGames(List<Game> games)
+        {
+            using (var cont = new MyDbContext())
+            {
+                cont.Game.RemoveRange(games);
+                cont.SaveChanges();
+            }
+        }
     }    
 }

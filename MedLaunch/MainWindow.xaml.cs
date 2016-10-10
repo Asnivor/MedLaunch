@@ -732,11 +732,29 @@ namespace MedLaunch
             RescanSystemRoms(sysId);
         }
 
+        private void RemoveRoms_Click(object sender, RoutedEventArgs e)
+        {
+            // get systemId from menu name
+            string menuName = (sender as MenuItem).Name;
+            int sysId = Convert.ToInt32(menuName.Replace("RemoveRoms", ""));
+            GameScanner.RemoveRoms(sysId);
+            GamesLibraryVisualHandler.RefreshGamesLibrary();
+        }
+
         private void ScanDisks_Click(object sender, RoutedEventArgs e)
         {
             // get systemId from menu name
             string menuName = (sender as MenuItem).Name;
             int sysId = Convert.ToInt32(menuName.Replace("ScanDisks", ""));
+        }
+
+        private void RemoveDisks_Click(object sender, RoutedEventArgs e)
+        {
+            // get systemId from menu name
+            string menuName = (sender as MenuItem).Name;
+            int sysId = Convert.ToInt32(menuName.Replace("RemoveDisks", ""));
+            GameScanner.RemoveDisks(sysId);
+            GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 
         private void ManualAddGame_Click(object sender, RoutedEventArgs e)
@@ -748,6 +766,11 @@ namespace MedLaunch
             // refresh library view
             GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
+
+        private void RemoveAllGames_Click(object sender, RoutedEventArgs e)
+        {
+            GameScanner.RemoveAllGames();
+        } 
 
 
         // Games grid filter text box event
@@ -1986,5 +2009,7 @@ namespace MedLaunch
             ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
 
         }
+
+        
     }
 }
