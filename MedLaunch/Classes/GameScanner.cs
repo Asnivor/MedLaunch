@@ -55,10 +55,10 @@ namespace MedLaunch.Classes
             RomSystemsWithPaths = new List<GSystem>();
             DiskSystemsWithPaths = new List<GSystem>();
 
-            // populate RomSystemsWithPaths with only entries that only have Rom paths set (and are not non-path systems like snes_faust and pce_fast)
+            // populate RomSystemsWithPaths with only entries that only have Rom paths set (and are not non-path systems like snes_faust and pce_fast) and where ROM directories are valid
             foreach (var sys in RomSystems)
             {
-                if (GetPath(sys.systemId) == null || GetPath(sys.systemId) == "")
+                if (GetPath(sys.systemId) == null || GetPath(sys.systemId) == "" || !Directory.Exists(GetPath(sys.systemId)))
                 {
                     continue;
                 }
@@ -194,6 +194,8 @@ namespace MedLaunch.Classes
         public List<Game> DisksToUpdate { get; set; }
         public List<Game> DisksToAdd { get; set; }
 
+        public List<Game> MarkedAsHidden { get; set; }
+
         public int AddedStats { get; set; }
         public int HiddenStats { get; set; }
         public int UpdatedStats { get; set; }
@@ -284,10 +286,15 @@ namespace MedLaunch.Classes
             //MessageBoxResult result2 = MessageBox.Show(romFolderPath);
             // get allowed file types for this particular system
             HashSet<string> exts = GetAllowedFileExtensions(systemId);
-            
+
+            // get a list of games for this system currently already in the database
+            List<Game> presentGames = (from g in Games
+                                       where g.systemId == systemId
+                                       select g).ToList();
+
 
             // get all files from romfolderpath and sub directories that have an allowed extension
-            IEnumerable<string> romFiles = GetFiles(romFolderPath, true);
+            IEnumerable < string > romFiles = GetFiles(romFolderPath, true);
 
             // if romfiles is null break
             if (romFiles == null)
@@ -333,8 +340,6 @@ namespace MedLaunch.Classes
                 Game newGame = new Game();
                 
                 // inspect ZIP files
-
-                //////INVESTIGATE THIS
                 if (extension == ".zip")
                 {
                     //MessageBoxResult result2 = MessageBox.Show(fileName);
@@ -405,14 +410,31 @@ namespace MedLaunch.Classes
                         // mark as not hidden
                         newGame.hidden = false;
 
+                        
+
                         // add to finalGames list
                         RomsToUpdate.Add(newGame);
                         // increment updated counter
                         UpdatedStats++;
-                    }                  
+                    }
+
+                    // remove game from presentGames list - remaining games in this list will be marked as hidden at the end
+                    presentGames.Remove(chkGame);                
 
                 }
-            }                  
+            }   
+            
+            // whatever games are left in the presentGames list should be marked as hidden as they have not been found
+            if (presentGames.Count > 0)
+            {
+                foreach (Game g in presentGames)
+                {
+                    g.hidden = true;
+                    RomsToUpdate.Add(g);
+                    
+                }
+            }
+                  
         }
 
         public void SaveToDatabase()
@@ -493,9 +515,13 @@ namespace MedLaunch.Classes
         // mark all ROMS from a system as hidden (as long as it is not a disk based game)
         public void MarkAllRomsAsHidden(int systemId)
         {
-            List<Game> games = (from g in Games
-                                where g.systemId == systemId && (g.isDiskBased =! true)
+            List<Game> gamesAll = (from g in Games
+                                where g.systemId == systemId
                                select g).ToList();
+            List<Game> games = (from g in gamesAll
+                                   where g.isDiskBased == false
+                                   select g).ToList();
+
             if (games == null)
             {
                 // no games found
@@ -512,6 +538,7 @@ namespace MedLaunch.Classes
                         // add to GamesToUpdate to be processed later
                         RomsToUpdate.Add(newGame);
                         HiddenStats++;
+
                     }
                     else
                     {
@@ -836,7 +863,7 @@ namespace MedLaunch.Classes
             else
             {
                 // matching game found - update it
-                if ((chkGame.gamePath == f.FullPath || chkGame.gamePath == PathUtil.GetRelativePath(GetPath(sysId), f.FullPath) && chkGame.hidden == false))
+                if ((chkGame.gamePath == f.FullPath || chkGame.gamePath == f.FullPath) && chkGame.hidden == false)
                 {
                     //nothing to update - Path is either identical either absoultely or relatively (against the systemPath set in the database)
                     UntouchedStats++;
@@ -908,5 +935,6 @@ namespace MedLaunch.Classes
                 return false;
             }
         }
+
     }
 }

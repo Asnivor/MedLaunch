@@ -337,37 +337,46 @@ namespace MedLaunch
 
             GameScanner rs = new GameScanner();
 
-            // mark all roms in database as hidden where the system path is not set or if path no longer exists           
+                       
             await Task.Delay(100);
-            foreach (var hs in rs.Systems)
-            {
-                string path = rs.GetPath(hs.systemId);
-                if (path == "" || path == null)
-                {
-                    // No path returned - Mark existing games in Db as hidden
-                    rs.MarkAllRomsAsHidden(hs.systemId);
-                    continue;
-                }
-               
-            }
+           
 
-            // if the path for this system is no longer correct, mark all roms as hidden
-            string sPath = rs.GetPath(sysId);
-            if (!Directory.Exists(sPath))
-            {
-                //MessageBox.Show(sPath);
-                rs.MarkAllRomsAsHidden(sysId);
-            }
 
             List<GSystem> scanRoms = new List<GSystem>();
             if (sysId == 0)
             {
-                // scan of all roms has been selected
+                /* scan of all roms has been selected */
+
+                // mark all roms in database as hidden where the system path is not set or if path no longer exists
+                foreach (var hs in rs.Systems)
+                {
+                    string path = rs.GetPath(hs.systemId);
+                    if (path == "" || path == null || !Directory.Exists(path))
+                    {
+                        // No path returned or path is not valid - Mark existing games in Db as hidden
+                        rs.MarkAllRomsAsHidden(hs.systemId);
+                        hiddenStats += rs.HiddenStats;
+                        rs.HiddenStats = 0;
+                    }
+                }
+
                 scanRoms = rs.RomSystemsWithPaths;
             }
             else
             {
-                // only one system has been selected for scanning
+                /* only one system has been selected for scanning */
+
+                // mark all roms in database as hidden for this system path is not set or if path no longer exists                
+                string path = rs.GetPath(sysId);
+                if (path == "" || path == null || !Directory.Exists(path))
+                {
+                    // No path returned or path is not valid - Mark existing games in Db as hidden
+                    rs.MarkAllRomsAsHidden(sysId);
+                    hiddenStats += rs.HiddenStats;
+                    rs.HiddenStats = 0;
+                }
+             
+
                 scanRoms = (from s in rs.RomSystemsWithPaths
                                where s.systemId == sysId
                                select s).ToList();
@@ -397,14 +406,16 @@ namespace MedLaunch
                     addedStats += rs.AddedStats;
                     updatedStats += rs.UpdatedStats;
                     untouchedStats += rs.UntouchedStats;
+                    hiddenStats += rs.HiddenStats;
 
-                    output += rs.AddedStats + " ROMs Added\n" + rs.UpdatedStats + " ROMs Updated\n" + rs.UntouchedStats + " ROMs Skipped\n" + rs.HiddenStats + " ROMs Hidden";
+                    output += rs.AddedStats + " ROMs Added\n" + rs.UpdatedStats + " ROMs Updated\n" + rs.UntouchedStats + " ROMs Skipped\n" + rs.HiddenStats + " ROMs Missing (marked as hidden)\n";
                     controller.SetMessage(output);
 
                     // reset class totals
                     rs.AddedStats = 0;
                     rs.UpdatedStats = 0;
                     rs.UntouchedStats = 0;
+                    rs.HiddenStats = 0;
 
                     await Task.Delay(200);
                 }
@@ -412,18 +423,15 @@ namespace MedLaunch
             else
             {
                 // No systems returned
-                controller.SetTitle("MedLaunch Error!");
+                controller.SetTitle("No ROM systems with valid paths found");
                 controller.SetMessage("No GameSystem with valid path was found\n Please make sure there is a valid path set for this system");
                 
             }
 
-            if (scanRoms.Count > 0)
-            {
-                controller.SetMessage(output + "\nUpdating Database");
-                rs.SaveToDatabase();
-                
-            }
-
+           
+            controller.SetMessage(output + "\nUpdating Database");
+            rs.SaveToDatabase();
+        
 
             await Task.Delay(1000);
 
@@ -437,7 +445,7 @@ namespace MedLaunch
             }
             else
             {
-                await this.ShowMessageAsync("Scanning Completed", "Totals:\n\nROMs Added: " + addedStats + "\nROMs Updated: " + updatedStats + "\nROMs Skipped: " + untouchedStats);
+                await this.ShowMessageAsync("Scanning Completed", "Totals:\n\nROMs Added: " + addedStats + "\nROMs Updated: " + updatedStats + "\nROMs Skipped: " + untouchedStats + "\nROMs Marked as Hidden: " + hiddenStats);
             }
 
             //Update list
