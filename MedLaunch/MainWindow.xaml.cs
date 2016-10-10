@@ -333,6 +333,7 @@ namespace MedLaunch
             int addedStats = 0;
             int updatedStats = 0;
             int untouchedStats = 0;
+            int hiddenStats = 0;
 
             GameScanner rs = new GameScanner();
 
@@ -354,6 +355,7 @@ namespace MedLaunch
             string sPath = rs.GetPath(sysId);
             if (!Directory.Exists(sPath))
             {
+                //MessageBox.Show(sPath);
                 rs.MarkAllRomsAsHidden(sysId);
             }
 
@@ -396,7 +398,7 @@ namespace MedLaunch
                     updatedStats += rs.UpdatedStats;
                     untouchedStats += rs.UntouchedStats;
 
-                    output += rs.AddedStats + " ROMs Added\n" + rs.UpdatedStats + " ROMs Updated\n" + rs.UntouchedStats + " ROMs Skipped\n";
+                    output += rs.AddedStats + " ROMs Added\n" + rs.UpdatedStats + " ROMs Updated\n" + rs.UntouchedStats + " ROMs Skipped\n" + rs.HiddenStats + " ROMs Hidden";
                     controller.SetMessage(output);
 
                     // reset class totals

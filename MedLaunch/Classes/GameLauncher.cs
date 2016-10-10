@@ -297,22 +297,9 @@ namespace MedLaunch.Classes
                 baseStr += "-force_module pce_fast" + sep;
             }
 
-
-            // check whether relative or absolute path has been set in the database for this game
-            if (RomPath.StartsWith("."))
-            {
-                // path is relative - add paths together
-                baseStr += "\"" + BuildFullGamePath(RomFolder, RomPath) + "\"";
-            }
-            else
-            {
-                // path is absolute - just use the db gamepath
-                baseStr += "\"" + RomPath + "\"";
-            }
-
-            // add rompath to end of connection string
+            // add gamepath to command line
+            baseStr += "\"" + BuildFullGamePath(RomFolder, RomPath) + "\"";
             
-            //MessageBoxResult result = MessageBox.Show(baseStr);
             return baseStr;
         }
 
@@ -393,7 +380,17 @@ namespace MedLaunch.Classes
 
         private string BuildFullGamePath(string GamesFolder, string GamePath)
         {
-            return GamesFolder + GamePath;
+            // check whether relative or absolute path has been set in the database for this game
+            if (RomPath.StartsWith("."))
+            {
+                // path is relative (rom autoimported from defined path) - build path
+                return GamesFolder + GamePath;
+            }
+            else
+            {
+                // rom or disk has been manually added with full path - return just full path
+                return GamePath;
+            }                
         }
 
         private static string GetRomFolder(int systemId, MyDbContext db)
