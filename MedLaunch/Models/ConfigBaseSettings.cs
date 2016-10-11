@@ -983,6 +983,409 @@ namespace MedLaunch.Models
             return controlName.Replace("cfg_", "");
         }
 
+        // populate settings - mednafen paths controls
+        public static void LoadMednafenPathValues(StackPanel wp)
+        {
+            // get a class object with all child controls
+            UIHandler ui = UIHandler.GetChildren(wp);
+
+            // get all config settings for base config
+            ConfigBaseSettings settings = GetConfig(2000000000);
+
+            SetControlValues(ui, settings, 1);
+        }
+
+        // save settings - mednafen paths controls
+        public static void SaveMednafenPathValues(StackPanel wp)
+        {
+            // get a class object with all child controls
+            UIHandler ui = UIHandler.GetChildren(wp);
+
+            // get all config settings for base config
+            //ConfigBaseSettings settings = GetConfig(2000000000);
+
+            // get ALL config settings (as we are saving these to all configs)
+            List<ConfigBaseSettings> AllSettings = new List<ConfigBaseSettings>();
+            using (var context = new MyDbContext())
+            {
+                List<ConfigBaseSettings> aset = (from d in context.ConfigBaseSettings
+                                                        select d).ToList();
+                AllSettings.AddRange(aset);
+            }
+
+            // iterate through each config and set all the settings for each config
+            foreach (ConfigBaseSettings settings in AllSettings)
+            {
+                SetControlValues(ui, settings, 2);
+            }       
+        }
+
+        public static void SetControlValues(UIHandler ui, ConfigBaseSettings settings, int LoadOrSave)
+        {
+            if (LoadOrSave == 1)
+            {
+                // 1 = load settings
+                // Iterate through all controls and set correct values
+                // Buttons
+                foreach (Button control in ui.Buttons)
+                {
+                    // get config entry name from control name
+                    string propName = ConvertControlNameToConfigName(control.Name);
+                    //MessageBoxResult result = MessageBox.Show(propName);
+                    // make sure name is not null
+                    if (control.Name == null || control.Name.Trim() == "")
+                    {
+                        // checkbox does not have a name set - skip
+                        //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
+                    }
+                    else
+                    {
+                        // check that the control is actually a config control
+                        if (propName.Contains("_"))
+                        {
+                            // get the property value using reflection
+                            var value = settings.GetType().GetProperty(propName).GetValue(settings, null);
+                            string v = value.ToString();
+
+                            // update wpf control
+                            control.Content = v;
+                        }
+                        else
+                        {
+                            
+                        }
+
+                        
+                    }
+                }
+
+                // RadioButtons
+
+                // Labels
+
+                // CheckBoxes
+                foreach (CheckBox control in ui.CheckBoxes)
+                {
+                    // get config entry name from control name
+                    string propName = ConvertControlNameToConfigName(control.Name);
+                    //MessageBoxResult result = MessageBox.Show(propName);
+                    // make sure name is not null
+                    if (control.Name == null || control.Name.Trim() == "")
+                    {
+                        // checkbox does not have a name set - skip
+                        //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
+                    }
+                    else
+                    {
+                        // get the property value using reflection
+                        var value = settings.GetType().GetProperty(propName).GetValue(settings, null);
+                        bool v = Convert.ToBoolean(value.ToString());
+
+                        // update wpf control
+                        control.IsChecked = v;
+                    }
+                }
+
+                // TextBoxes
+                foreach (TextBox control in ui.TextBoxes)
+                {
+                    // get config entry name from control name
+                    string propName = ConvertControlNameToConfigName(control.Name);
+                    //MessageBoxResult result = MessageBox.Show(propName);
+                    // make sure name is not null
+                    if (control.Name == null || control.Name.Trim() == "")
+                    {
+                        // textbox does not have a name set - skip
+                        //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
+                    }
+                    else
+                    {
+                        // get the property value using reflection
+                        var value = settings.GetType().GetProperty(propName).GetValue(settings, null);
+                        string v = value.ToString();
+
+                        // update wpf control
+                        control.Text = v;
+                    }
+                }
+
+                // Sliders
+                foreach (Slider control in ui.Sliders)
+                {
+                    // get config entry name from control name
+                    string propName = ConvertControlNameToConfigName(control.Name);
+                    //MessageBoxResult result = MessageBox.Show(propName);
+                    // make sure name is not null
+                    if (control.Name == null || control.Name.Trim() == "")
+                    {
+                        // checkbox does not have a name set - skip
+                        //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
+                    }
+                    else
+                    {
+                        // get the property value using reflection
+                        var value = settings.GetType().GetProperty(propName).GetValue(settings, null);
+                        //bool v = Convert.ToBoolean(value.ToString());
+                        double v = Convert.ToDouble(value.ToString());
+
+                        // update wpf control
+                        control.Value = v;
+                    }
+                }
+
+                // Comboxes
+                foreach (ComboBox control in ui.ComboBoxes)
+                {
+                    // get config entry name from control name
+                    string propName = ConvertControlNameToConfigName(control.Name);
+                    //MessageBoxResult result = MessageBox.Show(propName);
+                    // make sure name is not null
+                    if (control.Name == null || control.Name.Trim() == "")
+                    {
+                        // checkbox does not have a name set - skip
+                        //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
+                    }
+                    else
+                    {
+                        // get the property value using reflection
+                        var value = settings.GetType().GetProperty(propName).GetValue(settings, null);
+                        //bool v = Convert.ToBoolean(value.ToString());
+                        string v = value.ToString();
+
+                        // update wpf control
+                        control.SelectedValue = v;
+                    }
+                }
+
+                // NumericUpDowns
+                foreach (NumericUpDown control in ui.NumericUpDowns)
+                {
+                    // get config entry name from control name
+                    string propName = ConvertControlNameToConfigName(control.Name);
+                    //MessageBoxResult result = MessageBox.Show(propName);
+                    // make sure name is not null
+                    if (control.Name == null || control.Name.Trim() == "")
+                    {
+                        // checkbox does not have a name set - skip
+                        //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
+                    }
+                    else
+                    {
+                        // get the property value using reflection
+                        var value = settings.GetType().GetProperty(propName).GetValue(settings, null);
+                        //bool v = Convert.ToBoolean(value.ToString());
+                        double v = Convert.ToDouble(value.ToString());
+
+                        // update wpf control
+                        control.Value = v;
+                    }
+                }
+            }
+            if (LoadOrSave == 2)
+            {
+                // 2 = save settings
+                // Iterate through all controls and set correct values
+                // Buttons
+                foreach (Button control in ui.Buttons)
+                {
+                    // get config entry name from control name
+                    string propName = ConvertControlNameToConfigName(control.Name);
+                    //MessageBoxResult result = MessageBox.Show(propName);
+                    // make sure name is not null
+                    if (control.Name == null || control.Name.Trim() == "")
+                    {
+                        // checkbox does not have a name set - skip
+                        //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
+                    }
+                    else
+                    {
+                        // check that the control is actually a config control
+                        if (propName.Contains("_"))
+                        {
+                            // get the control value
+                            string v = control.Content.ToString();
+                            // update settings object with value
+                            PropertyInfo propInfo = settings.GetType().GetProperty(propName);
+                            propInfo.SetValue(settings, v, null);
+                        }
+                    }
+                }
+
+                // RadioButtons
+
+                // Labels
+
+                // CheckBoxes
+                foreach (CheckBox control in ui.CheckBoxes)
+                {
+                    // get config entry name from control name
+                    string propName = ConvertControlNameToConfigName(control.Name);
+                    //MessageBoxResult result = MessageBox.Show(propName);
+                    // make sure name is not null
+                    if (control.Name == null || control.Name.Trim() == "")
+                    {
+                        // checkbox does not have a name set - skip
+                        //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
+                    }
+                    else
+                    {
+                        // get the control value
+                        bool? v = control.IsChecked.Value;
+                        // update settings object with value
+                        PropertyInfo propInfo = settings.GetType().GetProperty(propName);
+                        propInfo.SetValue(settings, v, null);
+                    }
+                }
+
+                // TextBoxes
+                foreach (TextBox control in ui.TextBoxes)
+                {
+                    // get config entry name from control name
+                    string propName = ConvertControlNameToConfigName(control.Name);
+                    //MessageBoxResult result = MessageBox.Show(propName);
+                    // make sure name is not null
+                    if (control.Name == null || control.Name.Trim() == "")
+                    {
+                        // textbox does not have a name set - skip
+                        //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
+                    }
+                    else
+                    {
+                        // get the control value
+                        string v = control.Text;
+                        // update settings object with value
+                        PropertyInfo propInfo = settings.GetType().GetProperty(propName);
+                        propInfo.SetValue(settings, v, null);
+                    }
+                }
+
+                // Sliders
+                foreach (Slider control in ui.Sliders)
+                {
+                    // get config entry name from control name
+                    string propName = ConvertControlNameToConfigName(control.Name);
+                    //MessageBoxResult result = MessageBox.Show(propName);
+                    // make sure name is not null
+                    if (control.Name == null || control.Name.Trim() == "")
+                    {
+                        // checkbox does not have a name set - skip
+                        //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
+                    }
+                    else
+                    {
+                        // get the control value
+                        double? v = control.Value;
+                        // update settings object with value
+                        PropertyInfo propInfo = settings.GetType().GetProperty(propName);
+
+                        if (propInfo.PropertyType.ToString().Contains("[System.Double]"))
+                        {
+                            // double is required
+                            propInfo.SetValue(settings, v, null);
+                            //MessageBoxResult aresult = MessageBox.Show(propInfo.PropertyType.ToString());
+                        }
+                        if (propInfo.PropertyType.ToString().Contains("[System.Int32]"))
+                        {
+                            // int32 is required
+                            //MessageBoxResult aresult = MessageBox.Show(propInfo.PropertyType.ToString());
+                            propInfo.SetValue(settings, Convert.ToInt32(v), null);
+                        }
+                    }
+                }
+
+                // Comboxes
+                foreach (ComboBox control in ui.ComboBoxes)
+                {
+                    // get config entry name from control name
+                    string propName = ConvertControlNameToConfigName(control.Name);
+                    //MessageBoxResult result = MessageBox.Show(propName);
+                    // make sure name is not null
+                    if (control.Name == null || control.Name.Trim() == "")
+                    {
+                        // checkbox does not have a name set - skip
+                        //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
+                    }
+                    else
+                    {
+                        // get the control value
+                        //string v = control.SelectedValue.ToString();
+                        string v = ((ComboBoxItem)control.SelectedItem).Tag.ToString();
+                        //MessageBoxResult aresult = MessageBox.Show(propName + "   -   " + v);
+
+                        // update settings object with string value - 
+
+
+                        PropertyInfo propInfo = settings.GetType().GetProperty(propName);
+                        //MessageBoxResult aresult = MessageBox.Show(propName + "   -   " + propInfo.ToString() + "   -   " + v);
+
+                        if (propInfo.PropertyType.ToString().Contains("[System.Double]") || propInfo.PropertyType.ToString().Contains("[System.Int32]"))
+                        {
+                            if (propInfo.PropertyType.ToString().Contains("[System.Double]"))
+                            {
+                                // double is required
+                                double? d = Convert.ToDouble(v);
+                                propInfo.SetValue(settings, d, null);
+                                //MessageBoxResult aresult = MessageBox.Show(propInfo.PropertyType.ToString());
+                            }
+                            if (propInfo.PropertyType.ToString().Contains("[System.Int32]"))
+                            {
+                                // int32 is required
+                                int? i = Convert.ToInt32(v);
+                                //MessageBoxResult aresult = MessageBox.Show(propInfo.PropertyType.ToString());
+                                propInfo.SetValue(settings, i, null);
+                            }
+                        }
+                        else
+                        {
+                            propInfo.SetValue(settings, v, null);
+                        }
+
+
+
+                    }
+                }
+
+                // NumericUpDowns
+                foreach (NumericUpDown control in ui.NumericUpDowns)
+                {
+                    // get config entry name from control name
+                    string propName = ConvertControlNameToConfigName(control.Name);
+                    //MessageBoxResult result = MessageBox.Show(propName);
+                    // make sure name is not null
+                    if (control.Name == null || control.Name.Trim() == "")
+                    {
+                        // checkbox does not have a name set - skip
+                        //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
+                    }
+                    else
+                    {
+                        // get the control value
+                        double? v = control.Value;
+                        // update settings object with value
+                        PropertyInfo propInfo = settings.GetType().GetProperty(propName);
+
+                        if (propInfo.PropertyType.ToString().Contains("[System.Double]"))
+                        {
+                            // double is required
+                            propInfo.SetValue(settings, v, null);
+                            //MessageBoxResult aresult = MessageBox.Show(propInfo.PropertyType.ToString());
+                        }
+                        if (propInfo.PropertyType.ToString().Contains("[System.Int32]"))
+                        {
+                            // int32 is required
+                            //MessageBoxResult aresult = MessageBox.Show(propInfo.PropertyType.ToString());
+                            propInfo.SetValue(settings, Convert.ToInt32(v), null);
+                        }
+                    }
+                }
+
+                // save config
+                SetConfig(settings);
+            }
+            
+        }
+
+        
 
         // Populate config settings for specific System ID  -   WrapPanel as parent     
         public static void LoadControlValues(WrapPanel wp, int configId)
@@ -993,151 +1396,7 @@ namespace MedLaunch.Models
             // get all config settings for system
             ConfigBaseSettings settings = GetConfig(configId);
 
-            // Iterate through all controls and set correct values
-            // Buttons
-            foreach (Button control in ui.Buttons)
-            {
-                // get config entry name from control name
-                string propName = ConvertControlNameToConfigName(control.Name);
-                //MessageBoxResult result = MessageBox.Show(propName);
-                // make sure name is not null
-                if (control.Name == null || control.Name.Trim() == "")
-                {
-                    // checkbox does not have a name set - skip
-                    //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
-                }
-                else
-                {
-                    // get the property value using reflection
-                    var value = settings.GetType().GetProperty(propName).GetValue(settings, null);
-                    string v = value.ToString();
-
-                    // update wpf control
-                    control.Content = v;
-                }
-            }
-
-            // RadioButtons
-
-            // Labels
-
-            // CheckBoxes
-            foreach (CheckBox control in ui.CheckBoxes)
-            {
-                // get config entry name from control name
-                string propName = ConvertControlNameToConfigName(control.Name);
-                //MessageBoxResult result = MessageBox.Show(propName);
-                // make sure name is not null
-                if (control.Name == null || control.Name.Trim() == "")
-                {
-                    // checkbox does not have a name set - skip
-                    //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
-                }
-                else
-                {
-                    // get the property value using reflection
-                    var value = settings.GetType().GetProperty(propName).GetValue(settings, null);
-                    bool v = Convert.ToBoolean(value.ToString());
-
-                    // update wpf control
-                    control.IsChecked = v;
-                }                
-            }
-
-            // TextBoxes
-            foreach (TextBox control in ui.TextBoxes)
-            {
-                // get config entry name from control name
-                string propName = ConvertControlNameToConfigName(control.Name);
-                //MessageBoxResult result = MessageBox.Show(propName);
-                // make sure name is not null
-                if (control.Name == null || control.Name.Trim() == "")
-                {
-                    // textbox does not have a name set - skip
-                    //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
-                }
-                else
-                {
-                    // get the property value using reflection
-                    var value = settings.GetType().GetProperty(propName).GetValue(settings, null);
-                    string v = value.ToString();
-
-                    // update wpf control
-                    control.Text = v;
-                }
-            }
-
-            // Sliders
-            foreach (Slider control in ui.Sliders)
-            {
-                // get config entry name from control name
-                string propName = ConvertControlNameToConfigName(control.Name);
-                //MessageBoxResult result = MessageBox.Show(propName);
-                // make sure name is not null
-                if (control.Name == null || control.Name.Trim() == "")
-                {
-                    // checkbox does not have a name set - skip
-                    //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
-                }
-                else
-                {
-                    // get the property value using reflection
-                    var value = settings.GetType().GetProperty(propName).GetValue(settings, null);
-                    //bool v = Convert.ToBoolean(value.ToString());
-                    double v = Convert.ToDouble(value.ToString());
-
-                    // update wpf control
-                    control.Value = v;
-                }
-            }
-
-            // Comboxes
-            foreach (ComboBox control in ui.ComboBoxes)
-            {
-                // get config entry name from control name
-                string propName = ConvertControlNameToConfigName(control.Name);
-                //MessageBoxResult result = MessageBox.Show(propName);
-                // make sure name is not null
-                if (control.Name == null || control.Name.Trim() == "")
-                {
-                    // checkbox does not have a name set - skip
-                    //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
-                }
-                else
-                {
-                    // get the property value using reflection
-                    var value = settings.GetType().GetProperty(propName).GetValue(settings, null);
-                    //bool v = Convert.ToBoolean(value.ToString());
-                    string v = value.ToString();
-
-                    // update wpf control
-                    control.SelectedValue = v;
-                }
-            }
-
-            // NumericUpDowns
-            foreach (NumericUpDown control in ui.NumericUpDowns)
-            {
-                // get config entry name from control name
-                string propName = ConvertControlNameToConfigName(control.Name);
-                //MessageBoxResult result = MessageBox.Show(propName);
-                // make sure name is not null
-                if (control.Name == null || control.Name.Trim() == "")
-                {
-                    // checkbox does not have a name set - skip
-                    //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
-                }
-                else
-                {
-                    // get the property value using reflection
-                    var value = settings.GetType().GetProperty(propName).GetValue(settings, null);
-                    //bool v = Convert.ToBoolean(value.ToString());
-                    double v = Convert.ToDouble(value.ToString());
-
-                    // update wpf control
-                    control.Value = v;
-                }
-            }
+            SetControlValues(ui, settings, 1);           
 
         }
 
@@ -1150,199 +1409,9 @@ namespace MedLaunch.Models
             // get all config settings for system
             ConfigBaseSettings settings = GetConfig(configId);
 
-            // Iterate through all controls and set correct values
-            // Buttons
-            foreach (Button control in ui.Buttons)
-            {
-                // get config entry name from control name
-                string propName = ConvertControlNameToConfigName(control.Name);
-                //MessageBoxResult result = MessageBox.Show(propName);
-                // make sure name is not null
-                if (control.Name == null || control.Name.Trim() == "")
-                {
-                    // checkbox does not have a name set - skip
-                    //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
-                }
-                else
-                {
-                    // get the control value
-                    string v = control.Content.ToString();
-                    // update settings object with value
-                    PropertyInfo propInfo = settings.GetType().GetProperty(propName);
-                    propInfo.SetValue(settings, v, null);
-                }
-            }
+            SetControlValues(ui, settings, 2);
 
-            // RadioButtons
-
-            // Labels
-
-            // CheckBoxes
-            foreach (CheckBox control in ui.CheckBoxes)
-            {
-                // get config entry name from control name
-                string propName = ConvertControlNameToConfigName(control.Name);
-                //MessageBoxResult result = MessageBox.Show(propName);
-                // make sure name is not null
-                if (control.Name == null || control.Name.Trim() == "")
-                {
-                    // checkbox does not have a name set - skip
-                    //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
-                }
-                else
-                {
-                    // get the control value
-                    bool? v = control.IsChecked.Value;
-                    // update settings object with value
-                    PropertyInfo propInfo = settings.GetType().GetProperty(propName);
-                    propInfo.SetValue(settings, v, null);
-                }
-            }
-
-            // TextBoxes
-            foreach (TextBox control in ui.TextBoxes)
-            {
-                // get config entry name from control name
-                string propName = ConvertControlNameToConfigName(control.Name);
-                //MessageBoxResult result = MessageBox.Show(propName);
-                // make sure name is not null
-                if (control.Name == null || control.Name.Trim() == "")
-                {
-                    // textbox does not have a name set - skip
-                    //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
-                }
-                else
-                {
-                    // get the control value
-                    string v = control.Text;
-                    // update settings object with value
-                    PropertyInfo propInfo = settings.GetType().GetProperty(propName);
-                    propInfo.SetValue(settings, v, null);
-                }
-            }
-
-            // Sliders
-            foreach (Slider control in ui.Sliders)
-            {
-                // get config entry name from control name
-                string propName = ConvertControlNameToConfigName(control.Name);
-                //MessageBoxResult result = MessageBox.Show(propName);
-                // make sure name is not null
-                if (control.Name == null || control.Name.Trim() == "")
-                {
-                    // checkbox does not have a name set - skip
-                    //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
-                }
-                else
-                {
-                    // get the control value
-                    double? v = control.Value;
-                    // update settings object with value
-                    PropertyInfo propInfo = settings.GetType().GetProperty(propName);
-
-                    if (propInfo.PropertyType.ToString().Contains("[System.Double]"))
-                    {
-                        // double is required
-                        propInfo.SetValue(settings, v, null);
-                        //MessageBoxResult aresult = MessageBox.Show(propInfo.PropertyType.ToString());
-                    }
-                    if (propInfo.PropertyType.ToString().Contains("[System.Int32]"))
-                    {
-                        // int32 is required
-                        //MessageBoxResult aresult = MessageBox.Show(propInfo.PropertyType.ToString());
-                        propInfo.SetValue(settings, Convert.ToInt32(v), null);                        
-                    }
-                }
-            }
-
-            // Comboxes
-            foreach (ComboBox control in ui.ComboBoxes)
-            {
-                // get config entry name from control name
-                string propName = ConvertControlNameToConfigName(control.Name);
-                //MessageBoxResult result = MessageBox.Show(propName);
-                // make sure name is not null
-                if (control.Name == null || control.Name.Trim() == "")
-                {
-                    // checkbox does not have a name set - skip
-                    //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
-                }
-                else
-                {
-                    // get the control value
-                    //string v = control.SelectedValue.ToString();
-                    string v = ((ComboBoxItem)control.SelectedItem).Tag.ToString();
-                    //MessageBoxResult aresult = MessageBox.Show(propName + "   -   " + v);
-
-                    // update settings object with string value - 
-                    
-
-                    PropertyInfo propInfo = settings.GetType().GetProperty(propName);
-                    //MessageBoxResult aresult = MessageBox.Show(propName + "   -   " + propInfo.ToString() + "   -   " + v);
-
-                    if (propInfo.PropertyType.ToString().Contains("[System.Double]") || propInfo.PropertyType.ToString().Contains("[System.Int32]"))
-                    {
-                        if (propInfo.PropertyType.ToString().Contains("[System.Double]"))
-                        {
-                            // double is required
-                            double? d = Convert.ToDouble(v);
-                            propInfo.SetValue(settings, d, null);
-                            //MessageBoxResult aresult = MessageBox.Show(propInfo.PropertyType.ToString());
-                        }
-                        if (propInfo.PropertyType.ToString().Contains("[System.Int32]"))
-                        {
-                            // int32 is required
-                            int? i = Convert.ToInt32(v);
-                            //MessageBoxResult aresult = MessageBox.Show(propInfo.PropertyType.ToString());
-                            propInfo.SetValue(settings, i, null);
-                        }
-                    }
-                    else
-                    {
-                        propInfo.SetValue(settings, v, null);
-                    }
-
-
-                   
-                }
-            }
-
-            // NumericUpDowns
-            foreach (NumericUpDown control in ui.NumericUpDowns)
-            {
-                // get config entry name from control name
-                string propName = ConvertControlNameToConfigName(control.Name);
-                //MessageBoxResult result = MessageBox.Show(propName);
-                // make sure name is not null
-                if (control.Name == null || control.Name.Trim() == "")
-                {
-                    // checkbox does not have a name set - skip
-                    //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
-                }
-                else
-                {
-                    // get the control value
-                    double? v = control.Value;
-                    // update settings object with value
-                    PropertyInfo propInfo = settings.GetType().GetProperty(propName);
-
-                    if (propInfo.PropertyType.ToString().Contains("[System.Double]"))
-                    {
-                        // double is required
-                        propInfo.SetValue(settings, v, null);
-                        //MessageBoxResult aresult = MessageBox.Show(propInfo.PropertyType.ToString());
-                    }
-                    if (propInfo.PropertyType.ToString().Contains("[System.Int32]"))
-                    {
-                        // int32 is required
-                        //MessageBoxResult aresult = MessageBox.Show(propInfo.PropertyType.ToString());
-                        propInfo.SetValue(settings, Convert.ToInt32(v), null);
-                    }
-                }
-            }
-
-            // save config
-            SetConfig(settings);
+            
 
         }
 

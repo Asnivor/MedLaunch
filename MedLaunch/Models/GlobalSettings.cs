@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace MedLaunch.Models
@@ -19,6 +20,7 @@ namespace MedLaunch.Models
         public bool? enableSnes_faust { get; set; }                 // use snes_faust emulation rather than SNES
         public bool? enablePce_fast { get; set; }                  // use pce_fast emulation rather than pce
         public int? serverSelected { get; set; }                    // stores the currently selected server ID
+        public double guiZoom { get; set; }                         // the current GUI zoom factor as a decimal (1 = 100%)
 
         public static GlobalSettings GetGlobalDefaults()
         {
@@ -32,7 +34,8 @@ namespace MedLaunch.Models
                 enableNetplay = false,
                 serverSelected = 1,
                 enablePce_fast = false,
-                enableSnes_faust = false
+                enableSnes_faust = false,
+                guiZoom = 1
             };
             return gs;
         }
@@ -63,7 +66,7 @@ namespace MedLaunch.Models
             }
         }
 
-        public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast)
+        public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast, ComboBox GuiZoom)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
@@ -72,6 +75,10 @@ namespace MedLaunch.Models
             EnableSnes_Faust.IsChecked = gs.enableSnes_faust;
             //FullScreen.IsChecked = gs.fullScreen;
             //BypassConfig.IsChecked = gs.bypassConfig;
+
+            // update comboboxes
+            GuiZoom.SelectedValue = gs.guiZoom.ToString();
+            //MessageBox.Show(gs.guiZoom.ToString());
         }
 
         public static void UpdateEnableNetplay(CheckBox EnableNetplay)
@@ -102,6 +109,13 @@ namespace MedLaunch.Models
         {
             GlobalSettings gs = GetGlobals();
             gs.bypassConfig = BypassConfig.IsChecked;
+            SetGlobals(gs);
+        }
+
+        public static void UpdateGuiZoom(double GuiZoom)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.guiZoom = GuiZoom;
             SetGlobals(gs);
         }
 

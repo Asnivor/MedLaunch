@@ -57,10 +57,15 @@ namespace MedLaunch
             InitializeComponent();
             //this.WindowState = WindowState.Normal;
 
+            // doubleclick handler for gui_zoom control
+            //gui_zoom.MouseDoubleClick += new MouseButtonEventHandler(RestoreScalingFactor);
+            dpZoomSlider.Visibility = Visibility.Collapsed;
+            //gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
+
 
             // set window size
-            this.Height = 850;
-            this.Width = 1100;
+            this.Height = 768;
+            this.Width = 1024;
 
             // check workspace size, if mahapps resolution is too big - go full screen
             int wWidth = Convert.ToInt32(SystemParameters.WorkArea.Width);
@@ -97,7 +102,8 @@ namespace MedLaunch
             btnShowAll.IsChecked = true;
 
             // load globalsettings for front page
-            GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast);
+            GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo);
+            gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
 
             // load netplay settings for netplay page
             ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
@@ -179,6 +185,9 @@ namespace MedLaunch
             SettingsHandler sh = new SettingsHandler();
             sh.LoadAllSettings();
 
+            // load all MednafenPath settings
+            ConfigBaseSettings.LoadMednafenPathValues(spMedPathSettings);
+
 
 
 
@@ -198,16 +207,34 @@ namespace MedLaunch
             ScanDisks8.Visibility = Visibility.Collapsed;
 
             // settings buttons and borders
-            btnMednafenPaths.Visibility = Visibility.Collapsed;
+            //btnMednafenPaths.Visibility = Visibility.Collapsed;
             btnSystemBios.Visibility = Visibility.Collapsed;
-            btnEmulator.Visibility = Visibility.Collapsed;
-            brdMednafenPaths.Visibility = Visibility.Collapsed;
+            //btnEmulator.Visibility = Visibility.Collapsed;
+            //brdMednafenPaths.Visibility = Visibility.Collapsed;
             brdSystemBios.Visibility = Visibility.Collapsed;
             //brdEmulator.Visibility = Visibility.Collapsed;
 
             wb.Navigated += new NavigatedEventHandler(wb_Navigated);
 
         }
+
+        void RestoreScalingFactor(object sender, MouseButtonEventArgs args)
+        {
+
+            ((Slider)sender).Value = 1.0;
+        }
+        private void gui_zoom_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            double value = Convert.ToDouble((sender as ComboBox).SelectedValue);
+            //MessageBox.Show(value.ToString());
+            gui_zoom.Value = value;
+            if (Convert.ToDouble(value) > 0)
+            {
+                GlobalSettings.UpdateGuiZoom(value);
+            }
+            
+        }
+
 
         // web browser
 
@@ -964,21 +991,45 @@ namespace MedLaunch
             GlobalSettings.UpdateEnableSnes_faust(chkEnableSnes_faust);
         }
 
-        
+        // Mednafen Paths (cheats, saves etc..) events
+        private void btnMednafenPaths_Click(object sender, RoutedEventArgs e)
+        {
+            // convert the button name
+            string btnName = ((sender as Button).Name).ToLower().Replace("btnpath", "");
+            // textbox name
+            string tbName = "cfg_filesys__path_" + btnName;
+            // get textbox
+            TextBox tb = (TextBox)(Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()).FindName(tbName);
+
+            VistaFolderBrowserDialog path = new VistaFolderBrowserDialog();
+            path.ShowNewFolderButton = true;
+            path.Description = "Select " + btnName + " Directory";
+            path.ShowDialog();
+
+            if (path.SelectedPath != "")
+            {
+                string strPath = path.SelectedPath;
+                tb.Text = strPath;
+            }
+
+            
+
+        }
+
         // Path Page button clicks
         private void btnPathMednafen_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             VistaFolderBrowserDialog path = new VistaFolderBrowserDialog();
             path.ShowNewFolderButton = true;
             path.Description = "Select Mednafen Directory";
             path.ShowDialog();
-            
+
             if (path.SelectedPath != "")
             {
                 string strPath = path.SelectedPath;
                 tbPathMednafen.Text = strPath;
             }
-                      
+
         }
 
         private void btnPathGb_Click(object sender, RoutedEventArgs e)
@@ -1621,6 +1672,7 @@ namespace MedLaunch
             Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathMs, tbPathVb, tbPathWswan);
             ConfigNetplaySettings.SaveNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
             ConfigServerSettings.SaveCustomServerSettings(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
+            ConfigBaseSettings.SaveMednafenPathValues(spMedPathSettings);
 
         }
 
@@ -1632,6 +1684,7 @@ namespace MedLaunch
             Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathMs, tbPathVb, tbPathWswan);
             ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
             ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
+            ConfigBaseSettings.LoadMednafenPathValues(spMedPathSettings);
 
         }
 

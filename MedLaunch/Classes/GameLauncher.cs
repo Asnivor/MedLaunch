@@ -266,7 +266,7 @@ namespace MedLaunch.Classes
             // build parameter string
             foreach (var pair in activeCmds)
             {
-                baseStr += "-" + pair.Key + sep + pair.Value + sep;
+                baseStr += "-" + pair.Key + sep + Validate(pair.Value) + sep;
             }      
             
             // add netplay settings
@@ -277,15 +277,15 @@ namespace MedLaunch.Classes
             
 
                 // console font
-                baseStr += "-netplay.console.font " + Netplay.netplay__console__font + sep;
+                baseStr += "-netplay.console.font " + Validate(Netplay.netplay__console__font) + sep;
                 // console lines
-                baseStr += "-netplay.console.lines " + Netplay.netplay__console__lines.ToString() + sep;
+                baseStr += "-netplay.console.lines " + Validate(Netplay.netplay__console__lines.ToString()) + sep;
                 // console scale
-                baseStr += "-netplay.console.scale " + Netplay.netplay__console__scale.ToString() + sep;
+                baseStr += "-netplay.console.scale " + Validate(Netplay.netplay__console__scale.ToString()) + sep;
                 // localplayers
-                baseStr += "-netplay.localplayers " + Netplay.netplay__localplayers.ToString() + sep;
+                baseStr += "-netplay.localplayers " + Validate(Netplay.netplay__localplayers.ToString()) + sep;
                 // nickname
-                baseStr += "-netplay.nick " + Netplay.netplay__nick + sep;
+                baseStr += "-netplay.nick " + Validate(Netplay.netplay__nick) + sep;
 
                 // add server settings
 
@@ -297,7 +297,7 @@ namespace MedLaunch.Classes
                 else
                 {
                     // host has been set
-                    baseStr += "-netplay.host " + Server.netplay__host + sep;
+                    baseStr += "-netplay.host " + Validate(Server.netplay__host + sep);
                 }
 
                 // port
@@ -307,7 +307,7 @@ namespace MedLaunch.Classes
                 }
                 else
                 {
-                    baseStr += "-netplay.port " + Server.netplay__port + sep;
+                    baseStr += "-netplay.port " + Validate(Server.netplay__port.ToString()) + sep;
                 }
             
                 // add password and gamekey fields from id 100
@@ -319,7 +319,7 @@ namespace MedLaunch.Classes
                 }
                 else
                 {
-                    baseStr += "-netplay.password " + ServerOveride.netplay__password + sep;
+                    baseStr += "-netplay.password " + Validate(ServerOveride.netplay__password) + sep;
                 }
 
                 // gamekey
@@ -329,7 +329,7 @@ namespace MedLaunch.Classes
                 }
                 else
                 {
-                    baseStr += "-netplay.gamekey " + ServerOveride.netplay__gamekey + sep;
+                    baseStr += "-netplay.gamekey " + Validate(ServerOveride.netplay__gamekey) + sep;
                 }
 
             }
@@ -358,6 +358,17 @@ namespace MedLaunch.Classes
             baseStr += "\"" + BuildFullGamePath(RomFolder, RomPath) + "\"";
             //MessageBox.Show(baseStr);
             return baseStr;
+        }
+
+        public static string Validate(string s)
+        {
+            // check whether there are spaces in the incoming string - if so surround the string in "" marks
+            if (s.Contains(" "))
+            {
+                return "\"" + s + "\"";
+            }
+            else
+                return s;
         }
 
         public bool DoesParamContainSystemCode(string param)
