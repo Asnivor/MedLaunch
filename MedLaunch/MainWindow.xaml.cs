@@ -136,6 +136,7 @@ namespace MedLaunch
             btnConfigBase.IsChecked = true;
 
             // hide all system specific config options
+            /*
             brdSpecificLynx.Visibility = Visibility.Collapsed;
             brdSpecificGb.Visibility = Visibility.Collapsed;
             brdSpecificNgp.Visibility = Visibility.Collapsed;
@@ -166,6 +167,7 @@ namespace MedLaunch
             brdSpecificPsxController7.Visibility = Visibility.Collapsed;
             brdSpecificPsxController8.Visibility = Visibility.Collapsed;
             brdSpecificWswan.Visibility = Visibility.Collapsed;
+            */
 
 
             // settings tab
@@ -1493,6 +1495,8 @@ namespace MedLaunch
 
             // set background color
             //rb.Background = Brushes.Red;
+
+            ConfigsVisualHandler.ButtonClick();
         }
 
         private void btnConfigNes_Checked(object sender, RoutedEventArgs e)
@@ -1503,9 +1507,12 @@ namespace MedLaunch
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
             // Expose specific settings
+            /*
             brdSpecificNes1.Visibility = Visibility.Visible;
             brdSpecificNes2.Visibility = Visibility.Visible;
             brdSpecificNes3.Visibility = Visibility.Visible;
+            */
+            ConfigsVisualHandler.ButtonClick();
 
         }
 
@@ -1516,7 +1523,10 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
+            /*
             brdSpecificSnes.Visibility = Visibility.Visible;
+            */
+            ConfigsVisualHandler.ButtonClick();
         }
 
         private void btnConfigSms_Checked(object sender, RoutedEventArgs e)
@@ -1526,7 +1536,8 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
-            brdSpecificSms.Visibility = Visibility.Visible;
+            //brdSpecificSms.Visibility = Visibility.Visible;
+            ConfigsVisualHandler.ButtonClick();
         }
 
         private void btnConfigMd_Checked(object sender, RoutedEventArgs e)
@@ -1536,7 +1547,8 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
-            brdSpecificMd.Visibility = Visibility.Visible;
+            //brdSpecificMd.Visibility = Visibility.Visible;
+            ConfigsVisualHandler.ButtonClick();
         }
 
         private void btnConfigPce_Checked(object sender, RoutedEventArgs e)
@@ -1547,8 +1559,10 @@ namespace MedLaunch
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
 
-            brdSpecificPce1.Visibility = Visibility.Visible;
-            brdSpecificPce2.Visibility = Visibility.Visible;
+            //brdSpecificPce1.Visibility = Visibility.Visible;
+            //brdSpecificPce2.Visibility = Visibility.Visible;
+
+            ConfigsVisualHandler.ButtonClick();
         }
 
         private void btnConfigPcfx_Checked(object sender, RoutedEventArgs e)
@@ -1558,8 +1572,10 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
-            brdSpecificPcfx1.Visibility = Visibility.Visible;
-            brdSpecificPcfx2.Visibility = Visibility.Visible;
+            //brdSpecificPcfx1.Visibility = Visibility.Visible;
+            //brdSpecificPcfx2.Visibility = Visibility.Visible;
+
+            ConfigsVisualHandler.ButtonClick();
         }
 
         private void btnConfigVb_Checked(object sender, RoutedEventArgs e)
@@ -1569,7 +1585,9 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
-            brdSpecificVb.Visibility = Visibility.Visible;
+            //brdSpecificVb.Visibility = Visibility.Visible;
+
+            ConfigsVisualHandler.ButtonClick();
         }
 
         private void btnConfigNgp_Checked(object sender, RoutedEventArgs e)
@@ -1579,7 +1597,9 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
-            brdSpecificNgp.Visibility = Visibility.Visible;
+            //brdSpecificNgp.Visibility = Visibility.Visible;
+
+            ConfigsVisualHandler.ButtonClick();
         }
 
         private void btnConfigWswan_Checked(object sender, RoutedEventArgs e)
@@ -1589,8 +1609,9 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
-            brdSpecificWswan.Visibility = Visibility.Visible;
-            
+            //brdSpecificWswan.Visibility = Visibility.Visible;
+            ConfigsVisualHandler.ButtonClick();
+
         }
 
         private void btnConfigGb_Checked(object sender, RoutedEventArgs e)
@@ -1600,7 +1621,8 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
-            brdSpecificGb.Visibility = Visibility.Visible;
+            //brdSpecificGb.Visibility = Visibility.Visible;
+            ConfigsVisualHandler.ButtonClick();
         }
 
         private void btnConfigGba_Checked(object sender, RoutedEventArgs e)
@@ -1610,6 +1632,7 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
+            ConfigsVisualHandler.ButtonClick();
         }
 
         private void btnConfigGg_Checked(object sender, RoutedEventArgs e)
@@ -1619,6 +1642,7 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
+            ConfigsVisualHandler.ButtonClick();
         }
 
         private void btnConfigLynx_Checked(object sender, RoutedEventArgs e)
@@ -1629,7 +1653,8 @@ namespace MedLaunch
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
             // Expose specific settings
-            brdSpecificLynx.Visibility = Visibility.Visible;
+            //brdSpecificLynx.Visibility = Visibility.Visible;
+            ConfigsVisualHandler.ButtonClick();
         }
         private void btnConfigSnes_Faust_Checked(object sender, RoutedEventArgs e)
         {
@@ -1638,7 +1663,9 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
-            brdSpecificSnes_faust.Visibility = Visibility.Visible;
+            //brdSpecificSnes_faust.Visibility = Visibility.Visible;
+
+            ConfigsVisualHandler.ButtonClick();
         }
 
         private void btnConfigPce_Fast_Checked(object sender, RoutedEventArgs e)
@@ -1649,8 +1676,10 @@ namespace MedLaunch
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
             // Show specific items
-            brdSpecificPce_fast1.Visibility = Visibility.Visible;
-            brdSpecificPce_fast2.Visibility = Visibility.Visible;
+            //brdSpecificPce_fast1.Visibility = Visibility.Visible;
+            //brdSpecificPce_fast2.Visibility = Visibility.Visible;
+
+            ConfigsVisualHandler.ButtonClick();
         }
 
         private void btnConfigSs_Checked(object sender, RoutedEventArgs e)
@@ -1660,8 +1689,10 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
-            brdSpecificSs1.Visibility = Visibility.Visible;
-            brdSpecificSs2.Visibility = Visibility.Visible;
+            //brdSpecificSs1.Visibility = Visibility.Visible;
+            //brdSpecificSs2.Visibility = Visibility.Visible;
+
+            ConfigsVisualHandler.ButtonClick();
         }
 
         private void btnConfigPsx_Checked(object sender, RoutedEventArgs e)
@@ -1671,6 +1702,7 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Load all config settings into controls
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
+            /*
             brdSpecificPsx1.Visibility = Visibility.Visible;
             brdSpecificPsx2.Visibility = Visibility.Visible;
             brdSpecificPsxController1.Visibility = Visibility.Visible;
@@ -1681,6 +1713,9 @@ namespace MedLaunch
             brdSpecificPsxController6.Visibility = Visibility.Visible;
             brdSpecificPsxController7.Visibility = Visibility.Visible;
             brdSpecificPsxController8.Visibility = Visibility.Visible;
+            */
+
+            ConfigsVisualHandler.ButtonClick();
         }
 
 
@@ -1702,9 +1737,9 @@ namespace MedLaunch
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
             // Hide specific settings
-            brdSpecificNes1.Visibility = Visibility.Collapsed;
-            brdSpecificNes2.Visibility = Visibility.Collapsed;
-            brdSpecificNes3.Visibility = Visibility.Collapsed;
+            //brdSpecificNes1.Visibility = Visibility.Collapsed;
+            //brdSpecificNes2.Visibility = Visibility.Collapsed;
+            //brdSpecificNes3.Visibility = Visibility.Collapsed;
         }
 
         private void btnConfigSnes_Unchecked(object sender, RoutedEventArgs e)
@@ -1714,7 +1749,7 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
-            brdSpecificSnes.Visibility = Visibility.Collapsed;
+            //brdSpecificSnes.Visibility = Visibility.Collapsed;
         }
 
         private void btnConfigSms_Unchecked(object sender, RoutedEventArgs e)
@@ -1724,7 +1759,7 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
-            brdSpecificSms.Visibility = Visibility.Collapsed;
+            //brdSpecificSms.Visibility = Visibility.Collapsed;
         }
 
         private void btnConfigMd_Unchecked(object sender, RoutedEventArgs e)
@@ -1734,7 +1769,7 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
-            brdSpecificMd.Visibility = Visibility.Collapsed;
+            //brdSpecificMd.Visibility = Visibility.Collapsed;
         }
 
         private void btnConfigPce_Unchecked(object sender, RoutedEventArgs e)
@@ -1744,8 +1779,8 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
-            brdSpecificPce1.Visibility = Visibility.Collapsed;
-            brdSpecificPce2.Visibility = Visibility.Collapsed;
+           // brdSpecificPce1.Visibility = Visibility.Collapsed;
+           // brdSpecificPce2.Visibility = Visibility.Collapsed;
 
         }
 
@@ -1756,8 +1791,8 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
-            brdSpecificPcfx1.Visibility = Visibility.Collapsed;
-            brdSpecificPcfx2.Visibility = Visibility.Collapsed;
+           // brdSpecificPcfx1.Visibility = Visibility.Collapsed;
+           // brdSpecificPcfx2.Visibility = Visibility.Collapsed;
         }
 
         private void btnConfigVb_Unchecked(object sender, RoutedEventArgs e)
@@ -1767,7 +1802,7 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
-            brdSpecificVb.Visibility = Visibility.Collapsed;
+           // brdSpecificVb.Visibility = Visibility.Collapsed;
         }
 
         private void btnConfigNgp_Unchecked(object sender, RoutedEventArgs e)
@@ -1777,7 +1812,7 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
-            brdSpecificNgp.Visibility = Visibility.Collapsed;
+           // brdSpecificNgp.Visibility = Visibility.Collapsed;
         }
 
         private void btnConfigWswan_Unchecked(object sender, RoutedEventArgs e)
@@ -1787,7 +1822,7 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
-            brdSpecificWswan.Visibility = Visibility.Collapsed;
+           // brdSpecificWswan.Visibility = Visibility.Collapsed;
         }
 
         private void btnConfigGb_Unchecked(object sender, RoutedEventArgs e)
@@ -1798,7 +1833,7 @@ namespace MedLaunch
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
             // Hide specific items
-            brdSpecificGb.Visibility = Visibility.Collapsed;
+           // brdSpecificGb.Visibility = Visibility.Collapsed;
         }
 
         private void btnConfigGba_Unchecked(object sender, RoutedEventArgs e)
@@ -1827,7 +1862,7 @@ namespace MedLaunch
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
             // Hide specific items
-            brdSpecificLynx.Visibility = Visibility.Collapsed;
+           // brdSpecificLynx.Visibility = Visibility.Collapsed;
         }
 
         
@@ -1840,9 +1875,9 @@ namespace MedLaunch
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
             // Hide specific items
-            brdSpecificPce_fast1.Visibility = Visibility.Collapsed;
-            brdSpecificPce_fast2.Visibility = Visibility.Collapsed;
-
+           // brdSpecificPce_fast1.Visibility = Visibility.Collapsed;
+          //  brdSpecificPce_fast2.Visibility = Visibility.Collapsed;
+//
         }
 
         private void btnConfigSnes_Faust_Unchecked(object sender, RoutedEventArgs e)
@@ -1853,7 +1888,7 @@ namespace MedLaunch
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
             // Hide specific items
-            brdSpecificSnes_faust.Visibility = Visibility.Collapsed;
+           // brdSpecificSnes_faust.Visibility = Visibility.Collapsed;
         }        
 
         private void btnConfigSs_Unchecked(object sender, RoutedEventArgs e)
@@ -1864,8 +1899,8 @@ namespace MedLaunch
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
             // Hide specific items
-            brdSpecificSs1.Visibility = Visibility.Collapsed;
-            brdSpecificSs2.Visibility = Visibility.Collapsed;
+            //brdSpecificSs1.Visibility = Visibility.Collapsed;
+            //brdSpecificSs2.Visibility = Visibility.Collapsed;
         }
         
         private void btnConfigPsx_Unchecked(object sender, RoutedEventArgs e)
@@ -1876,6 +1911,7 @@ namespace MedLaunch
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
             // Hide specific items
+            /*
             brdSpecificPsx1.Visibility = Visibility.Collapsed;
             brdSpecificPsx2.Visibility = Visibility.Collapsed;
             brdSpecificPsxController1.Visibility = Visibility.Collapsed;
@@ -1886,6 +1922,7 @@ namespace MedLaunch
             brdSpecificPsxController6.Visibility = Visibility.Collapsed;
             brdSpecificPsxController7.Visibility = Visibility.Collapsed;
             brdSpecificPsxController8.Visibility = Visibility.Collapsed;
+            */
         }
 
         // UI Methods

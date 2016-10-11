@@ -265,30 +265,66 @@ namespace MedLaunch.Classes
             {
                 // add -connect switch
                 baseStr += "-connect" + sep;
+            
+
+                // console font
+                baseStr += "-netplay.console.font " + Netplay.netplay__console__font + sep;
+                // console lines
+                baseStr += "-netplay.console.lines " + Netplay.netplay__console__lines.ToString() + sep;
+                // console scale
+                baseStr += "-netplay.console.scale " + Netplay.netplay__console__scale.ToString() + sep;
+                // localplayers
+                baseStr += "-netplay.localplayers " + Netplay.netplay__localplayers.ToString() + sep;
+                // nickname
+                baseStr += "-netplay.nick " + Netplay.netplay__nick + sep;
+
+                // add server settings
+
+                // host
+                if (Server.netplay__host == null || Server.netplay__host.Trim() == "")
+                {
+                    // no host set - ignore
+                }
+                else
+                {
+                    // host has been set
+                    baseStr += "-netplay.host " + Server.netplay__host + sep;
+                }
+
+                // port
+                if (Server.netplay__port == null || Server.netplay__port.ToString().Trim() == "")
+                {
+                    // no port set
+                }
+                else
+                {
+                    baseStr += "-netplay.port " + Server.netplay__port + sep;
+                }
+            
+                // add password and gamekey fields from id 100
+
+                // password
+                if (ServerOveride.netplay__password == null || ServerOveride.netplay__password.Trim() == "")
+                {
+                    // no password set
+                }
+                else
+                {
+                    baseStr += "-netplay.password " + ServerOveride.netplay__password + sep;
+                }
+
+                // gamekey
+                if (ServerOveride.netplay__gamekey == null || ServerOveride.netplay__gamekey.Trim() == "")
+                {
+                    // no gamekey set
+                }
+                else
+                {
+                    baseStr += "-netplay.gamekey " + ServerOveride.netplay__gamekey + sep;
+                }
+
             }
 
-            // console font
-            baseStr += "-netplay.console.font " + Netplay.netplay__console__font + sep;
-            // console lines
-            baseStr += "-netplay.console.lines " + Netplay.netplay__console__lines.ToString() + sep;
-            // console scale
-            baseStr += "-netplay.console.scale " + Netplay.netplay__console__scale.ToString() + sep;
-            // localplayers
-            baseStr += "-netplay.localplayers " + Netplay.netplay__localplayers.ToString() + sep;
-            // nickname
-            baseStr += "-netplay.nick " + Netplay.netplay__nick + sep;
-
-            // add server settings
-
-            // host
-            baseStr += "-netplay.host " + Server.netplay__host + sep;
-            // port
-            baseStr += "-netplay.port " + Server.netplay__port + sep;
-
-            // add password and gamekey fiedls from id 100
-            
-            baseStr += "-netplay.password " + ServerOveride.netplay__password + sep;
-            baseStr += "-netplay.gamekey " + ServerOveride.netplay__gamekey + sep;
             /*
             // password
             baseStr += "-netplay.password " + Server.netplay__password + sep;
@@ -311,7 +347,7 @@ namespace MedLaunch.Classes
 
             // add gamepath to command line
             baseStr += "\"" + BuildFullGamePath(RomFolder, RomPath) + "\"";
-            
+            //MessageBox.Show(baseStr);
             return baseStr;
         }
 

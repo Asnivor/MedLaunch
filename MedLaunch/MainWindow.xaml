@@ -563,7 +563,7 @@
                         <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Width="{Binding ElementName=configGrid, Path=ActualWidth}" Height="{Binding ElementName=configGrid, Path=ActualHeight}">
                             <WrapPanel HorizontalAlignment="Left" Orientation="Vertical" x:Name="ConfigWrapPanel">
 
-
+                                <!-- General Border -->
                                 <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="General">
                                         <StackPanel Margin="10">
@@ -623,7 +623,7 @@
                                         </StackPanel>
                                     </Expander>
                                 </Border>
-
+                                <!-- Audio Border -->
                                 <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Audio">
                                         <StackPanel Margin="10">
@@ -697,7 +697,7 @@
                                         </StackPanel>
                                     </Expander>
                                 </Border>
-
+                                <!-- OSD Border -->
                                 <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="OSD">
                                         <StackPanel Margin="10">
@@ -740,7 +740,7 @@
                                         </StackPanel>
                                     </Expander>
                                 </Border>
-
+                                <!-- Video Border -->
                                 <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Video">
                                         <StackPanel Margin="10">
@@ -883,7 +883,7 @@
                                         </StackPanel>
                                     </Expander>
                                 </Border>
-
+                                <!-- Video Filters Border -->
                                 <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Video Filters">
                                         <StackPanel Margin="10">
@@ -987,7 +987,7 @@
                                         </StackPanel>
                                     </Expander>
                                 </Border>
-
+                                <!-- Control Border -->
                                 <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Control">
                                         <StackPanel Margin="10">
@@ -1039,7 +1039,7 @@
                                 <!-- System specific settings - only show when system config is selected -->
 
                                 <!-- lynx -->
-                                <Border x:Name="brdSpecificLynx" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border x:Name="brdSpecificLynx1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Lynx Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_lynx__lowpass">Enable Lowpass Filter (sound)</CheckBox>
@@ -1048,7 +1048,7 @@
                                     </Expander>
                                 </Border>
                                 <!-- gb -->
-                                <Border x:Name="brdSpecificGb" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border x:Name="brdSpecificGb1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Gameboy Specific Settings">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -1071,7 +1071,7 @@
                                     </Expander>
                                 </Border>
                                 <!-- ngp -->
-                                <Border x:Name="brdSpecificNgp" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border x:Name="brdSpecificNgp1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="NeoGeo Pocket Specific Settings">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -1944,7 +1944,7 @@
                                 </Border>
 
                                 <!-- sms -->
-                                <Border x:Name="brdSpecificSms" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border x:Name="brdSpecificSms1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Master System Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_sms__fm">FM Sound Emulation</CheckBox>
@@ -1968,7 +1968,7 @@
 
 
                                 <!-- md -->
-                                <Border x:Name="brdSpecificMd" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border x:Name="brdSpecificMd1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="MegaDrive Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_md__correct_aspect">Correct Aspect Ratio</CheckBox>
@@ -2128,7 +2128,7 @@
                                 </Border>
 
                                 <!-- snes_faust -->
-                                <Border x:Name="brdSpecificSnes_faust" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border x:Name="brdSpecificSnes_faust1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="SNES (Faust) Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_snes_faust__spex">1-Frame Speculative Video Execution</CheckBox>
@@ -2192,7 +2192,7 @@
                                 </Border>
 
                                 <!-- snes -->
-                                <Border x:Name="brdSpecificSnes" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border x:Name="brdSpecificSnes1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="SNES Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_snes__correct_aspect">Correct Aspect Ratio</CheckBox>
@@ -2262,8 +2262,8 @@
                                 </Border>
 
                                 <!-- vb -->
-                                <Border x:Name="brdSpecificVb" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="SNES Specific Settings">
+                                <Border x:Name="brdSpecificVb1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="Virtual Boy Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_vb__input__instant_read_hack">Input Latency Reduction Hack</CheckBox>
                                             <CheckBox x:Name="cfg_vb__instant_display_hack">Display Latency Reduction Hack</CheckBox>
@@ -2779,7 +2779,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsxController1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border x:Name="brdSpecificPsx3" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 1">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -2834,7 +2834,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsxController2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border x:Name="brdSpecificPsx4" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 2">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -2889,7 +2889,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsxController3" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border x:Name="brdSpecificPsx5" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 3">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -2944,7 +2944,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsxController4" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border x:Name="brdSpecificPsx6" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 4">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -2999,7 +2999,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsxController5" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border x:Name="brdSpecificPsx7" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 5">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -3054,7 +3054,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsxController6" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border x:Name="brdSpecificPsx8" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 6">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -3109,7 +3109,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsxController7" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border x:Name="brdSpecificPsx9" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 7">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -3164,7 +3164,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsxController8" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border x:Name="brdSpecificPsx10" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 8">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -3220,7 +3220,7 @@
                                 </Border>
 
                                 <!-- wswan -->
-                                <Border x:Name="brdSpecificWswan" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border x:Name="brdSpecificWswan1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="WonderSwan Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_wswan__rotateinput">Virtually Rotate D-Pads With Screen</CheckBox>
