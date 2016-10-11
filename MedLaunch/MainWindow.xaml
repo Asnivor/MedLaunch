@@ -275,6 +275,7 @@
                                     <ContextMenu>
                                         <MenuItem x:Name="LaunchRom" Header="Play Game" Click="LaunchRom_Click" />
                                         <MenuItem Header="Favorites" Click="MenuItemFavorite_Click" />
+                                        <MenuItem Header="Copy Launch String to Clipboard" Click="CopyLaunchStringToClipboard_Click" />
 
                                         <MenuItem x:Name="DeleteRom" Header="Delete From Games Library" Click="DeleteRom_Click" />
                                     </ContextMenu>

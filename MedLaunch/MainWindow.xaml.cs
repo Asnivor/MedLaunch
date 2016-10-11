@@ -1258,6 +1258,13 @@ namespace MedLaunch
             GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 
+        private void CopyLaunchStringToClipboard_Click(object sender, RoutedEventArgs e)
+        {
+            DataGridGamesView drv = (DataGridGamesView)dgGameList.SelectedItem;
+            int romId = drv.ID;
+            GameLauncher.CopyLaunchStringToClipboard(romId);
+        }
+
         private async void LaunchRom_Click(object sender, RoutedEventArgs e)
         {
             DataGridGamesView drv = (DataGridGamesView)dgGameList.SelectedItem;

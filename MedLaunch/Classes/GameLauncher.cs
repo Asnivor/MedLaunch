@@ -144,6 +144,15 @@ namespace MedLaunch.Classes
 
         }
 
+        public static void CopyLaunchStringToClipboard(int gId)
+        {
+            // create new GameLauncher instance
+            GameLauncher gl = new GameLauncher(gId);
+            string configCmdString = gl.GetCommandLineArguments();
+            string fullString = "\"" + gl.BuildMednafenPath(gl.MednafenFolder) + "\"" + configCmdString;
+            Clipboard.SetText(fullString);
+        }
+
         public void RunGame(string cmdArguments)
         {
             System.Diagnostics.Process gProcess = new System.Diagnostics.Process();
@@ -347,7 +356,7 @@ namespace MedLaunch.Classes
 
             // add gamepath to command line
             baseStr += "\"" + BuildFullGamePath(RomFolder, RomPath) + "\"";
-            MessageBox.Show(baseStr);
+            //MessageBox.Show(baseStr);
             return baseStr;
         }
 
