@@ -136,8 +136,8 @@ namespace MedLaunch.Models
         public int? nes__slstartp { get; set; }                        // 0 through 239
         public double? nes__sound_rate_error { get; set; }               // 0.0000001 through 0.01
         public int? nes__soundq { get; set; }                       // -2 through 3
-        public string nes__debugger_disfontsize { get; set; }
-        public string nes__debugger_memcharenc { get; set; }
+        public string nes__debugger__disfontsize { get; set; }
+        public string nes__debugger__memcharenc { get; set; }
 
         // PC-Engine (Fast)
         public bool? pce_fast__adpcmlp { get; set; }
@@ -188,8 +188,8 @@ namespace MedLaunch.Models
         public double? pce__resamp_rate_error { get; set; }         //          0.0000001 throgh        0.0000350
         public int? pce__slend { get; set; }                        // 0 through 239
         public int? pce__slstart { get; set; }                      // 0 through 239
-        public string pce__debugger_disfontsize { get; set; }
-        public string pce__debugger_memcharenc { get; set; }
+        public string pce__debugger__disfontsize { get; set; }
+        public string pce__debugger__memcharenc { get; set; }
 
         // PC-FX
         public bool? pcfx__adpcm__emulate_buggy_codec { get; set; }
@@ -218,8 +218,8 @@ namespace MedLaunch.Models
         public double? pcfx__resamp_rate_error { get; set; }             // 0.0000001 through 0.0000350
         public int? pcfx__slend { get; set; }                           // 0 through 239
         public int? pcfx__slstart { get; set; }                         // 0 through 239
-        public string pcfx__debugger_disfontsize { get; set; }
-        public string pcfx__debugger_memcharenc { get; set; }
+        public string pcfx__debugger__disfontsize { get; set; }
+        public string pcfx__debugger__memcharenc { get; set; }
 
         // Sega GameGear
 
@@ -243,8 +243,8 @@ namespace MedLaunch.Models
         public string md__input__port8 { get; set; }
         public string md__region { get; set; }
         public string md__reported_region { get; set; }
-        public string md__debugger_disfontsize { get; set; }
-        public string md__debugger_memcharenc { get; set; }
+        public string md__debugger__disfontsize { get; set; }
+        public string md__debugger__memcharenc { get; set; }
 
 
         // Sega Saturn
@@ -278,8 +278,8 @@ namespace MedLaunch.Models
         public int? ss__slstartp { get; set; }                                // -16 through 271
         public bool? ss__smpc__autortc { get; set; }
         public string ss__smpc__autortc__lang { get; set; }
-        public string ss__debugger_disfontsize { get; set; }
-        public string ss__debugger_memcharenc { get; set; }
+        public string ss__debugger__disfontsize { get; set; }
+        public string ss__debugger__memcharenc { get; set; }
 
 
         // Sony Playstation
@@ -359,8 +359,8 @@ namespace MedLaunch.Models
         public int? psx__slstartp { get; set; }                               // 0 through 287
         public int? psx__spu__resamp_quality { get; set; }                      // 0 through 10
 
-        public string psx__debugger_disfontsize { get; set; }
-        public string psx__debugger_memcharenc { get; set; }
+        public string psx__debugger__disfontsize { get; set; }
+        public string psx__debugger__memcharenc { get; set; }
 
         // SNES (Faust)
         public string snes_faust__input__port1 { get; set; }
@@ -394,8 +394,8 @@ namespace MedLaunch.Models
         public int? vb__liprescale { get; set; }                                // 1 through 10
         public int? vb__sidebyside__separation { get; set; }                    // 0 though 1024
 
-        public string vb__debugger_disfontsize { get; set; }
-        public string vb__debugger_memcharenc { get; set; }
+        public string vb__debugger__disfontsize { get; set; }
+        public string vb__debugger__memcharenc { get; set; }
 
         // WonderSwan
         public int? wswan__bday { get; set; }                                   // 1 through 31
@@ -407,8 +407,8 @@ namespace MedLaunch.Models
         public bool? wswan__rotateinput { get; set; }
         public string wswan__sex { get; set; }
 
-        public string wswan__debugger_disfontsize { get; set; }
-        public string wswan__debugger_memcharenc { get; set; }
+        public string wswan__debugger__disfontsize { get; set; }
+        public string wswan__debugger__memcharenc { get; set; }
 
         public static ConfigBaseSettings GetConfigDefaults()
         {
@@ -530,8 +530,8 @@ namespace MedLaunch.Models
                 nes__slstartp = 0,                                      // placed
                 nes__sound_rate_error = 0.00004,                        // placed
                 nes__soundq = 0,                                        // placed
-                nes__debugger_disfontsize = "5x7",                      // placed
-                nes__debugger_memcharenc = "cp437",                     // placed
+                nes__debugger__disfontsize = "5x7",                      // placed
+                nes__debugger__memcharenc = "cp437",                     // placed
 
                 pce_fast__adpcmlp = false,                              // placed
                 pce_fast__adpcmvolume = 100,                            // placed
@@ -553,8 +553,8 @@ namespace MedLaunch.Models
                 pce_fast__ocmultiplier = 1,                             // placed
                 pce_fast__slend = 235,                                  // placed
                 pce_fast__slstart = 4,                                  // placed
-                pce__debugger_disfontsize = "5x7",                      // placed
-                pce__debugger_memcharenc = "shift_jis",                 // placed
+                pce__debugger__disfontsize = "5x7",                      // placed
+                pce__debugger__memcharenc = "shift_jis",                 // placed
 
                 pce__adpcmextraprec = false,                            // placed
                 pce__adpcmvolume = 100,                                 // placed
@@ -608,8 +608,8 @@ namespace MedLaunch.Models
                 pcfx__resamp_rate_error = 0.0000009,                        // placed
                 pcfx__slend = 235,                                          // placed
                 pcfx__slstart = 4,                                          // placed
-                pcfx__debugger_disfontsize = "5x7",                         // palced
-                pcfx__debugger_memcharenc = "shift_jis",                    // placed
+                pcfx__debugger__disfontsize = "5x7",                         // palced
+                pcfx__debugger__memcharenc = "shift_jis",                    // placed
 
                 sms__fm = true,                                             // placed
                 sms_territory = "export",                                   // placed
@@ -629,8 +629,8 @@ namespace MedLaunch.Models
                 md__input__port8 = "gamepad",                               // placed
                 md__region = "game",                                        // placed                
                 md__reported_region = "same",                               // placed 
-                md__debugger_disfontsize = "5x7",
-                md__debugger_memcharenc = "shift_jis",
+                md__debugger__disfontsize = "5x7",
+                md__debugger__memcharenc = "shift_jis",
 
                 ss__bios_jp = "sega_101.bin",
                 ss__bios_na_eu = "mpr-17933.bin",
@@ -662,8 +662,8 @@ namespace MedLaunch.Models
                 ss__slstartp = 0,                                           // placed
                 ss__smpc__autortc = true,                                   // placed
                 ss__smpc__autortc__lang = "english",                        // placed
-                ss__debugger_disfontsize = "5x7",                           // placed
-                ss__debugger_memcharenc = "SJIS",                           // placed
+                ss__debugger__disfontsize = "5x7",                           // placed
+                ss__debugger__memcharenc = "SJIS",                           // placed
 
                 psx__bios_eu = "scph5502.bin",
                 psx__bios_jp = "scph5500.bin",
@@ -731,8 +731,8 @@ namespace MedLaunch.Models
                 psx__slstart = 0,                                   // placed
                 psx__slstartp = 0,                                  // placed
                 psx__spu__resamp_quality = 5,                       // placed
-                psx__debugger_disfontsize = "5x7",                  // placed
-                psx__debugger_memcharenc = "shift_jis",             // placed
+                psx__debugger__disfontsize = "5x7",                  // placed
+                psx__debugger__memcharenc = "shift_jis",             // placed
 
 
                 snes_faust__input__port1 = "gamepad",               // placed
@@ -763,8 +763,8 @@ namespace MedLaunch.Models
                 vb__instant_display_hack = false,                   // placed
                 vb__liprescale = 2,                                 // placed
                 vb__sidebyside__separation = 0,                     // placed
-                vb__debugger_disfontsize = "5x7",                   // placed
-                vb__debugger_memcharenc = "shift_jis",              // placed
+                vb__debugger__disfontsize = "5x7",                   // placed
+                vb__debugger__memcharenc = "shift_jis",              // placed
 
                 wswan__bday = 23,                                   // placed
                 wswan__blood = "o",                                 // placed
@@ -775,8 +775,8 @@ namespace MedLaunch.Models
                 wswan__rotateinput = false,                         // placed
                 wswan__sex = "female",                              // placed
 
-                wswan__debugger_disfontsize = "5x7",
-                wswan__debugger_memcharenc = "shift_jis",
+                wswan__debugger__disfontsize = "5x7",
+                wswan__debugger__memcharenc = "shift_jis",
                 
 
             };

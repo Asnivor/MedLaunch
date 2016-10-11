@@ -1199,7 +1199,7 @@
                                                 </DockPanel>
 
                                                 <Label Grid.Column="0" Grid.Row="7">Disassembly Font Size</Label>
-                                                <ComboBox x:Name="cfg_nes__debugger_disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="7">
+                                                <ComboBox x:Name="cfg_nes__debugger__disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="7">
                                                     <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
@@ -1208,7 +1208,7 @@
                                                 </ComboBox>
 
                                                 <Label Grid.Column="0" Grid.Row="8">Debugger Char Encoding</Label>
-                                                <TextBox x:Name="cfg_nes__debugger_memcharenc" Grid.Column="1" Grid.Row="8" />
+                                                <TextBox x:Name="cfg_nes__debugger__memcharenc" Grid.Column="1" Grid.Row="8" />
 
                                             </Grid>
                                         </StackPanel>
@@ -1752,7 +1752,7 @@
                                                 </DockPanel>
 
                                                 <Label Grid.Column="0" Grid.Row="14">Disassembly Font Size</Label>
-                                                <ComboBox x:Name="cfg_pce__debugger_disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="14">
+                                                <ComboBox x:Name="cfg_pce__debugger__disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="14">
                                                     <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
@@ -1761,7 +1761,7 @@
                                                 </ComboBox>
 
                                                 <Label Grid.Column="0" Grid.Row="15">Debugger Char Encoding</Label>
-                                                <TextBox x:Name="cfg_pce__debugger_memcharenc" Grid.Column="1" Grid.Row="15" />
+                                                <TextBox x:Name="cfg_pce__debugger__memcharenc" Grid.Column="1" Grid.Row="15" />
                                             </Grid>
                                         </StackPanel>
                                     </Expander>
@@ -1844,7 +1844,7 @@
                                                 </DockPanel>
                                                 
                                                 <Label Grid.Column="0" Grid.Row="6">Disassembly Font Size</Label>
-                                                <ComboBox x:Name="cfg_pcfx__debugger_disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="6">
+                                                <ComboBox x:Name="cfg_pcfx__debugger__disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="6">
                                                     <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
@@ -1853,7 +1853,7 @@
                                                 </ComboBox>
 
                                                 <Label Grid.Column="0" Grid.Row="7">Debugger Char Encoding</Label>
-                                                <TextBox x:Name="cfg_pcfx__debugger_memcharenc" Grid.Column="1" Grid.Row="7" />
+                                                <TextBox x:Name="cfg_pcfx__debugger__memcharenc" Grid.Column="1" Grid.Row="7" />
 
 
 
@@ -2141,7 +2141,7 @@
                                                 </ComboBox>
 
                                                 <Label Grid.Column="0" Grid.Row="12">Disassembly Font Size</Label>
-                                                <ComboBox x:Name="cfg_md__debugger_disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="12">
+                                                <ComboBox x:Name="cfg_md__debugger__disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="12">
                                                     <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
@@ -2150,7 +2150,7 @@
                                                 </ComboBox>
 
                                                 <Label Grid.Column="0" Grid.Row="13">Debugger Char Encoding</Label>
-                                                <TextBox x:Name="cfg_md__debugger_memcharenc" Grid.Column="1" Grid.Row="13" />
+                                                <TextBox x:Name="cfg_md__debugger__memcharenc" Grid.Column="1" Grid.Row="13" />
 
                                             </Grid>
                                         </StackPanel>
@@ -2377,7 +2377,7 @@
                                                 <TextBox x:Name="cfg_vb__anaglyph__rcolor" Grid.Column="1" Grid.Row="7"></TextBox>
 
                                                 <Label Grid.Column="0" Grid.Row="8">Disassembly Font Size</Label>
-                                                <ComboBox x:Name="cfg_vb__debugger_disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="8">
+                                                <ComboBox x:Name="cfg_vb__debugger__disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="8">
                                                     <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
@@ -2386,7 +2386,7 @@
                                                 </ComboBox>
 
                                                 <Label Grid.Column="0" Grid.Row="9">Debugger Char Encoding</Label>
-                                                <TextBox x:Name="cfg_vb__debugger_memcharenc" Grid.Column="1" Grid.Row="9" />
+                                                <TextBox x:Name="cfg_vb__debugger__memcharenc" Grid.Column="1" Grid.Row="9" />
 
 
 
@@ -2503,7 +2503,7 @@
                                                 </DockPanel>
 
                                                 <Label Grid.Column="0" Grid.Row="10">Disassembly Font Size</Label>
-                                                <ComboBox x:Name="cfg_ss__debugger_disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="10">
+                                                <ComboBox x:Name="cfg_ss__debugger__disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="10">
                                                     <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
@@ -2512,7 +2512,7 @@
                                                 </ComboBox>
 
                                                 <Label Grid.Column="0" Grid.Row="11">Debugger Char Encoding</Label>
-                                                <TextBox x:Name="cfg_ss__debugger_memcharenc" Grid.Column="1" Grid.Row="11" />
+                                                <TextBox x:Name="cfg_ss__debugger__memcharenc" Grid.Column="1" Grid.Row="11" />
 
 
                                             </Grid>
@@ -2747,7 +2747,7 @@
                                                 </DockPanel>
 
                                                 <Label Grid.Column="0" Grid.Row="7">Disassembly Font Size</Label>
-                                                <ComboBox x:Name="cfg_psx__debugger_disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="7">
+                                                <ComboBox x:Name="cfg_psx__debugger__disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="7">
                                                     <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
@@ -2756,7 +2756,7 @@
                                                 </ComboBox>
 
                                                 <Label Grid.Column="0" Grid.Row="8">Debugger Char Encoding</Label>
-                                                <TextBox x:Name="cfg_psx__debugger_memcharenc" Grid.Column="1" Grid.Row="8" />
+                                                <TextBox x:Name="cfg_psx__debugger__memcharenc" Grid.Column="1" Grid.Row="8" />
 
                                             </Grid>
                                         </StackPanel>
@@ -3332,7 +3332,7 @@
                                                 </ComboBox>
 
                                                 <Label Grid.Column="0" Grid.Row="7">Disassembly Font Size</Label>
-                                                <ComboBox x:Name="cfg_wswan__debugger_disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="7">
+                                                <ComboBox x:Name="cfg_wswan__debugger__disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="7">
                                                     <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
@@ -3341,7 +3341,7 @@
                                                 </ComboBox>
 
                                                 <Label Grid.Column="0" Grid.Row="8">Debugger Char Encoding</Label>
-                                                <TextBox x:Name="cfg_wswan__debugger_memcharenc" Grid.Column="1" Grid.Row="8" />
+                                                <TextBox x:Name="cfg_wswan__debugger__memcharenc" Grid.Column="1" Grid.Row="8" />
                                             </Grid>
                                         </StackPanel>
                                     </Expander>
