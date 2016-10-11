@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedLaunch.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,9 @@ namespace MedLaunch.Classes
 
             // get settings panel
             WrapPanel wpConfigLeftPane = (WrapPanel)MWindow.FindName("wpConfigLeftPane");
+
+            // get config wrappanel
+            ConfigWrapPanel = (WrapPanel)MWindow.FindName("ConfigWrapPanel");
 
             // get all filter buttons from the Configs page
             List<RadioButton> _filterButtons = UIHandler.GetLogicalChildCollection<RadioButton>(wpConfigLeftPane);//.Where(r => r.GroupName == "grpSettings").ToList();
@@ -50,9 +54,13 @@ namespace MedLaunch.Classes
 
         public static void ButtonClick()
         {
+            
             ConfigsVisualHandler cvh = new ConfigsVisualHandler();
+            
+            // Show/Hide system-specific panels
             cvh.SetFilter();
         }
+        
 
         public void SetFilter()
         {
@@ -83,5 +91,6 @@ namespace MedLaunch.Classes
         public MainWindow MWindow { get; set; }
         public List<RadioButton> FilterButtons { get; set; }
         public List<Border> AllDynamicConfigPanels { get; set; }
+        public WrapPanel ConfigWrapPanel { get; set; }
     }
 }

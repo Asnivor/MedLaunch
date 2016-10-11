@@ -336,7 +336,7 @@
                             <Expander IsExpanded="True" BorderThickness="0" Header="Configs" >
                                 <WrapPanel Orientation="Vertical" x:Name="ConfigSelectorWrapPanel">
                                     <RadioButton x:Name="btnConfigBase" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigBase_Checked" Unchecked="btnConfigBase_Unchecked" ContextMenuService.ShowOnDisabled="True" 
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True" 
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                                         BASE CONFIGURATION
                                         <RadioButton.ContextMenu>
@@ -346,7 +346,7 @@
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigNes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigNes_Checked" Unchecked="btnConfigNes_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                                         NES/Famicon
                                         <RadioButton.ContextMenu>
@@ -357,7 +357,7 @@
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigSnes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigSnes_Checked" Unchecked="btnConfigSnes_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                                         SNES/Super Famicon
                                         <RadioButton.ContextMenu>
@@ -368,7 +368,7 @@
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigSnes_Faust" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigSnes_Faust_Checked" Unchecked="btnConfigSnes_Faust_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                                         SNES/Super Famicon (Faust)
                                         <RadioButton.ContextMenu>
@@ -379,7 +379,7 @@
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigSms" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigSms_Checked" Unchecked="btnConfigSms_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                                         Sega Master System
                                         <RadioButton.ContextMenu>
@@ -390,7 +390,7 @@
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigMd" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigMd_Checked" Unchecked="btnConfigMd_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                                         Sega MegaDrive/Genesis
                                         <RadioButton.ContextMenu>
@@ -401,7 +401,7 @@
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigPce" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigPce_Checked" Unchecked="btnConfigPce_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                                         NEC PC-Engine
                                         <RadioButton.ContextMenu>
@@ -412,7 +412,7 @@
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigPce_Fast" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigPce_Fast_Checked" Unchecked="btnConfigPce_Fast_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                                         NEC PC-Engine (fast)
                                         <RadioButton.ContextMenu>
@@ -423,7 +423,7 @@
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigVb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigVb_Checked" Unchecked="btnConfigVb_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                                         Nintendo Virtual Boy
                                         <RadioButton.ContextMenu>
@@ -434,7 +434,7 @@
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigNgp" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigNgp_Checked" Unchecked="btnConfigNgp_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                                         NeoGeo Pocket Color
                                         <RadioButton.ContextMenu>
@@ -445,7 +445,7 @@
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigWswan" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigWswan_Checked" Unchecked="btnConfigWswan_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                                         Bandai WonderSwan
                                         <RadioButton.ContextMenu>
@@ -456,7 +456,7 @@
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigGb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigGb_Checked" Unchecked="btnConfigGb_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                                         GameBoy Color
                                         <RadioButton.ContextMenu>
@@ -467,7 +467,7 @@
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigGba" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigGba_Checked" Unchecked="btnConfigGba_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                                         Nintendo GBA
                                         <RadioButton.ContextMenu>
@@ -478,7 +478,7 @@
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigGg" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigGg_Checked" Unchecked="btnConfigGg_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                                         Sega Game Gear
                                         <RadioButton.ContextMenu>
@@ -489,7 +489,7 @@
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigLynx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigLynx_Checked" Unchecked="btnConfigLynx_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                                         Atari Lynx
                                         <RadioButton.ContextMenu>
@@ -500,9 +500,8 @@
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
 
-
                                     <RadioButton Margin="1" x:Name="btnConfigSs" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigSs_Checked" Unchecked="btnConfigSs_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                                         Sega Saturn
                                         <RadioButton.ContextMenu>
@@ -513,7 +512,7 @@
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigPsx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigPsx_Checked" Unchecked="btnConfigPsx_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                                         Sony PSX
                                         <RadioButton.ContextMenu>
@@ -524,7 +523,7 @@
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigPcfx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfigPcfx_Checked" Unchecked="btnConfigPcfx_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
                                         NEC PC-FX
                                         <RadioButton.ContextMenu>
