@@ -203,7 +203,7 @@ namespace MedLaunch
             btnEmulator.Visibility = Visibility.Collapsed;
             brdMednafenPaths.Visibility = Visibility.Collapsed;
             brdSystemBios.Visibility = Visibility.Collapsed;
-            brdEmulator.Visibility = Visibility.Collapsed;
+            //brdEmulator.Visibility = Visibility.Collapsed;
 
             wb.Navigated += new NavigatedEventHandler(wb_Navigated);
 

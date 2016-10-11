@@ -347,7 +347,7 @@ namespace MedLaunch.Classes
 
             // add gamepath to command line
             baseStr += "\"" + BuildFullGamePath(RomFolder, RomPath) + "\"";
-            //MessageBox.Show(baseStr);
+            MessageBox.Show(baseStr);
             return baseStr;
         }
 

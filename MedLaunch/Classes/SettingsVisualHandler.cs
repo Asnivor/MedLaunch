@@ -117,7 +117,7 @@ namespace MedLaunch.Classes
                 foreach (Border b in AllSettingPanels)
                 {
                     b.Visibility = Visibility.Visible;
-                    if (b.Name == "MednafenPaths" || b.Name == "SystemBios" || b.Name == "Emulator")
+                    if (b.Name == "MednafenPaths" || b.Name == "SystemBios")
                         b.Visibility = Visibility.Collapsed;
                 }
             }
