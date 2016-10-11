@@ -3642,15 +3642,62 @@
                                         <StackPanel x:Name="spSysBiosSettings">
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="90" />
-                                                    <ColumnDefinition Width="300" />
+                                                    <ColumnDefinition Width="110" />
+                                                    <ColumnDefinition Width="280" />
 
                                                 </Grid.ColumnDefinitions>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
+
+                                                <TextBox x:Name="cfg_gba__bios" Grid.Column="1" Grid.Row="0"></TextBox>
+                                                <Button x:Name="tbBiosGba" Grid.Column="0" Grid.Row="0" Click="btnMednafenBiosPaths_Click">GBA Bios</Button>
+
+                                                <TextBox x:Name="cfg_pce__gecdbios" Grid.Column="1" Grid.Row="1"></TextBox>
+                                                <Button x:Name="tbBiosPceGe" Grid.Column="0" Grid.Row="1" Click="btnMednafenBiosPaths_Click">PCE GE Bios</Button>
+
+                                                <TextBox x:Name="cfg_pce__cdbios" Grid.Column="1" Grid.Row="2"></TextBox>
+                                                <Button x:Name="tbBiosPceCd" Grid.Column="0" Grid.Row="2" Click="btnMednafenBiosPaths_Click">PCE CD Bios</Button>
+
+                                                <TextBox x:Name="cfg_pce_fast__cdbios" Grid.Column="1" Grid.Row="3"></TextBox>
+                                                <Button x:Name="tbBiosPceFastCd" Grid.Column="0" Grid.Row="3" Click="btnMednafenBiosPaths_Click">PCE_Fast CD Bios</Button>
+
+                                                <TextBox x:Name="cfg_pcfx__bios" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                <Button x:Name="tbBiosPcfx" Grid.Column="0" Grid.Row="4" Click="btnMednafenBiosPaths_Click">PC-FX Bios</Button>
+
+                                                <TextBox x:Name="cfg_md__cdbios" Grid.Column="1" Grid.Row="5"></TextBox>
+                                                <Button x:Name="tbBiosMdCd" Grid.Column="0" Grid.Row="5" Click="btnMednafenBiosPaths_Click">MD CD Bios</Button>
+
+                                                <TextBox x:Name="cfg_nes__ggrom" Grid.Column="1" Grid.Row="6"></TextBox>
+                                                <Button x:Name="tbBiosNesGg" Grid.Column="0" Grid.Row="6" Click="btnMednafenBiosPaths_Click">NES GG Rom</Button>
+
+                                                <TextBox x:Name="cfg_ss__bios_jp" Grid.Column="1" Grid.Row="7"></TextBox>
+                                                <Button x:Name="tbBiosSsJp" Grid.Column="0" Grid.Row="7" Click="btnMednafenBiosPaths_Click">SS Japanese Bios</Button>
+
+                                                <TextBox x:Name="cfg_ss__bios_na_eu" Grid.Column="1" Grid.Row="8"></TextBox>
+                                                <Button x:Name="tbBiosSsNaEu" Grid.Column="0" Grid.Row="8" Click="btnMednafenBiosPaths_Click">SS NA/EU Bios</Button>
+
+                                                <TextBox x:Name="cfg_psx__bios_eu" Grid.Column="1" Grid.Row="9"></TextBox>
+                                                <Button x:Name="tbBiosPsxEu" Grid.Column="0" Grid.Row="9" Click="btnMednafenBiosPaths_Click">PSX EU Bios</Button>
+
+                                                <TextBox x:Name="cfg_psx__bios_jp" Grid.Column="1" Grid.Row="10"></TextBox>
+                                                <Button x:Name="tbBiosPsxJp" Grid.Column="0" Grid.Row="10" Click="btnMednafenBiosPaths_Click">PSX JP Bios</Button>
+
+                                                <TextBox x:Name="cfg_psx__bios_na" Grid.Column="1" Grid.Row="11"></TextBox>
+                                                <Button x:Name="tbBiosPsxNa" Grid.Column="0" Grid.Row="11" Click="btnMednafenBiosPaths_Click">PSX NA Bios</Button>
 
                                             </Grid>
                                         </StackPanel>

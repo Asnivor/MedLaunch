@@ -29,6 +29,7 @@ using System.Collections;
 using System.Reflection;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using Microsoft.Win32;
 
 namespace MedLaunch
 {
@@ -187,6 +188,7 @@ namespace MedLaunch
 
             // load all MednafenPath settings
             ConfigBaseSettings.LoadMednafenPathValues(spMedPathSettings);
+            ConfigBaseSettings.LoadBiosPathValues(spSysBiosSettings);
 
 
 
@@ -208,10 +210,10 @@ namespace MedLaunch
 
             // settings buttons and borders
             //btnMednafenPaths.Visibility = Visibility.Collapsed;
-            btnSystemBios.Visibility = Visibility.Collapsed;
+            //btnSystemBios.Visibility = Visibility.Collapsed;
             //btnEmulator.Visibility = Visibility.Collapsed;
             //brdMednafenPaths.Visibility = Visibility.Collapsed;
-            brdSystemBios.Visibility = Visibility.Collapsed;
+           /// brdSystemBios.Visibility = Visibility.Collapsed;
             //brdEmulator.Visibility = Visibility.Collapsed;
 
             wb.Navigated += new NavigatedEventHandler(wb_Navigated);
@@ -991,6 +993,69 @@ namespace MedLaunch
             GlobalSettings.UpdateEnableSnes_faust(chkEnableSnes_faust);
         }
 
+        // Mednafen BIOS Paths events
+        private void btnMednafenBiosPaths_Click(object sender, RoutedEventArgs e)
+        {
+            // convert the button name
+            string btnName = ((sender as Button).Name).Replace("tbBios", "");
+            // textbox name
+            string tbName = "";
+            switch (btnName)
+            {
+                case "Gba":
+                    tbName = "cfg_gba__bios";
+                    break;
+                case "PceGe":
+                    tbName = "cfg_pce__gecdbioss";
+                    break;
+                case "PceCd":
+                    tbName = "cfg_pce__cdbios";
+                    break;
+                case "PceFastCd":
+                    tbName = "cfg_pce_fast__cdbios";
+                    break;
+                case "Pcfx":
+                    tbName = "cfg_pcfx__bios";
+                    break;
+                case "MdCd":
+                    tbName = "cfg_md__cdbios";
+                    break;
+                case "NesGg":
+                    tbName = "cfg_nes__ggrom";
+                    break;
+                case "SsJp":
+                    tbName = "cfg_ss__bios_jp";
+                    break;
+                case "SsNaEu":
+                    tbName = "cfg_ss__bios_na_eu";
+                    break;
+                case "PsxEu":
+                    tbName = "cfg_psx__bios_eu";
+                    break;
+                case "PsxJp":
+                    tbName = "cfg_psx__bios_jp";
+                    break;
+                case "PsxNa":
+                    tbName = "cfg_psx__bios_na";
+                    break;
+
+            }
+            //string tbName = "cfg_filesys__path_" + btnName;
+            // get textbox
+            TextBox tb = (TextBox)(Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()).FindName(tbName);
+
+            OpenFileDialog filePath = new OpenFileDialog();
+            filePath.Multiselect = false;
+            filePath.Title = "Select " + btnName + " BIOS/Rom";
+            filePath.ShowDialog();
+
+            if (filePath.FileName.Length > 0)
+            {
+                tb.Text = filePath.FileName;
+            }
+
+        }
+
         // Mednafen Paths (cheats, saves etc..) events
         private void btnMednafenPaths_Click(object sender, RoutedEventArgs e)
         {
@@ -1664,15 +1729,35 @@ namespace MedLaunch
             SettingsVisualHandler.ButtonClick();
         }
 
-        private void btnSettingsSaveAllChanges_Click(object sender, RoutedEventArgs e)
+        private async void btnSettingsSaveAllChanges_Click(object sender, RoutedEventArgs e)
         {
             //SettingsHandler sh = new SettingsHandler();
             //sh.SaveAllSettings();
 
-            Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathMs, tbPathVb, tbPathWswan);
-            ConfigNetplaySettings.SaveNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
-            ConfigServerSettings.SaveCustomServerSettings(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
-            ConfigBaseSettings.SaveMednafenPathValues(spMedPathSettings);
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel Scanning",
+                AnimateShow = false,
+                AnimateHide = true
+            };
+
+            var controller = await this.ShowProgressAsync("Please wait...", "Saving Settings\n(This may take a few seconds depending on your system)", settings: mySettings);
+            controller.SetIndeterminate();
+
+            await Task.Delay(200);
+
+           
+                this.Dispatcher.Invoke(() =>
+                {
+                    Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathMs, tbPathVb, tbPathWswan);
+                    ConfigNetplaySettings.SaveNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
+                    ConfigServerSettings.SaveCustomServerSettings(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
+                    ConfigBaseSettings.SaveMednafenPathValues(spMedPathSettings);
+                    ConfigBaseSettings.SaveBiosPathValues(spSysBiosSettings);
+                });
+
+            await controller.CloseAsync();
+
 
         }
 
@@ -1685,6 +1770,7 @@ namespace MedLaunch
             ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
             ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
             ConfigBaseSettings.LoadMednafenPathValues(spMedPathSettings);
+            ConfigBaseSettings.LoadBiosPathValues(spSysBiosSettings);
 
         }
 

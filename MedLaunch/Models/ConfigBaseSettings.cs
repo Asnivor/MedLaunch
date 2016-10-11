@@ -491,7 +491,7 @@ namespace MedLaunch.Models
 
                 gb__system_type = "auto",                               // placed
 
-                //gba__bios = "optional path the gba bios",
+                gba__bios = "",
 
                 npg__language = "english",                              // placed
 
@@ -499,7 +499,7 @@ namespace MedLaunch.Models
                 nes__correct_aspect = false,                            // placed
                 nes__fnscan = true,                                     // placed
                 nes__gg = false,                                        // placed
-                // nes__ggrom = "game genie rom path"
+                nes__ggrom = "gg.rom",
                 nes__input__fcexp = "none",                             // placed
                 nes__input__port1 = "gamepad",                          // placed
                 nes__input__port2 = "gamepad",                          // placed
@@ -981,6 +981,43 @@ namespace MedLaunch.Models
         public static string ConvertControlNameToConfigName(string controlName)
         {
             return controlName.Replace("cfg_", "");
+        }
+
+        // populate settings - bios path controls
+        public static void LoadBiosPathValues(StackPanel wp)
+        {
+            // get a class object with all child controls
+            UIHandler ui = UIHandler.GetChildren(wp);
+
+            // get all config settings for base config
+            ConfigBaseSettings settings = GetConfig(2000000000);
+
+            SetControlValues(ui, settings, 1);
+        }
+
+        // save settings - mednafen paths controls
+        public static void SaveBiosPathValues(StackPanel wp)
+        {
+            // get a class object with all child controls
+            UIHandler ui = UIHandler.GetChildren(wp);
+
+            // get all config settings for base config
+            //ConfigBaseSettings settings = GetConfig(2000000000);
+
+            // get ALL config settings (as we are saving these to all configs)
+            List<ConfigBaseSettings> AllSettings = new List<ConfigBaseSettings>();
+            using (var context = new MyDbContext())
+            {
+                List<ConfigBaseSettings> aset = (from d in context.ConfigBaseSettings
+                                                 select d).ToList();
+                AllSettings.AddRange(aset);
+            }
+
+            // iterate through each config and set all the settings for each config
+            foreach (ConfigBaseSettings settings in AllSettings)
+            {
+                SetControlValues(ui, settings, 2);
+            }
         }
 
         // populate settings - mednafen paths controls
