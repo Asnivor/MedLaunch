@@ -384,7 +384,7 @@ namespace MedLaunch.Models
         public bool? vb__3dreverse { get; set; }
         public bool? vb__allow_draw_skip { get; set; }
         public string vb__anaglyph__lcolor { get; set; }
-        public string vb__anaglyph_preset { get; set; }
+        public string vb__anaglyph__preset { get; set; }
         public string vb__anaglyph__rcolor { get; set; }
         public string vb__cpu_emulation { get; set; }
         public string vb__default_color { get; set; }
@@ -754,7 +754,7 @@ namespace MedLaunch.Models
                 vb__3dreverse = false,                              // placed
                 vb__allow_draw_skip = false,                        // placed
                 vb__anaglyph__lcolor = "0xffba00",                  // placed
-                vb__anaglyph_preset = "red_blue",                   // placed
+                vb__anaglyph__preset = "red_blue",                   // placed
                 vb__anaglyph__rcolor = "0x00baff",                  // placed
                 vb__cpu_emulation = "fast",                         // placed
                 vb__default_color = "0xF0F0F0",                     // placed

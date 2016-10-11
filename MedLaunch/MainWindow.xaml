@@ -2357,7 +2357,7 @@
                                                 </ComboBox>
 
                                                 <Label Grid.Column="0" Grid.Row="4">Anaglyph Preset Colors</Label>
-                                                <ComboBox x:Name="cfg_vb__anaglyph_preset" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="4">
+                                                <ComboBox x:Name="cfg_vb__anaglyph__preset" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="4">
                                                     <ComboBoxItem Tag="disabled">Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="red_blue">Red/Blue</ComboBoxItem>
                                                     <ComboBoxItem Tag="red_cyan">Red/Cyan</ComboBoxItem>
