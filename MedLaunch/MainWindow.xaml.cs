@@ -1819,19 +1819,10 @@ namespace MedLaunch
             {
                 return;
             }
-            if (DepObject is DataGridRow)
-            {
-                dgGameList.ContextMenu.Visibility = Visibility.Visible;
-                return;
-            }
 
-                if (DepObject is DataGridColumnHeader)
+            if (DepObject is DataGridColumnHeader)
             {
-                dgGameList.ContextMenu.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                dgGameList.ContextMenu.Visibility = Visibility.Visible;
+                e.Handled = true;
             }
         }
 

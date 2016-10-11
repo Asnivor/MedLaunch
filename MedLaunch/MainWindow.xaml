@@ -278,7 +278,7 @@
                                      Controls:TextBoxHelper.Watermark="Dynamic Search" />
                             <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
 
-                            <DataGrid PreviewMouseRightButtonDown="DataGrid_PreviewMouseRightButtonDown" Background="Transparent" MouseDoubleClick="LaunchRom_Click" Grid.Row="2" Name="dgGameList" IsReadOnly="True" SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Single" >
+                            <DataGrid PreviewMouseRightButtonDown="DataGrid_PreviewMouseRightButtonDown" PreviewMouseRightButtonUp="DataGrid_PreviewMouseRightButtonDown" Background="Transparent" MouseDoubleClick="LaunchRom_Click" Grid.Row="2" Name="dgGameList" IsReadOnly="True" SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Single" >
                                 <DataGrid.ContextMenu>
                                     <ContextMenu x:Name="dgContext">
                                         <MenuItem x:Name="LaunchRom" Header="Play Game" Click="LaunchRom_Click" />
