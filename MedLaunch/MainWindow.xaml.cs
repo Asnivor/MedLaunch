@@ -30,6 +30,8 @@ using System.Reflection;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
+using System.Globalization;
+using System.Windows.Controls.Primitives;
 
 namespace MedLaunch
 {
@@ -1316,9 +1318,21 @@ namespace MedLaunch
             FrameworkElement fe = e.Source as FrameworkElement;
             ContextMenu cm = fe.ContextMenu;
 
+            ContextMenu c = (ContextMenu)this.FindName("dgContext");
+
             // get selected row data
             DataGridGamesView drv = (DataGridGamesView)dgGameList.SelectedItem;
+            if (drv == null)
+            {
+                c = (ContextMenu)this.FindName("dgContext");
+                //c.Visibility = Visibility.Collapsed;
+                //c.IsOpen = false;
+                return;
+            }
+           // c.Visibility = Visibility.Visible;
 
+
+            //MessageBox.Show(drv.ID.ToString());
             string romName = drv.Game;
             int romId = drv.ID;
 
@@ -1347,6 +1361,9 @@ namespace MedLaunch
                     mi.Header = "Delete From Games Library"; // + romName;
                 }
             }
+            
+
+            
 
             //fe.ContextMenu = CMenu.BuildGamesMenu(dgGameList);
         }
@@ -1384,6 +1401,8 @@ namespace MedLaunch
         private async void LaunchRom_Click(object sender, RoutedEventArgs e)
         {
             DataGridGamesView drv = (DataGridGamesView)dgGameList.SelectedItem;
+            if (drv == null)
+                return;
             int romId = drv.ID;
 
             // create new GameLauncher instance
@@ -1774,6 +1793,48 @@ namespace MedLaunch
 
         }
 
-        
+        public class OneReturnsTrueConverter : IValueConverter
+        {
+            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                return (int)value == 1;
+            }
+
+            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                throw new NotSupportedException();
+            }
+        }
+
+        private void DataGrid_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DependencyObject DepObject = (DependencyObject)e.OriginalSource;
+
+            while ((DepObject != null) && !(DepObject is DataGridColumnHeader))
+            {
+                DepObject = VisualTreeHelper.GetParent(DepObject);
+            }
+
+            if (DepObject == null)
+            {
+                return;
+            }
+            if (DepObject is DataGridRow)
+            {
+                dgGameList.ContextMenu.Visibility = Visibility.Visible;
+                return;
+            }
+
+                if (DepObject is DataGridColumnHeader)
+            {
+                dgGameList.ContextMenu.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                dgGameList.ContextMenu.Visibility = Visibility.Visible;
+            }
+        }
+
+
     }
 }
