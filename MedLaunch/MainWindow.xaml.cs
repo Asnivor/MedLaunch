@@ -105,7 +105,7 @@ namespace MedLaunch
             btnShowAll.IsChecked = true;
 
             // load globalsettings for front page
-            GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo);
+            GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar);
             gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
 
             // load netplay settings for netplay page
@@ -995,6 +995,16 @@ namespace MedLaunch
             GlobalSettings.UpdateEnableSnes_faust(chkEnableSnes_faust);
         }
 
+        private void chkMinToTaskbar_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateMinToTaskBar(chkMinToTaskbar);
+        }
+
+        private void chkMinToTaskbar_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateMinToTaskBar(chkMinToTaskbar);
+        }
+
         // Mednafen BIOS Paths events
         private void btnMednafenBiosPaths_Click(object sender, RoutedEventArgs e)
         {
@@ -1473,10 +1483,25 @@ namespace MedLaunch
                     controller.SetMessage(status);
                     await Task.Delay(50);
 
+                // check whether minimise to taskbar option is checked
+                bool taskbar = this.ShowInTaskbar;
+                    if (GlobalSettings.Min2TaskBar() == true)
+                {
+                    this.ShowInTaskbar = true;
+                    this.WindowState = WindowState.Minimized;                    
+                }
+                
+
                     // launch game
                     gl.RunGame(configCmdString);
 
-                    await controller.CloseAsync();
+                if (GlobalSettings.Min2TaskBar() == true)
+                {
+                    this.ShowInTaskbar = taskbar;
+                    this.WindowState = WindowState.Normal;
+                }
+
+                await controller.CloseAsync();
 
                     // update lastplayed time
                     Game game = Game.GetGame(gl.GameId);
@@ -1869,8 +1894,6 @@ namespace MedLaunch
 
         }
 
-
-
-
+        
     }
 }

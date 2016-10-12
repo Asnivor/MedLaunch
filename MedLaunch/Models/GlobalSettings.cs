@@ -21,6 +21,7 @@ namespace MedLaunch.Models
         public bool? enablePce_fast { get; set; }                  // use pce_fast emulation rather than pce
         public int? serverSelected { get; set; }                    // stores the currently selected server ID
         public double guiZoom { get; set; }                         // the current GUI zoom factor as a decimal (1 = 100%)
+        public bool? minToTaskBarOnGameLaunch { get; set; }         // whether or not MedLaunch is minimised to taskbar when game is launched
 
         public static GlobalSettings GetGlobalDefaults()
         {
@@ -35,9 +36,18 @@ namespace MedLaunch.Models
                 serverSelected = 1,
                 enablePce_fast = false,
                 enableSnes_faust = false,
-                guiZoom = 1
+                guiZoom = 1,
+                minToTaskBarOnGameLaunch = true
+                
             };
             return gs;
+        }
+
+        // get mintotaskbar value
+        public static bool Min2TaskBar()
+        {
+            GlobalSettings g = GetGlobals();
+            return g.minToTaskBarOnGameLaunch.Value;
         }
 
         // return Global Settings entry from DB
@@ -66,7 +76,7 @@ namespace MedLaunch.Models
             }
         }
 
-        public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast, ComboBox GuiZoom)
+        public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast, ComboBox GuiZoom, CheckBox MinToTaskBar)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
@@ -78,6 +88,7 @@ namespace MedLaunch.Models
 
             // update comboboxes
             GuiZoom.SelectedValue = gs.guiZoom.ToString();
+            MinToTaskBar.IsChecked = gs.minToTaskBarOnGameLaunch;
             //MessageBox.Show(gs.guiZoom.ToString());
         }
 
@@ -116,6 +127,13 @@ namespace MedLaunch.Models
         {
             GlobalSettings gs = GetGlobals();
             gs.guiZoom = GuiZoom;
+            SetGlobals(gs);
+        }
+
+        public static void UpdateMinToTaskBar(CheckBox MinToTaskBar)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.minToTaskBarOnGameLaunch = MinToTaskBar.IsChecked;
             SetGlobals(gs);
         }
 

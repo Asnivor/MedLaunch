@@ -3470,6 +3470,10 @@
                                                     <ComboBoxItem Tag="1.5">150%</ComboBoxItem>
                                                 </ComboBox>
 
+                                                <CheckBox x:Name="chkMinToTaskbar" Grid.ColumnSpan="2" Grid.Row="4" Checked="chkMinToTaskbar_Checked" Unchecked="chkMinToTaskbar_Unchecked">
+                                                    Minimise MedLaunch to the taskbar when a game is launched
+                                                </CheckBox>
+
 
 
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="17">
