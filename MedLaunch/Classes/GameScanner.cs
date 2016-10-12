@@ -444,7 +444,7 @@ namespace MedLaunch.Classes
                 // check whether game already exists (by gameName and systemId)
                 Game chkGame = (from g in Games
                                 where g.systemId == systemId && g.gameName == romName
-                                select g).SingleOrDefault();
+                                select g).FirstOrDefault();
 
                 if (chkGame == null)
                 {

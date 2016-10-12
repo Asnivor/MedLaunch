@@ -494,12 +494,15 @@ namespace MedLaunch
                 
             }
 
-           
-            controller.SetMessage(output + "\nUpdating Database");
-            rs.SaveToDatabase();
+            await Task.Run(() =>
+            {
+                controller.SetMessage(output + "\nUpdating Database");
+                rs.SaveToDatabase();
+            });
+                
         
 
-            await Task.Delay(1000);
+            await Task.Delay(500);
 
 
 
