@@ -1987,7 +1987,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Column="0">System Region</Label>
-                                                <ComboBox x:Name="cfg_sms_territory" SelectedValuePath="Tag" Grid.Column="1">
+                                                <ComboBox x:Name="cfg_sms__territory" SelectedValuePath="Tag" Grid.Column="1">
                                                     <ComboBoxItem Tag="export">Export (World)</ComboBoxItem>
                                                     <ComboBoxItem Tag="domestic">Domestic (Japanese)</ComboBoxItem>
                                                 </ComboBox>

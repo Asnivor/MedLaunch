@@ -225,7 +225,7 @@ namespace MedLaunch.Models
 
         // Sega Master System
         public bool? sms__fm { get; set; }
-        public string sms_territory { get; set; }
+        public string sms__territory { get; set; }
 
         // Sega Megadrive
         public string md__cdbios { get; set; }
@@ -612,7 +612,7 @@ namespace MedLaunch.Models
                 pcfx__debugger__memcharenc = "shift_jis",                    // placed
 
                 sms__fm = true,                                             // placed
-                sms_territory = "export",                                   // placed
+                sms__territory = "export",                                   // placed
 
                 md__cdbios = "us_scd1_9210.bin",
                 md__correct_aspect = true,                                  // placed
