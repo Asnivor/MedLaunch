@@ -184,6 +184,7 @@
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameSystem.cs" />
     <Compile Include="Models\GlobalSettings.cs" />
+    <Compile Include="Models\LibrarySidebar.cs" />
     <Compile Include="Models\Paths.cs" />
     <Compile Include="Models\GSystem.cs" />
     <Compile Include="Models\Versions.cs" />
@@ -263,11 +264,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\Graphics\Systems\snes.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Asnitech.Launch.Common\Asnitech.Launch.Common.csproj">
       <Project>{2e332847-6df3-4bf4-92c2-42a5c6359cc1}</Project>
       <Name>Asnitech.Launch.Common</Name>
@@ -287,6 +283,24 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Graphics\medicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Graphics\Systems\default.jpg" />
+    <Resource Include="Data\Graphics\Systems\gb.jpg" />
+    <Resource Include="Data\Graphics\Systems\gba.jpg" />
+    <Resource Include="Data\Graphics\Systems\gg.jpg" />
+    <Resource Include="Data\Graphics\Systems\lynx.jpg" />
+    <Resource Include="Data\Graphics\Systems\md.jpg" />
+    <Resource Include="Data\Graphics\Systems\nes.jpg" />
+    <Resource Include="Data\Graphics\Systems\ngp.jpg" />
+    <Resource Include="Data\Graphics\Systems\pce.jpg" />
+    <Resource Include="Data\Graphics\Systems\pcfx.jpg" />
+    <Resource Include="Data\Graphics\Systems\psx.jpg" />
+    <Resource Include="Data\Graphics\Systems\sms.jpg" />
+    <Resource Include="Data\Graphics\Systems\snes.jpg" />
+    <Resource Include="Data\Graphics\Systems\ss.jpg" />
+    <Resource Include="Data\Graphics\Systems\vb.jpg" />
+    <Resource Include="Data\Graphics\Systems\wswan.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

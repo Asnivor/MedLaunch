@@ -13,6 +13,9 @@ namespace MedLaunch.Models
         public string gamePath { get; set; }
         public string gameName { get; set; }
         public DateTime gameLastPlayed { get; set; }
+        public DateTime gameLastFinished { get; set; }
+        public int timesPlayed { get; set; }
+        public double gameTime { get; set; }
         public int systemId { get; set; }
         //public GSystem GameSystem { get; set; }
         public bool isFavorite { get; set; }
@@ -31,6 +34,43 @@ namespace MedLaunch.Models
                 return cData;
             }
         }
+
+        public static void SetStartedPlaying(int gameId)
+        {
+            Game game = GetGame(gameId);
+            game.gameLastPlayed = DateTime.Now;
+            
+            SetGame(game);
+        }
+        public static void SetFinishedPlaying(int gameId)
+        {
+            Game game = GetGame(gameId);
+            game.gameLastFinished = DateTime.Now;
+            SetGame(game);
+
+            SetTotalGameTime(gameId);
+        }
+
+        public static void SetTotalGameTime(int gameId)
+        {
+            Game game = GetGame(gameId);
+            double currentTotalTime = game.gameTime;
+            TimeSpan ts = game.gameLastFinished - game.gameLastPlayed;
+
+            if (ts.TotalMinutes < 0.05)
+            {
+                // game time was negative (so maybe there was a crash) or less than 3 seconds (so maybe game didnt launch correctly)
+            }
+            else
+            {
+                // this looks correct - add it to the currentTotalTime and update the database
+                double newTotalTime = currentTotalTime + ts.TotalMinutes;
+                game.gameTime = newTotalTime;
+                game.timesPlayed++;
+                SetGame(game);
+            }
+        }
+
 
         public static void SetGame(Game game)
         {

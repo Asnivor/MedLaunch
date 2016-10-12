@@ -22,6 +22,7 @@ namespace MedLaunch.Models
         public int? serverSelected { get; set; }                    // stores the currently selected server ID
         public double guiZoom { get; set; }                         // the current GUI zoom factor as a decimal (1 = 100%)
         public bool? minToTaskBarOnGameLaunch { get; set; }         // whether or not MedLaunch is minimised to taskbar when game is launched
+        public bool? hideSidebar { get; set; }                      // always hide the games library sidebar
 
         public static GlobalSettings GetGlobalDefaults()
         {
@@ -37,7 +38,8 @@ namespace MedLaunch.Models
                 enablePce_fast = false,
                 enableSnes_faust = false,
                 guiZoom = 1,
-                minToTaskBarOnGameLaunch = true
+                minToTaskBarOnGameLaunch = true,
+                hideSidebar = false
                 
             };
             return gs;
@@ -48,6 +50,13 @@ namespace MedLaunch.Models
         {
             GlobalSettings g = GetGlobals();
             return g.minToTaskBarOnGameLaunch.Value;
+        }
+
+        // get hidesidebar settings
+        public static bool GetHideSidebar()
+        {
+            GlobalSettings g = GetGlobals();
+            return g.hideSidebar.Value;
         }
 
         // return Global Settings entry from DB
@@ -76,7 +85,7 @@ namespace MedLaunch.Models
             }
         }
 
-        public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast, ComboBox GuiZoom, CheckBox MinToTaskBar)
+        public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast, ComboBox GuiZoom, CheckBox MinToTaskBar, CheckBox HideSidebar)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
@@ -89,6 +98,7 @@ namespace MedLaunch.Models
             // update comboboxes
             GuiZoom.SelectedValue = gs.guiZoom.ToString();
             MinToTaskBar.IsChecked = gs.minToTaskBarOnGameLaunch;
+            HideSidebar.IsChecked = gs.hideSidebar;
             //MessageBox.Show(gs.guiZoom.ToString());
         }
 
@@ -134,6 +144,13 @@ namespace MedLaunch.Models
         {
             GlobalSettings gs = GetGlobals();
             gs.minToTaskBarOnGameLaunch = MinToTaskBar.IsChecked;
+            SetGlobals(gs);
+        }
+
+        public static void UpdateHideSidebar(CheckBox HideSidebar)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.hideSidebar = HideSidebar.IsChecked;
             SetGlobals(gs);
         }
 

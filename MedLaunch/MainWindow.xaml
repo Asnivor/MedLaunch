@@ -53,7 +53,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="0" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="0" />
+                        <ColumnDefinition Width="0.4*" Name="sidebarColumn" />
                     </Grid.ColumnDefinitions>
                     <!--<TextBlock FontSize="55" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">Left side</TextBlock>-->
                     <WrapPanel Orientation="Vertical" Grid.Column="0" Margin="0" x:FieldModifier="public" x:Name="wpGamesList">
@@ -294,14 +294,160 @@
 
                     </Grid>
 
-                    <StackPanel Grid.Column="3">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="200" />
-                                <RowDefinition Height="200" />
+                    
+                        <Grid x:Name="grdGamesSidebar" Grid.Column="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"  />
+
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
+
+                            <ScrollViewer x:Name="srcSidebar" Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" MinWidth="150" Width="{Binding ElementName=grdGamesSidebar, Path=ActualWidth}" Height="{Binding ElementName=grdGamesSidebar, Path=ActualHeight}">
+                                <WrapPanel  Orientation="Horizontal" x:Name="SidebarWrapPanel">
+
+                                <Border x:Name="brdSidebarGame" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
+                                    <Expander x:Name="expGameInfo" IsExpanded="True" BorderThickness="0" Header="Game Stats" >
+                                        <StackPanel x:Name="spSidebarGame">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+
+                                                <Label Grid.Column="0" Grid.Row="0" FontSize="10" Padding="2" FontWeight="Medium">Game:</Label>
+                                                <Label x:Name="lblGameName" Grid.Column="1" Grid.Row="0"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                    <Label.Content>
+                                                        <AccessText TextWrapping="Wrap" />
+                                                    </Label.Content>
+                                                </Label>
+
+                                                <Label Grid.Column="0" Grid.Row="1"  FontSize="10" Padding="2" FontWeight="Medium">Is Favorite:</Label>
+                                                <Label x:Name="lblIsFavorite" Grid.Column="1" Grid.Row="1" FontSize="10" Padding="2" FontWeight="Medium" >
+                                                    <Label.Content>
+                                                        <AccessText TextWrapping="Wrap" />
+                                                    </Label.Content>
+                                                </Label>
+
+                                                <Label Grid.Column="0" Grid.Row="2" FontSize="10" Padding="2" FontWeight="Medium">Last Launched:</Label>
+                                                <Label x:Name="lblLastLaunched" Grid.Column="1" Grid.Row="2"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                    <Label.Content>
+                                                        <AccessText TextWrapping="Wrap" />
+                                                    </Label.Content>
+                                                </Label>
+
+                                                <Label Grid.Column="0" Grid.Row="3" FontSize="10" Padding="2" FontWeight="Medium">Last Session Length:</Label>
+                                                <Label x:Name="lblSessionLength" Grid.Column="1" Grid.Row="3"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                    <Label.Content>
+                                                        <AccessText TextWrapping="Wrap" />
+                                                    </Label.Content>
+                                                </Label>
+
+                                                <Label Grid.Column="0" Grid.Row="4" FontSize="10" Padding="2" FontWeight="Medium">Times Played:</Label>
+                                                <Label x:Name="lblTimesPlayed" Grid.Column="1" Grid.Row="4"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                    <Label.Content>
+                                                        <AccessText TextWrapping="Wrap" />
+                                                    </Label.Content>
+                                                </Label>
+
+                                                <Label Grid.Column="0" Grid.Row="5" FontSize="10" Padding="2" FontWeight="Medium">Total Time In-Game:</Label>
+                                                <Label x:Name="lblTotalTime" Grid.Column="1" Grid.Row="5" FontSize="10" Padding="2" FontWeight="Medium" >
+                                                    <Label.Content>
+                                                        <AccessText TextWrapping="Wrap" />
+                                                    </Label.Content>
+                                                </Label>
+
+
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdSidebarGameInformation" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
+                                    <Expander x:Name="expGameInformation" IsExpanded="True" BorderThickness="0" Header="Game Info" >
+                                        <StackPanel x:Name="spSidebarGameInformation">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="0.4*" Name="gameImageColumn" />
+                                                    <ColumnDefinition Width="0.8*" />
+
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+
+                                                <!--<Label x:Name="lblSystemName" /> -->
+                                                <!--
+                                                <Image Grid.Column="0" Grid.Row="0" x:Name="imgSystemImage"  Source="Data\Graphics\Systems\default.jpg" HorizontalAlignment="Left" Margin="5" />
+                                                <TextBlock Grid.Column="1" Grid.Row="0" x:Name="tblockSystemDesc" FontSize="10" TextWrapping="Wrap" />
+
+                                                <StackPanel Grid.ColumnSpan="2" Grid.Row="1" Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
+                                                    
+
+
+
+                                                </StackPanel>
+     
+                                                -->
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdSidebarSystem" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
+                                    <Expander x:Name="expSysInfo" IsExpanded="True" BorderThickness="0" Header="System Info" >
+                                        <StackPanel x:Name="spSidebarSystem">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="0.4*" Name="sysImageColumn" />
+                                                    <ColumnDefinition Width="0.8*" />
+
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+
+                                                <!--<Label x:Name="lblSystemName" /> -->
+                                                <Image Grid.Column="0" Grid.Row="0" x:Name="imgSystemImage"  Source="Data\Graphics\Systems\default.jpg" HorizontalAlignment="Left" Margin="5" />
+                                                <TextBlock Grid.Column="1" Grid.Row="0" x:Name="tblockSystemDesc" FontSize="10" TextWrapping="Wrap" />
+
+                                                <StackPanel Grid.ColumnSpan="2" Grid.Row="1" Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
+
+
+
+
+                                                </StackPanel>
+
+
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                               
+
+                               
+
+                            </WrapPanel>
+                            </ScrollViewer>
+
                             <!--
                             <TextBlock Grid.Row="0" TextWrapping="Wrap" TextAlignment="Center" FontSize="15" TextDecorations="underline">Game and System Information</TextBlock>
                             <TextBlock Grid.Row="1" TextWrapping="Wrap">This is where the game information goes</TextBlock>
@@ -328,7 +474,7 @@
 
                         </Grid>
 
-                    </StackPanel>
+                    
 
                 </Grid>
             </TabItem>
@@ -3440,6 +3586,12 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
 
@@ -3472,6 +3624,10 @@
 
                                                 <CheckBox x:Name="chkMinToTaskbar" Grid.ColumnSpan="2" Grid.Row="4" Checked="chkMinToTaskbar_Checked" Unchecked="chkMinToTaskbar_Unchecked">
                                                     Minimise MedLaunch to the taskbar when a game is launched
+                                                </CheckBox>
+
+                                                <CheckBox x:Name="chkHideSidebar" Grid.ColumnSpan="2" Grid.Row="5" Checked="chkHideSidebar_Checked" Unchecked="chkHideSidebar_Unchecked">
+                                                    Never show the Games Library Sidebar
                                                 </CheckBox>
 
 

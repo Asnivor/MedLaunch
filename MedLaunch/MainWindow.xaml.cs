@@ -68,7 +68,7 @@ namespace MedLaunch
 
             // set window size
             this.Height = 768;
-            this.Width = 1024;
+            this.Width = 1366;
 
             // check workspace size, if mahapps resolution is too big - go full screen
             int wWidth = Convert.ToInt32(SystemParameters.WorkArea.Width);
@@ -105,7 +105,7 @@ namespace MedLaunch
             btnShowAll.IsChecked = true;
 
             // load globalsettings for front page
-            GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar);
+            GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar);
             gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
 
             // load netplay settings for netplay page
@@ -219,6 +219,9 @@ namespace MedLaunch
             //brdEmulator.Visibility = Visibility.Collapsed;
 
             wb.Navigated += new NavigatedEventHandler(wb_Navigated);
+
+            // games library
+            GamesLibraryVisualHandler.UpdateSidebar();
 
         }
 
@@ -926,7 +929,11 @@ namespace MedLaunch
             if (dgGameList.SelectedItem != null)
             {
                 //DbEF.GetInfo(row.ID, lblSystemName, taSystemDescription, imgSystem);
-
+                GamesLibraryVisualHandler.UpdateSidebar(row.ID);
+            }
+            else
+            {
+                GamesLibraryVisualHandler.UpdateSidebar();
             }
         }
 
@@ -1006,6 +1013,16 @@ namespace MedLaunch
         private void chkMinToTaskbar_Unchecked(object sender, RoutedEventArgs e)
         {
             GlobalSettings.UpdateMinToTaskBar(chkMinToTaskbar);
+        }
+
+        private void chkHideSidebar_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateHideSidebar(chkHideSidebar);
+        }
+
+        private void chkHideSidebar_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateHideSidebar(chkHideSidebar);
         }
 
         // Mednafen BIOS Paths events
@@ -1498,6 +1515,10 @@ namespace MedLaunch
                 // launch game
                 await Task.Run(() =>
                 {
+                    // update lastplayed time
+                    Game.SetStartedPlaying(gl.GameId);
+                    
+                    // launch game
                     gl.RunGame(configCmdString);
                 });
                     
@@ -1515,10 +1536,9 @@ namespace MedLaunch
                     controller.SetTitle("Cleaning Up");
                     controller.SetMessage("Please Wait....");
                     await Task.Delay(100);
-                    // update lastplayed time
-                    Game game = Game.GetGame(gl.GameId);
-                    game.gameLastPlayed = DateTime.Now;
-                    Game.SetGame(game);
+
+                    // update lastfinished time
+                    Game.SetFinishedPlaying(gl.GameId);
 
                     // update gameslibrary data as change has been made
                     GamesLibData.ForceUpdate();
