@@ -1427,8 +1427,8 @@ namespace MedLaunch
             var mySettings = new MetroDialogSettings()
             {
                 //NegativeButtonText = "Cancel Scanning",
-                AnimateShow = true,
-                AnimateHide = true
+                AnimateShow = false,
+                AnimateHide = false
             };
 
             var controller = await this.ShowProgressAsync("Launching " + gl.SystemName + " Game", "Starting: " + gl.RomName, settings: mySettings);
@@ -1493,10 +1493,14 @@ namespace MedLaunch
                     this.ShowInTaskbar = true;
                     this.WindowState = WindowState.Minimized;                    
                 }
-                
 
-                    // launch game
+
+                // launch game
+                await Task.Run(() =>
+                {
                     gl.RunGame(configCmdString);
+                });
+                    
 
                 if (GlobalSettings.Min2TaskBar() == true)
                 {
@@ -1504,8 +1508,13 @@ namespace MedLaunch
                     this.WindowState = WindowState.Normal;
                 }
 
-                await controller.CloseAsync();
 
+
+                await this.Dispatcher.Invoke(async () =>
+                {
+                    controller.SetTitle("Cleaning Up");
+                    controller.SetMessage("Please Wait....");
+                    await Task.Delay(100);
                     // update lastplayed time
                     Game game = Game.GetGame(gl.GameId);
                     game.gameLastPlayed = DateTime.Now;
@@ -1516,8 +1525,10 @@ namespace MedLaunch
 
                     // refresh library view
                     GamesLibraryVisualHandler.RefreshGamesLibrary();
+                });
 
-                }
+                await controller.CloseAsync();
+            }
 
 
 
