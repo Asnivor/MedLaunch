@@ -82,7 +82,7 @@ namespace MedLaunch.Models
                         systemDescription = "The Atari Lynx is a 16-bit handheld game console that was released by Atari Corporation in September 1989. The Lynx holds the distinction of being the world's first handheld electronic game with a color LCD. The system is also notable for its forward-looking features, advanced graphics, and ambidextrous layout." },
 
                 new GSystem { systemId = 4, systemCode = "md", systemName = "Sega Mega Drive/Genesis",
-                    supportedFileExtensions = ".bin,.gen,.rom", supportedArchiveExtensions = ".zip",
+                    supportedFileExtensions = ".bin,.gen,.rom,.md", supportedArchiveExtensions = ".zip",
                         systemDescription = "The Sega Genesis is a fourth-generation video game console developed and produced by Sega. It was originally released in Japan in 1988 as Mega Drive, then in North America in 1989 as Sega Genesis, and in Europe, Australia and other PAL regions in 1990 as Mega Drive." },
 
                 new GSystem { systemId = 5, systemCode = "gg", systemName = "Sega Game Gear",
