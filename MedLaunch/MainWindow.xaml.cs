@@ -1339,6 +1339,8 @@ namespace MedLaunch
             // Replace Menu Items
             foreach (MenuItem mi in cm.Items)
             {
+                // check whether selection is empty - if so dont display the menu item
+
                 // play game menu item
                 if ((String)mi.Header == "Play Game")
                 {
@@ -1806,25 +1808,68 @@ namespace MedLaunch
             }
         }
 
-        private void DataGrid_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        private T FindVisualParent<T>(DependencyObject child) where T : DependencyObject
         {
-            DependencyObject DepObject = (DependencyObject)e.OriginalSource;
+            DependencyObject parentObject = VisualTreeHelper.GetParent(child);
+            if (parentObject == null) return null;
+            T parent = parentObject as T;
+            if (parent != null)
+                return parent;
+            else
+                return FindVisualParent<T>(parentObject);
+        }
+   
 
+    private void DataGrid_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            /* If any right-clicks happen where there is no datagrid row clicked on - dont open the context menu */
+
+            DependencyObject DepObject = (DependencyObject)e.OriginalSource;
+            /*
             while ((DepObject != null) && !(DepObject is DataGridColumnHeader))
             {
                 DepObject = VisualTreeHelper.GetParent(DepObject);
             }
 
             if (DepObject == null)
-            {
+            {                
                 return;
             }
 
+
             if (DepObject is DataGridColumnHeader)
             {
+                // prevent right clicks on header values
                 e.Handled = true;
             }
+            */
+
+            DataGrid dg = sender as DataGrid;
+            Point pt = e.GetPosition(dg);
+            DataGridCell dgc = null;
+            VisualTreeHelper.HitTest(dg, null, new HitTestResultCallback((result) =>
+            {
+                // Find the ancestor element form the hittested element
+                // e.g., find the DataGridCell if we hittest on the inner TextBlock
+                DataGridCell cell = FindVisualParent<DataGridCell>(result.VisualHit);
+                if (cell != null)
+                {
+                    dgc = cell;
+                    return HitTestResultBehavior.Stop;
+                }
+                else
+                    return HitTestResultBehavior.Continue;
+            }), new PointHitTestParameters(pt));
+
+            if (dgc == null)
+            {
+                //MessageBox.Show("NULL!");
+                e.Handled = true;
+            }
+
         }
+
+
 
 
     }
