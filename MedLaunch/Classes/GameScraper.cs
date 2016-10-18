@@ -1094,8 +1094,13 @@ namespace MedLaunch.Classes
             List<GDBPlatformGame> gs = new List<GDBPlatformGame>();
             int count = 0;
             int sysCount = GSystem.GetSystems().Count - 3;
-            controller.Minimum = 0;
-            controller.Maximum = sysCount;
+
+            if (controller != null)
+            {
+                controller.Minimum = 0;
+                controller.Maximum = sysCount;
+            }
+            
             foreach (GSystem sys in GSystem.GetSystems())
             {
 
@@ -1104,9 +1109,14 @@ namespace MedLaunch.Classes
                     continue;
                 count++;
                 List<GameSearchResult> merged = new List<GameSearchResult>();
-                controller.SetProgress(Convert.ToDouble(count));
-                controller.SetMessage("Retrieving Game List for Platform: " + sys.systemName);
-                //controller.SetIndeterminate();
+
+                if (controller != null)
+                {
+                    controller.SetProgress(Convert.ToDouble(count));
+                    controller.SetMessage("Retrieving Game List for Platform: " + sys.systemName);
+                    //controller.SetIndeterminate();
+                }
+
 
                 // perform lookups
                 foreach (int gid in sys.theGamesDBPlatformId)
@@ -1115,8 +1125,11 @@ namespace MedLaunch.Classes
                     if (result.Count == 0)
                     {
                         // nothing returned
-                        controller.SetMessage("No results returned.\n Maybe an issue connecting to thegamesdb.net...");
-                        Task.Delay(2000);
+                        if (controller != null)
+                        {
+                            controller.SetMessage("No results returned.\n Maybe an issue connecting to thegamesdb.net...");
+                            Task.Delay(2000);
+                        }
                     }
                     merged.AddRange(result);
                 }
@@ -1138,7 +1151,10 @@ namespace MedLaunch.Classes
             }
 
             // now we have a complete list of games for our platforms from thegamesdb.net - add or update the database
-            controller.SetMessage("Saving to Database...");
+            if (controller != null)
+            {
+                controller.SetMessage("Saving to Database...");
+            }
 
             return gs;
           
@@ -1146,6 +1162,11 @@ namespace MedLaunch.Classes
 
             // first get the current data
             //List<GDBPlatformGame> current = GDBPlatformGame.GetGames();
+        }
+
+        public static List<GDBPlatformGame> DatabasePlatformGamesImport()
+        {
+            return DatabasePlatformGamesImport(null);
         }
 
         // get all games from the API based on gamesdb system ID

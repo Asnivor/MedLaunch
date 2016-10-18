@@ -1997,7 +1997,7 @@ namespace MedLaunch
         {
             string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
             var platformgames = GDBPlatformGame.GetGames();
-
+    
             string json = JsonConvert.SerializeObject(platformgames.ToArray());
             System.IO.File.WriteAllText(@"Data\Settings\thegamesdbplatformgames_" + linkTimeLocal.Replace(" ", "").Replace(":", "").Replace("-", "") + ".json", json);
 
