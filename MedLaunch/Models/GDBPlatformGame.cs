@@ -43,9 +43,32 @@ namespace MedLaunch.Models
                 {
                     var files = (Directory.GetFiles(@"Data\Settings"));
                     var f = files.Where(a => a.EndsWith(".json")).OrderByDescending(b => b.ToString()).FirstOrDefault();
+
+                    if(f == null)
+                    {
+                        //json file doesn't exist, so create it.
+                        try
+                        {
+                            List<GDBPlatformGame> gs = GameScraper.DatabasePlatformGamesImport();
+                            GDBPlatformGame.SaveToDatabase(gs);
+
+                            var platformgames = GDBPlatformGame.GetGames();
+                            string linkTimeLocal = (System.Reflection.Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
+                            string jsonGames = JsonConvert.SerializeObject(platformgames.ToArray());
+                            System.IO.File.WriteAllText(@"Data\Settings\thegamesdbplatformgames_" + linkTimeLocal.Replace(" ", "").Replace(":", "").Replace("-", "") + ".json", jsonGames);
+                            files = (Directory.GetFiles(@"Data\Settings"));
+                            f = files.Where(a => a.EndsWith(".json")).OrderByDescending(b => b.ToString()).FirstOrDefault();
+                        }
+                        catch(Exception e)
+                        {
+
+                        }
+                    }
+
                     string json = System.IO.File.ReadAllText(f);
                     List<GDBPlatformGame> g = JsonConvert.DeserializeObject<List<GDBPlatformGame>>(json);
                     SaveToDatabase(g);
+
                 }
             }
             else
