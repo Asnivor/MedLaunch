@@ -35,6 +35,17 @@ namespace MedLaunch.Models
             }
         }
 
+        public static List<Game> GetGames(int systemId)
+        {
+            using (var context = new MyDbContext())
+            {
+                var cData = (from g in context.Game
+                             where g.systemId == systemId
+                             select g);
+                return cData.ToList();
+            }
+        }
+
         public static void SetStartedPlaying(int gameId)
         {
             Game game = GetGame(gameId);

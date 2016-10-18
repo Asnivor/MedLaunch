@@ -7,10 +7,40 @@
     <Application.Resources>
         
         <ResourceDictionary>
-            
-        
 
-        <ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+            <Storyboard x:Key="expandStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" 
+        To="2" Duration="0:0:0.2" />
+                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" 
+        To="2" Duration="0:0:0.2" />
+            </Storyboard>
+            <!-- This storyboard will make the image revert to its original size -->
+            <Storyboard x:Key="shrinkStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" 
+        To="1" Duration="0:0:0.2" />
+                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" 
+        To="1" Duration="0:0:0.2" />
+            </Storyboard>
+
+            <Style x:Key="ScaleStyle" TargetType="Image">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Grid.ZIndex" Value="1"/>
+                        <Setter Property="VerticalAlignment" Value="Top" />
+
+                        <Setter Property="RenderTransform">
+                            
+                            <Setter.Value>
+                                <ScaleTransform ScaleX="2.5" ScaleY="2.5"/>
+                            </Setter.Value>
+                        </Setter>
+                        
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,
              /MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,

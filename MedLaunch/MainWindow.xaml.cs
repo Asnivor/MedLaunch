@@ -32,6 +32,7 @@ using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.Globalization;
 using System.Windows.Controls.Primitives;
+using Newtonsoft.Json;
 
 namespace MedLaunch
 {
@@ -93,7 +94,8 @@ namespace MedLaunch
             string fVersion = fvi.FileVersion;
 
             // set title
-            this.Title = "MedLaunch - Windows Front-End for Mednafen (v" + versionMajor + "." + versionMinor + "." + versionBuild + "." + versionPrivate + ")";
+            string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
+            this.Title = "MedLaunch - Windows Front-End for Mednafen (v" + versionMajor + "." + versionMinor + "." + versionBuild + "." + versionPrivate + ")"; // - Built: "+ linkTimeLocal;
             //this.Title = "MedLaunch - Windows Front-End for Mednafen (" + fVersion + ")";
 
             // Startup checks
@@ -223,6 +225,15 @@ namespace MedLaunch
             // games library
             GamesLibraryVisualHandler.UpdateSidebar();
 
+            // GameScraper.GetPlatformGames(4924);
+
+            // Games Scraping db initial seed
+            
+                GDBPlatformGame.InitialSeed();
+          
+
+            
+
         }
 
         void RestoreScalingFactor(object sender, MouseButtonEventArgs args)
@@ -346,8 +357,9 @@ namespace MedLaunch
             var mySettings = new MetroDialogSettings()
             {
                 NegativeButtonText = "Cancel Scanning",
-                AnimateShow = true,
+                AnimateShow = true,                
                 AnimateHide = true
+                
             };
 
             var controller = await this.ShowProgressAsync("Scanning Disk Directories", "Determining Paths and Counting Files...", settings: mySettings);
@@ -365,6 +377,41 @@ namespace MedLaunch
         {
             RescanSystemDisks(0);
         }
+
+        private async void ScrapeGetAllPlatformGames_Click(object sender, RoutedEventArgs e)
+        {
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel Scraping",
+                AnimateShow = false,
+                AnimateHide = false
+            };
+
+            var controller = await this.ShowProgressAsync("MedLaunch - Getting Basic Games List From thegamesdb.net", "", settings: mySettings);
+            controller.SetCancelable(true);
+            await Task.Delay(100);
+
+            await Task.Run(async () =>
+            {
+                await Task.Delay(1);
+                List<GDBPlatformGame> gs = GameScraper.DatabasePlatformGamesImport(controller);
+                GDBPlatformGame.SaveToDatabase(gs);
+            });
+
+            
+
+            await controller.CloseAsync();
+
+            if (controller.IsCanceled)
+            {
+                await this.ShowMessageAsync("MedLaunch - GameScraper", "Operation Cancelled");
+            }
+            else
+            {
+                await this.ShowMessageAsync("MedLaunch - GameScraper", "Scanning Completed");
+            }
+        }
+
 
         private async void RescanSystemRoms(int sysId)
         {
@@ -829,6 +876,14 @@ namespace MedLaunch
             GameScanner.RemoveAllGames();
         } 
 
+        private void ScrapeGames_Click(object sender, RoutedEventArgs e)
+        {
+            // get systemId from menu name
+            string menuName = (sender as MenuItem).Name;
+            int sysId = Convert.ToInt32(menuName.Replace("ScrapeGames", ""));
+            GameScraper.ScrapeGames(sysId);
+        }
+
 
         // Games grid filter text box event
         private void tbFilterDatagrid_TextChanged(object sender, TextChangedEventArgs e)
@@ -929,6 +984,7 @@ namespace MedLaunch
             if (dgGameList.SelectedItem != null)
             {
                 //DbEF.GetInfo(row.ID, lblSystemName, taSystemDescription, imgSystem);
+                //GamesLibraryVisualHandler.UpdateSidebar();
                 GamesLibraryVisualHandler.UpdateSidebar(row.ID);
             }
             else
@@ -1550,7 +1606,7 @@ namespace MedLaunch
                 await controller.CloseAsync();
             }
 
-
+            GamesLibraryVisualHandler.UpdateSidebar(gl.GameId);
 
 
                 //controller.SetMessage(totalFiles + " files found across all ROM directories");
@@ -1928,6 +1984,57 @@ namespace MedLaunch
 
         }
 
-        
+        public static Visibility IsDebug
+        {
+#if DEBUG
+            get { return Visibility.Visible; }
+#else
+        get { return Visibility.Collapsed; }
+#endif
+        }
+
+        private void btnSavePlatformGamesToDisk_Click(object sender, RoutedEventArgs e)
+        {
+            string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
+            var platformgames = GDBPlatformGame.GetGames();
+
+            string json = JsonConvert.SerializeObject(platformgames.ToArray());
+            System.IO.File.WriteAllText(@"Data\Settings\thegamesdbplatformgames_" + linkTimeLocal.Replace(" ", "").Replace(":", "").Replace("-", "") + ".json", json);
+
+        }
+
+        // unlink selected game
+        private void btnScrapingUnlinkGame_Click(object sender, RoutedEventArgs e)
+        {
+            GameScraper.UnlinkGameData(dgGameList);
+        }
+
+        private void btnTestGameSearch_Click(object sender, RoutedEventArgs e)
+        {
+            GameScraper gs = new GameScraper();
+            Game game = Game.GetGame(20);
+
+            List<Game> games = Game.GetGames(7);
+
+            foreach (Game g in games)
+            {
+                List<GDBPlatformGame> result = gs.SearchGameLocal(g.gameName, g.systemId, g.gameId).ToList();
+                string glist = g.gameName + "\n-------------------------\n\n";
+                foreach (GDBPlatformGame bg in result)
+                {
+                    glist += bg.GameTitle + "\n";
+                }
+                MessageBox.Show(glist);
+            }
+
+            //List<GDBPlatformGame> result = gs.SearchGameLocal(game.gameName, game.systemId, game.gameId).ToList();
+        }
+
+        private void btnScrapingPickGame_Click(object sender, RoutedEventArgs e)
+        {
+            GameScraper.PickGame(dgGameList);
+        }
     }
+
+    
 }

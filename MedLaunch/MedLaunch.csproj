@@ -53,8 +53,16 @@
       <HintPath>..\packages\EntityFramework.Sqlite.7.0.0-rc1-final\lib\net451\EntityFramework.Sqlite.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FuzzyString, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ExternalAssemblies\FuzzyString.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro, Version=1.2.4.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\MahApps.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MahApps.Metro.SimpleChildWindow, Version=1.3.0.0, Culture=neutral, PublicKeyToken=bbbfdff7f500a992, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.SimpleChildWindow.1.3.0\lib\net45\MahApps.Metro.SimpleChildWindow.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Data.Sqlite, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
@@ -107,6 +115,10 @@
     </Reference>
     <Reference Include="Microsoft.Extensions.Primitives, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Primitives.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.2-beta1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ookii.Dialogs.Wpf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0c15020868fd6249, processorArchitecture=MSIL">
@@ -162,10 +174,16 @@
     <Compile Include="Classes\ConfigsVisualHandler.cs" />
     <Compile Include="Classes\DataGridServersView.cs" />
     <Compile Include="Classes\EventArgs.cs" />
+    <Compile Include="Classes\GameScraper.cs" />
     <Compile Include="Classes\GamesLibData.cs" />
     <Compile Include="Classes\GamesLibraryVisualHandler.cs" />
+    <Compile Include="Classes\GetBuildTime.cs" />
+    <Compile Include="Classes\FuzzySearch.cs" />
     <Compile Include="Classes\SettingsHandler.cs" />
     <Compile Include="Classes\SettingsVisualHandler.cs" />
+    <Compile Include="ListBoxChildWindow.xaml.cs">
+      <DependentUpon>ListBoxChildWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\DiskGameFile.cs" />
     <Compile Include="Classes\GameLauncher.cs" />
     <Compile Include="Classes\Rom.cs" />
@@ -183,16 +201,24 @@
     <Compile Include="Models\ConfigSystemSettings.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameSystem.cs" />
+    <Compile Include="Models\GDBGameData.cs" />
+    <Compile Include="Models\GDBLink.cs" />
+    <Compile Include="Models\GDBPlatformGame.cs" />
     <Compile Include="Models\GlobalSettings.cs" />
     <Compile Include="Models\LibrarySidebar.cs" />
     <Compile Include="Models\Paths.cs" />
     <Compile Include="Models\GSystem.cs" />
+    <Compile Include="Models\SearchOrdering.cs" />
     <Compile Include="Models\Versions.cs" />
     <Compile Include="ViewModels\ConfigNetplaySettingsViewModel.cs" />
     <Compile Include="ViewModels\ServersViewModel.cs" />
     <Compile Include="ViewModels\TemplateViewModel.cs" />
     <Compile Include="ViewModels\GlobalSettingsViewModel.cs" />
     <Page Include="Controls\ConfigUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListBoxChildWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -268,9 +294,10 @@
       <Project>{2e332847-6df3-4bf4-92c2-42a5c6359cc1}</Project>
       <Name>Asnitech.Launch.Common</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="SavedTxt\TextFile1.txt" />
+    <ProjectReference Include="..\GDBAPI\TheGamesDBAPI\TheGamesDBAPI.csproj">
+      <Project>{c2c54a91-76f0-45a4-8dec-dc771fff371d}</Project>
+      <Name>TheGamesDBAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\WindowsIcons-license.txt" />
@@ -301,6 +328,9 @@
     <Resource Include="Data\Graphics\Systems\ss.jpg" />
     <Resource Include="Data\Graphics\Systems\vb.jpg" />
     <Resource Include="Data\Graphics\Systems\wswan.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ExternalAssemblies\FuzzyString.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

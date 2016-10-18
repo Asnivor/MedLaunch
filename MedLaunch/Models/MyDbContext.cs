@@ -27,6 +27,10 @@ namespace MedLaunch.Models
         public DbSet<Game> Game { get; set; }                                                   // table containing list of imported ROMs
         public DbSet<GlobalSettings> GlobalSettings { get; set; }                               // launcher settings
 
+        public DbSet<GDBPlatformGame> GDBPlatformGame { get; set; }                             // basic list of all games per platform
+        public DbSet<GDBGameData> GDBGameData { get; set; }                                     // Game data from thegamesdb.net - primary key is the gamesdb.net GameId
+        public DbSet<GDBLink> GDBLink { get; set; }                                             // table that links games with gamedb gamedata                                      
+
         // define keys and relationships
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -56,6 +60,15 @@ namespace MedLaunch.Models
 
             modelBuilder.Entity<GlobalSettings>()
                 .HasKey(c => c.settingsId);
+
+            modelBuilder.Entity<GDBPlatformGame>()
+                .HasKey(c => c.id);
+
+            modelBuilder.Entity<GDBGameData>()
+                .HasKey(c => c.GdbId);
+
+            modelBuilder.Entity<GDBLink>()
+                .HasKey(c => c.Id);
         }
 
 

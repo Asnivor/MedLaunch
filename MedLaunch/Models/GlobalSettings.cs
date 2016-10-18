@@ -23,6 +23,7 @@ namespace MedLaunch.Models
         public double guiZoom { get; set; }                         // the current GUI zoom factor as a decimal (1 = 100%)
         public bool? minToTaskBarOnGameLaunch { get; set; }         // whether or not MedLaunch is minimised to taskbar when game is launched
         public bool? hideSidebar { get; set; }                      // always hide the games library sidebar
+        public DateTime? gdbLastUpdated { get; set; }               // last time platformgames were synced from thegamesdb.net
 
         public static GlobalSettings GetGlobalDefaults()
         {
@@ -39,7 +40,8 @@ namespace MedLaunch.Models
                 enableSnes_faust = false,
                 guiZoom = 1,
                 minToTaskBarOnGameLaunch = true,
-                hideSidebar = false
+                hideSidebar = false,
+                gdbLastUpdated = DateTime.Now
                 
             };
             return gs;
@@ -79,7 +81,7 @@ namespace MedLaunch.Models
             using (var context = new MyDbContext())
             {
                 context.GlobalSettings.Attach(gs);
-                var entry = context.Entry(gs);
+                var entry = context.Entry(gs);                
                 entry.State = EntityState.Modified;
                 context.SaveChanges();
             }
