@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace TheGamesDBAPI {
+namespace MedLaunch.Classes.TheGamesDB
+{
     /// <summary>
     /// Represents a search result when searching for games.
     /// </summary>
-    public class GameSearchResult {
+    public class GDBNETGameSearchResult
+    {
         /// <summary>
         /// Unique database ID.
         /// </summary>

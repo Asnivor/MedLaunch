@@ -181,6 +181,11 @@
     <Compile Include="Classes\FuzzySearch.cs" />
     <Compile Include="Classes\SettingsHandler.cs" />
     <Compile Include="Classes\SettingsVisualHandler.cs" />
+    <Compile Include="Classes\TheGamesDB\GDBNETGame.cs" />
+    <Compile Include="Classes\TheGamesDB\GDBNETGamesDB.cs" />
+    <Compile Include="Classes\TheGamesDB\GDBNETGameSearchResult.cs" />
+    <Compile Include="Classes\TheGamesDB\GDBNETPlatform.cs" />
+    <Compile Include="Classes\TheGamesDB\GDBNETPlatformSearchResult.cs" />
     <Compile Include="ListBoxChildWindow.xaml.cs">
       <DependentUpon>ListBoxChildWindow.xaml</DependentUpon>
     </Compile>
@@ -293,10 +298,6 @@
     <ProjectReference Include="..\Asnitech.Launch.Common\Asnitech.Launch.Common.csproj">
       <Project>{2e332847-6df3-4bf4-92c2-42a5c6359cc1}</Project>
       <Name>Asnitech.Launch.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GDBAPI\TheGamesDBAPI\TheGamesDBAPI.csproj">
-      <Project>{c2c54a91-76f0-45a4-8dec-dc771fff371d}</Project>
-      <Name>TheGamesDBAPI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Net;
 using System.Xml;
 using System.Collections;
 
-namespace TheGamesDBAPI {
+namespace MedLaunch.Classes.TheGamesDB
+{
     /// <summary>
     /// Fetches information from TheGamesDB.
     /// </summary>
-    public static class GamesDB {
+    public static class GDBNETGamesDB
+    {
         /// <summary>
         /// The base image path that should be prepended to all the relative image paths to get the full paths to the images.
         /// </summary>
@@ -23,28 +26,32 @@ namespace TheGamesDBAPI {
         /// <param name="Platform">Filters results by platform</param>
         /// <param name="Genre">Filters results by genre</param>
         /// <returns>A collection of games that matched the search terms</returns>
-        public static ICollection<GameSearchResult> GetGames(String Name, String Platform = "", String Genre = "") {
+        public static ICollection<GDBNETGameSearchResult> GetGames(String Name, String Platform = "", String Genre = "")
+        {
             XmlDocument doc = new XmlDocument();
             doc.Load(@"http://thegamesdb.net/api/GetGamesList.php?name=" + Name + @"&platform=" + Platform + @"&genre=" + Genre);
 
             XmlNode root = doc.DocumentElement;
             IEnumerator ienum = root.GetEnumerator();
 
-            List<GameSearchResult> games = new List<GameSearchResult>();
+            List<GDBNETGameSearchResult> games = new List<GDBNETGameSearchResult>();
 
             // Iterate through all games
             XmlNode gameNode;
-            while (ienum.MoveNext()) {
-                GameSearchResult game = new GameSearchResult();
+            while (ienum.MoveNext())
+            {
+                GDBNETGameSearchResult game = new GDBNETGameSearchResult();
                 gameNode = (XmlNode)ienum.Current;
 
                 IEnumerator ienumGame = gameNode.GetEnumerator();
                 XmlNode attributeNode;
-                while (ienumGame.MoveNext()) {
+                while (ienumGame.MoveNext())
+                {
                     attributeNode = (XmlNode)ienumGame.Current;
 
                     // Iterate through all game attributes
-                    switch (attributeNode.Name) {
+                    switch (attributeNode.Name)
+                    {
                         case "id":
                             int.TryParse(attributeNode.InnerText, out game.ID);
                             break;
@@ -71,7 +78,8 @@ namespace TheGamesDBAPI {
         /// </summary>
         /// <param name="time">Last x seconds to get updated games for</param>
         /// <returns>A collection of game ID's for games that have been updated</returns>
-        public static ICollection<int> GetUpdatedGames(int time) {
+        public static ICollection<int> GetUpdatedGames(int time)
+        {
             XmlDocument doc = new XmlDocument();
             doc.Load(@"http://thegamesdb.net/api/Updates.php?time=" + time);
 
@@ -83,7 +91,8 @@ namespace TheGamesDBAPI {
 
             // Iterate through all games
             XmlNode gameNode;
-            while (ienum.MoveNext()) {
+            while (ienum.MoveNext())
+            {
                 gameNode = (XmlNode)ienum.Current;
 
                 int game;
@@ -100,16 +109,17 @@ namespace TheGamesDBAPI {
         /// </summary>
         /// <param name="ID">The game ID to return data for</param>
         /// <returns>A Game-object containing all the data about the game, or null if no game was found</returns>
-        public static Game GetGame(int ID) {
+        public static GDBNETGame GetGame(int ID)
+        {
             XmlDocument doc = new XmlDocument();
             try
             {
                 doc.Load(@"http://thegamesdb.net/api/GetGame.php?id=" + ID);
             }
-            
+
             catch (Exception ex)
             {
-                return new Game();
+                return new GDBNETGame();
             }
             finally { }
 
@@ -117,15 +127,17 @@ namespace TheGamesDBAPI {
             IEnumerator ienum = root.GetEnumerator();
 
             XmlNode platformNode = root.FirstChild.NextSibling;
-            Game game = new Game();
+            GDBNETGame game = new GDBNETGame();
 
             IEnumerator ienumGame = platformNode.GetEnumerator();
             XmlNode attributeNode;
-            while (ienumGame.MoveNext()) {
+            while (ienumGame.MoveNext())
+            {
                 attributeNode = (XmlNode)ienumGame.Current;
 
                 // Iterate through all platform attributes
-                switch (attributeNode.Name) {
+                switch (attributeNode.Name)
+                {
                     case "id":
                         int.TryParse(attributeNode.InnerText, out game.ID);
                         break;
@@ -162,14 +174,16 @@ namespace TheGamesDBAPI {
                         break;
                     case "AlternateTitles":
                         IEnumerator ienumAlternateTitles = attributeNode.GetEnumerator();
-                        while (ienumAlternateTitles.MoveNext()) {
-                            game.AlternateTitles.Add(((XmlNode) ienumAlternateTitles.Current).InnerText);
+                        while (ienumAlternateTitles.MoveNext())
+                        {
+                            game.AlternateTitles.Add(((XmlNode)ienumAlternateTitles.Current).InnerText);
                         }
                         break;
                     case "Genres":
                         IEnumerator ienumGenres = attributeNode.GetEnumerator();
-                        while (ienumGenres.MoveNext()) {
-                            game.Genres.Add(((XmlNode) ienumGenres.Current).InnerText);
+                        while (ienumGenres.MoveNext())
+                        {
+                            game.Genres.Add(((XmlNode)ienumGenres.Current).InnerText);
                         }
                         break;
                     case "Images":
@@ -186,7 +200,8 @@ namespace TheGamesDBAPI {
         /// </summary>
         /// <param name="game">The game to return data for</param>
         /// <returns>A Game-object containing all the data about the game, or null if no game was found</returns>
-        public static Game GetGame(GameSearchResult game) {
+        public static GDBNETGame GetGame(GDBNETGameSearchResult game)
+        {
             return GetGame(game.ID);
         }
 
@@ -194,7 +209,8 @@ namespace TheGamesDBAPI {
         /// Gets a collection of all the available platforms.
         /// </summary>
         /// <returns>A collection of all the available platforms</returns>
-        public static ICollection<PlatformSearchResult> GetPlatforms() {
+        public static ICollection<GDBNETPlatformSearchResult> GetPlatforms()
+        {
             XmlDocument doc = new XmlDocument();
 
             doc.Load(@"http://thegamesdb.net/api/GetPlatformsList.php");
@@ -202,22 +218,25 @@ namespace TheGamesDBAPI {
             XmlNode root = doc.DocumentElement;
             IEnumerator ienum = root.FirstChild.NextSibling.GetEnumerator();
 
-            List<PlatformSearchResult> platforms = new List<PlatformSearchResult>();
+            List<GDBNETPlatformSearchResult> platforms = new List<GDBNETPlatformSearchResult>();
 
             // Iterate through all platforms
             XmlNode platformNode;
-            while (ienum.MoveNext()) {
+            while (ienum.MoveNext())
+            {
                 platformNode = (XmlNode)ienum.Current;
 
-                PlatformSearchResult platform = new PlatformSearchResult();
+                GDBNETPlatformSearchResult platform = new GDBNETPlatformSearchResult();
 
                 IEnumerator ienumPlatform = platformNode.GetEnumerator();
                 XmlNode attributeNode;
-                while (ienumPlatform.MoveNext()) {
+                while (ienumPlatform.MoveNext())
+                {
                     attributeNode = (XmlNode)ienumPlatform.Current;
 
                     // Iterate through all platform attributes
-                    switch (attributeNode.Name) {
+                    switch (attributeNode.Name)
+                    {
                         case "id":
                             int.TryParse(attributeNode.InnerText, out platform.ID);
                             break;
@@ -241,7 +260,8 @@ namespace TheGamesDBAPI {
         /// </summary>
         /// <param name="ID">The platform ID to return data for (can be found by using GetPlatformsList)</param>
         /// <returns>A Platform-object containing all the data about the platform, or null if no platform was found</returns>
-        public static Platform GetPlatform(int ID) {
+        public static GDBNETPlatform GetPlatform(int ID)
+        {
             XmlDocument doc = new XmlDocument();
             doc.Load(@"http://thegamesdb.net/api/GetPlatform.php?id=" + ID);
 
@@ -249,15 +269,17 @@ namespace TheGamesDBAPI {
             IEnumerator ienum = root.GetEnumerator();
 
             XmlNode platformNode = root.FirstChild.NextSibling;
-            Platform platform = new Platform();
+            GDBNETPlatform platform = new GDBNETPlatform();
 
             IEnumerator ienumPlatform = platformNode.GetEnumerator();
             XmlNode attributeNode;
-            while (ienumPlatform.MoveNext()) {
+            while (ienumPlatform.MoveNext())
+            {
                 attributeNode = (XmlNode)ienumPlatform.Current;
 
                 // Iterate through all platform attributes
-                switch (attributeNode.Name) {
+                switch (attributeNode.Name)
+                {
                     case "id":
                         int.TryParse(attributeNode.InnerText, out platform.ID);
                         break;
@@ -311,7 +333,8 @@ namespace TheGamesDBAPI {
         /// </summary>
         /// <param name="platform">The platform to return data for (can be found by using GetPlatformsList)</param>
         /// <returns>A Platform-object containing all the data about the platform, or null if no platform was found</returns>
-        public static Platform GetPlatform(PlatformSearchResult platform) {
+        public static GDBNETPlatform GetPlatform(GDBNETPlatformSearchResult platform)
+        {
             return GetPlatform(platform.ID);
         }
 
@@ -320,7 +343,8 @@ namespace TheGamesDBAPI {
         /// </summary>
         /// <param name="ID">The platform ID to return games for (can be found by using GetPlatformsList)</param>
         /// <returns>A collection of all the games on the platform</returns>
-        public static ICollection<GameSearchResult> GetPlatformGames(int ID) {
+        public static ICollection<GDBNETGameSearchResult> GetPlatformGames(int ID)
+        {
             XmlDocument doc = new XmlDocument();
             try
             {
@@ -328,29 +352,32 @@ namespace TheGamesDBAPI {
             }
             catch (Exception ex)
             {
-                return new List<GameSearchResult>();
+                return new List<GDBNETGameSearchResult>();
             }
             finally { }
-            
+
 
             XmlNode root = doc.DocumentElement;
             IEnumerator ienum = root.GetEnumerator();
 
-            List<GameSearchResult> games = new List<GameSearchResult>();
+            List<GDBNETGameSearchResult> games = new List<GDBNETGameSearchResult>();
 
             // Iterate through all games
             XmlNode gameNode;
-            while (ienum.MoveNext()) {
-                GameSearchResult game = new GameSearchResult();
+            while (ienum.MoveNext())
+            {
+                GDBNETGameSearchResult game = new GDBNETGameSearchResult();
                 gameNode = (XmlNode)ienum.Current;
 
                 IEnumerator ienumGame = gameNode.GetEnumerator();
                 XmlNode attributeNode;
-                while (ienumGame.MoveNext()) {
+                while (ienumGame.MoveNext())
+                {
                     attributeNode = (XmlNode)ienumGame.Current;
 
                     // Iterate through all game attributes
-                    switch (attributeNode.Name) {
+                    switch (attributeNode.Name)
+                    {
                         case "id":
                             int.TryParse(attributeNode.InnerText, out game.ID);
                             break;
@@ -374,9 +401,11 @@ namespace TheGamesDBAPI {
         /// </summary>
         /// <param name="platform">The platform to return games for</param>
         /// <returns>A collection of all the games on the platform</returns>
-        public static ICollection<GameSearchResult> GetPlatformGames(Platform platform) {
-            ICollection<GameSearchResult> games = GetPlatformGames(platform.ID);
-            foreach (GameSearchResult game in games) {
+        public static ICollection<GDBNETGameSearchResult> GetPlatformGames(GDBNETPlatform platform)
+        {
+            ICollection<GDBNETGameSearchResult> games = GetPlatformGames(platform.ID);
+            foreach (GDBNETGameSearchResult game in games)
+            {
                 game.Platform = platform.Name;
             }
             return games;
@@ -387,9 +416,11 @@ namespace TheGamesDBAPI {
         /// </summary>
         /// <param name="platform">The platform to return games for</param>
         /// <returns>A collection of all the games on the platform</returns>
-        public static ICollection<GameSearchResult> GetPlatformGames(PlatformSearchResult platform) {
-            ICollection<GameSearchResult> games = GetPlatformGames(platform.ID);
-            foreach (GameSearchResult game in games) {
+        public static ICollection<GDBNETGameSearchResult> GetPlatformGames(GDBNETPlatformSearchResult platform)
+        {
+            ICollection<GDBNETGameSearchResult> games = GetPlatformGames(platform.ID);
+            foreach (GDBNETGameSearchResult game in games)
+            {
                 game.Platform = platform.Name;
             }
             return games;
@@ -400,7 +431,8 @@ namespace TheGamesDBAPI {
         /// </summary>
         /// <param name="AccountIdentifier">The unique 'account identifier' of the user in question. It can be found on their 'My User Info' page.</param>
         /// <returns>Collection of game ID:s</returns>
-        public static ICollection<int> GetUserFavorites(String AccountIdentifier) {
+        public static ICollection<int> GetUserFavorites(String AccountIdentifier)
+        {
             XmlDocument doc = new XmlDocument();
             doc.Load(@"http://thegamesdb.net/api/User_Favorites.php?accountid=" + AccountIdentifier);
 
@@ -411,7 +443,8 @@ namespace TheGamesDBAPI {
 
             IEnumerator ienumGame = root.GetEnumerator();
             XmlNode gameNode;
-            while (ienumGame.MoveNext()) {
+            while (ienumGame.MoveNext())
+            {
                 gameNode = (XmlNode)ienumGame.Current;
 
                 int favorite = 0;
@@ -427,7 +460,8 @@ namespace TheGamesDBAPI {
         /// </summary>
         /// <param name="AccountIdentifier">The unique 'account identifier' of the user in question. It can be found on their 'My User Info' page.</param>
         /// <param name="GameID">ID of the game to add</param>
-        public static void AddUserFavorite(String AccountIdentifier, int GameID) {
+        public static void AddUserFavorite(String AccountIdentifier, int GameID)
+        {
             SendRequest(@"http://thegamesdb.net/api/User_Favorites.php?accountid=" + AccountIdentifier + @"&type=add&gameid=" + GameID);
         }
 
@@ -436,7 +470,8 @@ namespace TheGamesDBAPI {
         /// </summary>
         /// <param name="AccountIdentifier">The unique 'account identifier' of the user in question. It can be found on their 'My User Info' page.</param>
         /// <param name="GameID">ID of the game to remove</param>
-        public static void RemoveUserFavorite(String AccountIdentifier, int GameID) {
+        public static void RemoveUserFavorite(String AccountIdentifier, int GameID)
+        {
             SendRequest(@"http://thegamesdb.net/api/User_Favorites.php?accountid=" + AccountIdentifier + @"&type=remove&gameid=" + GameID);
         }
 
@@ -446,7 +481,8 @@ namespace TheGamesDBAPI {
         /// <param name="AccountIdentifier">The unique 'account identifier' of the user in question. It can be found on their 'My User Info' page.</param>
         /// <param name="GameID">ID of the game to get the rating of</param>
         /// <returns>A rating of 1 to 10 (or 0 if the user has not rated the game)</returns>
-        public static int GetUserRating(String AccountIdentifier, int GameID) {
+        public static int GetUserRating(String AccountIdentifier, int GameID)
+        {
             // Create an XML document instance.
             XmlDocument doc = new XmlDocument();
 
@@ -466,8 +502,10 @@ namespace TheGamesDBAPI {
         /// <param name="AccountIdentifier">The unique 'account identifier' of the user in question. It can be found on their 'My User Info' page.</param>
         /// <param name="GameID">ID of the game to rate</param>
         /// <param name="Rating">A rating of 1 to 10</param>
-        public static void SetUserRating(String AccountIdentifier, int GameID, int Rating) {
-            if (Rating < 1 || Rating > 10) {
+        public static void SetUserRating(String AccountIdentifier, int GameID, int Rating)
+        {
+            if (Rating < 1 || Rating > 10)
+            {
                 throw new ArgumentOutOfRangeException();
             }
 
@@ -479,11 +517,13 @@ namespace TheGamesDBAPI {
         /// </summary>
         /// <param name="AccountIdentifier">The unique 'account identifier' of the user in question. It can be found on their 'My User Info' page.</param>
         /// <param name="GameID">ID of the game to remove the rating for</param>
-        public static void RemoveUserRating(String AccountIdentifier, int GameID) {
+        public static void RemoveUserRating(String AccountIdentifier, int GameID)
+        {
             SendRequest(@"http://thegamesdb.net/api/User_Rating.php?accountid=" + AccountIdentifier + @"&itemid=" + GameID + @"&rating=0");
         }
 
-        private static void SendRequest(String URL) {
+        private static void SendRequest(String URL)
+        {
             XmlDocument doc = new XmlDocument();
             doc.Load(URL);
         }

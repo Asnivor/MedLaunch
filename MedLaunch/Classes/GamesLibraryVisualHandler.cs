@@ -85,6 +85,7 @@ namespace MedLaunch.Classes
             Label lblDeveloperTitle = (Label)mw.FindName("lblDeveloperTitle");
             Label lblPublisherTitle = (Label)mw.FindName("lblPublisherTitle");
 
+
             // listview
             ListView Screenshots = (ListView)mw.FindName("Screenshots");
 

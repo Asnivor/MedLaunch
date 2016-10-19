@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 using System.Collections;
 
-namespace TheGamesDBAPI {
+namespace MedLaunch.Classes.TheGamesDB
+{
     /// <summary>
     /// Contains the data for one game in the database.
     /// </summary>
-    public class Game {
+    public class GDBNETGame
+    {
         /// <summary>
         /// Unique database ID
         /// </summary>
@@ -24,32 +27,32 @@ namespace TheGamesDBAPI {
         /// Which platform the game is for.
         /// </summary>
         public String Platform;
-        
+
         /// <summary>
         /// Which date the game was first released on.
         /// </summary>
         public String ReleaseDate;
-        
+
         /// <summary>
         /// A general description of the game.
         /// </summary>
         public String Overview;
-        
+
         /// <summary>
         /// ESRB rating for the game.
         /// </summary>
         public String ESRB;
-        
+
         /// <summary>
         /// How many players the game supports. "1","2","3" or "4+".
         /// </summary>
         public String Players;
-        
+
         /// <summary>
         /// The publisher(s) of the game.
         /// </summary>
         public String Publisher;
-        
+
         /// <summary>
         /// The developer(s) of the game.
         /// </summary>
@@ -78,7 +81,8 @@ namespace TheGamesDBAPI {
         /// <summary>
         /// Creates a new Game without any content.
         /// </summary>
-        public Game() {
+        public GDBNETGame()
+        {
             AlternateTitles = new List<String>();
             Genres = new List<String>();
             Images = new GameImages();
@@ -87,7 +91,8 @@ namespace TheGamesDBAPI {
         /// <summary>
         /// Represents the images for one game in the database.
         /// </summary>
-        public class GameImages {
+        public class GameImages
+        {
             /// <summary>
             /// The art on the back of the box.
             /// </summary>
@@ -116,7 +121,8 @@ namespace TheGamesDBAPI {
             /// <summary>
             /// Creates a new GameImages without any content.
             /// </summary>
-            public GameImages() {
+            public GameImages()
+            {
                 Fanart = new List<GameImage>();
                 Banners = new List<GameImage>();
                 Screenshots = new List<GameImage>();
@@ -126,12 +132,15 @@ namespace TheGamesDBAPI {
             /// Adds all the images that can be found in the XmlNode
             /// </summary>
             /// <param name="node">the XmlNode to search through</param>
-            public void FromXmlNode(XmlNode node) {
+            public void FromXmlNode(XmlNode node)
+            {
                 IEnumerator ienumImages = node.GetEnumerator();
-                while (ienumImages.MoveNext()) {
+                while (ienumImages.MoveNext())
+                {
                     XmlNode imageNode = (XmlNode)ienumImages.Current;
 
-                    switch (imageNode.Name) {
+                    switch (imageNode.Name)
+                    {
                         case "fanart":
                             Fanart.Add(new GameImage(imageNode.FirstChild));
                             break;
@@ -142,10 +151,12 @@ namespace TheGamesDBAPI {
                             Screenshots.Add(new GameImage(imageNode.FirstChild));
                             break;
                         case "boxart":
-                            if (imageNode.Attributes.GetNamedItem("side").InnerText == "front") {
+                            if (imageNode.Attributes.GetNamedItem("side").InnerText == "front")
+                            {
                                 BoxartFront = new GameImage(imageNode);
                             }
-                            else {
+                            else
+                            {
                                 BoxartBack = new GameImage(imageNode);
                             }
 
@@ -157,7 +168,8 @@ namespace TheGamesDBAPI {
             /// <summary>
             /// Represents one image
             /// </summary>
-            public class GameImage {
+            public class GameImage
+            {
                 /// <summary>
                 /// The width of the image in pixels.
                 /// </summary>
@@ -178,7 +190,8 @@ namespace TheGamesDBAPI {
                 /// Creates an image from an XmlNode.
                 /// </summary>
                 /// <param name="node">XmlNode to get data from</param>
-                public GameImage(XmlNode node) {
+                public GameImage(XmlNode node)
+                {
                     Path = node.InnerText;
 
                     int.TryParse(node.Attributes.GetNamedItem("width").InnerText, out Width);

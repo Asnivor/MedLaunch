@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MedLaunch.Models;
-using TheGamesDBAPI;
+using MedLaunch.Classes.TheGamesDB;
 using MahApps.Metro.Controls.Dialogs;
 using System.Text.RegularExpressions;
 using FuzzyString;
@@ -214,7 +214,7 @@ namespace MedLaunch.Classes
             // attempt connection
             try
             {
-                TheGamesDBAPI.Game g = GamesDB.GetGame(GdbId);
+                GDBNETGame g = GDBNETGamesDB.GetGame(GdbId);
                 if (g == null)
                 {
                     // return
@@ -352,7 +352,7 @@ namespace MedLaunch.Classes
                 if (!File.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\" + local))
                 {
                     // file not exists
-                    wc.DownloadFile(GamesDB.BaseImgURL + url, System.AppDomain.CurrentDomain.BaseDirectory + "\\" + local);                    
+                    wc.DownloadFile(GDBNETGamesDB.BaseImgURL + url, System.AppDomain.CurrentDomain.BaseDirectory + "\\" + local);                    
                 }
                
                 // add to object
@@ -1108,7 +1108,7 @@ namespace MedLaunch.Classes
                 if (sys.systemId == 16 || sys.systemId == 17 || sys.systemId == 18)
                     continue;
                 count++;
-                List<GameSearchResult> merged = new List<GameSearchResult>();
+                List<GDBNETGameSearchResult> merged = new List<GDBNETGameSearchResult>();
 
                 if (controller != null)
                 {
@@ -1121,7 +1121,7 @@ namespace MedLaunch.Classes
                 // perform lookups
                 foreach (int gid in sys.theGamesDBPlatformId)
                 {
-                    List<GameSearchResult> result = TheGamesDBAPI.GamesDB.GetPlatformGames(gid).ToList();
+                    List<GDBNETGameSearchResult> result = GDBNETGamesDB.GetPlatformGames(gid).ToList();
                     if (result.Count == 0)
                     {
                         // nothing returned
@@ -1135,7 +1135,7 @@ namespace MedLaunch.Classes
                 }
 
                 // remove duplicates
-                List<GameSearchResult> nodupe = merged.Distinct().ToList();
+                List<GDBNETGameSearchResult> nodupe = merged.Distinct().ToList();
 
                 // convert to GDBPlatformGame format and add to top list
                 foreach (var n in nodupe)
@@ -1170,10 +1170,10 @@ namespace MedLaunch.Classes
         }
 
         // get all games from the API based on gamesdb system ID
-        public static ICollection<GameSearchResult> GetPlatformGames(int systemId)
+        public static ICollection<GDBNETGameSearchResult> GetPlatformGames(int systemId)
         {
 
-            ICollection<GameSearchResult> result = TheGamesDBAPI.GamesDB.GetPlatformGames(systemId);
+            ICollection<GDBNETGameSearchResult> result = GDBNETGamesDB.GetPlatformGames(systemId);
             return result;
         }
 

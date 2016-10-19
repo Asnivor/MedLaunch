@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 using System.Collections;
 
-namespace TheGamesDBAPI {
+namespace MedLaunch.Classes.TheGamesDB
+{
     /// <summary>
     /// Contains the data for one platform in the database.
     /// </summary>
-    public class Platform {
+    public class GDBNETPlatform
+    {
         /// <summary>
         /// Unique database ID.
         /// </summary>
@@ -29,7 +32,7 @@ namespace TheGamesDBAPI {
         /// General overview of the platform.
         /// </summary>
         public String Overview;
-        
+
         /// <summary>
         /// The developer(s) of the platform.
         /// </summary>
@@ -83,14 +86,16 @@ namespace TheGamesDBAPI {
         /// <summary>
         /// Creates a new Platform without any content.
         /// </summary>
-        public Platform() {
+        public GDBNETPlatform()
+        {
             Images = new PlatformImages();
         }
 
         /// <summary>
         /// Represents the images for one platform in the database.
         /// </summary>
-        public class PlatformImages {
+        public class PlatformImages
+        {
             /// <summary>
             /// Path to the image of the console.
             /// </summary>
@@ -119,7 +124,8 @@ namespace TheGamesDBAPI {
             /// <summary>
             /// Creates a new PlatformImages without any content.
             /// </summary>
-            public PlatformImages() {
+            public PlatformImages()
+            {
                 Fanart = new List<PlatformImage>();
                 Banners = new List<PlatformImage>();
             }
@@ -128,12 +134,15 @@ namespace TheGamesDBAPI {
             /// Adds all the images that can be found in the XmlNode
             /// </summary>
             /// <param name="node">the XmlNode to search through</param>
-            public void FromXmlNode(XmlNode node) {
+            public void FromXmlNode(XmlNode node)
+            {
                 IEnumerator ienumImages = node.GetEnumerator();
-                while (ienumImages.MoveNext()) {
+                while (ienumImages.MoveNext())
+                {
                     XmlNode imageNode = (XmlNode)ienumImages.Current;
 
-                    switch (imageNode.Name) {
+                    switch (imageNode.Name)
+                    {
                         case "fanart":
                             Fanart.Add(new PlatformImage(imageNode.FirstChild));
                             break;
@@ -156,7 +165,8 @@ namespace TheGamesDBAPI {
             /// <summary>
             /// Represents one image
             /// </summary>
-            public class PlatformImage {
+            public class PlatformImage
+            {
                 /// <summary>
                 /// The width of the image in pixels.
                 /// </summary>
@@ -177,7 +187,8 @@ namespace TheGamesDBAPI {
                 /// Creates an image from an XmlNode.
                 /// </summary>
                 /// <param name="node">XmlNode to get data from</param>
-                public PlatformImage(XmlNode node) {
+                public PlatformImage(XmlNode node)
+                {
                     Path = node.InnerText;
 
                     int.TryParse(node.Attributes.GetNamedItem("width").InnerText, out Width);
