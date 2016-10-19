@@ -49,6 +49,11 @@ namespace MedLaunch.Classes.TheGamesDB
         public String Players;
 
         /// <summary>
+        /// Whether the game is Co-op or not
+        /// </summary>
+        public String Coop;
+
+        /// <summary>
         /// The publisher(s) of the game.
         /// </summary>
         public String Publisher;
