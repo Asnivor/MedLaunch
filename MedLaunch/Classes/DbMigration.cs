@@ -6,17 +6,23 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.IO;
 using MedLaunch.Models;
+using System.Diagnostics;
+using System.Windows;
+using System.Threading;
 
 namespace MedLaunch.Classes
 {
     public static class DbMigration
     {
-        public static void CheckVersions()
+        public static bool CheckVersions()
         {
+            // skip this as still testing
+            return false;
+
             string dbPath = @"Data\Settings\MedLaunch.db";
             // first check whether the database exists - return if it does not
             if (!File.Exists(dbPath))
-                return;
+                return false;
 
             // create System.Data.SQLite connection
             string connString = "Data Source=" + AppDomain.CurrentDomain.BaseDirectory + dbPath;
@@ -62,9 +68,25 @@ namespace MedLaunch.Classes
             }
 
             if (upgradeNeeded == false)
-                return;
+                return false;
 
-            // start the DB upgrade procedure
+            /* start the DB upgrade procedure */
+            DoDbUpgrade();
+            return false;        
+            
+        }
+
+        public static void DoDbUpgrade()
+        {
+            // build command line args
+            string processArg = "/P:" + Process.GetCurrentProcess().Id.ToString();
+            string dbUpdateArg = "/DBU:MedLaunch.db";
+            string args = processArg + " " + dbUpdateArg;
+
+            // call the updater app and close this one
+            Process.Start("Updater.exe", args);
+            Thread.Sleep(5000);
+            Environment.Exit(0);
         }
     }
 }
