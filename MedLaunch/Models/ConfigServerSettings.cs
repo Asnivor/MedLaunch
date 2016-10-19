@@ -62,6 +62,7 @@ namespace MedLaunch.Models
         // pouplate servers datagrid
         public static void PopulateServersDatagrid(DataGrid cb)
         {
+            /*
             List<DataGridServersView> srvs = new List<DataGridServersView>();
             var servers = GetServers();
 
@@ -80,7 +81,7 @@ namespace MedLaunch.Models
             }
 
             cb.ItemsSource = srvs;
-
+            */
         }
 
 

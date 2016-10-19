@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace MedLaunch.Classes
 {
-    public static class CMenu
+    public static class CMenu1
     {
         // generate context menu for ROM list display
         public static ContextMenu BuildGamesMenu(DataGrid dgGameList)
