@@ -57,10 +57,13 @@ namespace MedLaunch.Classes
             Border brdSidebarScreenshots = (Border)mw.FindName("brdSidebarScreenshots");
             Border brdSidebarFanArt = (Border)mw.FindName("brdSidebarFanArt");
 
+            Border brdSidebarOverview = (Border)mw.FindName("brdSidebarOverview");
+
             // expanders
             Expander expSysInfo = (Expander)mw.FindName("expSysInfo");
             Expander expGameInfo = (Expander)mw.FindName("expGameInfo");
             Expander expGameInformation = (Expander)mw.FindName("expGameInformation");
+            Expander expOverview = (Expander)mw.FindName("expOverview");
 
             // labels
             Label lblGameName = (Label)mw.FindName("lblGameName");
@@ -85,6 +88,8 @@ namespace MedLaunch.Classes
             Label lblGenresTitle = (Label)mw.FindName("lblGenresTitle");
             Label lblDeveloperTitle = (Label)mw.FindName("lblDeveloperTitle");
             Label lblPublisherTitle = (Label)mw.FindName("lblPublisherTitle");
+
+            TextBlock tbOverview = (TextBlock)mw.FindName("tbOverview");
 
 
             // listview
@@ -141,7 +146,7 @@ namespace MedLaunch.Classes
 
             foreach (Image i in ss)
             {
-                i.SetVisibility();
+                i.Visibility = Visibility.Collapsed;
             }
             
 
@@ -165,7 +170,7 @@ namespace MedLaunch.Classes
             };
             foreach (Image i in fa)
             {
-                i.SetVisibility();
+                i.Visibility = Visibility.Collapsed;
             }
 
             // system info
@@ -212,9 +217,19 @@ namespace MedLaunch.Classes
             GDBLink link = GDBLink.GetRecord(gameId);
             if (link == null)
             {
+                // no gdb data has been scraped - hide controls
+                foreach (Image i in gdbImages)
+                {
+                    i.Visibility = Visibility.Collapsed;
+                }
+                foreach (Label l in gdbLabels)
+                {
+                    l.Visibility = Visibility.Collapsed;
+                }
                 expGameInformation.Header = "thegamesdb.net Info";
                 brdSidebarScreenshots.Visibility = Visibility.Collapsed;
-                brdSidebarFanArt.Visibility = Visibility.Collapsed;  
+                brdSidebarFanArt.Visibility = Visibility.Collapsed;
+                brdSidebarOverview.Visibility = Visibility.Collapsed;
                 return;
             }
                 
@@ -250,12 +265,46 @@ namespace MedLaunch.Classes
             lblGenres.Content = string.Join(", ", (GDBGameData.JsonDeSerialize(gd.Genres)).ToArray());
             lblDeveloper.Content = gd.Developer;
             lblPublisher.Content = gd.Publisher;
+            tbOverview.Text = gd.Overview;
 
             // set visibilities             
             foreach (Label l in gdbLabels)
             {
                 l.SetVisibility();
-            }                 
+            }
+            if (tbOverview.Text == "")
+                brdSidebarOverview.Visibility = Visibility.Collapsed;
+            else { brdSidebarOverview.Visibility = Visibility.Visible; }
+
+            // hide things that have no data
+            if ((string)lblAltNames.Content == "" || (string)lblAltNames.Content == " ")
+            {
+                lblAltNamesTitle.Visibility = Visibility.Collapsed;
+                }
+            if ((string)lblReleaseDate.Content == "" || (string)lblReleaseDate.Content == " ")
+                 {
+               lblReleaseDateTitle.Visibility = Visibility.Collapsed;
+              }
+            if ((string)lblPlayers.Content == "" || (string)lblPlayers.Content == " ")
+                {
+                lblPlayersTitle.Visibility = Visibility.Collapsed;
+               }
+            if ((string)lblCoop.Content == "" || (string)lblCoop.Content == "")
+                {
+                lblCoopTitle.Visibility = Visibility.Collapsed;
+                }
+           if ((string)lblGenres.Content == "" || (string)lblGenres.Content == "")
+               {
+               lblGenresTitle.Visibility = Visibility.Collapsed;
+               }
+           if ((string)lblDeveloper.Content == "" || (string)lblDeveloper.Content == " ")
+                {
+               lblDeveloperTitle.Visibility = Visibility.Collapsed;
+              }
+           if ((string)lblPublisher.Content == "" || (string)lblPublisher.Content == " ")
+             {
+               lblPublisherTitle.Visibility = Visibility.Collapsed;
+             }
 
             // screenshots
             if (gd.ScreenshotLocalImages != null && gd.ScreenshotLocalImages != "")
@@ -389,6 +438,109 @@ namespace MedLaunch.Classes
             rtTarget.IsChecked = true;
             tbFilterDatagrid.Text = tbText;
 
+        }
+
+        private static List<Expander> GetExpanderControls()
+        {
+            // get the mainwindow
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            // get all the expander objects
+            Expander expGameInfo = (Expander)mw.FindName("expGameInfo");                    // GameStats
+            Expander expGameInformation = (Expander)mw.FindName("expGameInformation");      // GamesDB games info
+            Expander expOverview = (Expander)mw.FindName("expOverview");                    // overview
+            Expander expScreenshots = (Expander)mw.FindName("expScreenshots");              // screenshots
+            Expander expFanArt = (Expander)mw.FindName("expFanArt");                        // fanart
+            Expander expScrapingOptions = (Expander)mw.FindName("expScrapingOptions");      // scraping options
+            Expander expSysInfo = (Expander)mw.FindName("expSysInfo");                      // system info
+
+            // add controls to the List
+            List<Expander> exp = new List<Expander>
+            {
+                expGameInfo,
+                expGameInformation,
+                expOverview,
+                expScreenshots,
+                expFanArt,
+                expScrapingOptions,
+                expSysInfo
+            };
+            return exp;
+        }
+
+        public static void LoadExpanderStates()
+        {
+            // get the expander controls
+            List<Expander> expanders = GetExpanderControls();
+
+            // get a globalsettings object
+            GlobalSettings gs = GlobalSettings.GetGlobals();
+
+            foreach (Expander e in expanders)
+            {                
+                switch (e.Name)
+                {
+                    case "expGameInfo":
+                        e.IsExpanded = gs.glGameInfo;
+                        break;
+                    case "expGameInformation":
+                        e.IsExpanded = gs.glGameInfo;
+                        break;
+                    case "expOverview":
+                        e.IsExpanded = gs.glOverview;
+                        break;
+                    case "expScreenshots":
+                        e.IsExpanded = gs.glScreenshots;
+                        break;
+                    case "expFanArt":
+                        e.IsExpanded = gs.glFanart;
+                        break;
+                    case "expScrapingOptions":
+                        e.IsExpanded = gs.glScrapingOptions;
+                        break;
+                    case "expSysInfo":
+                        e.IsExpanded = gs.glSystemInfo;
+                        break;
+                }
+            }
+        }
+
+        public static void SaveExpanderStates()
+        {
+            // get the expander controls
+            List<Expander> expanders = GetExpanderControls();
+
+            // get a globalsettings object
+            GlobalSettings gs = GlobalSettings.GetGlobals();
+
+            foreach (Expander e in expanders)
+            {
+                switch (e.Name)
+                {
+                    case "expGameInfo":
+                        gs.glGameInfo = e.IsExpanded;
+                        break;
+                    case "expGameInformation":
+                        gs.glGameInfo = e.IsExpanded;
+                        break;
+                    case "expOverview":
+                        gs.glOverview = e.IsExpanded;
+                        break;
+                    case "expScreenshots":
+                        gs.glScreenshots = e.IsExpanded;
+                        break;
+                    case "expFanArt":
+                        gs.glFanart = e.IsExpanded;
+                        break;
+                    case "expScrapingOptions":
+                        gs.glScrapingOptions = e.IsExpanded;
+                        break;
+                    case "expSysInfo":
+                        gs.glSystemInfo = e.IsExpanded;
+                        break;
+                }
+            }
+            // save to database
+            GlobalSettings.SetGlobals(gs);
         }
 
     }

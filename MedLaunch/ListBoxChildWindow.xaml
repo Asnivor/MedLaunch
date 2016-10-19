@@ -59,10 +59,11 @@
 				FontSize="20"
 				FontWeight="Thin"
 				Content="Select"
-				Click="btnSelect_Click" />
+				Click="btnSelect_Click" 
+                x:Name="btnSelect"/>
 
         <Button Grid.Row="3"
-                x:Name="btnSelect"
+                
 				Margin="5"
 				IsDefault="True"
 				VerticalAlignment="Bottom"

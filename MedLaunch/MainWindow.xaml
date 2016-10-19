@@ -343,7 +343,7 @@
                                 <WrapPanel  Orientation="Horizontal" x:Name="SidebarWrapPanel">
 
                                 <Border x:Name="brdSidebarGame" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
-                                    <Expander x:Name="expGameInfo" IsExpanded="True" BorderThickness="0" Header="Game Stats" >
+                                    <Expander x:Name="expGameInfo" IsExpanded="True" BorderThickness="0" Header="Game Stats" Expanded="GamesLibraryExpanderSaveLayout" Collapsed="GamesLibraryExpanderSaveLayout">
                                         <StackPanel x:Name="spSidebarGame">
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
@@ -428,6 +428,9 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
 
@@ -459,12 +462,15 @@
                                                     </Image.ToolTip>
                                                 </Image>
 
-                                                <Grid Margin="0"  Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="2">
+                                                <Grid Margin="0"  Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="2" x:Name="gdatagrid">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="Auto" />
                                                         <ColumnDefinition Width="Auto" />
                                                     </Grid.ColumnDefinitions>
                                                     <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
@@ -541,12 +547,21 @@
                                                             <AccessText TextWrapping="Wrap" />
                                                         </Label.Content>
                                                     </Label>
+                                                    
 
                                                 </Grid>
 
                                                 <!-- Screenshots -->
 
-                                                <Border Grid.Row="7" Grid.ColumnSpan="2" x:Name="brdSidebarScreenshots" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
+                                                <Border Grid.Row="7" Grid.ColumnSpan="2" x:Name="brdSidebarOverview" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0"  >
+                                                    <Expander x:Name="expOverview" Grid.Row="7" Grid.ColumnSpan="2"  Header="Overview">
+                                                        <TextBlock x:Name="tbOverview" TextWrapping="Wrap" Width="{Binding ElementName=expOverview, Path=ActualWidth}">
+
+                                                        </TextBlock>
+                                                    </Expander>
+                                                </Border>
+
+                                                <Border Grid.Row="8" Grid.ColumnSpan="2" x:Name="brdSidebarScreenshots" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0">
                                                     <Expander x:Name="expScreenshots" IsExpanded="True" BorderThickness="0" Header="Screenshots" >
                                                         <StackPanel x:Name="spSidebarScreenshots">
 
@@ -696,7 +711,7 @@
 
                                                 <!-- FanArt -->
 
-                                                <Border Grid.Row="8" Grid.ColumnSpan="2" x:Name="brdSidebarFanArt" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
+                                                <Border Grid.Row="9" Grid.ColumnSpan="2" x:Name="brdSidebarFanArt" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0" >
                                                     <Expander x:Name="expFanArt" IsExpanded="True" BorderThickness="0" Header="FanArt" >
                                                         <StackPanel x:Name="spSidebarFanArt">
 

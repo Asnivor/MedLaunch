@@ -25,6 +25,15 @@ namespace MedLaunch.Models
         public bool? hideSidebar { get; set; }                      // always hide the games library sidebar
         public DateTime? gdbLastUpdated { get; set; }               // last time platformgames were synced from thegamesdb.net
 
+        // games library expander states
+        public bool glGameStats { get; set; }
+        public bool glGameInfo { get; set; }
+        public bool glOverview { get; set; }
+        public bool glScreenshots { get; set; }
+        public bool glFanart { get; set; }
+        public bool glScrapingOptions { get; set; }
+        public bool glSystemInfo { get; set; }
+
         public static GlobalSettings GetGlobalDefaults()
         {
             GlobalSettings gs = new GlobalSettings
@@ -41,8 +50,14 @@ namespace MedLaunch.Models
                 guiZoom = 1,
                 minToTaskBarOnGameLaunch = true,
                 hideSidebar = false,
-                gdbLastUpdated = DateTime.Now
-                
+                gdbLastUpdated = DateTime.Now,
+                glGameStats = true,
+                glGameInfo = true,
+                glFanart = true,
+                glOverview = true,
+                glScrapingOptions = true,
+                glScreenshots = true,
+                glSystemInfo = true
             };
             return gs;
         }

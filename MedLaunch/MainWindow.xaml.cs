@@ -48,6 +48,9 @@ namespace MedLaunch
             // initialise directories if they do not exist
             SetupDirectories.Go();
 
+            // check the database version if it exists - run the update/migration procedure if necessary
+            DbMigration.CheckVersions();
+
             // initialise SQLite db if it does not already exist
             using (var context = new MyDbContext())
             {
@@ -82,7 +85,8 @@ namespace MedLaunch
 
 
             // get application version
-
+            string appVersion = Versions.ReturnApplicationVersion();
+            /*
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
             string versionMajor = fvi.ProductMajorPart.ToString();
@@ -91,10 +95,12 @@ namespace MedLaunch
             string versionPrivate = fvi.ProductPrivatePart.ToString();
             
             string fVersion = fvi.FileVersion;
+            */
 
             // set title
             string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
-            this.Title = "MedLaunch - Windows Front-End for Mednafen (v" + versionMajor + "." + versionMinor + "." + versionBuild + "." + versionPrivate + ")"; // - Built: "+ linkTimeLocal;
+            this.Title = "MedLaunch - Windows Front-End for Mednafen (v" + appVersion + ")";
+            //this.Title = "MedLaunch - Windows Front-End for Mednafen (v" + versionMajor + "." + versionMinor + "." + versionBuild + "." + versionPrivate + ")"; // - Built: "+ linkTimeLocal;
             //this.Title = "MedLaunch - Windows Front-End for Mednafen (" + fVersion + ")";
 
             // Startup checks
@@ -2032,6 +2038,12 @@ namespace MedLaunch
         private void btnScrapingPickGame_Click(object sender, RoutedEventArgs e)
         {
             GameScraper.PickGame(dgGameList);
+        }
+
+        // save the layout of all the games library expander states
+        private void GamesLibraryExpanderSaveLayout(object sender, RoutedEventArgs e)
+        {
+            GamesLibraryVisualHandler.SaveExpanderStates();
         }
     }
 
