@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using MedLaunch.Models;
 using System.Windows.Media.Imaging;
 using System.IO;
+using MedLaunch.Extensions;
 
 namespace MedLaunch.Classes
 {
@@ -140,7 +141,7 @@ namespace MedLaunch.Classes
 
             foreach (Image i in ss)
             {
-                i.Visibility = Visibility.Collapsed;
+                i.SetVisibility();
             }
             
 
@@ -164,18 +165,15 @@ namespace MedLaunch.Classes
             };
             foreach (Image i in fa)
             {
-                i.Visibility = Visibility.Collapsed;
+                i.SetVisibility();
             }
 
             // system info
-            //FlowDocumentScrollViewer flowSysScroll = (FlowDocumentScrollViewer)mw.FindName("flowSystemInfo");
             Label lblSysName = (Label)mw.FindName("lblSystemName");
             Image sysImage = (Image)mw.FindName("imgSystemImage");
             TextBlock tblockSysImage = (TextBlock)mw.FindName("tblockSystemDesc");
 
             string imageFileName = @"Data\Graphics\Systems\" + lsb.SystemCode.ToLower() + ".jpg";
-            //MessageBox.Show(imageFileName);
-            // update controls
 
             // game stats
             lblGameName.Content = lsb.GameName;
@@ -201,11 +199,8 @@ namespace MedLaunch.Classes
             lblTotalTime.Content = FormatMinutesToString(lsb.TotalPlayTime);
 
             // system info
-            
-            //lblSysName.Content = lsb.SystemName;
             expSysInfo.Header = lsb.SystemName;
             tblockSysImage.Text = lsb.SystemDescription;
-           // sysImage.Source = new BitmapImage(new Uri(@"/Data/Graphics/Systems/" + imageFileName, UriKind.Relative));
             BitmapImage s = new BitmapImage();
             s.BeginInit();
             s.UriSource = new Uri(imageFileName, UriKind.Relative);
@@ -217,21 +212,9 @@ namespace MedLaunch.Classes
             GDBLink link = GDBLink.GetRecord(gameId);
             if (link == null)
             {
-                // no gdb data has been scraped - hide controls
-                foreach (Image i in gdbImages)
-                {
-                    i.Visibility = Visibility.Collapsed;
-                }
-                foreach (Label l in gdbLabels)
-                {
-                    l.Visibility = Visibility.Collapsed;
-                }
                 expGameInformation.Header = "thegamesdb.net Info";
                 brdSidebarScreenshots.Visibility = Visibility.Collapsed;
-                brdSidebarFanArt.Visibility = Visibility.Collapsed;
-
-                
-                
+                brdSidebarFanArt.Visibility = Visibility.Collapsed;  
                 return;
             }
                 
@@ -248,32 +231,17 @@ namespace MedLaunch.Classes
             
             // banner (just take one)
             List<string> banners = new List<string>();
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + GDBGameData.JsonDeSerialize(gd.BannerLocalImages).FirstOrDefault()))
-            {
-                imgBanner.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + GDBGameData.JsonDeSerialize(gd.BannerLocalImages).FirstOrDefault(), UriKind.Absolute));
-                //imgBanner.Height= 300;
-                imgBanner.Visibility = Visibility.Visible;
-            }        
-            else { imgBanner.Visibility = Visibility.Collapsed; }       
-
-            // boxart
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + gd.BoxartFrontLocalImage))
-            {
-                imgBoxartFront.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + gd.BoxartFrontLocalImage, UriKind.Absolute));
-                //imgBoxartFront.Height = 300;
-                imgBoxartFront.Visibility = Visibility.Visible;
-            }
-            else { imgBoxartFront.Visibility = Visibility.Collapsed; }
-                
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + gd.BoxartBackLocalImage))
-            {
-                imgBoxartBack.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + gd.BoxartBackLocalImage, UriKind.Absolute));
-                //imgBoxartBack.Height = 300;
-                imgBoxartBack.Visibility = Visibility.Visible;
-            }
-            else { imgBoxartBack.Visibility = Visibility.Collapsed; }
-                
-
+            imgBanner.Source = GetBitmapImageFromDisk(AppDomain.CurrentDomain.BaseDirectory + GDBGameData.JsonDeSerialize(gd.BannerLocalImages).FirstOrDefault(), UriKind.Absolute);
+            imgBanner.SetVisibility();
+            
+            // boxart - front
+            imgBoxartFront.Source = GetBitmapImageFromDisk(AppDomain.CurrentDomain.BaseDirectory + gd.BoxartFrontLocalImage, UriKind.Absolute);
+            imgBoxartFront.SetVisibility();
+            
+            // boxart - back
+            imgBoxartBack.Source = GetBitmapImageFromDisk(AppDomain.CurrentDomain.BaseDirectory + gd.BoxartBackLocalImage, UriKind.Absolute);
+            imgBoxartBack.SetVisibility();
+            
             // labels
             lblAltNames.Content = string.Join(", ", (GDBGameData.JsonDeSerialize(gd.AlternateTitles)).ToArray());
             lblReleaseDate.Content = gd.ReleaseDate;
@@ -286,46 +254,8 @@ namespace MedLaunch.Classes
             // set visibilities             
             foreach (Label l in gdbLabels)
             {
-                l.Visibility = Visibility.Visible;
-            }     
-                   
-
-            // hide things that have no data
-            if ((string)lblAltNames.Content == "" || (string)lblAltNames.Content == " ")
-            {
-                lblAltNames.Visibility = Visibility.Collapsed;
-                lblAltNamesTitle.Visibility = Visibility.Collapsed;
-            }                
-            if ((string)lblReleaseDate.Content == "" || (string)lblReleaseDate.Content == " ")
-            {
-                lblReleaseDate.Visibility = Visibility.Collapsed;
-                lblReleaseDateTitle.Visibility = Visibility.Collapsed;
-            }                
-            if ((string)lblPlayers.Content == "" || (string)lblPlayers.Content == " ")
-            {
-                lblPlayers.Visibility = Visibility.Collapsed;
-                lblPlayersTitle.Visibility = Visibility.Collapsed;
-            }
-            if ((string)lblCoop.Content == "" || (string)lblCoop.Content == "")
-            {
-                lblCoop.Visibility = Visibility.Collapsed;
-                lblCoopTitle.Visibility = Visibility.Collapsed;
-            }
-            if ((string)lblGenres.Content == "" || (string)lblGenres.Content == "")
-            {
-                lblGenres.Visibility = Visibility.Collapsed;
-                lblGenresTitle.Visibility = Visibility.Collapsed;
-            }
-            if ((string)lblDeveloper.Content == "" || (string)lblDeveloper.Content == " ")
-            {
-                lblDeveloper.Visibility = Visibility.Collapsed;
-                lblDeveloperTitle.Visibility = Visibility.Collapsed;
-            }
-            if ((string)lblPublisher.Content == "" || (string)lblPublisher.Content == " ")
-            {
-                lblPublisher.Visibility = Visibility.Collapsed;
-                lblPublisherTitle.Visibility = Visibility.Collapsed;
-            }
+                l.SetVisibility();
+            }                 
 
             // screenshots
             if (gd.ScreenshotLocalImages != null && gd.ScreenshotLocalImages != "")
@@ -345,8 +275,8 @@ namespace MedLaunch.Classes
                     // populate screenshot images                    
                     string path = arr[i - 1];
                     Image img = (Image)mw.FindName("ss" + i.ToString());
-                    img.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + path, UriKind.Absolute));
-                    img.Visibility = Visibility.Visible;                   
+                    img.Source = GetBitmapImageFromDisk(AppDomain.CurrentDomain.BaseDirectory + path, UriKind.Absolute);
+                    img.SetVisibility();            
                 }               
             }
             else { brdSidebarScreenshots.Visibility = Visibility.Collapsed; }
@@ -369,16 +299,25 @@ namespace MedLaunch.Classes
                     // populate screenshot images                    
                     string path = arr[i - 1];
                     Image img = (Image)mw.FindName("fa" + i.ToString());
-                    img.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + path, UriKind.Absolute));
-                    img.Visibility = Visibility.Visible;
+                    img.Source = GetBitmapImageFromDisk(AppDomain.CurrentDomain.BaseDirectory + path, UriKind.Absolute);
+                    img.SetVisibility();
                 }
             }
             else { brdSidebarFanArt.Visibility = Visibility.Collapsed; }
-
-
-
-
         }
+
+        
+
+        public static BitmapImage GetBitmapImageFromDisk(string path, UriKind urikind)
+        {
+            // test if file does not exist
+            if (!File.Exists(path))
+                return null;
+
+            BitmapImage b = new BitmapImage(new Uri(path, urikind));
+            return b;
+        }
+
 
         public static string GetDatetimeDifference(DateTime older, DateTime newer)
         {
