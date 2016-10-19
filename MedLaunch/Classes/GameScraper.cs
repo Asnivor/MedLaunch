@@ -232,6 +232,7 @@ namespace MedLaunch.Classes
                 gd.Publisher = g.Publisher;
                 gd.Developer = g.Developer;
                 gd.Rating = g.Rating;
+                gd.Coop = g.Coop;
                 gd.AlternateTitles = GDBGameData.JsonSerialize(g.AlternateTitles);
                 gd.Genres = GDBGameData.JsonSerialize(g.Genres);
 
