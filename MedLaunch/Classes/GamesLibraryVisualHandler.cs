@@ -443,7 +443,7 @@ namespace MedLaunch.Classes
         private static List<Expander> GetExpanderControls()
         {
             // get the mainwindow
-            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            MainWindow mw = Application.Current.Windows.OfType<MedLaunch.MainWindow>().FirstOrDefault();
             // get all the expander objects
             Expander expGameInfo = (Expander)mw.FindName("expGameInfo");                    // GameStats
             Expander expGameInformation = (Expander)mw.FindName("expGameInformation");      // GamesDB games info
@@ -476,14 +476,15 @@ namespace MedLaunch.Classes
             GlobalSettings gs = GlobalSettings.GetGlobals();
 
             foreach (Expander e in expanders)
-            {                
-                switch (e.Name)
+            {
+                string name = e.Name;
+                switch (name)
                 {
                     case "expGameInfo":
-                        e.IsExpanded = gs.glGameInfo;
+                        e.IsExpanded = gs.glGameStats;
                         break;
                     case "expGameInformation":
-                        e.IsExpanded = gs.glGameStats;
+                        e.IsExpanded = gs.glGameInfo;
                         break;
                     case "expOverview":
                         e.IsExpanded = gs.glOverview;
@@ -514,10 +515,11 @@ namespace MedLaunch.Classes
 
             foreach (Expander e in expanders)
             {
-                switch (e.Name)
+                string name = e.Name;
+                switch (name)
                 {
                     case "expGameInfo":
-                        gs.glGameInfo = e.IsExpanded;
+                        gs.glGameStats = e.IsExpanded;
                         break;
                     case "expGameInformation":
                         gs.glGameInfo = e.IsExpanded;

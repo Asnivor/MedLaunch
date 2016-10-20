@@ -57,10 +57,16 @@ namespace MedLaunch.Classes
                 */
 
                 // populate Versions table
+                Versions version = Versions.GetVersionDefaults();
+                using (var context = new MyDbContext())
+                {
+                    context.Versions.Add(version);
+                    context.SaveChanges();
+                }
 
 
-                // default netplay settings
-                ConfigNetplaySettings npSettings = ConfigNetplaySettings.GetNetplayDefaults();
+                    // default netplay settings
+                    ConfigNetplaySettings npSettings = ConfigNetplaySettings.GetNetplayDefaults();
                 using (var context = new MyDbContext())
                 {
                     context.ConfigNetplaySettings.Add(npSettings);

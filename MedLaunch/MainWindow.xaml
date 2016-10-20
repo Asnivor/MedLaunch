@@ -343,7 +343,7 @@
                                 <WrapPanel  Orientation="Horizontal" x:Name="SidebarWrapPanel">
 
                                 <Border x:Name="brdSidebarGame" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
-                                    <Expander x:Name="expGameInfo" IsExpanded="True" BorderThickness="0" Header="Game Stats" Expanded="GamesLibraryExpanderSaveLayout" Collapsed="GamesLibraryExpanderSaveLayout">
+                                    <Expander x:Name="expGameInfo" BorderThickness="0" Header="Game Stats" Expanded="GamesLibraryExpanderSaveLayout" Collapsed="GamesLibraryExpanderSaveLayout">
                                         <StackPanel x:Name="spSidebarGame">
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>

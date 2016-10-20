@@ -63,6 +63,9 @@ namespace MedLaunch
             */
 
             InitializeComponent();
+
+
+            MainWindow mw = this;
             //this.WindowState = WindowState.Normal;
 
             // doubleclick handler for gui_zoom control

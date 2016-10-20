@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using MahApps.Metro.Controls.Dialogs;
+using System.Threading;
 
 namespace MedLaunch
 {
@@ -16,9 +17,10 @@ namespace MedLaunch
     {
         private void ApplicationStart(object sender, StartupEventArgs e)
         {
+            Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
             // show the initialisation window and begin checks
             ShowInitWindow();
-
+            Thread.Sleep(1000);
             // init should have completed - run MainWindow
             MainWindow mw = new MedLaunch.MainWindow();
             Application.Current.MainWindow = mw;
