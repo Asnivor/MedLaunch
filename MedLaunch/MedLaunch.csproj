@@ -205,6 +205,7 @@
     <Compile Include="Classes\FuzzySearch.cs" />
     <Compile Include="Classes\SettingsHandler.cs" />
     <Compile Include="Classes\SettingsVisualHandler.cs" />
+    <Compile Include="Classes\Initialisation.cs" />
     <Compile Include="Classes\TheGamesDB\GDBNETGame.cs" />
     <Compile Include="Classes\TheGamesDB\GDBNETGamesDB.cs" />
     <Compile Include="Classes\TheGamesDB\GDBNETGameSearchResult.cs" />
@@ -212,6 +213,9 @@
     <Compile Include="Classes\TheGamesDB\GDBNETPlatformSearchResult.cs" />
     <Compile Include="Extensions\ImageExtension.cs" />
     <Compile Include="Extensions\LabelExtension.cs" />
+    <Compile Include="InitWindow.xaml.cs">
+      <DependentUpon>InitWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ListBoxChildWindow.xaml.cs">
       <DependentUpon>ListBoxChildWindow.xaml</DependentUpon>
     </Compile>
@@ -236,6 +240,10 @@
     <Compile Include="Models\GSystem.cs" />
     <Compile Include="Models\SearchOrdering.cs" />
     <Compile Include="Models\Versions.cs" />
+    <Page Include="InitWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ListBoxChildWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -311,6 +319,10 @@
     <ProjectReference Include="..\Asnitech.Launch.Common\Asnitech.Launch.Common.csproj">
       <Project>{2e332847-6df3-4bf4-92c2-42a5c6359cc1}</Project>
       <Name>Asnitech.Launch.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Asnitech.SQLite\Asnitech.SQLite.csproj">
+      <Project>{21b251c5-8c12-43cd-b256-ad55cb5d4b57}</Project>
+      <Name>Asnitech.SQLite</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

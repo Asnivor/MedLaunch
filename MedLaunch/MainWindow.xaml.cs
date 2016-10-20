@@ -43,15 +43,16 @@ namespace MedLaunch
         public MainWindow()
         {
             // make sure class libraries are built
-            Asnitech.Launch.Common.Startup.Start();
+            //Asnitech.Launch.Common.Startup.Start();
 
             // initialise directories if they do not exist
-            SetupDirectories.Go();
+            //SetupDirectories.Go();
 
             // check the database version if it exists - run the update/migration procedure if necessary
-            DbMigration.CheckVersions();
+            //DbMigration.CheckVersions();
 
             // initialise SQLite db if it does not already exist
+            /*
             using (var context = new MyDbContext())
             {
                 context.Database.EnsureCreated();
@@ -59,6 +60,7 @@ namespace MedLaunch
                 DbEF.InitialSeed();
                 context.SaveChanges();
             }
+            */
 
             InitializeComponent();
             //this.WindowState = WindowState.Normal;

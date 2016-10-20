@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Data.Common;
 using System.Data;
-
+using System.IO;
+using System.Data.Entity;
 
 namespace Asnitech.SQLite
 {
@@ -18,7 +19,102 @@ namespace Asnitech.SQLite
 
         }
 
+        public static bool CheckDbExists(string dbPath)
+        {            
+            // first check whether the database exists - return if it does not
+            if (!File.Exists(dbPath))
+                return false;
+            else { return true; }
+        }
 
+        public static string GetDbVersion()
+        {
+            string dbPath = @"Data\Settings\MedLaunch.db";
+            // create System.Data.SQLite connection
+            string connString = "Data Source=" + AppDomain.CurrentDomain.BaseDirectory + dbPath + "; Pooling=False; Read Only=True;";
+
+            string dbVersion = "";
+            // connect to database and retreive the current version
+            using (SQLiteConnection conn = new SQLiteConnection(connString))
+            {
+                StringBuilder query = new StringBuilder();
+                query.Append("SELECT dbVersion ");
+                query.Append("FROM Versions ");
+                query.Append("WHERE versionId = 1");
+                using (SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conn))
+                {
+                    conn.Open();
+                    using (SQLiteDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            //Console.WriteLine(dr.GetValue(0) + " " + dr.GetValue(1) + " " + dr.GetValue(2));
+                            dbVersion = dr.GetValue(0).ToString();
+                        }
+                    }
+                    conn.Close();
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                }
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            }
+            SQLiteConnection.ClearAllPools();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
+            return dbVersion;
+        }
+
+        public static void RestoreDatabaseData(Database db)
+        {
+            // get current database
+
+
+            // iterate through each table
+            foreach (Tab table in db.Tables)
+            {
+                string tableName = table.TableName;
+                string primKeyName = table.PrimaryKeyColumn;
+
+                // get all primary key values into an array (this will form the rows)
+                int[] keys = (from a in table.Data
+                              select a.PrimaryKeyValue).ToArray();
+
+                List<List<Data>> rows = new List<List<Data>>();
+                // build a list of rows
+                int i = 0;
+                while (i < keys.Length)
+                {
+                    List<Data> d = new List<Data>();
+                    // get all data objects that have a primary key of value keys[i]
+                    d = (from a in table.Data
+                        where a.PrimaryKeyValue == keys[i]
+                        select a).ToList();
+                    // add list to the master list
+                    rows.Add(d);
+                    i++;
+                }
+                
+                // we should now have a List that contains Lists of row fields (each one being of the same row).      
+                // iterate through top level list
+                foreach (List<Data> list in rows)
+                {
+                    using (SQLiteConnection conn = new SQLiteConnection(@"Data Source=" + AppDomain.CurrentDomain.BaseDirectory + @"Data\Settings\MedLaunch.db"))
+                    {
+
+                   
+                        // at this level we have a List (row) containing every field on that row
+                        foreach (Data r in list)
+                        {
+                            // at this level we are iterating through all the fields in a single row
+                        }
+                    }
+                }
+            }
+        }
+
+        
 
         public static Database GetDatabaseObject(string dbPath)
         {
@@ -57,6 +153,12 @@ namespace Asnitech.SQLite
                 {
                     // first iterate through every table and create a table object
                     // [3] = table type   [2] = table name
+
+                    if (obj[3].ToString() != "table")
+                    {
+                        // this is maybe a system table - skip it
+                        continue;
+                    }
                     Tab table = new Tab();
                     table.TableName = obj[2].ToString();
                     List<Col> columns = new List<Col>();
@@ -74,40 +176,73 @@ namespace Asnitech.SQLite
 
                     table.Columns = columns;
 
-                    using (SQLiteConnection conn = new SQLiteConnection(@"Data Source=" + dbPath))
-                    {
-                        
+                    using (SQLiteConnection conn = new SQLiteConnection(@"Data Source=" + dbPath + "; Pooling=False; Read Only=True;"))
+                    {                        
                         StringBuilder query = new StringBuilder();
-                        query.Append("SELECT * ");
-                        query.Append("FROM " + table.TableName + " ");
-                        conn.Open();
-                        // now sql call to get all data for this table
-                        var cmd = new SQLiteCommand(query.ToString(), conn);
-                        var dr = cmd.ExecuteReader();
-                        foreach (var thing in dr)
-                        {
-                         
-                        }
-                        for (var i = 0; i < dr.FieldCount; i++)
-                        {
-                            //Console.WriteLine(dr.GetName(i));
-                            Data dat = new Data();
+                        // build select query with our known columns
+                        query.Append("SELECT ");
+                        string[] cNames = (from a in table.Columns
+                                 select a.ColName).ToArray();
 
+                        int cNamesCount = cNames.Length;
+                        // set primary key field
+                        table.PrimaryKeyColumn = cNames[0];
+                        int i = 0;
+                        while (i < cNamesCount)
+                        {
+                            query.Append(cNames[i]);
+                            if (i != cNamesCount - 1)
+                                query.Append(", ");
+                            query.Append(" ");
+                            i++;
+                        }                       
+                        
+                        query.Append("FROM " + table.TableName + " ");                     
+
+                        List<Data> DataList = new List<Data>();
+
+                        using (SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conn))
+                        {
+                            conn.Open();
+                            using (SQLiteDataReader dr = cmd.ExecuteReader())
+                            {
+                                while (dr.Read())
+                                {
+                                    int cnt = 0;
+                                    // loop through each returned cell
+                                    while (cnt < cNamesCount)
+                                    {
+                                        Data data = new Data();
+                                        data.PrimaryKeyValue = Convert.ToInt32(dr.GetValue(0));
+                                        data.TableName = table.TableName;
+                                        data.ColName = cNames[cnt];
+                                        data.Value = dr.GetValue(cnt).ToString();
+                                        // get the column type
+                                        data.ColType = (from u in table.Columns
+                                                        where u.ColName == cNames[cnt]
+                                                        select u.ColType).FirstOrDefault();
+                                        DataList.Add(data);
+                                        cnt++;
+                                    }
+                                }
+                            }
+                            conn.Close();
+                            GC.Collect();
+                            GC.WaitForPendingFinalizers();
                         }
-                        conn.Close();
+                        GC.Collect();
+                        GC.WaitForPendingFinalizers();
+                        table.Data = DataList;   
+                                             
                     }
-
+                    SQLiteConnection.ClearAllPools();
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
                     tables.Add(table);
                 }
-
                 db.Tables = tables;                          
             }
             return db;
-        }
-
-        
-
-    }
-
-    
+        }       
+    }   
 }

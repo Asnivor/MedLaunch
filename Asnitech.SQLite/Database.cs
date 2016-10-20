@@ -29,6 +29,7 @@ namespace Asnitech.SQLite
         public string TableName { get; set; }
         public List<Col> Columns { get; set; }
         public List<Data> Data { get; set; }
+        public string PrimaryKeyColumn { get; set; }
     }
 
     public class Col

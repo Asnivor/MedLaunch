@@ -1,0 +1,34 @@
+﻿<Window x:Class="MedLaunch.InitWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MedLaunch"
+        mc:Ignorable="d"
+        Title="MedLaunch is Initialising" Height="300" Width="300"
+        Loaded="Window_Loaded"
+        ResizeMode="NoResize"
+        ContentRendered="Window_ContentRendered"
+        >
+   
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.05*" />
+            <ColumnDefinition Width="0.6*" />
+            <ColumnDefinition Width="0.05*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="230" />
+        </Grid.RowDefinitions>
+        <Label Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0">
+            Please be patient.....
+        </Label>
+        <ScrollViewer x:Name="scr" Grid.Column="1" Grid.Row="1" >
+            <TextBlock x:Name="tbStatus" Margin="0" Foreground="#FF078301" TextWrapping="Wrap"   />
+        </ScrollViewer>
+        
+
+
+    </Grid>
+</Window>

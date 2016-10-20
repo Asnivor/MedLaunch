@@ -14,10 +14,12 @@ namespace MedLaunch.Classes
 {
     public static class DbMigration
     {
+        
+       
         public static bool CheckVersions()
         {
             // skip this as still testing
-            return false;
+           // return false;
 
             string dbPath = @"Data\Settings\MedLaunch.db";
             // first check whether the database exists - return if it does not
