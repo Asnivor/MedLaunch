@@ -483,7 +483,7 @@ namespace MedLaunch.Classes
                         e.IsExpanded = gs.glGameInfo;
                         break;
                     case "expGameInformation":
-                        e.IsExpanded = gs.glGameInfo;
+                        e.IsExpanded = gs.glGameStats;
                         break;
                     case "expOverview":
                         e.IsExpanded = gs.glOverview;
