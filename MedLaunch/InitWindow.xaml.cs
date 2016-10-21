@@ -33,7 +33,8 @@ namespace MedLaunch
     {
         public InitWindow()
         {
-            InitializeComponent();          
+            InitializeComponent();
+            
 
         }
 
@@ -99,6 +100,9 @@ namespace MedLaunch
                     }
                     if (upgradeNeeded == true)
                     {
+                        // unhide the init window
+                        this.Visibility = Visibility.Visible;
+                        this.Refresh();
                         // start db upgrade routine
                         UpdateStatus("Database upgrade is needed", true);
                         DoDbUpgrade(dbVersion, appVersion);
@@ -113,6 +117,8 @@ namespace MedLaunch
                 else
                 {
                     // upgrade definiately needed as old database didnt contain a dbversion entry (ie - it is very old)
+                    this.Visibility = Visibility.Visible;
+                    this.Refresh();
                     UpdateStatus("Database upgrade is needed", true);
                     DoDbUpgrade(dbVersion, appVersion);
                 }
@@ -1046,6 +1052,8 @@ namespace MedLaunch
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
+            // hide the init window
+            this.Visibility = Visibility.Collapsed;
             Init();
             // if beginit returns false then terminate the whole application
             //if (b == false)

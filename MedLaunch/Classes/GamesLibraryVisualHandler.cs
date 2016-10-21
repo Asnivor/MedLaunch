@@ -441,7 +441,7 @@ namespace MedLaunch.Classes
 
         }
 
-        private static List<Expander> GetExpanderControls()
+        public  static List<Expander> GetExpanderControls()
         {
             // get the mainwindow
             MainWindow mw = Application.Current.Windows.OfType<MedLaunch.MainWindow>().FirstOrDefault();

@@ -235,6 +235,18 @@ namespace MedLaunch
             // games library
             GamesLibraryVisualHandler.UpdateSidebar();
 
+            // load expander states
+            GamesLibraryVisualHandler.LoadExpanderStates();
+            // enable events once expander states have been set
+            /*
+            List < Expander > exp = GamesLibraryVisualHandler.GetExpanderControls();
+            foreach (Expander e in exp)
+            {
+                e.Collapsed += new RoutedEventHandler(GamesLibraryExpanderSaveLayout);
+                e.Expanded += new RoutedEventHandler(GamesLibraryExpanderSaveLayout);
+            }
+            */
+
             // GameScraper.GetPlatformGames(4924);
             
         }
@@ -2041,10 +2053,17 @@ namespace MedLaunch
         // save the layout of all the games library expander states
         private void GamesLibraryExpanderSaveLayout(object sender, RoutedEventArgs e)
         {
+            //MessageBox.Show("expander triggered");
             GamesLibraryVisualHandler.SaveExpanderStates();
         }
 
-
+        private void MW_Closing(object sender, CancelEventArgs e)
+        {
+            
+                // save games library expander states
+                GamesLibraryVisualHandler.SaveExpanderStates();
+              
+        }
     }
 
     
