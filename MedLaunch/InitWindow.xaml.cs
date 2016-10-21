@@ -43,7 +43,7 @@ namespace MedLaunch
         [DllImport("user32.dll")]
         private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
 
-        private static bool Init()
+        private static void Init()
         {
             // make sure class libraries are built
             Asnitech.Launch.Common.Startup.Start();
@@ -93,8 +93,8 @@ namespace MedLaunch
                 else
                 {
                     // upgrade not needed - proceed with main application launch
-                    UpdateStatus("Database upgrade is needed", true);
-                    return true;
+                    UpdateStatus("Database upgrade is not needed", true);
+                    return;
                 }
             }
             else
@@ -107,9 +107,9 @@ namespace MedLaunch
                 UpdateStatus("Seeding database with default values", true);
                 DbEF.InitialSeed();
                 UpdateStatus("Done", false);
-                return true;
+                return;
             }
-            return true;
+            return;
         }
 
         private static void DoSeed()
@@ -536,13 +536,10 @@ namespace MedLaunch
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
-            bool b;
-            // Begin init operations on new thread
-        
-                b = Init();
-                // if beginit returns false then terminate the whole application
-                if (b == false)
-                    Environment.Exit(0);
+            Init();
+            // if beginit returns false then terminate the whole application
+            //if (b == false)
+             //   Environment.Exit(0);
          
             
             // init has returned true - close this window and start mainwindow

@@ -9,6 +9,7 @@
         Loaded="Window_Loaded"
         ResizeMode="NoResize"
         ContentRendered="Window_ContentRendered"
+        WindowStartupLocation="CenterScreen" 
         >
    
     <Grid>

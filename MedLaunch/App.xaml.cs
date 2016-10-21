@@ -22,10 +22,16 @@ namespace MedLaunch
             ShowInitWindow();
             Thread.Sleep(1000);
             // init should have completed - run MainWindow
+
+            var splashScreen = new SplashScreen(@"Data\Graphics\mediconsplash.png");
+            splashScreen.Show(false);
+
             MainWindow mw = new MedLaunch.MainWindow();
             Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
             Application.Current.MainWindow = mw;
             mw.Show();
+
+            splashScreen.Close(TimeSpan.FromSeconds(1));
         }
 
         private void ShowInitWindow()
