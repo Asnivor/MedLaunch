@@ -101,10 +101,20 @@ namespace MedLaunch
             {
                 // db does not exist - proceed with creation and seeding
                 UpdateStatus("NO", false);
+                UpdateStatus("Creating database", true);
                 CreateDatabase();
+                UpdateStatus("Done", false);
+                UpdateStatus("Seeding database with default values", true);
+                DbEF.InitialSeed();
+                UpdateStatus("Done", false);
                 return true;
             }
             return true;
+        }
+
+        private static void DoSeed()
+        {
+
         }
 
         private static void DoDbUpgrade(string dbVersion, string appVersion)
@@ -145,6 +155,9 @@ namespace MedLaunch
             UpdateStatus("Old database (version:" + dbVersion + ") has been loaded into memory and renamed ", true);
             UpdateStatus("Creating a new database file (version: " + appVersion + ")", true);
             CreateDatabase();
+            UpdateStatus("Done", false);
+            UpdateStatus("Seeding database with default values", true);
+            DbEF.InitialSeed();
             UpdateStatus("Done", false);
 
             // database should be set up with all default settings. Now import all the old data
@@ -487,7 +500,6 @@ namespace MedLaunch
             {
                 context.Database.EnsureCreated();
                 // populate stock data 
-                DbEF.InitialSeed();
                 context.SaveChanges();
             }
         }
@@ -524,18 +536,18 @@ namespace MedLaunch
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
-            // Begin init operations
-            bool b = Init();
-
-            // if beginit returns false then terminate the whole application
-            if (b == false)
-                Environment.Exit(0);
-            else
-            {
-                // init has returned true - close this window and start mainwindow
-                Window win = Application.Current.Windows.OfType<Window>().SingleOrDefault();
-                win.Close();
-            }
+            bool b;
+            // Begin init operations on new thread
+        
+                b = Init();
+                // if beginit returns false then terminate the whole application
+                if (b == false)
+                    Environment.Exit(0);
+         
+            
+            // init has returned true - close this window and start mainwindow
+            Window win = Application.Current.Windows.OfType<Window>().SingleOrDefault();
+            win.Close();
         }
     }
 }

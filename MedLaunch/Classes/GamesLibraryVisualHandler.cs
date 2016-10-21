@@ -313,19 +313,19 @@ namespace MedLaunch.Classes
                 List<string> sshots = GDBGameData.JsonDeSerialize(gd.ScreenshotLocalImages);
                 String[] arr = sshots.ToArray();
                 int i = 0;
-                while (i <= 12)
-                {
-                    i++;
+                while (i < 12)
+                {                    
                     // check whether we have run out of images
-                    if (i > sshots.Count || sshots == null)
+                    if (i >= sshots.Count || sshots == null)
                     {
                         break;
                     }
                     // populate screenshot images                    
-                    string path = arr[i - 1];
-                    Image img = (Image)mw.FindName("ss" + i.ToString());
+                    string path = arr[i];
+                    Image img = (Image)mw.FindName("ss" + (i + 1).ToString());
                     img.Source = GetBitmapImageFromDisk(AppDomain.CurrentDomain.BaseDirectory + path, UriKind.Absolute);
-                    img.SetVisibility();            
+                    img.SetVisibility();
+                    i++;
                 }               
             }
             else { brdSidebarScreenshots.Visibility = Visibility.Collapsed; }
@@ -337,19 +337,20 @@ namespace MedLaunch.Classes
                 List<string> fshots = GDBGameData.JsonDeSerialize(gd.FanartLocalImages);
                 String[] arr = fshots.ToArray();
                 int i = 0;
-                while (i <= 12)
+                while (i < 12)
                 {
-                    i++;
+                    
                     // check whether we have run out of images
-                    if (i > fshots.Count || fshots == null)
+                    if (i >= fshots.Count || fshots == null)
                     {
                         break;
                     }
                     // populate screenshot images                    
-                    string path = arr[i - 1];
-                    Image img = (Image)mw.FindName("fa" + i.ToString());
+                    string path = arr[i];
+                    Image img = (Image)mw.FindName("fa" + (i + 1).ToString());
                     img.Source = GetBitmapImageFromDisk(AppDomain.CurrentDomain.BaseDirectory + path, UriKind.Absolute);
                     img.SetVisibility();
+                    i++;
                 }
             }
             else { brdSidebarFanArt.Visibility = Visibility.Collapsed; }
