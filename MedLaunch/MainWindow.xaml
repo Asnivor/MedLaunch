@@ -4064,8 +4064,10 @@
                             </Expander>
                         </Border>
 
-                        <Button x:Name="btnSettingsSaveAllChanges"  Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnSettingsSaveAllChanges_Click" ></Button>
+                        <Button x:Name="btnSettingsSaveAllChanges"  Content="Save All Changes" Background="{DynamicResource AccentColorBrush}" Click="btnSettingsSaveAllChanges_Click" ></Button>
+                        <!--
                         <Button x:Name="btnSettingsCancelAllChanges" Content="Cancel Changes" Background="Red" Click="btnSettingsCancelAllChanges_Click" ></Button>
+                        -->
                         <Label x:Name="lblSettingsLabel" HorizontalContentAlignment="Center"></Label>
 
 
