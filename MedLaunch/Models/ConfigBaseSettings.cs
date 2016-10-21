@@ -783,6 +783,31 @@ namespace MedLaunch.Models
             return cfbs;
         }
 
+        public static void SaveToDatabase(List<ConfigBaseSettings> Configs)
+        {
+            using (var db = new MyDbContext())
+            {
+                // get current database context
+                var current = db.ConfigBaseSettings.AsNoTracking().ToList();
+
+                List<ConfigBaseSettings> toAdd = new List<ConfigBaseSettings>();
+                List<ConfigBaseSettings> toUpdate = new List<ConfigBaseSettings>();
+
+                // iterate through the games list and separete out games to be added and games to be updated
+                foreach (var g in Configs)
+                {
+                    ConfigBaseSettings t = (from a in current
+                                     where a.ConfigId == g.ConfigId
+                                     select a).SingleOrDefault();
+                    if (t == null) { toAdd.Add(g); }
+                    else { toUpdate.Add(g); }
+                }
+                db.ConfigBaseSettings.UpdateRange(toUpdate);
+                db.ConfigBaseSettings.AddRange(toAdd);
+                db.SaveChanges();
+            }
+        }
+
         public static void ResetToDefault(string btnName)
         {
             string rbName = btnName.ToLower();

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MedLaunch"
         mc:Ignorable="d"
-        Title="MedLaunch is Initialising" Height="300" Width="300"
+        Title="MedLaunch is Initialising" Height="300" Width="500"
         Loaded="Window_Loaded"
         ResizeMode="NoResize"
         ContentRendered="Window_ContentRendered"
@@ -16,7 +16,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.05*" />
             <ColumnDefinition Width="0.6*" />
-            <ColumnDefinition Width="0.05*" />
+            <ColumnDefinition Width="0.046*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -26,7 +26,7 @@
             Please be patient.....
         </Label>
         <ScrollViewer x:Name="scr" Grid.Column="1" Grid.Row="1" >
-            <TextBlock x:Name="tbStatus" Margin="0" Foreground="#FF078301" TextWrapping="Wrap"   />
+            <TextBlock x:Name="tbStatus" Margin="0" Foreground="#FF078301" TextWrapping="Wrap" Text="{Binding Path=StatusValue}"  />
         </ScrollViewer>
         
 

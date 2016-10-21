@@ -236,14 +236,7 @@ namespace MedLaunch
             GamesLibraryVisualHandler.UpdateSidebar();
 
             // GameScraper.GetPlatformGames(4924);
-
-            // Games Scraping db initial seed
             
-                GDBPlatformGame.InitialSeed();
-          
-
-            
-
         }
 
         void RestoreScalingFactor(object sender, MouseButtonEventArgs args)

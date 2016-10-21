@@ -22,6 +22,7 @@ using Newtonsoft.Json;
 using System.Data.SQLite;
 using System.Threading;
 using System.Reflection;
+using MedLaunch.Extensions;
 
 namespace MedLaunch
 {
@@ -43,9 +44,10 @@ namespace MedLaunch
         [DllImport("user32.dll")]
         private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
 
-        private static void Init()
+        private void Init()
         {
             // make sure class libraries are built
+            
             Asnitech.Launch.Common.Startup.Start();
 
             // initialise directories if they do not exist
@@ -53,6 +55,7 @@ namespace MedLaunch
 
             // Check whether database exists
             UpdateStatus("Checking whether there is an existing database present", true);
+            Task.Delay(1);
             string dbPath = @"Data\Settings\MedLaunch.db";
             if (Operations.CheckDbExists(dbPath) == true)
             {
@@ -61,7 +64,15 @@ namespace MedLaunch
 
                 UpdateStatus("Checking database version", true);
                 string dbVersion = Operations.GetDbVersion();
-                UpdateStatus(dbVersion, false);
+                if (dbVersion == "")
+                {
+                    dbVersion = "NULL";
+                    UpdateStatus(dbVersion + " - Database is probably too old to have a version number", false);
+                }
+                else
+                {
+                    UpdateStatus(dbVersion, false);
+                }                
 
                 UpdateStatus("Checking application version", true);
                 string appVersion = Versions.ReturnApplicationVersion();
@@ -69,33 +80,43 @@ namespace MedLaunch
 
                 // compare versions and determine whether an upgrade is needed
                 UpdateStatus("Comparing versions...", true);
-                string[] dbVersionArr = dbVersion.Split('.');
-                string[] appVersionArr = appVersion.Split('.');
-                int i = 0;
-                bool upgradeNeeded = false;
-                while (i < 3)
+                if (dbVersion != "NULL")
                 {
-                    // if anything but the 4th number (private build) is greater in the appVersion - database needs to be upgraded
-                    if (Convert.ToInt32(appVersionArr[i]) > Convert.ToInt32(dbVersionArr[i]))
+                    string[] dbVersionArr = dbVersion.Split('.');
+                    string[] appVersionArr = appVersion.Split('.');
+                    int i = 0;
+                    bool upgradeNeeded = false;
+                    while (i < 3)
                     {
-                        // database upgrade needed
-                        upgradeNeeded = true;
-                        break;
+                        // if anything but the 4th number (private build) is greater in the appVersion - database needs to be upgraded
+                        if (Convert.ToInt32(appVersionArr[i]) > Convert.ToInt32(dbVersionArr[i]))
+                        {
+                            // database upgrade needed
+                            upgradeNeeded = true;
+                            break;
+                        }
+                        i++;
                     }
-                    i++;
-                }
-                if (upgradeNeeded == true)
-                {
-                    // start db upgrade routine
-                    UpdateStatus("Database upgrade is needed", true);
-                    DoDbUpgrade(dbVersion, appVersion);
+                    if (upgradeNeeded == true)
+                    {
+                        // start db upgrade routine
+                        UpdateStatus("Database upgrade is needed", true);
+                        DoDbUpgrade(dbVersion, appVersion);
+                    }
+                    else
+                    {
+                        // upgrade not needed - proceed with main application launch
+                        UpdateStatus("Database upgrade is not needed", true);
+                        return;
+                    }
                 }
                 else
                 {
-                    // upgrade not needed - proceed with main application launch
-                    UpdateStatus("Database upgrade is not needed", true);
-                    return;
+                    // upgrade definiately needed as old database didnt contain a dbversion entry (ie - it is very old)
+                    UpdateStatus("Database upgrade is needed", true);
+                    DoDbUpgrade(dbVersion, appVersion);
                 }
+                
             }
             else
             {
@@ -107,17 +128,18 @@ namespace MedLaunch
                 UpdateStatus("Seeding database with default values", true);
                 DbEF.InitialSeed();
                 UpdateStatus("Done", false);
+
+                // Games Scraping db initial seed
+                UpdateStatus("Importing PlatformGames list (thegamesdb.net)", true);
+                GDBPlatformGame.InitialSeed();
+                UpdateStatus("Done", false);
+
                 return;
             }
             return;
         }
 
-        private static void DoSeed()
-        {
-
-        }
-
-        private static void DoDbUpgrade(string dbVersion, string appVersion)
+        private void DoDbUpgrade(string dbVersion, string appVersion)
         {
             UpdateStatus("Starting database upgrade", true);
             MessageBoxResult result = MessageBox.Show("The MedLaunch settings database needs to be upgraded before the application can run (" + dbVersion + " > " + appVersion + "). Do you wish to proceed?\n\nYES will backup the database content and proceed.\nNO will terminate MedLaunch", "MedLaunch DB Upgrade", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -158,6 +180,7 @@ namespace MedLaunch
             UpdateStatus("Done", false);
             UpdateStatus("Seeding database with default values", true);
             DbEF.InitialSeed();
+            GDBPlatformGame.InitialSeed();
             UpdateStatus("Done", false);
 
             // database should be set up with all default settings. Now import all the old data
@@ -182,13 +205,22 @@ namespace MedLaunch
                 foreach (Tab table in dbData.Tables)
                 {
                     string tableName = table.TableName;
+                    UpdateStatus("Processing Data for: " + tableName, true);
                     switch (tableName)
                     {
-                        case "ConfigBaseSettings":
+                        case "ConfigBaseSettings":                            
                             List<List<Data>> cfbsRows = ReturnRows(dbData.Tables, tableName);
                             foreach (List<Data> row in cfbsRows)
                             {
-                                ConfigBaseSettings settings = new ConfigBaseSettings();
+                                
+                                // get the primary key value for this row
+                                var rArr = row.ToArray();
+                                Data data = rArr[0];
+                                int primaryKey = Convert.ToInt32(data.PrimaryKeyValue);
+                                //ConfigBaseSettings settings = new ConfigBaseSettings();
+                                // get the whole record from the database
+                                ConfigBaseSettings settings = ConfigBaseSettings.GetConfig(primaryKey);
+                                if (settings == null) { settings = new ConfigBaseSettings(); }
                                 foreach (Data item in row)
                                 {
                                     string name = item.ColName;
@@ -199,12 +231,22 @@ namespace MedLaunch
                                 }
                                 _configBaseSettings.Add(settings);
                             }
+                            UpdateStatus("Init Database Update: Configs", true);
+                            ConfigBaseSettings.SaveToDatabase(_configBaseSettings);
+                            
                             break;
                         case "ConfigNetplaySettings":
                             List<List<Data>> cfnpsRows = ReturnRows(dbData.Tables, tableName);
                             foreach (List<Data> row in cfnpsRows)
                             {
-                                ConfigNetplaySettings settings = new ConfigNetplaySettings();
+                                // get the primary key value for this row
+                                var rArr = row.ToArray();
+                                Data data = rArr[0];
+                                int primaryKey = Convert.ToInt32(data.PrimaryKeyValue);
+                                //ConfigNetplaySettings settings = new ConfigNetplaySettings();
+                                // get the whole record from the database
+                                ConfigNetplaySettings settings = ConfigNetplaySettings.GetNetplay();
+                                if (settings == null) { settings = new ConfigNetplaySettings(); }
                                 foreach (Data item in row)
                                 {
                                     string name = item.ColName;
@@ -215,12 +257,22 @@ namespace MedLaunch
                                 }
                                 _configNetplaySettings.Add(settings);
                             }
+                            UpdateStatus("Init Database Update: Netplay", true);
+                            ConfigNetplaySettings.SaveToDatabase(_configNetplaySettings);
+                            
                             break;
                         case "ConfigServerSettings":
                             List<List<Data>> cfssRows = ReturnRows(dbData.Tables, tableName);
                             foreach (List<Data> row in cfssRows)
                             {
-                                ConfigServerSettings settings = new ConfigServerSettings();
+                                // get the primary key value for this row
+                                var rArr = row.ToArray();
+                                Data data = rArr[0];
+                                int primaryKey = Convert.ToInt32(data.PrimaryKeyValue);
+                                //ConfigServerSettings settings = new ConfigServerSettings();
+                                // get the whole record from the database
+                                ConfigServerSettings settings = ConfigServerSettings.GetServer(primaryKey);
+                                if (settings == null) { settings = new ConfigServerSettings(); }
                                 foreach (Data item in row)
                                 {
                                     string name = item.ColName;
@@ -231,12 +283,22 @@ namespace MedLaunch
                                 }
                                 _configServerSettings.Add(settings);
                             }
+                            UpdateStatus("Init Database Update: Servers", true);
+                            ConfigServerSettings.SaveToDatabase(_configServerSettings);
+                           
                             break;
                         case "GDBGameData":
                             List<List<Data>> gdbgdRows = ReturnRows(dbData.Tables, tableName);
                             foreach (List<Data> row in gdbgdRows)
                             {
-                                GDBGameData settings = new GDBGameData();
+                                // get the primary key value for this row
+                                var rArr = row.ToArray();
+                                Data data = rArr[0];
+                                int primaryKey = Convert.ToInt32(data.PrimaryKeyValue);
+                                //GDBGameData settings = new GDBGameData();
+                                // get the whole record from the database
+                                GDBGameData settings = GDBGameData.GetGame(primaryKey);
+                                if (settings == null) { settings = new GDBGameData(); }
                                 foreach (Data item in row)
                                 {
                                     string name = item.ColName;
@@ -247,28 +309,182 @@ namespace MedLaunch
                                 }
                                 _gDBGameDatas.Add(settings);
                             }
+                            UpdateStatus("Init Database Update: Scraped Game Data", true);
+                            GDBGameData.SaveToDatabase(_gDBGameDatas);
+                            
                             break;
                         case "GDBLink":
+                            List<List<Data>> gdblinkRows = ReturnRows(dbData.Tables, tableName);
+                            foreach (List<Data> row in gdblinkRows)
+                            {
+                                // get the primary key value for this row
+                                var rArr = row.ToArray();
+                                Data data = rArr[0];
+                                int primaryKey = Convert.ToInt32(data.PrimaryKeyValue);
+                                //GDBLink settings = new GDBLink();
+                                // get the whole record from the database
+                                GDBLink settings = GDBLink.GetLink(primaryKey);
+                                if (settings == null) { settings = new GDBLink(); }
+                                foreach (Data item in row)
+                                {                                    
+                                    string name = item.ColName;
+                                    string type = item.ColType;
+                                    string value = item.Value;
+                                    PropertyInfo p1 = settings.GetType().GetProperty(name);
+                                    SetPropertyValue(settings, p1, type, value);
+                                }
+                                _gDBLinks.Add(settings);
+                            }
+                            UpdateStatus("Init Database Update: TheGamesDB Link Table", true);
+                            GDBLink.SaveToDatabase(_gDBLinks);
+                            
                             break;
                         case "GDBPlatformGame":
+                            List<List<Data>> gdbpgRows = ReturnRows(dbData.Tables, tableName);
+                            foreach (List<Data> row in gdbpgRows)
+                            {
+                                // get the primary key value for this row
+                                var rArr = row.ToArray();
+                                Data data = rArr[0];
+                                int primaryKey = Convert.ToInt32(data.PrimaryKeyValue);
+                                //GDBPlatformGame settings = new GDBPlatformGame();
+                                // get the whole record from the database
+                                GDBPlatformGame settings = GDBPlatformGame.GetGame(primaryKey);
+                                if (settings == null) { settings = new GDBPlatformGame(); }
+                                foreach (Data item in row)
+                                {
+                                    string name = item.ColName;
+                                    string type = item.ColType;
+                                    string value = item.Value;
+                                    PropertyInfo p1 = settings.GetType().GetProperty(name);
+                                    SetPropertyValue(settings, p1, type, value);
+                                }
+                                _gDBPlatformGames.Add(settings);
+                            }
+                            UpdateStatus("Init Database Update: TheGamesDB Game List", true);
+                            GDBPlatformGame.SaveToDatabase(_gDBPlatformGames);
+                            
                             break;
                         case "Game":
+                            List<List<Data>> gameRows = ReturnRows(dbData.Tables, tableName);
+                            foreach (List<Data> row in gameRows)
+                            {
+                                // get the primary key value for this row
+                                var rArr = row.ToArray();
+                                Data data = rArr[0];
+                                int primaryKey = Convert.ToInt32(data.PrimaryKeyValue);
+                                //Game settings = new Game();
+                                // get the whole record from the database
+                                Game settings = Game.GetGame(primaryKey);
+                                if (settings == null) { settings = new Game(); }
+                                foreach (Data item in row)
+                                {
+                                    string name = item.ColName;
+                                    string type = item.ColType;
+                                    string value = item.Value;
+                                    PropertyInfo p1 = settings.GetType().GetProperty(name);
+                                    SetPropertyValue(settings, p1, type, value);
+                                }
+                                _games.Add(settings);
+                            }
+                            UpdateStatus("Init Database Update: Games", true);
+                            Game.SaveToDatabase(_games);
+                           
                             break;
                         case "GlobalSettings":
+                            List<List<Data>> gsRows = ReturnRows(dbData.Tables, tableName);
+                            foreach (List<Data> row in gsRows)
+                            {
+                                // get the primary key value for this row
+                                var rArr = row.ToArray();
+                                Data data = rArr[0];
+                                int primaryKey = Convert.ToInt32(data.PrimaryKeyValue);
+                                //GlobalSettings settings = new GlobalSettings();
+                                // get the whole record from the database
+                                GlobalSettings settings = GlobalSettings.GetGlobals();
+                                if (settings == null) { settings = new GlobalSettings(); }
+                                foreach (Data item in row)
+                                {
+                                    string name = item.ColName;
+                                    string type = item.ColType;
+                                    string value = item.Value;
+                                    PropertyInfo p1 = settings.GetType().GetProperty(name);
+                                    SetPropertyValue(settings, p1, type, value);
+                                }
+                                _globalSettings.Add(settings);
+                            }
+                            UpdateStatus("Init Database Update: Global Settings", true);
+                            GlobalSettings.SaveToDatabase(_globalSettings);
+                            
                             break;
                         case "Paths":
+                            List<List<Data>> pathRows = ReturnRows(dbData.Tables, tableName);
+                            foreach (List<Data> row in pathRows)
+                            {
+                                // get the primary key value for this row
+                                var rArr = row.ToArray();
+                                Data data = rArr[0];
+                                int primaryKey = Convert.ToInt32(data.PrimaryKeyValue);
+                                //Paths settings = new Paths();
+                                // get the whole record from the database
+                                Paths settings = Paths.GetPaths();
+                                if (settings == null) { settings = new Paths(); }
+                                foreach (Data item in row)
+                                {
+                                    string name = item.ColName;
+                                    string type = item.ColType;
+                                    string value = item.Value;
+                                    PropertyInfo p1 = settings.GetType().GetProperty(name);
+                                    SetPropertyValue(settings, p1, type, value);
+                                }
+                                _paths.Add(settings);
+                            }
+                            UpdateStatus("Init Database Update: Paths", true);
+                            Paths.SaveToDatabase(_paths);
                             break;
                         case "Versions":
+                            List<List<Data>> verRows = ReturnRows(dbData.Tables, tableName);
+                            foreach (List<Data> row in verRows)
+                            {
+                                // get the primary key value for this row
+                                /*
+                                var rArr = row.ToArray();
+                                Data data = rArr[0];
+                                int primaryKey = Convert.ToInt32(data.PrimaryKeyValue);
+                                Versions settings = new Versions();
+                                // get the whole record from the database
+                                settings = Versions.GetVersionDefaults();
+                                // we dont want to import the old data for this - just set it to new
+                                _versions.Add(settings);
+                                */
+                            }
                             break;
                     }
                 }
+
+               
+               
+                // skip versions
+
+                // Now we should be done - proceed with main application
+                
             }     
         }
 
         
         private static void SetPropertyValue(ConfigBaseSettings settings, PropertyInfo p, string type, string value)
         {
+            if (p.PropertyType == typeof(string))
+            {
+                var v = Convert.ToString(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(double))
+            {
+                var v = Convert.ToDouble(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(double?))
             {
                 var v = Convert.ToDouble(value);
                 p.SetValue(settings, v, null);
@@ -278,15 +494,45 @@ namespace MedLaunch
                 var v = Convert.ToInt32(value);
                 p.SetValue(settings, v, null);
             }
+            if (p.PropertyType == typeof(int?))
+            {
+                var v = Convert.ToInt32(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(bool))
             {
-                var v = Convert.ToBoolean(value);
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(bool?))
+            {
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime))
+            {
+                var v = Convert.ToDateTime(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime?))
+            {
+                var v = Convert.ToDateTime(value);
                 p.SetValue(settings, v, null);
             }
         }
         private static void SetPropertyValue(ConfigNetplaySettings settings, PropertyInfo p, string type, string value)
         {
+            if (p.PropertyType == typeof(string))
+            {
+                var v = Convert.ToString(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(double))
+            {
+                var v = Convert.ToDouble(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(double?))
             {
                 var v = Convert.ToDouble(value);
                 p.SetValue(settings, v, null);
@@ -296,15 +542,45 @@ namespace MedLaunch
                 var v = Convert.ToInt32(value);
                 p.SetValue(settings, v, null);
             }
+            if (p.PropertyType == typeof(int?))
+            {
+                var v = Convert.ToInt32(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(bool))
             {
-                var v = Convert.ToBoolean(value);
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(bool?))
+            {
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime))
+            {
+                var v = Convert.ToDateTime(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime?))
+            {
+                var v = Convert.ToDateTime(value);
                 p.SetValue(settings, v, null);
             }
         }
         private static void SetPropertyValue(ConfigServerSettings settings, PropertyInfo p, string type, string value)
         {
+            if (p.PropertyType == typeof(string))
+            {
+                var v = Convert.ToString(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(double))
+            {
+                var v = Convert.ToDouble(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(double?))
             {
                 var v = Convert.ToDouble(value);
                 p.SetValue(settings, v, null);
@@ -314,15 +590,45 @@ namespace MedLaunch
                 var v = Convert.ToInt32(value);
                 p.SetValue(settings, v, null);
             }
+            if (p.PropertyType == typeof(int?))
+            {
+                var v = Convert.ToInt32(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(bool))
             {
-                var v = Convert.ToBoolean(value);
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(bool?))
+            {
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime))
+            {
+                var v = Convert.ToDateTime(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime?))
+            {
+                var v = Convert.ToDateTime(value);
                 p.SetValue(settings, v, null);
             }
         }
         private static void SetPropertyValue(GDBGameData settings, PropertyInfo p, string type, string value)
         {
+            if (p.PropertyType == typeof(string))
+            {
+                var v = Convert.ToString(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(double))
+            {
+                var v = Convert.ToDouble(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(double?))
             {
                 var v = Convert.ToDouble(value);
                 p.SetValue(settings, v, null);
@@ -332,15 +638,46 @@ namespace MedLaunch
                 var v = Convert.ToInt32(value);
                 p.SetValue(settings, v, null);
             }
+            if (p.PropertyType == typeof(int?))
+            {
+                var v = Convert.ToInt32(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(bool))
             {
-                var v = Convert.ToBoolean(value);
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(bool?))
+            {
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime))
+            {
+                var v = Convert.ToDateTime(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime?))
+            {
+                var v = Convert.ToDateTime(value);
                 p.SetValue(settings, v, null);
             }
         }
+
         private static void SetPropertyValue(GDBLink settings, PropertyInfo p, string type, string value)
         {
+            if (p.PropertyType == typeof(string))
+            {
+                var v = Convert.ToString(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(double))
+            {
+                var v = Convert.ToDouble(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(double?))
             {
                 var v = Convert.ToDouble(value);
                 p.SetValue(settings, v, null);
@@ -350,15 +687,45 @@ namespace MedLaunch
                 var v = Convert.ToInt32(value);
                 p.SetValue(settings, v, null);
             }
+            if (p.PropertyType == typeof(int?))
+            {
+                var v = Convert.ToInt32(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(bool))
             {
-                var v = Convert.ToBoolean(value);
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(bool?))
+            {
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime))
+            {
+                var v = Convert.ToDateTime(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime?))
+            {
+                var v = Convert.ToDateTime(value);
                 p.SetValue(settings, v, null);
             }
         }
         private static void SetPropertyValue(GDBPlatformGame settings, PropertyInfo p, string type, string value)
         {
+            if (p.PropertyType == typeof(string))
+            {
+                var v = Convert.ToString(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(double))
+            {
+                var v = Convert.ToDouble(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(double?))
             {
                 var v = Convert.ToDouble(value);
                 p.SetValue(settings, v, null);
@@ -368,15 +735,45 @@ namespace MedLaunch
                 var v = Convert.ToInt32(value);
                 p.SetValue(settings, v, null);
             }
+            if (p.PropertyType == typeof(int?))
+            {
+                var v = Convert.ToInt32(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(bool))
             {
-                var v = Convert.ToBoolean(value);
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(bool?))
+            {
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime))
+            {
+                var v = Convert.ToDateTime(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime?))
+            {
+                var v = Convert.ToDateTime(value);
                 p.SetValue(settings, v, null);
             }
         }
         private static void SetPropertyValue(Game settings, PropertyInfo p, string type, string value)
         {
+            if (p.PropertyType == typeof(string))
+            {
+                var v = Convert.ToString(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(double))
+            {
+                var v = Convert.ToDouble(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(double?))
             {
                 var v = Convert.ToDouble(value);
                 p.SetValue(settings, v, null);
@@ -386,15 +783,45 @@ namespace MedLaunch
                 var v = Convert.ToInt32(value);
                 p.SetValue(settings, v, null);
             }
+            if (p.PropertyType == typeof(int?))
+            {
+                var v = Convert.ToInt32(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(bool))
             {
-                var v = Convert.ToBoolean(value);
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(bool?))
+            {
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime))
+            {
+                var v = Convert.ToDateTime(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime?))
+            {
+                var v = Convert.ToDateTime(value);
                 p.SetValue(settings, v, null);
             }
         }
         private static void SetPropertyValue(GlobalSettings settings, PropertyInfo p, string type, string value)
         {
+            if (p.PropertyType == typeof(string))
+            {
+                var v = Convert.ToString(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(double))
+            {
+                var v = Convert.ToDouble(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(double?))
             {
                 var v = Convert.ToDouble(value);
                 p.SetValue(settings, v, null);
@@ -404,15 +831,45 @@ namespace MedLaunch
                 var v = Convert.ToInt32(value);
                 p.SetValue(settings, v, null);
             }
+            if (p.PropertyType == typeof(int?))
+            {
+                var v = Convert.ToInt32(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(bool))
             {
-                var v = Convert.ToBoolean(value);
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(bool?))
+            {
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime))
+            {
+                var v = Convert.ToDateTime(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime?))
+            {
+                var v = Convert.ToDateTime(value);
                 p.SetValue(settings, v, null);
             }
         }
         private static void SetPropertyValue(Paths settings, PropertyInfo p, string type, string value)
         {
+            if (p.PropertyType == typeof(string))
+            {
+                var v = Convert.ToString(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(double))
+            {
+                var v = Convert.ToDouble(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(double?))
             {
                 var v = Convert.ToDouble(value);
                 p.SetValue(settings, v, null);
@@ -422,15 +879,45 @@ namespace MedLaunch
                 var v = Convert.ToInt32(value);
                 p.SetValue(settings, v, null);
             }
+            if (p.PropertyType == typeof(int?))
+            {
+                var v = Convert.ToInt32(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(bool))
             {
-                var v = Convert.ToBoolean(value);
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(bool?))
+            {
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime))
+            {
+                var v = Convert.ToDateTime(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime?))
+            {
+                var v = Convert.ToDateTime(value);
                 p.SetValue(settings, v, null);
             }
         }
         private static void SetPropertyValue(Versions settings, PropertyInfo p, string type, string value)
         {
+            if (p.PropertyType == typeof(string))
+            {
+                var v = Convert.ToString(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(double))
+            {
+                var v = Convert.ToDouble(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(double?))
             {
                 var v = Convert.ToDouble(value);
                 p.SetValue(settings, v, null);
@@ -440,9 +927,29 @@ namespace MedLaunch
                 var v = Convert.ToInt32(value);
                 p.SetValue(settings, v, null);
             }
+            if (p.PropertyType == typeof(int?))
+            {
+                var v = Convert.ToInt32(value);
+                p.SetValue(settings, v, null);
+            }
             if (p.PropertyType == typeof(bool))
             {
-                var v = Convert.ToBoolean(value);
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(bool?))
+            {
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime))
+            {
+                var v = Convert.ToDateTime(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime?))
+            {
+                var v = Convert.ToDateTime(value);
                 p.SetValue(settings, v, null);
             }
         }
@@ -474,7 +981,7 @@ namespace MedLaunch
 
             // get all primary key values into an array (this will form the rows)
             int[] keys = (from a in sT.Data
-                          select a.PrimaryKeyValue).ToArray();
+                          select a.PrimaryKeyValue).Distinct().ToArray();
 
             // build a list of rows
             int i = 0;
@@ -492,9 +999,9 @@ namespace MedLaunch
             return rows;
         }
 
-        private static void CreateDatabase()
+        private void CreateDatabase()
         {
-            UpdateStatus("Creating database", true);
+            //UpdateStatus("Creating database", true);
             // initialise SQLite db if it does not already exist
             using (var context = new MyDbContext())
             {
@@ -504,7 +1011,7 @@ namespace MedLaunch
             }
         }
 
-        private static void UpdateStatus(string s, bool newline)
+        private void UpdateStatus(string s, bool newline)
         {
             // get window
             Window win = Application.Current.Windows.OfType<Window>().SingleOrDefault();
@@ -519,13 +1026,16 @@ namespace MedLaunch
             if (newline == true)
                 output += "\n";
             else { output += " ... "; }
-
+            
             // append s to the textbox
             t.Text = output + s;
+            t.Refresh();
+            Thread.Sleep(50);
 
             // scroll to end
             sv.ScrollToBottom();
-            
+            sv.Refresh();
+            Thread.Sleep(50);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -539,9 +1049,13 @@ namespace MedLaunch
             Init();
             // if beginit returns false then terminate the whole application
             //if (b == false)
-             //   Environment.Exit(0);
-         
-            
+            //   Environment.Exit(0);
+
+
+            UpdateStatus("Preparing to start the main MedLaunch application....", true);
+            Thread.Sleep(100);
+
+
             // init has returned true - close this window and start mainwindow
             Window win = Application.Current.Windows.OfType<Window>().SingleOrDefault();
             win.Close();

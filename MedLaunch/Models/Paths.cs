@@ -35,6 +35,31 @@ namespace MedLaunch.Models
         public string systemWswan { get; set; }                     // WonderSwan
 
 
+        public static void SaveToDatabase(List<Paths> Configs)
+        {
+            using (var db = new MyDbContext())
+            {
+                // get current database context
+                var current = db.Paths.AsNoTracking().ToList();
+
+                List<Paths> toAdd = new List<Paths>();
+                List<Paths> toUpdate = new List<Paths>();
+
+                // iterate through the games list and separete out games to be added and games to be updated
+                foreach (var g in Configs)
+                {
+                    Paths t = (from a in current
+                                        where a.pathId == g.pathId
+                                        select a).SingleOrDefault();
+                    if (t == null) { toAdd.Add(g); }
+                    else { toUpdate.Add(g); }
+                }
+                db.Paths.UpdateRange(toUpdate);
+                db.Paths.AddRange(toAdd);
+                db.SaveChanges();
+            }
+        }
+
         // return Paths entry from DB
         public static Paths GetPaths()
         {

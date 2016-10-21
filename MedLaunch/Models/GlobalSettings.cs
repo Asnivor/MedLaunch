@@ -62,6 +62,31 @@ namespace MedLaunch.Models
             return gs;
         }
 
+        public static void SaveToDatabase(List<GlobalSettings> Configs)
+        {
+            using (var db = new MyDbContext())
+            {
+                // get current database context
+                var current = db.GlobalSettings.AsNoTracking().ToList();
+
+                List<GlobalSettings> toAdd = new List<GlobalSettings>();
+                List<GlobalSettings> toUpdate = new List<GlobalSettings>();
+
+                // iterate through the games list and separete out games to be added and games to be updated
+                foreach (var g in Configs)
+                {
+                    GlobalSettings t = (from a in current
+                                               where a.settingsId == g.settingsId
+                                               select a).SingleOrDefault();
+                    if (t == null) { toAdd.Add(g); }
+                    else { toUpdate.Add(g); }
+                }
+                db.GlobalSettings.UpdateRange(toUpdate);
+                db.GlobalSettings.AddRange(toAdd);
+                db.SaveChanges();
+            }
+        }
+
         // get mintotaskbar value
         public static bool Min2TaskBar()
         {

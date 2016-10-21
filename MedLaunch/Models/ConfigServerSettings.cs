@@ -37,6 +37,31 @@ namespace MedLaunch.Models
             return servers;
         }
 
+        public static void SaveToDatabase(List<ConfigServerSettings> Configs)
+        {
+            using (var db = new MyDbContext())
+            {
+                // get current database context
+                var current = db.ConfigServerSettings.AsNoTracking().ToList();
+
+                List<ConfigServerSettings> toAdd = new List<ConfigServerSettings>();
+                List<ConfigServerSettings> toUpdate = new List<ConfigServerSettings>();
+
+                // iterate through the games list and separete out games to be added and games to be updated
+                foreach (var g in Configs)
+                {
+                    ConfigServerSettings t = (from a in current
+                                               where a.ConfigServerId == g.ConfigServerId
+                                               select a).SingleOrDefault();
+                    if (t == null) { toAdd.Add(g); }
+                    else { toUpdate.Add(g); }
+                }
+                db.ConfigServerSettings.UpdateRange(toUpdate);
+                db.ConfigServerSettings.AddRange(toAdd);
+                db.SaveChanges();
+            }
+        }
+
         // return all servers from database
         public static List<ConfigServerSettings> GetServers()
         {
@@ -48,6 +73,18 @@ namespace MedLaunch.Models
                 servers.AddRange(allSrvs);
             }
             return servers;
+        }
+
+        // get server entry from database based on id
+        public static ConfigServerSettings GetServer(int serverId)
+        {
+            using (var srvContext = new MyDbContext())
+            {
+                var server = (from s in srvContext.ConfigServerSettings
+                              where s.ConfigServerId == serverId
+                              select s).FirstOrDefault();
+                return server;
+            }
         }
 
         // pouplate servers combobox

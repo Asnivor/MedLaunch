@@ -30,6 +30,31 @@ namespace MedLaunch.Models
             return npSettings;
         }
 
+        public static void SaveToDatabase(List<ConfigNetplaySettings> Configs)
+        {
+            using (var db = new MyDbContext())
+            {
+                // get current database context
+                var current = db.ConfigNetplaySettings.AsNoTracking().ToList();
+
+                List<ConfigNetplaySettings> toAdd = new List<ConfigNetplaySettings>();
+                List<ConfigNetplaySettings> toUpdate = new List<ConfigNetplaySettings>();
+
+                // iterate through the games list and separete out games to be added and games to be updated
+                foreach (var g in Configs)
+                {
+                    ConfigNetplaySettings t = (from a in current
+                                            where a.ConfigNPId == g.ConfigNPId
+                                            select a).SingleOrDefault();
+                    if (t == null) { toAdd.Add(g); }
+                    else { toUpdate.Add(g); }
+                }
+                db.ConfigNetplaySettings.UpdateRange(toUpdate);
+                db.ConfigNetplaySettings.AddRange(toAdd);
+                db.SaveChanges();
+            }
+        }
+
         // return Netplay Settings entry from DB
         public static ConfigNetplaySettings GetNetplay()
         {

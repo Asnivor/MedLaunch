@@ -13,6 +13,17 @@ namespace MedLaunch.Models
         public int? GdbId { get; set; }
         public int? GameId { get; set; }
 
+        public static GDBLink GetLink(int LinkId)
+        {
+            using (var db = new MyDbContext())
+            {
+                GDBLink c = (from a in db.GDBLink
+                        where a.Id == LinkId
+                        select a).FirstOrDefault();
+                return c;
+            }
+        }
+
         public static GDBLink GetRecord(int GameId)
         {
             using (var db = new MyDbContext())
@@ -20,7 +31,6 @@ namespace MedLaunch.Models
                 var c = db.GDBLink.Where(a => a.GameId == GameId).FirstOrDefault();
                 return c;
             }
-
         }
 
         public static List<GDBLink> GetRecords(int GameId)
@@ -43,6 +53,31 @@ namespace MedLaunch.Models
             }
         }
 
+        public static void SaveToDatabase(List<GDBLink> links)
+        {
+            using (var db = new MyDbContext())
+            {
+                // get current database context
+                var current = db.GDBLink.AsNoTracking().ToList();
+
+                List<GDBLink> toAdd = new List<GDBLink>();
+                List<GDBLink> toUpdate = new List<GDBLink>();
+
+                // iterate through the games list and separete out games to be added and games to be updated
+                foreach (var g in links)
+                {
+                    GDBLink t = (from a in current
+                                     where a.Id == g.Id
+                                     select a).SingleOrDefault();
+                    if (t == null) { toAdd.Add(g); }
+                    else { toUpdate.Add(g); }
+                }
+                db.GDBLink.UpdateRange(toUpdate);
+                db.GDBLink.AddRange(toAdd);
+                db.SaveChanges();
+            }
+        }
+
         public static void SaveToDatabase(GDBLink link)
         {
             using (var db = new MyDbContext())
@@ -61,7 +96,7 @@ namespace MedLaunch.Models
 
                 db.GDBLink.UpdateRange(toUpdate);
                 db.GDBLink.AddRange(toAdd);
-                db.SaveChangesAsync();
+                db.SaveChanges();
             }
         }
 

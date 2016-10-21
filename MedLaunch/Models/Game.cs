@@ -1,4 +1,5 @@
 ﻿using MedLaunch.Classes;
+using Microsoft.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,31 @@ namespace MedLaunch.Models
                              where g.systemId == systemId
                              select g);
                 return cData.ToList();
+            }
+        }
+
+        public static void SaveToDatabase(List<Game> games)
+        {
+            using (var db = new MyDbContext())
+            {
+                // get current database context
+                var current = db.Game.AsNoTracking().ToList();
+
+                List<Game> toAdd = new List<Game>();
+                List<Game> toUpdate = new List<Game>();
+
+                // iterate through the games list and separete out games to be added and games to be updated
+                foreach (var g in games)
+                {
+                    Game t = (from a in current
+                                     where a.gameId == g.gameId
+                                     select a).SingleOrDefault();
+                    if (t == null) { toAdd.Add(g); }
+                    else { toUpdate.Add(g); }
+                }
+                db.Game.UpdateRange(toUpdate);
+                db.Game.AddRange(toAdd);
+                db.SaveChanges();
             }
         }
 

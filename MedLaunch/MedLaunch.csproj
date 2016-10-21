@@ -213,6 +213,7 @@
     <Compile Include="Classes\TheGamesDB\GDBNETPlatformSearchResult.cs" />
     <Compile Include="Extensions\ImageExtension.cs" />
     <Compile Include="Extensions\LabelExtension.cs" />
+    <Compile Include="Extensions\UIElementExtension.cs" />
     <Compile Include="InitWindow.xaml.cs">
       <DependentUpon>InitWindow.xaml</DependentUpon>
     </Compile>

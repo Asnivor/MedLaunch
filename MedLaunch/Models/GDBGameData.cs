@@ -112,7 +112,7 @@ namespace MedLaunch.Models
                 }
                 db.GDBGameData.UpdateRange(toUpdate);
                 db.GDBGameData.AddRange(toAdd);
-                db.SaveChangesAsync();
+                db.SaveChanges();
             }
         }
 
@@ -134,7 +134,7 @@ namespace MedLaunch.Models
                 
                 db.GDBGameData.UpdateRange(toUpdate);
                 db.GDBGameData.AddRange(toAdd);
-                db.SaveChangesAsync();
+                db.SaveChanges();
             }
         }
 

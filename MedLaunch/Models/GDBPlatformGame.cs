@@ -113,9 +113,9 @@ namespace MedLaunch.Models
                 }
                 db.GDBPlatformGame.UpdateRange(toUpdate);
                 db.GDBPlatformGame.AddRange(toAdd);
-                db.SaveChangesAsync();
+                db.SaveChanges();
 
-                MessageBox.Show(added + " added, " + updated + " updated.");
+                //MessageBox.Show(added + " added, " + updated + " updated.");
 
                 return new int[]{added, updated};
             }

@@ -17,14 +17,15 @@ namespace MedLaunch
     {
         private void ApplicationStart(object sender, StartupEventArgs e)
         {
+            var splashScreen = new SplashScreen(@"Data\Graphics\mediconsplash.png");
+            splashScreen.Show(false);
             Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
             // show the initialisation window and begin checks
             ShowInitWindow();
             Thread.Sleep(1000);
             // init should have completed - run MainWindow
 
-            var splashScreen = new SplashScreen(@"Data\Graphics\mediconsplash.png");
-            splashScreen.Show(false);
+            
 
             MainWindow mw = new MedLaunch.MainWindow();
             Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
