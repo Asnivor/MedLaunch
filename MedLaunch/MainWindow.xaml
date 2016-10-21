@@ -4035,6 +4035,10 @@
                                      Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" 
                                      CommandParameter="{Binding Parent, RelativeSource={RelativeSource Self}}" Content="MedLaunch"/>
 
+                                    <RadioButton GroupName="grpSettings" x:Name="btnScrapingSettings" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" 
+                                     CommandParameter="{Binding Parent, RelativeSource={RelativeSource Self}}" Content="Scraping Options"/>
+
 
                                     <RadioButton GroupName="grpSettings" x:Name="btnMednafenPaths" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" 
@@ -4147,7 +4151,44 @@
                                         </StackPanel>
                                     </Expander>
                                 </Border>
-                                
+
+                                <Border x:Name="brdScrapingSettings" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="Game Scraping Options" >
+                                        <StackPanel x:Name="spScrapingSettings">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="105" />
+                                                    <ColumnDefinition Width="280" />
+
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+
+                                                <Label Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Left">Allow Scraping of the Following Media:</Label>
+                                                <CheckBox x:Name="chkAllowBanners" Grid.ColumnSpan="2" Grid.Row="1" Content="Banners" Checked="chkAllowBanners_Checked" Unchecked="chkAllowBanners_Unchecked"/>
+                                                <CheckBox x:Name="chkAllowBoxart" Grid.ColumnSpan="2" Grid.Row="2" Content="Boxart" Checked="chkAllowBoxart_Checked" Unchecked="chkAllowBoxart_Unchecked"/>
+                                                <CheckBox x:Name="chkAllowScreenshots" Grid.ColumnSpan="2" Grid.Row="3" Content="Screenshots" Checked="chkAllowScreenshots_Checked" Unchecked="chkAllowScreenshots_Unchecked"/>
+                                                <CheckBox x:Name="chkAllowFanart" Grid.ColumnSpan="2" Grid.Row="4" Content="Fan Art" Checked="chkAllowFanart_Checked" Unchecked="chkAllowFanart_Unchecked"/>
+
+                                                
+                                                <StackPanel Grid.ColumnSpan="2" Grid.Row="17">
+
+                                                </StackPanel>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
                                 <Border x:Name="brdMednafenPaths" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Mednafen Paths" >
                                         <StackPanel x:Name="spMedPathSettings">

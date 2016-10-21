@@ -117,7 +117,8 @@ namespace MedLaunch
             btnShowAll.IsChecked = true;
 
             // load globalsettings for front page
-            GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar);
+            GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar,
+               chkAllowBanners, chkAllowBoxart, chkAllowScreenshots, chkAllowFanart);
             gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
 
             // load netplay settings for netplay page
@@ -1096,6 +1097,46 @@ namespace MedLaunch
             GlobalSettings.UpdateHideSidebar(chkHideSidebar);
         }
 
+        private void chkAllowBanners_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateAllowBanners(chkAllowBanners);
+        }
+
+        private void chkAllowBanners_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateAllowBanners(chkAllowBanners);
+        }
+
+        private void chkAllowBoxart_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateAllowBoxart(chkAllowBoxart);
+        }
+
+        private void chkAllowBoxart_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateAllowBoxart(chkAllowBoxart);
+        }
+
+        private void chkAllowScreenshots_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateAllowScreenshots(chkAllowScreenshots);
+        }
+
+        private void chkAllowScreenshots_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateAllowScreenshots(chkAllowScreenshots);
+        }
+
+        private void chkAllowFanart_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateAllowFanart(chkAllowFanart);
+        }
+
+        private void chkAllowFanart_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateAllowFanart(chkAllowFanart);
+        }
+
         // Mednafen BIOS Paths events
         private void btnMednafenBiosPaths_Click(object sender, RoutedEventArgs e)
         {
@@ -2064,6 +2105,8 @@ namespace MedLaunch
                 GamesLibraryVisualHandler.SaveExpanderStates();
               
         }
+
+        
     }
 
     

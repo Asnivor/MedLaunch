@@ -34,6 +34,12 @@ namespace MedLaunch.Models
         public bool glScrapingOptions { get; set; }
         public bool glSystemInfo { get; set; }
 
+        // Game scraping options
+        public bool scrapeBanners { get; set; }
+        public bool scrapeBoxart { get; set; }
+        public bool scrapeScreenshots { get; set; }
+        public bool scrapeFanart { get; set; }
+
         public static GlobalSettings GetGlobalDefaults()
         {
             GlobalSettings gs = new GlobalSettings
@@ -57,7 +63,12 @@ namespace MedLaunch.Models
                 glOverview = true,
                 glScrapingOptions = true,
                 glScreenshots = true,
-                glSystemInfo = true
+                glSystemInfo = true,
+                scrapeBanners = true,
+                scrapeBoxart = true,
+                scrapeFanart = true,
+                scrapeScreenshots = true
+                
             };
             return gs;
         }
@@ -127,7 +138,8 @@ namespace MedLaunch.Models
             }
         }
 
-        public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast, ComboBox GuiZoom, CheckBox MinToTaskBar, CheckBox HideSidebar)
+        public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast, ComboBox GuiZoom, CheckBox MinToTaskBar, CheckBox HideSidebar,
+            CheckBox chkAllowBanners, CheckBox chkAllowBoxart, CheckBox chkAllowScreenshots, CheckBox chkAllowFanart)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
@@ -142,6 +154,13 @@ namespace MedLaunch.Models
             MinToTaskBar.IsChecked = gs.minToTaskBarOnGameLaunch;
             HideSidebar.IsChecked = gs.hideSidebar;
             //MessageBox.Show(gs.guiZoom.ToString());
+
+            // game scraping options
+            chkAllowBanners.IsChecked = gs.scrapeBanners;
+            chkAllowBoxart.IsChecked = gs.scrapeBoxart;
+            chkAllowFanart.IsChecked = gs.scrapeFanart;
+            chkAllowScreenshots.IsChecked = gs.scrapeScreenshots;
+
         }
 
         public static void UpdateEnableNetplay(CheckBox EnableNetplay)
@@ -193,6 +212,32 @@ namespace MedLaunch.Models
         {
             GlobalSettings gs = GetGlobals();
             gs.hideSidebar = HideSidebar.IsChecked;
+            SetGlobals(gs);
+        }
+
+        // scraping options
+        public static void UpdateAllowBanners(CheckBox chkAllowBanners)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.scrapeBanners = chkAllowBanners.IsChecked.Value;
+            SetGlobals(gs);
+        }
+        public static void UpdateAllowBoxart(CheckBox chkAllowBoxart)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.scrapeBoxart = chkAllowBoxart.IsChecked.Value;
+            SetGlobals(gs);
+        }
+        public static void UpdateAllowScreenshots(CheckBox chkAllowScreenshots)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.scrapeScreenshots = chkAllowScreenshots.IsChecked.Value;
+            SetGlobals(gs);
+        }
+        public static void UpdateAllowFanart(CheckBox chkAllowFanart)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.scrapeFanart = chkAllowFanart.IsChecked.Value;
             SetGlobals(gs);
         }
 

@@ -31,6 +31,7 @@ namespace MedLaunch.Classes
         public int LocalIterationCount { get; set; }
         public int ManualIterator { get; set; }
         public int CurrentLocalGameId { get; set; }
+        public GlobalSettings gs { get; set; }
 
         // Constructors
         public GameScraper()
@@ -41,6 +42,7 @@ namespace MedLaunch.Classes
             ManualIterator = 0;
             SearchCollection = new List<GDBPlatformGame>();
             WorkingSearchCollection = new List<GDBPlatformGame>();
+            gs = GlobalSettings.GetGlobals();
             
         }
 
@@ -244,49 +246,72 @@ namespace MedLaunch.Classes
                 if (images.BoxartFront == null) { }
                 else
                 {
-                    gd = DownloadFile(images.BoxartFront.Path, g.ID, gd);
-                    p.SetMessage(currentMessage + "\nDownloading BoxArt");
+                    if (gs.scrapeBoxart == true)
+                    {
+                        gd = DownloadFile(images.BoxartFront.Path, g.ID, gd);
+                        p.SetMessage(currentMessage + "\nDownloading BoxArt (Front)");
+                    }                    
                 }
                 if (images.BoxartBack == null) { }
-                else { gd = DownloadFile(images.BoxartBack.Path, g.ID, gd); p.SetMessage(currentMessage + "\nDownloading BoxArt"); }
+                else
+                {
+                    if (gs.scrapeBoxart == true)
+                    {
+                        gd = DownloadFile(images.BoxartBack.Path, g.ID, gd);
+                        p.SetMessage(currentMessage + "\nDownloading BoxArt (Back)");
+                    }
+                    
+                }
                 if (images.Screenshots.Count > 0)
                 {
-                    List<string> s1 = new List<string>();
-                    foreach (var im in images.Screenshots)
+                    if (gs.scrapeScreenshots == true)
                     {
-                        string[] fArr = im.Path.Split('/');
-                        string filename = fArr[fArr.Length - 1];
-                        gd = DownloadFile(im.Path, g.ID, gd);
-                        s1.Add("Data\\Graphics\\thegamesdb\\" + g.ID + "\\Screenshots\\" + filename);
-                        p.SetMessage(currentMessage + "\nDownloading Screenshots");
+                        List<string> s1 = new List<string>();
+                        foreach (var im in images.Screenshots)
+                        {
+                            string[] fArr = im.Path.Split('/');
+                            string filename = fArr[fArr.Length - 1];
+                            gd = DownloadFile(im.Path, g.ID, gd);
+                            s1.Add("Data\\Graphics\\thegamesdb\\" + g.ID + "\\Screenshots\\" + filename);
+                            p.SetMessage(currentMessage + "\nDownloading Screenshots");
+                        }
+                        gd.ScreenshotLocalImages = GDBGameData.JsonSerialize(s1);
                     }
-                    gd.ScreenshotLocalImages = GDBGameData.JsonSerialize(s1);
+                    
                 }
                 if (images.Fanart.Count > 0)
                 {
-                    List<string> s2 = new List<string>();
-                    foreach (var im in images.Fanart)
+                    if (gs.scrapeFanart == true)
                     {
-                        string[] fArr = im.Path.Split('/');
-                        string filename = fArr[fArr.Length - 1];
-                        gd = DownloadFile(im.Path, g.ID, gd);
-                        s2.Add("Data\\Graphics\\thegamesdb\\" + g.ID + "\\FanArt\\" + filename);
-                        p.SetMessage(currentMessage + "\nDownloading FanArt");
+                        List<string> s2 = new List<string>();
+                        foreach (var im in images.Fanart)
+                        {
+                            string[] fArr = im.Path.Split('/');
+                            string filename = fArr[fArr.Length - 1];
+                            gd = DownloadFile(im.Path, g.ID, gd);
+                            s2.Add("Data\\Graphics\\thegamesdb\\" + g.ID + "\\FanArt\\" + filename);
+                            p.SetMessage(currentMessage + "\nDownloading FanArt");
+                        }
+                        gd.FanartLocalImages = GDBGameData.JsonSerialize(s2);
                     }
-                    gd.FanartLocalImages = GDBGameData.JsonSerialize(s2);
+                    
                 }
                 if (images.Banners.Count > 0)
                 {
-                    List<string> s3 = new List<string>();
-                    foreach (var im in images.Banners)
+                    if (gs.scrapeBanners == true)
                     {
-                        string[] fArr = im.Path.Split('/');
-                        string filename = fArr[fArr.Length - 1];
-                        gd = DownloadFile(im.Path, g.ID, gd);
-                        s3.Add("Data\\Graphics\\thegamesdb\\" + g.ID + "\\Banners\\" + filename);
-                        p.SetMessage(currentMessage + "\nDownloading Banners");
+                        List<string> s3 = new List<string>();
+                        foreach (var im in images.Banners)
+                        {
+                            string[] fArr = im.Path.Split('/');
+                            string filename = fArr[fArr.Length - 1];
+                            gd = DownloadFile(im.Path, g.ID, gd);
+                            s3.Add("Data\\Graphics\\thegamesdb\\" + g.ID + "\\Banners\\" + filename);
+                            p.SetMessage(currentMessage + "\nDownloading Banners");
+                        }
+                        gd.BannerLocalImages = GDBGameData.JsonSerialize(s3);
                     }
-                    gd.BannerLocalImages = GDBGameData.JsonSerialize(s3);
+                    
                 }
                 
                 // now everything is downloaded, update the database and set the DateTime
