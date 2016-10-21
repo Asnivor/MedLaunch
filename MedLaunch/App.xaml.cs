@@ -23,6 +23,7 @@ namespace MedLaunch
             Thread.Sleep(1000);
             // init should have completed - run MainWindow
             MainWindow mw = new MedLaunch.MainWindow();
+            Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
             Application.Current.MainWindow = mw;
             mw.Show();
         }
