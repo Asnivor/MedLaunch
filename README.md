@@ -15,6 +15,8 @@
 * Local (SQLite) auto-generated database where all settings are saved
 * Built-in games library (with system filters and dynamic search)
 * ROM scanner (for games library import)
+* Scraping of game data and media from thegamesdb.net
+* Games library sidebar for game info, stats and media
 * Manual import of disk-based games (both single and multiple disk games with auto-m3u playlist generation)
 * All Mednafen command line parameters available and configurable
 * So far uses only Mednafen command line options (and not local configuration files)
@@ -26,13 +28,11 @@
 * The launcher currently only handles absolute paths correctly. Relative path handling may or may not work but this part of the code needs a proper overhaul
 
 ### To Do
-* Implement data scraping from external sources (thegamesdb etc.)
 * Auto-hide system specific config option controls that are invalid (eg, nes.forcemono etc.)
 * Code option to import existing configuration information from Mednafen config files (default & system specific configs) into the MedLaunch database
 * Option to export config information to Mednafen config files
 * Configure controllers from within MedLaunch
 * Option to bypass all MedLaunch command line parameters (and just use already existing Mednafen cfg files)
-* Scraping of games data from external sources
 
 This upcoming changes (and many others) can be found in the current roadmap [here](http://medlaunch.asnitech.co.uk/roadmap).
 
@@ -52,8 +52,8 @@ You can always get the latest alpha release build of MedLaunch on the [GitHub Re
 ! It is recommended that you use a brand new Mednafen instance for the time being. You can download the latest version of Mednafen from the [**Mednafen website**](http://mednafen.fobby.net/releases/). If you do not do this you might experience issues with already existing system specific configuration files in the Mednafen folder. Specifically, these will override base settings in MedLaunch until said system configuration is enabled in the launcher. This will be addressed in future releases.
 
 ### Upgrade
-Currently there is no database migration code or version checking in place. Until this is implemented you need to pay very close attention to the MedLaunch version numbers. When the 3rd number in the version string changes, you have to either delete or rename your existing MedLaunch database file (under .\Data\Settings), or just extract MedLaunch to a different directory. If you fail to do this then currently MedLaunch will crash when you run it.
-So, if you are running say MedLaunch v0.1.14.1 you are ok to upgrade as long as its still within the v0.1.14.x branch.
+* Extract the latest MedLaunch release over your existing MedLaunch folder.
+* Run the MedLaunch application
 
 ## Build From Source
 The project has been built using Visual Studio Community 2015. It may or may not work with previous versions.
