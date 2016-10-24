@@ -113,6 +113,7 @@ namespace MedLaunch.Classes.TheGamesDB
         {
             WebOps wo = new WebOps();
             wo.Params = "/GetGame.php?id=" + ID;
+            wo.Timeout = 4000;
             string result = wo.ApiCall();
             /*
             wo.GDBApiCall();
@@ -368,6 +369,7 @@ namespace MedLaunch.Classes.TheGamesDB
         {
             WebOps wo = new WebOps();
             wo.Params = "/GetPlatformGames.php?platform=" + ID;
+            wo.Timeout = 4000;
             string result = wo.ApiCall();
             
             // string returned
