@@ -764,6 +764,11 @@ namespace MedLaunch
             DbEF.GetGames(dgGameList, -1, tbFilterDatagrid.Text);
         }
 
+        private void btnUnscraped_Checked(object sender, RoutedEventArgs e)
+        {
+            DbEF.GetGames(dgGameList, -100, tbFilterDatagrid.Text);
+        }
+
         private void btnNes_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, 11, tbFilterDatagrid.Text);
@@ -2106,7 +2111,7 @@ namespace MedLaunch
               
         }
 
-        
+       
     }
 
     

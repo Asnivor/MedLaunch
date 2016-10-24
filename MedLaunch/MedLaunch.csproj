@@ -211,6 +211,7 @@
     <Compile Include="Classes\TheGamesDB\GDBNETGameSearchResult.cs" />
     <Compile Include="Classes\TheGamesDB\GDBNETPlatform.cs" />
     <Compile Include="Classes\TheGamesDB\GDBNETPlatformSearchResult.cs" />
+    <Compile Include="Classes\WebOps.cs" />
     <Compile Include="Extensions\ImageExtension.cs" />
     <Compile Include="Extensions\LabelExtension.cs" />
     <Compile Include="Extensions\UIElementExtension.cs" />

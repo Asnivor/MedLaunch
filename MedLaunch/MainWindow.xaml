@@ -64,6 +64,7 @@
                         <Button x:Name="btnClearFilters" HorizontalContentAlignment="Left" Background="{DynamicResource AccentColorBrush}" Click="btnClearFilters_Click">Clear All Filters</Button>
                         <RadioButton GroupName="flt" x:Name="btnShowAll" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnShowAll_Checked">Show All Games</RadioButton>
                         <RadioButton GroupName="flt" x:Name="btnFavorites" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnFavorites_Checked">Favorites</RadioButton>
+                        <RadioButton GroupName="flt" x:Name="btnUnscraped" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnUnscraped_Checked">Unscraped Games</RadioButton>
 
                         <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Roms">

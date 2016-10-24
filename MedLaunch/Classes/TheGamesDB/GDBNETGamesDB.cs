@@ -111,6 +111,23 @@ namespace MedLaunch.Classes.TheGamesDB
         /// <returns>A Game-object containing all the data about the game, or null if no game was found</returns>
         public static GDBNETGame GetGame(int ID)
         {
+            WebOps wo = new WebOps();
+            wo.Params = "/GetGame.php?id=" + ID;
+            string result = wo.ApiCall();
+            /*
+            wo.GDBApiCall();
+            if (wo.BodyAsString == null)
+            {
+                // no body returned within the specified timeout periods
+                return null;
+            }
+            */
+            
+            // string returned
+            XmlDocument doc = new XmlDocument();            
+            doc.LoadXml(result);
+            
+            /*
             XmlDocument doc = new XmlDocument();
             try
             {
@@ -122,6 +139,7 @@ namespace MedLaunch.Classes.TheGamesDB
                 return new GDBNETGame();
             }
             finally { }
+            */
 
             XmlNode root = doc.DocumentElement;
             IEnumerator ienum = root.GetEnumerator();
@@ -348,6 +366,15 @@ namespace MedLaunch.Classes.TheGamesDB
         /// <returns>A collection of all the games on the platform</returns>
         public static ICollection<GDBNETGameSearchResult> GetPlatformGames(int ID)
         {
+            WebOps wo = new WebOps();
+            wo.Params = "/GetPlatformGames.php?platform=" + ID;
+            string result = wo.ApiCall();
+            
+            // string returned
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(result);
+
+            /*
             XmlDocument doc = new XmlDocument();
             try
             {
@@ -358,7 +385,7 @@ namespace MedLaunch.Classes.TheGamesDB
                 return new List<GDBNETGameSearchResult>();
             }
             finally { }
-
+            */
 
             XmlNode root = doc.DocumentElement;
             IEnumerator ienum = root.GetEnumerator();

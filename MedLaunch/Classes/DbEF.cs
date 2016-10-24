@@ -346,45 +346,14 @@ namespace MedLaunch.Classes
 
             using (var context = new MyDbContext())
             {
-                // favorites display
-                if (systemId == -1)
+                switch (systemId)
                 {
-                    // show all games
-                    var favQuery = from g in context.Game
-                                   where (g.gameName.ToLower().Contains(search.ToLower()) || GSystem.GetSystemName(g.systemId).ToLower().Contains(search.ToLower())) && g.isFavorite == true && g.hidden == false
-                                   orderby g.gameName
-                                   select new { g.gameId, g.gameName, g.gameLastPlayed, g.isFavorite, g.systemId };
-                    foreach (var g in favQuery)
-                    {
-                        DataGridGamesView dgGamesList = new DataGridGamesView();
-                        dgGamesList.ID = g.gameId;
-                        dgGamesList.Game = g.gameName;
-                        dgGamesList.System = GSystem.GetSystemName(g.systemId);
-                        dgGamesList.Favorite = g.isFavorite;
-                        string lp;
-                        if (g.gameLastPlayed.ToString("yyyy-MM-dd HH:mm:ss") == "0001-01-01 00:00:00")
-                        {
-                            lp = "NEVER";
-                        }
-                        else
-                        {
-                            lp = g.gameLastPlayed.ToString("yyyy-MM-dd HH:mm:ss");
-                        }
-                        dgGamesList.LastPlayed = lp;
-
-                        gms.Add(dgGamesList);
-                    }
-                }
-                else
-                {
-                    if (systemId == 0)
-                    {
-                        // show all games
-                        var query = from g in context.Game
-                                    where (g.gameName.ToLower().Contains(search.ToLower()) || GSystem.GetSystemName(g.systemId).ToLower().Contains(search.ToLower())) && g.hidden == false
-                                    orderby g.gameName
-                                    select new { g.gameId, g.gameName, g.gameLastPlayed, g.isFavorite, g.systemId };
-                        foreach (var g in query)
+                    case -1:            // show favorites
+                        var favQuery = from g in context.Game
+                                       where (g.gameName.ToLower().Contains(search.ToLower()) || GSystem.GetSystemName(g.systemId).ToLower().Contains(search.ToLower())) && g.isFavorite == true && g.hidden == false
+                                       orderby g.gameName
+                                       select new { g.gameId, g.gameName, g.gameLastPlayed, g.isFavorite, g.systemId };
+                        foreach (var g in favQuery)
                         {
                             DataGridGamesView dgGamesList = new DataGridGamesView();
                             dgGamesList.ID = g.gameId;
@@ -404,15 +373,71 @@ namespace MedLaunch.Classes
 
                             gms.Add(dgGamesList);
                         }
-                    }
-                    else
-                    {
-                        // filter based on systemId
-                        var query = from g in context.Game
+                        break;
+                    case 0:             // show all games
+                        var allQuery = from g in context.Game
+                                    where (g.gameName.ToLower().Contains(search.ToLower()) || GSystem.GetSystemName(g.systemId).ToLower().Contains(search.ToLower())) && g.hidden == false
+                                    orderby g.gameName
+                                    select new { g.gameId, g.gameName, g.gameLastPlayed, g.isFavorite, g.systemId };
+                        foreach (var g in allQuery)
+                        {
+                            DataGridGamesView dgGamesList = new DataGridGamesView();
+                            dgGamesList.ID = g.gameId;
+                            dgGamesList.Game = g.gameName;
+                            dgGamesList.System = GSystem.GetSystemName(g.systemId);
+                            dgGamesList.Favorite = g.isFavorite;
+                            string lp;
+                            if (g.gameLastPlayed.ToString("yyyy-MM-dd HH:mm:ss") == "0001-01-01 00:00:00")
+                            {
+                                lp = "NEVER";
+                            }
+                            else
+                            {
+                                lp = g.gameLastPlayed.ToString("yyyy-MM-dd HH:mm:ss");
+                            }
+                            dgGamesList.LastPlayed = lp;
+
+                            gms.Add(dgGamesList);
+                        }
+                        break;
+                    case -100:          // show unscraped games
+                        var unscrapedQuery = from g in context.Game
+                                             where (g.gameName.ToLower().Contains(search.ToLower()) || GSystem.GetSystemName(g.systemId).ToLower().Contains(search.ToLower())) && g.hidden == false
+                                       orderby g.gameName
+                                       select new { g.gameId, g.gameName, g.gameLastPlayed, g.isFavorite, g.systemId };
+                        foreach (var g in unscrapedQuery)
+                        {
+                            // detect entries that do not have a corresponding entry in the GDBLink table (so have NOT been scraping matched)
+                            List<GDBLink> q = (from a in GDBLink.GetRecords(g.gameId)
+                                     select a).ToList();
+                            if (q.Count < 1)
+                            {
+                                DataGridGamesView dgGamesList = new DataGridGamesView();
+                                dgGamesList.ID = g.gameId;
+                                dgGamesList.Game = g.gameName;
+                                dgGamesList.System = GSystem.GetSystemName(g.systemId);
+                                dgGamesList.Favorite = g.isFavorite;
+                                string lp;
+                                if (g.gameLastPlayed.ToString("yyyy-MM-dd HH:mm:ss") == "0001-01-01 00:00:00")
+                                {
+                                    lp = "NEVER";
+                                }
+                                else
+                                {
+                                    lp = g.gameLastPlayed.ToString("yyyy-MM-dd HH:mm:ss");
+                                }
+                                dgGamesList.LastPlayed = lp;
+
+                                gms.Add(dgGamesList);
+                            }
+                        }
+                        break;
+                    default:            // filter based on actual system ID
+                        var standardQuery = from g in context.Game
                                     where (g.systemId == systemId && (g.gameName.ToLower().Contains(search.ToLower()) || GSystem.GetSystemName(g.systemId).ToLower().Contains(search.ToLower()))) && g.hidden == false
                                     orderby g.gameName
                                     select new { g.gameId, g.gameName, g.gameLastPlayed, g.isFavorite };
-                        foreach (var g in query)
+                        foreach (var g in standardQuery)
                         {
                             DataGridGamesView dgGamesList = new DataGridGamesView();
                             dgGamesList.ID = g.gameId;
@@ -432,11 +457,8 @@ namespace MedLaunch.Classes
 
                             gms.Add(dgGamesList);
                         }
-                    }
+                        break;
                 }
-
-
-
             }
 
             //return gms;
