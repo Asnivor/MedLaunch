@@ -32,6 +32,7 @@ using Microsoft.Win32;
 using System.Globalization;
 using System.Windows.Controls.Primitives;
 using Newtonsoft.Json;
+using System.Threading;
 
 namespace MedLaunch
 {
@@ -390,6 +391,7 @@ namespace MedLaunch
             };
 
             var controller = await this.ShowProgressAsync("Scanning Disk Directories", "Determining Paths and Counting Files...", settings: mySettings);
+            controller.SetCancelable(false);
             controller.SetIndeterminate();
 
             await Task.Delay(100);
@@ -407,26 +409,24 @@ namespace MedLaunch
 
         private async void ScrapeGetAllPlatformGames_Click(object sender, RoutedEventArgs e)
         {
+            CancellationTokenSource cs = new CancellationTokenSource();
             var mySettings = new MetroDialogSettings()
             {
                 NegativeButtonText = "Cancel Scraping",
                 AnimateShow = false,
-                AnimateHide = false
+                AnimateHide = false,
             };
 
             var controller = await this.ShowProgressAsync("MedLaunch - Getting Basic Games List From thegamesdb.net", "", settings: mySettings);
             controller.SetCancelable(true);
             await Task.Delay(100);
-
-            await Task.Run(async () =>
-            {
-                await Task.Delay(1);
-                List<GDBPlatformGame> gs = GameScraper.DatabasePlatformGamesImport(controller);
-                GDBPlatformGame.SaveToDatabase(gs);
-            });
-
-            
-
+                await Task.Run(() =>
+                {
+                    Task.Delay(1);
+                    List<GDBPlatformGame> gs = GameScraper.DatabasePlatformGamesImport(controller);
+                    if (!controller.IsCanceled)
+                     GDBPlatformGame.SaveToDatabase(gs);
+                });
             await controller.CloseAsync();
 
             if (controller.IsCanceled)
@@ -451,11 +451,10 @@ namespace MedLaunch
             };
 
             var controller = await this.ShowProgressAsync("Scanning ROM Directories", "Determining Paths and Counting Files...", settings: mySettings);
+            controller.SetCancelable(true);
             //controller.SetIndeterminate();
 
             await Task.Delay(100);
-
-            controller.SetCancelable(true);
 
             string output = "";
             int addedStats = 0;
@@ -481,6 +480,7 @@ namespace MedLaunch
                     string path = rs.GetPath(hs.systemId);
                     if (path == "" || path == null || !Directory.Exists(path))
                     {
+                        
                         // No path returned or path is not valid - Mark existing games in Db as hidden
                         rs.MarkAllRomsAsHidden(hs.systemId);
                         hiddenStats += rs.HiddenStats;
@@ -527,6 +527,10 @@ namespace MedLaunch
                     // iterate through each system that has a system ROM path set
                     foreach (var s in scanRoms)
                     {
+                        if (controller.IsCanceled)
+                        {
+                            break;
+                        }
                         //MessageBoxResult result2 = MessageBox.Show(s.systemId.ToString());
 
                         // start scanning
@@ -558,7 +562,7 @@ namespace MedLaunch
                         rs.UntouchedStats = 0;
                         rs.HiddenStats = 0;
 
-                        await Task.Delay(500);
+                        await Task.Delay(200);
                     }
                 });
                 
@@ -573,13 +577,17 @@ namespace MedLaunch
 
             await Task.Run(() =>
             {
-                controller.SetMessage(output + "\nUpdating Database");
-                rs.SaveToDatabase();
+                if (!controller.IsCanceled)
+                {
+                    controller.SetMessage(output + "\nUpdating Database");
+                    rs.SaveToDatabase();
+                }
+                
             });
                 
         
 
-            await Task.Delay(500);
+            await Task.Delay(100);
 
 
 
@@ -1960,6 +1968,7 @@ namespace MedLaunch
             };
 
             var controller = await this.ShowProgressAsync("Please wait...", "Saving Settings\n(This may take a few seconds depending on your system)", settings: mySettings);
+            controller.SetCancelable(false);
             controller.SetIndeterminate();
 
             await Task.Delay(200);

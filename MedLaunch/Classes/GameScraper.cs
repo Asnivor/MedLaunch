@@ -14,7 +14,7 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Windows.Controls;
 using MahApps.Metro.SimpleChildWindow;
-
+using System.Threading;
 
 namespace MedLaunch.Classes
 {
@@ -57,18 +57,22 @@ namespace MedLaunch.Classes
             MainWindow MWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
 
             // popup progress dialog
+            CancellationTokenSource cs = new CancellationTokenSource();
             var mySettings = new MetroDialogSettings()
             {
                 NegativeButtonText = "Cancel Scanning",
                 AnimateShow = false,
-                AnimateHide = false
+                AnimateHide = false,
+                CancellationToken = cs.Token
             };
             var controller = await MWindow.ShowProgressAsync("Scraping Data", "Initialising...", true, settings: mySettings);
+            controller.SetCancelable(true);
             await Task.Delay(100);
 
             await Task.Run(() =>
             {
                 controller.SetMessage("Getting Local Games");
+                
 
                 // get all local games for this system already in the database
                 gs.LocalGames = MedLaunch.Models.Game.GetGames(systemId).ToList();
@@ -84,6 +88,11 @@ namespace MedLaunch.Classes
                 {
                     foreach (var g in link)
                     {
+                        if (controller.IsCanceled)
+                        {
+                            controller.CloseAsync();
+                            return;
+                        }
                         var gam = (from a in gs.LocalGames
                                   where (a.gameId == g.GameId && a.systemId == systemId)
                                   select a).ToList();
@@ -105,6 +114,11 @@ namespace MedLaunch.Classes
                 // iterate through each local game and attempt to match it with the gamesdb.net list
                 foreach (var g in gs.LocalGames)
                 {
+                    if (controller.IsCanceled)
+                    {
+                        controller.CloseAsync();
+                        return;
+                    }
                     i++;
                     controller.SetProgress(i);
                     controller.SetMessage("Attempting gamesdb.net match for:\n" + g.gameName + "\n(" + i + " of " + numGames + ")");
@@ -130,6 +144,9 @@ namespace MedLaunch.Classes
                         l.GameId = g.gameId;
                         GDBLink.SaveToDatabase(l);
                     }
+                    
+                        
+
                 }
 
                 /* Begin actual scraping */
@@ -178,6 +195,11 @@ namespace MedLaunch.Classes
                 controller.Maximum = gamesCount;
                 foreach (GDBGameData game in ga)
                 {
+                    if (controller.IsCanceled)
+                    {
+                        controller.CloseAsync();
+                        return;
+                    }
                     // iterate through each game that requires scraping and attempt to download the data and import to database
                     i++;
                     controller.SetProgress(i);
@@ -1149,7 +1171,11 @@ namespace MedLaunch.Classes
             
             foreach (GSystem sys in GSystem.GetSystems())
             {
-
+                if (controller.IsCanceled)
+                {
+                    controller.CloseAsync();
+                    return new List<GDBPlatformGame>();
+                }
                 // skip systems that are not needed
                 if (sys.systemId == 16 || sys.systemId == 17 || sys.systemId == 18)
                     continue;
@@ -1167,6 +1193,11 @@ namespace MedLaunch.Classes
                 // perform lookups
                 foreach (int gid in sys.theGamesDBPlatformId)
                 {
+                    if (controller.IsCanceled)
+                    {
+                        controller.CloseAsync();
+                        return new List<GDBPlatformGame>();
+                    }
                     List<GDBNETGameSearchResult> result = GDBNETGamesDB.GetPlatformGames(gid).ToList();
                     if (result.Count == 0)
                     {
@@ -1180,6 +1211,11 @@ namespace MedLaunch.Classes
                     
                     foreach (var r in result)
                     {
+                        if (controller.IsCanceled)
+                        {
+                            controller.CloseAsync();
+                            return null;
+                        }
                         GDBPlatformGame gsingle = new GDBPlatformGame();
                         gsingle.id = r.ID;
                         gsingle.SystemId = sys.systemId;
@@ -1217,8 +1253,17 @@ namespace MedLaunch.Classes
             {
                 controller.SetMessage("Saving to Database...");
             }
+            if (controller.IsCanceled)
+            {
+                return new List<GDBPlatformGame>();
+            }
+            else
+            {
+                return gs;
+            }
 
-            return gs;
+
+            
           
                 
 

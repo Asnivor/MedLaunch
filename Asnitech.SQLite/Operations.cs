@@ -31,7 +31,7 @@ namespace Asnitech.SQLite
         {
             string dbPath = @"Data\Settings\MedLaunch.db";
             // create System.Data.SQLite connection
-            string connString = "Data Source=" + AppDomain.CurrentDomain.BaseDirectory + dbPath + "; Pooling=False; Read Only=True;";
+            string connString = "Data Source=" + AppDomain.CurrentDomain.BaseDirectory + dbPath + "; Pooling=False;";
 
             string dbVersion = "";
             // connect to database and retreive the current version

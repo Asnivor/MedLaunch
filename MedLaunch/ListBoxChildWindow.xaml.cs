@@ -112,6 +112,7 @@ namespace MedLaunch
 
 
             var controller = await mw.ShowProgressAsync("Scraping Data", "Initialising...", true, settings: mySettings);
+            controller.SetCancelable(true);
             await Task.Delay(100);
 
             controller.SetMessage("Creating links...");
@@ -135,6 +136,11 @@ namespace MedLaunch
             await Task.Delay(100);
             await Task.Run(() =>
             {
+                if (controller.IsCanceled)
+                {
+                    controller.CloseAsync();
+                    return;
+                }
                 gs.ScrapeGame(gdbId, controller, message);
             });
 

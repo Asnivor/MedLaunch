@@ -883,9 +883,11 @@
                                                 Search Online
                                             </Button>
 -->
-                                            <Button Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}" x:Name="btnScrapingRefreshPlatformGames" ToolTip="Re-download the latest list of games from thegamesdb.net (used for auto-scraping)" Click="btnSavePlatformGamesToDisk_Click">
-                                                Refresh GamesDB
+                                            <Button x:Name="btnScrapingRefreshPlatformGames" ToolTip="Re-download the latest list of games from thegamesdb.net (used for auto-scraping) and import them into the database" Click="ScrapeGetAllPlatformGames_Click">
+                                                Refresh GamesDB Games List
                                             </Button>
+
+                                            
 
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
