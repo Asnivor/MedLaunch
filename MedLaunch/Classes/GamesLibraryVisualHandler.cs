@@ -214,6 +214,9 @@ namespace MedLaunch.Classes
 
             // Game info (from thegamesdb.net)
             // get the link table record
+
+            
+
             GDBLink link = GDBLink.GetRecord(gameId);
             if (link == null)
             {

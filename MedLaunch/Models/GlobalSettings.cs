@@ -39,6 +39,7 @@ namespace MedLaunch.Models
         public bool scrapeBoxart { get; set; }
         public bool scrapeScreenshots { get; set; }
         public bool scrapeFanart { get; set; }
+        public bool preferGenesis { get; set; }
 
         public static GlobalSettings GetGlobalDefaults()
         {
@@ -67,7 +68,8 @@ namespace MedLaunch.Models
                 scrapeBanners = true,
                 scrapeBoxart = true,
                 scrapeFanart = true,
-                scrapeScreenshots = true
+                scrapeScreenshots = true,
+                preferGenesis = true
                 
             };
             return gs;
@@ -139,7 +141,7 @@ namespace MedLaunch.Models
         }
 
         public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast, ComboBox GuiZoom, CheckBox MinToTaskBar, CheckBox HideSidebar,
-            CheckBox chkAllowBanners, CheckBox chkAllowBoxart, CheckBox chkAllowScreenshots, CheckBox chkAllowFanart)
+            CheckBox chkAllowBanners, CheckBox chkAllowBoxart, CheckBox chkAllowScreenshots, CheckBox chkAllowFanart, CheckBox chkPreferGenesis)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
@@ -160,6 +162,9 @@ namespace MedLaunch.Models
             chkAllowBoxart.IsChecked = gs.scrapeBoxart;
             chkAllowFanart.IsChecked = gs.scrapeFanart;
             chkAllowScreenshots.IsChecked = gs.scrapeScreenshots;
+            chkPreferGenesis.IsChecked = gs.preferGenesis;
+
+
 
         }
 
@@ -238,6 +243,13 @@ namespace MedLaunch.Models
         {
             GlobalSettings gs = GetGlobals();
             gs.scrapeFanart = chkAllowFanart.IsChecked.Value;
+            SetGlobals(gs);
+        }
+
+        public static void UpdatePreferGenesis(CheckBox chkPreferGenesis)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.preferGenesis = chkPreferGenesis.IsChecked.Value;
             SetGlobals(gs);
         }
 

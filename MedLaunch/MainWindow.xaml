@@ -41,10 +41,9 @@
     <Grid x:Name="RootGrid">
         <Grid.LayoutTransform>
             <ScaleTransform
+                x:Name="mainScaleTransform"
                 CenterX="0"
                 CenterY="0"
-                ScaleX="{Binding ElementName=gui_zoom, Path=Value}"
-                ScaleY="{Binding ElementName=gui_zoom, Path=Value}"
                 />
         </Grid.LayoutTransform>
         <Grid.Background>
@@ -877,13 +876,13 @@
                                             </Button>
 
                                             <Button x:Name="btnScrapingPickGame" ToolTip="Choose game from a list of local search results" Click="btnScrapingPickGame_Click">
-                                                Choose Game
+                                                Choose Game From List
                                             </Button>
-
+<!--
                                             <Button x:Name="btnScrapingSearchOnline" ToolTip="Search thegamesdb.net for this game">
                                                 Search Online
                                             </Button>
-
+-->
                                             <Button Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}" x:Name="btnScrapingRefreshPlatformGames" ToolTip="Re-download the latest list of games from thegamesdb.net (used for auto-scraping)" Click="btnSavePlatformGamesToDisk_Click">
                                                 Refresh GamesDB
                                             </Button>
@@ -4115,9 +4114,10 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3" x:Name="dpZoomSlider">
                                                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">GUI Zoom</Label>
-                                                    
+                                                    <!--
                                                     <Slider Maximum="1.5" Minimum="0.3" TickPlacement="BottomRight" Value="1" TickFrequency="0.1" IsSnapToTickEnabled="True"
                                         Name="gui_zoom"/>
+                                                    -->
                                                 </DockPanel>
 
                                                 <Label Grid.Row="2" HorizontalContentAlignment="Left" Grid.Column="0">Set GUI Zoom</Label>
@@ -4176,12 +4176,16 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
-
-                                                <Label Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Left">Allow Scraping of the Following Media:</Label>
-                                                <CheckBox x:Name="chkAllowBanners" Grid.ColumnSpan="2" Grid.Row="1" Content="Banners" Checked="chkAllowBanners_Checked" Unchecked="chkAllowBanners_Unchecked"/>
-                                                <CheckBox x:Name="chkAllowBoxart" Grid.ColumnSpan="2" Grid.Row="2" Content="Boxart" Checked="chkAllowBoxart_Checked" Unchecked="chkAllowBoxart_Unchecked"/>
-                                                <CheckBox x:Name="chkAllowScreenshots" Grid.ColumnSpan="2" Grid.Row="3" Content="Screenshots" Checked="chkAllowScreenshots_Checked" Unchecked="chkAllowScreenshots_Unchecked"/>
-                                                <CheckBox x:Name="chkAllowFanart" Grid.ColumnSpan="2" Grid.Row="4" Content="Fan Art" Checked="chkAllowFanart_Checked" Unchecked="chkAllowFanart_Unchecked"/>
+                                                <CheckBox x:Name="chkPreferGenesis" Grid.ColumnSpan="2" Grid.Row="0" Checked="chkPreferGenesis_Checked" Unchecked="chkPreferGenesis_Unchecked">
+                                                    <AccessText TextWrapping="Wrap"        
+                                                            Text="Auto-Resolve Duplicates (improves auto-matching (sometimes) for systems with mulitple entries on thegamesdb.net eg: Megadrive/Genesis)"/>
+                                                    
+                                                </CheckBox>
+                                                <Label Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Left">Allow Scraping of the Following Media:</Label>
+                                                <CheckBox x:Name="chkAllowBanners" Grid.ColumnSpan="2" Grid.Row="2" Content="Banners" Checked="chkAllowBanners_Checked" Unchecked="chkAllowBanners_Unchecked"/>
+                                                <CheckBox x:Name="chkAllowBoxart" Grid.ColumnSpan="2" Grid.Row="3" Content="Boxart" Checked="chkAllowBoxart_Checked" Unchecked="chkAllowBoxart_Unchecked"/>
+                                                <CheckBox x:Name="chkAllowScreenshots" Grid.ColumnSpan="2" Grid.Row="4" Content="Screenshots" Checked="chkAllowScreenshots_Checked" Unchecked="chkAllowScreenshots_Unchecked"/>
+                                                <CheckBox x:Name="chkAllowFanart" Grid.ColumnSpan="2" Grid.Row="5" Content="Fan Art" Checked="chkAllowFanart_Checked" Unchecked="chkAllowFanart_Unchecked"/>
 
                                                 
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="17">

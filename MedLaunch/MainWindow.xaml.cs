@@ -118,8 +118,14 @@ namespace MedLaunch
 
             // load globalsettings for front page
             GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar,
-               chkAllowBanners, chkAllowBoxart, chkAllowScreenshots, chkAllowFanart);
-            gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
+               chkAllowBanners, chkAllowBoxart, chkAllowScreenshots, chkAllowFanart, chkPreferGenesis);
+            //gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
+            GlobalSettings gs = GlobalSettings.GetGlobals();
+            mainScaleTransform.ScaleX = Convert.ToDouble(gs.guiZoom);
+            mainScaleTransform.ScaleY = Convert.ToDouble(gs.guiZoom);
+
+
+
 
             // load netplay settings for netplay page
             ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
@@ -261,11 +267,16 @@ namespace MedLaunch
         {
             double value = Convert.ToDouble((sender as ComboBox).SelectedValue);
             //MessageBox.Show(value.ToString());
-            gui_zoom.Value = value;
+            //gui_zoom.Value = value;
             if (Convert.ToDouble(value) > 0)
             {
                 GlobalSettings.UpdateGuiZoom(value);
             }
+
+            // now update zoom
+            ScaleTransform st = (ScaleTransform)this.FindName("mainScaleTransform");
+            st.ScaleX = value;
+            st.ScaleY = value;
             
         }
 
@@ -1100,6 +1111,16 @@ namespace MedLaunch
         private void chkHideSidebar_Unchecked(object sender, RoutedEventArgs e)
         {
             GlobalSettings.UpdateHideSidebar(chkHideSidebar);
+        }
+
+        private void chkPreferGenesis_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdatePreferGenesis(chkPreferGenesis);
+        }
+
+        private void chkPreferGenesis_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdatePreferGenesis(chkPreferGenesis);
         }
 
         private void chkAllowBanners_Checked(object sender, RoutedEventArgs e)
@@ -2111,7 +2132,7 @@ namespace MedLaunch
               
         }
 
-       
+        
     }
 
     

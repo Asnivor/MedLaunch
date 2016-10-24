@@ -527,9 +527,9 @@ namespace MedLaunch.Classes
                     return null;
                 }
             }
-            
 
-            // Multiple records returned - continue
+
+            // Multiple records returned - continue           
 
             // match order of words starting with the first and incrementing
             List<GDBPlatformGame> m = MatchOneWordAtATime(SearchCollection, StripSymbols(gameName.ToLower()));
@@ -538,6 +538,25 @@ namespace MedLaunch.Classes
                 return m;
             if (m.Count > 1)
                 SearchCollection = m;
+
+
+            if (SearchCollection.Count == 2 && gs.preferGenesis == true)
+            {
+                // 2 records returned - check whether they match exactly
+                string first = (from a in SearchCollection
+                                select a.GameTitle).First();
+                string last = (from a in SearchCollection
+                               select a.GameTitle).Last();
+                if (first == last)
+                {
+                    // looks like the same game - perhaps different systems on the games db (ie - Megadrive / Genesis) - return the first result
+                    GDBPlatformGame pg = (from a in SearchCollection
+                                          select a).First();
+                    List<GDBPlatformGame> l = new List<GDBPlatformGame>();
+                    l.Add(pg);
+                    return l;
+                }
+            }
 
             // still no definiate match found
             // run levenshetein fuzzy search on SearchCollection - 10 iterations
@@ -565,6 +584,7 @@ namespace MedLaunch.Classes
                 gd.ReleaseDate = g.ReleaseDate;  
                 */              
             }
+            
             //return SearchCollection;
             return WorkingSearchCollection;
         }
