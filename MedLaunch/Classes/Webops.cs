@@ -19,7 +19,7 @@ namespace MedLaunch.Classes
         public WebOps()
         {
             BaseUrl = "http://thegamesdb.net/api";
-            Timeout = 5000; // start at 10 seconds
+            Timeout = 1000; // start at 1 seconds
             BodyAsString = null;
         }
 

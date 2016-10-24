@@ -195,6 +195,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\CMenu.cs" />
+    <Compile Include="Classes\ConfigImport.cs" />
+    <Compile Include="Classes\ConfigReflection.cs" />
     <Compile Include="Classes\ConfigsVisualHandler.cs" />
     <Compile Include="Classes\DbMigration.cs" />
     <Compile Include="Classes\EventArgs.cs" />

@@ -480,7 +480,7 @@ namespace MedLaunch
         }
 
         
-        private static void SetPropertyValue(ConfigBaseSettings settings, PropertyInfo p, string type, string value)
+        public static void SetPropertyValue(ConfigBaseSettings settings, PropertyInfo p, string type, string value)
         {
             if (p.PropertyType == typeof(string))
             {
