@@ -126,6 +126,8 @@ namespace MedLaunch
             }
             else
             {
+                this.Visibility = Visibility.Visible;
+                this.Refresh();
                 // db does not exist - proceed with creation and seeding
                 UpdateStatus("NO", false);
                 UpdateStatus("Creating database", true);

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using MedLaunch.Classes;
 using MedLaunch.Models;
 using MahApps.Metro.Controls.Dialogs;
+using MedLaunch.Extensions;
 
 namespace MedLaunch
 {
@@ -46,6 +47,7 @@ namespace MedLaunch
 
             string sysName = GSystem.GetSystemName(systemId);
             this.Title = "Fuzzy Search Results for " + sysName;
+            this.Refresh();
 
             GameScraper gs = new GameScraper();
             // get a list of all games for this platform - higest match first
@@ -65,6 +67,7 @@ namespace MedLaunch
                 //gli.Matches = gam.Matches;
                 int wordcount = row.Game.Split(' ').Length;
                 gli.Percentage = Convert.ToInt32((Convert.ToDouble(gam.Matches) / Convert.ToDouble(wordcount)) * 100);
+                gli.Platform = gam.Game.GDBPlatformName;
                 g.Add(gli);
             }
             // make sure list is ordered descending
@@ -161,5 +164,6 @@ namespace MedLaunch
         public string GameName { get; set; }
         public int Matches { get; set; }
         public int Percentage { get; set; }
+        public string Platform { get; set; }
     }
 }

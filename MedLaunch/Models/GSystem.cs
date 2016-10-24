@@ -73,6 +73,77 @@ namespace MedLaunch.Models
             return _gamesdbid;
         }
 
+        public static string ReturnGamesDBPlatformName(int GamesDbPlatformId)
+        {
+            string r = "";
+            switch (GamesDbPlatformId)
+            {
+                case 4:
+                    r = "Nintendo Game Boy";
+                    break;
+                case 41:
+                    r = "Nintendo Game Boy Color";
+                    break;
+                case 5:
+                    r = "Nintendo Game Boy Advance";
+                    break;
+                case 4924:
+                    r = "Atari Lynx";
+                    break;
+                case 36:
+                    r = "Sega Mega Drive";
+                    break;
+                case 18:
+                    r = "Sega Genesis";
+                    break;
+                case 20:
+                    r = "Sega Game Gear";
+                    break;
+                case 4923:
+                    r = "Neo Geo Pocket Color";
+                    break;
+                case 4922:
+                    r = "Neo Geo Pocket";
+                    break;
+                case 34:
+                    r = "TurboGrafx 16";
+                    break;
+                case 4955:
+                    r = "TurboGrafx CD";
+                    break;
+                case 4930:
+                    r = "PC-FX";
+                    break;
+                case 10:
+                    r = "Sony Playstation";
+                    break;
+                case 35:
+                    r = "Sega Master System";
+                    break;
+                case 7:
+                    r = "Nintendo Entertainment System (NES)";
+                    break;
+                case 6:
+                    r = "Super Nintendo (SNES)";
+                    break;
+                case 17:
+                    r = "Sega Saturn";
+                    break;
+                case 4918:
+                    r = "Nintendo Virtual Boy";
+                    break;
+                case 4925:
+                    r = "WonderSwan";
+                    break;
+                case 4926:
+                    r = "WonderSwan Color";
+                    break;
+                default:
+                    break;
+            }
+            return r;
+        }
+
         public static List<GSystem> GetSystems()
         {
             List<GSystem> gSystems = new List<GSystem>

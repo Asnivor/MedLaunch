@@ -31,6 +31,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0"
 				   Margin="5"
@@ -42,6 +43,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding GamesDBId}" />
                 <DataGridTextColumn Header="Game" Binding="{Binding GameName}" />
+                <DataGridTextColumn Header="Platform" Binding="{Binding Platform}" />
                 <DataGridTemplateColumn Header="Match">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

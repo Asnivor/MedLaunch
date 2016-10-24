@@ -15,6 +15,7 @@ namespace MedLaunch.Models
     {
         public int id { get; set; }
         public int SystemId { get; set; }
+        public string GDBPlatformName { get; set; }
         //public int GameId { get; set; }
         public string GameTitle { get; set; }
         public string ReleaseDate { get; set; }
@@ -54,7 +55,7 @@ namespace MedLaunch.Models
 
                             var platformgames = GDBPlatformGame.GetGames();
                             string linkTimeLocal = (System.Reflection.Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
-                            string jsonGames = JsonConvert.SerializeObject(platformgames.ToArray());
+                            string jsonGames = JsonConvert.SerializeObject(platformgames.ToArray(), Formatting.Indented);
                             System.IO.File.WriteAllText(@"Data\Settings\thegamesdbplatformgames_" + linkTimeLocal.Replace(" ", "").Replace(":", "").Replace("-", "") + ".json", jsonGames);
                             files = (Directory.GetFiles(@"Data\Settings"));
                             f = files.Where(a => a.EndsWith(".json")).OrderByDescending(b => b.ToString()).FirstOrDefault();

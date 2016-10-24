@@ -1157,12 +1157,26 @@ namespace MedLaunch.Classes
                             Task.Delay(2000);
                         }
                     }
-                    merged.AddRange(result);
+                    
+                    foreach (var r in result)
+                    {
+                        GDBPlatformGame gsingle = new GDBPlatformGame();
+                        gsingle.id = r.ID;
+                        gsingle.SystemId = sys.systemId;
+                        gsingle.GameTitle = r.Title;
+                        gsingle.ReleaseDate = r.ReleaseDate;
+                        gsingle.GDBPlatformName = GSystem.ReturnGamesDBPlatformName(gid);
+
+                        gs.Add(gsingle);
+                    }
+                    //merged.AddRange(result);
                 }
 
                 // remove duplicates
-                List<GDBNETGameSearchResult> nodupe = merged.Distinct().ToList();
+                gs.Distinct();
+                //List<GDBNETGameSearchResult> nodupe = merged.Distinct().ToList();
 
+                /*
                 // convert to GDBPlatformGame format and add to top list
                 foreach (var n in nodupe)
                 {
@@ -1171,9 +1185,11 @@ namespace MedLaunch.Classes
                     gsingle.SystemId = sys.systemId;
                     gsingle.GameTitle = n.Title;
                     gsingle.ReleaseDate = n.ReleaseDate;
+                    gsingle.GDBPlatformName = GSystem.ReturnGamesDBPlatformName(Convert.ToInt32(n.Platform));
 
                     gs.Add(gsingle);
                 }
+                */
             }
 
             // now we have a complete list of games for our platforms from thegamesdb.net - add or update the database
