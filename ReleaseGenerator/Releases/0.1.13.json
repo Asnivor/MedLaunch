@@ -1,0 +1,15 @@
+{
+  "Version": "0.1.13",
+  "Date": "2016-10-04T00:00:00",
+  "Notes": "Compatible with Mednafen 0.9.39.x\r\n\r\nIf upgrading you MUST either install MedLaunch in a new directory, or make sure to delete your existing MedLaunch.db database file before launching the new version. This will be fixed very soon.\r\n\r\nIt is recommended that you use a brand new Mednafen instance for the time being. You can download the latest version of Mednafen from the Mednafen website. If you do not do this you might experience issues with already existing system specific configuration files in the Mednafen folder. Specifically, these will override base settings in MedLaunch until said system configuration is enabled in the launcher. This will be addressed in future releases.",
+  "Changelog": [
+    "Exception handling when corrupt Zip archive interogated",
+    "Removed .smd as a supported Megadrive/Gensis ROM format (to re-implement once .smd to .bin conversion code is in place)",
+    "Removed 'Rescan All Disks' option for the time being (as not yet implemented)",
+    "Added option to manually add disk-based games (context menu right-click on System filter in 'Games' tab.",
+    "Implemented m3u auto-generation logic when adding multi-disk games",
+    "Enabled double-click to launch game in Games library",
+    "Added 'Delete From Games Library' context menu option (removes from the database, not disk - roms will be re-added on next scan)",
+    "Modified games library refresh code so that data is updated after a change"
+  ]
+}

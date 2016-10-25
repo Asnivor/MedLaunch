@@ -1,0 +1,17 @@
+{
+  "Version": "0.2.3.1",
+  "Date": "2016-10-24T00:00:00",
+  "Notes": "Compatible with Mednafen 0.9.39.x\r\n\r\nStarting with this version of MedLaunch you can safely extract this new release over an existing Medlaunch folder (providing you do not have MedLaunch running at the time).\r\n",
+  "Changelog": [
+    "More UI threading fixes",
+    "Implemented basic games library sidebar",
+    "Added setting to always hide the sidebar",
+    "Added .md as an allowed Megagrive ROM extension (so it will be picked up by the RomScanner)",
+    "Implemented thegamesdb scraping code",
+    "Added scraped data display in the sidebar",
+    "Auto-save games library expander states on application close",
+    "Implemented database update code (so application can be unzipped over a previous version's folder)",
+    "Added 'Unscraped Games' filter to games library",
+    "Simplified the GUI zoom code so (hopefully) there will be less edge-case crashes"
+  ]
+}

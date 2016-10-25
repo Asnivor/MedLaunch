@@ -1,0 +1,19 @@
+{
+  "Version": "0.1.15.7",
+  "Date": "2016-10-11T00:00:00",
+  "Notes": "Compatible with Mednafen 0.9.39.x\r\n\r\nIf upgrading you MUST either install MedLaunch in a new directory, or make sure to delete your existing MedLaunch.db database file before launching the new version. This will be fixed very soon.\r\n\r\nIt is recommended that you use a brand new Mednafen instance for the time being. You can download the latest version of Mednafen from the Mednafen website. If you do not do this you might experience issues with already existing system specific configuration files in the Mednafen folder. Specifically, these will override base settings in MedLaunch until said system configuration is enabled in the launcher. This will be addressed in future releases.",
+  "Changelog": [
+    "Added system specific debug config controls",
+    "Added WonderSwan specific config controls",
+    "Moved 'Enable Netplay' checkbox to Settings tab",
+    "Changed netplay.password and netplay.gamekey so that they can be applied to static servers in the list",
+    "Added startup check - if screen resolution is less than standard MedLaunch resolution - maximise the window to fit",
+    "Moved snes_faust and pce_fast launch toggles to the settings page",
+    "Added games library context menu option 'copy launch string to clipboard'",
+    "Modified all panel heights so that they are viewable on lower resolutions",
+    "Added a 'Set GUI Zoom' selector on the settings tab. Useful for people with tiny resolutions who cant see all content (and people with large resolutions who want the GUI content bigger)",
+    "Added Mednafen directory selectors (cheats, snaps, sav etc)",
+    "Better whitespace validation when building launch config (values with spaces are now encapsulated with quotation marks)",
+    "Added System BIOS/Rom path controls"
+  ]
+}
