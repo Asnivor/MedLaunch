@@ -205,6 +205,7 @@
     <Compile Include="Classes\GamesLibraryVisualHandler.cs" />
     <Compile Include="Classes\GetBuildTime.cs" />
     <Compile Include="Classes\FuzzySearch.cs" />
+    <Compile Include="Classes\Releases.cs" />
     <Compile Include="Classes\SettingsHandler.cs" />
     <Compile Include="Classes\SettingsVisualHandler.cs" />
     <Compile Include="Classes\Initialisation.cs" />
@@ -360,6 +361,7 @@
     <Resource Include="Data\Graphics\Systems\wswan.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="LatestVersion.txt" />
     <Resource Include="Data\Graphics\mediconsplash.png" />
     <Content Include="ExternalAssemblies\FuzzyString.dll" />
   </ItemGroup>

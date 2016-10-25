@@ -4680,6 +4680,7 @@
             
             <TabItem Header="About">
                 <WrapPanel Orientation="Vertical">
+                    <Button x:Name="btnCheckForUpdates" Click="btnCheckForUpdates_Click">Check for Updates</Button>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.5*" />

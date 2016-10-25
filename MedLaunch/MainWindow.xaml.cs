@@ -2150,6 +2150,14 @@ namespace MedLaunch
         {
 
         }
+
+        private void btnCheckForUpdates_Click(object sender, RoutedEventArgs e)
+        {
+            // get current medlaunch version
+            string currVersion = Versions.ReturnApplicationVersion();
+
+            // 
+        }
     }
 
     
