@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace ReleaseGenerator
+namespace Medlaunch.Classes
 {
 
     public class Release

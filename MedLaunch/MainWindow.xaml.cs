@@ -33,6 +33,8 @@ using System.Globalization;
 using System.Windows.Controls.Primitives;
 using Newtonsoft.Json;
 using System.Threading;
+using Medlaunch.Classes;
+using System.Net;
 
 namespace MedLaunch
 {
@@ -256,7 +258,21 @@ namespace MedLaunch
             */
 
             // GameScraper.GetPlatformGames(4924);
-            
+
+            // about tab
+            lblVersion.Visibility = Visibility.Collapsed;
+            lblDate.Visibility = Visibility.Collapsed;
+            tbNotes.Visibility = Visibility.Collapsed;
+            tbChangeLog.Visibility = Visibility.Collapsed;
+            btnUpdate.Visibility = Visibility.Collapsed;
+            lbl1.Visibility = Visibility.Collapsed;
+            lbl2.Visibility = Visibility.Collapsed;
+            lbl3.Visibility = Visibility.Collapsed;
+            lbl4.Visibility = Visibility.Collapsed;
+            lbl5.Visibility = Visibility.Collapsed;
+            lbl6.Visibility = Visibility.Collapsed;
+
+
         }
 
         void RestoreScalingFactor(object sender, MouseButtonEventArgs args)
@@ -2151,13 +2167,198 @@ namespace MedLaunch
 
         }
 
-        private void btnCheckForUpdates_Click(object sender, RoutedEventArgs e)
+        private async void btnCheckForUpdates_Click(object sender, RoutedEventArgs e)
         {
-            // get current medlaunch version
-            string currVersion = Versions.ReturnApplicationVersion();
+            Release newRelease = new Release();
 
-            // 
+            // get current medlaunch version
+            //string currVersion = Versions.ReturnApplicationVersion();
+            string currVersion = "0.2.3.0";
+
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel Update Check",
+                AnimateShow = true,
+                AnimateHide = true
+
+            };
+
+            var controller = await this.ShowProgressAsync("Checking for Updates", "Connecting to Github", settings: mySettings);
+            controller.SetCancelable(false);
+            controller.SetIndeterminate();
+
+            await Task.Delay(100);
+
+            string output;
+            
+            // attempt to download the LatestVersion text file from github
+            string contents;
+
+            try
+            {
+                using (var wc = new WebClient())
+                {
+                    wc.Timeout = 2000;
+                    contents = wc.DownloadString("https://raw.githubusercontent.com/Asnivor/MedLaunch/master/MedLaunch/LatestVersion.txt");
+                }
+                    
+            }
+            catch (Exception ex)
+            {
+                controller.SetMessage("The request timed out - please try again");
+                await Task.Delay(2000);
+                await controller.CloseAsync();
+                return;
+            }
+
+           
+            
+            controller.SetMessage("Determining latest version...");
+            // check whether the version is greater than the one we have installed
+            string latestVersion = contents.Replace(".json", "");
+            // compare versions and determine whether an upgrade is needed
+            string[] CurrVersionArr = currVersion.Split('.');
+            string[] newVersionArr = latestVersion.Split('.');
+            int i = 0;
+            bool upgradeNeeded = false;
+            while (i < 4)
+            {
+                // if anything but the 4th number (private build) is greater in the new version
+                if (Convert.ToInt32(newVersionArr[i]) > Convert.ToInt32(CurrVersionArr[i]))
+                {
+                    // version update is possible
+                    upgradeNeeded = true;
+                    break;
+                }
+                i++;
+            }
+            if (upgradeNeeded == true)
+            {
+                output = "A New MedLaunch Release is Now Available";
+                //await Task.Delay(1000);
+                controller.SetMessage("Downloading release information");
+                await Task.Delay(500);
+                string releaseInfo;
+                try
+                {
+                    using (var wc = new WebClient())
+                    {
+                        wc.Timeout = 2000;
+                        releaseInfo = wc.DownloadString("https://raw.githubusercontent.com/Asnivor/MedLaunch/master/ReleaseGenerator/Releases/" + contents);
+                        newRelease = JsonConvert.DeserializeObject<Release>(releaseInfo);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    controller.SetMessage("The request timed out - please try again");
+                    await Task.Delay(2000);
+                    await controller.CloseAsync();
+                    return;
+                }
+              
+            }
+            else
+            {
+                output = "Your Version of MedLaunch is up to date";
+                //await Task.Delay(1000);
+            }
+            controller.SetMessage(output);
+            await Task.Delay(1000);
+
+            await controller.CloseAsync();
+
+            // update the UI if needed
+            if (upgradeNeeded == true)
+            {
+                lbl1.Visibility = Visibility.Visible;
+                lbl2.Visibility = Visibility.Visible;
+                lbl3.Visibility = Visibility.Visible;
+                lbl4.Visibility = Visibility.Visible;
+                lbl5.Visibility = Visibility.Visible;
+                lbl6.Visibility = Visibility.Visible;
+
+                lblVersion.Visibility = Visibility.Visible;
+                lblVersion.Content = newRelease.Version;
+
+                lblDate.Visibility = Visibility.Visible;
+                lblDate.Content = newRelease.Date.ToShortDateString();
+
+                tbNotes.Visibility = Visibility.Visible;
+                tbNotes.Text = newRelease.Notes;
+
+                tbChangeLog.Visibility = Visibility.Visible;
+                foreach (string item in newRelease.Changelog)
+                {
+                    tbChangeLog.Text += "* " + item + "\r\n";
+                }
+                
+                btnUpdate.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                lblVersion.Visibility = Visibility.Collapsed;
+                lblDate.Visibility = Visibility.Collapsed;
+                tbNotes.Visibility = Visibility.Collapsed;
+                tbChangeLog.Visibility = Visibility.Collapsed;
+                btnUpdate.Visibility = Visibility.Collapsed;
+                lbl1.Visibility = Visibility.Collapsed;
+                lbl2.Visibility = Visibility.Collapsed;
+                lbl3.Visibility = Visibility.Collapsed;
+                lbl4.Visibility = Visibility.Collapsed;
+                lbl5.Visibility = Visibility.Collapsed;
+                lbl6.Visibility = Visibility.Collapsed;
+            }
         }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            /* start download and autoupdate */
+
+            string downloadsFolder = System.AppDomain.CurrentDomain.BaseDirectory + @"Data\Updates";
+            System.IO.Directory.CreateDirectory(downloadsFolder);
+
+            // get the new version
+            string v = lblVersion.Content.ToString();
+            string[] vArr = v.Split('.');
+
+            // build the donwload url
+            string download = "https://github.com/Asnivor/MedLaunch/releases/download/" + v + "/MedLaunch_v" + vArr[0] + "_" + vArr[1] + "_" + vArr[2] + "_" + vArr[3] + ".zip";
+
+            // try the downlaod
+            try
+            {
+                using (var wc = new WebClient())
+                {
+                    wc.Timeout = 20000;
+                    wc.DownloadFile(download, downloadsFolder + "\\" + "MedLaunch_v" + vArr[0] + "_" + vArr[1] + "_" + vArr[2] + "_" + vArr[3] + ".zip");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The request timed out - please try again");
+                //await Task.Delay(2000);
+                //await controller.CloseAsync();
+                return;
+            }
+
+        }
+
+        private class WebClient : System.Net.WebClient
+        {
+            public int Timeout { get; set; }
+
+            protected override WebRequest GetWebRequest(Uri uri)
+            {
+                WebRequest lWebRequest = base.GetWebRequest(uri);
+                lWebRequest.Timeout = Timeout;
+                ((HttpWebRequest)lWebRequest).ReadWriteTimeout = Timeout;
+                return lWebRequest;
+            }
+        }
+
+        
     }
 
     
