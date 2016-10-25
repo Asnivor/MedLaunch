@@ -2141,7 +2141,15 @@ namespace MedLaunch
               
         }
 
-        
+        private void TabItem_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void tiSettings_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
     

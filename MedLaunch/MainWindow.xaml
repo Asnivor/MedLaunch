@@ -4014,7 +4014,7 @@
 
             
 
-            <TabItem Header="Settings">
+            <TabItem x:Name="tiSettings" Header="Settings" LostFocus="tiSettings_LostFocus">
                 <Grid x:Name="grdSettings">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -4677,11 +4677,35 @@
                 </DockPanel>
             </TabItem>
 
-            <!--
+            
             <TabItem Header="About">
-                
+                <WrapPanel Orientation="Vertical">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*" />
+                            <ColumnDefinition Width="0.5*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="0" Grid.Row="0">
+                            Installed MedLaunch Version:
+                        </Label>
+                        <Label x:Name="lblMedLaunchVersion" Grid.Column="1" Grid.Row="0" />
+
+                        <Label Grid.Column="0" Grid.Row="1">
+                            Detected Mednafen Version:
+                        </Label>
+                        <Label x:Name="lblMednafenVersion" Grid.Column="1" Grid.Row="1" />
+
+
+
+                    </Grid>
+                </WrapPanel>
             </TabItem>
-            -->
+          
         </TabControl>
 
     </Grid>
