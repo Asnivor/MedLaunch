@@ -19,7 +19,7 @@ namespace MedLaunch.Classes
         public WebOps()
         {
             BaseUrl = "http://thegamesdb.net/api";
-            Timeout = 10000; // start at 1 seconds
+            Timeout = 20000; // start at 1 seconds
             BodyAsString = null;
         }
 
@@ -60,6 +60,8 @@ namespace MedLaunch.Classes
             catch (System.Net.WebException wex)
             {
                 // error or timeout - run again but change the timeout value
+                request.Abort();
+                
                 Timeout += 2000;
                 responseStr = GetResponseText(address, Timeout);
                 if (Timeout > 29000)

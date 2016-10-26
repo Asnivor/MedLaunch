@@ -366,9 +366,21 @@ namespace MedLaunch.Classes
             // test if file does not exist
             if (!File.Exists(path))
                 return null;
-
-            BitmapImage b = new BitmapImage(new Uri(path, urikind));
-            return b;
+            try
+            {
+                BitmapImage b = new BitmapImage(new Uri(path, urikind));
+                return b;
+            }
+            catch (System.NotSupportedException ex)
+            {
+                // problem with the image - probably corrupt. delete it and return an empty image
+                
+                //File.Delete(path);
+                BitmapImage c = new BitmapImage();
+                return c;
+            }
+            
+            
         }
 
 

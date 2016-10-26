@@ -227,6 +227,8 @@ namespace MedLaunch.Classes
 
         public void ScrapeGame(int GdbId, ProgressDialogController p, string currentMessage)
         {
+
+            /*
             // does a json file already exist locally?
             if (DoesJsonFileExist(GdbId) ==  true)
             {
@@ -235,15 +237,34 @@ namespace MedLaunch.Classes
                 GDBGameData.SaveToDatabase(newG);
                 return;
             }
+            */
+
+            
+
             // attempt connection
             try
             {
-                GDBNETGame g = GDBNETGamesDB.GetGame(GdbId);
+                GDBNETGame g = new GDBNETGame();
+                // does a external.xml file exist locally (containing saved info from thegamesdb query)
+                if (DoesXmlExternalFileExist(GdbId) == true)
+                {
+                    p.SetMessage(currentMessage + "\n(Using local URL cache)");
+                    string localExtPath = AppDomain.CurrentDomain.BaseDirectory + "Data\\Graphics\\thegamesdb\\" + GdbId + "\\" + GdbId + "-external.xml";
+                    string gString = File.ReadAllText(localExtPath);
+                    g = GDBNETGamesDB.GetGame(gString);
+                }
+                else
+                {
+                    // go get the data from thegamesdb.net
+                    g = GDBNETGamesDB.GetGame(GdbId);
+                }
+                
                 if (g == null)
                 {
                     // return
                     return;
-                }
+                }                
+
                 // populate object
                 GDBGameData gd = new GDBGameData();
                 gd.GdbId = g.ID;
@@ -261,7 +282,11 @@ namespace MedLaunch.Classes
                 gd.Genres = GDBGameData.JsonSerialize(g.Genres);
 
                 // create folder structure for images (if it is needed)
-                CreateFolderStructure(g.ID);               
+                CreateFolderStructure(g.ID);
+
+                // save the returned gamesdb data to a json file in the game directory - so we can use this to download content rather than the initial connection to thegamesdb.net   
+                //string gJson = JsonConvert.SerializeObject(g, Formatting.Indented);
+                //File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "Data\\Graphics\\thegamesdb\\" + g.ID + "\\" + g.ID + "-external.json", gJson);    
 
                 // download images
                 var images = g.Images;
@@ -374,6 +399,15 @@ namespace MedLaunch.Classes
             }
             return false;
         }
+        public static bool DoesXmlExternalFileExist(int gdbId)
+        {
+            string loadPath = System.AppDomain.CurrentDomain.BaseDirectory + @"\Data\Graphics\thegamesdb\" + gdbId + @"\" + gdbId + "-external.xml";
+            if (File.Exists(loadPath))
+            {
+                return true;
+            }
+            return false;
+        }
         public static void SaveJson(GDBGameData j)
         {
             string savePath = System.AppDomain.CurrentDomain.BaseDirectory + @"\Data\Graphics\thegamesdb\" + j.GdbId + @"\" + j.GdbId + ".json";            
@@ -410,7 +444,7 @@ namespace MedLaunch.Classes
             using (var wc = new CustomWebClient())
             {
                 wc.Proxy = null;
-                wc.Timeout = 10000;
+                wc.Timeout = 30000;
                 try
                 {
                     if (!File.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\" + local))

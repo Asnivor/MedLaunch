@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Xml;
 using System.Collections;
+using System.IO;
 
 namespace MedLaunch.Classes.TheGamesDB
 {
@@ -104,6 +105,86 @@ namespace MedLaunch.Classes.TheGamesDB
             return games;
         }
 
+        public static GDBNETGame GetGame(string xmlString)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xmlString);
+            XmlNode root = doc.DocumentElement;
+            IEnumerator ienum = root.GetEnumerator();
+
+            XmlNode platformNode = root.FirstChild.NextSibling;
+            GDBNETGame game = new GDBNETGame();
+
+            IEnumerator ienumGame = platformNode.GetEnumerator();
+            XmlNode attributeNode;
+            while (ienumGame.MoveNext())
+            {
+                attributeNode = (XmlNode)ienumGame.Current;
+
+                // Iterate through all platform attributes
+                switch (attributeNode.Name)
+                {
+                    case "id":
+                        int.TryParse(attributeNode.InnerText, out game.ID);
+                        break;
+                    case "Overview":
+                        game.Overview = attributeNode.InnerText;
+                        break;
+                    case "GameTitle":
+                        game.Title = attributeNode.InnerText;
+                        break;
+                    case "Platform":
+                        game.Platform = attributeNode.InnerText;
+                        break;
+                    case "ReleaseDate":
+                        game.ReleaseDate = attributeNode.InnerText;
+                        break;
+                    case "overview":
+                        game.Overview = attributeNode.InnerText;
+                        break;
+                    case "ESRB":
+                        game.ESRB = attributeNode.InnerText;
+                        break;
+                    case "Players":
+                        game.Players = attributeNode.InnerText;
+                        break;
+                    case "Co-op":
+                        game.Coop = attributeNode.InnerText;
+                        break;
+                    case "Publisher":
+                        game.Publisher = attributeNode.InnerText;
+                        break;
+                    case "Developer":
+                        game.Developer = attributeNode.InnerText;
+                        break;
+                    case "Rating":
+                        //double.TryParse(attributeNode.InnerText, out game.Rating);
+                        game.Rating = attributeNode.InnerText;
+                        break;
+                    case "AlternateTitles":
+                        IEnumerator ienumAlternateTitles = attributeNode.GetEnumerator();
+                        while (ienumAlternateTitles.MoveNext())
+                        {
+                            game.AlternateTitles.Add(((XmlNode)ienumAlternateTitles.Current).InnerText);
+                        }
+                        break;
+                    case "Genres":
+                        IEnumerator ienumGenres = attributeNode.GetEnumerator();
+                        while (ienumGenres.MoveNext())
+                        {
+                            game.Genres.Add(((XmlNode)ienumGenres.Current).InnerText);
+                        }
+                        break;
+                    case "Images":
+                        game.Images.FromXmlNode(attributeNode);
+                        break;
+                }
+            }
+
+            return game;
+        }
+   
+
         /// <summary>
         /// Gets the data for a specific game.
         /// </summary>
@@ -115,6 +196,11 @@ namespace MedLaunch.Classes.TheGamesDB
             wo.Params = "/GetGame.php?id=" + ID;
             wo.Timeout = 10000;
             string result = wo.ApiCall();
+
+            // save to xml locally
+            GameScraper.CreateFolderStructure(ID);
+            File.WriteAllText(System.AppDomain.CurrentDomain.BaseDirectory + @"\Data\Graphics\thegamesdb\" + ID + @"\" + ID  + "-external.xml", result);
+
             /*
             wo.GDBApiCall();
             if (wo.BodyAsString == null)
