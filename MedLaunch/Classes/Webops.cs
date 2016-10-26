@@ -25,8 +25,11 @@ namespace MedLaunch.Classes
 
         public string GetResponseText(string address, int timeout)
         {
-            var request = (HttpWebRequest)WebRequest.Create(address);
+            var request = (HttpWebRequest)WebRequest.Create(address) as HttpWebRequest;
             request.Proxy = null;
+            request.KeepAlive = false;
+            request.ServicePoint.ConnectionLeaseTimeout = 10000;
+            request.ServicePoint.MaxIdleTime = 10000;
             string responseStr = "";
             try
             {
@@ -35,9 +38,23 @@ namespace MedLaunch.Classes
                 {
                     var encoding = Encoding.GetEncoding(response.CharacterSet);
 
+                    using (Stream objStream = response.GetResponseStream())
+                    {
+                        using (StreamReader objReader = new StreamReader(objStream))
+                        {
+                            responseStr = objReader.ReadToEnd();
+                            objReader.Close();
+                        }
+                        objStream.Flush();
+                        objStream.Close();
+                    }
+                    response.Close();
+
+                    /*
                     using (var responseStream = response.GetResponseStream())
                     using (var reader = new StreamReader(responseStream, encoding))
                         responseStr = reader.ReadToEnd();
+                        */
                 }
             }
             catch (System.Net.WebException wex)
@@ -49,6 +66,10 @@ namespace MedLaunch.Classes
                 {
                     return responseStr;
                 }
+            }
+            finally
+            {
+                request.Abort();
             }
             return responseStr;
             

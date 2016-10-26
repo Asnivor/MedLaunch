@@ -121,7 +121,7 @@ namespace MedLaunch.Classes
                     }
                     i++;
                     controller.SetProgress(i);
-                    controller.SetMessage("Attempting gamesdb.net match for:\n" + g.gameName + "\n(" + i + " of " + numGames + ")");
+                    controller.SetMessage("Attempting local search match for:\n" + g.gameName + "\n(" + i + " of " + numGames + ")");
                     List<GDBPlatformGame> results = gs.SearchGameLocal(g.gameName, systemId, g.gameId).ToList();
                                        
                     if (results.Count == 0)
@@ -284,18 +284,24 @@ namespace MedLaunch.Classes
                     }
                     
                 }
+                int numCount = 0;
+                int ic = 0;
+
                 if (images.Screenshots.Count > 0)
                 {
                     if (gs.scrapeScreenshots == true)
                     {
                         List<string> s1 = new List<string>();
+                        numCount = images.Screenshots.ToList().Count;
+                        ic = 0;
                         foreach (var im in images.Screenshots)
                         {
+                            ic++;
                             string[] fArr = im.Path.Split('/');
                             string filename = fArr[fArr.Length - 1];
                             gd = DownloadFile(im.Path, g.ID, gd);
                             s1.Add("Data\\Graphics\\thegamesdb\\" + g.ID + "\\Screenshots\\" + filename);
-                            p.SetMessage(currentMessage + "\nDownloading Screenshots");
+                            p.SetMessage(currentMessage + "\nDownloading Screenshots\n(" + ic + " of " + numCount + ")");
                         }
                         gd.ScreenshotLocalImages = GDBGameData.JsonSerialize(s1);
                     }
@@ -306,13 +312,16 @@ namespace MedLaunch.Classes
                     if (gs.scrapeFanart == true)
                     {
                         List<string> s2 = new List<string>();
+                        numCount = images.Fanart.ToList().Count;
+                        ic = 0;
                         foreach (var im in images.Fanart)
                         {
+                            ic++;
                             string[] fArr = im.Path.Split('/');
                             string filename = fArr[fArr.Length - 1];
                             gd = DownloadFile(im.Path, g.ID, gd);
                             s2.Add("Data\\Graphics\\thegamesdb\\" + g.ID + "\\FanArt\\" + filename);
-                            p.SetMessage(currentMessage + "\nDownloading FanArt");
+                            p.SetMessage(currentMessage + "\nDownloading FanArt\n(" + ic + " of " + numCount + ")");
                         }
                         gd.FanartLocalImages = GDBGameData.JsonSerialize(s2);
                     }
@@ -323,13 +332,16 @@ namespace MedLaunch.Classes
                     if (gs.scrapeBanners == true)
                     {
                         List<string> s3 = new List<string>();
+                        numCount = images.Banners.ToList().Count;
+                        ic = 0;
                         foreach (var im in images.Banners)
                         {
+                            ic++;
                             string[] fArr = im.Path.Split('/');
                             string filename = fArr[fArr.Length - 1];
                             gd = DownloadFile(im.Path, g.ID, gd);
                             s3.Add("Data\\Graphics\\thegamesdb\\" + g.ID + "\\Banners\\" + filename);
-                            p.SetMessage(currentMessage + "\nDownloading Banners");
+                            p.SetMessage(currentMessage + "\nDownloading Banners\n(" + ic + " of " + numCount + ")");
                         }
                         gd.BannerLocalImages = GDBGameData.JsonSerialize(s3);
                     }
@@ -395,14 +407,35 @@ namespace MedLaunch.Classes
 
             // if localpath is "" return
             if (local == "") { return gd; }
-            using (WebClient wc = new WebClient())
+            using (var wc = new CustomWebClient())
             {
+                wc.Proxy = null;
+                wc.Timeout = 10000;
+                try
+                {
+                    if (!File.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\" + local))
+                    {
+                        // file not exists 
+                        wc.DownloadFile(GDBNETGamesDB.BaseImgURL + url, System.AppDomain.CurrentDomain.BaseDirectory + "\\" + local);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // error downloading the file
+                    wc.Dispose();
+                }
+                finally
+                {
+                    wc.Dispose();
+                }
+                /*
                 if (!File.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\" + local))
                 {
                     // file not exists  
                     wc.Proxy = null;                  
                     wc.DownloadFile(GDBNETGamesDB.BaseImgURL + url, System.AppDomain.CurrentDomain.BaseDirectory + "\\" + local);                    
                 }
+                */
                
                 // add to object
                 if (local.Contains("boxartfront"))
@@ -410,30 +443,22 @@ namespace MedLaunch.Classes
 
                 if (local.Contains("boxartback"))
                     gd.BoxartBackLocalImage = lPath + @"boxartback\" + filename;
-                /*
-                if (local.Contains("screenshots"))
-                {
-                    List<string> s1 = GDBGameData.JsonDeSerialize(gd.ScreenshotLocalImages);
-                    s1.Add(lPath + @"screenshots\" + filename);
-                    gd.ScreenshotLocalImages = GDBGameData.JsonSerialize(s1);
-                }
-                if (local.Contains("fanart"))
-                {
-                    List<string> s2 = GDBGameData.JsonDeSerialize(gd.FanartLocalImages);
-                    s2.Add(lPath + @"fanart\" + filename);
-                    gd.FanartLocalImages = GDBGameData.JsonSerialize(s2);
-                   // gd.FanartLocalImages += lPath + @"fanart\" + filename + ";";
-                }
-                if (local.Contains("banners"))
-                {
-                    List<string> s3 = GDBGameData.JsonDeSerialize(gd.BannerLocalImages);
-                    s3.Add(lPath + @"banners\" + filename);
-                    gd.BannerLocalImages = GDBGameData.JsonSerialize(s3);
-                    //gd.BannerLocalImages += lPath + @"banners\" + filename + ";";
-                }
-                */
             }
             return gd;
+        }
+
+        private class CustomWebClient : System.Net.WebClient
+        {
+            public int Timeout { get; set; }
+
+            protected override WebRequest GetWebRequest(Uri uri)
+            {
+                WebRequest lWebRequest = base.GetWebRequest(uri);
+                lWebRequest.Timeout = Timeout;
+                ((HttpWebRequest)lWebRequest).ReadWriteTimeout = Timeout;
+                ((HttpWebRequest)lWebRequest).KeepAlive = false;
+                return lWebRequest;
+            }
         }
 
         public static void CreateFolderStructure(int gdbId)
