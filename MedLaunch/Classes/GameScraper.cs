@@ -403,7 +403,7 @@ namespace MedLaunch.Classes
             if (url.Contains("boxart/original/front")) { local = lPath + @"boxartfront\" + filename; }
             if (url.Contains("fanart/")) { local = lPath + @"fanart\" + filename; }
             if (url.Contains("screenshots/")) { local = lPath + @"screenshots\" + filename; }
-            if (url.Contains("banners/graphical")) { local = lPath + @"banners\" + filename; }
+            if (url.Contains("graphical/")) { local = lPath + @"banners\" + filename; }
 
             // if localpath is "" return
             if (local == "") { return gd; }
