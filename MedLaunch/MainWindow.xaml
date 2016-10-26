@@ -4697,6 +4697,7 @@
                         </Grid.RowDefinitions>
 
                         <Button x:Name="btnCheckForUpdates" Click="btnCheckForUpdates_Click" Grid.ColumnSpan="2" Grid.Row="0">Check for Updates</Button>
+                        <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Grid.Row="1" Margin="20" x:Name="lblNoUpdate">No MedLaunch Update Available</Label>
 
                         <Label x:Name="lbl1" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" Margin="10" VerticalContentAlignment="Top">
                             New Version
@@ -4727,6 +4728,8 @@
                         </ScrollViewer>
 
                         <Button Margin="0,50,0,0" Grid.ColumnSpan="2" Grid.Row="5" x:Name="btnUpdate" Content="Auto-Download and Install Latest MedLaunch Version" Click="btnUpdate_Click"/>
+
+                        
 
                     </Grid>
                 </WrapPanel>

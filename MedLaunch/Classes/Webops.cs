@@ -19,13 +19,14 @@ namespace MedLaunch.Classes
         public WebOps()
         {
             BaseUrl = "http://thegamesdb.net/api";
-            Timeout = 3000; // start at 1 seconds
+            Timeout = 10000; // start at 1 seconds
             BodyAsString = null;
         }
 
         public string GetResponseText(string address, int timeout)
         {
             var request = (HttpWebRequest)WebRequest.Create(address);
+            request.Proxy = null;
             string responseStr = "";
             try
             {

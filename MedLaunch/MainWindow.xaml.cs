@@ -271,6 +271,7 @@ namespace MedLaunch
             lbl4.Visibility = Visibility.Collapsed;
             lbl5.Visibility = Visibility.Collapsed;
             lbl6.Visibility = Visibility.Collapsed;
+            lblNoUpdate.Visibility = Visibility.Collapsed;
 
 
         }
@@ -2172,8 +2173,8 @@ namespace MedLaunch
             Release newRelease = new Release();
 
             // get current medlaunch version
-            //string currVersion = Versions.ReturnApplicationVersion();
-            string currVersion = "0.2.3.0";
+            string currVersion = Versions.ReturnApplicationVersion();
+            //string currVersion = "0.2.3.0";
 
             var mySettings = new MetroDialogSettings()
             {
@@ -2187,31 +2188,36 @@ namespace MedLaunch
             controller.SetCancelable(false);
             controller.SetIndeterminate();
 
-            await Task.Delay(100);
+            await Task.Delay(400);
 
             string output;
             
             // attempt to download the LatestVersion text file from github
             string contents;
 
-            try
+            using (var wc = new CustomWebClient())
             {
-                using (var wc = new WebClient())
+                wc.Proxy = null;
+                wc.Timeout = 2000;
+                try
                 {
-                    wc.Timeout = 2000;
                     contents = wc.DownloadString("https://raw.githubusercontent.com/Asnivor/MedLaunch/master/MedLaunch/LatestVersion.txt");
                 }
-                    
+                catch (Exception ex)
+                {
+                    controller.SetMessage("The request timed out - please try again");
+                    await Task.Delay(2000);
+                    await controller.CloseAsync();
+                    wc.Dispose();
+                    return;
+                }
+                finally
+                {
+                    wc.Dispose();
+                }
+                
             }
-            catch (Exception ex)
-            {
-                controller.SetMessage("The request timed out - please try again");
-                await Task.Delay(2000);
-                await controller.CloseAsync();
-                return;
-            }
-
-           
+            
             
             controller.SetMessage("Determining latest version...");
             // check whether the version is greater than the one we have installed
@@ -2239,24 +2245,29 @@ namespace MedLaunch
                 controller.SetMessage("Downloading release information");
                 await Task.Delay(500);
                 string releaseInfo;
-                try
+
+                using (var wc = new CustomWebClient())
                 {
-                    using (var wc = new WebClient())
+                    wc.Proxy = null;
+                    wc.Timeout = 2000;
+                    try
                     {
-                        wc.Timeout = 2000;
                         releaseInfo = wc.DownloadString("https://raw.githubusercontent.com/Asnivor/MedLaunch/master/ReleaseGenerator/Releases/" + contents);
                         newRelease = JsonConvert.DeserializeObject<Release>(releaseInfo);
                     }
-
+                    catch (Exception ex)
+                    {
+                        controller.SetMessage("The request timed out - please try again");
+                        await Task.Delay(2000);
+                        await controller.CloseAsync();
+                        wc.Dispose();
+                        return;
+                    }
+                    finally
+                    {
+                        wc.Dispose();
+                    }
                 }
-                catch (Exception ex)
-                {
-                    controller.SetMessage("The request timed out - please try again");
-                    await Task.Delay(2000);
-                    await controller.CloseAsync();
-                    return;
-                }
-              
             }
             else
             {
@@ -2294,6 +2305,7 @@ namespace MedLaunch
                 }
                 
                 btnUpdate.Visibility = Visibility.Visible;
+                lblNoUpdate.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -2308,12 +2320,14 @@ namespace MedLaunch
                 lbl4.Visibility = Visibility.Collapsed;
                 lbl5.Visibility = Visibility.Collapsed;
                 lbl6.Visibility = Visibility.Collapsed;
+                lblNoUpdate.Visibility = Visibility.Visible;
             }
         }
 
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        private async void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             /* start download and autoupdate */
+            
 
             string downloadsFolder = System.AppDomain.CurrentDomain.BaseDirectory + @"Data\Updates";
             System.IO.Directory.CreateDirectory(downloadsFolder);
@@ -2322,30 +2336,68 @@ namespace MedLaunch
             string v = lblVersion.Content.ToString();
             string[] vArr = v.Split('.');
 
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel Download",
+                AnimateShow = true,
+                AnimateHide = true
+
+            };
+
+            var controller = await this.ShowProgressAsync("MedLaunch Update", "Downloading MedLaunch v" + v, settings: mySettings);
+            controller.SetCancelable(false);
+            controller.SetIndeterminate();
+
+            await Task.Delay(400);
+
+            string output;
+
             // build the donwload url
             string download = "https://github.com/Asnivor/MedLaunch/releases/download/" + v + "/MedLaunch_v" + vArr[0] + "_" + vArr[1] + "_" + vArr[2] + "_" + vArr[3] + ".zip";
 
             // try the downlaod
-            try
+
+            using (var wc = new CustomWebClient())
             {
-                using (var wc = new WebClient())
+                wc.Proxy = null;
+                wc.Timeout = 2000;
+                try
                 {
-                    wc.Timeout = 20000;
                     wc.DownloadFile(download, downloadsFolder + "\\" + "MedLaunch_v" + vArr[0] + "_" + vArr[1] + "_" + vArr[2] + "_" + vArr[3] + ".zip");
                 }
+                catch (Exception ex)
+                {
+                    controller.SetMessage("The request timed out - please try again");
+                    await Task.Delay(2000);
+                    await controller.CloseAsync();
+                    wc.Dispose();
+                    return;
+                }
+                finally
+                {
+                    wc.Dispose();
+                }
+            }
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("The request timed out - please try again");
-                //await Task.Delay(2000);
-                //await controller.CloseAsync();
-                return;
-            }
+
+            // now run updater app to extract MedLaunch over the existing directory
+            // build command line args
+            string processArg = "/P:" + Process.GetCurrentProcess().Id.ToString();
+            string upgradeArg = "/U:" + "MedLaunch_v" + vArr[0] + "_" + vArr[1] + "_" + vArr[2] + "_" + vArr[3] + ".zip";
+            string args = processArg + " " + upgradeArg;
+            // call the external updater app and close this one
+            // call the updater app and close this one
+            Process.Start("lib\\Updater.exe", args);
+            Thread.Sleep(2000);
+            Environment.Exit(0);
+
+
+            await controller.CloseAsync();
+
 
         }
 
-        private class WebClient : System.Net.WebClient
+        private class CustomWebClient : System.Net.WebClient
         {
             public int Timeout { get; set; }
 
@@ -2354,11 +2406,14 @@ namespace MedLaunch
                 WebRequest lWebRequest = base.GetWebRequest(uri);
                 lWebRequest.Timeout = Timeout;
                 ((HttpWebRequest)lWebRequest).ReadWriteTimeout = Timeout;
+                ((HttpWebRequest)lWebRequest).KeepAlive = false;
                 return lWebRequest;
             }
         }
 
         
+
+
     }
 
     

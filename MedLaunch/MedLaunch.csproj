@@ -329,6 +329,10 @@
       <Project>{21b251c5-8c12-43cd-b256-ad55cb5d4b57}</Project>
       <Name>Asnitech.SQLite</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Updater\Updater.csproj">
+      <Project>{554a0a91-f3cd-4800-8a19-1575fb1ca8d1}</Project>
+      <Name>Updater</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\WindowsIcons-license.txt" />

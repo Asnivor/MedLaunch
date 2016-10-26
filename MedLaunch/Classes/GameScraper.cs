@@ -399,7 +399,8 @@ namespace MedLaunch.Classes
             {
                 if (!File.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\" + local))
                 {
-                    // file not exists                    
+                    // file not exists  
+                    wc.Proxy = null;                  
                     wc.DownloadFile(GDBNETGamesDB.BaseImgURL + url, System.AppDomain.CurrentDomain.BaseDirectory + "\\" + local);                    
                 }
                

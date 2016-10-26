@@ -25,18 +25,50 @@ namespace MedLaunch.Classes
             };
 
         foreach (string d in directories)
+        {
+            try
             {
+                string path = currentDirectory + "\\" + d;
+                Directory.CreateDirectory(path);
+            }
+            finally
+            {
+                // completed
+            }
+        }
+
+        // move the updater app to .\lib folder
+        if (File.Exists(currentDirectory + "\\Updater.exe"))
+        {
+            // updater.exe is in the base directory - this happens directly after build
+            // move it to the lib directory
+            try
+                {
+                    if (File.Exists(currentDirectory + "\\lib\\Updater.exe"))
+                        File.Delete(currentDirectory + "\\lib\\Updater.exe");
+                    File.Move(currentDirectory + "\\Updater.exe", currentDirectory + "\\lib\\Updater.exe");
+                }
+                catch (Exception ex)
+                {
+                    //
+                }
+        }
+
+            // move the updater app config to .\lib folder
+            if (File.Exists(currentDirectory + "\\Updater.exe.config"))
+            {
+                // updater.exe is in the base directory - this happens directly after build
+                // move it to the lib directory
                 try
                 {
-                    string path = currentDirectory + "\\" + d;
-                    Directory.CreateDirectory(path);
+                    if (File.Exists(currentDirectory + "\\lib\\Updater.exe.config"))
+                        File.Delete(currentDirectory + "\\lib\\Updater.exe.config");
+                    File.Move(currentDirectory + "\\Updater.exe.config", currentDirectory + "\\lib\\Updater.exe.config");
                 }
-                finally
+                catch (Exception ex)
                 {
-                    // completed
+                    //
                 }
-                
-
             }
 
 
