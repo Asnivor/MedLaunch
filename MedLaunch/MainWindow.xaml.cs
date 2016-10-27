@@ -35,6 +35,7 @@ using Newtonsoft.Json;
 using System.Threading;
 using Medlaunch.Classes;
 using System.Net;
+using MedLaunch.Classes.MobyGames;
 
 namespace MedLaunch
 {
@@ -453,6 +454,53 @@ namespace MedLaunch
             else
             {
                 await this.ShowMessageAsync("MedLaunch - GameScraper", "Scanning Completed");
+            }
+        }
+
+        private async void btnScrapeAllGameInfo_Click(object sender, RoutedEventArgs e)
+        {
+            // ensure directory is created
+            Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\Data\Settings");
+
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel Scraping",
+                AnimateShow = false,
+                AnimateHide = false,
+            };
+
+            var controller = await this.ShowProgressAsync("MedLaunch - Downloading all game info (will take a while)", "", settings: mySettings);
+            controller.SetCancelable(true);
+            await Task.Delay(100);
+            await Task.Run(() =>
+            {
+                Task.Delay(1);
+                // get list of all platformgames in the database
+                controller.SetMessage("Unumerating PlatForm games from database...");
+                List<GDBPlatformGame> games = GDBPlatformGame.GetGames();
+                int gameCount = games.Count;
+                int i = 0;
+
+                foreach (GDBPlatformGame g in games)
+                {
+                    i++;
+                    WebOps wo = new WebOps();
+                    wo.Params = "/GetGame.php?id=" + g.id;
+
+                }
+
+
+                
+            });
+            await controller.CloseAsync();
+
+            if (controller.IsCanceled)
+            {
+                await this.ShowMessageAsync("MedLaunch - GameScraper", "Operation Cancelled");
+            }
+            else
+            {
+                await this.ShowMessageAsync("MedLaunch - GameScraper", "Downloading Completed");
             }
         }
 
@@ -2411,9 +2459,15 @@ namespace MedLaunch
             }
         }
 
-        
+        private void btnmobyPlatformList_Click(object sender, RoutedEventArgs e)
+        {
+            MobyGames.ScrapeAllPlatformGames();
+        }
 
-
+        private void btnmobyPlatformListDumpToFile_Click(object sender, RoutedEventArgs e)
+        {
+            MobyGames.DumpPlatformGamesToDisk();
+        }
     }
 
     

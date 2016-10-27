@@ -524,8 +524,11 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(DateTime?))
             {
-                var v = Convert.ToDateTime(value);
-                p.SetValue(settings, v, null);
+                if (value != "")
+                {
+                    var v = Convert.ToDateTime(value);
+                    p.SetValue(settings, v, null);
+                }
             }
         }
         private static void SetPropertyValue(ConfigNetplaySettings settings, PropertyInfo p, string type, string value)
@@ -572,8 +575,11 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(DateTime?))
             {
-                var v = Convert.ToDateTime(value);
-                p.SetValue(settings, v, null);
+                if (value != "")
+                {
+                    var v = Convert.ToDateTime(value);
+                    p.SetValue(settings, v, null);
+                }
             }
         }
         private static void SetPropertyValue(ConfigServerSettings settings, PropertyInfo p, string type, string value)
@@ -620,8 +626,11 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(DateTime?))
             {
-                var v = Convert.ToDateTime(value);
-                p.SetValue(settings, v, null);
+                if (value != "")
+                {
+                    var v = Convert.ToDateTime(value);
+                    p.SetValue(settings, v, null);
+                }
             }
         }
         private static void SetPropertyValue(GDBGameData settings, PropertyInfo p, string type, string value)
@@ -668,8 +677,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(DateTime?))
             {
-                var v = Convert.ToDateTime(value);
-                p.SetValue(settings, v, null);
+                if (value != "")
+                {
+                    var v = Convert.ToDateTime(value);
+                    p.SetValue(settings, v, null);
+                }
+                
             }
         }
 
@@ -717,8 +730,11 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(DateTime?))
             {
-                var v = Convert.ToDateTime(value);
-                p.SetValue(settings, v, null);
+                if (value != "")
+                {
+                    var v = Convert.ToDateTime(value);
+                    p.SetValue(settings, v, null);
+                }
             }
         }
         private static void SetPropertyValue(GDBPlatformGame settings, PropertyInfo p, string type, string value)
@@ -765,8 +781,11 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(DateTime?))
             {
-                var v = Convert.ToDateTime(value);
-                p.SetValue(settings, v, null);
+                if (value != "")
+                {
+                    var v = Convert.ToDateTime(value);
+                    p.SetValue(settings, v, null);
+                }
             }
         }
         private static void SetPropertyValue(Game settings, PropertyInfo p, string type, string value)
@@ -813,8 +832,11 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(DateTime?))
             {
-                var v = Convert.ToDateTime(value);
-                p.SetValue(settings, v, null);
+                if (value != "")
+                {
+                    var v = Convert.ToDateTime(value);
+                    p.SetValue(settings, v, null);
+                }
             }
         }
         private static void SetPropertyValue(GlobalSettings settings, PropertyInfo p, string type, string value)
@@ -861,8 +883,11 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(DateTime?))
             {
-                var v = Convert.ToDateTime(value);
-                p.SetValue(settings, v, null);
+                if (value != "")
+                {
+                    var v = Convert.ToDateTime(value);
+                    p.SetValue(settings, v, null);
+                }
             }
         }
         private static void SetPropertyValue(Paths settings, PropertyInfo p, string type, string value)
@@ -909,8 +934,11 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(DateTime?))
             {
-                var v = Convert.ToDateTime(value);
-                p.SetValue(settings, v, null);
+                if (value != "")
+                {
+                    var v = Convert.ToDateTime(value);
+                    p.SetValue(settings, v, null);
+                }
             }
         }
         private static void SetPropertyValue(Versions settings, PropertyInfo p, string type, string value)
@@ -957,8 +985,11 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(DateTime?))
             {
-                var v = Convert.ToDateTime(value);
-                p.SetValue(settings, v, null);
+                if (value != "")
+                {
+                    var v = Convert.ToDateTime(value);
+                    p.SetValue(settings, v, null);
+                }
             }
         }
 

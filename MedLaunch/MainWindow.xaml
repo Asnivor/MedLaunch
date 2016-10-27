@@ -4618,7 +4618,7 @@
 
 
             <TabItem Header="Debug" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
-                <WrapPanel>
+                <WrapPanel Orientation="Vertical">
 
                     <Button x:Name="btnSavePlatformGamesToDisk" Click="btnSavePlatformGamesToDisk_Click" >
                         [Debug only]Save all platform games from database to disk
@@ -4629,6 +4629,17 @@
                     <Button x:Name="btnGetAllPlatformGames" Click="ScrapeGetAllPlatformGames_Click">
                         Get all platform games from thegamesdb.net and save them to the database
                     </Button>
+                    <Button x:Name="btnScrapeAllGameInfo" Click="btnScrapeAllGameInfo_Click">
+                        Iterate through each platformlist game and export the XML to a local zip
+                    </Button>
+                    <Button x:Name="btnmobyPlatformList" Click="btnmobyPlatformList_Click">
+                        Get all platform games from Mobygames and save them to disk (JSON)
+                    </Button>
+                    <!--
+                    <Button x:Name="btnmobyPlatformListDumpToFile" Click="btnmobyPlatformListDumpToFile_Click">
+                        Dump all basic mobygames list from database to local json
+                    </Button>
+                    -->
                 </WrapPanel>
             </TabItem>
 

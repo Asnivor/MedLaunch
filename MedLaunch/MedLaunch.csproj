@@ -69,6 +69,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>ExternalAssemblies\FuzzyString.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MahApps.Metro, Version=1.2.4.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\MahApps.Metro.dll</HintPath>
       <Private>True</Private>
@@ -205,6 +209,9 @@
     <Compile Include="Classes\GamesLibraryVisualHandler.cs" />
     <Compile Include="Classes\GetBuildTime.cs" />
     <Compile Include="Classes\FuzzySearch.cs" />
+    <Compile Include="Classes\MobyGames\MobyGames.cs" />
+    <Compile Include="Classes\MobyGames\MobyPageList.cs" />
+    <Compile Include="Classes\MobyScraper.cs" />
     <Compile Include="Classes\Releases.cs" />
     <Compile Include="Classes\SettingsHandler.cs" />
     <Compile Include="Classes\SettingsVisualHandler.cs" />
@@ -241,6 +248,7 @@
     <Compile Include="Models\GDBPlatformGame.cs" />
     <Compile Include="Models\GlobalSettings.cs" />
     <Compile Include="Models\LibrarySidebar.cs" />
+    <Compile Include="Models\MobyPlatformGame.cs" />
     <Compile Include="Models\Paths.cs" />
     <Compile Include="Models\GSystem.cs" />
     <Compile Include="Models\SearchOrdering.cs" />
@@ -313,6 +321,7 @@
   <ItemGroup>
     <Folder Include="Controls\" />
     <Folder Include="Data\Settings\" />
+    <Folder Include="Data\System\" />
     <Folder Include="_Content\" />
   </ItemGroup>
   <ItemGroup>

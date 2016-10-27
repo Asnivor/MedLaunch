@@ -47,6 +47,7 @@
     <Compile Include="Converters\NullableInt2Int.cs" />
     <Compile Include="Converters\NullableBool2Bool.cs" />
     <Compile Include="Converters\RomanNumerals.cs" />
+    <Compile Include="RegexOps.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="PathUtil.cs" />
