@@ -36,6 +36,7 @@ using System.Threading;
 using Medlaunch.Classes;
 using System.Net;
 using MedLaunch.Classes.MobyGames;
+using MedLaunch.Classes.MasterScraper;
 
 namespace MedLaunch
 {
@@ -2477,6 +2478,12 @@ namespace MedLaunch
         private void btnmobyPlatformListDumpToFile_Click(object sender, RoutedEventArgs e)
         {
             MobyGames.DumpPlatformGamesToDisk();
+        }
+
+        private void btnCombine_Click(object sender, RoutedEventArgs e)
+        {
+            CreateMasterJson j = new CreateMasterJson();
+            j.BeginMerge();
         }
     }
 

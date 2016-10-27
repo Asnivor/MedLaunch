@@ -4635,6 +4635,10 @@
                     <Button x:Name="btnmobyPlatformList" Click="btnmobyPlatformList_Click">
                         Get all platform games from Mobygames and save them to disk (JSON)
                     </Button>
+
+                    <Button Margin="20" x:Name="btnCombine" Click="btnCombine_Click">
+                        Combine sets and generate new json
+                    </Button>
                     <!--
                     <Button x:Name="btnmobyPlatformListDumpToFile" Click="btnmobyPlatformListDumpToFile_Click">
                         Dump all basic mobygames list from database to local json
