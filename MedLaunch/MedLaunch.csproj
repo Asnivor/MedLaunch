@@ -306,6 +306,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Data\System\MobyGames.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\MedLaunch.ViewModels.GlobalSettingsViewModel.datasource" />
     <None Include="Properties\Settings.settings">
@@ -321,7 +324,6 @@
   <ItemGroup>
     <Folder Include="Controls\" />
     <Folder Include="Data\Settings\" />
-    <Folder Include="Data\System\" />
     <Folder Include="_Content\" />
   </ItemGroup>
   <ItemGroup>

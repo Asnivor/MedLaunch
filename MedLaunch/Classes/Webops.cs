@@ -26,6 +26,7 @@ namespace MedLaunch.Classes
         public string GetResponseText(string address, int timeout)
         {
             var request = (HttpWebRequest)WebRequest.Create(address) as HttpWebRequest;
+            request.Timeout = 20000;
             request.Proxy = null;
             request.KeepAlive = false;
             request.ServicePoint.ConnectionLeaseTimeout = 10000;
@@ -62,9 +63,9 @@ namespace MedLaunch.Classes
                 // error or timeout - run again but change the timeout value
                 request.Abort();
                 
-                Timeout += 2000;
+                Timeout += 5000;
                 responseStr = GetResponseText(address, Timeout);
-                if (Timeout > 29000)
+                if (Timeout > 60000)
                 {
                     return responseStr;
                 }

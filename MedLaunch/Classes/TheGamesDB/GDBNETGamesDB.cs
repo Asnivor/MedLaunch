@@ -455,7 +455,7 @@ namespace MedLaunch.Classes.TheGamesDB
         {
             WebOps wo = new WebOps();
             wo.Params = "/GetPlatformGames.php?platform=" + ID;
-            wo.Timeout = 4000;
+            wo.Timeout = 20000;
             string result = wo.ApiCall();
             
             // string returned

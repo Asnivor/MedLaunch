@@ -443,7 +443,17 @@ namespace MedLaunch
                     Task.Delay(1);
                     List<GDBPlatformGame> gs = GameScraper.DatabasePlatformGamesImport(controller);
                     if (!controller.IsCanceled)
-                     GDBPlatformGame.SaveToDatabase(gs);
+                    {
+                        //GDBPlatformGame.SaveToDatabase(gs);       // disabled for the moment - working with flat json files
+                        // save to json file
+                        controller.SetMessage("Saving to file...");
+                        // set file path
+                        string filePath = @"..\..\Data\System\TheGamesDB.json";
+                        //  dump file
+                        string json = JsonConvert.SerializeObject(gs, Formatting.Indented);
+                        File.WriteAllText(filePath, json);
+                    }
+                     
                 });
             await controller.CloseAsync();
 
