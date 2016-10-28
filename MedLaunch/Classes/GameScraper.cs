@@ -512,7 +512,7 @@ namespace MedLaunch.Classes
             return s + " ";
         }
 
-        public string StripSymbols(string i)
+        public  string StripSymbols(string i)
         {
             // remove all (xxx), [xxx] 
             string regex = "(\\[.*\\])|(\\(.*\\))";
@@ -1115,13 +1115,13 @@ namespace MedLaunch.Classes
         }
 
 
-        private string[] BuildArray(string searchStr)
+        public static string[] BuildArray(string searchStr)
         {
             string[] gArr = searchStr.ToLower().Trim().Split(' ');
             return gArr;
         }
 
-        private string BuildSearchString(string[] arr, int position)
+        public string BuildSearchString(string[] arr, int position)
         {
             string searchStr = "";
             for (int i = 0; i <= position; i++)
@@ -1132,7 +1132,7 @@ namespace MedLaunch.Classes
             return searchStr;
         }
 
-        private string BuildSearchString(string[] arr)
+        public string BuildSearchString(string[] arr)
         {
             string searchStr = "";
             for (int i = 0; i <= arr.Length - 1; i++)

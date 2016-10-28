@@ -209,7 +209,7 @@
     <Compile Include="Classes\GamesLibraryVisualHandler.cs" />
     <Compile Include="Classes\GetBuildTime.cs" />
     <Compile Include="Classes\FuzzySearch.cs" />
-    <Compile Include="Classes\MasterScraper\CreateMasterJson.cs" />
+    <Compile Include="Classes\MasterScraper\CreateMasterList.cs" />
     <Compile Include="Classes\MobyGames\MobyGames.cs" />
     <Compile Include="Classes\MobyGames\MobyPageList.cs" />
     <Compile Include="Classes\MobyScraper.cs" />
@@ -222,6 +222,7 @@
     <Compile Include="Classes\TheGamesDB\GDBNETGameSearchResult.cs" />
     <Compile Include="Classes\TheGamesDB\GDBNETPlatform.cs" />
     <Compile Include="Classes\TheGamesDB\GDBNETPlatformSearchResult.cs" />
+    <Compile Include="Classes\UserAgent.cs" />
     <Compile Include="Classes\WebOps.cs" />
     <Compile Include="Extensions\ImageExtension.cs" />
     <Compile Include="Extensions\LabelExtension.cs" />

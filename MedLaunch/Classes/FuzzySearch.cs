@@ -86,6 +86,39 @@ namespace MedLaunch.Classes
             return foundWords;
         }
 
+        
+        public static List<MobyPlatformGame> Search(
+       string word,
+       List<MobyPlatformGame> mobyPlatformGameList,
+       double fuzzyness)
+        {
+            List<MobyPlatformGame> foundWords = new List<MobyPlatformGame>();
+            if (fuzzyness == 0)
+            {
+                // do exact string check
+                foundWords =
+                    (
+                    from s in mobyPlatformGameList
+                    where s.Title.ToUpper().Trim() == word.ToUpper().Trim()
+                    select s
+                    ).ToList();
+                return foundWords;
+            }
+
+            // use levistein
+            foundWords =
+                (
+                from s in mobyPlatformGameList
+                let levenshteinDistance = LevenshteinDistance(word.ToUpper().Trim(), s.Title.ToUpper().Trim())
+                let length = Math.Max(s.Title.ToUpper().Trim().Length, word.ToUpper().Trim().Length)
+                let score = 1.0 - (double)levenshteinDistance / length
+                where score > fuzzyness
+                select s                
+                ).ToList();
+
+            return foundWords;
+        }
+
 
         public static int LevenshteinDistance(string src, string dest)
         {

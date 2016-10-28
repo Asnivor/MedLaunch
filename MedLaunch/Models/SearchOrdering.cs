@@ -11,4 +11,10 @@ namespace MedLaunch.Models
         public int Matches { get; set; }
         public GDBPlatformGame Game { get; set; }
     }
+
+    public class MobySearchOrdering
+    {
+        public int Matches { get; set; }
+        public MobyPlatformGame Game { get; set; }
+    }
 }

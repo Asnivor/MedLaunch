@@ -2482,8 +2482,14 @@ namespace MedLaunch
 
         private void btnCombine_Click(object sender, RoutedEventArgs e)
         {
-            CreateMasterJson j = new CreateMasterJson();
+            CreateMasterList j = new CreateMasterList();
             j.BeginMerge();
+        }
+
+        private void btnGetManuals_Click(object sender, RoutedEventArgs e)
+        {
+            CreateMasterList j = new CreateMasterList();
+            j.ScrapeManuals();
         }
     }
 
