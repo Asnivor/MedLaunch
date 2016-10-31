@@ -11,14 +11,14 @@ namespace MedLaunch.Classes
 
     public static class FuzzySearch
     {
-        public static List<GDBPlatformGame> FSearch(string word, List<GDBPlatformGame> platformGames, double fuzzyness)
+        public static List<ScraperMaster> FSearch(string word, List<ScraperMaster> platformGames, double fuzzyness)
         {
-            List<GDBPlatformGame> g = new List<GDBPlatformGame>();
+            List<ScraperMaster> g = new List<ScraperMaster>();
 
             g = (
                     from s in platformGames
-                    let levenshteinDistance = LevenshteinDistance(StripSymbols(word), StripSymbols(s.GameTitle))
-                    let length = Math.Max(StripSymbols(s.GameTitle).Length, StripSymbols(word).Length)
+                    let levenshteinDistance = LevenshteinDistance(StripSymbols(word), StripSymbols(s.TGDBData.GamesDBTitle))
+                    let length = Math.Max(StripSymbols(s.TGDBData.GamesDBTitle).Length, StripSymbols(word).Length)
                     let score = 1.0 - (double)levenshteinDistance / length
                     where score > fuzzyness
                     select s

@@ -30,6 +30,7 @@ namespace MedLaunch.Models
         public DbSet<GDBPlatformGame> GDBPlatformGame { get; set; }                             // basic list of all games per platform
         public DbSet<GDBGameData> GDBGameData { get; set; }                                     // Game data from thegamesdb.net - primary key is the gamesdb.net GameId
         public DbSet<GDBLink> GDBLink { get; set; }                                             // table that links games with gamedb gamedata
+        
 
         //public DbSet<MobyPlatformGame> MobyPlatformGame { get; set; }                           // basic list of all moby games per platform
 
@@ -71,6 +72,9 @@ namespace MedLaunch.Models
 
             modelBuilder.Entity<GDBLink>()
                 .HasKey(c => c.Id);
+
+      
+
             /*
             modelBuilder.Entity<MobyPlatformGame>()
                 .HasKey(c => c.Id); */

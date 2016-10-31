@@ -21,11 +21,12 @@ namespace MedLaunch.Classes
     public class GameScraper
     {
         // Properties
-        public List<GDBPlatformGame> PlatformGames { get; set; }
-        public List<GDBPlatformGame> SystemCollection { get; set; }
-        public List<GDBPlatformGame> WorkingSearchCollection { get; set; }
-        public List<GDBPlatformGame> SearchCollection { get; set; }
+        public List<ScraperMaster> PlatformGames { get; set; }
+        public List<ScraperMaster> SystemCollection { get; set; }
+        public List<ScraperMaster> WorkingSearchCollection { get; set; }
+        public List<ScraperMaster> SearchCollection { get; set; }
         public List<MedLaunch.Models.Game> LocalGames { get; set; }
+
         public string SearchString { get; set; }
         public bool LocalGameFound { get; set; }
         public int LocalIterationCount { get; set; }
@@ -33,15 +34,19 @@ namespace MedLaunch.Classes
         public int CurrentLocalGameId { get; set; }
         public GlobalSettings gs { get; set; }
 
+        public App _applciation { get; set; }
+
         // Constructors
         public GameScraper()
         {
-            RefreshPlatformGamesFromDb();
+            _applciation = ((App)Application.Current);
+            PlatformGames = _applciation.ScrapedData.MasterPlatformList;
+            //RefreshPlatformGamesFromDb();
             LocalGameFound = false;
             LocalIterationCount = 0;
             ManualIterator = 0;
-            SearchCollection = new List<GDBPlatformGame>();
-            WorkingSearchCollection = new List<GDBPlatformGame>();
+            SearchCollection = new List<ScraperMaster>();
+            WorkingSearchCollection = new List<ScraperMaster>();
             gs = GlobalSettings.GetGlobals();
             
         }
@@ -122,7 +127,7 @@ namespace MedLaunch.Classes
                     i++;
                     controller.SetProgress(i);
                     controller.SetMessage("Attempting local search match for:\n" + g.gameName + "\n(" + i + " of " + numGames + ")");
-                    List<GDBPlatformGame> results = gs.SearchGameLocal(g.gameName, systemId, g.gameId).ToList();
+                    List<ScraperMaster> results = gs.SearchGameLocal(g.gameName, systemId, g.gameId).ToList();
                                        
                     if (results.Count == 0)
                     {
@@ -131,11 +136,10 @@ namespace MedLaunch.Classes
                     if (results.Count == 1)
                     {
                         // one result returned - create / update record in data table
-                        GDBPlatformGame plat =  results.ToList().Single();
+                        ScraperMaster plat =  results.ToList().Single();
                         GDBGameData data = new GDBGameData();
-                        data.GdbId = plat.id;
-                        data.Title = plat.GameTitle;
-                        data.ReleaseDate = plat.ReleaseDate;
+                        data.GdbId = plat.GamesDbId;
+                        data.Title = plat.TGDBData.GamesDBTitle;
                         GDBGameData.SaveToDatabase(data);
 
                         // create entry (or update existing) in the GDBLink table
@@ -555,18 +559,18 @@ namespace MedLaunch.Classes
         public List<SearchOrdering> ShowPlatformGames(int systemId, string gameName)
         {
             // get a list with all games for this system
-            SystemCollection = PlatformGames.Where(a => a.SystemId == systemId).ToList();
+            SystemCollection = PlatformGames.Where(a => a.MedLaunchSystemId == systemId).ToList();
             // Match all words and return a list ordered by higest matches
             List<SearchOrdering> searchResult = OrderByMatchedWords(StripSymbols(gameName.ToLower()));
             return searchResult;
         }
 
-        public ICollection<GDBPlatformGame> SearchGameLocal(string gameName, int systemId, int gameId)
+        public ICollection<ScraperMaster> SearchGameLocal(string gameName, int systemId, int gameId)
         {
             SearchString = gameName;
             LocalIterationCount = 0;
-            WorkingSearchCollection = new List<GDBPlatformGame>();
-            SearchCollection = new List<GDBPlatformGame>();
+            WorkingSearchCollection = new List<ScraperMaster>();
+            SearchCollection = new List<ScraperMaster>();
 
             if (SearchString.Contains("[PD]") || SearchString.Contains("(PD)") || SearchString.Contains("SC-3000") || SearchString.Contains("BIOS"))
             {
@@ -575,7 +579,7 @@ namespace MedLaunch.Classes
             }
 
             // get a list with all games for this system
-            SystemCollection = PlatformGames.Where(a => a.SystemId == systemId).ToList();
+            SystemCollection = PlatformGames.Where(a => a.MedLaunchSystemId == systemId).ToList();
 
             // Match all words and return a list ordered by higest matches
             List<SearchOrdering> searchResult = OrderByMatchedWords(StripSymbols(gameName.ToLower()));            
@@ -600,7 +604,7 @@ namespace MedLaunch.Classes
                 if (matches.Count == 1)
                 {
                     // single entry returned
-                    List<GDBPlatformGame> single = (from a in matches
+                    List<ScraperMaster> single = (from a in matches
                                                     select a.Game).ToList();
                     return single;
                 }
@@ -614,7 +618,7 @@ namespace MedLaunch.Classes
             // Multiple records returned - continue           
 
             // match order of words starting with the first and incrementing
-            List<GDBPlatformGame> m = MatchOneWordAtATime(SearchCollection, StripSymbols(gameName.ToLower()));
+            List<ScraperMaster> m = MatchOneWordAtATime(SearchCollection, StripSymbols(gameName.ToLower()));
 
             if (m.Count == 1)
                 return m;
@@ -626,15 +630,15 @@ namespace MedLaunch.Classes
             {
                 // 2 records returned - check whether they match exactly
                 string first = (from a in SearchCollection
-                                select a.GameTitle).First();
+                                select a.TGDBData.GamesDBTitle).First();
                 string last = (from a in SearchCollection
-                               select a.GameTitle).Last();
+                               select a.TGDBData.GamesDBTitle).Last();
                 if (first == last)
                 {
                     // looks like the same game - perhaps different systems on the games db (ie - Megadrive / Genesis) - return the first result
-                    GDBPlatformGame pg = (from a in SearchCollection
+                    ScraperMaster pg = (from a in SearchCollection
                                           select a).First();
-                    List<GDBPlatformGame> l = new List<GDBPlatformGame>();
+                    List<ScraperMaster> l = new List<ScraperMaster>();
                     l.Add(pg);
                     return l;
                 }
@@ -642,7 +646,7 @@ namespace MedLaunch.Classes
 
             // still no definiate match found
             // run levenshetein fuzzy search on SearchCollection - 10 iterations
-            List<GDBPlatformGame> lg = LevenIteration(SearchCollection, StripSymbols(gameName.ToLower()));
+            List<ScraperMaster> lg = LevenIteration(SearchCollection, StripSymbols(gameName.ToLower()));
 
             return lg;
             
@@ -657,7 +661,7 @@ namespace MedLaunch.Classes
             // if there is only one entry in searchcollection - match has been found - add it to the database for scraping later
             if (WorkingSearchCollection.Count == 1)
             {
-                GDBPlatformGame g = WorkingSearchCollection.FirstOrDefault();
+                ScraperMaster g = WorkingSearchCollection.FirstOrDefault();
                 GDBGameData gd = new GDBGameData();
                 /*
                 gd.Id = gameId;
@@ -671,15 +675,15 @@ namespace MedLaunch.Classes
             return WorkingSearchCollection;
         }
 
-        public List<GDBPlatformGame> LevenIteration(List<GDBPlatformGame> games, string searchStr)
+        public List<ScraperMaster> LevenIteration(List<ScraperMaster> games, string searchStr)
         {
             int levCount = 0;
-            List<GDBPlatformGame> temp = new List<GDBPlatformGame>();
+            List<ScraperMaster> temp = new List<ScraperMaster>();
             while (levCount <= 10)
             {
                 levCount++;
                 double it = Convert.ToDouble(levCount) / 10;
-                List<GDBPlatformGame> found = FuzzySearch.FSearch(StripSymbols(searchStr.ToLower()), SearchCollection, it);
+                List<ScraperMaster> found = FuzzySearch.FSearch(StripSymbols(searchStr.ToLower()), SearchCollection, it);
                 
                 if (found.Count == 1)
                 {
@@ -688,7 +692,7 @@ namespace MedLaunch.Classes
                 if (found.Count > 1)
                 {
                     // multiple entries returned
-                    temp = new List<GDBPlatformGame>();
+                    temp = new List<ScraperMaster>();
                     temp.AddRange(found);
                 }
                 if (found.Count == 0)
@@ -699,10 +703,10 @@ namespace MedLaunch.Classes
             return temp;
         }
 
-        public List<GDBPlatformGame> MatchOneWordAtATime(List<GDBPlatformGame> games, string searchStr)
+        public List<ScraperMaster> MatchOneWordAtATime(List<ScraperMaster> games, string searchStr)
         {
             string searchstring = StripSymbols(searchStr).ToLower();
-            List<GDBPlatformGame> matched = new List<GDBPlatformGame>();
+            List<ScraperMaster> matched = new List<ScraperMaster>();
 
             // try the first word
             string[] arr = BuildArray(searchstring);
@@ -720,10 +724,10 @@ namespace MedLaunch.Classes
                 }
                 string b = StripSymbols(builder).ToLower();
 
-                List<GDBPlatformGame> matches = new List<GDBPlatformGame>();
-                foreach (GDBPlatformGame g in games)
+                List<ScraperMaster> matches = new List<ScraperMaster>();
+                foreach (ScraperMaster g in games)
                 {
-                    string resultstring = StripSymbols(g.GameTitle).ToLower();
+                    string resultstring = StripSymbols(g.TGDBData.GamesDBTitle).ToLower();
                     if (resultstring.Contains(searchstring))
                     {
                         matches.Add(g);
@@ -738,7 +742,7 @@ namespace MedLaunch.Classes
                 // multiple matches returned
                 if (matches.Count > 1)
                 {
-                    matched = new List<GDBPlatformGame>();
+                    matched = new List<ScraperMaster>();
                     matched.AddRange(matches);
                 }     
                 // increment while loop iterator
@@ -763,11 +767,11 @@ namespace MedLaunch.Classes
             //Dictionary<GDBPlatformGame, int> totals = new Dictionary<GDBPlatformGame, int>();
             List<SearchOrdering> totals = new List<SearchOrdering>();
 
-            foreach (GDBPlatformGame g in SystemCollection)
+            foreach (ScraperMaster g in SystemCollection)
             {
                 // sanitise
                 string searchstring = StripSymbols(searchStr).ToLower();
-                string resultstring = StripSymbols(g.GameTitle).ToLower();
+                string resultstring = StripSymbols(g.TGDBData.GamesDBTitle).ToLower();
 
                 int matchingWords = 0;
 
@@ -907,9 +911,9 @@ namespace MedLaunch.Classes
             }           
 
             // iterate through each gamesdb game in the list
-            foreach (GDBPlatformGame g in SystemCollection)
+            foreach (ScraperMaster g in SystemCollection)
             {
-                bool result = searchStr.ApproximatelyEquals(g.GameTitle, tolerance, fuzzOptions.ToArray());
+                bool result = searchStr.ApproximatelyEquals(g.TGDBData.GamesDBTitle, tolerance, fuzzOptions.ToArray());
                 if (result == true)
                 {
                     // match found - add to searchcollection                    
@@ -929,7 +933,7 @@ namespace MedLaunch.Classes
 
             // Check whether the actual game name contains the actual search 
             //GDBPlatformGame gp = SystemCollection.Where(a => StripSymbols(a.GameTitle.ToLower()).Contains(searchStr)).FirstOrDefault();
-            List<GDBPlatformGame> gp = SystemCollection.Where(a => AddTrailingWhitespace(a.GameTitle.ToLower()).Contains(AddTrailingWhitespace(SearchString))).ToList();
+            List<ScraperMaster> gp = SystemCollection.Where(a => AddTrailingWhitespace(a.TGDBData.GamesDBTitle.ToLower()).Contains(AddTrailingWhitespace(SearchString))).ToList();
             if (gp == null)
             {
                 // nothing found - proceed to other searches
@@ -939,15 +943,15 @@ namespace MedLaunch.Classes
                 if (gp.Count > 1)
                 {
                     // multiples found - wipe out search collection and create a new one
-                    SearchCollection = new List<GDBPlatformGame>();
+                    SearchCollection = new List<ScraperMaster>();
                     SearchCollection.AddRange(gp);
                 }
                 else
                 {
                     // only 1 entry found - return
-                    SearchCollection = new List<GDBPlatformGame>();
+                    SearchCollection = new List<ScraperMaster>();
                     SearchCollection.AddRange(gp);
-                    WorkingSearchCollection = new List<GDBPlatformGame>();
+                    WorkingSearchCollection = new List<ScraperMaster>();
                     WorkingSearchCollection.AddRange(gp);
                     return;
                 }
@@ -956,9 +960,9 @@ namespace MedLaunch.Classes
 
 
             // we should now have a pretty wide SearchCollection - count how many matched words
-            Dictionary<GDBPlatformGame, int> totals = new Dictionary<GDBPlatformGame, int>();
+            Dictionary<ScraperMaster, int> totals = new Dictionary<ScraperMaster, int>();
 
-            foreach (GDBPlatformGame g in SearchCollection)
+            foreach (ScraperMaster g in SearchCollection)
             {
                 int matchingWords = 0;
                 // get total substrings in search string
@@ -966,7 +970,7 @@ namespace MedLaunch.Classes
                 int searchLength = arr.Length;
 
                 // get total substrings in result string
-                string[] rArr = BuildArray(g.GameTitle);
+                string[] rArr = BuildArray(g.TGDBData.GamesDBTitle);
                 int resultLength = rArr.Length;
 
                 // find matching words
@@ -993,13 +997,13 @@ namespace MedLaunch.Classes
             var maxValueRecord = totals.OrderByDescending(v => v.Value).FirstOrDefault();
             int maxValue = maxValueRecord.Value;
             // select all records that have the max value
-            List<GDBPlatformGame> matches = (from a in totals
+            List<ScraperMaster> matches = (from a in totals
                                              where a.Value == maxValue
                                              select a.Key).ToList();
             if (matches.Count == 1)
             {
                 // single match found
-                WorkingSearchCollection = new List<GDBPlatformGame>();
+                WorkingSearchCollection = new List<ScraperMaster>();
                 WorkingSearchCollection.AddRange(matches);
                 return;
             }
@@ -1010,13 +1014,13 @@ namespace MedLaunch.Classes
             {
                 levCount++;
                 double it = Convert.ToDouble(levCount) / 10;
-                List<GDBPlatformGame> found = FuzzySearch.FSearch(searchStr, SearchCollection, it);
+                List<ScraperMaster> found = FuzzySearch.FSearch(searchStr, SearchCollection, it);
                 //WorkingSearchCollection = new List<GDBPlatformGame>();
 
                 if (found.Count == 1)
                 {
                     // one entry returned
-                    WorkingSearchCollection = new List<GDBPlatformGame>();
+                    WorkingSearchCollection = new List<ScraperMaster>();
                     WorkingSearchCollection.AddRange(found);
                     return;
                 }
@@ -1040,7 +1044,7 @@ namespace MedLaunch.Classes
             // check how many matches we have
             if (SearchCollection.Count == 1)
             {
-                WorkingSearchCollection = new List<GDBPlatformGame>();
+                WorkingSearchCollection = new List<ScraperMaster>();
                 WorkingSearchCollection.Add(SearchCollection.Single());
                 return;
             }
@@ -1069,11 +1073,11 @@ namespace MedLaunch.Classes
                     string b = StripSymbols(builder).ToLower();
 
 
-                    var s = SystemCollection.Where(a => a.GameTitle.ToLower().Contains(b)).ToList();
+                    var s = SystemCollection.Where(a => a.TGDBData.GamesDBTitle.ToLower().Contains(b)).ToList();
                     if (s.Count == 1)
                     {
                         // one entry returned - this is the one to keep
-                        WorkingSearchCollection = new List<GDBPlatformGame>();
+                        WorkingSearchCollection = new List<ScraperMaster>();
                         //SearchCollection = new List<GDBPlatformGame>();
                         WorkingSearchCollection.Add(s.Single());
                         return;                        
@@ -1082,7 +1086,7 @@ namespace MedLaunch.Classes
                     if (s.Count > 1)
                     {
                         // still multiple entries returned - single match not found - continue
-                        WorkingSearchCollection = new List<GDBPlatformGame>();
+                        WorkingSearchCollection = new List<ScraperMaster>();
                         WorkingSearchCollection.AddRange(s);
                         //SearchCollection = new List<GDBPlatformGame>();
 
@@ -1157,12 +1161,12 @@ namespace MedLaunch.Classes
                 // build string from array
                 string searchStr = BuildSearchString(gArr, c);
 
-                List<GDBPlatformGame> list = SystemCollection.Where(a => a.GameTitle.ToLower().Contains(searchStr)).ToList();
+                List<ScraperMaster> list = SystemCollection.Where(a => a.TGDBData.GamesDBTitle.ToLower().Contains(searchStr)).ToList();
 
                 if (list.Count == 1)
                 {
                     // One game found and it is likely the right one - destroy the current SearchCollection and create a new one - exit the method
-                    SearchCollection = new List<GDBPlatformGame>();
+                    SearchCollection = new List<ScraperMaster>();
                     SearchCollection.AddRange(list);
                     LocalGameFound = true;
                     return;
@@ -1175,7 +1179,7 @@ namespace MedLaunch.Classes
                 if (list.Count > 1)
                 {
                     // multiple records matched - add to searchcollection
-                    SearchCollection = new List<GDBPlatformGame>();
+                    SearchCollection = new List<ScraperMaster>();
                     SearchCollection.AddRange(list);
                 }
                 c++;
@@ -1211,7 +1215,7 @@ namespace MedLaunch.Classes
         // refresh platformgames from db
         public void RefreshPlatformGamesFromDb()
         {
-            PlatformGames = GDBPlatformGame.GetGames();
+            //PlatformGames = GDBPlatformGame.GetGames();
         }
 
         // Update database with all platform games
@@ -1280,8 +1284,8 @@ namespace MedLaunch.Classes
                         gsingle.id = r.ID;
                         gsingle.SystemId = sys.systemId;
                         gsingle.GameTitle = r.Title;
-                        gsingle.ReleaseDate = r.ReleaseDate;
                         gsingle.GDBPlatformName = GSystem.ReturnGamesDBPlatformName(gid);
+                        gsingle.ReleaseDate = r.ReleaseDate;
 
                         gs.Add(gsingle);
                     }
@@ -1346,7 +1350,7 @@ namespace MedLaunch.Classes
 
         public static void SavePlatformGamesToDisk()
         {
-            var g = GDBPlatformGame.GetGames();
+            //var g = GDBPlatformGame.GetGames();
         }
 
         public static void UnlinkGameData(DataGrid dgGameList)

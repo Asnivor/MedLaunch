@@ -57,17 +57,17 @@ namespace MedLaunch
 
             foreach (var gam in games)
             {
-                if (gam.Matches == 0 || gam.Game.GameTitle == "")
+                if (gam.Matches == 0 || gam.Game.TGDBData.GamesDBTitle == "")
                 {
                     continue;
                 }
                 GameListItem gli = new GameListItem();
-                gli.GamesDBId = gam.Game.id;
-                gli.GameName = gam.Game.GameTitle;
+                gli.GamesDBId = gam.Game.GamesDbId;
+                gli.GameName = gam.Game.TGDBData.GamesDBTitle;
                 //gli.Matches = gam.Matches;
                 int wordcount = row.Game.Split(' ').Length;
                 gli.Percentage = Convert.ToInt32((Convert.ToDouble(gam.Matches) / Convert.ToDouble(wordcount)) * 100);
-                gli.Platform = gam.Game.GDBPlatformName;
+                gli.Platform = gam.Game.TGDBData.GamesDBPlatformName;
                 g.Add(gli);
             }
             // make sure list is ordered descending

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using MahApps.Metro.Controls.Dialogs;
 using System.Threading;
+using MedLaunch.Classes;
 
 namespace MedLaunch
 {
@@ -15,6 +16,8 @@ namespace MedLaunch
     /// </summary>
     public partial class App : Application
     {
+        public GamesLibraryScrapedContent ScrapedData { get; set; }
+
         private void ApplicationStart(object sender, StartupEventArgs e)
         {
             var splashScreen = new SplashScreen(@"Data\Graphics\mediconsplash.png");
@@ -33,6 +36,9 @@ namespace MedLaunch
             mw.Show();
 
             splashScreen.Close(TimeSpan.FromSeconds(1));
+
+            // instantiate ScrapedContent Object
+            ScrapedData = new GamesLibraryScrapedContent();
         }
 
         private void ShowInitWindow()

@@ -73,6 +73,9 @@ namespace MedLaunch
             MainWindow mw = this;
             //this.WindowState = WindowState.Normal;
 
+            // instantiate ScrapedContent Object
+            GamesLibraryScrapedContent ScrapedData = new GamesLibraryScrapedContent();
+
             // doubleclick handler for gui_zoom control
             //gui_zoom.MouseDoubleClick += new MouseButtonEventHandler(RestoreScalingFactor);
             dpZoomSlider.Visibility = Visibility.Collapsed;
@@ -346,6 +349,7 @@ namespace MedLaunch
         private void wb_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
         {
             txtUrl.Text = e.Uri.OriginalString;
+            
         }
         
 
@@ -488,15 +492,16 @@ namespace MedLaunch
                 Task.Delay(1);
                 // get list of all platformgames in the database
                 controller.SetMessage("Unumerating PlatForm games from database...");
-                List<GDBPlatformGame> games = GDBPlatformGame.GetGames();
+                App app = ((App)Application.Current);
+                List<ScraperMaster> games = app.ScrapedData.MasterPlatformList;
                 int gameCount = games.Count;
                 int i = 0;
 
-                foreach (GDBPlatformGame g in games)
+                foreach (ScraperMaster g in games)
                 {
                     i++;
                     WebOps wo = new WebOps();
-                    wo.Params = "/GetGame.php?id=" + g.id;
+                    wo.Params = "/GetGame.php?id=" + g.GamesDbId;
 
                 }
 
@@ -1414,6 +1419,7 @@ namespace MedLaunch
                 string strPath = path.SelectedPath;
                 tbPathMd.Text = strPath;
             }
+            
         }
 
         private void btnPathNes_Click(object sender, RoutedEventArgs e)
@@ -2163,7 +2169,8 @@ namespace MedLaunch
         private void btnSavePlatformGamesToDisk_Click(object sender, RoutedEventArgs e)
         {
             string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
-            var platformgames = GDBPlatformGame.GetGames();
+            App app = ((App)Application.Current);
+            var platformgames = app.ScrapedData.MasterPlatformList;
     
             string json = JsonConvert.SerializeObject(platformgames.ToArray());
             System.IO.File.WriteAllText(@"Data\Settings\thegamesdbplatformgames_" + linkTimeLocal.Replace(" ", "").Replace(":", "").Replace("-", "") + ".json", json);
@@ -2185,11 +2192,11 @@ namespace MedLaunch
 
             foreach (Game g in games)
             {
-                List<GDBPlatformGame> result = gs.SearchGameLocal(g.gameName, g.systemId, g.gameId).ToList();
+                List<ScraperMaster> result = gs.SearchGameLocal(g.gameName, g.systemId, g.gameId).ToList();
                 string glist = g.gameName + "\n-------------------------\n\n";
-                foreach (GDBPlatformGame bg in result)
+                foreach (ScraperMaster bg in result)
                 {
-                    glist += bg.GameTitle + "\n";
+                    glist += bg.TGDBData.GamesDBTitle + "\n";
                 }
                 MessageBox.Show(glist);
             }
@@ -2473,6 +2480,8 @@ namespace MedLaunch
         private void btnmobyPlatformList_Click(object sender, RoutedEventArgs e)
         {
             MobyGames.ScrapeAllPlatformGames();
+           // App app = ((App)Application.Current);
+            
         }
 
         private void btnmobyPlatformListDumpToFile_Click(object sender, RoutedEventArgs e)
@@ -2483,13 +2492,25 @@ namespace MedLaunch
         private void btnCombine_Click(object sender, RoutedEventArgs e)
         {
             CreateMasterList j = new CreateMasterList();
-            j.BeginMerge();
+            j.BeginMerge(false, false);
         }
 
         private void btnGetManuals_Click(object sender, RoutedEventArgs e)
         {
             CreateMasterList j = new CreateMasterList();
             j.ScrapeManuals();
+        }
+
+        private void btnCombineManual_Click(object sender, RoutedEventArgs e)
+        {
+            CreateMasterList j = new CreateMasterList();
+            j.BeginMerge(true, false);
+        }
+
+        private void btnCombineManualnonleven_Click(object sender, RoutedEventArgs e)
+        {
+            CreateMasterList j = new CreateMasterList();
+            j.BeginMerge(true, true);
         }
     }
 

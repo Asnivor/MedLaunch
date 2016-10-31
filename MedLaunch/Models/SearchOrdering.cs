@@ -9,7 +9,7 @@ namespace MedLaunch.Models
     public class SearchOrdering
     {
         public int Matches { get; set; }
-        public GDBPlatformGame Game { get; set; }
+        public ScraperMaster Game { get; set; }
     }
 
     public class MobySearchOrdering

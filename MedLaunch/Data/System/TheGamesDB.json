@@ -8743,6 +8743,13 @@
     "ReleaseDate": null
   },
   {
+    "id": 40516,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Gran Duel: Shinki Dungeon no Hihou",
+    "ReleaseDate": "12/10/1999"
+  },
+  {
     "id": 3373,
     "SystemId": 2,
     "GDBPlatformName": "Nintendo Game Boy Advance",
@@ -22841,6 +22848,13 @@
     "ReleaseDate": null
   },
   {
+    "id": 40468,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Mega Drive",
+    "GameTitle": "Spider-Man Animated Series",
+    "ReleaseDate": "10/27/1995"
+  },
+  {
     "id": 36006,
     "SystemId": 4,
     "GDBPlatformName": "Sega Genesis",
@@ -33435,7 +33449,7 @@
     "id": 8209,
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
-    "GameTitle": "Hit the Ice The Oficial video hockey",
+    "GameTitle": "HIT THE ICE",
     "ReleaseDate": "01/01/1992"
   },
   {
@@ -35096,6 +35110,146 @@
     "GDBPlatformName": "TurboGrafx 16",
     "GameTitle": "Shiryou Sensen",
     "ReleaseDate": null
+  },
+  {
+    "id": 40591,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Obocchama Kun",
+    "ReleaseDate": "03/15/1991"
+  },
+  {
+    "id": 40592,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Chikudenya Toubee",
+    "ReleaseDate": "01/06/1990"
+  },
+  {
+    "id": 40593,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Chozetsu Rinjin Berabo Man",
+    "ReleaseDate": "07/13/1990"
+  },
+  {
+    "id": 40594,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Kore Gg Pro Yakyuu '89",
+    "ReleaseDate": "12/20/1990"
+  },
+  {
+    "id": 40595,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "GenpeiI Toumaden",
+    "ReleaseDate": "03/16/1990"
+  },
+  {
+    "id": 40596,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Genpei Touma Den - Kannoni",
+    "ReleaseDate": "04/07/1992"
+  },
+  {
+    "id": 40597,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Hisou Kihei Kai Serd",
+    "ReleaseDate": "02/23/1990"
+  },
+  {
+    "id": 40598,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Side Arms Hyperdyne",
+    "ReleaseDate": "07/14/1989"
+  },
+  {
+    "id": 40599,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Shougi Shodan Icchokusen",
+    "ReleaseDate": "08/10/1990"
+  },
+  {
+    "id": 40601,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Shougi Shoshisha Muyo",
+    "ReleaseDate": "11/29/1991"
+  },
+  {
+    "id": 40602,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Sindibad - Chitei No Dai Meikyu",
+    "ReleaseDate": "06/02/1990"
+  },
+  {
+    "id": 40605,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Son Son II",
+    "ReleaseDate": "01/27/1989"
+  },
+  {
+    "id": 40607,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Susano O Densetsu",
+    "ReleaseDate": "04/27/1989"
+  },
+  {
+    "id": 40608,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Takahashi Meijin No Shin Bouken Jima",
+    "ReleaseDate": "06/26/1992"
+  },
+  {
+    "id": 40609,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Kore Ga Pro Yakyuu '90",
+    "ReleaseDate": "06/30/1990"
+  },
+  {
+    "id": 40610,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Hani In The Sky",
+    "ReleaseDate": "03/01/1989"
+  },
+  {
+    "id": 40611,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "J. League Greatest Eleven Soccer",
+    "ReleaseDate": "05/14/1993"
+  },
+  {
+    "id": 40612,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Jinmu Densho Yaksa",
+    "ReleaseDate": "06/20/1989"
+  },
+  {
+    "id": 40613,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Juu Oh Ki",
+    "ReleaseDate": null
+  },
+  {
+    "id": 40614,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Kattobi! Takuhai Kun",
+    "ReleaseDate": "11/09/1990"
   },
   {
     "id": 16793,
@@ -47759,6 +47913,13 @@
     "GDBPlatformName": "Sony Playstation",
     "GameTitle": "Pink Panther: Pinkadelic Pursuit",
     "ReleaseDate": "11/29/2002"
+  },
+  {
+    "id": 40515,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Resident Evil: Director's Cut",
+    "ReleaseDate": "09/30/1997"
   },
   {
     "id": 2798,
@@ -60564,6 +60725,27 @@
     "ReleaseDate": "12/14/1990"
   },
   {
+    "id": 40481,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Emoyan no 10 Bai Pro Yakyuu",
+    "ReleaseDate": "12/19/1989"
+  },
+  {
+    "id": 40482,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Famicom Igo Nyuumon",
+    "ReleaseDate": "11/29/1991"
+  },
+  {
+    "id": 40483,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Famicom Meijinsen",
+    "ReleaseDate": "09/02/1988"
+  },
+  {
     "id": 35255,
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
@@ -61156,6 +61338,769 @@
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
     "GameTitle": "SonSon",
+    "ReleaseDate": null
+  },
+  {
+    "id": 40470,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Bashi Bazook: Morphoid Masher",
+    "ReleaseDate": null
+  },
+  {
+    "id": 40471,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Casino Derby",
+    "ReleaseDate": "03/19/1993"
+  },
+  {
+    "id": 40472,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Chibi Maruko-Chan: Uki Uki Shopping",
+    "ReleaseDate": "10/04/1991"
+  },
+  {
+    "id": 40473,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Chip's Challenge",
+    "ReleaseDate": null
+  },
+  {
+    "id": 40474,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Chuugoku Janshi Story: Tonpuu",
+    "ReleaseDate": "12/23/1989"
+  },
+  {
+    "id": 40475,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Chuugoku Senseijutsu",
+    "ReleaseDate": "11/29/1988"
+  },
+  {
+    "id": 40476,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Cross Fire",
+    "ReleaseDate": "11/02/1990"
+  },
+  {
+    "id": 40477,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Deblock",
+    "ReleaseDate": "08/09/1991"
+  },
+  {
+    "id": 40478,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Dino-Hockey",
+    "ReleaseDate": null
+  },
+  {
+    "id": 40479,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Donkey Kong Jr. / Jr. Sansu Lesson",
+    "ReleaseDate": "10/01/1983"
+  },
+  {
+    "id": 40480,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Dreamworld Pogie",
+    "ReleaseDate": null
+  },
+  {
+    "id": 40484,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Famicom Shogi: Ryuu-Ou-Sen",
+    "ReleaseDate": "02/15/1991"
+  },
+  {
+    "id": 40485,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Famicom Top Management",
+    "ReleaseDate": "12/12/1990"
+  },
+  {
+    "id": 40486,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Famicom Yakyuuban",
+    "ReleaseDate": "12/15/1989"
+  },
+  {
+    "id": 40487,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Family BASIC",
+    "ReleaseDate": "06/21/1984"
+  },
+  {
+    "id": 40488,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Family Mahjong",
+    "ReleaseDate": "08/11/1987"
+  },
+  {
+    "id": 40489,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Family Mahjong II: Shanghai he no Michi",
+    "ReleaseDate": "11/25/1988"
+  },
+  {
+    "id": 40490,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Family School",
+    "ReleaseDate": null
+  },
+  {
+    "id": 40492,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Ambushed",
+    "ReleaseDate": null
+  },
+  {
+    "id": 40493,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Angry Birds",
+    "ReleaseDate": null
+  },
+  {
+    "id": 40494,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Family Trainer: Jogging Race",
+    "ReleaseDate": "05/28/1987"
+  },
+  {
+    "id": 40495,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Family Trainer: Meiro Daisakusen",
+    "ReleaseDate": "07/31/1987"
+  },
+  {
+    "id": 40496,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Family Trainer: Totsugeki! Fuuun Takeshi Jou",
+    "ReleaseDate": "12/28/1987"
+  },
+  {
+    "id": 40497,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Family Trainer: Fuuun! Takeshi Jou 2",
+    "ReleaseDate": "12/20/1988"
+  },
+  {
+    "id": 40498,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Family Trainer: Rai Rai Kyonshis: Baby Kyonshi no Amida Daibouken",
+    "ReleaseDate": "01/26/1989"
+  },
+  {
+    "id": 40499,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Free Fall",
+    "ReleaseDate": null
+  },
+  {
+    "id": 40500,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Gambler Jiko Chuushinha",
+    "ReleaseDate": "11/11/1988"
+  },
+  {
+    "id": 40501,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Gambler Jiko Chuushinha 2",
+    "ReleaseDate": "12/07/1990"
+  },
+  {
+    "id": 40502,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Genpei Toumaden",
+    "ReleaseDate": "10/21/1988"
+  },
+  {
+    "id": 40503,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Gimme a Break: Shijou Saikyou no Quiz Ou Ketteisen",
+    "ReleaseDate": "12/13/1991"
+  },
+  {
+    "id": 40504,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Gimme a Break: Shijou Saikyou no Quiz Ou Ketteisen 2",
+    "ReleaseDate": "08/28/1992"
+  },
+  {
+    "id": 40505,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Golfkko Open",
+    "ReleaseDate": "11/25/1989"
+  },
+  {
+    "id": 40506,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Gomoku Narabe Renju",
+    "ReleaseDate": "08/27/1983"
+  },
+  {
+    "id": 40507,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "The Gorilla Man",
+    "ReleaseDate": "04/28/1993"
+  },
+  {
+    "id": 40508,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Hissatsu Doujou Yaburi",
+    "ReleaseDate": "07/18/1989"
+  },
+  {
+    "id": 40509,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Hissatsu Shigoto Nin",
+    "ReleaseDate": "12/15/1990"
+  },
+  {
+    "id": 40510,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Hit the Ice: VHL - The Video Hockey League",
+    "ReleaseDate": null
+  },
+  {
+    "id": 40511,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Hon Shogi: Naitou Kudan Shogi Hiden",
+    "ReleaseDate": "08/10/1985"
+  },
+  {
+    "id": 40512,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "HVC Kensa Cassette Controller Test",
+    "ReleaseDate": null
+  },
+  {
+    "id": 40513,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Hyakki Yakou",
+    "ReleaseDate": "02/22/1989"
+  },
+  {
+    "id": 40514,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Hyokkori Hyoutanjima: Nazo no Kaizokusen",
+    "ReleaseDate": "04/25/1992"
+  },
+  {
+    "id": 40524,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Ide Yosuke Meijin no Jissen Mahjong",
+    "ReleaseDate": "09/24/1987"
+  },
+  {
+    "id": 40525,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Ide Yosuke Meijin no Jissen Mahjong II",
+    "ReleaseDate": "02/22/1991"
+  },
+  {
+    "id": 40526,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Igo: Kyuu Roban Taikyoku",
+    "ReleaseDate": "08/11/1987"
+  },
+  {
+    "id": 40527,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Igo Meikan",
+    "ReleaseDate": "01/10/1990"
+  },
+  {
+    "id": 40528,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Igo Shinan '91",
+    "ReleaseDate": "07/05/1991"
+  },
+  {
+    "id": 40529,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Igo Shinan '92",
+    "ReleaseDate": "03/10/1992"
+  },
+  {
+    "id": 40530,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Igo Shinan '93",
+    "ReleaseDate": "11/20/1992"
+  },
+  {
+    "id": 40531,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Igo Shinan '94",
+    "ReleaseDate": "12/17/1993"
+  },
+  {
+    "id": 40532,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Igo Shinan",
+    "ReleaseDate": "07/14/1989"
+  },
+  {
+    "id": 40533,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Indiana Jones and the Last Crusade (Ubi Soft)",
+    "ReleaseDate": null
+  },
+  {
+    "id": 40534,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Isaki Shuugorou no Keiba Hisshou Gaku",
+    "ReleaseDate": "03/20/1990"
+  },
+  {
+    "id": 40535,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Itadaki Street: Watashi no Oten ni Yottette",
+    "ReleaseDate": "03/21/1991"
+  },
+  {
+    "id": 40536,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Jangou",
+    "ReleaseDate": "08/30/1990"
+  },
+  {
+    "id": 40537,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Jongbou",
+    "ReleaseDate": "07/18/1987"
+  },
+  {
+    "id": 40538,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Kabushiki Doujou: The Stock Speculation",
+    "ReleaseDate": "05/02/1989"
+  },
+  {
+    "id": 40539,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Kaettekita! Gunjin Shogi: Nanya Sore!?",
+    "ReleaseDate": "05/26/1989"
+  },
+  {
+    "id": 40540,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Kamen Rider SD: GranShocker no Yabou",
+    "ReleaseDate": "01/22/1993"
+  },
+  {
+    "id": 40541,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Karaoke Studio",
+    "ReleaseDate": "07/30/1987"
+  },
+  {
+    "id": 40542,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Karaoke Studio Senyou Cassette Vol. 1",
+    "ReleaseDate": "10/28/1987"
+  },
+  {
+    "id": 40543,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Karaoke Studio Senyou Cassette Vol. 2",
+    "ReleaseDate": "02/18/1988"
+  },
+  {
+    "id": 40544,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Keiba Simulation: Honmei",
+    "ReleaseDate": "04/28/1989"
+  },
+  {
+    "id": 40545,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Kekkyoku Nankyoku Daibouken",
+    "ReleaseDate": null
+  },
+  {
+    "id": 40547,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Kiteretsu Daihyakka",
+    "ReleaseDate": "02/23/1990"
+  },
+  {
+    "id": 40548,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Koushien",
+    "ReleaseDate": "10/06/1989"
+  },
+  {
+    "id": 40549,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Kurogane Hiroshi no Yosou Daisuki! Kachiuma Densetsu",
+    "ReleaseDate": "04/20/1990"
+  },
+  {
+    "id": 40550,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Kyonshies 2",
+    "ReleaseDate": "09/25/1987"
+  },
+  {
+    "id": 40551,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "LaSalle Ishii no Child's Quest",
+    "ReleaseDate": "06/23/1989"
+  },
+  {
+    "id": 40552,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "The Legend of Robin Hood",
+    "ReleaseDate": null
+  },
+  {
+    "id": 40553,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Ripple Island",
+    "ReleaseDate": "01/23/1988"
+  },
+  {
+    "id": 40554,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Lot Lot",
+    "ReleaseDate": "12/21/1985"
+  },
+  {
+    "id": 40557,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Mahjong",
+    "ReleaseDate": "08/27/1983"
+  },
+  {
+    "id": 40558,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Mahjong Club Nagatacho: Sousaisen",
+    "ReleaseDate": "04/25/1991"
+  },
+  {
+    "id": 40559,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Koufuku o Yobu Game: Dora Dora Dora",
+    "ReleaseDate": "01/25/1991"
+  },
+  {
+    "id": 40560,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Mahjong Taikai",
+    "ReleaseDate": "10/31/1989"
+  },
+  {
+    "id": 40561,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Mahjong Taisen",
+    "ReleaseDate": "05/20/1992"
+  },
+  {
+    "id": 40562,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Mahou no Princess Minkiimomo: Remember Dream",
+    "ReleaseDate": "07/29/1992"
+  },
+  {
+    "id": 40563,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Maison Ikkoku",
+    "ReleaseDate": "07/21/1988"
+  },
+  {
+    "id": 40564,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Majaventure: Mahjong Senki",
+    "ReleaseDate": "10/19/1990"
+  },
+  {
+    "id": 40565,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Masuzoe Youichi: Asa Made Famicom",
+    "ReleaseDate": "04/17/1992"
+  },
+  {
+    "id": 40566,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Matsumoto Toru no Kabushiki Hisshougaku",
+    "ReleaseDate": "02/18/1988"
+  },
+  {
+    "id": 40567,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Matsumoto Toru no Kabushiki Hisshougaku II",
+    "ReleaseDate": "03/31/1989"
+  },
+  {
+    "id": 40568,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Meiji Ishin",
+    "ReleaseDate": "09/29/1989"
+  },
+  {
+    "id": 40569,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Meimon! Daisan Yakyuubu",
+    "ReleaseDate": "08/08/1989"
+  },
+  {
+    "id": 40570,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Meimon! Tako Nishiouendan",
+    "ReleaseDate": "12/01/1989"
+  },
+  {
+    "id": 40571,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Meitantei Holmes: Kiri no London Satsujin Jiken",
+    "ReleaseDate": "05/13/1988"
+  },
+  {
+    "id": 40572,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Meitantei Holmes: M-Kara no Chousenjou",
+    "ReleaseDate": "05/01/1989"
+  },
+  {
+    "id": 40573,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Mezase Pachi Pro: Pachiokun",
+    "ReleaseDate": "12/18/1987"
+  },
+  {
+    "id": 40574,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Mezase! Top Pro Green ni Kakeru Yume",
+    "ReleaseDate": "03/05/1993"
+  },
+  {
+    "id": 40575,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Mississippi Satsujin Jiken: Murder on the Mississippi",
+    "ReleaseDate": "10/31/1986"
+  },
+  {
+    "id": 40576,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Mito Koumon II: Sekai Manyuu Ki",
+    "ReleaseDate": "08/11/1988"
+  },
+  {
+    "id": 40577,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Mizushima Shinji no Daikoushien",
+    "ReleaseDate": "10/26/1990"
+  },
+  {
+    "id": 40578,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Momotarou Dentetsu",
+    "ReleaseDate": "12/02/1988"
+  },
+  {
+    "id": 40579,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "The Money Game",
+    "ReleaseDate": "08/10/1988"
+  },
+  {
+    "id": 40580,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "The Money Game II: Kabutochou no Kiseki",
+    "ReleaseDate": "12/20/1989"
+  },
+  {
+    "id": 40581,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Morita Kazuo no Shogi",
+    "ReleaseDate": "04/14/1987"
+  },
+  {
+    "id": 40582,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Moulin Rouge Senki: Melville no Honoo",
+    "ReleaseDate": "08/11/1989"
+  },
+  {
+    "id": 40583,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Murder Club",
+    "ReleaseDate": "06/30/1989"
+  },
+  {
+    "id": 40584,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "My Life My Love: Boku no Yume Watashi no Negai",
+    "ReleaseDate": "08/03/1991"
+  },
+  {
+    "id": 40585,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Namcot Mahjong III: Mahjong Tengoku",
+    "ReleaseDate": "03/08/1991"
+  },
+  {
+    "id": 40586,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Nankoku Shirei!! Spy vs. Spy",
+    "ReleaseDate": "03/23/1987"
+  },
+  {
+    "id": 40587,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Major League",
+    "ReleaseDate": "10/27/1989"
+  },
+  {
+    "id": 40588,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Nantettatte!! Baseball",
+    "ReleaseDate": "10/26/1990"
+  },
+  {
+    "id": 40589,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Nantettatte!! Baseball '91 Kaimaku Hen",
+    "ReleaseDate": "05/31/1991"
+  },
+  {
+    "id": 40590,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Nantettatte!! Baseball OB All Star Hen",
+    "ReleaseDate": "02/26/1991"
+  },
+  {
+    "id": 40600,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Palamedes II: Star Twinkles",
+    "ReleaseDate": "05/07/1991"
+  },
+  {
+    "id": 40603,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Tantei Jinguuji Saburou - Yokohamakou Renzoku Satsujin Jiken",
+    "ReleaseDate": "02/26/1988"
+  },
+  {
+    "id": 40604,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Tao - The Way",
+    "ReleaseDate": null
+  },
+  {
+    "id": 40606,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Tasac",
     "ReleaseDate": null
   },
   {
@@ -67406,7 +68351,7 @@
     "id": 10779,
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
-    "GameTitle": "F Zero",
+    "GameTitle": "F-Zero",
     "ReleaseDate": "08/23/1991"
   },
   {

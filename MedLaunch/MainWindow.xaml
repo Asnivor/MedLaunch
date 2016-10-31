@@ -4619,28 +4619,43 @@
 
             <TabItem Header="Debug" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
                 <WrapPanel Orientation="Vertical">
-
+<!--
                     <Button x:Name="btnSavePlatformGamesToDisk" Click="btnSavePlatformGamesToDisk_Click" >
                         [Debug only]Save all platform games from database to disk
                     </Button>
+                    
                     <Button x:Name="btnTestGameSearch" Click="btnTestGameSearch_Click" >
                         [Debug only]Search for game
-                    </Button>
-                    <Button x:Name="btnGetAllPlatformGames" Click="ScrapeGetAllPlatformGames_Click">
-                        Get all platform games from thegamesdb.net and save them to the database
                     </Button>
                     <Button x:Name="btnScrapeAllGameInfo" Click="btnScrapeAllGameInfo_Click">
                         Iterate through each platformlist game and export the XML to a local zip
                     </Button>
-                    <Button x:Name="btnmobyPlatformList" Click="btnmobyPlatformList_Click">
+                    -->
+                    <Button Margin="5" x:Name="btnGetAllPlatformGames" Click="ScrapeGetAllPlatformGames_Click">
+                        Get all platform games from thegamesdb.net and save them to disk (JSON)
+                    </Button>
+
+                    <Button Margin="5" x:Name="btnmobyPlatformList" Click="btnmobyPlatformList_Click">
                         Get all platform games from Mobygames and save them to disk (JSON)
                     </Button>
 
-                    <Button Margin="20" x:Name="btnCombine" Click="btnCombine_Click">
-                        Combine sets and generate new json
+                    
+
+                    <Button Margin="5" x:Name="btnCombine" Click="btnCombine_Click">
+                        Combine sets and generate new master json
                     </Button>
 
-                    <Button Margin="20" x:Name="btnGetManuals" Click="btnGetManuals_Click">
+                    <Button Margin="5" x:Name="btnCombineManual" Click="btnCombineManual_Click">
+                        Combine sets and generate new master json (manual choice on multiple selections using Levenshtein)
+                    </Button>
+
+                    <Button Margin="5" x:Name="btnCombineManualnonleven" Click="btnCombineManualnonleven_Click">
+                        Combine sets and generate new master json (manual choice on multiple selections using word match counts)
+                    </Button>
+
+                    <Separator />
+
+                    <Button Margin="5" x:Name="btnGetManuals" Click="btnGetManuals_Click">
                         Attempt to scrape PDF Manual URLS
                     </Button>
                     <!--

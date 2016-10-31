@@ -13,6 +13,7 @@ namespace MedLaunch.Models
 {
     public class GDBPlatformGame
     {
+       
         public int id { get; set; }
         public int SystemId { get; set; }
         public string GDBPlatformName { get; set; }
@@ -30,7 +31,7 @@ namespace MedLaunch.Models
                 return g;
             }
         }
-
+        /*
         public static void InitialSeed()
         {
             // to run after database is first created
@@ -79,6 +80,7 @@ namespace MedLaunch.Models
            
             
         }
+        */
 
         public static List<GDBPlatformGame> GetGames()
         {
@@ -147,5 +149,6 @@ namespace MedLaunch.Models
                 db.SaveChanges();
             }
         }
+     
     }
 }

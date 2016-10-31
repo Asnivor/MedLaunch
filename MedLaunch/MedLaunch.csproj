@@ -206,6 +206,7 @@
     <Compile Include="Classes\EventArgs.cs" />
     <Compile Include="Classes\GameScraper.cs" />
     <Compile Include="Classes\GamesLibData.cs" />
+    <Compile Include="Classes\GamesLibraryScrapedContent.cs" />
     <Compile Include="Classes\GamesLibraryVisualHandler.cs" />
     <Compile Include="Classes\GetBuildTime.cs" />
     <Compile Include="Classes\FuzzySearch.cs" />
@@ -253,6 +254,7 @@
     <Compile Include="Models\MobyPlatformGame.cs" />
     <Compile Include="Models\Paths.cs" />
     <Compile Include="Models\GSystem.cs" />
+    <Compile Include="Models\ScrapedGameData.cs" />
     <Compile Include="Models\ScraperMaster.cs" />
     <Compile Include="Models\SearchOrdering.cs" />
     <Compile Include="Models\Versions.cs" />
@@ -309,12 +311,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Data\System\MobyGames.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="Data\System\MasterGames.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Data\System\TheGamesDB.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Data\System\MobyGames.json" />
+    <None Include="Data\System\TheGamesDB.json" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\MedLaunch.ViewModels.GlobalSettingsViewModel.datasource" />
     <None Include="Properties\Settings.settings">

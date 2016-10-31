@@ -138,8 +138,11 @@ namespace MedLaunch
                 UpdateStatus("Done", false);
 
                 // Games Scraping db initial seed
+
+                /*
                 UpdateStatus("Importing PlatformGames list (thegamesdb.net)", true);
                 GDBPlatformGame.InitialSeed();
+                */
                 UpdateStatus("Done", false);
 
                 return;
@@ -188,7 +191,7 @@ namespace MedLaunch
             UpdateStatus("Done", false);
             UpdateStatus("Seeding database with default values", true);
             DbEF.InitialSeed();
-            GDBPlatformGame.InitialSeed();
+            //GDBPlatformGame.InitialSeed();
             UpdateStatus("Done", false);
 
             // database should be set up with all default settings. Now import all the old data
@@ -347,6 +350,7 @@ namespace MedLaunch
                             GDBLink.SaveToDatabase(_gDBLinks);
                             
                             break;
+                            /*
                         case "GDBPlatformGame":
                             List<List<Data>> gdbpgRows = ReturnRows(dbData.Tables, tableName);
                             foreach (List<Data> row in gdbpgRows)
@@ -357,7 +361,7 @@ namespace MedLaunch
                                 int primaryKey = Convert.ToInt32(data.PrimaryKeyValue);
                                 //GDBPlatformGame settings = new GDBPlatformGame();
                                 // get the whole record from the database
-                                GDBPlatformGame settings = GDBPlatformGame.GetGame(primaryKey);
+                                ScraperMaster settings = GDBPlatformGame.GetGame(primaryKey);
                                 if (settings == null) { settings = new GDBPlatformGame(); }
                                 foreach (Data item in row)
                                 {
@@ -373,6 +377,7 @@ namespace MedLaunch
                             GDBPlatformGame.SaveToDatabase(_gDBPlatformGames);
                             
                             break;
+                            */
                         case "Game":
                             List<List<Data>> gameRows = ReturnRows(dbData.Tables, tableName);
                             foreach (List<Data> row in gameRows)

@@ -35,6 +35,8 @@ namespace MedLaunch.Classes.MasterScraper
         public string AppBaseDirectory { get; set; }
         public string MasterJsonPath { get; set; }
 
+        public string MobyJson { get; set; }
+
         public string MasterGamesJsonPath { get; set; }
         public string WorkingCollectionJsonPath { get; set; }
         public string DuplicatesJsonPath { get; set; }
@@ -46,8 +48,8 @@ namespace MedLaunch.Classes.MasterScraper
         public CreateMasterList()
         {
             AppBaseDirectory = AppDomain.CurrentDomain.BaseDirectory + @"\Data\System\";
-            string GDBJson = File.ReadAllText(AppBaseDirectory + "TheGamesDB.json");
-            string MobyJson = File.ReadAllText(AppBaseDirectory + "MobyGames.json");
+            string GDBJson = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\TheGamesDB.json");
+            MobyJson = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\MobyGames.json");
 
             //MasterGamesJsonPath = Directory.GetParent(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).FullName).FullName + @"\Data\System\MasterGames.json";
             MasterGamesJsonPath = AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\MasterGames.json";
@@ -73,7 +75,7 @@ namespace MedLaunch.Classes.MasterScraper
         // methods
 
         // Main handler for all processes
-        public async void BeginMerge()
+        public async void BeginMerge(bool ManualResolve, bool usewordcountmatching)
         {
             // get the main window
             mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
@@ -90,6 +92,32 @@ namespace MedLaunch.Classes.MasterScraper
             await Task.Delay(100);
 
             await Task.Run(() =>
+            {
+                int masterTotalGames = MasterGames.Count;
+                int gdbTotalGames = GDBGames.Count;
+                string me = "Adding new thegamesdb.net games to master list...\n" + (gdbTotalGames - masterTotalGames).ToString() + " new games detected..Parsing - Please wait....\n";
+                controller.SetMessage(me);
+                Task.Delay(1000);
+                foreach (var g in GDBGames)
+                {
+                    var mG = MasterGames.Where(a => a.GamesDbId == g.id).ToList();
+                    if (mG.Count > 0)
+                        continue;
+
+                    // game not found - add it to master list
+                    controller.SetMessage(me + "Adding: " + g.GameTitle + " (" + g.GDBPlatformName + ")");
+                    ScraperMaster sm = new ScraperMaster();
+                    sm.GamesDbId = g.id;
+                    sm.MedLaunchSystemId = g.SystemId;
+                    sm.TGDBData.GamesDBTitle = g.GameTitle;
+                    sm.TGDBData.GamesDBPlatformName = g.GDBPlatformName;
+
+                    // either add or update this game to the master list (or do nothing if record is unchanged)
+                    AddOrUpdate(sm);
+                }
+            });
+
+                await Task.Run(() =>
             {
                 controller.SetMessage("Removing potential results from search context to speed up processing...");
                 var matchedR = (from a in MasterGames
@@ -121,17 +149,75 @@ namespace MedLaunch.Classes.MasterScraper
                 // now go through each game in MasterGames and try and match up with games in the Moby list
                 NoMatches = 0;
 
-                // first iteration - straight string match
-                MatchMobyToGDB(controller, null, 0);
+                if (usewordcountmatching == true)
+                {
+                    // manual interaction selected - no leven
+                    // third iteration - lev 0.7
+                    MatchMobyToGDB(controller, null, 100, true, true);
+                    
+                }
 
-                // second iteration - lev 0.8
-                MatchMobyToGDB(controller, null, 0.8);
+                else
+                {
+                    if (ManualResolve == true)
+                    {
+                        // manual interaction selected
+                        // third iteration - lev 0.7
+                        MatchMobyToGDB(controller, null, 0, true, false);
+                        MatchMobyToGDB(controller, null, 0.99, true, false);
+                        MatchMobyToGDB(controller, null, 0.95, true, false);
+                        MatchMobyToGDB(controller, null, 0.93, true, false);
+                    }
+                    else
+                    {
+                        // first iteration - straight string match
+                        MatchMobyToGDB(controller, null, 0);
+
+                        // second iteration - lev 0.8
+                        MatchMobyToGDB(controller, null, 0.99);
+
+                        // second iteration - lev 0.8
+                        MatchMobyToGDB(controller, null, 0.95);
+
+                        // second iteration - lev 0.8
+                        MatchMobyToGDB(controller, null, 0.93);
+                    }
+                }
+
+                
+
+                
+
+                /*
 
                 // third iteration - lev 0.7
                 MatchMobyToGDB(controller, null, 0.7);
 
                 // third iteration - lev 0.6
                 MatchMobyToGDB(controller, null, 0.6);
+
+                if (ManualResolve == true)
+                {
+                    if (usewordcountmatching == true)
+                    {
+                        // manual interaction selected - no leven
+                        // third iteration - lev 0.7
+                        MatchMobyToGDB(controller, null, 100, true, true);
+                        return;
+                    }
+
+
+                    // manual interaction selected
+                    // third iteration - lev 0.7
+                    MatchMobyToGDB(controller, null, 0.7, true, false);
+
+                    // third iteration - lev 0.7
+                    MatchMobyToGDB(controller, null, 0.5, true, false);
+
+                    // third iteration - lev 0.7
+                    MatchMobyToGDB(controller, null, 0.3, true, false);
+                    return;
+                }
 
                 // third iteration - lev 0.5
                 MatchMobyToGDB(controller, null, 0.5);
@@ -147,6 +233,10 @@ namespace MedLaunch.Classes.MasterScraper
 
                 // third iteration - lev 0.1
                 MatchMobyToGDB(controller, null, 0.1);
+
+                */
+
+               
 
                 // dump unmatched entries to disk
                 var masterUnmatched = (from a in MasterGames
@@ -211,13 +301,18 @@ namespace MedLaunch.Classes.MasterScraper
 
         public void MatchMobyToGDB(ProgressDialogController controller, List<ScraperMaster> masterlist, double fuzzyness)
         {
+            MatchMobyToGDB(controller, masterlist, fuzzyness, false, false);
+        }
+
+        public void MatchMobyToGDB(ProgressDialogController controller, List<ScraperMaster> masterlist, double fuzzyness, bool manualMultipleMatch, bool manualNonLeven)
+        {
             controller.SetTitle("Matching pass - fuzzyness: " + fuzzyness);
             MatchFound = new List<ScraperMaster>();
             Duplicates = new List<DuplicateSearchResult>();
             NoneFound = new List<ScraperMaster>();
 
             if (masterlist == null)
-                masterlist = MasterGames;
+                masterlist = MasterGames.ToList();
             foreach (var g in masterlist.Where(a => (a.MobyData.MobyTitle == null)))
             {               
                 controller.SetMessage("Scanning for matches: " + g.TGDBData.GamesDBTitle + "\nMatched: " + MatchFound.Count.ToString() + "\nMultiples: " + Duplicates.Count.ToString() + "\nNo Matches: " + NoneFound.Count.ToString());
@@ -225,6 +320,45 @@ namespace MedLaunch.Classes.MasterScraper
                 var mg = (from a in MobyGames
                                       where a.PlatformName == CG2M(g.TGDBData.GamesDBPlatformName)
                                       select a).ToList();
+
+                // non leven manual matching
+                if (manualNonLeven == true)
+                {
+                    // get full mobygames list (in case of error)
+                    MobyGames = (JsonConvert.DeserializeObject<List<MobyPlatformGame>>(MobyJson)).ToList();
+                    var mgf = (from a in MobyGames
+                             where a.PlatformName == CG2M(g.TGDBData.GamesDBPlatformName)
+                             select a).ToList();
+                    List<MobySearchOrdering> se = OrderByMatchedWordsManual(g.TGDBData.GamesDBTitle, mgf);
+                    foreach (MobySearchOrdering m in se)
+                    {
+                        string message = g.TGDBData.GamesDBTitle + "\nPlatform: " + g.TGDBData.GamesDBPlatformName + "\n\n\nIs the following search result a match?:\n\n";
+                        message += m.Game.Title + "\n(" + m.Game.PlatformName + ")\n\n";
+
+                        MessageBoxResult result = MessageBox.Show(message, "MobyGames - Manual Matching (based on word count)", MessageBoxButton.YesNoCancel);
+
+                        if (result == MessageBoxResult.Cancel)
+                        {
+                            // cancel selected
+                            break;
+                        }
+                        if (result == MessageBoxResult.No)
+                        {
+                            // not the result we need - continue
+                            continue;
+                        }
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            // save this entry - update to file as we go
+                            AddMobyDataToMatchFound(m.Game, g);
+                            UpdateMasterWithFound();
+                            SaveMasterJson();
+                            MatchFound = new List<ScraperMaster>();
+                            break;
+                        }
+                    }
+                    continue;
+                }
 
                 List<MobyPlatformGame> searchResults = FuzzySearch.Search(g.TGDBData.GamesDBTitle, mg, fuzzyness);
 
@@ -248,9 +382,46 @@ namespace MedLaunch.Classes.MasterScraper
                     d.scraperMaster = g;
                     d.mobyPlatformGames.AddRange(searchResults);
                     Duplicates.Add(d);
-                    // count matched words to attempt to match
-                    MatchWords(g, d);
-                    continue;
+                    if (manualMultipleMatch == false)
+                    {
+                        // count matched words to attempt to match
+                        //MatchWords(g, d);
+                        continue;
+                    }
+                    else
+                    {
+
+                        // manual match based on levenshtein
+                        foreach (var search in searchResults)
+                        {
+                            string message = g.TGDBData.GamesDBTitle + "\nPlatform: " + g.TGDBData.GamesDBPlatformName + "\n\n\nIs the following search result a match?:\n\n";
+                            message += search.Title + "\n(" + search.PlatformName + ")\n\n";
+
+                            MessageBoxResult result = MessageBox.Show(message, "MobyGames - Manual Matching", MessageBoxButton.YesNoCancel);
+
+                            if (result == MessageBoxResult.Cancel)
+                            {
+                                // cancel selected
+                                return;
+                            }
+                            if (result == MessageBoxResult.No)
+                            {
+                                // not the result we need - continue
+                                continue;
+                            }
+                            if (result == MessageBoxResult.Yes)
+                            {
+                                // save this entry - update to file as we go
+                                AddMobyDataToMatchFound(search, g);
+                                UpdateMasterWithFound();
+                                SaveMasterJson();
+                                MatchFound = new List<ScraperMaster>();
+                                break;
+                            }
+                        }
+
+                    }
+                    
                 }
                 //controller.SetMessage("Scanning for matches: " + g.TGDBData.GamesDBTitle + "\nMatched: " + MatchFound.Count.ToString() + "\nMultiples: " + WorkingCollection.Count.ToString() + "\nNo Matches: " + NoMatches);
             }
@@ -266,6 +437,90 @@ namespace MedLaunch.Classes.MasterScraper
             
         }
 
+        public async Task ManualSelection(ProgressDialogController controller, List<MobyPlatformGame> searchResults, ScraperMaster game)
+        {
+            var myDialogSettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "NO - Not a Match",
+                AnimateShow = false,
+                AnimateHide = false,
+                AffirmativeButtonText = "YES - Match",
+                FirstAuxiliaryButtonText = "CANCEL"
+            };
+
+            foreach (var search in searchResults)
+            {
+                string message = "Game: " + game.TGDBData.GamesDBTitle + "\nPlatform: " + game.TGDBData.GamesDBPlatformName + "\n\n\nIs the following search result a match?:\n\n";
+                message += search.Title + "\n(" + search.PlatformName + ")\n\n";
+                
+                var result = await mw.ShowMessageAsync("MobyGames - Manual Matching", message, MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, myDialogSettings);
+
+                if (result == MessageDialogResult.FirstAuxiliary)
+                {
+                    // cancel selected
+                    return;
+                }
+                if (result == MessageDialogResult.Negative)
+                {
+                    // not the result we need - continue
+                    continue;
+                }
+                if (result == MessageDialogResult.Affirmative)
+                {
+                    // save this entry - update to file as we go
+                    AddMobyDataToMatchFound(search, game);
+                    UpdateMasterWithFound();
+                    SaveMasterJson();
+                    MatchFound = new List<ScraperMaster>();
+                    return;
+                }
+            }
+
+            
+        }
+
+        public void MatchWordsManual(ScraperMaster sm, DuplicateSearchResult d)
+        {
+            List<MobySearchOrdering> list = OrderByMatchedWords(sm.TGDBData.GamesDBTitle);
+            if (list.Count == 0)
+                return;
+            // get the higest value for matches
+            int maxValue = list.Max(t => t.Matches);
+            // only accept this value if number of matched words is >= 4
+            if (maxValue < 3)
+                return;
+            // get only results that have this value
+            var filtList = (from a in list
+                            where a.Matches == maxValue
+                            select a).ToList();
+            // check how many results returned
+            if (filtList.Count == 0)
+            {
+                // 0 returned
+                return;
+            }
+
+
+            if (filtList.Count > 1)
+            {
+
+            }
+
+            /*
+            if (filtList.Count == 1)
+            {
+                // only one result - add this
+                sm.MobyData.MobyPlatformName = filtList.Single().Game.PlatformName;
+                sm.MobyData.MobyTitle = filtList.Single().Game.Title;
+                sm.MobyData.MobyURLName = filtList.Single().Game.UrlName;
+
+                MatchFound.Add(sm);
+                Duplicates.Remove(d);
+
+            }
+            */
+        }
+
         public void MatchWords(ScraperMaster sm, DuplicateSearchResult d)
         {
             List<MobySearchOrdering> list = OrderByMatchedWords(sm.TGDBData.GamesDBTitle);
@@ -274,7 +529,7 @@ namespace MedLaunch.Classes.MasterScraper
             // get the higest value for matches
             int maxValue = list.Max(t => t.Matches);
             // only accept this value if number of matched words is >= 4
-            if (maxValue < 4)
+            if (maxValue < 3)
                 return;
             // get only results that have this value
             var filtList = (from a in list
@@ -308,7 +563,19 @@ namespace MedLaunch.Classes.MasterScraper
             MatchFound.Add(sm);
 
             // remove from MobyGames list to speed up subsequent searches
-            MobyGames.Remove(mobygame.Single());
+            //MobyGames.Remove(mobygame.Single());
+        }
+
+        public void AddMobyDataToMatchFound(MobyPlatformGame mobygame, ScraperMaster masterrecord)
+        {
+            ScraperMaster sm = masterrecord;
+            sm.MobyData.MobyPlatformName = mobygame.PlatformName;
+            sm.MobyData.MobyTitle = mobygame.Title;
+            sm.MobyData.MobyURLName = mobygame.UrlName;
+            MatchFound.Add(sm);
+
+            // remove from MobyGames list to speed up subsequent searches
+            //MobyGames.Remove(mobygame);
         }
 
         public void UpdateScraperMasterRecord (string gameTitle, int GDBID)
@@ -483,6 +750,60 @@ namespace MedLaunch.Classes.MasterScraper
                 so.Game = g;
                 so.Matches = matchingWords;
                 totals.Add(so);
+            }
+
+            // remove all entries with a count of 0
+            totals = totals.Where(a => a.Matches != 0).ToList();
+
+            // order list
+            totals = totals.OrderByDescending(a => a.Matches).ToList();
+
+
+
+            return totals;
+        }
+
+        public List<MobySearchOrdering> OrderByMatchedWordsManual(string searchStr, List<MobyPlatformGame> gamelist)
+        {
+            //Dictionary<GDBPlatformGame, int> totals = new Dictionary<GDBPlatformGame, int>();
+            List<MobySearchOrdering> totals = new List<MobySearchOrdering>();
+
+            foreach (MobyPlatformGame g in gamelist)
+            {
+                // sanitise
+                string searchstring = StripSymbols(searchStr).ToLower();
+                string resultstring = StripSymbols(g.Title).ToLower();
+
+                int matchingWords = 0;
+
+                // get total substrings in search string
+                string[] arr = GameScraper.BuildArray(searchstring);
+                int searchLength = arr.Length;
+
+                // get total substrings in result string
+                string[] rArr = GameScraper.BuildArray(resultstring);
+                int resultLength = rArr.Length;
+
+                // find matching words
+                foreach (string s in arr)
+                {
+                    int i = 0;
+                    while (i < resultLength)
+                    {
+                        if (StripSymbols(s) == StripSymbols(rArr[i]).ToLower())
+                        {
+                            matchingWords++;
+                            break;
+                        }
+                        i++;
+                    }
+                }
+                // add to dictionary with count
+                MobySearchOrdering so = new MobySearchOrdering();
+                so.Game = g;
+                so.Matches = matchingWords;
+                if (matchingWords > 1)
+                 totals.Add(so);
             }
 
             // remove all entries with a count of 0

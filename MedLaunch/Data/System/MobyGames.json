@@ -10638,6 +10638,12 @@
     "PlatformName": "gameboy-advance"
   },
   {
+    "Title": "Punch King",
+    "UrlName": "punch-king",
+    "SystemId": 2,
+    "PlatformName": "gameboy-advance"
+  },
+  {
     "Title": "Puyo Pop",
     "UrlName": "puyo-pop_",
     "SystemId": 2,
@@ -23641,13 +23647,13 @@
   },
   {
     "Title": "beatmania",
-    "UrlName": "beatmania",
+    "UrlName": "beatmania_",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "beatmania",
-    "UrlName": "beatmania_",
+    "UrlName": "beatmania",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -43729,13 +43735,13 @@
   },
   {
     "Title": "Star Wars",
-    "UrlName": "star-wars__",
+    "UrlName": "star-wars_",
     "SystemId": 11,
     "PlatformName": "nes"
   },
   {
     "Title": "Star Wars",
-    "UrlName": "star-wars_",
+    "UrlName": "star-wars__",
     "SystemId": 11,
     "PlatformName": "nes"
   },
