@@ -882,12 +882,12 @@
                                             <Button x:Name="btnScrapingSearchOnline" ToolTip="Search thegamesdb.net for this game">
                                                 Search Online
                                             </Button>
--->
+
                                             <Button x:Name="btnScrapingRefreshPlatformGames" ToolTip="Re-download the latest list of games from thegamesdb.net (used for auto-scraping) and import them into the database" Click="ScrapeGetAllPlatformGames_Click">
                                                 Refresh GamesDB Games List
                                             </Button>
 
-                                            
+  -->                                          
 
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
@@ -4652,7 +4652,11 @@
                     <Button Margin="5" x:Name="btnCombineManualnonleven" Click="btnCombineManualnonleven_Click">
                         Combine sets and generate new master json (manual choice on multiple selections using word match counts)
                     </Button>
-
+<!--
+                    <Button Margin="5" x:Name="btnCombineManualEverything" Click="btnCombineManualEverything_Click">
+                        DO Exact match and then prompt for everything else
+                    </Button>
+-->
                     <Separator />
 
                     <Button Margin="5" x:Name="btnGetManuals" Click="btnGetManuals_Click">

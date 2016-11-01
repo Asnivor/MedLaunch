@@ -2492,7 +2492,7 @@ namespace MedLaunch
         private void btnCombine_Click(object sender, RoutedEventArgs e)
         {
             CreateMasterList j = new CreateMasterList();
-            j.BeginMerge(false, false);
+            j.BeginMerge(false, false, false);
         }
 
         private void btnGetManuals_Click(object sender, RoutedEventArgs e)
@@ -2504,13 +2504,19 @@ namespace MedLaunch
         private void btnCombineManual_Click(object sender, RoutedEventArgs e)
         {
             CreateMasterList j = new CreateMasterList();
-            j.BeginMerge(true, false);
+            j.BeginMerge(true, false, false);
         }
 
         private void btnCombineManualnonleven_Click(object sender, RoutedEventArgs e)
         {
             CreateMasterList j = new CreateMasterList();
-            j.BeginMerge(true, true);
+            j.BeginMerge(true, true, false);
+        }
+
+        private void btnCombineManualEverything_Click(object sender, RoutedEventArgs e)
+        {
+            CreateMasterList j = new CreateMasterList();
+            j.BeginMerge(false, false, true);
         }
     }
 

@@ -75,7 +75,7 @@ namespace MedLaunch.Classes.MasterScraper
         // methods
 
         // Main handler for all processes
-        public async void BeginMerge(bool ManualResolve, bool usewordcountmatching)
+        public async void BeginMerge(bool ManualResolve, bool usewordcountmatching, bool manualEverything)
         {
             // get the main window
             mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
@@ -149,94 +149,48 @@ namespace MedLaunch.Classes.MasterScraper
                 // now go through each game in MasterGames and try and match up with games in the Moby list
                 NoMatches = 0;
 
-                if (usewordcountmatching == true)
+                if (manualEverything == true)
                 {
-                    // manual interaction selected - no leven
-                    // third iteration - lev 0.7
-                    MatchMobyToGDB(controller, null, 100, true, true);
-                    
+                    // one exact pass - then manually prompt for everything
+                    MatchMobyToGDB(controller, null, 1000);
                 }
-
                 else
-                {
-                    if (ManualResolve == true)
-                    {
-                        // manual interaction selected
-                        // third iteration - lev 0.7
-                        MatchMobyToGDB(controller, null, 0, true, false);
-                        MatchMobyToGDB(controller, null, 0.99, true, false);
-                        MatchMobyToGDB(controller, null, 0.95, true, false);
-                        MatchMobyToGDB(controller, null, 0.93, true, false);
-                    }
-                    else
-                    {
-                        // first iteration - straight string match
-                        MatchMobyToGDB(controller, null, 0);
-
-                        // second iteration - lev 0.8
-                        MatchMobyToGDB(controller, null, 0.99);
-
-                        // second iteration - lev 0.8
-                        MatchMobyToGDB(controller, null, 0.95);
-
-                        // second iteration - lev 0.8
-                        MatchMobyToGDB(controller, null, 0.93);
-                    }
-                }
-
-                
-
-                
-
-                /*
-
-                // third iteration - lev 0.7
-                MatchMobyToGDB(controller, null, 0.7);
-
-                // third iteration - lev 0.6
-                MatchMobyToGDB(controller, null, 0.6);
-
-                if (ManualResolve == true)
                 {
                     if (usewordcountmatching == true)
                     {
                         // manual interaction selected - no leven
                         // third iteration - lev 0.7
                         MatchMobyToGDB(controller, null, 100, true, true);
-                        return;
+
                     }
 
+                    else
+                    {
+                        if (ManualResolve == true)
+                        {
+                            // manual interaction selected
+                            // third iteration - lev 0.7
+                            MatchMobyToGDB(controller, null, 0, true, false);
+                            MatchMobyToGDB(controller, null, 0.99, true, false);
+                            MatchMobyToGDB(controller, null, 0.95, true, false);
+                            MatchMobyToGDB(controller, null, 0.93, true, false);
+                        }
+                        else
+                        {
+                            // first iteration - straight string match
+                            MatchMobyToGDB(controller, null, 0);
 
-                    // manual interaction selected
-                    // third iteration - lev 0.7
-                    MatchMobyToGDB(controller, null, 0.7, true, false);
+                            // second iteration - lev 0.8
+                            MatchMobyToGDB(controller, null, 0.99);
 
-                    // third iteration - lev 0.7
-                    MatchMobyToGDB(controller, null, 0.5, true, false);
+                            // second iteration - lev 0.8
+                            MatchMobyToGDB(controller, null, 0.95);
 
-                    // third iteration - lev 0.7
-                    MatchMobyToGDB(controller, null, 0.3, true, false);
-                    return;
+                            // second iteration - lev 0.8
+                            MatchMobyToGDB(controller, null, 0.93);
+                        }
+                    }
                 }
-
-                // third iteration - lev 0.5
-                MatchMobyToGDB(controller, null, 0.5);
-
-                // third iteration - lev 0.4
-                MatchMobyToGDB(controller, null, 0.4);
-
-                // third iteration - lev 0.3
-                MatchMobyToGDB(controller, null, 0.3);
-
-                // third iteration - lev 0.2
-                MatchMobyToGDB(controller, null, 0.2);
-
-                // third iteration - lev 0.1
-                MatchMobyToGDB(controller, null, 0.1);
-
-                */
-
-               
 
                 // dump unmatched entries to disk
                 var masterUnmatched = (from a in MasterGames
@@ -320,6 +274,8 @@ namespace MedLaunch.Classes.MasterScraper
                 var mg = (from a in MobyGames
                                       where a.PlatformName == CG2M(g.TGDBData.GamesDBPlatformName)
                                       select a).ToList();
+
+                
 
                 // non leven manual matching
                 if (manualNonLeven == true)
@@ -678,7 +634,7 @@ namespace MedLaunch.Classes.MasterScraper
             // add this to the class
             
             // remove all - : _ '
-            s = s.Replace(" - ", " ").Replace("_", "").Replace(": ", " ").Replace(" : ", " ").Replace(":", "").Replace("'", "").Trim();
+            s = s.Replace(" - ", " ").Replace("-", " ").Replace("_", "").Replace(": ", " ").Replace(" : ", " ").Replace(":", " ").Replace("'", "").Trim();
             // remove all roman numerals
             /*
             s.Replace(" I", " ");
@@ -801,8 +757,9 @@ namespace MedLaunch.Classes.MasterScraper
                 // add to dictionary with count
                 MobySearchOrdering so = new MobySearchOrdering();
                 so.Game = g;
-                so.Matches = matchingWords;
-                if (matchingWords > 1)
+                so.Matches = (matchingWords / arr.Length) * 100;
+                //so.Matches = matchingWords;
+                
                  totals.Add(so);
             }
 

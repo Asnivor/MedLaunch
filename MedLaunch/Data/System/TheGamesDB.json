@@ -33449,7 +33449,7 @@
     "id": 8209,
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
-    "GameTitle": "HIT THE ICE",
+    "GameTitle": "Hit The Ice",
     "ReleaseDate": "01/01/1992"
   },
   {
@@ -33736,14 +33736,14 @@
     "id": 17685,
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
-    "GameTitle": "PC Kid",
+    "GameTitle": "PC Genjin",
     "ReleaseDate": "12/16/1989"
   },
   {
     "id": 17690,
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
-    "GameTitle": "PC Kid 2",
+    "GameTitle": "PC Genjin 2",
     "ReleaseDate": "07/18/1990"
   },
   {
@@ -35250,6 +35250,188 @@
     "GDBPlatformName": "TurboGrafx 16",
     "GameTitle": "Kattobi! Takuhai Kun",
     "ReleaseDate": "11/09/1990"
+  },
+  {
+    "id": 40642,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Kyuukyoku Mahjong Idol Graphics",
+    "ReleaseDate": "10/31/1992"
+  },
+  {
+    "id": 40643,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Kyuukyoku Mahjong Idol Graphics II",
+    "ReleaseDate": "10/31/1993"
+  },
+  {
+    "id": 40644,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Mahjong Gakuen Mild",
+    "ReleaseDate": "06/29/1990"
+  },
+  {
+    "id": 40645,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Mahjong Gakuen",
+    "ReleaseDate": "11/23/1989"
+  },
+  {
+    "id": 40646,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Mahjong Gokuu Special",
+    "ReleaseDate": "08/10/1990"
+  },
+  {
+    "id": 40647,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Mahjong Wars",
+    "ReleaseDate": "02/01/1990"
+  },
+  {
+    "id": 40648,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Makai Hakkenden Shada",
+    "ReleaseDate": "04/01/1989"
+  },
+  {
+    "id": 40649,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Makyou Densetsu",
+    "ReleaseDate": "09/23/1988"
+  },
+  {
+    "id": 40650,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Momotarou Densetsu Gaiden",
+    "ReleaseDate": "12/04/1992"
+  },
+  {
+    "id": 40651,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Morita Shogi PC",
+    "ReleaseDate": "09/27/1991"
+  },
+  {
+    "id": 40652,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Narazumono Sentou Butai",
+    "ReleaseDate": "09/01/1989"
+  },
+  {
+    "id": 40653,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Naxat Stadium",
+    "ReleaseDate": "10/26/1990"
+  },
+  {
+    "id": 40654,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Nazo No Masquerade",
+    "ReleaseDate": "03/02/1990"
+  },
+  {
+    "id": 40655,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Necross No Yousai",
+    "ReleaseDate": "04/20/1990"
+  },
+  {
+    "id": 40656,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Nectaris",
+    "ReleaseDate": "02/09/1990"
+  },
+  {
+    "id": 40657,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "NHK Taiga Drama Taiheiki",
+    "ReleaseDate": "01/31/1992"
+  },
+  {
+    "id": 40658,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Out Live",
+    "ReleaseDate": "03/15/1989"
+  },
+  {
+    "id": 40659,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Pachio Kun",
+    "ReleaseDate": "03/13/1992"
+  },
+  {
+    "id": 40660,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Idol Hanafuda Fan Club",
+    "ReleaseDate": "10/31/1991"
+  },
+  {
+    "id": 40661,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "PC Genjin 3 Special",
+    "ReleaseDate": "04/02/1993"
+  },
+  {
+    "id": 40662,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Power League '93",
+    "ReleaseDate": "10/15/1993"
+  },
+  {
+    "id": 40663,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Power League V",
+    "ReleaseDate": "08/07/1992"
+  },
+  {
+    "id": 40664,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Pro Yakyuu World Stadium '91",
+    "ReleaseDate": "03/21/1991"
+  },
+  {
+    "id": 40665,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "QUIZ Toukou Shashin",
+    "ReleaseDate": null
+  },
+  {
+    "id": 40666,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Rock On",
+    "ReleaseDate": "08/22/1989"
+  },
+  {
+    "id": 40667,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Ryu Kyu",
+    "ReleaseDate": "10/26/1990"
   },
   {
     "id": 16793,
@@ -62102,6 +62284,167 @@
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
     "GameTitle": "Tasac",
     "ReleaseDate": null
+  },
+  {
+    "id": 40618,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Mahjong G-Men: Nichibutsu Mahjong III",
+    "ReleaseDate": "07/20/1990"
+  },
+  {
+    "id": 40619,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Nippon Ichi no Meikantoku",
+    "ReleaseDate": "08/10/1990"
+  },
+  {
+    "id": 40620,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Nishimura Kyoutarou Mystery: Blue Train Satsujin Jiken",
+    "ReleaseDate": "01/20/1989"
+  },
+  {
+    "id": 40621,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Nishimura Kyoutarou Mystery: Super Express Satsujin Jiken",
+    "ReleaseDate": "03/02/1992"
+  },
+  {
+    "id": 40622,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Nobunaga no Yabou: Bushou Fuuunroku",
+    "ReleaseDate": "12/21/1991"
+  },
+  {
+    "id": 40623,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Obocchamakun",
+    "ReleaseDate": "04/05/1991"
+  },
+  {
+    "id": 40624,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Oeka Kids: Anpanman no Hiragana Daisuki",
+    "ReleaseDate": "03/26/1991"
+  },
+  {
+    "id": 40625,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Oeka Kids: Anpanman to Oekaki Shiyou!!",
+    "ReleaseDate": "10/25/1990"
+  },
+  {
+    "id": 40626,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Ochin ni Toshi Puzzle Tonjan!?",
+    "ReleaseDate": "09/29/1989"
+  },
+  {
+    "id": 40627,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Osomatsu-Kun: Back to the Me no Deppa no Maki",
+    "ReleaseDate": "12/08/1989"
+  },
+  {
+    "id": 40628,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Pachi-Slot Adventure 2",
+    "ReleaseDate": "09/17/1993"
+  },
+  {
+    "id": 40629,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Pachi-Slot Adventure 3: Bitaoshii 7 Kenzan!",
+    "ReleaseDate": "05/13/1994"
+  },
+  {
+    "id": 40630,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Pachicom",
+    "ReleaseDate": "11/21/1985"
+  },
+  {
+    "id": 40631,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Pachinko Daisakusen 1",
+    "ReleaseDate": "07/19/1991"
+  },
+  {
+    "id": 40632,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Pachinko Daisakusen 2",
+    "ReleaseDate": "07/19/1992"
+  },
+  {
+    "id": 40633,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Pachiokun 2",
+    "ReleaseDate": "01/30/1989"
+  },
+  {
+    "id": 40634,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Pachiokun 3",
+    "ReleaseDate": "10/26/1990"
+  },
+  {
+    "id": 40635,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Pachiokun 4",
+    "ReleaseDate": "11/22/1991"
+  },
+  {
+    "id": 40636,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Pachiokun 5",
+    "ReleaseDate": "06/18/1993"
+  },
+  {
+    "id": 40637,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Paris-Dakar Rally Special!",
+    "ReleaseDate": "02/01/1988"
+  },
+  {
+    "id": 40638,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Peepar Time",
+    "ReleaseDate": "08/10/1990"
+  },
+  {
+    "id": 40639,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Pescatore",
+    "ReleaseDate": null
+  },
+  {
+    "id": 40640,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Plasma Ball",
+    "ReleaseDate": "03/27/1992"
   },
   {
     "id": 41,
