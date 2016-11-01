@@ -875,8 +875,8 @@
                                                 Unlink Scraped Data                                                
                                             </Button>
 
-                                            <Button x:Name="btnScrapingPickGame" ToolTip="Choose game from a list of local search results" Click="btnScrapingPickGame_Click">
-                                                Choose Game From List
+                                            <Button x:Name="btnScrapingPickGame" ToolTip="Choose game from a list of local search results and automatically scrape online data" Click="btnScrapingPickGame_Click">
+                                                Identify &amp; Scrape Game
                                             </Button>
 <!--
                                             <Button x:Name="btnScrapingSearchOnline" ToolTip="Search thegamesdb.net for this game">
@@ -4176,20 +4176,44 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
-                                                <CheckBox x:Name="chkPreferGenesis" Grid.ColumnSpan="2" Grid.Row="0" Checked="chkPreferGenesis_Checked" Unchecked="chkPreferGenesis_Unchecked">
+
+                                                <Label Grid.Row="0" HorizontalContentAlignment="Left" Grid.ColumnSpan="2">Select Primary Scraper</Label>
+                                                <RadioButton x:Name="rbGDB" GroupName="ScraperGroup" Grid.Row="1" Grid.ColumnSpan="2" Checked="rbGDB_Checked">
+                                                    The Games DB (often slow but more games)
+                                                </RadioButton>
+                                                <RadioButton x:Name="rbMoby" GroupName="ScraperGroup" Grid.Row="2" Grid.ColumnSpan="2" Checked="rbMoby_Checked">
+                                                    Moby Games (faster but less games)
+                                                </RadioButton>
+
+                                                <CheckBox x:Name="chkSecondaryScraperBackup" Grid.ColumnSpan="2" Grid.Row="3" Checked="chkSecondaryScraperBackup_Checked" Unchecked="chkSecondaryScraperBackup_Unchecked">
+                                                    <AccessText TextWrapping="Wrap"        
+                                                            Text="When scraping attempt use the secondary scraper (the one not selected above) to 'fill in the blanks'"/>
+
+                                                </CheckBox>
+
+
+                                                <CheckBox x:Name="chkPreferGenesis" Grid.ColumnSpan="2" Grid.Row="4" Checked="chkPreferGenesis_Checked" Unchecked="chkPreferGenesis_Unchecked">
                                                     <AccessText TextWrapping="Wrap"        
                                                             Text="Auto-Resolve Duplicates (improves auto-matching (sometimes) for systems with mulitple entries on thegamesdb.net eg: Megadrive/Genesis)"/>
                                                     
                                                 </CheckBox>
-                                                <Label Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Left">Allow Scraping of the Following Media:</Label>
-                                                <CheckBox x:Name="chkAllowBanners" Grid.ColumnSpan="2" Grid.Row="2" Content="Banners" Checked="chkAllowBanners_Checked" Unchecked="chkAllowBanners_Unchecked"/>
-                                                <CheckBox x:Name="chkAllowBoxart" Grid.ColumnSpan="2" Grid.Row="3" Content="Boxart" Checked="chkAllowBoxart_Checked" Unchecked="chkAllowBoxart_Unchecked"/>
-                                                <CheckBox x:Name="chkAllowScreenshots" Grid.ColumnSpan="2" Grid.Row="4" Content="Screenshots" Checked="chkAllowScreenshots_Checked" Unchecked="chkAllowScreenshots_Unchecked"/>
-                                                <CheckBox x:Name="chkAllowFanart" Grid.ColumnSpan="2" Grid.Row="5" Content="Fan Art" Checked="chkAllowFanart_Checked" Unchecked="chkAllowFanart_Unchecked"/>
-
                                                 
+                                                <Label Grid.ColumnSpan="2" Grid.Row="5" HorizontalAlignment="Left">Allow Scraping of the Following Media:</Label>
+                                                <CheckBox x:Name="chkAllowBanners" Grid.ColumnSpan="2" Grid.Row="6" Content="Banners" Checked="chkAllowBanners_Checked" Unchecked="chkAllowBanners_Unchecked"/>
+                                                <CheckBox x:Name="chkAllowBoxart" Grid.ColumnSpan="2" Grid.Row="7" Content="Boxart" Checked="chkAllowBoxart_Checked" Unchecked="chkAllowBoxart_Unchecked"/>
+                                                <CheckBox x:Name="chkAllowMedia" Grid.ColumnSpan="2" Grid.Row="8" Content="Media (Cart/Disk Images)" Checked="chkAllowMedia_Checked" Unchecked="chkAllowMedia_Unchecked"/>
+                                                <CheckBox x:Name="chkAllowScreenshots" Grid.ColumnSpan="2" Grid.Row="9" Content="Screenshots" Checked="chkAllowScreenshots_Checked" Unchecked="chkAllowScreenshots_Unchecked"/>
+                                                <CheckBox x:Name="chkAllowFanart" Grid.ColumnSpan="2" Grid.Row="10" Content="Fan Art" Checked="chkAllowFanart_Checked" Unchecked="chkAllowFanart_Unchecked"/>
+                                                <CheckBox x:Name="chkAllowManuals" Grid.ColumnSpan="2" Grid.Row="11" Content="Game Manuals" Checked="chkAllowManuals_Checked" Unchecked="chkAllowManuals_Unchecked"/>
+
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="17">
 
                                                 </StackPanel>

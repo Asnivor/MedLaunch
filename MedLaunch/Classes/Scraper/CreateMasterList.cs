@@ -680,11 +680,11 @@ namespace MedLaunch.Classes.MasterScraper
                 int matchingWords = 0;
 
                 // get total substrings in search string
-                string[] arr = GameScraper.BuildArray(searchstring);
+                string[] arr = ScraperMainSearch.BuildArray(searchstring);
                 int searchLength = arr.Length;
 
                 // get total substrings in result string
-                string[] rArr = GameScraper.BuildArray(resultstring);
+                string[] rArr = ScraperMainSearch.BuildArray(resultstring);
                 int resultLength = rArr.Length;
 
                 // find matching words
@@ -733,11 +733,11 @@ namespace MedLaunch.Classes.MasterScraper
                 int matchingWords = 0;
 
                 // get total substrings in search string
-                string[] arr = GameScraper.BuildArray(searchstring);
+                string[] arr = ScraperMainSearch.BuildArray(searchstring);
                 int searchLength = arr.Length;
 
                 // get total substrings in result string
-                string[] rArr = GameScraper.BuildArray(resultstring);
+                string[] rArr = ScraperMainSearch.BuildArray(resultstring);
                 int resultLength = rArr.Length;
 
                 // find matching words

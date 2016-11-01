@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace MedLaunch.Classes
 {
+    public enum ScraperOrder
+    {
+        Primary,
+        Secondary,
+        Tertiary
+    }
+
     public enum Systems
     {
         cdplay,

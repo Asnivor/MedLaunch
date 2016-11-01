@@ -16,6 +16,8 @@ using MedLaunch.Classes;
 using MedLaunch.Models;
 using MahApps.Metro.Controls.Dialogs;
 using MedLaunch.Extensions;
+using MedLaunch.Classes.MasterScraper;
+using MedLaunch.Classes.Scraper;
 
 namespace MedLaunch
 {
@@ -49,7 +51,7 @@ namespace MedLaunch
             this.Title = "Fuzzy Search Results for " + sysName;
             this.Refresh();
 
-            GameScraper gs = new GameScraper();
+            ScraperMainSearch gs = new ScraperMainSearch();
             // get a list of all games for this platform - higest match first
             List<SearchOrdering> games = gs.ShowPlatformGames(systemId, row.Game);
 
@@ -93,12 +95,18 @@ namespace MedLaunch
 
         }
 
-        private async void btnSelect_Click(object sender, RoutedEventArgs e)
+        private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
 
             DataGrid dgGameList = (DataGrid)mw.FindName("dgGameList");
             var r = (DataGridGamesView)dgGameList.SelectedItem;
+            var row = (GameListItem)dgReturnedGames.SelectedItem;
+
+            ScraperHandler sh = new ScraperHandler(row.GamesDBId);
+            sh.StartGameScrape();
+
+            /*
 
             var mySettings = new MetroDialogSettings()
             {
@@ -116,18 +124,10 @@ namespace MedLaunch
             await Task.Delay(100);
 
             controller.SetMessage("Creating links...");
-            GDBLink link = new GDBLink();
-            link.GameId = r.ID;
-            link.GdbId = gdbId;
 
-            // delete any existing links with the same GameId
-            GDBLink l = GDBLink.GetRecord(r.ID);
-            if (l != null)
-            {
-                GDBLink.DeleteRecord(l);
-            }
+            ScraperHandler.CreateDatabaseLink(r.ID, gdbId);
 
-            GDBLink.SaveToDatabase(link);
+            
             await Task.Delay(100);
 
             string message = "Connecting to thegamesdb.net....\nGetting data for: " + row.GameName;
@@ -154,6 +154,8 @@ namespace MedLaunch
             {
                 await mw.ShowMessageAsync("MedLaunch Scraper", "Scraping Completed");
             }
+
+    */
 
             var ro = (DataGridGamesView)dgGameList.SelectedItem;
             dgGameList.SelectedItem = null;

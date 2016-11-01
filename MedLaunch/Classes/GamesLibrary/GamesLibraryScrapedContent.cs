@@ -42,6 +42,13 @@ namespace MedLaunch.Classes
 
         /* METHODS */
 
+        public void SaveJson(ScrapedGameObjectWeb o)
+        {
+            string gPath = AppDomain.CurrentDomain.BaseDirectory + @"Data\Games\" + o.GdbId.ToString() + @"\" + o.GdbId.ToString() + ".json";
+            string json = JsonConvert.SerializeObject(o, Formatting.Indented);
+            File.WriteAllText(gPath, json);
+        }
+
         // looks up and returns scrapeddataobject based on Internal GameId (not gamesdb id)
         public ScrapedGameObject GetScrapedGameObject(int GameId)
         {
@@ -86,7 +93,6 @@ namespace MedLaunch.Classes
             sgo.FrontCovers = GetAllFolderFiles(baseGameDir + @"\FrontCovers");
             sgo.Manuals = GetAllFolderFiles(baseGameDir + @"\Manuals");
             sgo.Medias = GetAllFolderFiles(baseGameDir + @"\Medias");
-            sgo.PromoArts = GetAllFolderFiles(baseGameDir + @"\PromoArts");
             sgo.Screenshots = GetAllFolderFiles(baseGameDir + @"\Screenshots");
 
             // return object

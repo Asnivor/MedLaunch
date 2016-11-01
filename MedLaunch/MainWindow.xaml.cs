@@ -37,6 +37,7 @@ using Medlaunch.Classes;
 using System.Net;
 using MedLaunch.Classes.MobyGames;
 using MedLaunch.Classes.MasterScraper;
+using MedLaunch.Classes.TheGamesDB;
 
 namespace MedLaunch
 {
@@ -126,7 +127,8 @@ namespace MedLaunch
 
             // load globalsettings for front page
             GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar,
-               chkAllowBanners, chkAllowBoxart, chkAllowScreenshots, chkAllowFanart, chkPreferGenesis);
+               chkAllowBanners, chkAllowBoxart, chkAllowScreenshots, chkAllowFanart, chkPreferGenesis, chkAllowManuals, chkAllowMedia, chkSecondaryScraperBackup,
+               rbGDB, rbMoby);
             //gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
             GlobalSettings gs = GlobalSettings.GetGlobals();
             mainScaleTransform.ScaleX = Convert.ToDouble(gs.guiZoom);
@@ -446,7 +448,9 @@ namespace MedLaunch
                 await Task.Run(() =>
                 {
                     Task.Delay(1);
-                    List<GDBPlatformGame> gs = GameScraper.DatabasePlatformGamesImport(controller);
+                    //List<GDBPlatformGame> gs = GameScraper.DatabasePlatformGamesImport(controller);
+                    GDBScraper.ScrapeBasicGamesList(controller);
+                    /*
                     if (!controller.IsCanceled)
                     {
                         //GDBPlatformGame.SaveToDatabase(gs);       // disabled for the moment - working with flat json files
@@ -458,17 +462,18 @@ namespace MedLaunch
                         string json = JsonConvert.SerializeObject(gs, Formatting.Indented);
                         File.WriteAllText(filePath, json);
                     }
+                    */
                      
                 });
             await controller.CloseAsync();
 
             if (controller.IsCanceled)
             {
-                await this.ShowMessageAsync("MedLaunch - GameScraper", "Operation Cancelled");
+                await this.ShowMessageAsync("GDB Master Games List Download", "Operation Cancelled");
             }
             else
             {
-                await this.ShowMessageAsync("MedLaunch - GameScraper", "Scanning Completed");
+                await this.ShowMessageAsync("GDB Master Games List Download", "Scanning Completed");
             }
         }
 
@@ -1251,6 +1256,51 @@ namespace MedLaunch
         {
             GlobalSettings.UpdateAllowFanart(chkAllowFanart);
         }
+
+        private void chkAllowMedia_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateAllowMedias(chkAllowMedia);
+        }
+
+        private void chkAllowMedia_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateAllowMedias(chkAllowMedia);
+        }
+
+        private void chkAllowManuals_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateAllowManuals(chkAllowManuals);
+        }
+
+        private void chkAllowManuals_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateAllowManuals(chkAllowManuals);
+        }
+
+        private void chkSecondaryScraperBackup_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateScraperBackup(chkSecondaryScraperBackup);
+        }
+
+        private void chkSecondaryScraperBackup_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateScraperBackup(chkSecondaryScraperBackup);
+        }
+
+        private void rbGDB_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings g = GlobalSettings.GetGlobals();
+            g.primaryScraper = 1;
+            GlobalSettings.SetGlobals(g);
+        }
+
+        private void rbMoby_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings g = GlobalSettings.GetGlobals();
+            g.primaryScraper = 2;
+            GlobalSettings.SetGlobals(g);
+        }
+
 
         // Mednafen BIOS Paths events
         private void btnMednafenBiosPaths_Click(object sender, RoutedEventArgs e)
@@ -2185,6 +2235,7 @@ namespace MedLaunch
 
         private void btnTestGameSearch_Click(object sender, RoutedEventArgs e)
         {
+            /*
             GameScraper gs = new GameScraper();
             Game game = Game.GetGame(20);
 
@@ -2200,13 +2251,14 @@ namespace MedLaunch
                 }
                 MessageBox.Show(glist);
             }
+            */
 
             //List<GDBPlatformGame> result = gs.SearchGameLocal(game.gameName, game.systemId, game.gameId).ToList();
         }
 
         private void btnScrapingPickGame_Click(object sender, RoutedEventArgs e)
         {
-            GameScraper.PickGame(dgGameList);
+            ScraperMainSearch.PickGame(dgGameList);
         }
 
         // save the layout of all the games library expander states
@@ -2477,16 +2529,48 @@ namespace MedLaunch
             }
         }
 
-        private void btnmobyPlatformList_Click(object sender, RoutedEventArgs e)
+        private async void btnmobyPlatformList_Click(object sender, RoutedEventArgs e)
         {
-            MobyGames.ScrapeAllPlatformGames();
-           // App app = ((App)Application.Current);
-            
+
+            // get the main window
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            // start progress dialog controller
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel Scraping",
+                AnimateShow = false,
+                AnimateHide = false
+            };
+            var controller = await mw.ShowProgressAsync("Scraping MobyGames (Basic) Games List", "Initialising...", true, settings: mySettings);
+            controller.SetCancelable(true);
+            await Task.Delay(100);
+
+            await Task.Run(() =>
+            {
+                MobyScraper.ScrapeBasicGamesList(controller);
+            });
+
+            //MobyGames.ScrapeAllPlatformGames();
+            // App app = ((App)Application.Current);
+
+            await controller.CloseAsync();
+
+            if (controller.IsCanceled)
+            {
+                await mw.ShowMessageAsync("Moby Master Games List Download", "Scraping Cancelled");
+            }
+            else
+            {
+                await mw.ShowMessageAsync("Moby Master Games List Download", "Scraping Completed");
+            }
         }
+
+
 
         private void btnmobyPlatformListDumpToFile_Click(object sender, RoutedEventArgs e)
         {
-            MobyGames.DumpPlatformGamesToDisk();
+            //MobyGames.DumpPlatformGamesToDisk();
         }
 
         private void btnCombine_Click(object sender, RoutedEventArgs e)
@@ -2518,6 +2602,8 @@ namespace MedLaunch
             CreateMasterList j = new CreateMasterList();
             j.BeginMerge(false, false, true);
         }
+
+       
     }
 
     

@@ -1,115 +1,91 @@
-﻿using MedLaunch.Models;
+﻿using HtmlAgilityPack;
+using MahApps.Metro.Controls.Dialogs;
+using MedLaunch.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HtmlAgilityPack;
-using System.Text.RegularExpressions;
-using System.Xml.Linq;
-using Asnitech.Launch.Common;
-using System.Net;
-using System.Windows;
-using MahApps.Metro.Controls.Dialogs;
-using Newtonsoft.Json;
 using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
-namespace MedLaunch.Classes.MobyGames
+namespace MedLaunch.Classes
 {
-    public class MobyGames
+    /// <summary>
+    /// All scraping operations relating to mobygames
+    /// </summary>
+    public class MobyScraper
     {
-        // pull back a webpage as a string
-        public static string ReturnWebpage(string BaseUrl, string Params, int Timeout)
+
+        public static ScrapedGameObjectWeb ScrapeGame(ScrapedGameObjectWeb o, ScraperOrder order, ProgressDialogController controller, ScraperMaster masterrecord)
         {
-            WebOps wo = new WebOps();
-            if (Params == null)
-                Params = "";
-            if (Timeout == 0)
-                Timeout = 10000;
-            wo.BaseUrl = BaseUrl;
-            wo.Timeout = Timeout;
-            wo.Params = Params;
-            string result = wo.ApiCall();
-            wo = null;
-            return result;
+            bool priority;
+            GlobalSettings gs = GlobalSettings.GetGlobals();
+            if (order == ScraperOrder.Primary)
+            {
+                priority = true;    // primary
+                if (masterrecord.MobyData.MobyTitle != null)
+                {
+                    // moby data has been matched
+                    o.Data.Title = masterrecord.MobyData.MobyTitle;
+                    o.Data.Platform = masterrecord.MobyData.MobyPlatformName;
+                }
+                else
+                {
+                    // no moby data matched - just return
+                    return o;
+                }                
+            }
+            else
+            {
+                // moby scraping is secondary
+                priority = false;    // primary
+            }
+
+            if (priority == true)
+            {
+                // primary scraping
+            }
+            else
+            {
+                // secondary scraping
+            }
+
+            return o;
         }
 
-        public static void DumpPlatformGamesToDisk()
+
+        /// <summary>
+        /// Scrape the full master list (basic) of games from mobygames
+        /// and save to json file in VS project (not bin). 
+        /// </summary>
+        public static void ScrapeBasicGamesList()
         {
-            // get all platform games
-            List<MobyPlatformGame> games = MobyPlatformGame.GetGames();
-            // set file path
-            string filePath = AppDomain.CurrentDomain.BaseDirectory + @"\Data\System\MobyGames.json";
-            //  dump file
-            string json = JsonConvert.SerializeObject(games, Formatting.Indented);
-            File.WriteAllText(filePath, json);
+            ScrapeBasicGamesList(null);
         }
-
-        // main starting point for scraping all moby platformgames (basic list)
-        public async static void ScrapeAllPlatformGames()
+        public static void ScrapeBasicGamesList(ProgressDialogController controller)
         {
-            // get the main window
-            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-
-            // start progress dialog controller
-            var mySettings = new MetroDialogSettings()
-            {
-                NegativeButtonText = "Cancel Scraping",
-                AnimateShow = false,
-                AnimateHide = false
-            };
-            var controller = await mw.ShowProgressAsync("Scraping MobyGames Data", "Initialising...", true, settings: mySettings);
-            controller.SetCancelable(true);
-            await Task.Delay(100);
-
-            List<MobyPlatformGame> games = new List<MobyPlatformGame>();
-
-            await Task.Run(() =>
-            {
-                 games = ScrapeAllPlatformGames(controller);
-            });
-            string message = "";
+            List<MobyPlatformGame> games = GamesListScrape(controller);
             if (games == null || games.Count == 0)
             {
                 // nothing returned
-                message = "No games were scraped (possibly some kind of error occured)";
             }
             else
             {
                 // save to json file
-                controller.SetMessage("Saving to file...");
+                if (controller != null)
+                    controller.SetMessage("Saving to file...");
                 // set file path
                 string filePath = @"..\..\Data\System\MobyGames.json";
                 //  dump file
                 string json = JsonConvert.SerializeObject(games, Formatting.Indented);
                 File.WriteAllText(filePath, json);
-
-                //int[] counts = MobyPlatformGame.SaveToDatabase(games);
-                message = "Scraping Completed - JSON data saved.";
-                    //message = "Scraping Completed\n" + counts[0] + " new games added\n" + counts[1] + " existing games updated";
-
-                // export to file
-                controller.SetMessage("Exporting to flat file...");
             }
-
-            
-
-            await controller.CloseAsync();
-
-            if (controller.IsCanceled)
-            {
-                await mw.ShowMessageAsync("MobyGames Scraper", "Scraping Cancelled");
-            }
-            else
-            {
-                await mw.ShowMessageAsync("MobyGames Scraper", message);
-            }
-
-
-
         }
 
-        public static List<MobyPlatformGame> ScrapeAllPlatformGames(ProgressDialogController controller)
+        public static List<MobyPlatformGame> GamesListScrape(ProgressDialogController controller)
         {
             string BaseUrl = "http://www.mobygames.com/browse/games/";
 
@@ -134,8 +110,8 @@ namespace MedLaunch.Classes.MobyGames
                         controller.SetMessage("Scraping basic list of all " + sys + " games");
                         if (controller.IsCanceled) { return null; }
                     }
-                        
-                    
+
+
 
                     // build initial query string to get the search page
                     string param = sys + "/list-games";
@@ -168,7 +144,7 @@ namespace MedLaunch.Classes.MobyGames
                             if (controller.IsCanceled) { return null; }
                         }
 
-                        int offset = i * 25;                        
+                        int offset = i * 25;
 
                         string p = sys + "/offset," + offset + "/so,0a/list-games";
                         HtmlDocument hDoc = new HtmlDocument();
@@ -196,7 +172,7 @@ namespace MedLaunch.Classes.MobyGames
                                 controller.Maximum = totalGames;
                                 controller.SetProgress(Convert.ToDouble(currentGameNumber));
                             }
-                                
+
 
                             HtmlNode[] cells = (from a in row.SelectNodes("td")
                                                 select a).ToArray();
@@ -222,13 +198,35 @@ namespace MedLaunch.Classes.MobyGames
                             allGames.Add(game);
                             cGame++;
 
-                           
+
                         }
-                        
+
                     }
                 }
             }
             return allGames;
+        }
+
+        /// <summary>
+        /// Pull Back Webpage as a string
+        /// </summary>
+        /// <param name="BaseUrl"></param>
+        /// <param name="Params"></param>
+        /// <param name="Timeout"></param>
+        /// <returns></returns>
+        public static string ReturnWebpage(string BaseUrl, string Params, int Timeout)
+        {
+            WebOps wo = new WebOps();
+            if (Params == null)
+                Params = "";
+            if (Timeout == 0)
+                Timeout = 10000;
+            wo.BaseUrl = BaseUrl;
+            wo.Timeout = Timeout;
+            wo.Params = Params;
+            string result = wo.ApiCall();
+            wo = null;
+            return result;
         }
     }
 }

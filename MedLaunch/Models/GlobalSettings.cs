@@ -39,7 +39,11 @@ namespace MedLaunch.Models
         public bool scrapeBoxart { get; set; }
         public bool scrapeScreenshots { get; set; }
         public bool scrapeFanart { get; set; }
+        public bool scrapeMedia { get; set; }
+        public bool scrapeManuals { get; set; }
         public bool preferGenesis { get; set; }
+        public bool enabledSecondaryScraper { get; set; }
+        public int primaryScraper { get; set; }
 
         public static GlobalSettings GetGlobalDefaults()
         {
@@ -69,7 +73,11 @@ namespace MedLaunch.Models
                 scrapeBoxart = true,
                 scrapeFanart = true,
                 scrapeScreenshots = true,
-                preferGenesis = true
+                scrapeManuals = true,
+                scrapeMedia = true,
+                enabledSecondaryScraper = true,
+                preferGenesis = true,
+                primaryScraper = 1
                 
             };
             return gs;
@@ -141,7 +149,8 @@ namespace MedLaunch.Models
         }
 
         public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast, ComboBox GuiZoom, CheckBox MinToTaskBar, CheckBox HideSidebar,
-            CheckBox chkAllowBanners, CheckBox chkAllowBoxart, CheckBox chkAllowScreenshots, CheckBox chkAllowFanart, CheckBox chkPreferGenesis)
+            CheckBox chkAllowBanners, CheckBox chkAllowBoxart, CheckBox chkAllowScreenshots, CheckBox chkAllowFanart, CheckBox chkPreferGenesis, 
+            CheckBox chkAllowManuals, CheckBox chkAllowMedia, CheckBox chkSecondaryScraperBackup, RadioButton rbGDB, RadioButton rbMoby)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
@@ -163,6 +172,20 @@ namespace MedLaunch.Models
             chkAllowFanart.IsChecked = gs.scrapeFanart;
             chkAllowScreenshots.IsChecked = gs.scrapeScreenshots;
             chkPreferGenesis.IsChecked = gs.preferGenesis;
+            chkAllowMedia.IsChecked = gs.scrapeMedia;
+            chkAllowManuals.IsChecked = gs.scrapeManuals;
+            chkSecondaryScraperBackup.IsChecked = gs.enabledSecondaryScraper;
+
+            if (gs.primaryScraper == 1)
+            {
+                // thegamesdb
+                rbGDB.IsChecked = true;
+            }
+            if (gs.primaryScraper == 2)
+            {
+                // moby
+                rbMoby.IsChecked = true;
+            }
 
 
 
@@ -239,19 +262,39 @@ namespace MedLaunch.Models
             gs.scrapeScreenshots = chkAllowScreenshots.IsChecked.Value;
             SetGlobals(gs);
         }
+        public static void UpdateAllowManuals(CheckBox chkAllowManuals)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.scrapeManuals = chkAllowManuals.IsChecked.Value;
+            SetGlobals(gs);
+        }
+        public static void UpdateAllowMedias(CheckBox chkAllowMedia)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.scrapeMedia = chkAllowMedia.IsChecked.Value;
+            SetGlobals(gs);
+        }
         public static void UpdateAllowFanart(CheckBox chkAllowFanart)
         {
             GlobalSettings gs = GetGlobals();
             gs.scrapeFanart = chkAllowFanart.IsChecked.Value;
             SetGlobals(gs);
         }
-
         public static void UpdatePreferGenesis(CheckBox chkPreferGenesis)
         {
             GlobalSettings gs = GetGlobals();
             gs.preferGenesis = chkPreferGenesis.IsChecked.Value;
             SetGlobals(gs);
         }
+
+        public static void UpdateScraperBackup(CheckBox chkSecondaryScraperBackup)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.enabledSecondaryScraper = chkSecondaryScraperBackup.IsChecked.Value;
+            SetGlobals(gs);
+        }
+
+
 
     }
 }

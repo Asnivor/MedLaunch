@@ -244,3 +244,6 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /MedLaunch/Data/System/MasterGames - Copy.json
+/MedLaunch/Data/System/MasterGames - Copy (2).json
+/MedLaunch/Data/System/MobyGames - Copy.json
+/MedLaunch/Data/System/TheGamesDB - Copy.json
