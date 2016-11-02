@@ -25,32 +25,256 @@ namespace MedLaunch.Classes
             GlobalSettings gs = GlobalSettings.GetGlobals();
             if (order == ScraperOrder.Primary)
             {
+                
                 priority = true;    // primary
                 if (masterrecord.MobyData.MobyTitle != null)
                 {
                     // moby data has been matched
+                    controller.SetMessage("Primary Scraping (mobygames)\nDownloading information for: " + masterrecord.MobyData.MobyTitle + "\n(" + masterrecord.MobyData.MobyPlatformName + ")");
                     o.Data.Title = masterrecord.MobyData.MobyTitle;
                     o.Data.Platform = masterrecord.MobyData.MobyPlatformName;
                 }
                 else
                 {
-                    // no moby data matched - just return
+                    // no moby data matched - use gamesdb title and platform and return
+                    o.Data.Title = masterrecord.TGDBData.GamesDBTitle;
+                    o.Data.Platform = masterrecord.TGDBData.GamesDBPlatformName;
                     return o;
                 }                
             }
             else
             {
                 // moby scraping is secondary
+                if (masterrecord.MobyData.MobyTitle == null)
+                {
+                    o.Data.Title = masterrecord.TGDBData.GamesDBTitle;
+                    o.Data.Platform = masterrecord.TGDBData.GamesDBPlatformName;
+                    return o;
+                }
                 priority = false;    // primary
             }
 
             if (priority == true)
             {
                 // primary scraping
+                o = PullWebpageData(o, masterrecord, controller, ScraperOrder.Primary);
             }
             else
             {
                 // secondary scraping
+                o = PullWebpageData(o, masterrecord, controller, ScraperOrder.Secondary);
+            }
+
+            return o;
+        }
+
+        /// <summary>
+        /// Master handler for parsing data from the mobygames website
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="controller"></param>
+        /// <returns></returns>
+        public static ScrapedGameObjectWeb PullWebpageData(ScrapedGameObjectWeb o, ScraperMaster masterrecord, ProgressDialogController controller, ScraperOrder order)
+        {
+            // query the main game page
+            string baseurl = "http://www.mobygames.com/game/";
+            string param = masterrecord.MobyData.MobyPlatformName + "/" + masterrecord.MobyData.MobyURLName;
+            string initialPage = ReturnWebpage(baseurl, param, 10000);
+
+            // convert page string to htmldoc
+            HtmlDocument doc = new HtmlDocument();
+            doc.LoadHtml(initialPage);            
+
+            // get core information
+            List<HtmlNode> divs = doc.DocumentNode.SelectNodes("//div").ToList();
+
+            //List<HtmlNode> coreGenreList = coreGenre.ChildNodes.ToList();
+            int divcount = divs.Count;
+            for (int i = 0; i < divcount; i++)
+            {
+                // get just headings
+                if (divs[i].InnerText == divs[i].InnerHtml)
+                {
+                    // this is just a heading - i+1 should give the value
+                    if (divs[i].InnerHtml == "Published by")
+                    {
+                        if (order == ScraperOrder.Primary || o.Data.Publisher == null)
+                        {
+                            o.Data.Publisher = WebUtility.HtmlDecode(divs[i + 1].InnerText);
+                        }                        
+                    }
+                    if (divs[i].InnerHtml == "Developed by")
+                    {
+                        if (order == ScraperOrder.Primary || o.Data.Developer == null)
+                        {
+                            o.Data.Developer = WebUtility.HtmlDecode(divs[i + 1].InnerText);
+                        }                            
+                    }
+                    if (divs[i].InnerHtml == "Released")
+                    {
+                        if (order == ScraperOrder.Primary || o.Data.Released == null)
+                        {
+                            o.Data.Released = WebUtility.HtmlDecode(divs[i + 1].InnerText);
+                        }                            
+                    }
+                    if (divs[i].InnerHtml == "ESRB Rating")
+                    {
+                        if (order == ScraperOrder.Primary || o.Data.ESRB == null)
+                        {
+                            o.Data.ESRB = WebUtility.HtmlDecode(divs[i + 1].InnerText);
+                        }                            
+                    }
+                    if (divs[i].InnerHtml == "Genre")
+                    {
+                        string genres = WebUtility.HtmlDecode(divs[i + 1].InnerText);
+                        string[] genreArr = genres.Split('/');
+                        if (o.Data.Genres == null)
+                            o.Data.Genres = new List<string>();
+                        foreach (string s in genreArr)
+                        {
+                            if (order == ScraperOrder.Primary || o.Data.Genres.Count == 0)
+                            {
+                                if (s != null)
+                                {
+                                    o.Data.Genres.Add(s.Trim());
+                                }
+                            }    
+                        }                        
+                    }
+                }
+            }
+
+            // get the game description
+            if (initialPage.Contains("<h2>Description</h2>"))
+            {
+                if (order == ScraperOrder.Primary || o.Data.Overview == null)
+                {
+                    string[] arr1 = initialPage.Split(new string[] { "<h2>Description</h2>" }, StringSplitOptions.None);
+                    string[] arr2 = arr1[1].Split(new string[] { "<div class=" }, StringSplitOptions.None);
+                    string description = WebUtility.HtmlDecode(Regex.Replace(arr2[0], @"<[^>]*>", String.Empty));
+                    o.Data.Overview = description;
+                }                    
+            }
+            
+
+            // get alternate titles
+            if (initialPage.Contains("<h2>Alternate Titles</h2>"))
+            {
+                if (order == ScraperOrder.Primary || o.Data.AlternateTitles == null)
+                {
+                    string[] arr3 = initialPage.Split(new string[] { "<h2>Alternate Titles</h2>" }, StringSplitOptions.None);
+                    string s3 = arr3[1].Replace("\n\r", "").Replace("\r\n", "").Replace("\r", "").Replace("\n", "").Replace("<ul>", "");
+                    string[] arr4 = s3.Split(new string[] { "</ul>" }, StringSplitOptions.None);
+                    string s4 = arr4[0].Trim();
+                    string s5 = s4.Replace("<li>", "").Replace("</li>", "\n");
+                    string[] s6 = s5.Split('\n');
+                    if (o.Data.AlternateTitles == null)
+                        o.Data.AlternateTitles = new List<string>();
+                    foreach (string s in s6)
+                    {
+                        if (s != "")
+                            o.Data.AlternateTitles.Add(WebUtility.HtmlDecode(s.Replace(" -- <em>Japanese spelling</em>", "")));
+                    }
+                }                   
+            }
+
+            // cover art
+            // query the coverart page
+            string baseurlcover = "http://www.mobygames.com/game/";
+            string paramcover = masterrecord.MobyData.MobyPlatformName + "/" + masterrecord.MobyData.MobyURLName + "/cover-art";
+            string coverPage = ReturnWebpage(baseurlcover, paramcover, 10000);
+
+            // convert page string to htmldoc
+            HtmlDocument cDoc = new HtmlDocument();
+            cDoc.LoadHtml(coverPage);
+
+            // get all divs of class "row"
+            List<HtmlNode> coverDivs = cDoc.DocumentNode.SelectNodes("//div[@class ='row']").ToList();
+            // take the second one
+            HtmlNode cDiv = coverDivs[1];
+            // now get the div classes that make up the 3 images we want
+            if (!coverPage.Contains("thumbnail"))
+            {
+                // no images found
+            }
+            else
+            {            
+                List<HtmlNode> imageDivs = cDiv.SelectNodes("//div[@class ='thumbnail']").ToList();
+
+                bool frontFound = false;
+                bool backFound = false;
+                bool mediaFound = false;
+
+                // iterate through every 'row' div
+                foreach (HtmlNode h in imageDivs)
+                {
+                    // get media type
+                    List<HtmlNode> type = h.SelectNodes("//div[@class ='thumbnail-cover-caption']").ToList();
+                    List<HtmlNode> img = h.SelectNodes("//a[@class ='thumbnail-cover']").ToList();
+                    int typeCount = type.Count;
+
+                    for (int i = 0; i < typeCount; i++)
+                    {
+                        string t = type[i].InnerText.Trim().ToLower();
+                        string MEDIA = "http://mobygames.com" + img[i].Attributes["style"].Value.Replace(");", "").Replace("background-image:url(", "").Replace("/s/", "/l/");
+
+                        if (frontFound == false && t == "front cover")
+                        {
+                            if (o.FrontCovers == null) { o.FrontCovers = new List<string>(); }
+                            else if (order == ScraperOrder.Primary)
+                            {
+                                o.FrontCovers.Add(MEDIA);
+                            
+                            }
+                            frontFound = true;
+                        }
+                        if (backFound == false && t == "back cover")
+                        {
+                            if (o.BackCovers == null) { o.BackCovers = new List<string>(); }
+                            else if (order == ScraperOrder.Primary)
+                            {
+                                o.BackCovers.Add(MEDIA);
+                            
+                            }
+                            backFound = true;
+                        }
+                        if (mediaFound == false && t == "media")
+                        {
+                            if (o.Medias == null) { o.Medias = new List<string>(); }
+                            if (o.BackCovers == null) { o.BackCovers = new List<string>(); }
+                            else if (order == ScraperOrder.Primary)
+                            {
+                                o.Medias.Add(MEDIA);
+                            }
+                            
+                            mediaFound = true;
+                        }
+
+                        if (mediaFound == true && backFound == true && frontFound == true)
+                            break;
+                    }
+                }
+            }
+
+            // screenshots
+            // query the screenshots page
+            string baseurlscreen = "http://www.mobygames.com/game/";
+            string paramscreen = masterrecord.MobyData.MobyPlatformName + "/" + masterrecord.MobyData.MobyURLName + "/screenshots";
+            string screenPage = ReturnWebpage(baseurlscreen, paramscreen, 10000);
+
+            // convert page string to htmldoc
+            HtmlDocument sDoc = new HtmlDocument();
+            sDoc.LoadHtml(screenPage);
+
+            // get core information
+            List<HtmlNode> screens = sDoc.DocumentNode.SelectNodes("//a[@class ='thumbnail-image']").ToList();
+            if (o.Screenshots == null)
+                o.Screenshots = new List<string>();
+            foreach (var screen in screens)
+            {
+                var attrib = screen.Attributes["style"].Value;
+                string path = attrib.Replace(");", "").Replace("background-image:url(", "").Replace("/s/", "/l/");
+                o.Screenshots.Add("http://mobygames.com" + path);
             }
 
             return o;

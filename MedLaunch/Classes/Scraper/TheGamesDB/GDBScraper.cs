@@ -105,7 +105,7 @@ namespace MedLaunch.Classes.TheGamesDB
                     return o;
                 }
                 
-                if (g.AlternateTitles != null)
+                if (o.Data.AlternateTitles == null && g.AlternateTitles.Count > 0)
                     o.Data.AlternateTitles.AddRange(g.AlternateTitles);
                 if (o.Data.Coop == null && g.Coop != null)
                     o.Data.Coop = g.Coop;
@@ -159,6 +159,8 @@ namespace MedLaunch.Classes.TheGamesDB
                 }
 
                 // remove duplicates
+                //o.Data.AlternateTitles.Distinct();
+                o.Data.Genres.Distinct();
                 o.Screenshots.Distinct();
                 o.FanArts.Distinct();
                 o.Banners.Distinct();

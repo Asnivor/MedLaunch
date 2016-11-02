@@ -54,17 +54,18 @@ namespace MedLaunch.Classes.MasterScraper
         /// Choose a game from the local master list to link to an imported medlaunch game
         /// </summary>
         /// <param name="dgGameList"></param>
-        public static void PickGame(DataGrid dgGameList)
+        public static string PickGame(DataGrid dgGameList)
         {
             // get selected row
             var row = (DataGridGamesView)dgGameList.SelectedItem;
             if (dgGameList.SelectedItem == null)
             {
                 // game is not selected
-                return;
+                return null;
             }
             int GameId = row.ID;
             PickLocalGame(GameId);
+            return "success";
         }
         /// <summary>
         /// Choose a game from the local master list to link to an imported medlaunch game

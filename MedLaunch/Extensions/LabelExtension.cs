@@ -13,7 +13,7 @@ namespace MedLaunch.Extensions
         // if Label.Content is null - hide the label
         public static void SetVisibility(this Label label)
         {
-            if ((string)label.Content == null || (string)label.Content == "")
+            if (label.Content == null || label.Content.ToString() == "")
             {
                 label.Visibility = Visibility.Collapsed;
             }

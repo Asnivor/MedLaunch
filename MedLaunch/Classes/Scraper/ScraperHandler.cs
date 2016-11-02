@@ -21,6 +21,7 @@ namespace MedLaunch.Classes.Scraper
         public ScraperMaster MasterRecord { get; set; }
         public GlobalSettings _GlobalSettings { get; set; }
         public MainWindow mw { get; set; }
+        public int GameId { get; set; }
 
 
         /* Constructors */
@@ -29,12 +30,13 @@ namespace MedLaunch.Classes.Scraper
         /// Instantiate class with a specific platform game entry based on gdbId
         /// </summary>
         /// <param name="gdbId"></param>
-        public ScraperHandler(int gdbId)
+        public ScraperHandler(int gdbId, int gameId)
         {
             ScraperSearch = new ScraperMainSearch();
             MasterRecord = ScraperSearch.GLSC.MasterPlatformList.Where(a => a.GamesDbId == gdbId).FirstOrDefault();
             _GlobalSettings = ScraperSearch._GlobalSettings;
             mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            GameId = gameId;
         }
 
         /* Methods */
@@ -77,6 +79,10 @@ namespace MedLaunch.Classes.Scraper
 
             // Download all the files
             ContentDownloadManager(gameObject, controller, glsc);
+
+            // Create / Update GDBLink table
+            CreateDatabaseLink(GameId, gameObject.GdbId);
+            
             
         }
 
@@ -96,12 +102,12 @@ namespace MedLaunch.Classes.Scraper
                 {
                     total = o.Screenshots.Count;
                     count = 1;
-                controller.SetMessage("Downloading Screenshots for: " + o.Data.Title);
+                controller.SetMessage("Downloading Screenshots for: " + o.Data.Title + "\n(thegamesdb.net)");
                 foreach (string s in o.Screenshots)
                     {
-                        //controller.SetMessage("Downloading content for: " + o.Data.Title + "\nScreenshot: " + count + " of " + total);
-
+                        controller.SetMessage("Downloading content for: " + o.Data.Title + "\nScreenshot: " + count + " of " + total);
                         DownloadFile(s, baseDir + "Screenshots");
+                        count++;
                     }
                
                     
@@ -112,12 +118,13 @@ namespace MedLaunch.Classes.Scraper
                 {
                     total = o.FanArts.Count;
                     count = 1;
-                controller.SetMessage("Downloading FanArt for: " + o.Data.Title);
+                controller.SetMessage("Downloading FanArt for: " + o.Data.Title + "\n(thegamesdb.net)");
                 foreach (string s in o.FanArts)
                     {
-                        //controller.SetMessage("Downloading content for: " + o.Data.Title + "\nFanart: " + count + " of " + total);
+                        controller.SetMessage("Downloading content for: " + o.Data.Title + "\nFanart: " + count + " of " + total);
                         DownloadFile(s, baseDir + "FanArt");
-                    }
+                    count++;
+                }
                 }
 
                 // medias
@@ -125,12 +132,13 @@ namespace MedLaunch.Classes.Scraper
                 {
                     total = o.Medias.Count;
                     count = 1;
-                controller.SetMessage("Downloading Media for: " + o.Data.Title);
+                controller.SetMessage("Downloading Media for: " + o.Data.Title + "\n(thegamesdb.net)");
                 foreach (string s in o.Medias)
                     {
-                        //controller.SetMessage("Downloading content for: " + o.Data.Title + "\nMedia: " + count + " of " + total);
+                        controller.SetMessage("Downloading content for: " + o.Data.Title + "\nMedia: " + count + " of " + total);
                         DownloadFile(s, baseDir + "Media");
-                    }
+                    count++;
+                }
                 }
 
                 // front boxart
@@ -138,25 +146,27 @@ namespace MedLaunch.Classes.Scraper
                 {
                     total = o.FrontCovers.Count;
                     count = 1;
-                controller.SetMessage("Downloading Front Box Art for: " + o.Data.Title);
+                controller.SetMessage("Downloading Front Box Art for: " + o.Data.Title + "\n(thegamesdb.net)");
                 foreach (string s in o.FrontCovers)
                     {
-                        //controller.SetMessage("Downloading content for: " + o.Data.Title + "\nFront Cover: " + count + " of " + total);
+                        controller.SetMessage("Downloading content for: " + o.Data.Title + "\nFront Cover: " + count + " of " + total);
                         DownloadFile(s, baseDir + "FrontCover");
-                    }
+                    count++;
+                }
                 }
 
                 // back boxart
                 if (o.BackCovers != null)
                 {
-                controller.SetMessage("Downloading Back Box Art for: " + o.Data.Title);
+                controller.SetMessage("Downloading Back Box Art for: " + o.Data.Title + "\n(thegamesdb.net)");
                 total = o.BackCovers.Count;
                     count = 1;
                     foreach (string s in o.BackCovers)
                     {
-                        //controller.SetMessage("Downloading content for: " + o.Data.Title + "\nBack Cover: " + count + " of " + total);
+                        controller.SetMessage("Downloading content for: " + o.Data.Title + "\nBack Cover: " + count + " of " + total);
                         DownloadFile(s, baseDir + "BackCover");
-                    }
+                    count++;
+                }
                 }
 
                 // banners
@@ -164,12 +174,13 @@ namespace MedLaunch.Classes.Scraper
                 {
                     total = o.Banners.Count;
                     count = 1;
-                controller.SetMessage("Downloading Banners for: " + o.Data.Title);
+                controller.SetMessage("Downloading Banners for: " + o.Data.Title + "\n(thegamesdb.net)");
                 foreach (string s in o.Banners)
                     {
-                        //controller.SetMessage("Downloading content for: " + o.Data.Title + "\nBanner: " + count + " of " + total);
+                        controller.SetMessage("Downloading content for: " + o.Data.Title + "\nBanner: " + count + " of " + total);
                         DownloadFile(s, baseDir + "Banners");
-                    }
+                    count++;
+                }
                 }
 
                 // manuals
@@ -177,12 +188,13 @@ namespace MedLaunch.Classes.Scraper
                 {
                     total = o.Manuals.Count;
                     count = 1;
-                controller.SetMessage("Downloading Manuals for: " + o.Data.Title);
+                controller.SetMessage("Downloading Manuals for: " + o.Data.Title + "\n(thegamesdb.net)");
                 foreach (string s in o.Manuals)
                     {
-                        //controller.SetMessage("Downloading content for: " + o.Data.Title + "\nManual: " + count + " of " + total);
+                        controller.SetMessage("Downloading content for: " + o.Data.Title + "\nManual: " + count + " of " + total);
                         DownloadFile(s, baseDir + "Manual");
-                    }
+                    count++;
+                }
                 }
            
             
@@ -222,11 +234,8 @@ namespace MedLaunch.Classes.Scraper
             }
         }
         
-
-        /// <summary>
-        /// Initial handler for scraping a game
-        /// </summary>
-        /// <param name="controller"></param>
+       /*
+       
         public async void StartGameScrape(ProgressDialogController controller)
         {
             if (controller == null)
@@ -247,8 +256,8 @@ namespace MedLaunch.Classes.Scraper
             {
                 ScrapeGame(controller);
             });
-
-
+            */
+            /*
             await controller.CloseAsync();
 
             if (controller.IsCanceled)
@@ -260,15 +269,22 @@ namespace MedLaunch.Classes.Scraper
                 await mw.ShowMessageAsync("MedLaunch Scraper", "Scraping Completed");
             }
 
-        }
+            await Task.Delay(300);
+            */
+            //GamesLibraryVisualHandler.RefreshGamesLibrary();
+
+       // }
         /// <summary>
         /// Extension method to handle no controller being passed
         /// </summary>
+        /// 
+        /*
         public void StartGameScrape()
         {
             StartGameScrape(null);
         }
-
+        */
+    
 
 
         /// <summary>

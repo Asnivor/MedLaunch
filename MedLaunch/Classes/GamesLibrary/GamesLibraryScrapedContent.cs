@@ -67,11 +67,12 @@ namespace MedLaunch.Classes
             
             if (File.Exists(gPath))
             {
+                ScrapedGameObjectWeb sgoweb = new ScrapedGameObjectWeb();
                 ScrapedGameData sg = new ScrapedGameData();
                 string jsonString = File.ReadAllText(gPath);
                 try
                 {
-                    sg = JsonConvert.DeserializeObject<ScrapedGameData>(jsonString);
+                    sgoweb = JsonConvert.DeserializeObject<ScrapedGameObjectWeb>(jsonString);
                 }
                 catch (Exception e)
                 {
@@ -79,7 +80,7 @@ namespace MedLaunch.Classes
                 }
                 finally
                 {
-                    sgo.Data = sg;
+                    sgo.Data = sgoweb.Data;
                 }                
             }
             else { sgo.Data = new ScrapedGameData(); }
@@ -87,12 +88,12 @@ namespace MedLaunch.Classes
             // populate lists in object
             string baseGameDir = AppDomain.CurrentDomain.BaseDirectory + @"Data\Games\" + sgo.GdbId.ToString();
 
-            sgo.BackCovers = GetAllFolderFiles(baseGameDir + @"\BackCovers");
+            sgo.BackCovers = GetAllFolderFiles(baseGameDir + @"\BackCover");
             sgo.Banners = GetAllFolderFiles(baseGameDir + @"\Banners");
-            sgo.FanArts = GetAllFolderFiles(baseGameDir + @"\FanArts");
-            sgo.FrontCovers = GetAllFolderFiles(baseGameDir + @"\FrontCovers");
-            sgo.Manuals = GetAllFolderFiles(baseGameDir + @"\Manuals");
-            sgo.Medias = GetAllFolderFiles(baseGameDir + @"\Medias");
+            sgo.FanArts = GetAllFolderFiles(baseGameDir + @"\FanArt");
+            sgo.FrontCovers = GetAllFolderFiles(baseGameDir + @"\FrontCover");
+            sgo.Manuals = GetAllFolderFiles(baseGameDir + @"\Manual");
+            sgo.Medias = GetAllFolderFiles(baseGameDir + @"\Media");
             sgo.Screenshots = GetAllFolderFiles(baseGameDir + @"\Screenshots");
 
             // return object

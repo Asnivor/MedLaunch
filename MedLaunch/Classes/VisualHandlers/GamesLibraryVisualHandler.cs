@@ -9,6 +9,8 @@ using MedLaunch.Models;
 using System.Windows.Media.Imaging;
 using System.IO;
 using MedLaunch.Extensions;
+using System.Windows.Controls.Primitives;
+using System.Windows.Markup;
 
 namespace MedLaunch.Classes
 {
@@ -47,23 +49,38 @@ namespace MedLaunch.Classes
             }
 
             sv.Visibility = Visibility.Visible;
+
+            // set column definitions
             ColumnDefinition cd = (ColumnDefinition)mw.FindName("sidebarColumn");
+            ColumnDefinition colBoxartFront = (ColumnDefinition)mw.FindName("colBoxartFront");
+            ColumnDefinition colBoxartBack = (ColumnDefinition)mw.FindName("colBoxartBack");
+            ColumnDefinition colMedia = (ColumnDefinition)mw.FindName("colMedia");
+            
             cd.Width = new GridLength(0.3, GridUnitType.Star);
+            //colBoxartFront.Width = new GridLength(0.5, GridUnitType.Star);
+            //colBoxartBack.Width = new GridLength(0.5, GridUnitType.Star);
+            //colMedia.Width = new GridLength(0.5, GridUnitType.Star);
+
+            UniformGrid gridManuals = (UniformGrid)mw.FindName("gridManuals");
 
             // borders
-            Border brdSysInfo = (Border)mw.FindName("brdSidebarSystem");
-            Border brdGame = (Border)mw.FindName("brdSidebarGame");
+            Border brdSysInfo = (Border)mw.FindName("brdSidebarSystem");                            // game system info
+            Border brdSidebarGameInformation = (Border)mw.FindName("brdSidebarGameInformation");    // main scraping info container
+            brdSidebarGameInformation.Visibility = Visibility.Visible;
 
+            Border brdGame = (Border)mw.FindName("brdSidebarGame");                                 
             Border brdSidebarScreenshots = (Border)mw.FindName("brdSidebarScreenshots");
             Border brdSidebarFanArt = (Border)mw.FindName("brdSidebarFanArt");
-
             Border brdSidebarOverview = (Border)mw.FindName("brdSidebarOverview");
+
+            Border brdManuals = (Border)mw.FindName("brdManuals");
 
             // expanders
             Expander expSysInfo = (Expander)mw.FindName("expSysInfo");
             Expander expGameInfo = (Expander)mw.FindName("expGameInfo");
             Expander expGameInformation = (Expander)mw.FindName("expGameInformation");
             Expander expOverview = (Expander)mw.FindName("expOverview");
+            Expander expManuals = (Expander)mw.FindName("expManuals");
 
             // labels
             Label lblGameName = (Label)mw.FindName("lblGameName");
@@ -99,13 +116,15 @@ namespace MedLaunch.Classes
             Image imgBoxartFront = (Image)mw.FindName("imgBoxartFront");
             Image imgBoxartBack = (Image)mw.FindName("imgBoxartBack");
             Image imgBanner = (Image)mw.FindName("imgBanner");
+            Image imgMedia = (Image)mw.FindName("imgMedia");
 
             // lists of gamesdb related controls
             List<Image> gdbImages = new List<Image>
             {
                 imgBoxartFront,
                 imgBoxartBack,
-                imgBanner
+                imgBanner,
+                imgMedia
             };
             List<Label> gdbLabels = new List<Label>
             {
@@ -229,46 +248,57 @@ namespace MedLaunch.Classes
                 {
                     l.Visibility = Visibility.Collapsed;
                 }
-                expGameInformation.Header = "thegamesdb.net Info";
+                expGameInformation.Header = "Scraped Information";
+                brdSidebarGameInformation.Visibility = Visibility.Collapsed;
                 brdSidebarScreenshots.Visibility = Visibility.Collapsed;
                 brdSidebarFanArt.Visibility = Visibility.Collapsed;
                 brdSidebarOverview.Visibility = Visibility.Collapsed;
+                brdManuals.Visibility = Visibility.Collapsed;
                 return;
             }
-                
-            // get the GDBData record
-            GDBGameData gd = GDBGameData.GetGame(link.GdbId.Value);
+
+            // get the on-disk scraped information for this game
+            //GDBGameData gd = GDBGameData.GetGame(link.GdbId.Value);
+            GamesLibraryScrapedContent gd = new GamesLibraryScrapedContent();
+            ScrapedGameObject o = gd.GetScrapedGameObject(gameId);
             if (gd == null)
                 return;
 
             // Set the game info
 
             // Expander title
-            expGameInformation.Header = gd.Title;
+            expGameInformation.Header = o.Data.Title;
 
             
             // banner (just take one)
             List<string> banners = new List<string>();
-            imgBanner.Source = GetBitmapImageFromDisk(AppDomain.CurrentDomain.BaseDirectory + GDBGameData.JsonDeSerialize(gd.BannerLocalImages).FirstOrDefault(), UriKind.Absolute);
+            imgBanner.Source = GetBitmapImageFromDisk(o.Banners.FirstOrDefault(), UriKind.Absolute);
             imgBanner.SetVisibility();
             
             // boxart - front
-            imgBoxartFront.Source = GetBitmapImageFromDisk(AppDomain.CurrentDomain.BaseDirectory + gd.BoxartFrontLocalImage, UriKind.Absolute);
+            imgBoxartFront.Source = GetBitmapImageFromDisk(o.FrontCovers.FirstOrDefault(), UriKind.Absolute);
             imgBoxartFront.SetVisibility();
             
             // boxart - back
-            imgBoxartBack.Source = GetBitmapImageFromDisk(AppDomain.CurrentDomain.BaseDirectory + gd.BoxartBackLocalImage, UriKind.Absolute);
+            imgBoxartBack.Source = GetBitmapImageFromDisk(o.BackCovers.FirstOrDefault(), UriKind.Absolute);
             imgBoxartBack.SetVisibility();
+
+            // media image
+                //colMedia.Width = new GridLength(0);
+            imgMedia.Source = GetBitmapImageFromDisk(o.Medias.FirstOrDefault(), UriKind.Absolute);
+            imgMedia.SetVisibility();
             
             // labels
-            lblAltNames.Content = string.Join(", ", (GDBGameData.JsonDeSerialize(gd.AlternateTitles)).ToArray());
-            lblReleaseDate.Content = gd.ReleaseDate;
-            lblPlayers.Content = gd.Players;
-            lblCoop.Content = "";   // still to implement
-            lblGenres.Content = string.Join(", ", (GDBGameData.JsonDeSerialize(gd.Genres)).ToArray());
-            lblDeveloper.Content = gd.Developer;
-            lblPublisher.Content = gd.Publisher;
-            tbOverview.Text = gd.Overview;
+            if (o.Data.AlternateTitles != null)
+                lblAltNames.Content = string.Join(", ", (o.Data.AlternateTitles).ToArray());
+            lblReleaseDate.Content = o.Data.Released;
+            lblPlayers.Content = o.Data.Players;
+            lblCoop.Content = o.Data.Coop;
+            if (o.Data.Genres != null)
+                lblGenres.Content = string.Join(", ", (o.Data.Genres).ToArray());
+            lblDeveloper.Content = o.Data.Developer;
+            lblPublisher.Content = o.Data.Publisher;
+            tbOverview.Text = o.Data.Overview;
 
             // set visibilities             
             foreach (Label l in gdbLabels)
@@ -280,40 +310,40 @@ namespace MedLaunch.Classes
             else { brdSidebarOverview.Visibility = Visibility.Visible; }
 
             // hide things that have no data
-            if ((string)lblAltNames.Content == "" || (string)lblAltNames.Content == " ")
+            if (lblAltNames.Content == null)
             {
                 lblAltNamesTitle.Visibility = Visibility.Collapsed;
                 }
-            if ((string)lblReleaseDate.Content == "" || (string)lblReleaseDate.Content == " ")
+            if (lblReleaseDate.Content == null)
                  {
                lblReleaseDateTitle.Visibility = Visibility.Collapsed;
               }
-            if ((string)lblPlayers.Content == "" || (string)lblPlayers.Content == " ")
+            if (lblPlayers.Content == null)
                 {
                 lblPlayersTitle.Visibility = Visibility.Collapsed;
                }
-            if ((string)lblCoop.Content == "" || (string)lblCoop.Content == "")
+            if (lblCoop.Content == null)
                 {
                 lblCoopTitle.Visibility = Visibility.Collapsed;
                 }
-           if ((string)lblGenres.Content == "" || (string)lblGenres.Content == "")
+           if (lblGenres.Content == null)
                {
                lblGenresTitle.Visibility = Visibility.Collapsed;
                }
-           if ((string)lblDeveloper.Content == "" || (string)lblDeveloper.Content == " ")
+           if (lblDeveloper.Content == null)
                 {
                lblDeveloperTitle.Visibility = Visibility.Collapsed;
               }
-           if ((string)lblPublisher.Content == "" || (string)lblPublisher.Content == " ")
+           if (lblPublisher.Content == null)
              {
                lblPublisherTitle.Visibility = Visibility.Collapsed;
              }
 
             // screenshots
-            if (gd.ScreenshotLocalImages != null && gd.ScreenshotLocalImages != "")
+            if (o.Screenshots != null && o.Screenshots.Count > 0)
             {
                 brdSidebarScreenshots.Visibility = Visibility.Visible;
-                List<string> sshots = GDBGameData.JsonDeSerialize(gd.ScreenshotLocalImages);
+                List<string> sshots = o.Screenshots;
                 String[] arr = sshots.ToArray();
                 int i = 0;
                 while (i < 12)
@@ -326,7 +356,7 @@ namespace MedLaunch.Classes
                     // populate screenshot images                    
                     string path = arr[i];
                     Image img = (Image)mw.FindName("ss" + (i + 1).ToString());
-                    img.Source = GetBitmapImageFromDisk(AppDomain.CurrentDomain.BaseDirectory + path, UriKind.Absolute);
+                    img.Source = GetBitmapImageFromDisk(path, UriKind.Absolute);
                     img.SetVisibility();
                     i++;
                 }               
@@ -334,10 +364,10 @@ namespace MedLaunch.Classes
             else { brdSidebarScreenshots.Visibility = Visibility.Collapsed; }
 
             // fanart
-            if (gd.FanartLocalImages != null && gd.FanartLocalImages != "")
+            if (o.FanArts != null && o.FanArts.Count > 0)
             {
                 brdSidebarFanArt.Visibility = Visibility.Visible;
-                List<string> fshots = GDBGameData.JsonDeSerialize(gd.FanartLocalImages);
+                List<string> fshots = o.FanArts;
                 String[] arr = fshots.ToArray();
                 int i = 0;
                 while (i < 12)
@@ -351,12 +381,44 @@ namespace MedLaunch.Classes
                     // populate screenshot images                    
                     string path = arr[i];
                     Image img = (Image)mw.FindName("fa" + (i + 1).ToString());
-                    img.Source = GetBitmapImageFromDisk(AppDomain.CurrentDomain.BaseDirectory + path, UriKind.Absolute);
+                    img.Source = GetBitmapImageFromDisk(path, UriKind.Absolute);
                     img.SetVisibility();
                     i++;
                 }
             }
             else { brdSidebarFanArt.Visibility = Visibility.Collapsed; }
+
+            // manuals
+            if (o.Manuals != null && o.Manuals.Count > 0)
+            {
+                brdManuals.Visibility = Visibility.Visible;
+                // get number of manuals in the directory
+                int manCount = o.Manuals.Count;
+                // disable buttons that are not needed and setup the buttons that are required
+                int c = 1;
+                while (c <= 20)
+                {
+                    Button b = (Button)mw.FindName("btnMan" + c);
+                    if ((c - 1) < manCount)
+                    {
+                        // activate button
+                        b.Visibility = Visibility.Visible;
+                        // get just filename
+                        string path = Path.GetFileName(o.Manuals[c - 1]);
+                        b.Content = path; // "Man " + c.ToString();
+                        b.ToolTip = o.Manuals[c - 1];
+                        b.FontSize = 8;
+                    }
+                    else
+                    {
+                        // hide button
+                        b.Visibility = Visibility.Collapsed;
+                    }
+                    c++;
+                }
+            }
+            else { brdManuals.Visibility = Visibility.Collapsed; }
+
         }
 
         
@@ -468,6 +530,7 @@ namespace MedLaunch.Classes
             Expander expFanArt = (Expander)mw.FindName("expFanArt");                        // fanart
             Expander expScrapingOptions = (Expander)mw.FindName("expScrapingOptions");      // scraping options
             Expander expSysInfo = (Expander)mw.FindName("expSysInfo");                      // system info
+            Expander expManuals = (Expander)mw.FindName("expManuals");                      // game manuals and documents
 
             // add controls to the List
             List<Expander> exp = new List<Expander>
@@ -478,7 +541,8 @@ namespace MedLaunch.Classes
                 expScreenshots,
                 expFanArt,
                 expScrapingOptions,
-                expSysInfo
+                expSysInfo,
+                expManuals
             };
             return exp;
         }
@@ -516,6 +580,9 @@ namespace MedLaunch.Classes
                         break;
                     case "expSysInfo":
                         e.IsExpanded = gs.glSystemInfo;
+                        break;
+                    case "expManuals":
+                        e.IsExpanded = gs.glManuals;
                         break;
                 }
             }
@@ -555,10 +622,21 @@ namespace MedLaunch.Classes
                     case "expSysInfo":
                         gs.glSystemInfo = e.IsExpanded;
                         break;
+                    case "expManuals":
+                        gs.glManuals = e.IsExpanded;
+                        break;
                 }
             }
             // save to database
             GlobalSettings.SetGlobals(gs);
+        }
+
+        public static void RefreshSideBar(DataGrid dgGameList)
+        {
+            // get the selected item
+            var r = (DataGridGamesView)dgGameList.SelectedItem;
+            int gameId = r.ID;
+            
         }
 
     }

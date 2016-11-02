@@ -38,6 +38,7 @@ using System.Net;
 using MedLaunch.Classes.MobyGames;
 using MedLaunch.Classes.MasterScraper;
 using MedLaunch.Classes.TheGamesDB;
+using MedLaunch.Classes.Scraper;
 
 namespace MedLaunch
 {
@@ -2258,7 +2259,85 @@ namespace MedLaunch
 
         private void btnScrapingPickGame_Click(object sender, RoutedEventArgs e)
         {
+            
             ScraperMainSearch.PickGame(dgGameList);
+           
+            
+            //GamesLibraryVisualHandler.RefreshGamesLibrary();
+            //GamesLibraryVisualHandler.RefreshSideBar(dgGameList);
+        }
+
+        private void btnBrowseDataFolder_Click(object sender, RoutedEventArgs e)
+        {
+            var r = (DataGridGamesView)dgGameList.SelectedItem;
+            // get the gamesdbid
+            var link = GDBLink.GetRecord(Convert.ToInt32(r.ID));
+            if (link != null)
+            {
+                // open the folder in windows explorer
+                string dirPath = System.AppDomain.CurrentDomain.BaseDirectory + @"\Data\Games\" + link.GdbId;
+                // check folder exists
+                if (Directory.Exists(dirPath))
+                {
+                    // open the folder
+                    Process.Start(dirPath);
+                }
+            }
+            
+        }
+
+        private async void btnScrapingReScrape_Click(object sender, RoutedEventArgs e)
+        {
+            var r = (DataGridGamesView)dgGameList.SelectedItem;
+            // get the gamesdbid
+            var link = GDBLink.GetRecord(Convert.ToInt32(r.ID));
+            // re-scrape the game
+            if (link != null)
+            {
+                MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+                var mySettings = new MetroDialogSettings()
+                {
+                    NegativeButtonText = "Cancel Scraping",
+                    AnimateShow = false,
+                    AnimateHide = false
+                };
+                var controller = await mw.ShowProgressAsync("Scraping Data", "Initialising...", true, settings: mySettings);
+
+                ScraperHandler sh = new ScraperHandler(link.GdbId.Value, r.ID);
+                await Task.Delay(100);
+                await Task.Run(() =>
+                {
+                    if (controller.IsCanceled)
+                    {
+                        controller.CloseAsync();
+                        return;
+                    }
+                    sh.ScrapeGame(controller);
+                });
+
+                await controller.CloseAsync();
+
+                if (controller.IsCanceled)
+                {
+                    await mw.ShowMessageAsync("MedLaunch Scraper", "Scraping Cancelled");
+                }
+                else
+                {
+                    await mw.ShowMessageAsync("MedLaunch Scraper", "Scraping Completed");
+                }
+
+                var ro = (DataGridGamesView)dgGameList.SelectedItem;
+                dgGameList.SelectedItem = null;
+                dgGameList.SelectedItem = ro;
+
+            }
+        }
+
+        private void btnOpenManual_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (sender as Button);
+            string path = btn.ToolTip.ToString();
+            Process.Start(path);
         }
 
         // save the layout of all the games library expander states
@@ -2603,7 +2682,7 @@ namespace MedLaunch
             j.BeginMerge(false, false, true);
         }
 
-       
+        
     }
 
     

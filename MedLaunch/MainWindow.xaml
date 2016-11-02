@@ -444,26 +444,43 @@
                                                         </ToolTip>
                                                     </Image.ToolTip>
                                                 </Image>
-                                                <Image x:Name="imgBoxartFront" Grid.Column="0" Grid.Row="1" Margin="5" >
-                                                    <Image.ToolTip>
-                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
-                                                            </Border>
-                                                        </ToolTip>
-                                                    </Image.ToolTip>
-                                                </Image>
-                                                <Image x:Name="imgBoxartBack" Grid.Column="1" Grid.Row="1" Margin="5">
-                                                    <Image.ToolTip>
-                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
-                                                            </Border>
-                                                        </ToolTip>
-                                                    </Image.ToolTip>
-                                                </Image>
 
-                                                <Grid Margin="0"  Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="2" x:Name="gdatagrid">
+                                                <UniformGrid x:Name="gridBoxArt" Margin="0" Grid.ColumnSpan="2" Grid.Row="1" Rows="1">
+                                                    
+                                                    <Image x:Name="imgBoxartFront" Grid.Column="0" Grid.Row="0" Margin="5" >
+                                                        <Image.ToolTip>
+                                                            <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                    <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                </Border>
+                                                            </ToolTip>
+                                                        </Image.ToolTip>
+                                                    </Image>
+                                                    <Image x:Name="imgBoxartBack" Grid.Column="1" Grid.Row="0" Margin="5">
+                                                        <Image.ToolTip>
+                                                            <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                    <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                </Border>
+                                                            </ToolTip>
+                                                        </Image.ToolTip>
+                                                    </Image>
+                                                    <Image x:Name="imgMedia" Grid.Column="2" Grid.Row="0" Margin="5">
+                                                        <Image.ToolTip>
+                                                            <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                    <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                </Border>
+                                                            </ToolTip>
+                                                        </Image.ToolTip>
+                                                    </Image>
+
+                                                </UniformGrid>
+
+                                                
+                                                
+
+                                                <Grid Margin="0"  Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="2" x:Name="gdatagrid">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="Auto" />
                                                         <ColumnDefinition Width="Auto" />
@@ -556,13 +573,40 @@
 
                                                 <Border Grid.Row="7" Grid.ColumnSpan="2" x:Name="brdSidebarOverview" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0"  >
                                                     <Expander x:Name="expOverview" Grid.Row="7" Grid.ColumnSpan="2"  Header="Overview">
-                                                        <TextBlock x:Name="tbOverview" TextWrapping="Wrap" Width="{Binding ElementName=expOverview, Path=ActualWidth}">
+                                                        <TextBlock x:Name="tbOverview" TextWrapping="Wrap" >
 
                                                         </TextBlock>
                                                     </Expander>
                                                 </Border>
 
-                                                <Border Grid.Row="8" Grid.ColumnSpan="2" x:Name="brdSidebarScreenshots" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0">
+                                                <Border Grid.Row="8" Grid.ColumnSpan="2" x:Name="brdManuals" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0"  >
+                                                    <Expander x:Name="expManuals" Grid.Row="7" Grid.ColumnSpan="2"  Header="Game Documents">
+                                                        <UniformGrid x:Name="gridManuals" Columns="1">
+                                                            <Button x:Name="btnMan1" Click="btnOpenManual_Click" Content="Manual 1"  />
+                                                            <Button x:Name="btnMan2" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                            <Button x:Name="btnMan3" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                            <Button x:Name="btnMan4" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                            <Button x:Name="btnMan5" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                            <Button x:Name="btnMan6" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                            <Button x:Name="btnMan7" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                            <Button x:Name="btnMan8" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                            <Button x:Name="btnMan9" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                            <Button x:Name="btnMan10" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                            <Button x:Name="btnMan11" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                            <Button x:Name="btnMan12" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                            <Button x:Name="btnMan13" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                            <Button x:Name="btnMan14" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                            <Button x:Name="btnMan15" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                            <Button x:Name="btnMan16" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                            <Button x:Name="btnMan17" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                            <Button x:Name="btnMan18" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                            <Button x:Name="btnMan19" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                            <Button x:Name="btnMan20" Click="btnOpenManual_Click" Content="Manual 1" />
+                                                        </UniformGrid>
+                                                    </Expander>
+                                                </Border>
+
+                                                <Border Grid.Row="9" Grid.ColumnSpan="2" x:Name="brdSidebarScreenshots" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0">
                                                     <Expander x:Name="expScreenshots" IsExpanded="True" BorderThickness="0" Header="Screenshots" >
                                                         <StackPanel x:Name="spSidebarScreenshots">
 
@@ -712,7 +756,7 @@
 
                                                 <!-- FanArt -->
 
-                                                <Border Grid.Row="9" Grid.ColumnSpan="2" x:Name="brdSidebarFanArt" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0" >
+                                                <Border Grid.Row="10" Grid.ColumnSpan="2" x:Name="brdSidebarFanArt" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0" >
                                                     <Expander x:Name="expFanArt" IsExpanded="True" BorderThickness="0" Header="FanArt" >
                                                         <StackPanel x:Name="spSidebarFanArt">
 
@@ -871,14 +915,24 @@
                                     <Expander x:Name="expScrapingOptions" IsExpanded="True" BorderThickness="0" Header="Scraping Options" >
                                         <StackPanel x:Name="spSidebarScrapingOptions">
 
-                                            <Button  x:Name="btnScrapingUnlinkGame" ToolTip="Removes the link between the selected game and the downloaded data from thegamesdb.net" Click="btnScrapingUnlinkGame_Click">
-                                                Unlink Scraped Data                                                
+                                            <Button  x:Name="btnBrowseDataFolder" ToolTip="Opens the data folder in windows explorer. You can then manually delete or add images/manuals" Click="btnBrowseDataFolder_Click">
+                                                Browse Game Data Folder
                                             </Button>
+
+                                            
 
                                             <Button x:Name="btnScrapingPickGame" ToolTip="Choose game from a list of local search results and automatically scrape online data" Click="btnScrapingPickGame_Click">
                                                 Identify &amp; Scrape Game
                                             </Button>
-<!--
+
+                                            <Button x:Name="btnScrapingReScrape" ToolTip="Re-scrape data for this game using currently defined settings" Click="btnScrapingReScrape_Click">
+                                                Re-Scrape Game
+                                            </Button>
+
+                                            <Button  x:Name="btnScrapingUnlinkGame" ToolTip="Removes the link between the selected game and the downloaded data from thegamesdb.net" Click="btnScrapingUnlinkGame_Click">
+                                                Unlink Scraped Data
+                                            </Button>
+                                            <!--
                                             <Button x:Name="btnScrapingSearchOnline" ToolTip="Search thegamesdb.net for this game">
                                                 Search Online
                                             </Button>
@@ -4212,7 +4266,7 @@
                                                 <CheckBox x:Name="chkAllowMedia" Grid.ColumnSpan="2" Grid.Row="8" Content="Media (Cart/Disk Images)" Checked="chkAllowMedia_Checked" Unchecked="chkAllowMedia_Unchecked"/>
                                                 <CheckBox x:Name="chkAllowScreenshots" Grid.ColumnSpan="2" Grid.Row="9" Content="Screenshots" Checked="chkAllowScreenshots_Checked" Unchecked="chkAllowScreenshots_Unchecked"/>
                                                 <CheckBox x:Name="chkAllowFanart" Grid.ColumnSpan="2" Grid.Row="10" Content="Fan Art" Checked="chkAllowFanart_Checked" Unchecked="chkAllowFanart_Unchecked"/>
-                                                <CheckBox x:Name="chkAllowManuals" Grid.ColumnSpan="2" Grid.Row="11" Content="Game Manuals" Checked="chkAllowManuals_Checked" Unchecked="chkAllowManuals_Unchecked"/>
+                                                <CheckBox x:Name="chkAllowManuals" Grid.ColumnSpan="2" Grid.Row="11" Content="Game Documents (Manuals, Maps etc..)" Checked="chkAllowManuals_Checked" Unchecked="chkAllowManuals_Unchecked"/>
 
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="17">
 

@@ -95,44 +95,23 @@ namespace MedLaunch
 
         }
 
-        private void btnSelect_Click(object sender, RoutedEventArgs e)
+        private async void btnSelect_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel Scraping",
+                AnimateShow = false,
+                AnimateHide = false
+            };
 
             DataGrid dgGameList = (DataGrid)mw.FindName("dgGameList");
             var r = (DataGridGamesView)dgGameList.SelectedItem;
             var row = (GameListItem)dgReturnedGames.SelectedItem;
 
-            ScraperHandler sh = new ScraperHandler(row.GamesDBId);
-            sh.StartGameScrape();
-
-            /*
-
-            var mySettings = new MetroDialogSettings()
-            {
-                NegativeButtonText = "Cancel Scanning",
-                AnimateShow = false,
-                AnimateHide = false
-            };
-            var row = (GameListItem)dgReturnedGames.SelectedItem;
-            int gdbId = row.GamesDBId;
-
-
-
             var controller = await mw.ShowProgressAsync("Scraping Data", "Initialising...", true, settings: mySettings);
-            controller.SetCancelable(true);
-            await Task.Delay(100);
 
-            controller.SetMessage("Creating links...");
-
-            ScraperHandler.CreateDatabaseLink(r.ID, gdbId);
-
-            
-            await Task.Delay(100);
-
-            string message = "Connecting to thegamesdb.net....\nGetting data for: " + row.GameName;
-            controller.SetMessage(message);
-            GameScraper gs = new GameScraper();
+            ScraperHandler sh = new ScraperHandler(row.GamesDBId, r.ID);
             await Task.Delay(100);
             await Task.Run(() =>
             {
@@ -141,7 +120,7 @@ namespace MedLaunch
                     controller.CloseAsync();
                     return;
                 }
-                gs.ScrapeGame(gdbId, controller, message);
+                sh.ScrapeGame(controller);
             });
 
             await controller.CloseAsync();
@@ -155,12 +134,10 @@ namespace MedLaunch
                 await mw.ShowMessageAsync("MedLaunch Scraper", "Scraping Completed");
             }
 
-    */
-
             var ro = (DataGridGamesView)dgGameList.SelectedItem;
             dgGameList.SelectedItem = null;
             dgGameList.SelectedItem = ro;
-
+            
             this.Close();
 
         }

@@ -33,6 +33,7 @@ namespace MedLaunch.Models
         public bool glFanart { get; set; }
         public bool glScrapingOptions { get; set; }
         public bool glSystemInfo { get; set; }
+        public bool glManuals { get; set; }
 
         // Game scraping options
         public bool scrapeBanners { get; set; }
@@ -69,6 +70,7 @@ namespace MedLaunch.Models
                 glScrapingOptions = true,
                 glScreenshots = true,
                 glSystemInfo = true,
+                glManuals = true,
                 scrapeBanners = true,
                 scrapeBoxart = true,
                 scrapeFanart = true,
