@@ -272,20 +272,19 @@ namespace MedLaunch.Classes
             
             // banner (just take one)
             List<string> banners = new List<string>();
-            imgBanner.Source = GetBitmapImageFromDisk(o.Banners.FirstOrDefault(), UriKind.Absolute);
+            SetImage(imgBanner, o.Banners.FirstOrDefault(), UriKind.Absolute);
             imgBanner.SetVisibility();
-            
+
             // boxart - front
-            imgBoxartFront.Source = GetBitmapImageFromDisk(o.FrontCovers.FirstOrDefault(), UriKind.Absolute);
+            SetImage(imgBoxartFront, o.FrontCovers.FirstOrDefault(), UriKind.Absolute);
             imgBoxartFront.SetVisibility();
             
             // boxart - back
-            imgBoxartBack.Source = GetBitmapImageFromDisk(o.BackCovers.FirstOrDefault(), UriKind.Absolute);
+            SetImage(imgBoxartBack, o.BackCovers.FirstOrDefault(), UriKind.Absolute);   
             imgBoxartBack.SetVisibility();
 
             // media image
-                //colMedia.Width = new GridLength(0);
-            imgMedia.Source = GetBitmapImageFromDisk(o.Medias.FirstOrDefault(), UriKind.Absolute);
+            SetImage(imgMedia, o.Medias.FirstOrDefault(), UriKind.Absolute);
             imgMedia.SetVisibility();
             
             // labels
@@ -356,7 +355,7 @@ namespace MedLaunch.Classes
                     // populate screenshot images                    
                     string path = arr[i];
                     Image img = (Image)mw.FindName("ss" + (i + 1).ToString());
-                    img.Source = GetBitmapImageFromDisk(path, UriKind.Absolute);
+                    SetImage(img, path, UriKind.Absolute);
                     img.SetVisibility();
                     i++;
                 }               
@@ -381,7 +380,7 @@ namespace MedLaunch.Classes
                     // populate screenshot images                    
                     string path = arr[i];
                     Image img = (Image)mw.FindName("fa" + (i + 1).ToString());
-                    img.Source = GetBitmapImageFromDisk(path, UriKind.Absolute);
+                    SetImage(img, path, UriKind.Absolute);
                     img.SetVisibility();
                     i++;
                 }
@@ -421,28 +420,103 @@ namespace MedLaunch.Classes
 
         }
 
-        
+        public static void SetImage(Image img, string path, UriKind urikind)
+        {            
+            if (!File.Exists(path))
+                return;
+            try
+            {
+                // load content into the image
+                BitmapImage b = new BitmapImage(new Uri(path, urikind));
+                img.Source = b;
+
+                // get actual pixel dimensions of image
+                double pixelWidth = (img.Source as BitmapSource).PixelWidth;
+                double pixelHeight = (img.Source as BitmapSource).PixelHeight;
+
+                // get dimensions of main window
+                MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+                double windowWidth = mw.ActualWidth;
+                double windowHeight = mw.ActualHeight;
+
+                // set max dimensions on Image.ToolTip
+                ToolTip tt = (ToolTip)img.ToolTip;
+                tt.MaxHeight = windowHeight / 1.1;
+                tt.MaxWidth = windowWidth / 1.1;
+                img.ToolTip = tt;
+            }
+
+            catch (System.NotSupportedException ex)
+            {
+                img.Source = new BitmapImage();
+            }
+        }
 
         public static BitmapImage GetBitmapImageFromDisk(string path, UriKind urikind)
         {
-            // test if file does not exist
             if (!File.Exists(path))
                 return null;
             try
             {
-                BitmapImage b = new BitmapImage(new Uri(path, urikind));
+                BitmapImage b = new BitmapImage(new Uri(path, urikind));                
                 return b;
             }
             catch (System.NotSupportedException ex)
             {
-                // problem with the image - probably corrupt. delete it and return an empty image
-                
-                //File.Delete(path);
                 BitmapImage c = new BitmapImage();
                 return c;
+            }        
+        }
+
+        public static void ResizeImage(Image img, double maxWidth, double maxHeight)
+        {
+            if (img == null || img.Source == null)
+                return;
+
+            double srcWidth = img.Source.Width;
+            double srcHeight = img.Source.Height;
+
+            // Set your image tag to the sources DPI value for smart resizing if DPI != 96
+            if (img.Tag != null && img.Tag.GetType() == typeof(double[]))
+            {
+                double[] DPI = (double[])img.Tag;
+                srcWidth = srcWidth / (96 / DPI[0]);
+                srcHeight = srcHeight / (96 / DPI[1]);
             }
-            
-            
+
+            double resizedWidth = srcWidth;
+            double resizedHeight = srcHeight;
+
+            double aspect = srcWidth / srcHeight;
+
+            if (resizedWidth > maxWidth)
+            {
+                resizedWidth = maxWidth;
+                resizedHeight = resizedWidth / aspect;
+            }
+            if (resizedHeight > maxHeight)
+            {
+                aspect = resizedWidth / resizedHeight;
+                resizedHeight = maxHeight;
+                resizedWidth = resizedHeight * aspect;
+            }
+
+            img.Width = resizedWidth;
+            img.Height = resizedHeight;
+        }
+
+        // convert image to 96DPI
+        public static BitmapSource ConvertBitmapTo96DPI(BitmapImage bitmapImage)
+        {
+            double dpi = 96;
+            int width = bitmapImage.PixelWidth;
+            int height = bitmapImage.PixelHeight;
+
+            int stride = width * bitmapImage.Format.BitsPerPixel;
+            byte[] pixelData = new byte[stride * height];
+            bitmapImage.CopyPixels(pixelData, stride, 0);
+
+            return BitmapSource.Create(width, height, dpi, dpi, bitmapImage.Format, null, pixelData, stride);
         }
 
 

@@ -72,13 +72,16 @@ namespace MedLaunch.Classes.Scraper
             }
 
             // gameObject should now be populated - create folder structure on disk if it does not already exist
+            controller.SetMessage("Determining local folder structure");
             glsc.CreateFolderStructure(gameObject.GdbId);
 
             // save the object to json
+            controller.SetMessage("Saving game information");
             glsc.SaveJson(gameObject);
 
             // Download all the files
-            ContentDownloadManager(gameObject, controller, glsc);
+            controller.SetMessage("Downloading media");
+            ContentDownloadManager(gameObject, controller, glsc, "Downloading media...\n");
 
             // Create / Update GDBLink table
             CreateDatabaseLink(GameId, gameObject.GdbId);
@@ -91,115 +94,109 @@ namespace MedLaunch.Classes.Scraper
         /// </summary>
         /// <param name="o"></param>
         /// <param name="controller"></param>
-        public static void ContentDownloadManager(ScrapedGameObjectWeb o, ProgressDialogController controller, GamesLibraryScrapedContent glsc)
+        public static void ContentDownloadManager(ScrapedGameObjectWeb o, ProgressDialogController controller, GamesLibraryScrapedContent glsc, string message)
         {
             string baseDir = glsc.BaseContentDirectory + @"\" + o.GdbId.ToString() + @"\";
             int total;
             int count;
             
-                // screenshots
-                if (o.Screenshots != null)
+            // screenshots
+            if (o.Screenshots != null && o.Screenshots.Count > 0)
+            {
+                total = o.Screenshots.Count;
+                count = 1;
+            controller.SetMessage(message + "Downloading Screenshots for: " + o.Data.Title);
+            foreach (string s in o.Screenshots)
                 {
-                    total = o.Screenshots.Count;
-                    count = 1;
-                controller.SetMessage("Downloading Screenshots for: " + o.Data.Title + "\n(thegamesdb.net)");
-                foreach (string s in o.Screenshots)
-                    {
-                        controller.SetMessage("Downloading content for: " + o.Data.Title + "\nScreenshot: " + count + " of " + total);
-                        DownloadFile(s, baseDir + "Screenshots");
-                        count++;
-                    }
-               
-                    
+                    controller.SetMessage(message + "Downloading content for: " + o.Data.Title + "\nScreenshot: " + count + " of " + total + "\n(" + s + ")");
+                    DownloadFile(s, baseDir + "Screenshots");
+                    count++;
                 }
+            }
 
-                // fanart
-                if (o.FanArts != null)
-                {
-                    total = o.FanArts.Count;
-                    count = 1;
-                controller.SetMessage("Downloading FanArt for: " + o.Data.Title + "\n(thegamesdb.net)");
+            // fanart
+            if (o.FanArts != null && o.FanArts.Count > 0)
+            {
+                total = o.FanArts.Count;
+                count = 1;
+                controller.SetMessage(message + "Downloading FanArt for: " + o.Data.Title);
                 foreach (string s in o.FanArts)
-                    {
-                        controller.SetMessage("Downloading content for: " + o.Data.Title + "\nFanart: " + count + " of " + total);
-                        DownloadFile(s, baseDir + "FanArt");
+                {
+                    controller.SetMessage(message + "Downloading content for: " + o.Data.Title + "\nFanart: " + count + " of " + total + "\n(" + s + ")");
+                    DownloadFile(s, baseDir + "FanArt");
                     count++;
                 }
-                }
+            }
 
-                // medias
-                if (o.Medias != null)
-                {
-                    total = o.Medias.Count;
-                    count = 1;
-                controller.SetMessage("Downloading Media for: " + o.Data.Title + "\n(thegamesdb.net)");
+            // medias
+            if (o.Medias != null && o.Medias.Count > 0)
+            {
+                total = o.Medias.Count;
+                count = 1;
+                controller.SetMessage(message + "Downloading Media for: " + o.Data.Title);
                 foreach (string s in o.Medias)
-                    {
-                        controller.SetMessage("Downloading content for: " + o.Data.Title + "\nMedia: " + count + " of " + total);
-                        DownloadFile(s, baseDir + "Media");
+                {
+                    controller.SetMessage(message + "Downloading content for: " + o.Data.Title + "\nMedia: " + count + " of " + total + "\n(" + s + ")");
+                    DownloadFile(s, baseDir + "Media");
                     count++;
                 }
-                }
+            }
 
-                // front boxart
-                if (o.FrontCovers != null)
-                {
-                    total = o.FrontCovers.Count;
-                    count = 1;
-                controller.SetMessage("Downloading Front Box Art for: " + o.Data.Title + "\n(thegamesdb.net)");
+            // front boxart
+            if (o.FrontCovers != null && o.FrontCovers.Count > 0)
+            {
+                total = o.FrontCovers.Count;
+                count = 1;
+                controller.SetMessage(message + "Downloading Front Box Art for: " + o.Data.Title);
                 foreach (string s in o.FrontCovers)
-                    {
-                        controller.SetMessage("Downloading content for: " + o.Data.Title + "\nFront Cover: " + count + " of " + total);
-                        DownloadFile(s, baseDir + "FrontCover");
+                {
+                    controller.SetMessage(message + "Downloading content for: " + o.Data.Title + "\nFront Cover: " + count + " of " + total + "\n(" + s + ")");
+                    DownloadFile(s, baseDir + "FrontCover");
                     count++;
                 }
-                }
+            }
 
-                // back boxart
-                if (o.BackCovers != null)
-                {
-                controller.SetMessage("Downloading Back Box Art for: " + o.Data.Title + "\n(thegamesdb.net)");
+            // back boxart
+            if (o.BackCovers != null && o.BackCovers.Count > 0)
+            {
+                controller.SetMessage(message + "Downloading Back Box Art for: " + o.Data.Title);
                 total = o.BackCovers.Count;
-                    count = 1;
-                    foreach (string s in o.BackCovers)
-                    {
-                        controller.SetMessage("Downloading content for: " + o.Data.Title + "\nBack Cover: " + count + " of " + total);
-                        DownloadFile(s, baseDir + "BackCover");
+                count = 1;
+                foreach (string s in o.BackCovers)
+                {
+                    controller.SetMessage(message + "Downloading content for: " + o.Data.Title + "\nBack Cover: " + count + " of " + total + "\n(" + s + ")");
+                    DownloadFile(s, baseDir + "BackCover");
                     count++;
                 }
-                }
+            }
 
-                // banners
-                if (o.Banners != null)
-                {
-                    total = o.Banners.Count;
-                    count = 1;
-                controller.SetMessage("Downloading Banners for: " + o.Data.Title + "\n(thegamesdb.net)");
+            // banners
+            if (o.Banners != null && o.Banners.Count > 0)
+            {
+                total = o.Banners.Count;
+                count = 1;
+                controller.SetMessage(message + "Downloading Banners for: " + o.Data.Title);
                 foreach (string s in o.Banners)
-                    {
-                        controller.SetMessage("Downloading content for: " + o.Data.Title + "\nBanner: " + count + " of " + total);
-                        DownloadFile(s, baseDir + "Banners");
-                    count++;
-                }
-                }
-
-                // manuals
-                if (o.Manuals != null)
                 {
-                    total = o.Manuals.Count;
-                    count = 1;
-                controller.SetMessage("Downloading Manuals for: " + o.Data.Title + "\n(thegamesdb.net)");
-                foreach (string s in o.Manuals)
-                    {
-                        controller.SetMessage("Downloading content for: " + o.Data.Title + "\nManual: " + count + " of " + total);
-                        DownloadFile(s, baseDir + "Manual");
+                    controller.SetMessage(message + "Downloading content for: " + o.Data.Title + "\nBanner: " + count + " of " + total + "\n(" + s + ")");
+                    DownloadFile(s, baseDir + "Banners");
                     count++;
                 }
+            }
+
+            // manuals
+            if (o.Manuals != null && o.Manuals.Count > 0)
+            {
+                total = o.Manuals.Count;
+                count = 1;
+                controller.SetMessage(message + "Downloading Manuals for: " + o.Data.Title);
+                foreach (string s in o.Manuals)
+                {
+                    controller.SetMessage(message + "Downloading content for: " + o.Data.Title + "\nManual: " + count + " of " + total + "\n(" + s + ")");
+                    DownloadFile(s, baseDir + "Manual");
+                    count++;
                 }
-           
-            
-
-
+            }
         }
 
         /// <summary>

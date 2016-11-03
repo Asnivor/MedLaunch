@@ -19,13 +19,15 @@ namespace MedLaunch.Classes.TheGamesDB
         public static ScrapedGameObjectWeb ScrapeGame(ScrapedGameObjectWeb o, ScraperOrder order, ProgressDialogController controller, ScraperMaster masterrecord)
         {
             bool priority;
-            string message;
+            string message = "Downloading information for: " + masterrecord.TGDBData.GamesDBTitle + "\n(" + masterrecord.TGDBData.GamesDBPlatformName + ")";
+            if (order == ScraperOrder.Primary) { message = "Primary Scraping (thegamesdb)\n" + message; }
+            else { message = "Secondary Scraping (thegamesdb)\n" + message; }
             string BaseImgUrl = "http://thegamesdb.net/banners/";
 
             GlobalSettings gs = GlobalSettings.GetGlobals();
             if (order == ScraperOrder.Primary)
             {
-                controller.SetMessage("Primary Scraping (thegamesdb.net)\nDownloading information for: " + masterrecord.TGDBData.GamesDBTitle + "\n(" + masterrecord.TGDBData.GamesDBPlatformName + ")");
+                controller.SetMessage(message);
                 priority = true;    // primary
                 message = 
                 o.Data.Title = masterrecord.TGDBData.GamesDBTitle;
@@ -34,6 +36,7 @@ namespace MedLaunch.Classes.TheGamesDB
             else
             {
                 // GDB is secondary scraper
+                controller.SetMessage(message);
                 priority = false;    // primary
                 if (o.Data.Title == null)
                     o.Data.Title = masterrecord.TGDBData.GamesDBTitle;
@@ -66,8 +69,10 @@ namespace MedLaunch.Classes.TheGamesDB
                 o.Data.Released = g.ReleaseDate;
                 if (gs.scrapeBoxart == true)
                 {
-                    o.BackCovers.Add(BaseImgUrl + g.Images.BoxartBack.Path);
-                    o.FrontCovers.Add(BaseImgUrl + g.Images.BoxartFront.Path);
+                    if (g.Images.BoxartBack != null)
+                        o.BackCovers.Add(BaseImgUrl + g.Images.BoxartBack.Path);
+                    if (g.Images.BoxartFront != null)
+                        o.FrontCovers.Add(BaseImgUrl + g.Images.BoxartFront.Path);
                 }
                 if (gs.scrapeBanners == true)
                 {

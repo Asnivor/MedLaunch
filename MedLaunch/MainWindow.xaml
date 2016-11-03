@@ -439,7 +439,7 @@
                                                     <Image.ToolTip>
                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                <Image Source="{Binding Source}" MaxWidth="{Binding ElementName=MW,Path=ActualWidth}" Stretch="Uniform" ToolTipService.Placement="Top" />
+                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top" />
                                                             </Border>
                                                         </ToolTip>
                                                     </Image.ToolTip>
@@ -451,7 +451,7 @@
                                                         <Image.ToolTip>
                                                             <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                 <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                    <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                    <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                 </Border>
                                                             </ToolTip>
                                                         </Image.ToolTip>
@@ -460,7 +460,7 @@
                                                         <Image.ToolTip>
                                                             <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                 <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                    <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                    <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                 </Border>
                                                             </ToolTip>
                                                         </Image.ToolTip>
@@ -469,7 +469,7 @@
                                                         <Image.ToolTip>
                                                             <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                 <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                    <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                    <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                 </Border>
                                                             </ToolTip>
                                                         </Image.ToolTip>
@@ -643,7 +643,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -652,7 +652,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -661,7 +661,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -670,7 +670,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -679,7 +679,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -688,7 +688,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -697,7 +697,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -706,7 +706,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -715,7 +715,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -724,7 +724,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -733,7 +733,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -742,7 +742,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -793,7 +793,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -802,7 +802,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -811,7 +811,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -820,7 +820,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -829,7 +829,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -838,7 +838,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -847,7 +847,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -856,7 +856,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -865,7 +865,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -874,7 +874,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -883,7 +883,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
@@ -892,7 +892,7 @@
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
                                                                             <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                                                                                <Image Source="{Binding Source}" MaxHeight="{Binding ElementName=MW,Path=Height}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
                                                                     </Image.ToolTip>

@@ -132867,9 +132867,9 @@
       "GamesDBPlatformName": "Super Nintendo (SNES)"
     },
     "MobyData": {
-      "MobyTitle": null,
-      "MobyURLName": null,
-      "MobyPlatformName": null
+      "MobyTitle": "Smash T.V.",
+      "MobyURLName": "smash-tv",
+      "MobyPlatformName": "snes"
     },
     "IDDBManual": null
   },

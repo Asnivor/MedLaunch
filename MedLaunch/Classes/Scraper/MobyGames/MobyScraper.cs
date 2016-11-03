@@ -22,6 +22,9 @@ namespace MedLaunch.Classes
         public static ScrapedGameObjectWeb ScrapeGame(ScrapedGameObjectWeb o, ScraperOrder order, ProgressDialogController controller, ScraperMaster masterrecord)
         {
             bool priority;
+            string message = "Downloading information for: " + masterrecord.MobyData.MobyTitle + "\n(" + masterrecord.MobyData.MobyPlatformName + ")";
+            if (order == ScraperOrder.Primary) { message = "Primary Scraping (mobygames)\n" + message; }
+            else { message = "Secondary Scraping (mobygames)\n" + message; }
             GlobalSettings gs = GlobalSettings.GetGlobals();
             if (order == ScraperOrder.Primary)
             {
@@ -30,7 +33,8 @@ namespace MedLaunch.Classes
                 if (masterrecord.MobyData.MobyTitle != null)
                 {
                     // moby data has been matched
-                    controller.SetMessage("Primary Scraping (mobygames)\nDownloading information for: " + masterrecord.MobyData.MobyTitle + "\n(" + masterrecord.MobyData.MobyPlatformName + ")");
+                    
+                    controller.SetMessage(message);
                     o.Data.Title = masterrecord.MobyData.MobyTitle;
                     o.Data.Platform = masterrecord.MobyData.MobyPlatformName;
                 }
@@ -57,12 +61,12 @@ namespace MedLaunch.Classes
             if (priority == true)
             {
                 // primary scraping
-                o = PullWebpageData(o, masterrecord, controller, ScraperOrder.Primary);
+                o = PullWebpageData(o, masterrecord, controller, ScraperOrder.Primary, message);
             }
             else
             {
                 // secondary scraping
-                o = PullWebpageData(o, masterrecord, controller, ScraperOrder.Secondary);
+                o = PullWebpageData(o, masterrecord, controller, ScraperOrder.Secondary, message);
             }
 
             return o;
@@ -74,7 +78,7 @@ namespace MedLaunch.Classes
         /// <param name="o"></param>
         /// <param name="controller"></param>
         /// <returns></returns>
-        public static ScrapedGameObjectWeb PullWebpageData(ScrapedGameObjectWeb o, ScraperMaster masterrecord, ProgressDialogController controller, ScraperOrder order)
+        public static ScrapedGameObjectWeb PullWebpageData(ScrapedGameObjectWeb o, ScraperMaster masterrecord, ProgressDialogController controller, ScraperOrder order, string message)
         {
             // query the main game page
             string baseurl = "http://www.mobygames.com/game/";
@@ -193,9 +197,9 @@ namespace MedLaunch.Classes
             // take the second one
             HtmlNode cDiv = coverDivs[1];
             // now get the div classes that make up the 3 images we want
-            if (!coverPage.Contains("thumbnail"))
+            if (coverPage.Contains("There are no covers for the selected platform."))
             {
-                // no images found
+                // no cover images found - skip
             }
             else
             {            
@@ -220,33 +224,29 @@ namespace MedLaunch.Classes
 
                         if (frontFound == false && t == "front cover")
                         {
-                            if (o.FrontCovers == null) { o.FrontCovers = new List<string>(); }
-                            else if (order == ScraperOrder.Primary)
+                            if (o.FrontCovers == null || o.FrontCovers.Count == 0)
                             {
+                                o.FrontCovers = new List<string>();
                                 o.FrontCovers.Add(MEDIA);
-                            
-                            }
+                            }                            
                             frontFound = true;
                         }
                         if (backFound == false && t == "back cover")
                         {
-                            if (o.BackCovers == null) { o.BackCovers = new List<string>(); }
-                            else if (order == ScraperOrder.Primary)
+                            if (o.BackCovers == null || o.BackCovers.Count == 0)
                             {
+                                o.BackCovers = new List<string>();
                                 o.BackCovers.Add(MEDIA);
-                            
                             }
                             backFound = true;
                         }
                         if (mediaFound == false && t == "media")
                         {
-                            if (o.Medias == null) { o.Medias = new List<string>(); }
-                            if (o.BackCovers == null) { o.BackCovers = new List<string>(); }
-                            else if (order == ScraperOrder.Primary)
+                            if (o.Medias == null || o.Medias.Count == 0)
                             {
+                                o.Medias = new List<string>();
                                 o.Medias.Add(MEDIA);
                             }
-                            
                             mediaFound = true;
                         }
 
