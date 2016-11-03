@@ -4613,6 +4613,13 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
 
@@ -4644,6 +4651,20 @@
                                                 <CheckBox x:Name="chkAllowScreenshots" Grid.ColumnSpan="2" Grid.Row="9" Content="Screenshots" Checked="chkAllowScreenshots_Checked" Unchecked="chkAllowScreenshots_Unchecked"/>
                                                 <CheckBox x:Name="chkAllowFanart" Grid.ColumnSpan="2" Grid.Row="10" Content="Fan Art" Checked="chkAllowFanart_Checked" Unchecked="chkAllowFanart_Unchecked"/>
                                                 <CheckBox x:Name="chkAllowManuals" Grid.ColumnSpan="2" Grid.Row="11" Content="Game Documents (Manuals, Maps etc..)" Checked="chkAllowManuals_Checked" Unchecked="chkAllowManuals_Unchecked"/>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="12" VerticalAlignment="Center" Margin="5">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Maximum Number of Screenshots to Download (per website)</Label>
+                                                    <TextBox Text="{Binding ElementName=slScreenshotsPerHost, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="36" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="slScreenshotsPerHost"/>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="13" VerticalAlignment="Center" Margin="5">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Maximum Number of Fanart Images to Download (total)</Label>
+                                                    <TextBox Text="{Binding ElementName=slFanrtsPerHost, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="36" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="slFanrtsPerHost" />
+                                                </DockPanel>
 
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="17">
 

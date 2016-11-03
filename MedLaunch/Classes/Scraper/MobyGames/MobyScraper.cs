@@ -85,6 +85,8 @@ namespace MedLaunch.Classes
             string param = masterrecord.MobyData.MobyPlatformName + "/" + masterrecord.MobyData.MobyURLName;
             string initialPage = ReturnWebpage(baseurl, param, 10000);
 
+            GlobalSettings gs = GlobalSettings.GetGlobals();
+
             // convert page string to htmldoc
             HtmlDocument doc = new HtmlDocument();
             doc.LoadHtml(initialPage);            
@@ -267,15 +269,23 @@ namespace MedLaunch.Classes
             sDoc.LoadHtml(screenPage);
 
             // get core information
-            List<HtmlNode> screens = sDoc.DocumentNode.SelectNodes("//a[@class ='thumbnail-image']").ToList();
-            if (o.Screenshots == null)
-                o.Screenshots = new List<string>();
-            foreach (var screen in screens)
+            if (!screenPage.Contains("There are no user screenshots on file"))
             {
-                var attrib = screen.Attributes["style"].Value;
-                string path = attrib.Replace(");", "").Replace("background-image:url(", "").Replace("/s/", "/l/");
-                o.Screenshots.Add("http://mobygames.com" + path);
+                List<HtmlNode> screens = sDoc.DocumentNode.SelectNodes("//a[@class ='thumbnail-image']").ToList();
+                if (o.Screenshots == null)
+                    o.Screenshots = new List<string>();
+                int co = 0;
+                foreach (var screen in screens)
+                {
+                    if (co >= gs.maxScreenshots)
+                        break;
+                    var attrib = screen.Attributes["style"].Value;
+                    string path = attrib.Replace(");", "").Replace("background-image:url(", "").Replace("/s/", "/l/");
+                    o.Screenshots.Add("http://mobygames.com" + path);
+                    co++;
+                }
             }
+            
 
             return o;
         }

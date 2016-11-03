@@ -129,7 +129,7 @@ namespace MedLaunch
             // load globalsettings for front page
             GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar,
                chkAllowBanners, chkAllowBoxart, chkAllowScreenshots, chkAllowFanart, chkPreferGenesis, chkAllowManuals, chkAllowMedia, chkSecondaryScraperBackup,
-               rbGDB, rbMoby);
+               rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost);
             //gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
             GlobalSettings gs = GlobalSettings.GetGlobals();
             mainScaleTransform.ScaleX = Convert.ToDouble(gs.guiZoom);
@@ -2116,6 +2116,12 @@ namespace MedLaunch
                     ConfigServerSettings.SaveCustomServerSettings(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
                     ConfigBaseSettings.SaveMednafenPathValues(spMedPathSettings);
                     ConfigBaseSettings.SaveBiosPathValues(spSysBiosSettings);
+
+                    // global settings
+                    GlobalSettings gs = GlobalSettings.GetGlobals();
+                    gs.maxFanarts = slFanrtsPerHost.Value;
+                    gs.maxScreenshots = slScreenshotsPerHost.Value;
+                    GlobalSettings.SetGlobals(gs);
                 });
 
             await controller.CloseAsync();
@@ -2686,6 +2692,15 @@ namespace MedLaunch
 
         
     }
+    /*
+    public class SliderIgnoreDelta : Slider
+    {
+        protected override void OnThumbDragDelta(DragDeltaEventArgs e)
+        {
+            // Do nothing
+        }
+    }
+    */
 
-    
+
 }

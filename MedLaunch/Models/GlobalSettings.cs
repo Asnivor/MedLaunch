@@ -46,6 +46,9 @@ namespace MedLaunch.Models
         public bool enabledSecondaryScraper { get; set; }
         public int primaryScraper { get; set; }
 
+        public double maxScreenshots { get; set; }
+        public double maxFanarts { get; set; }
+
         public static GlobalSettings GetGlobalDefaults()
         {
             GlobalSettings gs = new GlobalSettings
@@ -79,8 +82,9 @@ namespace MedLaunch.Models
                 scrapeMedia = true,
                 enabledSecondaryScraper = true,
                 preferGenesis = true,
-                primaryScraper = 1
-                
+                primaryScraper = 1,
+                maxScreenshots = 6,
+                maxFanarts = 12                
             };
             return gs;
         }
@@ -152,7 +156,7 @@ namespace MedLaunch.Models
 
         public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast, ComboBox GuiZoom, CheckBox MinToTaskBar, CheckBox HideSidebar,
             CheckBox chkAllowBanners, CheckBox chkAllowBoxart, CheckBox chkAllowScreenshots, CheckBox chkAllowFanart, CheckBox chkPreferGenesis, 
-            CheckBox chkAllowManuals, CheckBox chkAllowMedia, CheckBox chkSecondaryScraperBackup, RadioButton rbGDB, RadioButton rbMoby)
+            CheckBox chkAllowManuals, CheckBox chkAllowMedia, CheckBox chkSecondaryScraperBackup, RadioButton rbGDB, RadioButton rbMoby, Slider slScreenshotsPerHost, Slider slFanrtsPerHost)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
@@ -178,6 +182,9 @@ namespace MedLaunch.Models
             chkAllowManuals.IsChecked = gs.scrapeManuals;
             chkSecondaryScraperBackup.IsChecked = gs.enabledSecondaryScraper;
 
+            slScreenshotsPerHost.Value = gs.maxScreenshots;
+            slFanrtsPerHost.Value = gs.maxFanarts;
+
             if (gs.primaryScraper == 1)
             {
                 // thegamesdb
@@ -191,6 +198,20 @@ namespace MedLaunch.Models
 
 
 
+        }
+
+        public static void UpdateMaxScreenshots(Slider slScreenshotsPerHost)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.maxScreenshots = slScreenshotsPerHost.Value;
+            SetGlobals(gs);
+        }
+
+        public static void UpdateMaxFanarts(Slider slFanrtsPerHost)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.maxFanarts = slFanrtsPerHost.Value;
+            SetGlobals(gs);
         }
 
         public static void UpdateEnableNetplay(CheckBox EnableNetplay)

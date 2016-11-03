@@ -401,10 +401,12 @@ namespace MedLaunch.Classes
                         }
                         break;
                     case -100:          // show unscraped games
-                        var unscrapedQuery = from g in context.Game
+
+                        var unscrapedQuery = (from g in context.Game
                                              where (g.gameName.ToLower().Contains(search.ToLower()) || GSystem.GetSystemName(g.systemId).ToLower().Contains(search.ToLower())) && g.hidden == false
-                                       orderby g.gameName
-                                       select new { g.gameId, g.gameName, g.gameLastPlayed, g.isFavorite, g.systemId };
+                                             orderby g.gameName
+                                             select new { g.gameId, g.gameName, g.gameLastPlayed, g.isFavorite, g.systemId });
+                        //var unscrapedQuery = 
                         foreach (var g in unscrapedQuery)
                         {
                             // detect entries that do not have a corresponding entry in the GDBLink table (so have NOT been scraping matched)
