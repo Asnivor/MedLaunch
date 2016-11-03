@@ -610,35 +610,7 @@
                                                     <Expander x:Name="expScreenshots" IsExpanded="True" BorderThickness="0" Header="Screenshots" >
                                                         <StackPanel x:Name="spSidebarScreenshots">
 
-                                                            <Grid Margin="0"  Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="3">
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="0.25*" />
-                                                                    <ColumnDefinition Width="0.25*" />
-                                                                    <ColumnDefinition Width="0.25*" />
-                                                                    <ColumnDefinition Width="0.25*" />
-                                                                </Grid.ColumnDefinitions>
-                                                                <Grid.RowDefinitions>
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="*" />
-                                                                </Grid.RowDefinitions>
-
+                                                            <UniformGrid x:Name="ugridScreenshots" Margin="0"  Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="3" Columns="4">                                                                
                                                                 <Image x:Name="ss1" Grid.Column="0" Grid.Row="0" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
@@ -747,8 +719,224 @@
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
                                                                 </Image>
+                                                                <Image x:Name="ss13" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss14" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss15" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss16" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss17" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss18" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss19" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss20" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss21" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss22" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss23" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss24" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss25" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss26" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss27" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss28" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss29" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss30" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss31" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss32" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss33" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss34" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss35" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="ss36" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
 
-                                                            </Grid>
+                                                            </UniformGrid>
 
                                                         </StackPanel>
                                                     </Expander>
@@ -760,34 +948,7 @@
                                                     <Expander x:Name="expFanArt" IsExpanded="True" BorderThickness="0" Header="FanArt" >
                                                         <StackPanel x:Name="spSidebarFanArt">
 
-                                                            <Grid Margin="0"  Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="3">
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="0.25*" />
-                                                                    <ColumnDefinition Width="0.25*" />
-                                                                    <ColumnDefinition Width="0.25*" />
-                                                                    <ColumnDefinition Width="0.25*" />
-                                                                </Grid.ColumnDefinitions>
-                                                                <Grid.RowDefinitions>
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                    <RowDefinition Height="*" />
-                                                                </Grid.RowDefinitions>
+                                                            <UniformGrid x:Name="ugridFanarts" Margin="0"  Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="3" Columns="4">
 
                                                                 <Image x:Name="fa1" Grid.Column="0" Grid.Row="0" Margin="0">
                                                                     <Image.ToolTip>
@@ -897,8 +1058,224 @@
                                                                         </ToolTip>
                                                                     </Image.ToolTip>
                                                                 </Image>
+                                                                <Image x:Name="fa13" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa14" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa15" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa16" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa17" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa18" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa19" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa20" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa21" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa22" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa23" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa24" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa25" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa26" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa27" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa28" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa29" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa30" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa31" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa32" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa33" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa34" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa35" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
+                                                                <Image x:Name="fa36" Grid.Column="3" Grid.Row="2" Margin="0">
+                                                                    <Image.ToolTip>
+                                                                        <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                                <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
+                                                                            </Border>
+                                                                        </ToolTip>
+                                                                    </Image.ToolTip>
+                                                                </Image>
 
-                                                            </Grid>
+                                                            </UniformGrid>
 
                                                         </StackPanel>
                                                     </Expander>

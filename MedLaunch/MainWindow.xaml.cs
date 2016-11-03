@@ -1008,7 +1008,9 @@ namespace MedLaunch
             // get systemId from menu name
             string menuName = (sender as MenuItem).Name;
             int sysId = Convert.ToInt32(menuName.Replace("ScrapeGames", ""));
-            GameScraper.ScrapeGames(sysId);
+
+            ScraperHandler.ScrapeGames(sysId);
+            //GameScraper.ScrapeGames(sysId);
         }
 
 

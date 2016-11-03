@@ -62,6 +62,8 @@ namespace MedLaunch.Classes
             //colMedia.Width = new GridLength(0.5, GridUnitType.Star);
 
             UniformGrid gridManuals = (UniformGrid)mw.FindName("gridManuals");
+            UniformGrid ugridScreenshots = (UniformGrid)mw.FindName("ugridScreenshots");
+            UniformGrid ugridFanarts = (UniformGrid)mw.FindName("ugridFanarts");
 
             // borders
             Border brdSysInfo = (Border)mw.FindName("brdSidebarSystem");                            // game system info
@@ -157,17 +159,41 @@ namespace MedLaunch.Classes
             Image ss10 = (Image)mw.FindName("ss10");
             Image ss11 = (Image)mw.FindName("ss11");
             Image ss12 = (Image)mw.FindName("ss12");
+            Image ss13 = (Image)mw.FindName("ss13");
+            Image ss14 = (Image)mw.FindName("ss14");
+            Image ss15 = (Image)mw.FindName("ss15");
+            Image ss16 = (Image)mw.FindName("ss16");
+            Image ss17 = (Image)mw.FindName("ss17");
+            Image ss18 = (Image)mw.FindName("ss18");
+            Image ss19 = (Image)mw.FindName("ss19");
+            Image ss20 = (Image)mw.FindName("ss20");
+            Image ss21 = (Image)mw.FindName("ss21");
+            Image ss22 = (Image)mw.FindName("ss22");
+            Image ss23 = (Image)mw.FindName("ss23");
+            Image ss24 = (Image)mw.FindName("ss24");
+            Image ss25 = (Image)mw.FindName("ss25");
+            Image ss26 = (Image)mw.FindName("ss26");
+            Image ss27 = (Image)mw.FindName("ss27");
+            Image ss28 = (Image)mw.FindName("ss28");
+            Image ss29 = (Image)mw.FindName("ss29");
+            Image ss30 = (Image)mw.FindName("ss30");
+            Image ss31 = (Image)mw.FindName("ss31");
+            Image ss32 = (Image)mw.FindName("ss32");
+            Image ss33 = (Image)mw.FindName("ss33");
+            Image ss34 = (Image)mw.FindName("ss34");
+            Image ss35 = (Image)mw.FindName("ss35");
+            Image ss36 = (Image)mw.FindName("ss36");
 
             List<Image> ss = new List<Image>
             {
-                ss1,ss2,ss3,ss4,ss5,ss6,ss7,ss8,ss9,ss10,ss11,ss12
+                ss1,ss2,ss3,ss4,ss5,ss6,ss7,ss8,ss9,ss10,ss11,ss12,ss13,ss14,ss15,ss16,ss17,ss18,ss19,ss20,ss21,ss22,ss23,ss24,ss25,ss26,ss27,ss28,ss29,ss30,ss31,ss32,ss33,ss34,ss35,ss36
             };
 
             foreach (Image i in ss)
             {
                 i.Visibility = Visibility.Collapsed;
             }
-            
+
 
             // fanart
             Image fa1 = (Image)mw.FindName("fa1");
@@ -182,10 +208,34 @@ namespace MedLaunch.Classes
             Image fa10 = (Image)mw.FindName("fa10");
             Image fa11 = (Image)mw.FindName("fa11");
             Image fa12 = (Image)mw.FindName("fa12");
+            Image fa13 = (Image)mw.FindName("fa13");
+            Image fa14 = (Image)mw.FindName("fa14");
+            Image fa15 = (Image)mw.FindName("fa15");
+            Image fa16 = (Image)mw.FindName("fa16");
+            Image fa17 = (Image)mw.FindName("fa17");
+            Image fa18 = (Image)mw.FindName("fa18");
+            Image fa19 = (Image)mw.FindName("fa19");
+            Image fa20 = (Image)mw.FindName("fa20");
+            Image fa21 = (Image)mw.FindName("fa21");
+            Image fa22 = (Image)mw.FindName("fa22");
+            Image fa23 = (Image)mw.FindName("fa23");
+            Image fa24 = (Image)mw.FindName("fa24");
+            Image fa25 = (Image)mw.FindName("fa25");
+            Image fa26 = (Image)mw.FindName("fa26");
+            Image fa27 = (Image)mw.FindName("fa27");
+            Image fa28 = (Image)mw.FindName("fa28");
+            Image fa29 = (Image)mw.FindName("fa29");
+            Image fa30 = (Image)mw.FindName("fa30");
+            Image fa31 = (Image)mw.FindName("fa31");
+            Image fa32 = (Image)mw.FindName("fa32");
+            Image fa33 = (Image)mw.FindName("fa33");
+            Image fa34 = (Image)mw.FindName("fa34");
+            Image fa35 = (Image)mw.FindName("fa35");
+            Image fa36 = (Image)mw.FindName("fa36");
 
             List<Image> fa = new List<Image>
             {
-                fa1,fa2,fa3,fa4,fa5,fa6,fa7,fa8,fa9,fa10,fa11,fa12
+                fa1,fa2,fa3,fa4,fa5,fa6,fa7,fa8,fa9,fa10,fa11,fa12,fa13,fa14,fa15,fa16,fa17,fa18,fa19,fa20,fa21,fa22,fa23,fa24,fa25,fa26,fa27,fa28,fa29,fa30,fa31,fa32,fa33,fa34,fa35,fa36
             };
             foreach (Image i in fa)
             {
@@ -231,10 +281,11 @@ namespace MedLaunch.Classes
             s.EndInit();
             sysImage.Source = s;
 
-            // Game info (from thegamesdb.net)
+            // Game info (scraped)
             // get the link table record
 
-            
+            GamesLibraryScrapedContent gd = new GamesLibraryScrapedContent();
+            ScrapedGameObject o = gd.GetScrapedGameObject(gameId);
 
             GDBLink link = GDBLink.GetRecord(gameId);
             if (link == null)
@@ -256,168 +307,333 @@ namespace MedLaunch.Classes
                 brdManuals.Visibility = Visibility.Collapsed;
                 return;
             }
-
-            // get the on-disk scraped information for this game
-            //GDBGameData gd = GDBGameData.GetGame(link.GdbId.Value);
-            GamesLibraryScrapedContent gd = new GamesLibraryScrapedContent();
-            ScrapedGameObject o = gd.GetScrapedGameObject(gameId);
-            if (gd == null)
-                return;
-
-            // Set the game info
-
-            // Expander title
-            expGameInformation.Header = o.Data.Title;
-
-            
-            // banner (just take one)
-            List<string> banners = new List<string>();
-            SetImage(imgBanner, o.Banners.FirstOrDefault(), UriKind.Absolute);
-            imgBanner.SetVisibility();
-
-            // boxart - front
-            SetImage(imgBoxartFront, o.FrontCovers.FirstOrDefault(), UriKind.Absolute);
-            imgBoxartFront.SetVisibility();
-            
-            // boxart - back
-            SetImage(imgBoxartBack, o.BackCovers.FirstOrDefault(), UriKind.Absolute);   
-            imgBoxartBack.SetVisibility();
-
-            // media image
-            SetImage(imgMedia, o.Medias.FirstOrDefault(), UriKind.Absolute);
-            imgMedia.SetVisibility();
-            
-            // labels
-            if (o.Data.AlternateTitles != null)
-                lblAltNames.Content = string.Join(", ", (o.Data.AlternateTitles).ToArray());
-            lblReleaseDate.Content = o.Data.Released;
-            lblPlayers.Content = o.Data.Players;
-            lblCoop.Content = o.Data.Coop;
-            if (o.Data.Genres != null)
-                lblGenres.Content = string.Join(", ", (o.Data.Genres).ToArray());
-            lblDeveloper.Content = o.Data.Developer;
-            lblPublisher.Content = o.Data.Publisher;
-            tbOverview.Text = o.Data.Overview;
-
-            // set visibilities             
-            foreach (Label l in gdbLabels)
+            else
             {
-                l.SetVisibility();
-            }
-            if (tbOverview.Text == "")
-                brdSidebarOverview.Visibility = Visibility.Collapsed;
-            else { brdSidebarOverview.Visibility = Visibility.Visible; }
+                // link is there - SET DATA and control states
+                bool isGameInfoData = false;                            //GameInfo Expander
+                bool isScreenshotsData = false;                         //Screenshots Expander
+                bool isFanrtsData = false;                              //Fanrt expander
+                bool isManualsData = false;                             //manuals expander
 
-            // hide things that have no data
-            if (lblAltNames.Content == null)
-            {
-                lblAltNamesTitle.Visibility = Visibility.Collapsed;
+                // Game Title
+                if (o.Data.Title == null || o.Data.Title == "")
+                {
+                    expGameInformation.Header = "Scraped Information";
                 }
-            if (lblReleaseDate.Content == null)
-                 {
-               lblReleaseDateTitle.Visibility = Visibility.Collapsed;
-              }
-            if (lblPlayers.Content == null)
+                else
                 {
-                lblPlayersTitle.Visibility = Visibility.Collapsed;
-               }
-            if (lblCoop.Content == null)
-                {
-                lblCoopTitle.Visibility = Visibility.Collapsed;
+                    // Expander title
+                    expGameInformation.Header = o.Data.Title;
                 }
-           if (lblGenres.Content == null)
-               {
-               lblGenresTitle.Visibility = Visibility.Collapsed;
-               }
-           if (lblDeveloper.Content == null)
-                {
-               lblDeveloperTitle.Visibility = Visibility.Collapsed;
-              }
-           if (lblPublisher.Content == null)
-             {
-               lblPublisherTitle.Visibility = Visibility.Collapsed;
-             }
 
-            // screenshots
-            if (o.Screenshots != null && o.Screenshots.Count > 0)
-            {
-                brdSidebarScreenshots.Visibility = Visibility.Visible;
-                List<string> sshots = o.Screenshots;
-                String[] arr = sshots.ToArray();
-                int i = 0;
-                while (i < 12)
-                {                    
-                    // check whether we have run out of images
-                    if (i >= sshots.Count || sshots == null)
-                    {
-                        break;
-                    }
-                    // populate screenshot images                    
-                    string path = arr[i];
-                    Image img = (Image)mw.FindName("ss" + (i + 1).ToString());
-                    SetImage(img, path, UriKind.Absolute);
-                    img.SetVisibility();
-                    i++;
-                }               
-            }
-            else { brdSidebarScreenshots.Visibility = Visibility.Collapsed; }
-
-            // fanart
-            if (o.FanArts != null && o.FanArts.Count > 0)
-            {
-                brdSidebarFanArt.Visibility = Visibility.Visible;
-                List<string> fshots = o.FanArts;
-                String[] arr = fshots.ToArray();
-                int i = 0;
-                while (i < 12)
+                // Back Cover Image
+                if (o.BackCovers == null || o.BackCovers.Count == 0)
                 {
-                    
-                    // check whether we have run out of images
-                    if (i >= fshots.Count || fshots == null)
-                    {
-                        break;
-                    }
-                    // populate screenshot images                    
-                    string path = arr[i];
-                    Image img = (Image)mw.FindName("fa" + (i + 1).ToString());
-                    SetImage(img, path, UriKind.Absolute);
-                    img.SetVisibility();
-                    i++;
+                    imgBoxartBack.Source = null;
+                    imgBoxartBack.SetVisibility();
+                }        
+                else
+                {
+                    isGameInfoData = true;
+                    // boxart - back
+                    SetImage(imgBoxartBack, o.BackCovers.FirstOrDefault(), UriKind.Absolute);
+                    imgBoxartBack.SetVisibility();
                 }
-            }
-            else { brdSidebarFanArt.Visibility = Visibility.Collapsed; }
 
-            // manuals
-            if (o.Manuals != null && o.Manuals.Count > 0)
-            {
-                brdManuals.Visibility = Visibility.Visible;
-                // get number of manuals in the directory
-                int manCount = o.Manuals.Count;
-                // disable buttons that are not needed and setup the buttons that are required
-                int c = 1;
-                while (c <= 20)
+                // Banner Image
+                if (o.Banners == null || o.Banners.Count == 0)
                 {
-                    Button b = (Button)mw.FindName("btnMan" + c);
-                    if ((c - 1) < manCount)
-                    {
-                        // activate button
-                        b.Visibility = Visibility.Visible;
-                        // get just filename
-                        string path = Path.GetFileName(o.Manuals[c - 1]);
-                        b.Content = path; // "Man " + c.ToString();
-                        b.ToolTip = o.Manuals[c - 1];
-                        b.FontSize = 8;
-                    }
-                    else
-                    {
-                        // hide button
-                        b.Visibility = Visibility.Collapsed;
-                    }
-                    c++;
+                    imgBanner.Source = null;
+                    imgBanner.SetVisibility();
+                }                    
+                else
+                {
+                    isGameInfoData = true;
+                    // banner (just take one)
+                    List<string> banners = new List<string>();
+                    SetImage(imgBanner, o.Banners.FirstOrDefault(), UriKind.Absolute);
+                    imgBanner.SetVisibility();
                 }
-            }
-            else { brdManuals.Visibility = Visibility.Collapsed; }
 
+                // Front Cover Image
+                if (o.FrontCovers == null || o.FrontCovers.Count == 0)
+                {
+                    imgBoxartFront.Source = null;
+                    imgBoxartFront.SetVisibility();
+                }                    
+                else
+                {
+                    isGameInfoData = true;
+                    // boxart - front
+                    SetImage(imgBoxartFront, o.FrontCovers.FirstOrDefault(), UriKind.Absolute);
+                    imgBoxartFront.SetVisibility();
+                }
+
+                // Media Image
+                if (o.Medias == null || o.Medias.Count == 0)
+                {
+                    imgMedia.Source = null;
+                    imgMedia.SetVisibility();
+                } 
+                else
+                {
+                    isGameInfoData = true;
+                    // media image
+                    SetImage(imgMedia, o.Medias.FirstOrDefault(), UriKind.Absolute);
+                    imgMedia.SetVisibility();
+                }
+
+                // Alternate Game Titles
+                if (o.Data.AlternateTitles == null || o.Data.AlternateTitles.Count == 0)
+                {
+                    lblAltNames.Content = null;
+                    lblAltNamesTitle.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    isGameInfoData = true;
+                    lblAltNames.Content = string.Join(", ", (o.Data.AlternateTitles).ToArray());
+                    lblAltNames.Visibility = Visibility.Visible;
+                    lblAltNamesTitle.Visibility = Visibility.Visible;
+                }
+
+                // Release Date
+                if (o.Data.Released == null || o.Data.Released == "")
+                {
+                    lblReleaseDate.Content = null;
+                    lblReleaseDateTitle.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    isGameInfoData = true;
+                    lblReleaseDate.Content = o.Data.Released;
+                    lblReleaseDate.Visibility = Visibility.Visible;
+                    lblReleaseDateTitle.Visibility = Visibility.Visible;
+                }
+
+                // Coop               
+                if (o.Data.Coop == null || o.Data.Coop == "")
+                {
+                    lblCoop.Content = null;
+                    lblCoopTitle.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    isGameInfoData = true;
+                    lblCoop.Content = o.Data.Coop;
+                    lblCoop.Visibility = Visibility.Visible;
+                    lblCoopTitle.Visibility = Visibility.Visible;
+                }
+
+                // Developer
+                if (o.Data.Developer == null || o.Data.Developer == "")
+                {
+                    lblDeveloper.Content = null;
+                    lblDeveloperTitle.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    isGameInfoData = true;
+                    lblDeveloper.Content = o.Data.Developer;
+                    lblDeveloper.Visibility = Visibility.Visible;
+                    lblDeveloperTitle.Visibility = Visibility.Visible;
+                }
+
+                // Publisher
+                if (o.Data.Publisher == null || o.Data.Publisher == "")
+                {
+                    lblPublisher.Content = null;
+                    lblPublisherTitle.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    isGameInfoData = true;
+                    lblPublisher.Content = o.Data.Publisher;
+                    lblPublisher.Visibility = Visibility.Visible;
+                    lblPublisherTitle.Visibility = Visibility.Visible;
+                }
+
+                // Genres
+                if (o.Data.Genres == null || o.Data.Genres.Count == 0)
+                {
+                    lblGenres.Content = null;
+                    lblGenresTitle.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    isGameInfoData = true;
+                    lblGenres.Content = string.Join(", ", (o.Data.Genres).ToArray());
+                    lblGenres.Visibility = Visibility.Visible;
+                    lblGenresTitle.Visibility = Visibility.Visible;
+                }
+
+                // ESRB Rating
+                if (o.Data.ESRB == null || o.Data.ESRB == "")
+                {
+                    // create esrb labels
+                }
+                else
+                {
+                    isGameInfoData = true;
+                }
+
+                // Number of players
+                if (o.Data.Players == null || o.Data.Players == "")
+                {
+                    lblPlayers.Content = null;
+                    lblPlayersTitle.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    isGameInfoData = true;
+                    lblPlayers.Content = o.Data.Players;
+                    lblPlayers.Visibility = Visibility.Visible;
+                    lblPlayersTitle.Visibility = Visibility.Visible;
+                }
+
+                // game overview (description)
+                if (o.Data.Overview == null || o.Data.Overview == "")
+                {
+                    tbOverview.Text = null;
+                    brdSidebarOverview.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    isGameInfoData = true;
+                    tbOverview.Text = o.Data.Overview;
+                    brdSidebarOverview.Visibility = Visibility.Visible;
+                }
+
+                // Fanart Images
+                if (o.FanArts == null || o.FanArts.Count == 0)
+                {
+                    brdSidebarFanArt.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    isFanrtsData = true;                    
+                    int fanCount = o.FanArts.Count;
+                    ugridFanarts.Columns = DetermineUniformGridColumns(fanCount);
+                    brdSidebarFanArt.Visibility = Visibility.Visible;
+                    List<string> fshots = o.FanArts;
+                    String[] arr = fshots.ToArray();
+                    int i = 0;
+                    while (i < fa.Count)
+                    {
+
+                        // check whether we have run out of images
+                        if (i >= fshots.Count || fshots == null)
+                        {
+                            break;
+                        }
+                        // populate screenshot images                    
+                        string path = arr[i];
+                        Image img = (Image)mw.FindName("fa" + (i + 1).ToString());
+                        SetImage(img, path, UriKind.Absolute);
+                        img.SetVisibility();
+                        i++;
+                    }
+                }
+
+                // Screenshot Images
+                if (o.Screenshots == null || o.Screenshots.Count == 0)
+                {
+                    brdSidebarScreenshots.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    isScreenshotsData = true;
+                    int screenCount = o.Screenshots.Count;
+                    ugridScreenshots.Columns = DetermineUniformGridColumns(screenCount);                    
+                    brdSidebarScreenshots.Visibility = Visibility.Visible;
+                    List<string> sshots = o.Screenshots;
+                    String[] arr = sshots.ToArray();
+                    int i = 0;
+                    while (i < ss.Count)
+                    {
+                        // check whether we have run out of images
+                        if (i >= sshots.Count || sshots == null)
+                        {
+                            break;
+                        }
+                        // populate screenshot images                    
+                        string path = arr[i];
+                        Image img = (Image)mw.FindName("ss" + (i + 1).ToString());
+                        SetImage(img, path, UriKind.Absolute);
+                        img.SetVisibility();
+                        i++;
+                    }
+                }
+
+                // Manuals (external documents)
+                if (o.Manuals == null || o.Manuals.Count == 0)
+                {
+                    brdManuals.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    isManualsData = true;
+                    brdManuals.Visibility = Visibility.Visible;
+                    // get number of manuals in the directory
+                    int manCount = o.Manuals.Count;
+                    // disable buttons that are not needed and setup the buttons that are required
+                    int c = 1;
+                    while (c <= 20)
+                    {
+                        Button b = (Button)mw.FindName("btnMan" + c);
+                        if ((c - 1) < manCount)
+                        {
+                            // activate button
+                            b.Visibility = Visibility.Visible;
+                            // get just filename
+                            string path = Path.GetFileName(o.Manuals[c - 1]);
+                            b.Content = path; // "Man " + c.ToString();
+                            b.ToolTip = o.Manuals[c - 1];
+                            b.FontSize = 8;
+                        }
+                        else
+                        {
+                            // hide button
+                            b.Visibility = Visibility.Collapsed;
+                        }
+                        c++;
+                    }
+                }
+
+                // set border visibilities
+                if (isGameInfoData == false)
+                    brdSidebarGameInformation.Visibility = Visibility.Collapsed;
+                else
+                    brdSidebarGameInformation.Visibility = Visibility.Visible;
+                if (isFanrtsData == false)
+                    brdSidebarFanArt.Visibility = Visibility.Collapsed;
+                else
+                    brdSidebarFanArt.Visibility = Visibility.Visible;
+                if (isScreenshotsData == false)
+                    brdSidebarScreenshots.Visibility = Visibility.Collapsed;
+                else
+                    brdSidebarScreenshots.Visibility = Visibility.Visible;
+                if (isManualsData == false)
+                    brdManuals.Visibility = Visibility.Collapsed;
+                else
+                    brdManuals.Visibility = Visibility.Visible;
+
+            }   
+        }
+
+        public static int DetermineUniformGridColumns(int count)
+        {
+            int counter = 4;
+            if (count <= 4) { return count; }
+            if (count > 16)
+            {
+                counter = 5;
+            }
+            if (count > 20)
+            {
+                counter = 6; 
+            }
+            return counter;
         }
 
         public static void SetImage(Image img, string path, UriKind urikind)

@@ -19,10 +19,10 @@ namespace MedLaunch.Classes
     public class MobyScraper
     {
 
-        public static ScrapedGameObjectWeb ScrapeGame(ScrapedGameObjectWeb o, ScraperOrder order, ProgressDialogController controller, ScraperMaster masterrecord)
+        public static ScrapedGameObjectWeb ScrapeGame(ScrapedGameObjectWeb o, ScraperOrder order, ProgressDialogController controller, ScraperMaster masterrecord, string message)
         {
             bool priority;
-            string message = "Downloading information for: " + masterrecord.MobyData.MobyTitle + "\n(" + masterrecord.MobyData.MobyPlatformName + ")";
+            message = message + "Downloading information for: " + masterrecord.MobyData.MobyTitle + "\n(" + masterrecord.MobyData.MobyPlatformName + ")";
             if (order == ScraperOrder.Primary) { message = "Primary Scraping (mobygames)\n" + message; }
             else { message = "Secondary Scraping (mobygames)\n" + message; }
             GlobalSettings gs = GlobalSettings.GetGlobals();

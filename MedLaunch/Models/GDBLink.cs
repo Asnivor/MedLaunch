@@ -44,6 +44,16 @@ namespace MedLaunch.Models
 
         }
 
+        public static List<GDBLink> GetAllRecords()
+        {
+            using (var db = new MyDbContext())
+            {
+                List<GDBLink> l = db.GDBLink.ToList();
+                return l;
+            }
+
+        }
+
         public static void DeleteRecord(GDBLink linkRecord)
         {
             using (var db = new MyDbContext())

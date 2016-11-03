@@ -16,10 +16,10 @@ namespace MedLaunch.Classes.TheGamesDB
     public class GDBScraper
     {
 
-        public static ScrapedGameObjectWeb ScrapeGame(ScrapedGameObjectWeb o, ScraperOrder order, ProgressDialogController controller, ScraperMaster masterrecord)
+        public static ScrapedGameObjectWeb ScrapeGame(ScrapedGameObjectWeb o, ScraperOrder order, ProgressDialogController controller, ScraperMaster masterrecord, string message)
         {
             bool priority;
-            string message = "Downloading information for: " + masterrecord.TGDBData.GamesDBTitle + "\n(" + masterrecord.TGDBData.GamesDBPlatformName + ")";
+            message = message + "Downloading information for: " + masterrecord.TGDBData.GamesDBTitle + "\n(" + masterrecord.TGDBData.GamesDBPlatformName + ")";
             if (order == ScraperOrder.Primary) { message = "Primary Scraping (thegamesdb)\n" + message; }
             else { message = "Secondary Scraping (thegamesdb)\n" + message; }
             string BaseImgUrl = "http://thegamesdb.net/banners/";
