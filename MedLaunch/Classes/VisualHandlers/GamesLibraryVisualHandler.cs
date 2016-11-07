@@ -99,6 +99,7 @@ namespace MedLaunch.Classes
             Label lblGenres = (Label)mw.FindName("lblGenres");
             Label lblDeveloper = (Label)mw.FindName("lblDeveloper");
             Label lblPublisher = (Label)mw.FindName("lblPublisher");
+            Label lblESRB = (Label)mw.FindName("lblESRB");
 
             Label lblAltNamesTitle = (Label)mw.FindName("lblAltNamesTitle");
             Label lblReleaseDateTitle = (Label)mw.FindName("lblReleaseDateTitle");
@@ -107,6 +108,7 @@ namespace MedLaunch.Classes
             Label lblGenresTitle = (Label)mw.FindName("lblGenresTitle");
             Label lblDeveloperTitle = (Label)mw.FindName("lblDeveloperTitle");
             Label lblPublisherTitle = (Label)mw.FindName("lblPublisherTitle");
+            Label lblESRBTitle = (Label)mw.FindName("lblESRBTitle");
 
             TextBlock tbOverview = (TextBlock)mw.FindName("tbOverview");
 
@@ -470,11 +472,15 @@ namespace MedLaunch.Classes
                 // ESRB Rating
                 if (o.Data.ESRB == null || o.Data.ESRB == "")
                 {
-                    // create esrb labels
+                    lblESRB.Content = null;
+                    lblESRBTitle.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
                     isGameInfoData = true;
+                    lblESRB.Content = o.Data.ESRB;
+                    lblESRB.Visibility = Visibility.Visible;
+                    lblESRBTitle.Visibility = Visibility.Visible;
                 }
 
                 // Number of players

@@ -83,16 +83,24 @@ namespace MedLaunch.Classes.TheGamesDB
                 }
                 if (gs.scrapeFanart == true)
                 {
+                    int co = 0;
                     foreach (var s in g.Images.Fanart)
                     {
+                        if (co >= gs.maxFanarts)
+                            break;
                         o.FanArts.Add(BaseImgUrl + s.Path);
+                        co++;
                     }
                 }
                 if (gs.scrapeScreenshots == true)
                 {
+                    int co = 0;
                     foreach (var s in g.Images.Screenshots)
                     {
+                        if (co >= gs.maxScreenshots)
+                            break;
                         o.Screenshots.Add(BaseImgUrl + s.Path);
+                        co++;
                     }
                 }         
             }

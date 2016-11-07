@@ -565,7 +565,14 @@
                                                             <AccessText TextWrapping="Wrap" />
                                                         </Label.Content>
                                                     </Label>
-                                                    
+
+                                                    <Label x:Name="lblESRBTitle"  Grid.Column="0" Grid.Row="7" FontSize="10" Padding="2" FontWeight="Medium">ESRB Rating</Label>
+                                                    <Label  x:Name="lblESRB" Grid.Column="1" Grid.Row="7"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                        <Label.Content>
+                                                            <AccessText TextWrapping="Wrap" />
+                                                        </Label.Content>
+                                                    </Label>
+
 
                                                 </Grid>
 
