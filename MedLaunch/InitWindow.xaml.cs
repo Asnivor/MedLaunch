@@ -87,6 +87,39 @@ namespace MedLaunch
                     string[] appVersionArr = appVersion.Split('.');
                     int i = 0;
                     bool upgradeNeeded = false;
+                    for (int v = 0; v < 3; v++)
+                    {
+                        int appV = Convert.ToInt32(appVersionArr[v]);
+                        int dbV = Convert.ToInt32(dbVersionArr[v]);
+
+                        if (dbV > appV)
+                        {
+                            // database is NEWER than the current application version
+                            Console.WriteLine("WARNING: Your MedLaunch database version is NEWER than your installed MedLaunch application!");
+                            Console.WriteLine("It looks like you have installed an older version of MedLaunch over an existing MedLaunch directory.");
+                            Console.WriteLine("This can only be bad and will need to be resolved by you before you continue.");
+                            Console.WriteLine("Manual solution 1: Press any key to terminate this application. Then download the latest version of MedLaunch from GitHub and extract it over your current MedLaunch folder");
+                            Console.WriteLine("Manual solution 2: Press any key to terminate this application. Then delete your MedLaunch database (.Data/Settings/MedLaunch.db). This will wipe out all of your settings/games/etc.");
+                            Console.WriteLine("");
+                            Console.WriteLine("Hint: Manual solution 1 is recommended.");
+                            Console.WriteLine("");
+                            Console.WriteLine("Press any key to abort Medlaunch initialisation......");
+                            Console.ReadKey();
+                            Environment.Exit(0);
+                            break;
+                        }
+                        if (dbV == appV)
+                        {
+                            continue;
+                        }
+                        if (dbV < appV)
+                        {
+                            // database is OLDER than application - upgrade needed
+                            upgradeNeeded = true;
+                        }
+
+                    }
+                    /*
                     while (i < 3)
                     {
                         // if anything but the 4th number (private build) is greater in the appVersion - database needs to be upgraded
@@ -98,6 +131,7 @@ namespace MedLaunch
                         }
                         i++;
                     }
+                    */
                     if (upgradeNeeded == true)
                     {
                         // unhide the init window
