@@ -129,7 +129,7 @@ namespace MedLaunch
             // load globalsettings for front page
             GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar,
                chkAllowBanners, chkAllowBoxart, chkAllowScreenshots, chkAllowFanart, chkPreferGenesis, chkAllowManuals, chkAllowMedia, chkSecondaryScraperBackup,
-               rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost);
+               rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost, chkAllBaseSettings);
             //gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
             GlobalSettings gs = GlobalSettings.GetGlobals();
             mainScaleTransform.ScaleX = Convert.ToDouble(gs.guiZoom);
@@ -1188,6 +1188,16 @@ namespace MedLaunch
         private void chkEnableSnes_faust_Unchecked(object sender, RoutedEventArgs e)
         {
             GlobalSettings.UpdateEnableSnes_faust(chkEnableSnes_faust);
+        }
+
+        private void chkAllBaseSettings_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdatechkAllBaseSettings(chkAllBaseSettings);
+        }
+
+        private void chkAllBaseSettings_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdatechkAllBaseSettings(chkAllBaseSettings);
         }
 
         private void chkMinToTaskbar_Checked(object sender, RoutedEventArgs e)

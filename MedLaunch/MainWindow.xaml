@@ -1642,6 +1642,14 @@
                             </Expander>
                         </Border>
 
+                        <Button x:Name="btnConfigImportAll"  Background="DarkOrange">
+                            <TextBlock HorizontalAlignment="Center" TextAlignment="Center">
+                                IMPORT ALL CONFIGS
+                                <LineBreak />
+                                FROM DISK
+                            </TextBlock>
+                        </Button>
+
                         <Button x:Name="btnConfigSaveChanges"  Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnConfigSaveChanges_Click" ></Button>
                         <Button x:Name="btnConfigCancelChanges"  Content="Revert Changes" Background="Red" Click="btnConfigCancelChanges_Click" ></Button>
 
@@ -4547,6 +4555,10 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
 
@@ -4578,11 +4590,16 @@
                                                     <ComboBoxItem Tag="1.5">150%</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <CheckBox x:Name="chkMinToTaskbar" Grid.ColumnSpan="2" Grid.Row="4" Checked="chkMinToTaskbar_Checked" Unchecked="chkMinToTaskbar_Unchecked">
+                                                <CheckBox x:Name="chkAllBaseSettings" Grid.ColumnSpan="2" Grid.Row="4" Checked="chkAllBaseSettings_Checked" Unchecked="chkAllBaseSettings_Unchecked"
+                                                          ToolTip="Shows every possible config option under 'base configuration'. It means that you do not have to use MedLaunch system-specific configs if you don't want to)">
+                                                    Show ALL possible settings under 'Base Configuration'
+                                                </CheckBox>
+
+                                                <CheckBox x:Name="chkMinToTaskbar" Grid.ColumnSpan="2" Grid.Row="5" Checked="chkMinToTaskbar_Checked" Unchecked="chkMinToTaskbar_Unchecked">
                                                     Minimise MedLaunch to the taskbar when a game is launched
                                                 </CheckBox>
 
-                                                <CheckBox x:Name="chkHideSidebar" Grid.ColumnSpan="2" Grid.Row="5" Checked="chkHideSidebar_Checked" Unchecked="chkHideSidebar_Unchecked">
+                                                <CheckBox x:Name="chkHideSidebar" Grid.ColumnSpan="2" Grid.Row="6" Checked="chkHideSidebar_Checked" Unchecked="chkHideSidebar_Unchecked">
                                                     Never show the Games Library Sidebar
                                                 </CheckBox>
 

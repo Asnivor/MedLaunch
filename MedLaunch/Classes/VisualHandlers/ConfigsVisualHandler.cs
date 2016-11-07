@@ -39,6 +39,8 @@ namespace MedLaunch.Classes
             AllDynamicConfigPanels = (from a in AllConfigPanels
                                       where a.Name.Length > 1
                                       select a).ToList();
+
+            GS = GlobalSettings.GetGlobals();
         }
 
         // Methods
@@ -72,11 +74,12 @@ namespace MedLaunch.Classes
 
             string name = _activeRadio.Name.Replace("btnConfig", "").ToLower();
 
+
             // set system specific config panels as visible
             foreach (Border border in AllDynamicConfigPanels)
             {
                 string brdName = StripTrailingNumerals(border.Name.ToLower().Replace("brdspecific", ""));
-                if (brdName == name)
+                if (brdName == name || (name == "base" && GS.showAllBaseSettings == true))
                 {
                     border.Visibility = Visibility.Visible;
                 }
@@ -92,5 +95,6 @@ namespace MedLaunch.Classes
         public List<RadioButton> FilterButtons { get; set; }
         public List<Border> AllDynamicConfigPanels { get; set; }
         public WrapPanel ConfigWrapPanel { get; set; }
+        public GlobalSettings GS { get; set; }
     }
 }

@@ -21,6 +21,7 @@ namespace MedLaunch.Models
         public bool? enablePce_fast { get; set; }                  // use pce_fast emulation rather than pce
         public int? serverSelected { get; set; }                    // stores the currently selected server ID
         public double guiZoom { get; set; }                         // the current GUI zoom factor as a decimal (1 = 100%)
+        public bool? showAllBaseSettings { get; set; }              // if enabled, all settings are visible and configurable under the base configuration
         public bool? minToTaskBarOnGameLaunch { get; set; }         // whether or not MedLaunch is minimised to taskbar when game is launched
         public bool? hideSidebar { get; set; }                      // always hide the games library sidebar
         public DateTime? gdbLastUpdated { get; set; }               // last time platformgames were synced from thegamesdb.net
@@ -65,6 +66,7 @@ namespace MedLaunch.Models
                 guiZoom = 1,
                 minToTaskBarOnGameLaunch = true,
                 hideSidebar = false,
+                showAllBaseSettings = true,
                 gdbLastUpdated = DateTime.Now,
                 glGameStats = true,
                 glGameInfo = true,
@@ -156,7 +158,8 @@ namespace MedLaunch.Models
 
         public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast, ComboBox GuiZoom, CheckBox MinToTaskBar, CheckBox HideSidebar,
             CheckBox chkAllowBanners, CheckBox chkAllowBoxart, CheckBox chkAllowScreenshots, CheckBox chkAllowFanart, CheckBox chkPreferGenesis, 
-            CheckBox chkAllowManuals, CheckBox chkAllowMedia, CheckBox chkSecondaryScraperBackup, RadioButton rbGDB, RadioButton rbMoby, Slider slScreenshotsPerHost, Slider slFanrtsPerHost)
+            CheckBox chkAllowManuals, CheckBox chkAllowMedia, CheckBox chkSecondaryScraperBackup, RadioButton rbGDB, RadioButton rbMoby, Slider slScreenshotsPerHost, Slider slFanrtsPerHost,
+            CheckBox chkAllBaseSettings)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
@@ -170,6 +173,8 @@ namespace MedLaunch.Models
             GuiZoom.SelectedValue = gs.guiZoom.ToString();
             MinToTaskBar.IsChecked = gs.minToTaskBarOnGameLaunch;
             HideSidebar.IsChecked = gs.hideSidebar;
+
+            chkAllBaseSettings.IsChecked = gs.showAllBaseSettings;
             //MessageBox.Show(gs.guiZoom.ToString());
 
             // game scraping options
@@ -249,6 +254,13 @@ namespace MedLaunch.Models
         {
             GlobalSettings gs = GetGlobals();
             gs.guiZoom = GuiZoom;
+            SetGlobals(gs);
+        }
+
+        public static void UpdatechkAllBaseSettings(CheckBox chkAllBaseSettings)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.showAllBaseSettings = chkAllBaseSettings.IsChecked;
             SetGlobals(gs);
         }
 
