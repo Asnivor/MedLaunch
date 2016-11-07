@@ -219,7 +219,7 @@ namespace MedLaunch.Classes.Scraper
             ScrapedGameObjectWeb gameObject = new ScrapedGameObjectWeb();
             gameObject.Data = gameData;
             gameObject.GdbId = MasterRecord.GamesDbId;
-
+            
             // enumerate globalsettings
             switch (_GlobalSettings.primaryScraper)
             {

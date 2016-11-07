@@ -2430,19 +2430,32 @@ namespace MedLaunch
             // compare versions and determine whether an upgrade is needed
             string[] CurrVersionArr = currVersion.Split('.');
             string[] newVersionArr = latestVersion.Split('.');
-            int i = 0;
             bool upgradeNeeded = false;
-            while (i < 4)
+
+            for (int v = 0; v < 4; v++)
             {
-                // if anything but the 4th number (private build) is greater in the new version
-                if (Convert.ToInt32(newVersionArr[i]) > Convert.ToInt32(CurrVersionArr[i]))
+                int currV = Convert.ToInt32(CurrVersionArr[v]);
+                int currN = Convert.ToInt32(newVersionArr[v]);
+
+                if (currV > currN)
                 {
-                    // version update is possible
+                    // current version is NEWER than new version - upgrade not needed - break
+                    break;
+                }
+                if (currV == currN)
+                {
+                    // versions are the same - continue checking
+                    continue;
+                }
+                if (currV < currN)
+                {
+                    // new version is greater than old for this octet - upgrade needed
                     upgradeNeeded = true;
                     break;
                 }
-                i++;
+                 
             }
+
             if (upgradeNeeded == true)
             {
                 output = "A New MedLaunch Release is Now Available";

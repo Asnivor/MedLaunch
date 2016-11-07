@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedLaunch.Classes;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -11,6 +12,34 @@ namespace MedLaunch.Models
     {
         public int versionId { get; set; }
         public string dbVersion { get; set; }
+
+        // return compatible mednafen version branch
+        public static string CompatibleMednafenBranch()
+        {
+            string branch = "0.9.39.x";
+            return branch;
+        }
+
+        // compare mednafen versions
+        public static bool IsMednafenVersionValid()
+        {
+            string localbranch = LogParser.GetMednafenVersion();
+            string requiredbranch = Versions.CompatibleMednafenBranch();
+
+            string[] lb = localbranch.Trim().Split('.');
+            string[] rb = requiredbranch.Trim().Split('.');
+
+            bool isValid = true;
+            for (int i = 0; i < 3; i++)
+            {
+                if (lb[i] != rb[i])
+                {
+                    isValid = false;
+                    break;
+                }
+            }
+            return isValid;
+        }
 
         // get application version
         public static string ReturnApplicationVersion()
