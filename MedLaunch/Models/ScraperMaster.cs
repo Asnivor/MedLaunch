@@ -12,7 +12,7 @@ namespace MedLaunch.Models
         public int MedLaunchSystemId { get; set; }
         public ScraperTGDB TGDBData { get; set; }
         public ScraperMoby MobyData { get; set; }
-        public string IDDBManual { get; set; }
+        public List<string> IDDBManual { get; set; }
 
         public ScraperMaster()
         {

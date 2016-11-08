@@ -39,6 +39,7 @@ using MedLaunch.Classes.MobyGames;
 using MedLaunch.Classes.MasterScraper;
 using MedLaunch.Classes.TheGamesDB;
 using MedLaunch.Classes.Scraper;
+using MedLaunch.Classes.Scraper.ReplacementDocs;
 
 namespace MedLaunch
 {
@@ -2676,6 +2677,43 @@ namespace MedLaunch
             }
         }
 
+        private async void btnRDmanuallist_Click(object sender, RoutedEventArgs e)
+        {
+
+            // get the main window
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            // start progress dialog controller
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel Scraping",
+                AnimateShow = false,
+                AnimateHide = false
+            };
+            var controller = await mw.ShowProgressAsync("Scraping Manual List from replacementdocs.com", "Initialising...", true, settings: mySettings);
+            controller.SetCancelable(true);
+            await Task.Delay(100);
+
+            await Task.Run(() =>
+            {
+                RdScraper.ScrapeBasicDocsList(controller);
+            });
+
+            //MobyGames.ScrapeAllPlatformGames();
+            // App app = ((App)Application.Current);
+
+            await controller.CloseAsync();
+
+            if (controller.IsCanceled)
+            {
+                await mw.ShowMessageAsync("replacementdocs.com manual link scraper", "Scraping Cancelled");
+            }
+            else
+            {
+                await mw.ShowMessageAsync("replacementdocs.com manual link scraper", "Scraping Completed");
+            }
+        }
+
 
 
         private void btnmobyPlatformListDumpToFile_Click(object sender, RoutedEventArgs e)
@@ -2713,7 +2751,17 @@ namespace MedLaunch
             j.BeginMerge(false, false, true);
         }
 
-        
+        private void btnCombineGamesDatabaseOrgManuals_Click(object sender, RoutedEventArgs e)
+        {
+            CreateMasterList j = new CreateMasterList();
+            j.ParseGamesDatabaseOrgManuals();
+        }
+
+        private void btnParseRDList_Click(object sender, RoutedEventArgs e)
+        {
+            CreateMasterList j = new CreateMasterList();
+            j.ParseReplacementDocsManuals();
+        }
     }
     /*
     public class SliderIgnoreDelta : Slider

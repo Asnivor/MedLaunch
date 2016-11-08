@@ -219,7 +219,15 @@ namespace MedLaunch.Classes.Scraper
             ScrapedGameObjectWeb gameObject = new ScrapedGameObjectWeb();
             gameObject.Data = gameData;
             gameObject.GdbId = MasterRecord.GamesDbId;
-            
+
+            // check for manuals
+            if (_GlobalSettings.scrapeManuals == true)
+            {
+                if (gameObject.Manuals == null)
+                    gameObject.Manuals = new List<string>();
+            }
+            gameObject.Manuals = MasterRecord.IDDBManual;
+
             // enumerate globalsettings
             switch (_GlobalSettings.primaryScraper)
             {
@@ -236,6 +244,8 @@ namespace MedLaunch.Classes.Scraper
                         GDBScraper.ScrapeGame(gameObject, ScraperOrder.Secondary, controller, MasterRecord, message);
                     break;
             }
+
+            
 
             // gameObject should now be populated - create folder structure on disk if it does not already exist
             controller.SetMessage(message + "Determining local folder structure");
@@ -364,6 +374,7 @@ namespace MedLaunch.Classes.Scraper
                 foreach (string s in o.Manuals)
                 {
                     controller.SetMessage(message + "Downloading content for: " + o.Data.Title + "\nManual: " + count + " of " + total + "\n(" + s + ")");
+
                     DownloadFile(s, baseDir + "Manual");
                     count++;
                 }
@@ -376,18 +387,24 @@ namespace MedLaunch.Classes.Scraper
         public static void DownloadFile(string url, string localdir)
         {
             string local = localdir + @"\";
-            string filename = Path.GetFileName(new Uri(url).AbsolutePath);
-            string localFile = local + filename;
+            string fileName = Path.GetFileName(new Uri(url).AbsolutePath);
 
             using (var wc = new CustomWebClient())
             {
                 wc.Proxy = null;
-                wc.Timeout = 30000;
+                wc.Timeout = 30000;              
                 try
                 {
-                    if (!File.Exists(localFile))
+                    // Try to extract the filename from the Content-Disposition header
+                    var data = wc.DownloadData(url);
+                    if (!String.IsNullOrEmpty(wc.ResponseHeaders["Content-Disposition"]))
                     {
-                        wc.DownloadFile(url, localFile);
+                        fileName = wc.ResponseHeaders["Content-Disposition"].Substring(wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=") + 10).Replace("\"", "");
+                    }
+                    if (!File.Exists(local + fileName))
+                    {
+                        //wc.DownloadFile(url, local + fileName);
+                        File.WriteAllBytes(local + fileName, data);
                     }
                     else
                     {

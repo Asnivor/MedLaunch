@@ -202,6 +202,7 @@
     <Compile Include="Classes\ConfigImport.cs" />
     <Compile Include="Classes\ConfigReflection.cs" />
     <Compile Include="Classes\LogParser.cs" />
+    <Compile Include="Classes\Scraper\ReplacementDocs\RdScraper.cs" />
     <Compile Include="Classes\Scraper\ScraperHandler.cs" />
     <Compile Include="Classes\VisualHandlers\ConfigsVisualHandler.cs" />
     <Compile Include="Classes\DbMigration.cs" />

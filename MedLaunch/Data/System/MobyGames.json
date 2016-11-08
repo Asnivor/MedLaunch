@@ -23803,13 +23803,13 @@
   },
   {
     "Title": "Bishi Bashi Special",
-    "UrlName": "bishi-bashi-special_",
+    "UrlName": "bishi-bashi-special",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "Bishi Bashi Special",
-    "UrlName": "bishi-bashi-special",
+    "UrlName": "bishi-bashi-special_",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -24721,13 +24721,13 @@
   },
   {
     "Title": "Clock Tower",
-    "UrlName": "clock-tower",
+    "UrlName": "clock-tower_",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "Clock Tower",
-    "UrlName": "clock-tower_",
+    "UrlName": "clock-tower",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -28249,13 +28249,13 @@
   },
   {
     "Title": "King's Field",
-    "UrlName": "kings-field_",
+    "UrlName": "kings-field",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "King's Field",
-    "UrlName": "kings-field",
+    "UrlName": "kings-field_",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -29311,13 +29311,13 @@
   },
   {
     "Title": "Metal Gear Solid",
-    "UrlName": "metal-gear-solid__",
+    "UrlName": "metal-gear-solid",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "Metal Gear Solid",
-    "UrlName": "metal-gear-solid",
+    "UrlName": "metal-gear-solid__",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -29725,13 +29725,13 @@
   },
   {
     "Title": "Motor Toon Grand Prix",
-    "UrlName": "motor-toon-grand-prix_",
+    "UrlName": "motor-toon-grand-prix",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "Motor Toon Grand Prix",
-    "UrlName": "motor-toon-grand-prix",
+    "UrlName": "motor-toon-grand-prix_",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -32401,13 +32401,13 @@
   },
   {
     "Title": "Scrabble",
-    "UrlName": "scrabble________",
+    "UrlName": "scrabble",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "Scrabble",
-    "UrlName": "scrabble",
+    "UrlName": "scrabble________",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -32676,7 +32676,7 @@
     "PlatformName": "playstation"
   },
   {
-    "Title": "Silent Möbius - Case: Titanic",
+    "Title": "Silent Möbius: Case: Titanic",
     "UrlName": "silent-mbius-case-titanic",
     "SystemId": 9,
     "PlatformName": "playstation"
@@ -42877,13 +42877,13 @@
   },
   {
     "Title": "Rampart",
-    "UrlName": "rampart",
+    "UrlName": "rampart_",
     "SystemId": 11,
     "PlatformName": "nes"
   },
   {
     "Title": "Rampart",
-    "UrlName": "rampart_",
+    "UrlName": "rampart",
     "SystemId": 11,
     "PlatformName": "nes"
   },

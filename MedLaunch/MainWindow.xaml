@@ -5153,16 +5153,32 @@
                     <Button Margin="5" x:Name="btnCombineManualnonleven" Click="btnCombineManualnonleven_Click">
                         Combine sets and generate new master json (manual choice on multiple selections using word match counts)
                     </Button>
-<!--
+
+                    <Separator />
+
+                    <Button Margin="5" x:Name="btnCombineGamesDatabaseOrgManuals" Click="btnCombineGamesDatabaseOrgManuals_Click">
+                        Parse gamesdatabase.org list of manuals and manually match them
+                    </Button>
+
+                    <Button Margin="5" x:Name="btnRDmanuallist" Click="btnRDmanuallist_Click">
+                        Scrape all manual links from replacementdocs.com
+                    </Button>
+
+                    <Button Margin="5" x:Name="btnParseRDList" Click="btnParseRDList_Click">
+                        Parse replacement docs list of manuals and manually match them (auto on exact match)
+                    </Button>
+
+                    <!--
                     <Button Margin="5" x:Name="btnCombineManualEverything" Click="btnCombineManualEverything_Click">
                         DO Exact match and then prompt for everything else
                     </Button>
 -->
                     <Separator />
-
+<!--
                     <Button Margin="5" x:Name="btnGetManuals" Click="btnGetManuals_Click">
                         Attempt to scrape PDF Manual URLS
                     </Button>
+                    -->
                     <!--
                     <Button x:Name="btnmobyPlatformListDumpToFile" Click="btnmobyPlatformListDumpToFile_Click">
                         Dump all basic mobygames list from database to local json

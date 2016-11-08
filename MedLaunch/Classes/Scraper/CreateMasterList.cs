@@ -14,6 +14,7 @@ using MahApps.Metro.Controls.Dialogs;
 using System.Text.RegularExpressions;
 using System.Net;
 using HtmlAgilityPack;
+using MedLaunch.Classes.Scraper.ReplacementDocs;
 
 namespace MedLaunch.Classes.MasterScraper
 {
@@ -31,6 +32,7 @@ namespace MedLaunch.Classes.MasterScraper
         public List<DuplicateSearchResult> Duplicates { get; set; }
 
         public int NoMatches { get; set; }
+        public int Matched { get; set; }
 
         public string AppBaseDirectory { get; set; }
         public string MasterJsonPath { get; set; }
@@ -62,6 +64,8 @@ namespace MedLaunch.Classes.MasterScraper
             NoneFound = new List<ScraperMaster>();
             Duplicates = new List<DuplicateSearchResult>();
 
+            Matched = 0;
+
             GDBGames = JsonConvert.DeserializeObject<List<GDBPlatformGame>>(GDBJson);
             MobyGames = JsonConvert.DeserializeObject<List<MobyPlatformGame>>(MobyJson);
 
@@ -73,6 +77,349 @@ namespace MedLaunch.Classes.MasterScraper
         }
 
         // methods
+
+        // parse replacementdocs manuals into master list
+        public async void ParseReplacementDocsManuals()
+        {
+            mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            // start progress dialog controller
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel Scraping",
+                AnimateShow = false,
+                AnimateHide = false
+            };
+            var controller = await mw.ShowProgressAsync("Matching replacementdocs.com manuals", "Initialising...", true, settings: mySettings);
+            controller.SetCancelable(true);
+            await Task.Delay(100);
+
+            await Task.Run(() =>
+            {
+                // load all manual data into object
+                if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\replacementdocs-manuals.json"))
+                {
+                    return;
+                }
+
+                string json = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\replacementdocs-manuals.json");
+                List<ReplacementDocs> manuals = JsonConvert.DeserializeObject<List<ReplacementDocs>>(json);
+
+                // iterate through each manual
+                foreach (var m in manuals)
+                {
+                    // check whether manual link already exists
+                    bool updateneeded = true;
+                    foreach (string u in m.Urls)
+                    {
+                        var master = (from a in MasterGames
+                                      where a.IDDBManual != null && a.TGDBData.GamesDBPlatformName == m.TGBSystemName && a.IDDBManual.Contains(u)
+                                      select a).ToList();
+                        if (master.Count > 0)
+                            updateneeded = false;
+                        else
+                            updateneeded = true;
+                    }
+
+                    if (updateneeded == false)
+                        continue;
+
+                    // get list just for this system
+                    var sysList = MasterGames.Where(a => a.TGDBData.GamesDBPlatformName == m.TGBSystemName).ToList();
+                    controller.SetMessage("Matching Manuals for Game: " + m.GameName + "\n(" + m.TGBSystemName + ")\n\nMatches Found: " + Matched.ToString());
+                    MatchManualRD(sysList, m, controller);
+                }
+
+            });
+
+            await controller.CloseAsync();
+
+            if (controller.IsCanceled)
+            {
+                await mw.ShowMessageAsync("Parse Manuals", "Parsing Cancelled");
+            }
+            else
+            {
+                await mw.ShowMessageAsync("Parse Manuals", "Parsing Completed");
+            }
+        }
+
+        // Parse static list of manual links from gamesdatabase.org
+        public async void ParseGamesDatabaseOrgManuals()
+        {
+            mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            // start progress dialog controller
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel Scraping",
+                AnimateShow = false,
+                AnimateHide = false
+            };
+            var controller = await mw.ShowProgressAsync("Matching gamesdatabase.org manuals", "Initialising...", true, settings: mySettings);
+            controller.SetCancelable(true);
+            await Task.Delay(100);
+
+            await Task.Run(() =>
+            {
+                // parse all the links in the file
+                List<string> allLinks = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\gamesdatabase.org-manuals.txt").ToList();
+                allLinks.Distinct();
+
+                // iterate through each manual link
+                foreach (string s in allLinks)
+                {
+                    // if entry already exists in master json - skip
+                    string test = File.ReadAllText(MasterGamesJsonPath);
+                    if (test.Contains(s))
+                    {
+                        continue;
+                    }
+
+                    if (s.Contains("/Nintendo_Game_Boy/"))
+                    {
+                        List<ScraperMaster> games = (from a in MasterGames
+                                                     where a.TGDBData.GamesDBPlatformName == "Nintendo Game Boy"
+                                                     select a).ToList();
+                        MatchManual(games, s);
+                    }
+                    if (s.Contains("/Sega_Master_System/"))
+                    {
+                        List<ScraperMaster> games = (from a in MasterGames
+                                                     where a.TGDBData.GamesDBPlatformName == "Sega Master System"
+                                                     select a).ToList();
+                        MatchManual(games, s);
+                    }
+                    if (s.Contains("/Nintendo_Game_Boy_Color/"))
+                    {
+                        List<ScraperMaster> games = (from a in MasterGames
+                                                     where a.TGDBData.GamesDBPlatformName == "Nintendo Game Boy Color"
+                                                     select a).ToList();
+                        MatchManual(games, s);
+                    }
+                    if (s.Contains("/Atari_Lynx/"))
+                    {
+                        List<ScraperMaster> games = (from a in MasterGames
+                                                     where a.TGDBData.GamesDBPlatformName == "Atari Lynx"
+                                                     select a).ToList();
+                        MatchManual(games, s);
+                    }
+                    if (s.Contains("/Sega_Genesis/"))
+                    {
+                        List<ScraperMaster> games = (from a in MasterGames
+                                                     where a.TGDBData.GamesDBPlatformName == "Sega Genesis"
+                                                     select a).ToList();
+                        MatchManual(games, s);
+                    }
+                    if (s.Contains("/Sega_Game_Gear/"))
+                    {
+                        List<ScraperMaster> games = (from a in MasterGames
+                                                     where a.TGDBData.GamesDBPlatformName == "Sega Game Gear"
+                                                     select a).ToList();
+                        MatchManual(games, s);
+                    }
+                    if (s.Contains("/NEC_TurboGrafx_16/"))
+                    {
+                        List<ScraperMaster> games = (from a in MasterGames
+                                                     where a.TGDBData.GamesDBPlatformName == "TurboGrafx 16"
+                                                     select a).ToList();
+                        MatchManual(games, s);
+                    }
+                    if (s.Contains("/NEC_PC_Engine/"))
+                    {
+                        List<ScraperMaster> games = (from a in MasterGames
+                                                     where a.TGDBData.GamesDBPlatformName == "TurboGrafx 16"
+                                                     select a).ToList();
+                        MatchManual(games, s);
+                    }
+                    if (s.Contains("/Sony_Playstation/"))
+                    {
+                        List<ScraperMaster> games = (from a in MasterGames
+                                                     where a.TGDBData.GamesDBPlatformName == "Sony Playstation"
+                                                     select a).ToList();
+                        MatchManual(games, s);
+                    }
+                    if (s.Contains("/Nintendo_NES/"))
+                    {
+                        List<ScraperMaster> games = (from a in MasterGames
+                                                     where a.TGDBData.GamesDBPlatformName == "Nintendo Entertainment System (NES)"
+                                                     select a).ToList();
+                        MatchManual(games, s);
+                    }
+                    if (s.Contains("/Nintendo_SNES/"))
+                    {
+                        List<ScraperMaster> games = (from a in MasterGames
+                                                     where a.TGDBData.GamesDBPlatformName == "Super Nintendo (SNES)"
+                                                     select a).ToList();
+                        MatchManual(games, s);
+                    }
+                    if (s.Contains("/Sega_Saturn/"))
+                    {
+                        List<ScraperMaster> games = (from a in MasterGames
+                                                     where a.TGDBData.GamesDBPlatformName == "Sega Saturn"
+                                                     select a).ToList();
+                        MatchManual(games, s);
+                    }
+                    if (s.Contains("/Nintendo_Virtual_Boy/"))
+                    {
+                        List<ScraperMaster> games = (from a in MasterGames
+                                                     where a.TGDBData.GamesDBPlatformName == "Nintendo Virtual Boy"
+                                                     select a).ToList();
+                        MatchManual(games, s);
+                    }
+                }
+            });
+
+
+
+            await controller.CloseAsync();
+
+            if (controller.IsCanceled)
+            {
+                await mw.ShowMessageAsync("Parse Manuals", "Parsing Cancelled");
+            }
+            else
+            {
+                await mw.ShowMessageAsync("Parse Manuals", "Parsing Completed");
+            }
+        }
+
+        public void MatchManualRD(List<ScraperMaster> games, ReplacementDocs rd, ProgressDialogController controller)
+        {         
+            List<ScraperMaster> search = new List<ScraperMaster>();
+            List<ManualCount> mcount = new List<ManualCount>();
+
+            // first do exact match
+            var exact = (from a in games
+                         where a.TGDBData.GamesDBTitle.ToLower().Trim() == rd.GameName.ToLower().Trim()
+                         select a).ToList();
+            if (exact.Count == 1)
+            {
+                // exact entry found
+                var record = exact.FirstOrDefault();
+                if (record.IDDBManual == null)
+                    record.IDDBManual = new List<string>();
+                record.IDDBManual.AddRange(rd.Urls);
+                record.IDDBManual.Distinct();
+                AddOrUpdate(record);
+                SaveMasterJson();
+                return;
+            }
+
+            // manual matching based on word count
+            string[] lArr = rd.GameName.Trim().Split(' ');
+            for (int i = 0; i < lArr.Length; i++)
+            {
+                var s = games.Where(a => a.TGDBData.GamesDBTitle.ToLower().Trim().Contains(lArr[i].ToLower().Trim()));
+                search.AddRange(s);
+            }
+            // count entries in list
+            var q = from x in search
+                    group x by x into g
+                    let count = g.Count()
+                    orderby count descending
+                    select new { Value = g.Key, Count = count };
+            foreach (var x in q)
+            {
+                ManualCount mc = new ManualCount();
+                mc.Game = x.Value;
+                mc.Matches = x.Count;
+                mcount.Add(mc);
+            }
+
+            foreach (var g in mcount.OrderByDescending(a => a.Matches))
+            {
+                string message = "Manual: \n" + rd.GameName + "\n";
+                message += "\nGame:\n " + g.Game.TGDBData.GamesDBTitle + "\n(" + g.Game.TGDBData.GamesDBPlatformName + ")\n";
+                message += "\nIs this a match??\n";
+                message += "YES - match / NO - nomatch / CANCEL - cancel";
+                MessageBoxResult result = MessageBox.Show(message, "Manual Matching", MessageBoxButton.YesNoCancel);
+                if (result == MessageBoxResult.Cancel)
+                {
+                    return;
+                }
+                if (result == MessageBoxResult.Yes)
+                {
+                    // this is a match - update the master json
+                    var record = MasterGames.Where(a => a.GamesDbId == g.Game.GamesDbId).FirstOrDefault();
+                    if (record.IDDBManual == null)
+                        record.IDDBManual = new List<string>();
+                    record.IDDBManual.AddRange(rd.Urls);
+                    record.IDDBManual.Distinct();
+                    AddOrUpdate(record);
+                    SaveMasterJson();
+                    break;
+                }
+                if (result == MessageBoxResult.No)
+                {
+                    // not a match - continue
+                    continue;
+                }
+            }
+
+        }
+
+        public void MatchManual(List<ScraperMaster> games, string url)
+        {
+            // split the url based on /
+            string[] arr = url.Split('/');
+            // get the latest item and strip any extra /
+            string last = arr.Last().Replace("/", "").Trim();
+            // remove .pdf
+            last = last.Replace(".pdf", "").Replace("..pdf", "");
+            // spacing
+            last = last.Replace("_-_", " ").Replace("_", " ").Replace(",", "").Replace("'", "");
+            string[] lArr = last.Split(' ');
+            
+            List<ScraperMaster> search = new List<ScraperMaster>();
+            List<ManualCount> mcount = new List<ManualCount>();
+            
+            for (int i = 0; i < lArr.Length; i++)
+            {                
+                var s = games.Where(a => a.TGDBData.GamesDBTitle.ToLower().Contains(lArr[i].ToLower()));
+                search.AddRange(s);
+            }
+            // count entries in list
+            var q = from x in search
+                    group x by x into g
+                    let count = g.Count()
+                    orderby count descending
+                    select new { Value = g.Key, Count = count };
+            foreach (var x in q)
+            {
+                ManualCount mc = new ManualCount();
+                mc.Game = x.Value;
+                mc.Matches = x.Count;
+                mcount.Add(mc);
+            }   
+
+            foreach (var g in mcount.OrderByDescending(a => a.Matches))
+            {
+                string message = "Manual: \n" + url + "\n";
+                message += "\nGame:\n " + g.Game.TGDBData.GamesDBTitle + "\n(" + g.Game.TGDBData.GamesDBPlatformName + ")\n";
+                message += "\nIs this a match??\n";
+                message += "YES - match / NO - nomatch / CANCEL - cancel";
+                MessageBoxResult result = MessageBox.Show(message, "Manual Matching", MessageBoxButton.YesNoCancel);
+                if (result == MessageBoxResult.Cancel)
+                {
+                    return;
+                }
+                if (result == MessageBoxResult.Yes)
+                {
+                    // this is a match - update the master json
+                    var record = MasterGames.Where(a => a.GamesDbId == g.Game.GamesDbId).FirstOrDefault();
+                    record.IDDBManual.Add(url);
+                    record.IDDBManual.Distinct();
+                    AddOrUpdate(record);
+                    SaveMasterJson();
+                    break;
+                }
+                if (result == MessageBoxResult.No)
+                {
+                    // not a match - continue
+                    continue;
+                }
+            }
+
+        }
 
         // Main handler for all processes
         public async void BeginMerge(bool ManualResolve, bool usewordcountmatching, bool manualEverything)
@@ -891,7 +1238,8 @@ namespace MedLaunch.Classes.MasterScraper
                     if (cleanedLinks.Count == 1)
                     {
                         // single entry found - add game
-                        sm.IDDBManual = cleanedLinks.First();
+                        sm.IDDBManual.Add(cleanedLinks.First());
+                        sm.IDDBManual.Distinct();
                         MatchFound.Add(sm);
                         UpdateMasterWithFound();
                         found++;
@@ -902,7 +1250,8 @@ namespace MedLaunch.Classes.MasterScraper
                         //sm.IDDBManual = cleanedLinks.First();
                         //MatchFound.Add(sm);
                         multiples++;
-                        sm.IDDBManual = cleanedLinks.First();
+                        sm.IDDBManual.AddRange(cleanedLinks);
+                        sm.IDDBManual.Distinct();
                         MatchFound.Add(sm);
                         UpdateMasterWithFound();
                     }
@@ -952,5 +1301,11 @@ namespace MedLaunch.Classes.MasterScraper
         {
             mobyPlatformGames = new List<MobyPlatformGame>();
         }
+    }
+
+    public class ManualCount
+    {
+        public ScraperMaster Game { get; set; }
+        public int Matches { get; set; }
     }
 }
