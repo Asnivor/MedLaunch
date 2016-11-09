@@ -97,13 +97,20 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Releases\0.1.11.json" />
+    <None Include="Releases\0.1.12.json" />
+    <None Include="Releases\0.1.13.json" />
+    <None Include="Releases\0.1.14.6.json" />
+    <None Include="Releases\0.1.14.json" />
+    <None Include="Releases\0.1.15.7.json" />
+    <None Include="Releases\0.1.16.2.json" />
+    <None Include="Releases\0.2.3.1.json" />
+    <None Include="Releases\0.2.8.0.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Releases\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
