@@ -85,8 +85,8 @@ namespace MedLaunch.Models
                 enabledSecondaryScraper = true,
                 preferGenesis = true,
                 primaryScraper = 1,
-                maxScreenshots = 6,
-                maxFanarts = 12                
+                maxScreenshots = 4,
+                maxFanarts = 4                
             };
             return gs;
         }
