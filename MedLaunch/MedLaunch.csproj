@@ -322,6 +322,9 @@
     </None>
     <None Include="Data\System\MobyGames.json" />
     <None Include="Data\System\TheGamesDB.json" />
+    <None Include="LICENSE">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\MedLaunch.ViewModels.GlobalSettingsViewModel.datasource" />
     <None Include="Properties\Settings.settings">
