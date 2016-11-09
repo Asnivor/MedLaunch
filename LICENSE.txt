@@ -1,0 +1,99 @@
+MIT License
+
+Copyright (c) 2016 Asnivor (Matt Burgess)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+All code and binaries in this project are subject to this license, with the
+exception of the following 3rd party assemblies that are distributed with
+every MedLaunch binary release and that are subject to the terms of their own
+license agreements:
+
+Assembly:           BasicRestClient.dll
+Author(s):          Arsene Tochemey GANDOTE
+Project Site:       https://github.com/Tochemey/BasicRestClient
+License:            http://www.apache.org/licenses/LICENSE-2.0
+
+Assembly:           HtmlAgilityPack.dll
+Author(s):          Simon Mourrier, Jeff Klawiter, Stephan Grell
+Project Site:       http://htmlagilitypack.codeplex.com/
+License:            http://htmlagilitypack.codeplex.com/license
+
+Assembly:           MahApps.Metro.dll
+Author(s):          Jan Karger, Dennis Daume, Brendan Forster, Jake Ginnivan, Alex Mitchell
+Project Site:       https://github.com/MahApps/MahApps.Metro
+License:            https://github.com/MahApps/MahApps.Metro/blob/master/LICENSE
+
+Assembly:           MahApps.Metro.Resources.dll
+Author(s):          Jan Karger, Dennis Daume, Brendan Forster, Paul Jenkins, Alex Mitchell, Austin Andrews
+Project Site:       https://github.com/MahApps/MahApps.Metro
+License:            https://github.com/MahApps/MahApps.Metro/blob/master/LICENSE
+
+Assembly:           MahApps.Metro.SimpleChildWindow.dll
+Author(s):          Jan Karger
+Project Site:       https://github.com/punker76/MahApps.Metro.SimpleChildWindow
+License:            https://opensource.org/licenses/MIT
+
+Assembly:           Newtonsoft.Json.dll
+Author(s):          James Newton-King
+Project Site:       http://www.newtonsoft.com/json
+License:            https://raw.githubusercontent.com/JamesNK/Newtonsoft.Json/master/LICENSE.md
+
+Assembly:           Ookii.Dialogs.dll
+Author(s):          Sven Groot
+Project Site:       http://www.ookii.org/software/dialogs/
+License:            Unknown
+
+Assembly:           Remotion.Linq.dll
+Author(s):          rubicon IT GmbH
+Project Site:       http://relinq.codeplex.com/
+License:            https://opensource.org/licenses/Apache-2.0
+
+Assembly(s):        System.Data.SQLite.dll, System.Data.SQLite.EF6.dll, System.Data.SQLite.Linq, sqlite3.dll, SQLite.Interop.dll
+Author(s):          SQLite Development Team
+Project Site:       https://system.data.sqlite.org/
+License:            https://www.sqlite.org/copyright.html
+
+Assembly:           FuzzyString.dll
+Author(s):          Felix Perreault
+Project Site:       https://fuzzystring.codeplex.com/
+License:            https://fuzzystring.codeplex.com/license
+
+The binary releases of MedLaunch also ship with the following Microsoft .NET assemblies that
+fall under their own licensing terms 
+(typically https://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm / https://www.microsoft.com/net/dotnet_library_license.htm):
+
+EntityFramework.dll
+EntityFramework.Core.dll
+EntityFramework.Relational.dll
+EntityFramework.Sqlite.dll
+Microsoft.Data.Sqlite.dll
+Microsoft.Extensions.Caching.Abstractions.dll
+Microsoft.Extensions.Caching.Memory.dll
+Microsoft.Extensions.Configuration.dll
+Microsoft.Extensions.Configuration.Abstractions.dll
+Microsoft.Extensions.Configuration.Binder.dll
+Microsoft.Extensions.DependencyInjection.dll
+Microsoft.Extensions.DependencyInjection.Abstractions.dll
+Microsoft.Extensions.Logging.dll
+Microsoft.Extensions.Logging.Abstractions.dll
+Microsoft.Extensions.OptionsModel.dll
+Microsoft.Extensions.PlatformAbstractions.dll
+System.Diagnostics.DiagnosticSource.dll
+System.Interactive.Async.dll
