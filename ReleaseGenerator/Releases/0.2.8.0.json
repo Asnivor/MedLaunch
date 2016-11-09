@@ -1,0 +1,17 @@
+{
+  "Version": "0.2.8.0",
+  "Date": "2016-11-09T00:00:00",
+  "Notes": "#### Important Notes\r\nThe release format has been modified slightly from this version - as in the zip file contains the MedLaunch files in the root of the zip, rather than within a sub-folder of the zip. This makes it easier for the auto-update code to work through the application, or if you want to upgrade manually, you can just download the release zip to your current MedLaunch directory and 'Extract Here'.\r\n\r\nThis version of MedLaunch completely overhauls the game scraping module. Downloaded data is stored within a new folder structure that lives in a different location within your MedLaunch folder. Once a game has been scraped you will be able to directly access it's 'Game Data' folder through Windows Explorer using a button in the Games Library sidebar. You can place your own content (images, manuals etc..) in the correct folder and the Games Library will automatically pick these up. Scraped data now barely touches the database which makes for far better portability and maintainability (from a development point of view).\r\n\r\nThis does however mean that any data you have previously scraped is now redundant and you will need to match/scrape games again from the start.\r\n\r\n#### New Install\r\n* Extract this release to a folder, run the 'MedLaunch.exe' executable and choose your Mednafen directory (must be the Mednafen 0.9.39.x branch). \r\n* If you currently use system-specific config files with Mednafen it is recommended that you setup a new Mednafen folder (extract Mednafen to a new folder) to avoid issues.\r\n\r\n#### Upgrade\r\n* You can safely extract this new release over an existing Medlaunch folder (providing you do not have MedLaunch running at the time).\r\n* Once extracted run the MedLaunch.exe executable and your current database will be upgraded before the application starts proper.",
+  "Changelog": [
+    "* Implemented manual 'check for updates' button - if a new update to MedLaunch is found you can choose to automatically download, extract and upgrade your current MedLaunch install",
+    "* Changed release zip file (from next release) so that there is no sub-folder inside (so the built-in updater works properly and folks can manually upgrade a little more easily)",
+    "* Game scraping has been completed overhauled - scraped data is now completely database independent (so images/manuals can be placed directory inside the game data folder and be picked up in the games library)",
+    "* Modified scraping module to include other sources",
+    "* Implemented game manual/instructions (PDF) scraping",
+    "* Added option to show ALL possible settings on the 'Base Configuration'. This is similar to how the actual Mednafen mednafen-09x.cfg file works and means that you don't have to use MedLaunch system-specific configurations to access system-specific settings (if you don't want to)",
+    "* Dev-only 'Release Generator' application for generation of release info json files",
+    "* Modifications to httprequest code to deal with random timeouts (although thegamesdb.net is still slow)",
+    "* Fixed db upgrade DateTime? exception on null value",
+    "* Fixed some of the database and application update checking logic "
+  ]
+}
