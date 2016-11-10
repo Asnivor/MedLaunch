@@ -1,0 +1,8 @@
+{
+  "Version": "0.2.11.1",
+  "Date": "2016-11-10T00:00:00",
+  "Notes": "#### New Install\r\n* Extract this release to a folder, run the 'MedLaunch.exe' executable and choose your Mednafen directory (must be the Mednafen 0.9.39.x branch). \r\n* If you currently use system-specific config files with Mednafen it is recommended that you setup a new Mednafen folder (extract Mednafen to a new folder) to avoid issues.\r\n\r\n#### Upgrade\r\n* Preferred Method: Automatically download and upgrade using the 'Updates' tab within MedLaunch itself.\r\n* Manual Method: You can safely extract this new release over an existing MedLaunch folder (providing you do not have MedLaunch running at the time) \r\n* Once extracted run the MedLaunch.exe executable and your current database will be upgraded before the application starts proper.",
+  "Changelog": [
+    "* Bufix to update checker"
+  ]
+}
