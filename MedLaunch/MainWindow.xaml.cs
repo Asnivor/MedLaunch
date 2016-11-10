@@ -2438,7 +2438,7 @@ namespace MedLaunch
 
             // get current medlaunch version
             string currVersion = Versions.ReturnApplicationVersion();
-            //string currVersion = "0.2.3.0";
+            //string currVersion = "0.2.8.0";
 
             var mySettings = new MetroDialogSettings()
             {
