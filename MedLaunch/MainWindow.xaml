@@ -1658,15 +1658,15 @@
                                 </WrapPanel>
                             </Expander>
                         </Border>
-<!--
-                        <Button x:Name="btnConfigImportAll"  Background="DarkOrange">
+
+                        <Button x:Name="btnConfigImportAll"  Background="DarkOrange" Click="btnConfigImportAll_Click">
                             <TextBlock HorizontalAlignment="Center" TextAlignment="Center">
                                 IMPORT ALL CONFIGS
                                 <LineBreak />
                                 FROM DISK
                             </TextBlock>
                         </Button>
--->
+
                         <Button x:Name="btnConfigSaveChanges"  Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnConfigSaveChanges_Click" ></Button>
                         <Button x:Name="btnConfigCancelChanges"  Content="Revert Changes" Background="Red" Click="btnConfigCancelChanges_Click" ></Button>
 

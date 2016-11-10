@@ -2820,7 +2820,16 @@ namespace MedLaunch
             j.ParseReplacementDocsManuals();
         }
 
-        
+        /// <summary>
+        /// Import all configs from disk into the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnConfigImportAll_Click(object sender, RoutedEventArgs e)
+        {
+            ConfigImport ci = new ConfigImport();
+            ci.ImportConfigsFromDisk();
+        }
     }
     /*
     public class SliderIgnoreDelta : Slider

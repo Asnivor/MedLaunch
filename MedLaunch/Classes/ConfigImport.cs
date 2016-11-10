@@ -90,7 +90,7 @@ namespace MedLaunch.Classes
         public void ParseConfigIncoming(List<string> cfg, ConfigBaseSettings settings, GSystem sys)
         {
             // iterate through each line
-            foreach (string s in cfg)
+            foreach (string s in cfg.Where(a => a != "")
             {
                 // split to array based on whitespace
                 string st = s.TrimEnd();
