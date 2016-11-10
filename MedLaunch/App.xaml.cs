@@ -8,6 +8,9 @@ using System.Windows;
 using MahApps.Metro.Controls.Dialogs;
 using System.Threading;
 using MedLaunch.Classes;
+using MahApps.Metro;
+using MedLaunch.Models;
+using System.IO;
 
 namespace MedLaunch
 {
@@ -39,6 +42,26 @@ namespace MedLaunch
 
             // instantiate ScrapedContent Object
             ScrapedData = new GamesLibraryScrapedContent();
+
+
+            // set color scheme from database
+            Tuple<AppTheme, Accent> appStyle = ThemeManager.DetectAppStyle(Application.Current);
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"Data\Settings\MedLaunch.db"))
+            {
+                // database already exists
+                var gs = GlobalSettings.GetGlobals();
+                ThemeManager.ChangeAppStyle(Application.Current,
+                                    ThemeManager.GetAccent(gs.colorAccent),
+                                    ThemeManager.GetAppTheme(gs.colorBackground));
+            }
+            else
+            {
+                // database hasnt been generated yet - set default
+                ThemeManager.ChangeAppStyle(Application.Current,
+                                    ThemeManager.GetAccent("Emerald"),
+                                    ThemeManager.GetAppTheme("BaseDark"));
+            }
+                                    
         }
 
         private void ShowInitWindow()

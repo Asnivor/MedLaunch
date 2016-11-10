@@ -53,17 +53,14 @@
                 <ResourceDictionary Source="pack://application:,,,
              /MahApps.Metro;component/Styles/Accents/baselight.xaml" />
                 -->
+                
+               
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Emerald.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/basedark.xaml" />
-
+                
+                
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
-
                 <ResourceDictionary Source="/Resources/Icons.xaml" />
-                
-                
-                
-                
-
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

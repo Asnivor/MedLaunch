@@ -31,13 +31,13 @@
 
 
 
-    <!--
+   
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
-            <Button Content="Application Settings" />
+            <Button x:Name="btnChangeColorScheme" Content="Change Colour Scheme" Click="btnChangeColorScheme_Click" />
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
--->
+
     <Grid x:Name="RootGrid">
         <Grid.LayoutTransform>
             <ScaleTransform

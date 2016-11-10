@@ -40,6 +40,7 @@ using MedLaunch.Classes.MasterScraper;
 using MedLaunch.Classes.TheGamesDB;
 using MedLaunch.Classes.Scraper;
 using MedLaunch.Classes.Scraper.ReplacementDocs;
+using MahApps.Metro;
 
 namespace MedLaunch
 {
@@ -282,7 +283,25 @@ namespace MedLaunch
             lbl6.Visibility = Visibility.Collapsed;
             lblNoUpdate.Visibility = Visibility.Collapsed;
 
+           
+        }
 
+        private MetroWindow colorSchemeChanger;
+
+        private void btnChangeColorScheme_Click(object sender, RoutedEventArgs e)
+        {
+            if (colorSchemeChanger != null)
+            {
+                colorSchemeChanger.Activate();
+                return;
+            }
+
+            colorSchemeChanger = new AccentStyleWindow();
+            colorSchemeChanger.Owner = this;
+            colorSchemeChanger.Closed += (o, args) => colorSchemeChanger = null;
+            colorSchemeChanger.Left = this.Left + this.ActualWidth / 2.0;
+            colorSchemeChanger.Top = this.Top + this.ActualHeight / 2.0;
+            colorSchemeChanger.Show();
         }
 
         void RestoreScalingFactor(object sender, MouseButtonEventArgs args)
@@ -1145,6 +1164,8 @@ namespace MedLaunch
             //System.Windows.Data.CollectionViewSource globalSettingsViewModelViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("globalSettingsViewModelViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // globalSettingsViewModelViewSource.Source = [generic data source]
+
+            
         }
 
         // Netplay Settings - netplay page
@@ -2762,6 +2783,8 @@ namespace MedLaunch
             CreateMasterList j = new CreateMasterList();
             j.ParseReplacementDocsManuals();
         }
+
+
     }
     /*
     public class SliderIgnoreDelta : Slider

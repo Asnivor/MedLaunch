@@ -50,6 +50,10 @@ namespace MedLaunch.Models
         public double maxScreenshots { get; set; }
         public double maxFanarts { get; set; }
 
+        // GUI color scheme
+        public string colorBackground { get; set; }
+        public string colorAccent { get; set; }
+
         public static GlobalSettings GetGlobalDefaults()
         {
             GlobalSettings gs = new GlobalSettings
@@ -86,9 +90,25 @@ namespace MedLaunch.Models
                 preferGenesis = true,
                 primaryScraper = 1,
                 maxScreenshots = 4,
-                maxFanarts = 4                
+                maxFanarts = 4,
+                colorBackground = "basedark",
+                colorAccent = "Emerald"
             };
             return gs;
+        }
+
+        public static string[] GetGUIColors()
+        {
+            var gs = GlobalSettings.GetGlobals();
+            string[] colors = { gs.colorBackground, gs.colorAccent };
+            return colors;
+        }
+
+        public static string[] GetGUIColorsDefaults()
+        {
+            var gs = GlobalSettings.GetGlobalDefaults();
+            string[] colors = { gs.colorBackground, gs.colorAccent };
+            return colors;
         }
 
         public static void SaveToDatabase(List<GlobalSettings> Configs)

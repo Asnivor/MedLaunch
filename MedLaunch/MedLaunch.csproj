@@ -198,6 +198,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AccentStyleWindow.xaml.cs">
+      <DependentUpon>AccentStyleWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\CMenu.cs" />
     <Compile Include="Classes\ConfigImport.cs" />
     <Compile Include="Classes\ConfigReflection.cs" />
@@ -264,6 +267,11 @@
     <Compile Include="Models\ScraperMaster.cs" />
     <Compile Include="Models\SearchOrdering.cs" />
     <Compile Include="Models\Versions.cs" />
+    <Compile Include="ThemeManagerHelper.cs" />
+    <Page Include="AccentStyleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="InitWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
