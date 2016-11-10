@@ -166,25 +166,39 @@ namespace MedLaunch.Classes.Scraper
                         }
 
                     }
-                 }      
-
+                 }
+                // remove duplicates
+                //linksToScrape.Distinct();
                 int gamesCount = linksToScrape.Count;
                 i = 0;
                 controller.Minimum = 0;
                 controller.Maximum = gamesCount;
                 foreach (GDBLink l in linksToScrape)
                 {
-                    Game g = Game.GetGame(l.Id);
+                    Game g = Game.GetGame(l.GameId.Value);
                     if (controller.IsCanceled)
                     {
                         controller.CloseAsync();
                         return;
+                    }
+                    if (g == null)
+                    {
+                        // no medlaunch game returned from the database - remove the link entry from GDBLink and continue
+                        GDBLink rec = l;
+                        GDBLink.DeleteRecord(rec);
+                        continue;
                     }
                     // iterate through each game that requires scraping and attempt to download the data and import to database
                     i++;
                     controller.SetProgress(i);
                     string message = "Scraping Started....\nGetting data for: " + g.gameName + "\n(" + i + " of " + gamesCount + ")\n\n";
                     controller.SetMessage(message);
+
+                    // if json is already present - skip scraping
+                    if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"Data\Games\" + l.GdbId.ToString() + @"\" + l.GdbId.ToString() + ".json"))
+                    {
+                        continue;
+                    }
                     
                     ScraperHandler sh = new ScraperHandler(l.GdbId.Value, l.GameId.Value, false);
                     sh.ScrapeGame(controller);

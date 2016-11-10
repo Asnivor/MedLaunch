@@ -54,6 +54,9 @@ namespace MedLaunch.Models
         public string colorBackground { get; set; }
         public string colorAccent { get; set; }
 
+        // application settings
+        public bool? checkUpdatesOnStart { get; set; }
+
         public static GlobalSettings GetGlobalDefaults()
         {
             GlobalSettings gs = new GlobalSettings
@@ -92,7 +95,8 @@ namespace MedLaunch.Models
                 maxScreenshots = 4,
                 maxFanarts = 4,
                 colorBackground = "basedark",
-                colorAccent = "Emerald"
+                colorAccent = "Emerald",
+                checkUpdatesOnStart = false
             };
             return gs;
         }
@@ -179,7 +183,7 @@ namespace MedLaunch.Models
         public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast, ComboBox GuiZoom, CheckBox MinToTaskBar, CheckBox HideSidebar,
             CheckBox chkAllowBanners, CheckBox chkAllowBoxart, CheckBox chkAllowScreenshots, CheckBox chkAllowFanart, CheckBox chkPreferGenesis, 
             CheckBox chkAllowManuals, CheckBox chkAllowMedia, CheckBox chkSecondaryScraperBackup, RadioButton rbGDB, RadioButton rbMoby, Slider slScreenshotsPerHost, Slider slFanrtsPerHost,
-            CheckBox chkAllBaseSettings)
+            CheckBox chkAllBaseSettings, CheckBox chkAllowUpdateCheck)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
@@ -209,6 +213,8 @@ namespace MedLaunch.Models
 
             slScreenshotsPerHost.Value = gs.maxScreenshots;
             slFanrtsPerHost.Value = gs.maxFanarts;
+
+            chkAllowUpdateCheck.IsChecked = gs.checkUpdatesOnStart;
 
             if (gs.primaryScraper == 1)
             {
@@ -295,6 +301,13 @@ namespace MedLaunch.Models
         {
             GlobalSettings gs = GetGlobals();
             gs.hideSidebar = HideSidebar.IsChecked;
+            SetGlobals(gs);
+        }
+
+        public static void UpdateCheckUpdatesOnStart(CheckBox chkAllowUpdateCheck)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.checkUpdatesOnStart = chkAllowUpdateCheck.IsChecked;
             SetGlobals(gs);
         }
 

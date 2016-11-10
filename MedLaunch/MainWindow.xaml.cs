@@ -131,7 +131,7 @@ namespace MedLaunch
             // load globalsettings for front page
             GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar,
                chkAllowBanners, chkAllowBoxart, chkAllowScreenshots, chkAllowFanart, chkPreferGenesis, chkAllowManuals, chkAllowMedia, chkSecondaryScraperBackup,
-               rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost, chkAllBaseSettings);
+               rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost, chkAllBaseSettings, chkAllowUpdateCheck);
             //gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
             GlobalSettings gs = GlobalSettings.GetGlobals();
             mainScaleTransform.ScaleX = Convert.ToDouble(gs.guiZoom);
@@ -1161,11 +1161,21 @@ namespace MedLaunch
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
 
+            // if check for updates on start is allowed
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"Data\Settings\MedLaunch.db"))
+            {
+                bool updateCheck = GlobalSettings.GetGlobals().checkUpdatesOnStart.Value;
+                if (updateCheck == true)
+                {
+                    UpdateCheck(true);
+                }
+            }
+
             //System.Windows.Data.CollectionViewSource globalSettingsViewModelViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("globalSettingsViewModelViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // globalSettingsViewModelViewSource.Source = [generic data source]
 
-            
+
         }
 
         // Netplay Settings - netplay page
@@ -1250,6 +1260,16 @@ namespace MedLaunch
         private void chkPreferGenesis_Unchecked(object sender, RoutedEventArgs e)
         {
             GlobalSettings.UpdatePreferGenesis(chkPreferGenesis);
+        }
+
+        private void chkAllowUpdateCheck_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateCheckUpdatesOnStart(chkAllowUpdateCheck);
+        }
+
+        private void chkAllowUpdateCheck_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateCheckUpdatesOnStart(chkAllowUpdateCheck);
         }
 
         private void chkAllowBanners_Checked(object sender, RoutedEventArgs e)
@@ -1731,6 +1751,13 @@ namespace MedLaunch
             Game game = Game.GetGame(romId);
             // delete from library
             Game.DeleteGame(game);
+
+            // remove any entries in the link table for this game id
+            var links = GDBLink.GetAllRecords().Where(a => a.GameId == romId).ToList();
+            foreach (var l in links)
+            {
+                GDBLink.DeleteRecord(l);
+            }
 
             // refresh library view
             GamesLibraryVisualHandler.RefreshGamesLibrary();
@@ -2405,7 +2432,7 @@ namespace MedLaunch
 
         }
 
-        private async void btnCheckForUpdates_Click(object sender, RoutedEventArgs e)
+        private async void UpdateCheck(bool isStartup)
         {
             Release newRelease = new Release();
 
@@ -2428,7 +2455,7 @@ namespace MedLaunch
             await Task.Delay(400);
 
             string output;
-            
+
             // attempt to download the LatestVersion text file from github
             string contents;
 
@@ -2452,10 +2479,10 @@ namespace MedLaunch
                 {
                     wc.Dispose();
                 }
-                
+
             }
-            
-            
+
+
             controller.SetMessage("Determining latest version...");
             // check whether the version is greater than the one we have installed
             string latestVersion = contents.Replace(".json", "");
@@ -2485,12 +2512,13 @@ namespace MedLaunch
                     upgradeNeeded = true;
                     break;
                 }
-                 
+
             }
 
             if (upgradeNeeded == true)
             {
                 output = "A New MedLaunch Release is Now Available";
+                UpdatedHeader.Header = "**UPDATE AVAILABLE**";
                 //await Task.Delay(1000);
                 controller.SetMessage("Downloading release information");
                 await Task.Delay(500);
@@ -2508,7 +2536,8 @@ namespace MedLaunch
                     catch (Exception ex)
                     {
                         controller.SetMessage("The request timed out - please try again");
-                        await Task.Delay(2000);
+                        if (isStartup == false)
+                            await Task.Delay(2000);
                         await controller.CloseAsync();
                         wc.Dispose();
                         return;
@@ -2522,10 +2551,12 @@ namespace MedLaunch
             else
             {
                 output = "Your Version of MedLaunch is up to date";
+                UpdatedHeader.Header= "Updates";
                 //await Task.Delay(1000);
             }
             controller.SetMessage(output);
-            await Task.Delay(1000);
+            if (isStartup == false)
+                await Task.Delay(1000);
 
             await controller.CloseAsync();
 
@@ -2553,7 +2584,7 @@ namespace MedLaunch
                 {
                     tbChangeLog.Text += "* " + item + "\r\n";
                 }
-                
+
                 btnUpdate.Visibility = Visibility.Visible;
                 lblNoUpdate.Visibility = Visibility.Collapsed;
             }
@@ -2572,6 +2603,11 @@ namespace MedLaunch
                 lbl6.Visibility = Visibility.Collapsed;
                 lblNoUpdate.Visibility = Visibility.Visible;
             }
+        }
+
+        private void btnCheckForUpdates_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateCheck(false);            
         }
 
         private async void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -2784,7 +2820,7 @@ namespace MedLaunch
             j.ParseReplacementDocsManuals();
         }
 
-
+        
     }
     /*
     public class SliderIgnoreDelta : Slider
