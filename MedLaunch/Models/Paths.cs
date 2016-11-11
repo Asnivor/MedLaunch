@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using Asnitech.Launch.Common;
 using System.IO;
 using System.Windows;
+using MedLaunch.Classes;
 
 namespace MedLaunch.Models
 {
@@ -195,8 +196,18 @@ namespace MedLaunch.Models
                 }
                 else
                 {
-                    // path is valid - break out
-                    return;
+                    // path is valid - ask to import configs
+                    MessageBoxResult result = MessageBox.Show("Do you want to import data from any Mednafen config files in this directory?\n(This will overwrite any config data stored in MedLaunch)", "Config Import", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        ConfigImport ci = new ConfigImport();
+                        ci.ImportConfigsFromDisk(null);
+                    }
+                    else
+                    {
+                        return;
+                    }
+                    
                 }
             }
             else

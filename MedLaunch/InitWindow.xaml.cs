@@ -570,7 +570,7 @@ namespace MedLaunch
                 }
             }
         }
-        private static void SetPropertyValue(ConfigNetplaySettings settings, PropertyInfo p, string type, string value)
+        public static void SetPropertyValue(ConfigNetplaySettings settings, PropertyInfo p, string type, string value)
         {
             if (p.PropertyType == typeof(string))
             {
@@ -621,7 +621,7 @@ namespace MedLaunch
                 }
             }
         }
-        private static void SetPropertyValue(ConfigServerSettings settings, PropertyInfo p, string type, string value)
+        public static void SetPropertyValue(ConfigServerSettings settings, PropertyInfo p, string type, string value)
         {
             if (p.PropertyType == typeof(string))
             {

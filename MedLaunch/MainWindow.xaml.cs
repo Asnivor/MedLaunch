@@ -124,7 +124,7 @@ namespace MedLaunch
 
             // is DB path to Mednafen set and working? If not force user to select it
             Paths.MedPathRoutine(btnPathMednafen, tbPathMednafen);
-            
+
             // ensure 'show all' filter is checked on startup
             btnShowAll.IsChecked = true;
 
@@ -142,6 +142,7 @@ namespace MedLaunch
 
             // load netplay settings for netplay page
             ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
+            //ConfigNetplaySettings.LoadNetplaySettings();
 
             // load path settings for paths page
             Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathMs, tbPathVb, tbPathWswan); // tbPathPsx, tbPathSs);
@@ -174,6 +175,8 @@ namespace MedLaunch
             }
 
             // ensure base config is selected at startup
+            btnConfigBase.IsChecked = true;
+            btnConfigBase.IsChecked = false;
             btnConfigBase.IsChecked = true;
 
             // hide all system specific config options
@@ -247,7 +250,7 @@ namespace MedLaunch
             //btnSystemBios.Visibility = Visibility.Collapsed;
             //btnEmulator.Visibility = Visibility.Collapsed;
             //brdMednafenPaths.Visibility = Visibility.Collapsed;
-           /// brdSystemBios.Visibility = Visibility.Collapsed;
+            /// brdSystemBios.Visibility = Visibility.Collapsed;
             //brdEmulator.Visibility = Visibility.Collapsed;
 
             wb.Navigated += new NavigatedEventHandler(wb_Navigated);
@@ -283,7 +286,7 @@ namespace MedLaunch
             lbl6.Visibility = Visibility.Collapsed;
             lblNoUpdate.Visibility = Visibility.Collapsed;
 
-           
+
         }
 
         private MetroWindow colorSchemeChanger;
@@ -323,7 +326,7 @@ namespace MedLaunch
             ScaleTransform st = (ScaleTransform)this.FindName("mainScaleTransform");
             st.ScaleX = value;
             st.ScaleY = value;
-            
+
         }
 
 
@@ -372,9 +375,9 @@ namespace MedLaunch
         private void wb_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
         {
             txtUrl.Text = e.Uri.OriginalString;
-            
+
         }
-        
+
 
         private void BrowseBack_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
@@ -400,7 +403,7 @@ namespace MedLaunch
         {
             e.CanExecute = true;
         }
-      
+
         private void GoToPage_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             wb.Navigate(txtUrl.Text);
@@ -431,9 +434,9 @@ namespace MedLaunch
             var mySettings = new MetroDialogSettings()
             {
                 NegativeButtonText = "Cancel Scanning",
-                AnimateShow = true,                
+                AnimateShow = true,
                 AnimateHide = true
-                
+
             };
 
             var controller = await this.ShowProgressAsync("Scanning Disk Directories", "Determining Paths and Counting Files...", settings: mySettings);
@@ -466,26 +469,26 @@ namespace MedLaunch
             var controller = await this.ShowProgressAsync("MedLaunch - Getting Basic Games List From thegamesdb.net", "", settings: mySettings);
             controller.SetCancelable(true);
             await Task.Delay(100);
-                await Task.Run(() =>
+            await Task.Run(() =>
+            {
+                Task.Delay(1);
+                //List<GDBPlatformGame> gs = GameScraper.DatabasePlatformGamesImport(controller);
+                GDBScraper.ScrapeBasicGamesList(controller);
+                /*
+                if (!controller.IsCanceled)
                 {
-                    Task.Delay(1);
-                    //List<GDBPlatformGame> gs = GameScraper.DatabasePlatformGamesImport(controller);
-                    GDBScraper.ScrapeBasicGamesList(controller);
-                    /*
-                    if (!controller.IsCanceled)
-                    {
-                        //GDBPlatformGame.SaveToDatabase(gs);       // disabled for the moment - working with flat json files
-                        // save to json file
-                        controller.SetMessage("Saving to file...");
-                        // set file path
-                        string filePath = @"..\..\Data\System\TheGamesDB.json";
-                        //  dump file
-                        string json = JsonConvert.SerializeObject(gs, Formatting.Indented);
-                        File.WriteAllText(filePath, json);
-                    }
-                    */
-                     
-                });
+                    //GDBPlatformGame.SaveToDatabase(gs);       // disabled for the moment - working with flat json files
+                    // save to json file
+                    controller.SetMessage("Saving to file...");
+                    // set file path
+                    string filePath = @"..\..\Data\System\TheGamesDB.json";
+                    //  dump file
+                    string json = JsonConvert.SerializeObject(gs, Formatting.Indented);
+                    File.WriteAllText(filePath, json);
+                }
+                */
+
+            });
             await controller.CloseAsync();
 
             if (controller.IsCanceled)
@@ -532,7 +535,7 @@ namespace MedLaunch
                 }
 
 
-                
+
             });
             await controller.CloseAsync();
 
@@ -571,9 +574,9 @@ namespace MedLaunch
 
             GameScanner rs = new GameScanner();
 
-                       
+
             await Task.Delay(100);
-           
+
 
 
             List<GSystem> scanRoms = new List<GSystem>();
@@ -587,7 +590,7 @@ namespace MedLaunch
                     string path = rs.GetPath(hs.systemId);
                     if (path == "" || path == null || !Directory.Exists(path))
                     {
-                        
+
                         // No path returned or path is not valid - Mark existing games in Db as hidden
                         rs.MarkAllRomsAsHidden(hs.systemId);
                         hiddenStats += rs.HiddenStats;
@@ -610,11 +613,11 @@ namespace MedLaunch
                     hiddenStats += rs.HiddenStats;
                     rs.HiddenStats = 0;
                 }
-             
+
 
                 scanRoms = (from s in rs.RomSystemsWithPaths
-                               where s.systemId == sysId
-                               select s).ToList();
+                            where s.systemId == sysId
+                            select s).ToList();
             }
 
             // check whether scanroms is null
@@ -672,14 +675,14 @@ namespace MedLaunch
                         await Task.Delay(200);
                     }
                 });
-                
+
             }
             else
             {
                 // No systems returned
                 controller.SetTitle("No ROM systems with valid paths found");
                 controller.SetMessage("No GameSystem with valid path was found\n Please make sure there is a valid path set for this system");
-                
+
             }
 
             await Task.Run(() =>
@@ -689,10 +692,10 @@ namespace MedLaunch
                     controller.SetMessage(output + "\nUpdating Database");
                     rs.SaveToDatabase();
                 }
-                
+
             });
-                
-        
+
+
 
             await Task.Delay(100);
 
@@ -860,7 +863,7 @@ namespace MedLaunch
             RescanSystemRoms(0);
         }
 
-        
+
 
 
 
@@ -1021,7 +1024,7 @@ namespace MedLaunch
         private void RemoveAllGames_Click(object sender, RoutedEventArgs e)
         {
             GameScanner.RemoveAllGames();
-        } 
+        }
 
         private void ScrapeGames_Click(object sender, RoutedEventArgs e)
         {
@@ -1084,7 +1087,7 @@ namespace MedLaunch
             {
                 system = 7;
             }
-           
+
             if (btnPsx.IsChecked == true)
             {
                 system = 9;
@@ -1093,7 +1096,7 @@ namespace MedLaunch
             {
                 system = 13;
             }
-          
+
             if (btnMd.IsChecked == true)
             {
                 system = 4;
@@ -1145,10 +1148,10 @@ namespace MedLaunch
         // generic TextBox_TextChanged handler
         public void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+
             var binding = ((TextBox)sender).GetBindingExpression(TextBox.TextProperty);
             binding.UpdateSource();
-         
+
         }
 
         // generic Slider_ValueChanged handler
@@ -1225,11 +1228,21 @@ namespace MedLaunch
         private void chkAllBaseSettings_Checked(object sender, RoutedEventArgs e)
         {
             GlobalSettings.UpdatechkAllBaseSettings(chkAllBaseSettings);
+            ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, 2000000000);
+            btnConfigLynx.IsChecked = true;
+            btnConfigBase.IsChecked = true;
+            //btnConfigBase.IsChecked = false;
+            //btnConfigBase.IsChecked = true;
         }
 
         private void chkAllBaseSettings_Unchecked(object sender, RoutedEventArgs e)
         {
             GlobalSettings.UpdatechkAllBaseSettings(chkAllBaseSettings);
+            ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, 2000000000);
+            btnConfigLynx.IsChecked = true;
+            btnConfigBase.IsChecked = true;
+            //btnConfigBase.IsChecked = false;
+            //btnConfigBase.IsChecked = true;
         }
 
         private void chkMinToTaskbar_Checked(object sender, RoutedEventArgs e)
@@ -1441,7 +1454,7 @@ namespace MedLaunch
                 tb.Text = strPath;
             }
 
-            
+
 
         }
 
@@ -1524,7 +1537,7 @@ namespace MedLaunch
                 string strPath = path.SelectedPath;
                 tbPathMd.Text = strPath;
             }
-            
+
         }
 
         private void btnPathNes_Click(object sender, RoutedEventArgs e)
@@ -1592,7 +1605,7 @@ namespace MedLaunch
             }
         }
 
-        
+
 
         private void btnPathMs_Click(object sender, RoutedEventArgs e)
         {
@@ -1606,7 +1619,7 @@ namespace MedLaunch
                 tbPathMs.Text = strPath;
             }
         }
-       
+
         private void btnPathPsx_Click(object sender, RoutedEventArgs e)
         {
             VistaFolderBrowserDialog path = new VistaFolderBrowserDialog();
@@ -1632,7 +1645,7 @@ namespace MedLaunch
                 tbPathSs.Text = strPath;
             }
         }
-        
+
         private void btnPathVb_Click(object sender, RoutedEventArgs e)
         {
             VistaFolderBrowserDialog path = new VistaFolderBrowserDialog();
@@ -1692,7 +1705,7 @@ namespace MedLaunch
                 //c.IsOpen = false;
                 return;
             }
-           // c.Visibility = Visibility.Visible;
+            // c.Visibility = Visibility.Visible;
 
 
             //MessageBox.Show(drv.ID.ToString());
@@ -1726,9 +1739,9 @@ namespace MedLaunch
                     mi.Header = "Delete From Games Library"; // + romName;
                 }
             }
-            
 
-            
+
+
 
             //fe.ContextMenu = CMenu.BuildGamesMenu(dgGameList);
         }
@@ -1790,65 +1803,65 @@ namespace MedLaunch
 
             var controller = await this.ShowProgressAsync("Launching " + gl.SystemName + " Game", "Starting: " + gl.RomName, settings: mySettings);
 
-           
-                controller.SetIndeterminate();
 
-                await Task.Delay(100);
+            controller.SetIndeterminate();
 
-                controller.SetCancelable(false);
+            await Task.Delay(100);
 
-                string[] returnStr = gl.PathChecks();
+            controller.SetCancelable(false);
 
-                if (returnStr != null && returnStr.Length > 0)
+            string[] returnStr = gl.PathChecks();
+
+            if (returnStr != null && returnStr.Length > 0)
+            {
+                string o = "";
+                foreach (string s in returnStr)
                 {
-                    string o = "";
-                    foreach (string s in returnStr)
-                    {
-                        o += s + "\n";
-                    }
-                    controller.SetMessage(o + "\n...Cancelling Operation...");
-                    await Task.Delay(100);
-                    await controller.CloseAsync();
+                    o += s + "\n";
                 }
+                controller.SetMessage(o + "\n...Cancelling Operation...");
+                await Task.Delay(100);
+                await controller.CloseAsync();
+            }
+            else
+            {
+                string status = "...Building config...\n";
+                controller.SetMessage(status);
+                await Task.Delay(50);
+
+                string cfgName;
+                if (gl.ConfigId == 2000000000)
+                    cfgName = "Base Configuration";
                 else
-                {
-                    string status = "...Building config...\n";
-                    controller.SetMessage(status);
-                    await Task.Delay(50);
+                    cfgName = gl.SystemName + " Configuration";
 
-                    string cfgName;
-                    if (gl.ConfigId == 2000000000)
-                        cfgName = "Base Configuration";
-                    else
-                        cfgName = gl.SystemName + " Configuration";
+                status += "Using " + cfgName + "\n";
+                controller.SetMessage(status);
+                await Task.Delay(50);
 
-                    status += "Using " + cfgName + "\n";
-                    controller.SetMessage(status);
-                    await Task.Delay(50);
+                string netplayEnabled;
+                if (gl.Global.enableNetplay == true)
+                    netplayEnabled = "Netplay Enabled: Yes\nHost: " + gl.Server.ConfigServerDesc;
+                else
+                    netplayEnabled = "Netplay Enabled: No";
+                status += netplayEnabled + "\n";
+                controller.SetMessage(status);
+                await Task.Delay(50);
 
-                    string netplayEnabled;
-                    if (gl.Global.enableNetplay == true)
-                        netplayEnabled = "Netplay Enabled: Yes\nHost: " + gl.Server.ConfigServerDesc;
-                    else
-                        netplayEnabled = "Netplay Enabled: No";
-                    status += netplayEnabled + "\n";
-                    controller.SetMessage(status);
-                    await Task.Delay(50);
+                // get base config params
+                string configCmdString = gl.GetCommandLineArguments();
 
-                    // get base config params
-                    string configCmdString = gl.GetCommandLineArguments();
-
-                    string launchGame = "...Launching Game...";
-                    status += launchGame + "\n";
-                    controller.SetMessage(status);
-                    await Task.Delay(50);
+                string launchGame = "...Launching Game...";
+                status += launchGame + "\n";
+                controller.SetMessage(status);
+                await Task.Delay(50);
 
                 // check whether minimise to taskbar option is checked
                 bool taskbar = this.ShowInTaskbar;
-                    if (GlobalSettings.Min2TaskBar() == true)
+                if (GlobalSettings.Min2TaskBar() == true)
                 {
                     this.ShowInTaskbar = true;
-                    this.WindowState = WindowState.Minimized;                    
+                    this.WindowState = WindowState.Minimized;
                 }
 
 
@@ -1857,11 +1870,11 @@ namespace MedLaunch
                 {
                     // update lastplayed time
                     Game.SetStartedPlaying(gl.GameId);
-                    
+
                     // launch game
                     gl.RunGame(configCmdString);
                 });
-                    
+
 
                 if (GlobalSettings.Min2TaskBar() == true)
                 {
@@ -1893,40 +1906,40 @@ namespace MedLaunch
             GamesLibraryVisualHandler.UpdateSidebar(gl.GameId);
 
 
-                //controller.SetMessage(totalFiles + " files found across all ROM directories");
+            //controller.SetMessage(totalFiles + " files found across all ROM directories");
 
 
 
 
 
-                /*
-                if (controller.IsCanceled)
-                {
-                    await this.ShowMessageAsync("The operation was cancelled!", romsInserted +  " ROMS have been added \n" + romsUpdated + " ROMS have been updated \n" + romsSkipped + " ROMS have been skipped");
-                }
-                else
-                {
-                    await this.ShowMessageAsync("Operation completed", romsInserted + " ROMS have been added \n" + romsUpdated + " ROMS have been updated \n" + romsSkipped + " ROMS have been skipped");
-                }
+            /*
+            if (controller.IsCanceled)
+            {
+                await this.ShowMessageAsync("The operation was cancelled!", romsInserted +  " ROMS have been added \n" + romsUpdated + " ROMS have been updated \n" + romsSkipped + " ROMS have been skipped");
+            }
+            else
+            {
+                await this.ShowMessageAsync("Operation completed", romsInserted + " ROMS have been added \n" + romsUpdated + " ROMS have been updated \n" + romsSkipped + " ROMS have been skipped");
+            }
 
-                //Update list
-                // ensure 'show all' filter is checked on startup
-                btnFavorites.IsChecked = true;
-                btnShowAll.IsChecked = true;
+            //Update list
+            // ensure 'show all' filter is checked on startup
+            btnFavorites.IsChecked = true;
+            btnShowAll.IsChecked = true;
 
-                */
-                /*
-                MessageBoxResult result = MessageBox.Show("RomId: " + gl.GameId.ToString());
-                MessageBoxResult result1 = MessageBox.Show("SystemId: " + gl.SystemId.ToString());
-                MessageBoxResult result2 = MessageBox.Show("RomName: " + gl.RomName.ToString());
-                MessageBoxResult result3 = MessageBox.Show("RomFolder: " + gl.RomFolder.ToString());
-                MessageBoxResult result4 = MessageBox.Show("RomPath: " + gl.RomPath.ToString());
-                MessageBoxResult result5 = MessageBox.Show("MednafenPath: " + gl.MednafenFolder.ToString());
-                */
+            */
+            /*
+            MessageBoxResult result = MessageBox.Show("RomId: " + gl.GameId.ToString());
+            MessageBoxResult result1 = MessageBox.Show("SystemId: " + gl.SystemId.ToString());
+            MessageBoxResult result2 = MessageBox.Show("RomName: " + gl.RomName.ToString());
+            MessageBoxResult result3 = MessageBox.Show("RomFolder: " + gl.RomFolder.ToString());
+            MessageBoxResult result4 = MessageBox.Show("RomPath: " + gl.RomPath.ToString());
+            MessageBoxResult result5 = MessageBox.Show("MednafenPath: " + gl.MednafenFolder.ToString());
+            */
 
 
 
-                
+
         }
 
 
@@ -2035,6 +2048,7 @@ namespace MedLaunch
             int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
             // Save all control values to database
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
+            ConfigsVisualHandler.HideControls(ConfigWrapPanel, systemIdSelected);
             ConfigsVisualHandler.ButtonClick();
         }
 
@@ -2047,7 +2061,7 @@ namespace MedLaunch
             // Save all control values to database
             ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, systemIdSelected);
         }
-        
+
         // set config entry to defaults
         private void MenuItemDefault_Click(object sender, RoutedEventArgs e)
         {
@@ -2067,12 +2081,12 @@ namespace MedLaunch
                 ConfigBaseSettings.SetButtonState(rb);
 
                 // refresh UI
-                int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);                
+                int systemIdSelected = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
                 ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
 
 
                 lblConfigStatus.Content = "***Defaults Loaded***";
-            }           
+            }
         }
 
         // Enable system specific config entry
@@ -2167,21 +2181,21 @@ namespace MedLaunch
 
             await Task.Delay(200);
 
-           
-                this.Dispatcher.Invoke(() =>
-                {
-                    Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathMs, tbPathVb, tbPathWswan);
-                    ConfigNetplaySettings.SaveNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
-                    ConfigServerSettings.SaveCustomServerSettings(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
-                    ConfigBaseSettings.SaveMednafenPathValues(spMedPathSettings);
-                    ConfigBaseSettings.SaveBiosPathValues(spSysBiosSettings);
 
-                    // global settings
-                    GlobalSettings gs = GlobalSettings.GetGlobals();
-                    gs.maxFanarts = slFanrtsPerHost.Value;
-                    gs.maxScreenshots = slScreenshotsPerHost.Value;
-                    GlobalSettings.SetGlobals(gs);
-                });
+            this.Dispatcher.Invoke(() =>
+            {
+                Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathMs, tbPathVb, tbPathWswan);
+                ConfigNetplaySettings.SaveNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
+                ConfigServerSettings.SaveCustomServerSettings(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
+                ConfigBaseSettings.SaveMednafenPathValues(spMedPathSettings);
+                ConfigBaseSettings.SaveBiosPathValues(spSysBiosSettings);
+
+                // global settings
+                GlobalSettings gs = GlobalSettings.GetGlobals();
+                gs.maxFanarts = slFanrtsPerHost.Value;
+                gs.maxScreenshots = slScreenshotsPerHost.Value;
+                GlobalSettings.SetGlobals(gs);
+            });
 
             await controller.CloseAsync();
 
@@ -2224,9 +2238,9 @@ namespace MedLaunch
             else
                 return FindVisualParent<T>(parentObject);
         }
-   
 
-    private void DataGrid_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+
+        private void DataGrid_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             /* If any right-clicks happen where there is no datagrid row clicked on - dont open the context menu */
 
@@ -2289,7 +2303,7 @@ namespace MedLaunch
             string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
             App app = ((App)Application.Current);
             var platformgames = app.ScrapedData.MasterPlatformList;
-    
+
             string json = JsonConvert.SerializeObject(platformgames.ToArray());
             System.IO.File.WriteAllText(@"Data\Settings\thegamesdbplatformgames_" + linkTimeLocal.Replace(" ", "").Replace(":", "").Replace("-", "") + ".json", json);
 
@@ -2326,10 +2340,10 @@ namespace MedLaunch
 
         private void btnScrapingPickGame_Click(object sender, RoutedEventArgs e)
         {
-            
+
             ScraperMainSearch.PickGame(dgGameList);
-           
-            
+
+
             //GamesLibraryVisualHandler.RefreshGamesLibrary();
             //GamesLibraryVisualHandler.RefreshSideBar(dgGameList);
         }
@@ -2350,7 +2364,7 @@ namespace MedLaunch
                     Process.Start(dirPath);
                 }
             }
-            
+
         }
 
         private async void btnScrapingReScrape_Click(object sender, RoutedEventArgs e)
@@ -2416,10 +2430,10 @@ namespace MedLaunch
 
         private void MW_Closing(object sender, CancelEventArgs e)
         {
-            
-                // save games library expander states
-                GamesLibraryVisualHandler.SaveExpanderStates();
-              
+
+            // save games library expander states
+            GamesLibraryVisualHandler.SaveExpanderStates();
+
         }
 
         private void TabItem_LostFocus(object sender, RoutedEventArgs e)
@@ -2551,7 +2565,7 @@ namespace MedLaunch
             else
             {
                 output = "Your Version of MedLaunch is up to date";
-                UpdatedHeader.Header= "Updates";
+                UpdatedHeader.Header = "Updates";
                 //await Task.Delay(1000);
             }
             controller.SetMessage(output);
@@ -2607,13 +2621,13 @@ namespace MedLaunch
 
         private void btnCheckForUpdates_Click(object sender, RoutedEventArgs e)
         {
-            UpdateCheck(false);            
+            UpdateCheck(false);
         }
 
         private async void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             /* start download and autoupdate */
-            
+
 
             string downloadsFolder = System.AppDomain.CurrentDomain.BaseDirectory + @"Data\Updates";
             System.IO.Directory.CreateDirectory(downloadsFolder);
@@ -2827,19 +2841,99 @@ namespace MedLaunch
         /// <param name="e"></param>
         private void btnConfigImportAll_Click(object sender, RoutedEventArgs e)
         {
+            //ImportConfigs();
+            /*
+            Dispatcher.Invoke(async () =>
+            {
+                
+            });
+            */
+
+            // get current active button
+            ConfigsVisualHandler ch = new ConfigsVisualHandler();
+            RadioButton rb = ch.FilterButtons.Where(a => a.IsChecked == true).Single();
+            int ConfigId = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
+
             ConfigImport ci = new ConfigImport();
-            ci.ImportConfigsFromDisk();
+            ci.ImportConfigsFromDisk(null);
+
+
+            // update UI
+            ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, ConfigId);
+            ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
+            ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
+            ConfigServerSettings.SetCustomDefault();
+
+            Task.Delay(500);
+
+            if (rb != btnConfigLynx)
+                btnConfigLynx.IsChecked = true;
+            else
+                btnConfigMd.IsChecked = true;
+
+            Task.Delay(500);
+            rb.IsChecked = true;
+
+            // activate enabled systems
+            ConfigsVisualHandler cvh = new ConfigsVisualHandler();
+            cvh.ActivateEnabledSystems();
+
+            lblConfigStatus.Content = "Configs Imported";
         }
-    }
-    /*
-    public class SliderIgnoreDelta : Slider
-    {
-        protected override void OnThumbDragDelta(DragDeltaEventArgs e)
+        /*
+        private async void ImportConfigs()
         {
-            // Do nothing
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel Import",
+                AnimateShow = false,
+                AnimateHide = false
+            };
+            var controller = await this.ShowProgressAsync("Config Importer", "Initialising...", true, settings: mySettings);
+            controller.SetCancelable(true);
+            await Task.Delay(100);
+
+            ConfigImport ci = new ConfigImport();
+            ci.ImportConfigsFromDisk(controller);
+
+            await controller.CloseAsync();
+
+            if (controller.IsCanceled)
+            {
+                await this.ShowMessageAsync("Config Importer", "Config Import Cancelled");
+            }
+            else
+            {
+                await this.ShowMessageAsync("Config Importer", "Config Import Completed");
+            }
         }
+        */
+
+        private void LoadConfigFromDisk_Click(object sender, RoutedEventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+            int ConfigId = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
+            string sysCode = rb.Name.Replace("btnConfig", "");
+        }
+
+        private void SaveConfigToDisk_Click(object sender, RoutedEventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+            int ConfigId = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
+            string sysCode = rb.Name.Replace("btnConfig", "");
+        }
+
+        
     }
-    */
+        /*
+        public class SliderIgnoreDelta : Slider
+        {
+            protected override void OnThumbDragDelta(DragDeltaEventArgs e)
+            {
+                // Do nothing
+            }
+        }
+        */
 
 
-}
+    }

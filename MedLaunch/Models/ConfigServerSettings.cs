@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -56,6 +57,30 @@ namespace MedLaunch.Models
                     if (t == null) { toAdd.Add(g); }
                     else { toUpdate.Add(g); }
                 }
+                db.ConfigServerSettings.UpdateRange(toUpdate);
+                db.ConfigServerSettings.AddRange(toAdd);
+                db.SaveChanges();
+            }
+        }
+
+        public static void SaveToDatabase(ConfigServerSettings Config)
+        {
+            using (var db = new MyDbContext())
+            {
+                // get current database context
+                var current = db.ConfigServerSettings.AsNoTracking().ToList();
+
+                List<ConfigServerSettings> toAdd = new List<ConfigServerSettings>();
+                List<ConfigServerSettings> toUpdate = new List<ConfigServerSettings>();
+
+                // iterate through the games list and separete out games to be added and games to be updated
+                
+                ConfigServerSettings t = (from a in current
+                                            where a.ConfigServerId == Config.ConfigServerId
+                                            select a).SingleOrDefault();
+                if (t == null) { toAdd.Add(Config); }
+                else { toUpdate.Add(Config); }
+              
                 db.ConfigServerSettings.UpdateRange(toUpdate);
                 db.ConfigServerSettings.AddRange(toAdd);
                 db.SaveChanges();
@@ -192,6 +217,36 @@ namespace MedLaunch.Models
             slServerPort.Value = Convert.ToDouble(server.netplay__port);
             tbPassword.Text = server.netplay__password;
             tbGamekey.Text = server.netplay__gamekey;
+        }
+
+        public static void PopulateCustomServer()
+        {
+            var servers = GetServers();
+            var server = (from s in servers
+                          where s.ConfigServerId == 100
+                          select s).SingleOrDefault();
+
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            TextBox tbServerDesc = (TextBox)mw.FindName("tbServerDesc");
+            TextBox tbHostname = (TextBox)mw.FindName("tbHostname");
+            TextBox tbPassword = (TextBox)mw.FindName("tbPassword");
+            TextBox tbGamekey = (TextBox)mw.FindName("tbGamekey");
+            Slider slServerPort = (Slider)mw.FindName("slServerPort");
+            
+
+            tbServerDesc.Text = server.ConfigServerDesc;
+            tbHostname.Text = server.netplay__host;
+            slServerPort.Value = Convert.ToDouble(server.netplay__port);
+            tbPassword.Text = server.netplay__password;
+            tbGamekey.Text = server.netplay__gamekey;
+        }
+
+        public static void SetCustomDefault()
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            RadioButton rbSrvCustom = (RadioButton)mw.FindName("rbSrvCustom");
+            rbSrvCustom.IsChecked = true;
         }
 
         public static void SetSelectedServer(RadioButton rb)

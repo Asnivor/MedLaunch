@@ -179,8 +179,10 @@ namespace MedLaunch.Classes
             
             // Get a Dictionary object with a list of config parameter names, along with the object itself
             Dictionary<string, object> cmds = DictionaryFromType(Config);
+
             // Create a new List object to hold actual parameters that will be passed to Mednafen
-            Dictionary<String, String> activeCmds = new Dictionary<string, string>();
+            //Dictionary<String, String> activeCmds = new Dictionary<string, string>();
+            List<ConfigKeyValue> activeCmds = new List<ConfigKeyValue>();
             foreach (var thing in cmds)
             {
                 // Check for Null and Empty values
@@ -203,21 +205,30 @@ namespace MedLaunch.Classes
                 }
 
 
-                if (thing.Key == "ConfigId" || thing.Key == "UpdatedTime" || thing.Key == "isEnabled" || thing.Key == "systemIdent")
+                if (thing.Key == "ConfigId" || thing.Key == "UpdatedTime" || thing.Key == "isEnabled" || thing.Key == "systemIdent" || thing.Key.Contains("__enable"))
                 {
-                    // non-mednafen config settings
+                    // non-mednafen config settings or settings that must be added as a - param
                 }
                 else
                 {                    
                     // convert key to correct mednafen config format
                     string k = thing.Key.Replace("__", ".");
 
-                    // is this a generic system specific config entry (ie. it has a leading .)? If so prefix SystemCode
+                    // is this a generic system specific config entry (ie. it has a leading .)?
                     char[] array = k.ToCharArray();
                     if (array[0] ==  '.')
                     {
-                        // append the system code at start
-                        k = SystemCode.ToLower() + k;
+                        if (Config.ConfigId == 2000000000 && GlobalSettings.GetGlobals().showAllBaseSettings == false)
+                        {
+                            // this is the base config and medlaunch is set to NOT show all config settings on the base config filter. Therefore generate the command by appending system code
+                            k = SystemCode.ToLower() + k;
+                            
+                        }
+                        else
+                        {
+                            // just use the implicit system-specific config command
+                            continue;
+                        }
                     }                    
                     
                     // is the parameter illegal (ie. in the list of illegal config parameters)
@@ -231,17 +242,45 @@ namespace MedLaunch.Classes
                     if(DoesParamContainSystemCode(k) == false)
                     {
                         // non system specific parameter. add to list and continue
-                        activeCmds.Add(k, v);
+                        ConfigKeyValue ckv = new ConfigKeyValue();
+                        ckv.Key = k;
+                        ckv.Value = v;
+                        // check whether it already exists
+                        var x = activeCmds.Where(m => m.Key == k).ToList();
+                        if (x.Count > 0)
+                        {
+                            foreach (var xc in x)
+                            {
+                                activeCmds.Remove(xc);
+                                activeCmds.Add(ckv);
+                            }
+                            continue;
+                        }
+                        activeCmds.Add(ckv);
                         continue;
                     }
                     else
                     {
                         // param contains a systemcode
                         // is the base config selected?
-                        if (ConfigId == 2000000000)
+                        if (Config.ConfigId == 2000000000)
                         {
                             // base config selected - all parameters must be added
-                            activeCmds.Add(k, v);
+                            ConfigKeyValue ckv = new ConfigKeyValue();
+                            ckv.Key = k;
+                            ckv.Value = v;
+                            // check whether it already exists
+                            var x = activeCmds.Where(m => m.Key == k).ToList();
+                            if (x.Count > 0)
+                            {
+                                foreach (var xc in x)
+                                {
+                                    activeCmds.Remove(xc);
+                                    activeCmds.Add(ckv);
+                                }
+                                continue;
+                            }
+                            activeCmds.Add(ckv);
                             continue;
                         }
                         else
@@ -249,8 +288,21 @@ namespace MedLaunch.Classes
                             // system specific config is selected - only add commands pertaining to this system
                             if (k.Contains(SystemCode))
                             {
-                                // it does
-                                activeCmds.Add(k, v);
+                                ConfigKeyValue ckv = new ConfigKeyValue();
+                                ckv.Key = k;
+                                ckv.Value = v;
+                                // check whether it already exists
+                                var x = activeCmds.Where(m => m.Key == k).ToList();
+                                if (x.Count > 0)
+                                {
+                                    foreach (var xc in x)
+                                    {
+                                        activeCmds.Remove(xc);
+                                        activeCmds.Add(ckv);
+                                    }
+                                    continue;
+                                }
+                                activeCmds.Add(ckv);
                                 continue;
                             }
                             else
@@ -559,5 +611,11 @@ namespace MedLaunch.Classes
         public ConfigServerSettings Server { get; set; }
         public ConfigServerSettings ServerOveride { get; set; }
         public GlobalSettings Global { get; set; }
+    }
+
+    public class ConfigKeyValue
+    {
+        public string Key { get; set; }
+        public string Value { get; set; }
     }
 }

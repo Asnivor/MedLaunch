@@ -90,14 +90,83 @@ namespace MedLaunch.Models
         public bool? lynx__lowpass { get; set; }
         public bool? lynx__rotateinput { get; set; }
 
+        public bool? lynx__enable { get; set; }
+        public bool? lynx__forcemono { get; set; }
+        public string lynx__pixshader { get; set; }
+        public int? lynx__scanlines { get; set; }
+        public string lynx__special { get; set; }
+        public string lynx__stretch { get; set; }
+        public bool? lynx__tblur { get; set; }
+        public bool? lynx__tblur__accum { get; set; }
+        public double? lynx__tblur__accum__amount { get; set; }
+        public string lynx__videoip { get; set; }
+        public int? lynx__xres { get; set; }                            // 0 through 65536
+        public double? lynx__xscale { get; set; }                       // 0.01 through 256
+        public double? lynx__xscalefs { get; set; }                     // 0.01 through 256
+        public int? lynx__yres { get; set; }                            // 0 through 65536
+        public double? lynx__yscale { get; set; }                       // 0.01 through 256
+        public double? lynx__yscalefs { get; set; }                     // 0.01 through 256
+
+
         // Gameboy
         public string gb__system_type { get; set; }                 // auto dmg cgb agb
+
+        public bool? gb__enable { get; set; }
+        public bool? gb__forcemono { get; set; }
+        public string gb__pixshader { get; set; }
+        public int? gb__scanlines { get; set; }
+        public string gb__special { get; set; }
+        public string gb__stretch { get; set; }
+        public bool? gb__tblur { get; set; }
+        public bool? gb__tblur__accum { get; set; }
+        public double? gb__tblur__accum__amount { get; set; }
+        public string gb__videoip { get; set; }
+        public int? gb__xres { get; set; }                            // 0 through 65536
+        public double? gb__xscale { get; set; }                       // 0.01 through 256
+        public double? gb__xscalefs { get; set; }                     // 0.01 through 256
+        public int? gb__yres { get; set; }                            // 0 through 65536
+        public double? gb__yscale { get; set; }                       // 0.01 through 256
+        public double? gb__yscalefs { get; set; }                     // 0.01 through 256
 
         // Gameboy Advance
         public string gba__bios { get; set; }
 
+        public bool? gba__enable { get; set; }
+        public bool? gba__forcemono { get; set; }
+        public string gba__pixshader { get; set; }
+        public int? gba__scanlines { get; set; }
+        public string gba__special { get; set; }
+        public string gba__stretch { get; set; }
+        public bool? gba__tblur { get; set; }
+        public bool? gba__tblur__accum { get; set; }
+        public double? gba__tblur__accum__amount { get; set; }
+        public string gba__videoip { get; set; }
+        public int? gba__xres { get; set; }                            // 0 through 65536
+        public double? gba__xscale { get; set; }                       // 0.01 through 256
+        public double? gba__xscalefs { get; set; }                     // 0.01 through 256
+        public int? gba__yres { get; set; }                            // 0 through 65536
+        public double? gba__yscale { get; set; }                       // 0.01 through 256
+        public double? gba__yscalefs { get; set; }                     // 0.01 through 256
+
         // NeoGeo Pocket Color
         public string npg__language { get; set; }                   // english japanese
+
+        public bool? ngp__enable { get; set; }
+        public bool? ngp__forcemono { get; set; }
+        public string ngp__pixshader { get; set; }
+        public int? ngp__scanlines { get; set; }
+        public string ngp__special { get; set; }
+        public string ngp__stretch { get; set; }
+        public bool? ngp__tblur { get; set; }
+        public bool? ngp__tblur__accum { get; set; }
+        public double? ngp__tblur__accum__amount { get; set; }
+        public string ngp__videoip { get; set; }
+        public int? ngp__xres { get; set; }                            // 0 through 65536
+        public double? ngp__xscale { get; set; }                       // 0.01 through 256
+        public double? ngp__xscalefs { get; set; }                     // 0.01 through 256
+        public int? ngp__yres { get; set; }                            // 0 through 65536
+        public double? ngp__yscale { get; set; }                       // 0.01 through 256
+        public double? ngp__yscalefs { get; set; }                     // 0.01 through 256
 
         // NES
         public bool? nes__clipsides { get; set; }
@@ -138,6 +207,22 @@ namespace MedLaunch.Models
         public string nes__debugger__disfontsize { get; set; }
         public string nes__debugger__memcharenc { get; set; }
 
+        public bool? nes__enable { get; set; }
+        public string nes__pixshader { get; set; }
+        public int? nes__scanlines { get; set; }
+        public string nes__special { get; set; }
+        public string nes__stretch { get; set; }
+        public bool? nes__tblur { get; set; }
+        public bool? nes__tblur__accum { get; set; }
+        public double? nes__tblur__accum__amount { get; set; }
+        public string nes__videoip { get; set; }
+        public int? nes__xres { get; set; }                            // 0 through 65536
+        public double? nes__xscale { get; set; }                       // 0.01 through 256
+        public double? nes__xscalefs { get; set; }                     // 0.01 through 256
+        public int? nes__yres { get; set; }                            // 0 through 65536
+        public double? nes__yscale { get; set; }                       // 0.01 through 256
+        public double? nes__yscalefs { get; set; }                     // 0.01 through 256
+
         // PC-Engine (Fast)
         public bool? pce_fast__adpcmlp { get; set; }
         public int? pce_fast__adpcmvolume { get; set; }             // 0 through 200
@@ -159,7 +244,24 @@ namespace MedLaunch.Models
         public int? pce_fast__ocmultiplier { get; set; }            // 1 through 100
         public int? pce_fast__slend { get; set; }                   // 0 through 239
         public int? pce_fast__slstart { get; set; }                 // 0 through 239
-        
+
+        public bool? pce_fast__enable { get; set; }
+        public bool? pce_fast__forcemono { get; set; }
+        public string pce_fast__pixshader { get; set; }
+        public int? pce_fast__scanlines { get; set; }
+        public string pce_fast__special { get; set; }
+        public string pce_fast__stretch { get; set; }
+        public bool? pce_fast__tblur { get; set; }
+        public bool? pce_fast__tblur__accum { get; set; }
+        public double? pce_fast__tblur__accum__amount { get; set; }
+        public string pce_fast__videoip { get; set; }
+        public int? pce_fast__xres { get; set; }                            // 0 through 65536
+        public double? pce_fast__xscale { get; set; }                       // 0.01 through 256
+        public double? pce_fast__xscalefs { get; set; }                     // 0.01 through 256
+        public int? pce_fast__yres { get; set; }                            // 0 through 65536
+        public double? pce_fast__yscale { get; set; }                       // 0.01 through 256
+        public double? pce_fast__yscalefs { get; set; }                     // 0.01 through 256
+
 
         // PC-Engine
         public bool? pce__adpcmextraprec { get; set; }
@@ -189,6 +291,23 @@ namespace MedLaunch.Models
         public int? pce__slstart { get; set; }                      // 0 through 239
         public string pce__debugger__disfontsize { get; set; }
         public string pce__debugger__memcharenc { get; set; }
+
+        public bool? pce__enable { get; set; }
+        public bool? pce__forcemono { get; set; }
+        public string pce__pixshader { get; set; }
+        public int? pce__scanlines { get; set; }
+        public string pce__special { get; set; }
+        public string pce__stretch { get; set; }
+        public bool? pce__tblur { get; set; }
+        public bool? pce__tblur__accum { get; set; }
+        public double? pce__tblur__accum__amount { get; set; }
+        public string pce__videoip { get; set; }
+        public int? pce__xres { get; set; }                            // 0 through 65536
+        public double? pce__xscale { get; set; }                       // 0.01 through 256
+        public double? pce__xscalefs { get; set; }                     // 0.01 through 256
+        public int? pce__yres { get; set; }                            // 0 through 65536
+        public double? pce__yscale { get; set; }                       // 0.01 through 256
+        public double? pce__yscalefs { get; set; }                     // 0.01 through 256
 
         // PC-FX
         public bool? pcfx__adpcm__emulate_buggy_codec { get; set; }
@@ -220,11 +339,62 @@ namespace MedLaunch.Models
         public string pcfx__debugger__disfontsize { get; set; }
         public string pcfx__debugger__memcharenc { get; set; }
 
+        public bool? pcfx__enable { get; set; }
+        public bool? pcfx__forcemono { get; set; }
+        public string pcfx__pixshader { get; set; }
+        public int? pcfx__scanlines { get; set; }
+        public string pcfx__special { get; set; }
+        public string pcfx__stretch { get; set; }
+        public bool? pcfx__tblur { get; set; }
+        public bool? pcfx__tblur__accum { get; set; }
+        public double? pcfx__tblur__accum__amount { get; set; }
+        public string pcfx__videoip { get; set; }
+        public int? pcfx__xres { get; set; }                            // 0 through 65536
+        public double? pcfx__xscale { get; set; }                       // 0.01 through 256
+        public double? pcfx__xscalefs { get; set; }                     // 0.01 through 256
+        public int? pcfx__yres { get; set; }                            // 0 through 65536
+        public double? pcfx__yscale { get; set; }                       // 0.01 through 256
+        public double? pcfx__yscalefs { get; set; }                     // 0.01 through 256
+
         // Sega GameGear
+
+        public bool? gg__enable { get; set; }
+        public bool? gg__forcemono { get; set; }
+        public string gg__pixshader { get; set; }
+        public int? gg__scanlines { get; set; }
+        public string gg__special { get; set; }
+        public string gg__stretch { get; set; }
+        public bool? gg__tblur { get; set; }
+        public bool? gg__tblur__accum { get; set; }
+        public double? gg__tblur__accum__amount { get; set; }
+        public string gg__videoip { get; set; }
+        public int? gg__xres { get; set; }                            // 0 through 65536
+        public double? gg__xscale { get; set; }                       // 0.01 through 256
+        public double? gg__xscalefs { get; set; }                     // 0.01 through 256
+        public int? gg__yres { get; set; }                            // 0 through 65536
+        public double? gg__yscale { get; set; }                       // 0.01 through 256
+        public double? gg__yscalefs { get; set; }                     // 0.01 through 256
 
         // Sega Master System
         public bool? sms__fm { get; set; }
         public string sms__territory { get; set; }
+
+        public bool? sms__enable { get; set; }
+        public bool? sms__forcemono { get; set; }
+        public string sms__pixshader { get; set; }
+        public int? sms__scanlines { get; set; }
+        public string sms__special { get; set; }
+        public string sms__stretch { get; set; }
+        public bool? sms__tblur { get; set; }
+        public bool? sms__tblur__accum { get; set; }
+        public double? sms__tblur__accum__amount { get; set; }
+        public string sms__videoip { get; set; }
+        public int? sms__xres { get; set; }                            // 0 through 65536
+        public double? sms__xscale { get; set; }                       // 0.01 through 256
+        public double? sms__xscalefs { get; set; }                     // 0.01 through 256
+        public int? sms__yres { get; set; }                            // 0 through 65536
+        public double? sms__yscale { get; set; }                       // 0.01 through 256
+        public double? sms__yscalefs { get; set; }                     // 0.01 through 256
 
         // Sega Megadrive
         public string md__cdbios { get; set; }
@@ -244,6 +414,23 @@ namespace MedLaunch.Models
         public string md__reported_region { get; set; }
         public string md__debugger__disfontsize { get; set; }
         public string md__debugger__memcharenc { get; set; }
+
+        public bool? md__enable { get; set; }
+        public bool? md__forcemono { get; set; }
+        public string md__pixshader { get; set; }
+        public int? md__scanlines { get; set; }
+        public string md__special { get; set; }
+        public string md__stretch { get; set; }
+        public bool? md__tblur { get; set; }
+        public bool? md__tblur__accum { get; set; }
+        public double? md__tblur__accum__amount { get; set; }
+        public string md__videoip { get; set; }
+        public int? md__xres { get; set; }                            // 0 through 65536
+        public double? md__xscale { get; set; }                       // 0.01 through 256
+        public double? md__xscalefs { get; set; }                     // 0.01 through 256
+        public int? md__yres { get; set; }                            // 0 through 65536
+        public double? md__yscale { get; set; }                       // 0.01 through 256
+        public double? md__yscalefs { get; set; }                     // 0.01 through 256
 
 
         // Sega Saturn
@@ -279,6 +466,23 @@ namespace MedLaunch.Models
         public string ss__smpc__autortc__lang { get; set; }
         public string ss__debugger__disfontsize { get; set; }
         public string ss__debugger__memcharenc { get; set; }
+
+        public bool? ss__enable { get; set; }
+        public bool? ss__forcemono { get; set; }
+        public string ss__pixshader { get; set; }
+        public int? ss__scanlines { get; set; }
+        public string ss__special { get; set; }
+        public string ss__stretch { get; set; }
+        public bool? ss__tblur { get; set; }
+        public bool? ss__tblur__accum { get; set; }
+        public double? ss__tblur__accum__amount { get; set; }
+        public string ss__videoip { get; set; }
+        public int? ss__xres { get; set; }                            // 0 through 65536
+        public double? ss__xscale { get; set; }                       // 0.01 through 256
+        public double? ss__xscalefs { get; set; }                     // 0.01 through 256
+        public int? ss__yres { get; set; }                            // 0 through 65536
+        public double? ss__yscale { get; set; }                       // 0.01 through 256
+        public double? ss__yscalefs { get; set; }                     // 0.01 through 256
 
 
         // Sony Playstation
@@ -361,6 +565,23 @@ namespace MedLaunch.Models
         public string psx__debugger__disfontsize { get; set; }
         public string psx__debugger__memcharenc { get; set; }
 
+        public bool? psx__enable { get; set; }
+        public bool? psx__forcemono { get; set; }
+        public string psx__pixshader { get; set; }
+        public int? psx__scanlines { get; set; }
+        public string psx__special { get; set; }
+        public string psx__stretch { get; set; }
+        public bool? psx__tblur { get; set; }
+        public bool? psx__tblur__accum { get; set; }
+        public double? psx__tblur__accum__amount { get; set; }
+        public string psx__videoip { get; set; }
+        public int? psx__xres { get; set; }                            // 0 through 65536
+        public double? psx__xscale { get; set; }                       // 0.01 through 256
+        public double? psx__xscalefs { get; set; }                     // 0.01 through 256
+        public int? psx__yres { get; set; }                            // 0 through 65536
+        public double? psx__yscale { get; set; }                       // 0.01 through 256
+        public double? psx__yscalefs { get; set; }                     // 0.01 through 256
+
         // SNES (Faust)
         public string snes_faust__input__port1 { get; set; }
         public string snes_faust__input__port2 { get; set; }
@@ -368,6 +589,23 @@ namespace MedLaunch.Models
         public double? snes_faust__resamp_rate_error { get; set; }              // 0.0000001 through 0.0015
         public bool? snes_faust__spex { get; set; }
         public bool? snes_faust__spex__sound { get; set; }
+
+        public bool? snes_faust__enable { get; set; }
+        public bool? snes_faust__forcemono { get; set; }
+        public string snes_faust__pixshader { get; set; }
+        public int? snes_faust__scanlines { get; set; }
+        public string snes_faust__special { get; set; }
+        public string snes_faust__stretch { get; set; }
+        public bool? snes_faust__tblur { get; set; }
+        public bool? snes_faust__tblur__accum { get; set; }
+        public double? snes_faust__tblur__accum__amount { get; set; }
+        public string snes_faust__videoip { get; set; }
+        public int? snes_faust__xres { get; set; }                            // 0 through 65536
+        public double? snes_faust__xscale { get; set; }                       // 0.01 through 256
+        public double? snes_faust__xscalefs { get; set; }                     // 0.01 through 256
+        public int? snes_faust__yres { get; set; }                            // 0 through 65536
+        public double? snes_faust__yscale { get; set; }                       // 0.01 through 256
+        public double? snes_faust__yscalefs { get; set; }                     // 0.01 through 256
 
         // SNES
         public int? snes__apu__resamp_quality { get; set; }                     // 0 through 10
@@ -377,6 +615,23 @@ namespace MedLaunch.Models
         public string snes__input__port2 { get; set; }
         public bool? snes__input__port2__multitap { get; set; }
         public double? snes__mouse_sensitivity { get; set; }                    // 0.125 through 2
+
+        public bool? snes__enable { get; set; }
+        public bool? snes__forcemono { get; set; }
+        public string snes__pixshader { get; set; }
+        public int? snes__scanlines { get; set; }
+        public string snes__special { get; set; }
+        public string snes__stretch { get; set; }
+        public bool? snes__tblur { get; set; }
+        public bool? snes__tblur__accum { get; set; }
+        public double? snes__tblur__accum__amount { get; set; }
+        public string snes__videoip { get; set; }
+        public int? snes__xres { get; set; }                            // 0 through 65536
+        public double? snes__xscale { get; set; }                       // 0.01 through 256
+        public double? snes__xscalefs { get; set; }                     // 0.01 through 256
+        public int? snes__yres { get; set; }                            // 0 through 65536
+        public double? snes__yscale { get; set; }                       // 0.01 through 256
+        public double? snes__yscalefs { get; set; }                     // 0.01 through 256
 
         // Virtual Boy
         public string vb__3dmode { get; set; }
@@ -396,6 +651,23 @@ namespace MedLaunch.Models
         public string vb__debugger__disfontsize { get; set; }
         public string vb__debugger__memcharenc { get; set; }
 
+        public bool? vb__enable { get; set; }
+        public bool? vb__forcemono { get; set; }
+        public string vb__pixshader { get; set; }
+        public int? vb__scanlines { get; set; }
+        public string vb__special { get; set; }
+        public string vb__stretch { get; set; }
+        public bool? vb__tblur { get; set; }
+        public bool? vb__tblur__accum { get; set; }
+        public double? vb__tblur__accum__amount { get; set; }
+        public string vb__videoip { get; set; }
+        public int? vb__xres { get; set; }                            // 0 through 65536
+        public double? vb__xscale { get; set; }                       // 0.01 through 256
+        public double? vb__xscalefs { get; set; }                     // 0.01 through 256
+        public int? vb__yres { get; set; }                            // 0 through 65536
+        public double? vb__yscale { get; set; }                       // 0.01 through 256
+        public double? vb__yscalefs { get; set; }                     // 0.01 through 256
+
         // WonderSwan
         public int? wswan__bday { get; set; }                                   // 1 through 31
         public string wswan__blood { get; set; }
@@ -405,6 +677,23 @@ namespace MedLaunch.Models
         public string wswan__name { get; set; }
         public bool? wswan__rotateinput { get; set; }
         public string wswan__sex { get; set; }
+
+        public bool? wswan__enable { get; set; }
+        public bool? wswan__forcemono { get; set; }
+        public string wswan__pixshader { get; set; }
+        public int? wswan__scanlines { get; set; }
+        public string wswan__special { get; set; }
+        public string wswan__stretch { get; set; }
+        public bool? wswan__tblur { get; set; }
+        public bool? wswan__tblur__accum { get; set; }
+        public double? wswan__tblur__accum__amount { get; set; }
+        public string wswan__videoip { get; set; }
+        public int? wswan__xres { get; set; }                            // 0 through 65536
+        public double? wswan__xscale { get; set; }                       // 0.01 through 256
+        public double? wswan__xscalefs { get; set; }                     // 0.01 through 256
+        public int? wswan__yres { get; set; }                            // 0 through 65536
+        public double? wswan__yscale { get; set; }                       // 0.01 through 256
+        public double? wswan__yscalefs { get; set; }                     // 0.01 through 256
 
         public string wswan__debugger__disfontsize { get; set; }
         public string wswan__debugger__memcharenc { get; set; }
@@ -485,15 +774,89 @@ namespace MedLaunch.Models
                 __yscalefs = 1,                                      // control placed
 
                 // system specific settings
+
+                // lynx
                 lynx__lowpass = true,                                   // placed
                 lynx__rotateinput = true,                               // placed
 
+                lynx__enable = true,
+                lynx__forcemono = false,                                // control placed
+                lynx__pixshader = "none",                               // control placed
+                lynx__scanlines = 0,                                    // control placed
+                lynx__special = "none",                                 // control placed
+                lynx__stretch = "aspect_mult2",                         // control placed
+                lynx__tblur = false,                                    // control placed
+                lynx__tblur__accum = false,                             // control placed
+                lynx__tblur__accum__amount = 50,                        // control placed
+                lynx__videoip = "0",                                    // control placed
+                lynx__xres = 0,                                         // control placed
+                lynx__xscale = 1,                                       // control placed
+                lynx__xscalefs = 1,                                     // control placed
+                lynx__yres = 0,                                         // control placed
+                lynx__yscale = 1,                                       // control placed
+                lynx__yscalefs = 1,                                     // control placed
+
+                // gameboy
                 gb__system_type = "auto",                               // placed
 
+                gb__enable = true,
+                gb__forcemono = false,                                // control placed
+                gb__pixshader = "none",                               // control placed
+                gb__scanlines = 0,                                    // control placed
+                gb__special = "none",                                 // control placed
+                gb__stretch = "aspect_mult2",                         // control placed
+                gb__tblur = false,                                    // control placed
+                gb__tblur__accum = false,                             // control placed
+                gb__tblur__accum__amount = 50,                        // control placed
+                gb__videoip = "0",                                    // control placed
+                gb__xres = 0,                                         // control placed
+                gb__xscale = 1,                                       // control placed
+                gb__xscalefs = 1,                                     // control placed
+                gb__yres = 0,                                         // control placed
+                gb__yscale = 1,                                       // control placed
+                gb__yscalefs = 1,                                     // control placed
+
+                // gameboy advance
                 gba__bios = "",
 
+                gba__enable = true,
+                gba__forcemono = false,                                // control placed
+                gba__pixshader = "none",                               // control placed
+                gba__scanlines = 0,                                    // control placed
+                gba__special = "none",                                 // control placed
+                gba__stretch = "aspect_mult2",                         // control placed
+                gba__tblur = false,                                    // control placed
+                gba__tblur__accum = false,                             // control placed
+                gba__tblur__accum__amount = 50,                        // control placed
+                gba__videoip = "0",                                    // control placed
+                gba__xres = 0,                                         // control placed
+                gba__xscale = 1,                                       // control placed
+                gba__xscalefs = 1,                                     // control placed
+                gba__yres = 0,                                         // control placed
+                gba__yscale = 1,                                       // control placed
+                gba__yscalefs = 1,                                     // control placed
+
+                // neogeo pocket
                 npg__language = "english",                              // placed
 
+                ngp__enable = true,
+                ngp__forcemono = false,                                // control placed
+                ngp__pixshader = "none",                               // control placed
+                ngp__scanlines = 0,                                    // control placed
+                ngp__special = "none",                                 // control placed
+                ngp__stretch = "aspect_mult2",                         // control placed
+                ngp__tblur = false,                                    // control placed
+                ngp__tblur__accum = false,                             // control placed
+                ngp__tblur__accum__amount = 50,                        // control placed
+                ngp__videoip = "0",                                    // control placed
+                ngp__xres = 0,                                         // control placed
+                ngp__xscale = 1,                                       // control placed
+                ngp__xscalefs = 1,                                     // control placed
+                ngp__yres = 0,                                         // control placed
+                ngp__yscale = 1,                                       // control placed
+                ngp__yscalefs = 1,                                     // control placed
+
+                // NES
                 nes__clipsides = false,                                 // placed
                 nes__correct_aspect = false,                            // placed
                 nes__fnscan = true,                                     // placed
@@ -532,6 +895,23 @@ namespace MedLaunch.Models
                 nes__debugger__disfontsize = "5x7",                      // placed
                 nes__debugger__memcharenc = "cp437",                     // placed
 
+                nes__enable = true,
+                nes__pixshader = "none",                               // control placed
+                nes__scanlines = 0,                                    // control placed
+                nes__special = "none",                                 // control placed
+                nes__stretch = "aspect_mult2",                         // control placed
+                nes__tblur = false,                                    // control placed
+                nes__tblur__accum = false,                             // control placed
+                nes__tblur__accum__amount = 50,                        // control placed
+                nes__videoip = "0",                                    // control placed
+                nes__xres = 0,                                         // control placed
+                nes__xscale = 1,                                       // control placed
+                nes__xscalefs = 1,                                     // control placed
+                nes__yres = 0,                                         // control placed
+                nes__yscale = 1,                                       // control placed
+                nes__yscalefs = 1,                                     // control placed
+
+                // PCE fast
                 pce_fast__adpcmlp = false,                              // placed
                 pce_fast__adpcmvolume = 100,                            // placed
                 pce_fast__arcadecard = true,                            // placed
@@ -555,6 +935,24 @@ namespace MedLaunch.Models
                 pce__debugger__disfontsize = "5x7",                      // placed
                 pce__debugger__memcharenc = "shift_jis",                 // placed
 
+                pce_fast__enable = true,
+                pce_fast__forcemono = false,                                // control placed
+                pce_fast__pixshader = "none",                               // control placed
+                pce_fast__scanlines = 0,                                    // control placed
+                pce_fast__special = "none",                                 // control placed
+                pce_fast__stretch = "aspect_mult2",                         // control placed
+                pce_fast__tblur = false,                                    // control placed
+                pce_fast__tblur__accum = false,                             // control placed
+                pce_fast__tblur__accum__amount = 50,                        // control placed
+                pce_fast__videoip = "0",                                    // control placed
+                pce_fast__xres = 0,                                         // control placed
+                pce_fast__xscale = 1,                                       // control placed
+                pce_fast__xscalefs = 1,                                     // control placed
+                pce_fast__yres = 0,                                         // control placed
+                pce_fast__yscale = 1,                                       // control placed
+                pce_fast__yscalefs = 1,                                     // control placed
+
+                // PCE
                 pce__adpcmextraprec = false,                            // placed
                 pce__adpcmvolume = 100,                                 // placed
                 pce__arcadecard = true,                                 // placed
@@ -581,6 +979,24 @@ namespace MedLaunch.Models
                 pce__slend = 235,
                 pce__slstart = 4,
 
+                pce__enable = true,
+                pce__forcemono = false,                                // control placed
+                pce__pixshader = "none",                               // control placed
+                pce__scanlines = 0,                                    // control placed
+                pce__special = "none",                                 // control placed
+                pce__stretch = "aspect_mult2",                         // control placed
+                pce__tblur = false,                                    // control placed
+                pce__tblur__accum = false,                             // control placed
+                pce__tblur__accum__amount = 50,                        // control placed
+                pce__videoip = "0",                                    // control placed
+                pce__xres = 0,                                         // control placed
+                pce__xscale = 1,                                       // control placed
+                pce__xscalefs = 1,                                     // control placed
+                pce__yres = 0,                                         // control placed
+                pce__yscale = 1,                                       // control placed
+                pce__yscalefs = 1,                                     // control placed
+
+                // PC-FX
                 pcfx__adpcm__emulate_buggy_codec = false,                   // placed
                 pcfx__adpcm__suppress_channel_reset_clicks = true,          // placed
                 pcfx__bios = "pcfx.rom",
@@ -610,9 +1026,64 @@ namespace MedLaunch.Models
                 pcfx__debugger__disfontsize = "5x7",                         // palced
                 pcfx__debugger__memcharenc = "shift_jis",                    // placed
 
+                pcfx__enable = true,
+                pcfx__forcemono = false,                                // control placed
+                pcfx__pixshader = "none",                               // control placed
+                pcfx__scanlines = 0,                                    // control placed
+                pcfx__special = "none",                                 // control placed
+                pcfx__stretch = "aspect_mult2",                         // control placed
+                pcfx__tblur = false,                                    // control placed
+                pcfx__tblur__accum = false,                             // control placed
+                pcfx__tblur__accum__amount = 50,                        // control placed
+                pcfx__videoip = "0",                                    // control placed
+                pcfx__xres = 0,                                         // control placed
+                pcfx__xscale = 1,                                       // control placed
+                pcfx__xscalefs = 1,                                     // control placed
+                pcfx__yres = 0,                                         // control placed
+                pcfx__yscale = 1,                                       // control placed
+                pcfx__yscalefs = 1,                                     // control placed
+
+                // Game Gear
+
+                gg__enable = true,
+                gg__forcemono = false,                                // control placed
+                gg__pixshader = "none",                               // control placed
+                gg__scanlines = 0,                                    // control placed
+                gg__special = "none",                                 // control placed
+                gg__stretch = "aspect_mult2",                         // control placed
+                gg__tblur = false,                                    // control placed
+                gg__tblur__accum = false,                             // control placed
+                gg__tblur__accum__amount = 50,                        // control placed
+                gg__videoip = "0",                                    // control placed
+                gg__xres = 0,                                         // control placed
+                gg__xscale = 1,                                       // control placed
+                gg__xscalefs = 1,                                     // control placed
+                gg__yres = 0,                                         // control placed
+                gg__yscale = 1,                                       // control placed
+                gg__yscalefs = 1,                                     // control placed
+
+                // Mster system
                 sms__fm = true,                                             // placed
                 sms__territory = "export",                                   // placed
 
+                sms__enable = true,
+                sms__forcemono = false,                                // control placed
+                sms__pixshader = "none",                               // control placed
+                sms__scanlines = 0,                                    // control placed
+                sms__special = "none",                                 // control placed
+                sms__stretch = "aspect_mult2",                         // control placed
+                sms__tblur = false,                                    // control placed
+                sms__tblur__accum = false,                             // control placed
+                sms__tblur__accum__amount = 50,                        // control placed
+                sms__videoip = "0",                                    // control placed
+                sms__xres = 0,                                         // control placed
+                sms__xscale = 1,                                       // control placed
+                sms__xscalefs = 1,                                     // control placed
+                sms__yres = 0,                                         // control placed
+                sms__yscale = 1,                                       // control placed
+                sms__yscalefs = 1,                                     // control placed
+
+                // Mega Drive
                 md__cdbios = "us_scd1_9210.bin",
                 md__correct_aspect = true,                                  // placed
                 md__input__auto = true,                                     // placed
@@ -631,6 +1102,24 @@ namespace MedLaunch.Models
                 md__debugger__disfontsize = "5x7",
                 md__debugger__memcharenc = "shift_jis",
 
+                md__enable = true,
+                md__forcemono = false,                                // control placed
+                md__pixshader = "none",                               // control placed
+                md__scanlines = 0,                                    // control placed
+                md__special = "none",                                 // control placed
+                md__stretch = "aspect_mult2",                         // control placed
+                md__tblur = false,                                    // control placed
+                md__tblur__accum = false,                             // control placed
+                md__tblur__accum__amount = 50,                        // control placed
+                md__videoip = "0",                                    // control placed
+                md__xres = 0,                                         // control placed
+                md__xscale = 1,                                       // control placed
+                md__xscalefs = 1,                                     // control placed
+                md__yres = 0,                                         // control placed
+                md__yscale = 1,                                       // control placed
+                md__yscalefs = 1,                                     // control placed
+
+                // saturn
                 ss__bios_jp = "sega_101.bin",
                 ss__bios_na_eu = "mpr-17933.bin",
                 ss__bios_sanity = true,                                     // placed
@@ -664,6 +1153,24 @@ namespace MedLaunch.Models
                 ss__debugger__disfontsize = "5x7",                           // placed
                 ss__debugger__memcharenc = "SJIS",                           // placed
 
+                ss__enable = true,
+                ss__forcemono = false,                                // control placed
+                ss__pixshader = "none",                               // control placed
+                ss__scanlines = 0,                                    // control placed
+                ss__special = "none",                                 // control placed
+                ss__stretch = "aspect_mult2",                         // control placed
+                ss__tblur = false,                                    // control placed
+                ss__tblur__accum = false,                             // control placed
+                ss__tblur__accum__amount = 50,                        // control placed
+                ss__videoip = "0",                                    // control placed
+                ss__xres = 0,                                         // control placed
+                ss__xscale = 1,                                       // control placed
+                ss__xscalefs = 1,                                     // control placed
+                ss__yres = 0,                                         // control placed
+                ss__yscale = 1,                                       // control placed
+                ss__yscalefs = 1,                                     // control placed
+
+                // playstation
                 psx__bios_eu = "scph5502.bin",
                 psx__bios_jp = "scph5500.bin",
                 psx__bios_na = "scph5501.bin",
@@ -733,7 +1240,24 @@ namespace MedLaunch.Models
                 psx__debugger__disfontsize = "5x7",                  // placed
                 psx__debugger__memcharenc = "shift_jis",             // placed
 
+                psx__enable = true,
+                psx__forcemono = false,                                // control placed
+                psx__pixshader = "none",                               // control placed
+                psx__scanlines = 0,                                    // control placed
+                psx__special = "none",                                 // control placed
+                psx__stretch = "aspect_mult2",                         // control placed
+                psx__tblur = false,                                    // control placed
+                psx__tblur__accum = false,                             // control placed
+                psx__tblur__accum__amount = 50,                        // control placed
+                psx__videoip = "0",                                    // control placed
+                psx__xres = 0,                                         // control placed
+                psx__xscale = 1,                                       // control placed
+                psx__xscalefs = 1,                                     // control placed
+                psx__yres = 0,                                         // control placed
+                psx__yscale = 1,                                       // control placed
+                psx__yscalefs = 1,                                     // control placed
 
+                // snes faust
                 snes_faust__input__port1 = "gamepad",               // placed
                 snes_faust__input__port2 = "gamepad",               // placed
                 snes_faust__resamp_quality = 3,                     // placed
@@ -741,6 +1265,24 @@ namespace MedLaunch.Models
                 snes_faust__spex = false,                           // placed
                 snes_faust__spex__sound = true,                     // placed
 
+                snes_faust__enable = true,
+                snes_faust__forcemono = false,                                // control placed
+                snes_faust__pixshader = "none",                               // control placed
+                snes_faust__scanlines = 0,                                    // control placed
+                snes_faust__special = "none",                                 // control placed
+                snes_faust__stretch = "aspect_mult2",                         // control placed
+                snes_faust__tblur = false,                                    // control placed
+                snes_faust__tblur__accum = false,                             // control placed
+                snes_faust__tblur__accum__amount = 50,                        // control placed
+                snes_faust__videoip = "0",                                    // control placed
+                snes_faust__xres = 0,                                         // control placed
+                snes_faust__xscale = 1,                                       // control placed
+                snes_faust__xscalefs = 1,                                     // control placed
+                snes_faust__yres = 0,                                         // control placed
+                snes_faust__yscale = 1,                                       // control placed
+                snes_faust__yscalefs = 1,                                     // control placed
+
+                // snes
                 snes__apu__resamp_quality = 5,                      // placed
                 snes__correct_aspect = false,                       // placed
                 snes__input__port1 = "gamepad",                     // placed
@@ -749,6 +1291,24 @@ namespace MedLaunch.Models
                 snes__input__port2__multitap = false,               // placed
                 snes__mouse_sensitivity = 0.5,                      // placed
 
+                snes__enable = true,
+                snes__forcemono = false,                                // control placed
+                snes__pixshader = "none",                               // control placed
+                snes__scanlines = 0,                                    // control placed
+                snes__special = "none",                                 // control placed
+                snes__stretch = "aspect_mult2",                         // control placed
+                snes__tblur = false,                                    // control placed
+                snes__tblur__accum = false,                             // control placed
+                snes__tblur__accum__amount = 50,                        // control placed
+                snes__videoip = "0",                                    // control placed
+                snes__xres = 0,                                         // control placed
+                snes__xscale = 1,                                       // control placed
+                snes__xscalefs = 1,                                     // control placed
+                snes__yres = 0,                                         // control placed
+                snes__yscale = 1,                                       // control placed
+                snes__yscalefs = 1,                                     // control placed
+
+                // virtual boy
                 vb__3dmode = "anaglyph",                            // placed
                 vb__3dreverse = false,                              // placed
                 vb__allow_draw_skip = false,                        // placed
@@ -765,6 +1325,24 @@ namespace MedLaunch.Models
                 vb__debugger__disfontsize = "5x7",                   // placed
                 vb__debugger__memcharenc = "shift_jis",              // placed
 
+                vb__enable = true,
+                vb__forcemono = false,                                // control placed
+                vb__pixshader = "none",                               // control placed
+                vb__scanlines = 0,                                    // control placed
+                vb__special = "none",                                 // control placed
+                vb__stretch = "aspect_mult2",                         // control placed
+                vb__tblur = false,                                    // control placed
+                vb__tblur__accum = false,                             // control placed
+                vb__tblur__accum__amount = 50,                        // control placed
+                vb__videoip = "0",                                    // control placed
+                vb__xres = 0,                                         // control placed
+                vb__xscale = 1,                                       // control placed
+                vb__xscalefs = 1,                                     // control placed
+                vb__yres = 0,                                         // control placed
+                vb__yscale = 1,                                       // control placed
+                vb__yscalefs = 1,                                     // control placed
+
+                // wonderswan
                 wswan__bday = 23,                                   // placed
                 wswan__blood = "o",                                 // placed
                 wswan__bmonth = 6,                                  // placed
@@ -776,7 +1354,24 @@ namespace MedLaunch.Models
 
                 wswan__debugger__disfontsize = "5x7",
                 wswan__debugger__memcharenc = "shift_jis",
-                
+
+                wswan__enable = true,
+                wswan__forcemono = false,                                // control placed
+                wswan__pixshader = "none",                               // control placed
+                wswan__scanlines = 0,                                    // control placed
+                wswan__special = "none",                                 // control placed
+                wswan__stretch = "aspect_mult2",                         // control placed
+                wswan__tblur = false,                                    // control placed
+                wswan__tblur__accum = false,                             // control placed
+                wswan__tblur__accum__amount = 50,                        // control placed
+                wswan__videoip = "0",                                    // control placed
+                wswan__xres = 0,                                         // control placed
+                wswan__xscale = 1,                                       // control placed
+                wswan__xscalefs = 1,                                     // control placed
+                wswan__yres = 0,                                         // control placed
+                wswan__yscale = 1,                                       // control placed
+                wswan__yscalefs = 1,                                     // control placed
+
 
             };
 
@@ -938,7 +1533,8 @@ namespace MedLaunch.Models
                 ConfigBaseSettings c = (from a in cData
                                         where a.ConfigId == ConfigId
                                         select a).ToList().SingleOrDefault();
-                
+                if (c == null)
+                    return null;
                 context.Dispose();
                 return c;
             }
@@ -1097,7 +1693,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "")
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
                     {
                         // checkbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
@@ -1134,7 +1730,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "")
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
                     {
                         // checkbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
@@ -1157,7 +1753,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "")
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
                     {
                         // textbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
@@ -1180,7 +1776,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "")
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
                     {
                         // checkbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
@@ -1204,7 +1800,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "")
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
                     {
                         // checkbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
@@ -1228,7 +1824,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "")
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
                     {
                         // checkbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
@@ -1256,7 +1852,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "")
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
                     {
                         // checkbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
@@ -1286,7 +1882,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "")
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
                     {
                         // checkbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
@@ -1308,7 +1904,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "")
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
                     {
                         // textbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
@@ -1330,7 +1926,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "")
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
                     {
                         // checkbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
@@ -1364,7 +1960,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "")
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
                     {
                         // checkbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
@@ -1416,7 +2012,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "")
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
                     {
                         // checkbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");

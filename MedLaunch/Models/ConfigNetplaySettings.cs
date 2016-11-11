@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace MedLaunch.Models
@@ -103,10 +104,42 @@ namespace MedLaunch.Models
                 resFive.IsChecked = true;
         }
 
+        public static void LoadNetplaySettings()
+        {
+            ConfigNetplaySettings nps = GetNetplay();
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            TextBox tbNetplayNick = (TextBox)mw.FindName("tbNetplayNick");
+            Slider slLocalPlayersValue = (Slider)mw.FindName("slLocalPlayersValue");
+            Slider slConsoleLinesValue = (Slider)mw.FindName("slConsoleLinesValue");
+            Slider slConsoleScaleValue = (Slider)mw.FindName("slConsoleScaleValue");
+            RadioButton resOne = (RadioButton)mw.FindName("resOne");
+            RadioButton resTwo = (RadioButton)mw.FindName("resTwo");
+            RadioButton resThree = (RadioButton)mw.FindName("resThree");
+            RadioButton resFour = (RadioButton)mw.FindName("resFour");
+            RadioButton resFive = (RadioButton)mw.FindName("resFive");
+
+            tbNetplayNick.Text = nps.netplay__nick;
+            slLocalPlayersValue.Value = Convert.ToDouble(nps.netplay__localplayers);
+            slConsoleLinesValue.Value = Convert.ToDouble(nps.netplay__console__lines);
+            slConsoleScaleValue.Value = Convert.ToDouble(nps.netplay__console__scale);
+
+            if (nps.netplay__console__font == "5x7")
+                resOne.IsChecked = true;
+            if (nps.netplay__console__font == "6x9")
+                resTwo.IsChecked = true;
+            if (nps.netplay__console__font == "6x12")
+                resThree.IsChecked = true;
+            if (nps.netplay__console__font == "6x13")
+                resFour.IsChecked = true;
+            if (nps.netplay__console__font == "9x18")
+                resFive.IsChecked = true;
+        }
+
         public static void SaveNetplaySettings(TextBox Nickname, Slider LocalPlayers, Slider ConsoleLines, Slider ConsoleScale,
             RadioButton resOne, RadioButton resTwo, RadioButton resThree, RadioButton resFour, RadioButton resFive)
         {
             ConfigNetplaySettings nps = GetNetplay();
+
             nps.netplay__nick = Nickname.Text;
             nps.netplay__localplayers = Convert.ToInt32(LocalPlayers.Value);
             nps.netplay__console__lines = Convert.ToInt32(ConsoleLines.Value);
@@ -125,6 +158,42 @@ namespace MedLaunch.Models
 
             SetNetplay(nps);
         }
+
+        public static void SaveNetplaySettings()
+        {
+            ConfigNetplaySettings nps = GetNetplay();
+
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            TextBox tbNetplayNick = (TextBox)mw.FindName("tbNetplayNick");
+            Slider slLocalPlayersValue = (Slider)mw.FindName("slLocalPlayersValue");
+            Slider slConsoleLinesValue = (Slider)mw.FindName("slConsoleLinesValue");
+            Slider slConsoleScaleValue = (Slider)mw.FindName("slConsoleScaleValue");
+            RadioButton resOne = (RadioButton)mw.FindName("resOne");
+            RadioButton resTwo = (RadioButton)mw.FindName("resTwo");
+            RadioButton resThree = (RadioButton)mw.FindName("resThree");
+            RadioButton resFour = (RadioButton)mw.FindName("resFour");
+            RadioButton resFive = (RadioButton)mw.FindName("resFive");
+
+            nps.netplay__nick = tbNetplayNick.Text;
+            nps.netplay__localplayers = Convert.ToInt32(slLocalPlayersValue.Value);
+            nps.netplay__console__lines = Convert.ToInt32(slConsoleLinesValue.Value);
+            nps.netplay__console__scale = Convert.ToInt32(slConsoleScaleValue.Value);
+
+            if (resOne.IsChecked == true)
+                nps.netplay__console__font = "5x7";
+            if (resTwo.IsChecked == true)
+                nps.netplay__console__font = "6x9";
+            if (resThree.IsChecked == true)
+                nps.netplay__console__font = "6x12";
+            if (resFour.IsChecked == true)
+                nps.netplay__console__font = "6x13";
+            if (resFive.IsChecked == true)
+                nps.netplay__console__font = "9x18";
+
+            SetNetplay(nps);
+        }
+
+
 
 
     }

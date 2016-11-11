@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MedLaunch.Models;
 using System.IO;
 using System.Reflection;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace MedLaunch.Classes
 {
@@ -61,8 +62,13 @@ namespace MedLaunch.Classes
             _ConfigPce_fastSettings = ConfigBaseSettings.GetConfig(2000000017);
         }
 
-        public void ImportConfigsFromDisk()
+        public void ImportConfigsFromDisk(ProgressDialogController controller)
         {
+            if (controller != null)
+                controller.SetMessage("Importing Mednafen Configs from disk\nPlease wait.....");
+
+            _ConfigBaseSettings = ConfigBaseSettings.GetConfig(2000000000);
+
             // get a list of current systems
             List<GSystem> systems = GSystem.GetSystems();
 
@@ -72,28 +78,58 @@ namespace MedLaunch.Classes
             if (config.Count > 0)
             {
                 // data was returned - begin import
-                ParseConfigIncoming(config, ConfigBaseSettings.GetConfig(2000000000), null);
+                if (controller != null)
+                    controller.SetMessage("Importing mednafen-09x.cfg");
+                ParseConfigIncoming(config, null);
+
+                // now save to the database
+
+                if (controller != null)
+                    controller.SetMessage("Saving base settings to database");
+
+               
+                ConfigBaseSettings.SetConfig(_ConfigBaseSettings);
+                ConfigNetplaySettings.SetNetplay(_ConfigNetplaySettings);
+                ConfigServerSettings.SaveToDatabase(_ConfigServerSettings);
+
+                
             }
 
             // now iterate through each system and search/import system specific config files
             foreach (GSystem sys in systems)
             {
+                _ConfigBaseSettings = ConfigBaseSettings.GetConfig(2000000000 + sys.systemId);
+                if (_ConfigBaseSettings == null)
+                {
+                    // invalid config id
+                    continue;
+                }
+
                 string configPath = _Paths.mednafenExe + @"\" + sys.systemCode + ".cfg";
                 var specCfg = LoadConfigFromDisk(configPath);
                 if (specCfg.Count == 0)
                     continue;
+                // data was returned - begin import
+                if (controller != null)
+                    controller.SetMessage("Importing " + sys.systemCode + ".cfg");
+                ParseConfigIncoming(specCfg, sys);
 
-                ParseConfigIncoming(config, ConfigBaseSettings.GetConfig(sys.systemId), sys);
+                // set to enabled
+                _ConfigBaseSettings.isEnabled = true;
+
+                ConfigBaseSettings.SetConfig(_ConfigBaseSettings);
+
+                
             }
         }
 
-        public void ParseConfigIncoming(List<string> cfg, ConfigBaseSettings settings, GSystem sys)
+        public void ParseConfigIncoming(List<string> cfg, GSystem sys)
         {
             // iterate through each line
-            foreach (string s in cfg.Where(a => a != "")
+            foreach (string s in cfg.Where(a => (a != "" || a != "\r" || a != "\n")))
             {
                 // split to array based on whitespace
-                string st = s.TrimEnd();
+                string st = s.TrimEnd().Replace("\r", "").Replace("\n\r", "").Replace("\r\n", "").Replace("\n", "");
                 string[] arr = st.Split(' ');
                 // normal (non controller) settings should only have 2 items in the array
                 if (arr.Length != 2)
@@ -112,15 +148,26 @@ namespace MedLaunch.Classes
                     continue;
                 }
                 // look for property in confignetplaysettings
-                p = _ConfigNetplaySettings.GetType().GetProperty(propName);
-                if (p != null)
+                PropertyInfo n = _ConfigNetplaySettings.GetType().GetProperty(propName);
+                if (n != null)
                 {
                     // property was found - update config
-                    //InitWindow.SetPropertyValue(_ConfigNetplaySettings, p, null, arr[1]);
+                    InitWindow.SetPropertyValue(_ConfigNetplaySettings, n, null, arr[1]);
+                    continue;
+                }
+
+                // look for property in configserversettings
+                PropertyInfo ser = _ConfigServerSettings.GetType().GetProperty(propName);
+                if (ser != null)
+                {
+                    // property was found - update config
+                    InitWindow.SetPropertyValue(_ConfigServerSettings, ser, null, arr[1]);
+                    continue;
                 }
 
             }
 
+            
         }
 
         public List<string> LoadConfigFromDisk(string path)
