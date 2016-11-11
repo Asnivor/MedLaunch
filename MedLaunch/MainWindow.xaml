@@ -1463,8 +1463,10 @@
                                             <ContextMenu>
                                                 <MenuItem x:Name="MenuItemDefaultBase" Header="Reset to Defaults" Click="MenuItemDefault_Click" />
                                                 <MenuItem Header="Load the base configuration from disk (mednafen-09x.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
                                                 <MenuItem Header="Save the base configuration to disk (mednafen-09x.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the default config on disk" />
-                                            </ContextMenu>
+                                           -->
+                                                </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigNes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1476,8 +1478,10 @@
                                                 <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
                                                 <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
                                                 <MenuItem Header="Load the NES configuration from disk (nes.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
                                                 <MenuItem Header="Save the NES configuration to disk (nes.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            </ContextMenu>
+                                            -->
+                                                </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigSnes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1489,8 +1493,10 @@
                                                 <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
                                                 <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
                                                 <MenuItem Header="Load the SNES configuration from disk (snes.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
                                                 <MenuItem Header="Save the SNES configuration to disk (snes.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            </ContextMenu>
+                                            -->
+                                                </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigSnes_Faust" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1502,8 +1508,10 @@
                                                 <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
                                                 <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
                                                 <MenuItem Header="Load the SNES-FAUST configuration from disk (snes_faust.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
                                                 <MenuItem Header="Save the SNES-FAUST configuration to disk (snes_faust.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            </ContextMenu>
+                                            -->
+                                                </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigSms" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1515,8 +1523,10 @@
                                                 <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
                                                 <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
                                                 <MenuItem Header="Load the SMS configuration from disk (sms.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
                                                 <MenuItem Header="Save the SMS configuration to disk (sms.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            </ContextMenu>
+                                           -->
+                                                </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigMd" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1528,8 +1538,10 @@
                                                 <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
                                                 <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
                                                 <MenuItem Header="Load the MD configuration from disk (md.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
                                                 <MenuItem Header="Save the MD configuration to disk (md.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            </ContextMenu>
+                                            -->
+                                                </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigPce" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1541,8 +1553,10 @@
                                                 <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
                                                 <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
                                                 <MenuItem Header="Load the PCE configuration from disk (pce.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
                                                 <MenuItem Header="Save the PCE configuration to disk (pce.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            </ContextMenu>
+                                            -->
+                                                </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigPce_Fast" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1554,8 +1568,10 @@
                                                 <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
                                                 <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
                                                 <MenuItem Header="Load the PCE-FAST configuration from disk (pce_fast.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
                                                 <MenuItem Header="Save the PCE-FAST configuration to disk (pce_fast.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            </ContextMenu>
+                                            -->
+                                                </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigVb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1567,8 +1583,10 @@
                                                 <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
                                                 <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
                                                 <MenuItem Header="Load the VB configuration from disk (vb.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
                                                 <MenuItem Header="Save the VB configuration to disk (vb.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            </ContextMenu>
+                                            -->
+                                                </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigNgp" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1580,8 +1598,10 @@
                                                 <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
                                                 <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
                                                 <MenuItem Header="Load the NGP configuration from disk (ngp.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
                                                 <MenuItem Header="Save the NGP configuration to disk (ngp.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            </ContextMenu>
+                                           -->
+                                                </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigWswan" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1593,8 +1613,10 @@
                                                 <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
                                                 <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
                                                 <MenuItem Header="Load the WSWAN configuration from disk (wswan.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
                                                 <MenuItem Header="Save the WSWAN configuration to disk (wswan.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            </ContextMenu>
+                                            -->
+                                                </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigGb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1606,8 +1628,10 @@
                                                 <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
                                                 <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
                                                 <MenuItem Header="Load the GB configuration from disk (gb.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
                                                 <MenuItem Header="Save the GB configuration to disk (gb.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            </ContextMenu>
+                                            -->
+                                                </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigGba" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1619,8 +1643,10 @@
                                                 <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
                                                 <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
                                                 <MenuItem Header="Load the GBA configuration from disk (gba.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
                                                 <MenuItem Header="Save the GBA configuration to disk (gba.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            </ContextMenu>
+                                            -->
+                                                </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigGg" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1632,8 +1658,10 @@
                                                 <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
                                                 <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
                                                 <MenuItem Header="Load the GG configuration from disk (gg.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
                                                 <MenuItem Header="Save the GG configuration to disk (gg.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            </ContextMenu>
+                                            -->
+                                                </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigLynx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1645,8 +1673,10 @@
                                                 <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
                                                 <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
                                                 <MenuItem Header="Load the LYNX configuration from disk (lynx.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
                                                 <MenuItem Header="Save the LYNX configuration to disk (lynx.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            </ContextMenu>
+                                            -->
+                                                </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
 
@@ -1659,8 +1689,10 @@
                                                 <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
                                                 <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
                                                 <MenuItem Header="Load the SS configuration from disk (ss.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
                                                 <MenuItem Header="Save the SS configuration to disk (ss.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            </ContextMenu>
+                                            -->
+                                                </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigPsx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1672,8 +1704,10 @@
                                                 <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
                                                 <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
                                                 <MenuItem Header="Load the PSX configuration from disk (psx.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
                                                 <MenuItem Header="Save the PSX configuration to disk (psx.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            </ContextMenu>
+                                            -->
+                                                </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton Margin="1" x:Name="btnConfigPcfx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1685,8 +1719,10 @@
                                                 <MenuItem Header="Enable/Disable" Click="MenuItemConfigEnable_Click" />
                                                 <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
                                                 <MenuItem Header="Load the PC-FX configuration from disk (pcfx.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
                                                 <MenuItem Header="Save the PC-FX configuration to disk (pcfx.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            </ContextMenu>
+                                            -->
+                                                </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
 
