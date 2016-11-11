@@ -73,6 +73,17 @@ namespace MedLaunch.Classes
             List<GSystem> systems = GSystem.GetSystems();
 
             // first import base config
+            ImportBaseConfigFromDisk(null);            
+
+            // now iterate through each system and search/import system specific config files
+            foreach (GSystem sys in systems)
+            {
+                ImportSystemConfigFromDisk(null, sys);                
+            }
+        }
+
+        public void ImportBaseConfigFromDisk(ProgressDialogController controller)
+        {
             string cfgPath = _Paths.mednafenExe + @"\mednafen-09x.cfg";
             var config = LoadConfigFromDisk(cfgPath);
             if (config.Count > 0)
@@ -87,40 +98,34 @@ namespace MedLaunch.Classes
                 if (controller != null)
                     controller.SetMessage("Saving base settings to database");
 
-               
                 ConfigBaseSettings.SetConfig(_ConfigBaseSettings);
                 ConfigNetplaySettings.SetNetplay(_ConfigNetplaySettings);
                 ConfigServerSettings.SaveToDatabase(_ConfigServerSettings);
-
-                
             }
+        }
 
-            // now iterate through each system and search/import system specific config files
-            foreach (GSystem sys in systems)
+        public void ImportSystemConfigFromDisk(ProgressDialogController controller, GSystem sys)
+        {
+            _ConfigBaseSettings = ConfigBaseSettings.GetConfig(2000000000 + sys.systemId);
+            if (_ConfigBaseSettings == null)
             {
-                _ConfigBaseSettings = ConfigBaseSettings.GetConfig(2000000000 + sys.systemId);
-                if (_ConfigBaseSettings == null)
-                {
-                    // invalid config id
-                    continue;
-                }
-
-                string configPath = _Paths.mednafenExe + @"\" + sys.systemCode + ".cfg";
-                var specCfg = LoadConfigFromDisk(configPath);
-                if (specCfg.Count == 0)
-                    continue;
-                // data was returned - begin import
-                if (controller != null)
-                    controller.SetMessage("Importing " + sys.systemCode + ".cfg");
-                ParseConfigIncoming(specCfg, sys);
-
-                // set to enabled
-                _ConfigBaseSettings.isEnabled = true;
-
-                ConfigBaseSettings.SetConfig(_ConfigBaseSettings);
-
-                
+                // invalid config id
+                return;
             }
+
+            string configPath = _Paths.mednafenExe + @"\" + sys.systemCode + ".cfg";
+            var specCfg = LoadConfigFromDisk(configPath);
+            if (specCfg.Count == 0)
+                return;
+            // data was returned - begin import
+            if (controller != null)
+                controller.SetMessage("Importing " + sys.systemCode + ".cfg");
+            ParseConfigIncoming(specCfg, sys);
+
+            // set to enabled
+            _ConfigBaseSettings.isEnabled = true;
+
+            ConfigBaseSettings.SetConfig(_ConfigBaseSettings);
         }
 
         public void ParseConfigIncoming(List<string> cfg, GSystem sys)

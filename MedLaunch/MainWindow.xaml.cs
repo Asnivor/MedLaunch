@@ -2911,9 +2911,67 @@ namespace MedLaunch
 
         private void LoadConfigFromDisk_Click(object sender, RoutedEventArgs e)
         {
-            RadioButton rb = sender as RadioButton;
-            int ConfigId = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
-            string sysCode = rb.Name.Replace("btnConfig", "");
+            MenuItem mi = sender as MenuItem;
+            RadioButton rb = null;
+
+            if (mi != null)
+            {
+                rb = ((ContextMenu)mi.Parent).PlacementTarget as RadioButton;
+                rb.IsChecked = true;
+                int ConfigId = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
+                string sysCode = rb.Name.Replace("btnConfig", "").ToLower();
+
+                if (sysCode == "base")
+                {
+                    ConfigImport ci = new ConfigImport();
+                    ci._ConfigBaseSettings = ConfigBaseSettings.GetConfig(2000000000);
+                    ci.ImportBaseConfigFromDisk(null);
+
+                    // update UI
+                    ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, ConfigId);
+                    ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
+                    ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
+                    ConfigServerSettings.SetCustomDefault();
+
+                    Task.Delay(500);
+
+                    if (rb != btnConfigLynx)
+                        btnConfigLynx.IsChecked = true;
+                    else
+                        btnConfigMd.IsChecked = true;
+
+                    Task.Delay(500);
+                    rb.IsChecked = true;
+
+                    lblConfigStatus.Content = "Base Config Imported";
+                }
+                else
+                {
+                    ConfigImport ci = new ConfigImport();
+                    ci._ConfigBaseSettings = ConfigBaseSettings.GetConfig(ConfigId);
+                    ci.ImportSystemConfigFromDisk(null, GSystem.GetSystems().Where(a => a.systemCode == sysCode).FirstOrDefault());
+
+                    // update UI
+                    ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, ConfigId);
+
+                    Task.Delay(500);
+
+                    if (rb != btnConfigLynx)
+                        btnConfigLynx.IsChecked = true;
+                    else
+                        btnConfigMd.IsChecked = true;
+
+                    Task.Delay(500);
+                    rb.IsChecked = true;
+
+                    // activate enabled systems
+                    ConfigsVisualHandler cvh = new ConfigsVisualHandler();
+                    cvh.ActivateEnabledSystems();
+
+                    lblConfigStatus.Content = sysCode.ToUpper() + " Config Imported";
+                }
+            }
+                
         }
 
         private void SaveConfigToDisk_Click(object sender, RoutedEventArgs e)
