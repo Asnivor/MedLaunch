@@ -46,6 +46,7 @@
 * Optional per-system configuration options
 * Built-in browser control with links to Mednafen help pages
 * Built-in static netplay server selection along with the ability to specify a custom Mednafen netplay server to connect to
+* Customizable launcher color scheme
 
 ### Broken Features
 * The launcher currently only handles absolute paths correctly. Relative path handling may or may not work but this part of the code needs a proper overhaul
