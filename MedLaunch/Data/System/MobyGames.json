@@ -29311,13 +29311,13 @@
   },
   {
     "Title": "Metal Gear Solid",
-    "UrlName": "metal-gear-solid",
+    "UrlName": "metal-gear-solid__",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "Metal Gear Solid",
-    "UrlName": "metal-gear-solid__",
+    "UrlName": "metal-gear-solid",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -38425,13 +38425,13 @@
   },
   {
     "Title": "The Black Bass",
-    "UrlName": "black-bass_",
+    "UrlName": "black-bass__",
     "SystemId": 11,
     "PlatformName": "nes"
   },
   {
     "Title": "The Black Bass",
-    "UrlName": "black-bass__",
+    "UrlName": "black-bass_",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -42847,13 +42847,13 @@
   },
   {
     "Title": "Rainbow Islands",
-    "UrlName": "rainbow-islands",
+    "UrlName": "rainbow-islands_",
     "SystemId": 11,
     "PlatformName": "nes"
   },
   {
     "Title": "Rainbow Islands",
-    "UrlName": "rainbow-islands_",
+    "UrlName": "rainbow-islands",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -42877,13 +42877,13 @@
   },
   {
     "Title": "Rampart",
-    "UrlName": "rampart_",
+    "UrlName": "rampart",
     "SystemId": 11,
     "PlatformName": "nes"
   },
   {
     "Title": "Rampart",
-    "UrlName": "rampart",
+    "UrlName": "rampart_",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -44137,13 +44137,13 @@
   },
   {
     "Title": "Teenage Mutant Ninja Turtles",
-    "UrlName": "teenage-mutant-ninja-turtles__",
+    "UrlName": "teenage-mutant-ninja-turtles",
     "SystemId": 11,
     "PlatformName": "nes"
   },
   {
     "Title": "Teenage Mutant Ninja Turtles",
-    "UrlName": "teenage-mutant-ninja-turtles",
+    "UrlName": "teenage-mutant-ninja-turtles__",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -44209,7 +44209,7 @@
   },
   {
     "Title": "Tetris",
-    "UrlName": "tetris_nes",
+    "UrlName": "tetris_____",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -44221,7 +44221,7 @@
   },
   {
     "Title": "Tetris",
-    "UrlName": "tetris_____",
+    "UrlName": "tetris_nes",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -45967,13 +45967,13 @@
   },
   {
     "Title": "Championship Soccer '94",
-    "UrlName": "championship-soccer-94_",
+    "UrlName": "championship-soccer-94",
     "SystemId": 12,
     "PlatformName": "snes"
   },
   {
     "Title": "Championship Soccer '94",
-    "UrlName": "championship-soccer-94",
+    "UrlName": "championship-soccer-94_",
     "SystemId": 12,
     "PlatformName": "snes"
   },

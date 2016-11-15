@@ -5429,7 +5429,7 @@
     "SystemId": 1,
     "GDBPlatformName": "Nintendo Game Boy Color",
     "GameTitle": "102 Dalmatians - Puppies to the Rescue",
-    "ReleaseDate": null
+    "ReleaseDate": "11/22/2000"
   },
   {
     "id": 17348,
@@ -5793,14 +5793,14 @@
     "SystemId": 1,
     "GDBPlatformName": "Nintendo Game Boy Color",
     "GameTitle": "Antz",
-    "ReleaseDate": null
+    "ReleaseDate": "01/01/1999"
   },
   {
     "id": 20868,
     "SystemId": 1,
     "GDBPlatformName": "Nintendo Game Boy Color",
     "GameTitle": "Looney Tunes Racing",
-    "ReleaseDate": null
+    "ReleaseDate": "01/01/2000"
   },
   {
     "id": 21239,
@@ -8705,7 +8705,7 @@
     "SystemId": 1,
     "GDBPlatformName": "Nintendo Game Boy Color",
     "GameTitle": "Antz World Sportz",
-    "ReleaseDate": null
+    "ReleaseDate": "11/30/2001"
   },
   {
     "id": 38072,
@@ -8747,7 +8747,7 @@
     "SystemId": 1,
     "GDBPlatformName": "Nintendo Game Boy Color",
     "GameTitle": "European Super League",
-    "ReleaseDate": null
+    "ReleaseDate": "01/01/2001"
   },
   {
     "id": 40260,
@@ -8844,7 +8844,7 @@
     "id": 2314,
     "SystemId": 2,
     "GDBPlatformName": "Nintendo Game Boy Advance",
-    "GameTitle": "Pokemon LeafGreen Version",
+    "GameTitle": "Pokémon LeafGreen Version",
     "ReleaseDate": "01/29/2004"
   },
   {
@@ -13030,7 +13030,7 @@
     "id": 22312,
     "SystemId": 2,
     "GDBPlatformName": "Nintendo Game Boy Advance",
-    "GameTitle": "SSX 3 nieve",
+    "GameTitle": "SSX 3",
     "ReleaseDate": "11/11/2003"
   },
   {
@@ -15530,7 +15530,7 @@
     "SystemId": 2,
     "GDBPlatformName": "Nintendo Game Boy Advance",
     "GameTitle": "Hi Hi Puffy AmiYumi: Kaznapped!",
-    "ReleaseDate": null
+    "ReleaseDate": "11/20/2005"
   },
   {
     "id": 28159,
@@ -16336,13 +16336,6 @@
     "GDBPlatformName": "Nintendo Game Boy Advance",
     "GameTitle": "2 in 1 - Finding Nemo & Monsters Inc.",
     "ReleaseDate": "10/05/2003"
-  },
-  {
-    "id": 38713,
-    "SystemId": 2,
-    "GDBPlatformName": "Nintendo Game Boy Advance",
-    "GameTitle": "Pokémon Rojo Fuego",
-    "ReleaseDate": "10/01/2004"
   },
   {
     "id": 34363,
@@ -30559,7 +30552,7 @@
     "SystemId": 5,
     "GDBPlatformName": "Sega Game Gear",
     "GameTitle": "Disney's Aladdin",
-    "ReleaseDate": null
+    "ReleaseDate": "01/01/1993"
   },
   {
     "id": 20542,
@@ -30580,7 +30573,7 @@
     "SystemId": 5,
     "GDBPlatformName": "Sega Game Gear",
     "GameTitle": "Ayrton Senna's Super Monaco GP II",
-    "ReleaseDate": null
+    "ReleaseDate": "01/01/1992"
   },
   {
     "id": 20545,
@@ -30678,7 +30671,7 @@
     "SystemId": 5,
     "GDBPlatformName": "Sega Game Gear",
     "GameTitle": "Bubble Bobble",
-    "ReleaseDate": null
+    "ReleaseDate": "01/01/1994"
   },
   {
     "id": 21761,
@@ -30720,7 +30713,7 @@
     "SystemId": 5,
     "GDBPlatformName": "Sega Game Gear",
     "GameTitle": "Bugs Bunny in Double Trouble",
-    "ReleaseDate": null
+    "ReleaseDate": "01/01/1996"
   },
   {
     "id": 21767,
@@ -30951,7 +30944,7 @@
     "SystemId": 5,
     "GDBPlatformName": "Sega Game Gear",
     "GameTitle": "Ecco: The Tides of Time",
-    "ReleaseDate": null
+    "ReleaseDate": "01/01/1995"
   },
   {
     "id": 25087,
@@ -32393,7 +32386,7 @@
     "SystemId": 5,
     "GDBPlatformName": "Sega Game Gear",
     "GameTitle": "Championship Hockey",
-    "ReleaseDate": null
+    "ReleaseDate": "01/01/1994"
   },
   {
     "id": 36431,
@@ -32484,13 +32477,6 @@
     "SystemId": 5,
     "GDBPlatformName": "Sega Game Gear",
     "GameTitle": "Jang Pung II",
-    "ReleaseDate": null
-  },
-  {
-    "id": 38027,
-    "SystemId": 5,
-    "GDBPlatformName": "Sega Game Gear",
-    "GameTitle": "Ms. Pacman",
     "ReleaseDate": null
   },
   {
@@ -48349,6 +48335,27 @@
     "ReleaseDate": "10/05/2001"
   },
   {
+    "id": 40913,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "NBA Fastbreak '98",
+    "ReleaseDate": "11/27/1997"
+  },
+  {
+    "id": 40990,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Miracle Space Race",
+    "ReleaseDate": "05/06/2003"
+  },
+  {
+    "id": 41010,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "V.I.P",
+    "ReleaseDate": "04/01/2001"
+  },
+  {
     "id": 2798,
     "SystemId": 10,
     "GDBPlatformName": "Sega Master System",
@@ -50901,7 +50908,7 @@
     "SystemId": 10,
     "GDBPlatformName": "Sega Master System",
     "GameTitle": "F-16 Fighting Falcon",
-    "ReleaseDate": null
+    "ReleaseDate": "01/01/1986"
   },
   {
     "id": 35591,
@@ -53875,7 +53882,7 @@
     "id": 1809,
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
-    "GameTitle": "Joe & Mac: Caveman Ninja",
+    "GameTitle": "Joe & Mac",
     "ReleaseDate": "12/01/1992"
   },
   {
@@ -63189,6 +63196,13 @@
     "ReleaseDate": "11/02/1990"
   },
   {
+    "id": 40973,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Extra Mario Bros",
+    "ReleaseDate": "10/06/2005"
+  },
+  {
     "id": 41,
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
@@ -63514,7 +63528,7 @@
     "id": 3228,
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
-    "GameTitle": "NHL 94",
+    "GameTitle": "NHL '94",
     "ReleaseDate": "10/01/1993"
   },
   {
@@ -67854,7 +67868,7 @@
     "id": 5792,
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
-    "GameTitle": "Power Monger",
+    "GameTitle": "Powermonger",
     "ReleaseDate": "01/01/1993"
   },
   {
@@ -74372,7 +74386,7 @@
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
     "GameTitle": "Super Boss Gaiden",
-    "ReleaseDate": null
+    "ReleaseDate": "07/10/2016"
   },
   {
     "id": 38400,
@@ -77054,6 +77068,13 @@
     "GDBPlatformName": "Super Nintendo (SNES)",
     "GameTitle": "Megaman and Bass",
     "ReleaseDate": null
+  },
+  {
+    "id": 41008,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Tekken 2",
+    "ReleaseDate": "08/03/1996"
   },
   {
     "id": 48,
