@@ -263,7 +263,7 @@ namespace MedLaunch.Classes
                     {
                         // param contains a systemcode
                         // is the base config selected?
-                        if (Config.ConfigId == 2000000000)
+                        if (Config.ConfigId == 22220000)
                         {
                             // base config selected - all parameters must be added
                             ConfigKeyValue ckv = new ConfigKeyValue();
