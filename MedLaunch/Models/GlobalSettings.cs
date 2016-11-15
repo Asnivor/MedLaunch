@@ -26,6 +26,7 @@ namespace MedLaunch.Models
         public bool? hideSidebar { get; set; }                      // always hide the games library sidebar
         public DateTime? gdbLastUpdated { get; set; }               // last time platformgames were synced from thegamesdb.net
         public bool? backupMednafenConfig { get; set; }             // auto create a backup on the mednafen config when MedLaunch is first opened
+        public bool? saveSystemConfigs { get; set; }                // auto save system.cfg in root of Mednafen directory before game is launched
 
         // games library expander states
         public bool glGameStats { get; set; }
@@ -98,7 +99,8 @@ namespace MedLaunch.Models
                 colorBackground = "basedark",
                 colorAccent = "Emerald",
                 checkUpdatesOnStart = false,
-                backupMednafenConfig = true
+                backupMednafenConfig = true,
+                saveSystemConfigs = true
             };
             return gs;
         }
@@ -185,7 +187,7 @@ namespace MedLaunch.Models
         public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast, ComboBox GuiZoom, CheckBox MinToTaskBar, CheckBox HideSidebar,
             CheckBox chkAllowBanners, CheckBox chkAllowBoxart, CheckBox chkAllowScreenshots, CheckBox chkAllowFanart, CheckBox chkPreferGenesis, 
             CheckBox chkAllowManuals, CheckBox chkAllowMedia, CheckBox chkSecondaryScraperBackup, RadioButton rbGDB, RadioButton rbMoby, Slider slScreenshotsPerHost, Slider slFanrtsPerHost,
-            CheckBox chkAllowUpdateCheck, CheckBox chkBackupMednafenConfig)
+            CheckBox chkAllowUpdateCheck, CheckBox chkBackupMednafenConfig, CheckBox chkSaveSysConfigs)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
@@ -199,6 +201,8 @@ namespace MedLaunch.Models
             GuiZoom.SelectedValue = gs.guiZoom.ToString();
             MinToTaskBar.IsChecked = gs.minToTaskBarOnGameLaunch;
             HideSidebar.IsChecked = gs.hideSidebar;
+
+            chkSaveSysConfigs.IsChecked = gs.saveSystemConfigs;
 
             //chkAllBaseSettings.IsChecked = gs.showAllBaseSettings;
             //MessageBox.Show(gs.guiZoom.ToString());
@@ -370,6 +374,13 @@ namespace MedLaunch.Models
         {
             GlobalSettings gs = GetGlobals();
             gs.backupMednafenConfig = chkBackupMednafenConfig.IsChecked.Value;
+            SetGlobals(gs);
+        }
+
+        public static void UpdateSaveSysConfigs(CheckBox chkSaveSysConfigs)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.saveSystemConfigs = chkSaveSysConfigs.IsChecked.Value;
             SetGlobals(gs);
         }
 

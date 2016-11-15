@@ -131,7 +131,7 @@ namespace MedLaunch
             // load globalsettings for front page
             GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar,
                chkAllowBanners, chkAllowBoxart, chkAllowScreenshots, chkAllowFanart, chkPreferGenesis, chkAllowManuals, chkAllowMedia, chkSecondaryScraperBackup,
-               rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost, chkAllowUpdateCheck, chkBackupMednafenConfig);
+               rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost, chkAllowUpdateCheck, chkBackupMednafenConfig, chkSaveSysConfigs);
             //gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
             GlobalSettings gs = GlobalSettings.GetGlobals();
             mainScaleTransform.ScaleX = Convert.ToDouble(gs.guiZoom);
@@ -1296,6 +1296,18 @@ namespace MedLaunch
         {
             GlobalSettings.UpdateBackupMednafenConfig(chkBackupMednafenConfig);
         }
+
+        private void chkSaveSysConfigs_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateSaveSysConfigs(chkSaveSysConfigs);
+        }
+
+        private void chkSaveSysConfigs_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateSaveSysConfigs(chkSaveSysConfigs);
+        }
+
+
 
         private void chkAllowBanners_Checked(object sender, RoutedEventArgs e)
         {

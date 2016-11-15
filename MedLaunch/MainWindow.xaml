@@ -7554,6 +7554,10 @@
                                                     Auto-backup Mednafen config file (mednafen-09x.cfg) when MedLaunch is started
                                                 </CheckBox>
 
+                                                <CheckBox x:Name="chkSaveSysConfigs" Grid.ColumnSpan="2" Grid.Row="9" Checked="chkSaveSysConfigs_Checked" Unchecked="chkSaveSysConfigs_Unchecked">
+                                                    Auto-save system.cfg files in Mednafen directory on game launch
+                                                </CheckBox>
+
 
 
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="17">

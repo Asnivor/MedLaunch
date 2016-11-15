@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Asnitech.Launch.Common;
+using System.IO;
 
 namespace MedLaunch.Classes
 {
@@ -160,6 +161,14 @@ namespace MedLaunch.Classes
                 }
             }
 
+
+            // if option is enabled save system specific config for this system
+            if (Global.saveSystemConfigs == true)
+            {
+                SaveSystemConfigToDisk(SystemCode, SysConfigObject);
+            }
+
+
             // build actual config list
             //ConfObject = new List<ConfigObject>();
             //ConfObject.AddRange(GenConfigObject);
@@ -197,6 +206,59 @@ namespace MedLaunch.Classes
                              select s).SingleOrDefault();   
             
                              
+        }
+
+        public static void SaveSystemConfigToDisk(string systemCode, List<ConfigObject> sysConfigObject)
+        {
+            var paths = Paths.GetPaths();
+            string filePath = paths.mednafenExe + @"\" + systemCode + ".cfg";
+
+            // build config file string
+            StringBuilder sb = new StringBuilder();
+            foreach (var t in sysConfigObject)
+            {
+                // Check for Null and Empty values
+                if (t.Value == null || t.Value.ToString().Trim() == "")
+                {
+                    // null or empty value - continue
+                    continue;
+                }
+
+                // convert all values to strings
+                string v = t.Value.ToString();
+                // convert SQL bool values to 0 and 1 strings
+                if (t.Value.ToString() == "True")
+                {
+                    v = "1";
+                }
+                if (t.Value.ToString() == "False")
+                {
+                    v = "0";
+                }
+
+
+                if (t.Key == "ConfigId" || t.Key == "UpdatedTime" || t.Key == "isEnabled" || t.Key == "systemIdent" || t.Key.Contains("__enable"))
+                {
+                    // non-mednafen config settings or settings that must be added as a - param
+                    continue;
+                }
+
+                string k = t.Key.Replace("__", ".");
+
+                // is the parameter illegal (ie. in the list of illegal config parameters)
+                if (IsParameterLegal(k) == false)
+                {
+                    // illegal - break out of the loop and continue to next parameter
+                    continue;
+                }
+                sb.Append(k);
+                sb.Append(" ");
+                sb.Append(v);
+                sb.Append("\r\n");
+            }
+
+            // save to disk
+            File.WriteAllText(filePath, sb.ToString());
         }
         
 
@@ -415,7 +477,7 @@ namespace MedLaunch.Classes
             return itDoes;
         }
 
-        public bool IsParameterLegal(string param)
+        public static bool IsParameterLegal(string param)
         {
             // define list of illegal config parameters
             HashSet<String> illegal = new HashSet<string>
