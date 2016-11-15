@@ -201,7 +201,7 @@ namespace MedLaunch.Models
                     if (result == MessageBoxResult.Yes)
                     {
                         ConfigImport ci = new ConfigImport();
-                        ci.ImportConfigsFromDisk(null);
+                        ci.ImportAll(null);
                     }
 
                     

@@ -42,7 +42,9 @@ namespace MedLaunch.Classes
             _Paths = Paths.GetPaths();
             _ConfigNetplaySettings = ConfigNetplaySettings.GetNetplay();
             _ConfigServerSettings = ConfigServerSettings.GetServer(100);
+
             _ConfigBaseSettings = ConfigBaseSettings.GetConfig(2000000000);
+
             _ConfigGbSettings = ConfigBaseSettings.GetConfig(2000000001);
             _ConfigGbaSettings = ConfigBaseSettings.GetConfig(2000000002);
             _ConfigLynxSettings = ConfigBaseSettings.GetConfig(2000000003);
@@ -62,6 +64,52 @@ namespace MedLaunch.Classes
             _ConfigPce_fastSettings = ConfigBaseSettings.GetConfig(2000000017);
         }
 
+        public void ImportAll(ProgressDialogController controller)
+        {
+            if (controller != null)
+                controller.SetMessage("Importing Mednafen Configs from disk\nPlease wait.....");
+
+            // import mednafen-09x.cfg into relevant config files
+            ImportBaseConfigFromDisk(null);
+
+            // get any system specific .cfg files
+            List<GSystem> systems = GSystem.GetSystems();
+            foreach (GSystem sys in systems)
+            {
+                ImportSystemConfigFromDisk(null, sys);
+            }
+
+            // now save to database
+            SaveToDatabase();
+
+        }
+
+        public void SaveToDatabase()
+        {
+            ConfigBaseSettings.SetConfig(_ConfigGbaSettings);
+            ConfigBaseSettings.SetConfig(_ConfigGbSettings);
+            ConfigBaseSettings.SetConfig(_ConfigGgSettings);
+            ConfigBaseSettings.SetConfig(_ConfigLynxSettings);
+            ConfigBaseSettings.SetConfig(_ConfigMdSettings);
+            ConfigBaseSettings.SetConfig(_ConfigNesSettings);
+            ConfigBaseSettings.SetConfig(_ConfigNgpSettings);
+            ConfigBaseSettings.SetConfig(_ConfigPceSettings);
+            ConfigBaseSettings.SetConfig(_ConfigPce_fastSettings);
+            ConfigBaseSettings.SetConfig(_ConfigPcfxSettings);
+            ConfigBaseSettings.SetConfig(_ConfigPsxSettings);
+            ConfigBaseSettings.SetConfig(_ConfigSmsSettings);
+            ConfigBaseSettings.SetConfig(_ConfigSnesSettings);
+            ConfigBaseSettings.SetConfig(_ConfigSnes_faustSettings);
+            ConfigBaseSettings.SetConfig(_ConfigSsSettings);
+            ConfigBaseSettings.SetConfig(_ConfigVbSettings);
+            ConfigBaseSettings.SetConfig(_ConfigWswanSettings);
+
+            ConfigNetplaySettings.SetNetplay(_ConfigNetplaySettings);
+
+            ConfigServerSettings.SaveToDatabase(_ConfigServerSettings);
+        }
+
+        /*
         public void ImportConfigsFromDisk(ProgressDialogController controller)
         {
             if (controller != null)
@@ -81,6 +129,7 @@ namespace MedLaunch.Classes
                 ImportSystemConfigFromDisk(null, sys);                
             }
         }
+        */
 
         public void ImportBaseConfigFromDisk(ProgressDialogController controller)
         {
@@ -91,16 +140,18 @@ namespace MedLaunch.Classes
                 // data was returned - begin import
                 if (controller != null)
                     controller.SetMessage("Importing mednafen-09x.cfg");
-                ParseConfigIncoming(config, null);
+                ParseConfigIncoming(config, 0);
 
                 // now save to the database
 
+                /*
                 if (controller != null)
                     controller.SetMessage("Saving base settings to database");
 
                 ConfigBaseSettings.SetConfig(_ConfigBaseSettings);
                 ConfigNetplaySettings.SetNetplay(_ConfigNetplaySettings);
                 ConfigServerSettings.SaveToDatabase(_ConfigServerSettings);
+                */
             }
         }
 
@@ -120,15 +171,15 @@ namespace MedLaunch.Classes
             // data was returned - begin import
             if (controller != null)
                 controller.SetMessage("Importing " + sys.systemCode + ".cfg");
-            ParseConfigIncoming(specCfg, sys);
+            ParseConfigIncoming(specCfg, 2000000000 + sys.systemId);
 
             // set to enabled
-            _ConfigBaseSettings.isEnabled = true;
+            //_ConfigBaseSettings.isEnabled = true;
 
-            ConfigBaseSettings.SetConfig(_ConfigBaseSettings);
+            //ConfigBaseSettings.SetConfig(_ConfigBaseSettings);
         }
 
-        public void ParseConfigIncoming(List<string> cfg, GSystem sys)
+        public void ParseConfigIncoming(List<string> cfg, int confId)
         {
             // iterate through each line
             foreach (string s in cfg.Where(a => (a != "" || a != "\r" || a != "\n")))
@@ -144,13 +195,184 @@ namespace MedLaunch.Classes
                 string propName = arr[0].Replace(".", "__");
                 string propValue = arr[1];
 
+                // ignore .keys
+                if (propName.StartsWith("."))
+                    continue;                
+                
                 // look for property in the configbasesettings
                 PropertyInfo p = _ConfigBaseSettings.GetType().GetProperty(propName);
                 if (p != null)
                 {
-                    // property was found - update Config
-                    InitWindow.SetPropertyValue(_ConfigBaseSettings, p, null, arr[1]);
-                    continue;
+                    if (confId == 0)
+                    {
+                        // this is for the base config                    
+
+                        // filter out the system specific entries and update the correct config object
+                        if (s.StartsWith("gb."))
+                        {
+                            InitWindow.SetPropertyValue(_ConfigGbSettings, p, null, arr[1]);
+                            continue;
+                        }
+                        if (s.StartsWith("gba."))
+                        {
+                            InitWindow.SetPropertyValue(_ConfigGbaSettings, p, null, arr[1]);
+                            continue;
+                        }
+                        if (s.StartsWith("lynx."))
+                        {
+                            InitWindow.SetPropertyValue(_ConfigLynxSettings, p, null, arr[1]);
+                            continue;
+                        }
+                        if (s.StartsWith("md."))
+                        {
+                            InitWindow.SetPropertyValue(_ConfigMdSettings, p, null, arr[1]);
+                            continue;
+                        }
+                        if (s.StartsWith("gg."))
+                        {
+                            InitWindow.SetPropertyValue(_ConfigGgSettings, p, null, arr[1]);
+                            continue;
+                        }
+                        if (s.StartsWith("ngp."))
+                        {
+                            InitWindow.SetPropertyValue(_ConfigNgpSettings, p, null, arr[1]);
+                            continue;
+                        }
+                        if (s.StartsWith("pce."))
+                        {
+                            InitWindow.SetPropertyValue(_ConfigPceSettings, p, null, arr[1]);
+                            continue;
+                        }
+                        if (s.StartsWith("pcfx."))
+                        {
+                            InitWindow.SetPropertyValue(_ConfigPcfxSettings, p, null, arr[1]);
+                            continue;
+                        }
+                        if (s.StartsWith("psx."))
+                        {
+                            InitWindow.SetPropertyValue(_ConfigPsxSettings, p, null, arr[1]);
+                            continue;
+                        }
+                        if (s.StartsWith("sms."))
+                        {
+                            InitWindow.SetPropertyValue(_ConfigSmsSettings, p, null, arr[1]);
+                            continue;
+                        }
+                        if (s.StartsWith("nes."))
+                        {
+                            InitWindow.SetPropertyValue(_ConfigNesSettings, p, null, arr[1]);
+                            continue;
+                        }
+                        if (s.StartsWith("snes."))
+                        {
+                            InitWindow.SetPropertyValue(_ConfigSnesSettings, p, null, arr[1]);
+                            continue;
+                        }
+                        if (s.StartsWith("ss."))
+                        {
+                            InitWindow.SetPropertyValue(_ConfigSsSettings, p, null, arr[1]);
+                            continue;
+                        }
+                        if (s.StartsWith("vb."))
+                        {
+                            InitWindow.SetPropertyValue(_ConfigVbSettings, p, null, arr[1]);
+                            continue;
+                        }
+                        if (s.StartsWith("wswan."))
+                        {
+                            InitWindow.SetPropertyValue(_ConfigWswanSettings, p, null, arr[1]);
+                            continue;
+                        }
+                        if (s.StartsWith("snes_faust."))
+                        {
+                            InitWindow.SetPropertyValue(_ConfigSnes_faustSettings, p, null, arr[1]);
+                            continue;
+                        }
+                        if (s.StartsWith("pce_fast."))
+                        {
+                            InitWindow.SetPropertyValue(_ConfigPce_fastSettings, p, null, arr[1]);
+                            continue;
+                        }
+
+                        // now we should just be left with generic config commands. At this time we will apply them to all configs
+                        InitWindow.SetPropertyValue(_ConfigGbSettings, p, null, arr[1]);
+                        InitWindow.SetPropertyValue(_ConfigGbaSettings, p, null, arr[1]);
+                        InitWindow.SetPropertyValue(_ConfigLynxSettings, p, null, arr[1]);
+                        InitWindow.SetPropertyValue(_ConfigMdSettings, p, null, arr[1]);
+                        InitWindow.SetPropertyValue(_ConfigGgSettings, p, null, arr[1]);
+                        InitWindow.SetPropertyValue(_ConfigNgpSettings, p, null, arr[1]);
+                        InitWindow.SetPropertyValue(_ConfigPceSettings, p, null, arr[1]);
+                        InitWindow.SetPropertyValue(_ConfigPcfxSettings, p, null, arr[1]);
+                        InitWindow.SetPropertyValue(_ConfigPsxSettings, p, null, arr[1]);
+                        InitWindow.SetPropertyValue(_ConfigSmsSettings, p, null, arr[1]);
+                        InitWindow.SetPropertyValue(_ConfigNesSettings, p, null, arr[1]);
+                        InitWindow.SetPropertyValue(_ConfigSnesSettings, p, null, arr[1]);
+                        InitWindow.SetPropertyValue(_ConfigSsSettings, p, null, arr[1]);
+                        InitWindow.SetPropertyValue(_ConfigVbSettings, p, null, arr[1]);
+                        InitWindow.SetPropertyValue(_ConfigWswanSettings, p, null, arr[1]);
+                        InitWindow.SetPropertyValue(_ConfigSnes_faustSettings, p, null, arr[1]);
+                        InitWindow.SetPropertyValue(_ConfigPce_fastSettings, p, null, arr[1]);
+                        continue;
+                    }
+
+                    else
+                    {
+                        // this is a system.cfg file
+                        switch (confId)
+                        {
+                            case 2000000001:
+                                InitWindow.SetPropertyValue(_ConfigGbSettings, p, null, arr[1]);
+                                break;
+                            case 2000000002:
+                                InitWindow.SetPropertyValue(_ConfigGbaSettings, p, null, arr[1]);
+                                break;
+                            case 2000000003:
+                                InitWindow.SetPropertyValue(_ConfigLynxSettings, p, null, arr[1]);
+                                break;
+                            case 2000000004:
+                                InitWindow.SetPropertyValue(_ConfigMdSettings, p, null, arr[1]);
+                                break;
+                            case 2000000005:
+                                InitWindow.SetPropertyValue(_ConfigGgSettings, p, null, arr[1]);
+                                break;
+                            case 2000000006:
+                                InitWindow.SetPropertyValue(_ConfigNgpSettings, p, null, arr[1]);
+                                break;
+                            case 2000000007:
+                                InitWindow.SetPropertyValue(_ConfigPceSettings, p, null, arr[1]);
+                                break;
+                            case 2000000008:
+                                InitWindow.SetPropertyValue(_ConfigPcfxSettings, p, null, arr[1]);
+                                break;
+                            case 2000000009:
+                                InitWindow.SetPropertyValue(_ConfigPsxSettings, p, null, arr[1]);
+                                break;
+                            case 2000000010:
+                                InitWindow.SetPropertyValue(_ConfigSmsSettings, p, null, arr[1]);
+                                break;
+                            case 2000000011:
+                                InitWindow.SetPropertyValue(_ConfigNesSettings, p, null, arr[1]);
+                                break;
+                            case 2000000012:
+                                InitWindow.SetPropertyValue(_ConfigSnesSettings, p, null, arr[1]);
+                                break;
+                            case 2000000013:
+                                InitWindow.SetPropertyValue(_ConfigSsSettings, p, null, arr[1]);
+                                break;
+                            case 2000000014:
+                                InitWindow.SetPropertyValue(_ConfigVbSettings, p, null, arr[1]);
+                                break;
+                            case 2000000015:
+                                InitWindow.SetPropertyValue(_ConfigWswanSettings, p, null, arr[1]);
+                                break;
+                            case 2000000016:
+                                InitWindow.SetPropertyValue(_ConfigSnes_faustSettings, p, null, arr[1]);
+                                break;
+                            case 2000000017:
+                                InitWindow.SetPropertyValue(_ConfigPce_fastSettings, p, null, arr[1]);
+                                break;
+                        }
+                    }
                 }
                 // look for property in confignetplaysettings
                 PropertyInfo n = _ConfigNetplaySettings.GetType().GetProperty(propName);
@@ -169,10 +391,7 @@ namespace MedLaunch.Classes
                     InitWindow.SetPropertyValue(_ConfigServerSettings, ser, null, arr[1]);
                     continue;
                 }
-
-            }
-
-            
+            }            
         }
 
         public List<string> LoadConfigFromDisk(string path)

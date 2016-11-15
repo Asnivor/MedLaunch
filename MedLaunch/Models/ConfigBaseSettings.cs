@@ -1589,7 +1589,7 @@ namespace MedLaunch.Models
                 }
                 else
                 {
-                    rb.IsEnabled = false;
+                    rb.IsEnabled = true;
                 }
             }
             

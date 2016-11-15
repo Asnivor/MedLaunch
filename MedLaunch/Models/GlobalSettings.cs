@@ -185,7 +185,7 @@ namespace MedLaunch.Models
         public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast, ComboBox GuiZoom, CheckBox MinToTaskBar, CheckBox HideSidebar,
             CheckBox chkAllowBanners, CheckBox chkAllowBoxart, CheckBox chkAllowScreenshots, CheckBox chkAllowFanart, CheckBox chkPreferGenesis, 
             CheckBox chkAllowManuals, CheckBox chkAllowMedia, CheckBox chkSecondaryScraperBackup, RadioButton rbGDB, RadioButton rbMoby, Slider slScreenshotsPerHost, Slider slFanrtsPerHost,
-            CheckBox chkAllBaseSettings, CheckBox chkAllowUpdateCheck, CheckBox chkBackupMednafenConfig)
+            CheckBox chkAllowUpdateCheck, CheckBox chkBackupMednafenConfig)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
@@ -200,7 +200,7 @@ namespace MedLaunch.Models
             MinToTaskBar.IsChecked = gs.minToTaskBarOnGameLaunch;
             HideSidebar.IsChecked = gs.hideSidebar;
 
-            chkAllBaseSettings.IsChecked = gs.showAllBaseSettings;
+            //chkAllBaseSettings.IsChecked = gs.showAllBaseSettings;
             //MessageBox.Show(gs.guiZoom.ToString());
 
             // game scraping options

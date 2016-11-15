@@ -1455,6 +1455,7 @@
                         <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Configs" >
                                 <WrapPanel Orientation="Vertical" x:Name="ConfigSelectorWrapPanel">
+                                    <!--
                                     <RadioButton x:Name="btnConfigBase" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True" 
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
@@ -1463,12 +1464,11 @@
                                             <ContextMenu>
                                                 <MenuItem x:Name="MenuItemDefaultBase" Header="Reset to Defaults" Click="MenuItemDefault_Click" />
                                                 <MenuItem Header="Load the base configuration from disk (mednafen-09x.cfg)" Click="LoadConfigFromDisk_Click" />
-                                                <!--
-                                                <MenuItem Header="Save the base configuration to disk (mednafen-09x.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the default config on disk" />
-                                           -->
+                                              
                                                 </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
+                                    -->
                                     <RadioButton Margin="1" x:Name="btnConfigNes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
@@ -7530,10 +7530,13 @@
                                                     <ComboBoxItem Tag="1.5">150%</ComboBoxItem>
                                                 </ComboBox>
 
+                                                <!--
+                                                  
                                                 <CheckBox x:Name="chkAllBaseSettings" Grid.ColumnSpan="2" Grid.Row="4" Checked="chkAllBaseSettings_Checked" Unchecked="chkAllBaseSettings_Unchecked"
                                                           ToolTip="Shows every possible config option under 'base configuration'. It means that you do not have to use MedLaunch system-specific configs if you don't want to)">
                                                     Show ALL possible settings under 'Base Configuration'
                                                 </CheckBox>
+                                                -->
 
                                                 <CheckBox x:Name="chkMinToTaskbar" Grid.ColumnSpan="2" Grid.Row="5" Checked="chkMinToTaskbar_Checked" Unchecked="chkMinToTaskbar_Unchecked">
                                                     Minimise MedLaunch to the taskbar when a game is launched

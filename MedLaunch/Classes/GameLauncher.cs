@@ -103,9 +103,69 @@ namespace MedLaunch.Classes
             {
                 actualConfigId = SystemId + 2000000000;
             }
+            
+            // take general settings from base config (2000000000) and system specific settings from actual config
+
+            ConfigBaseSettings _base = (from c in db.ConfigBaseSettings
+                                          where (c.ConfigId == 2000000000)
+                                          select c).SingleOrDefault();
+
             ConfigBaseSettings _config = (from c in db.ConfigBaseSettings
-                      where (c.ConfigId == actualConfigId)
-                      select c).SingleOrDefault();
+                                          where (c.ConfigId == actualConfigId)
+                                          select c).SingleOrDefault();
+
+
+            // Get a Dictionary object with a list of config parameter names, along with the object itself for the general config options
+            GenConfigObject = ListFromType(_base).Where(a => (
+            !a.Key.StartsWith("__") || 
+            !a.Key.StartsWith("gb__") ||
+            !a.Key.StartsWith("gba__") ||
+            !a.Key.StartsWith("lynx__") ||
+            !a.Key.StartsWith("md__") ||
+            !a.Key.StartsWith("gg__") ||
+            !a.Key.StartsWith("ngp__") ||
+            !a.Key.StartsWith("pce__") ||
+            !a.Key.StartsWith("pcfx__") ||
+            !a.Key.StartsWith("psx__") ||
+            !a.Key.StartsWith("sms__") ||
+            !a.Key.StartsWith("nes__") ||
+            !a.Key.StartsWith("snes__") ||
+            !a.Key.StartsWith("ss__") ||
+            !a.Key.StartsWith("vb__") ||
+            !a.Key.StartsWith("wswan__") ||
+            !a.Key.StartsWith("snes_faust__") ||
+            !a.Key.StartsWith("pce_fast__")
+            )).ToList();
+
+            // Get a Dictionary object with a list of config parameter names, along with the object itself for the system configuration
+            //SysConfigObject = ListFromType(_config).Where(a => a.Key.StartsWith(SystemCode)).ToList();
+            List<ConfigObject> sysConfigObject = ListFromType(_config).Where(a => !a.Key.StartsWith("__")).ToList();
+            SysConfigObject = new List<ConfigObject>();
+
+            foreach (var x in sysConfigObject)
+            {
+                var systems = GSystem.GetSystems().Where(a => a.systemCode != SystemCode);
+                bool isValid = true;
+                foreach (var sc in systems)
+                {
+                    if (x.Key.StartsWith(sc.systemCode))
+                    {
+                        isValid = false;
+                        break;
+                    }                    
+                }
+                if (isValid == true)
+                {
+                    SysConfigObject.Add(x);
+                }
+            }
+
+            // build actual config list
+            //ConfObject = new List<ConfigObject>();
+            //ConfObject.AddRange(GenConfigObject);
+            //ConfObject.AddRange(SysConfigObject);
+
+            /*
             if (_config.isEnabled == true)
             {
                 Config = _config;
@@ -116,7 +176,7 @@ namespace MedLaunch.Classes
                           where c.ConfigId == 2000000000
                           select c).SingleOrDefault();
             }
-
+            */
 
 
             // get netplay
@@ -138,6 +198,7 @@ namespace MedLaunch.Classes
             
                              
         }
+        
 
         public void UpdateLastPlayed()
         {
@@ -178,17 +239,17 @@ namespace MedLaunch.Classes
             string baseStr = sep;
             
             // Get a Dictionary object with a list of config parameter names, along with the object itself
-            Dictionary<string, object> cmds = DictionaryFromType(Config);
+            //Dictionary<string, object> cmds = DictionaryFromType(Config);
 
             // Create a new List object to hold actual parameters that will be passed to Mednafen
             //Dictionary<String, String> activeCmds = new Dictionary<string, string>();
             List<ConfigKeyValue> activeCmds = new List<ConfigKeyValue>();
-            foreach (var thing in cmds)
+            foreach (var thing in SysConfigObject)
             {
                 // Check for Null and Empty values
                 if (thing.Value == null || thing.Value.ToString().Trim() == "")
                 {
-                    // null or empty value - continue out of look
+                    // null or empty value - continue
                     continue;
                 }
 
@@ -212,24 +273,7 @@ namespace MedLaunch.Classes
                 else
                 {                    
                     // convert key to correct mednafen config format
-                    string k = thing.Key.Replace("__", ".");
-
-                    // is this a generic system specific config entry (ie. it has a leading .)?
-                    char[] array = k.ToCharArray();
-                    if (array[0] ==  '.')
-                    {
-                        if (Config.ConfigId == 2000000000 && GlobalSettings.GetGlobals().showAllBaseSettings == false)
-                        {
-                            // this is the base config and medlaunch is set to NOT show all config settings on the base config filter. Therefore generate the command by appending system code
-                            k = SystemCode.ToLower() + k;
-                            
-                        }
-                        else
-                        {
-                            // just use the implicit system-specific config command
-                            continue;
-                        }
-                    }                    
+                    string k = thing.Key.Replace("__", ".");                                                         
                     
                     // is the parameter illegal (ie. in the list of illegal config parameters)
                     if (IsParameterLegal(k) == false)
@@ -238,80 +282,11 @@ namespace MedLaunch.Classes
                         continue;
                     }
 
-                    // does the parameter NOT contain a system code
-                    if(DoesParamContainSystemCode(k) == false)
-                    {
-                        // non system specific parameter. add to list and continue
-                        ConfigKeyValue ckv = new ConfigKeyValue();
-                        ckv.Key = k;
-                        ckv.Value = v;
-                        // check whether it already exists
-                        var x = activeCmds.Where(m => m.Key == k).ToList();
-                        if (x.Count > 0)
-                        {
-                            foreach (var xc in x)
-                            {
-                                activeCmds.Remove(xc);
-                                activeCmds.Add(ckv);
-                            }
-                            continue;
-                        }
-                        activeCmds.Add(ckv);
-                        continue;
-                    }
-                    else
-                    {
-                        // param contains a systemcode
-                        // is the base config selected?
-                        if (Config.ConfigId == 22220000)
-                        {
-                            // base config selected - all parameters must be added
-                            ConfigKeyValue ckv = new ConfigKeyValue();
-                            ckv.Key = k;
-                            ckv.Value = v;
-                            // check whether it already exists
-                            var x = activeCmds.Where(m => m.Key == k).ToList();
-                            if (x.Count > 0)
-                            {
-                                foreach (var xc in x)
-                                {
-                                    activeCmds.Remove(xc);
-                                    activeCmds.Add(ckv);
-                                }
-                                continue;
-                            }
-                            activeCmds.Add(ckv);
-                            continue;
-                        }
-                        else
-                        {
-                            // system specific config is selected - only add commands pertaining to this system
-                            if (k.Contains(SystemCode))
-                            {
-                                ConfigKeyValue ckv = new ConfigKeyValue();
-                                ckv.Key = k;
-                                ckv.Value = v;
-                                // check whether it already exists
-                                var x = activeCmds.Where(m => m.Key == k).ToList();
-                                if (x.Count > 0)
-                                {
-                                    foreach (var xc in x)
-                                    {
-                                        activeCmds.Remove(xc);
-                                        activeCmds.Add(ckv);
-                                    }
-                                    continue;
-                                }
-                                activeCmds.Add(ckv);
-                                continue;
-                            }
-                            else
-                            {
-                                // it does not - skip adding
-                                continue;
-                            }
-                        }
-                    }                    
+                    // add command to activeCmds
+                    ConfigKeyValue ckv = new ConfigKeyValue();
+                    ckv.Key = k;
+                    ckv.Value = v;
+                    activeCmds.Add(ckv);      
                 }                
             }
 
@@ -595,6 +570,24 @@ namespace MedLaunch.Classes
         }
 
 
+        public static List<ConfigObject> ListFromType(object atype)
+        {
+            if (atype == null) return new List<ConfigObject>();
+            Type t = atype.GetType();
+            PropertyInfo[] props = t.GetProperties();
+            List<ConfigObject> dict = new List<ConfigObject>();
+            foreach (PropertyInfo prp in props)
+            {
+                ConfigObject co = new ConfigObject();
+                object value = prp.GetValue(atype, new object[] { });
+                co.Key = prp.Name;
+                co.Value = value;
+                dict.Add(co);
+            }
+            return dict;
+        }
+
+
         // Properties
 
         public int ConfigId { get; private set; }
@@ -607,6 +600,10 @@ namespace MedLaunch.Classes
         public string RomPath { get; private set; }
         public string RomName { get; private set; }
         public ConfigBaseSettings Config { get; set; }
+        public ConfigBaseSettings SysConfig { get; set; }
+        public List<ConfigObject> ConfObject { get; set; }
+        public List<ConfigObject> SysConfigObject { get; set; }
+        public List<ConfigObject> GenConfigObject { get; set; }
         public ConfigNetplaySettings Netplay { get; set; }
         public ConfigServerSettings Server { get; set; }
         public ConfigServerSettings ServerOveride { get; set; }
@@ -617,5 +614,11 @@ namespace MedLaunch.Classes
     {
         public string Key { get; set; }
         public string Value { get; set; }
+    }
+
+    public class ConfigObject
+    {
+        public string Key { get; set; }
+        public object Value { get; set; }
     }
 }

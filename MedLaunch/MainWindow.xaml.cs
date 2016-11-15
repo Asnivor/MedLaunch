@@ -131,7 +131,7 @@ namespace MedLaunch
             // load globalsettings for front page
             GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar,
                chkAllowBanners, chkAllowBoxart, chkAllowScreenshots, chkAllowFanart, chkPreferGenesis, chkAllowManuals, chkAllowMedia, chkSecondaryScraperBackup,
-               rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost, chkAllBaseSettings, chkAllowUpdateCheck, chkBackupMednafenConfig);
+               rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost, chkAllowUpdateCheck, chkBackupMednafenConfig);
             //gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
             GlobalSettings gs = GlobalSettings.GetGlobals();
             mainScaleTransform.ScaleX = Convert.ToDouble(gs.guiZoom);
@@ -174,10 +174,10 @@ namespace MedLaunch
                 }
             }
 
-            // ensure base config is selected at startup
-            btnConfigBase.IsChecked = true;
-            btnConfigBase.IsChecked = false;
-            btnConfigBase.IsChecked = true;
+            // ensure nes config is selected at startup
+            btnConfigNes.IsChecked = true;
+            btnConfigNes.IsChecked = false;
+            btnConfigNes.IsChecked = true;
 
             // hide all system specific config options
             /*
@@ -1225,6 +1225,7 @@ namespace MedLaunch
             GlobalSettings.UpdateEnableSnes_faust(chkEnableSnes_faust);
         }
 
+        /*
         private void chkAllBaseSettings_Checked(object sender, RoutedEventArgs e)
         {
             GlobalSettings.UpdatechkAllBaseSettings(chkAllBaseSettings);
@@ -1244,6 +1245,7 @@ namespace MedLaunch
             //btnConfigBase.IsChecked = false;
             //btnConfigBase.IsChecked = true;
         }
+        */
 
         private void chkMinToTaskbar_Checked(object sender, RoutedEventArgs e)
         {
@@ -2849,49 +2851,7 @@ namespace MedLaunch
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnConfigImportAll_Click(object sender, RoutedEventArgs e)
-        {
-            //ImportConfigs();
-            /*
-            Dispatcher.Invoke(async () =>
-            {
-                
-            });
-            */
-
-            // get current active button
-            ConfigsVisualHandler ch = new ConfigsVisualHandler();
-            RadioButton rb = ch.FilterButtons.Where(a => a.IsChecked == true).Single();
-            int ConfigId = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
-
-            ConfigImport ci = new ConfigImport();
-            ci.ImportConfigsFromDisk(null);
-
-
-            // update UI
-            ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, ConfigId);
-            ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
-            ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
-            ConfigServerSettings.SetCustomDefault();
-
-            Task.Delay(500);
-
-            if (rb != btnConfigLynx)
-                btnConfigLynx.IsChecked = true;
-            else
-                btnConfigMd.IsChecked = true;
-
-            Task.Delay(500);
-            rb.IsChecked = true;
-
-            // activate enabled systems
-            ConfigsVisualHandler cvh = new ConfigsVisualHandler();
-            cvh.ActivateEnabledSystems();
-
-            lblConfigStatus.Content = "Configs Imported";
-        }
-        /*
-        private async void ImportConfigs()
+        private async void btnConfigImportAll_Click(object sender, RoutedEventArgs e)
         {
             var mySettings = new MetroDialogSettings()
             {
@@ -2899,12 +2859,38 @@ namespace MedLaunch
                 AnimateShow = false,
                 AnimateHide = false
             };
-            var controller = await this.ShowProgressAsync("Config Importer", "Initialising...", true, settings: mySettings);
+            var controller = await this.ShowProgressAsync("Config Importer", "Importing all configs from disk...", true, settings: mySettings);
             controller.SetCancelable(true);
-            await Task.Delay(100);
+            controller.SetIndeterminate();
+            await Task.Delay(1000);
 
-            ConfigImport ci = new ConfigImport();
-            ci.ImportConfigsFromDisk(controller);
+            this.Dispatcher.Invoke(() =>
+            {
+                // get current active button
+                ConfigsVisualHandler ch = new ConfigsVisualHandler();
+                RadioButton rb = ch.FilterButtons.Where(a => a.IsChecked == true).Single();
+                int ConfigId = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
+
+                ConfigImport ci = new ConfigImport();
+                ci.ImportAll(controller);
+
+
+                // update UI
+                ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, ConfigId);
+                ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
+                ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
+                ConfigServerSettings.SetCustomDefault();
+
+                Task.Delay(500);
+
+                if (rb != btnConfigLynx)
+                    btnConfigLynx.IsChecked = true;
+                else
+                    btnConfigMd.IsChecked = true;
+
+                Task.Delay(500);
+                rb.IsChecked = true;
+            });
 
             await controller.CloseAsync();
 
@@ -2916,11 +2902,14 @@ namespace MedLaunch
             {
                 await this.ShowMessageAsync("Config Importer", "Config Import Completed");
             }
+
+            lblConfigStatus.Content = "All Configs Imported";
         }
-        */
+
 
         private void LoadConfigFromDisk_Click(object sender, RoutedEventArgs e)
         {
+
             MenuItem mi = sender as MenuItem;
             RadioButton rb = null;
 
@@ -2930,56 +2919,32 @@ namespace MedLaunch
                 rb.IsChecked = true;
                 int ConfigId = ConfigBaseSettings.GetConfigIdFromButtonName(rb.Name);
                 string sysCode = rb.Name.Replace("btnConfig", "").ToLower();
+                
+                ConfigImport ci = new ConfigImport();
+                ci._ConfigBaseSettings = ConfigBaseSettings.GetConfig(ConfigId);
+                ci.ImportSystemConfigFromDisk(null, GSystem.GetSystems().Where(a => a.systemCode == sysCode).FirstOrDefault());
 
-                if (sysCode == "base")
-                {
-                    ConfigImport ci = new ConfigImport();
-                    ci._ConfigBaseSettings = ConfigBaseSettings.GetConfig(2000000000);
-                    ci.ImportBaseConfigFromDisk(null);
+                ci.SaveToDatabase();
 
-                    // update UI
-                    ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, ConfigId);
-                    ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
-                    ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
-                    ConfigServerSettings.SetCustomDefault();
+                // update UI
+                ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, ConfigId);
 
-                    Task.Delay(500);
+                Task.Delay(500);
 
-                    if (rb != btnConfigLynx)
-                        btnConfigLynx.IsChecked = true;
-                    else
-                        btnConfigMd.IsChecked = true;
-
-                    Task.Delay(500);
-                    rb.IsChecked = true;
-
-                    lblConfigStatus.Content = "Base Config Imported";
-                }
+                if (rb != btnConfigLynx)
+                    btnConfigLynx.IsChecked = true;
                 else
-                {
-                    ConfigImport ci = new ConfigImport();
-                    ci._ConfigBaseSettings = ConfigBaseSettings.GetConfig(ConfigId);
-                    ci.ImportSystemConfigFromDisk(null, GSystem.GetSystems().Where(a => a.systemCode == sysCode).FirstOrDefault());
+                    btnConfigMd.IsChecked = true;
 
-                    // update UI
-                    ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, ConfigId);
+                Task.Delay(500);
+                rb.IsChecked = true;
 
-                    Task.Delay(500);
+                // activate enabled systems
+                ConfigsVisualHandler cvh = new ConfigsVisualHandler();
+                cvh.ActivateEnabledSystems();
 
-                    if (rb != btnConfigLynx)
-                        btnConfigLynx.IsChecked = true;
-                    else
-                        btnConfigMd.IsChecked = true;
-
-                    Task.Delay(500);
-                    rb.IsChecked = true;
-
-                    // activate enabled systems
-                    ConfigsVisualHandler cvh = new ConfigsVisualHandler();
-                    cvh.ActivateEnabledSystems();
-
-                    lblConfigStatus.Content = sysCode.ToUpper() + " Config Imported";
-                }
+                lblConfigStatus.Content = sysCode.ToUpper() + " Config Imported";
+               
             }
                 
         }

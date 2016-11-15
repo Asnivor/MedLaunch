@@ -20,7 +20,7 @@ namespace MedLaunch.Classes
                 Paths p = Paths.GetPaths();
                 string medPath = p.mednafenExe;
                 string cfgPath = medPath + @"\mednafen-09x.cfg";
-                if (File.Exists(cfgPath))
+                if (File.Exists(cfgPath)) 
                 {
                     // get timestamp
                     string timeStamp = DateTime.Now.ToString("yyyyMMdd_HH-mm-ss");
