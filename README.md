@@ -52,7 +52,6 @@
 * The launcher currently only handles absolute paths correctly. Relative path handling may or may not work but this part of the code needs a proper overhaul
 
 ### To Do
-* Auto-hide system specific config option controls that are invalid (eg, nes.forcemono etc.)
 * Code option to import existing configuration information from Mednafen config files (default & system specific configs) into the MedLaunch database
 * Option to export config information to Mednafen config files
 * Configure controllers from within MedLaunch
@@ -62,7 +61,7 @@ This upcoming changes (and many others) can be found in the current roadmap [her
 
 ### Requirements
 * [Microsoft .NET Framework 4.5.2](https://www.microsoft.com/en-gb/download/details.aspx?id=42643)
-* At least [Mednafen version 0.9.39.1](http://mednafen.fobby.net/releases/) 
+* At least [Mednafen version 0.9.39.1](http://mednafen.fobby.net/releases/) - 64-bit version required for Saturn games
 * Windows 7 and above (may work on Vista but has not been tested)
 * x64 (has not been tested on x86 but should still work on it)
 
