@@ -25,6 +25,7 @@ namespace MedLaunch.Models
         public bool? minToTaskBarOnGameLaunch { get; set; }         // whether or not MedLaunch is minimised to taskbar when game is launched
         public bool? hideSidebar { get; set; }                      // always hide the games library sidebar
         public DateTime? gdbLastUpdated { get; set; }               // last time platformgames were synced from thegamesdb.net
+        public bool? backupMednafenConfig { get; set; }             // auto create a backup on the mednafen config when MedLaunch is first opened
 
         // games library expander states
         public bool glGameStats { get; set; }
@@ -96,7 +97,8 @@ namespace MedLaunch.Models
                 maxFanarts = 4,
                 colorBackground = "basedark",
                 colorAccent = "Emerald",
-                checkUpdatesOnStart = false
+                checkUpdatesOnStart = false,
+                backupMednafenConfig = true
             };
             return gs;
         }
@@ -183,7 +185,7 @@ namespace MedLaunch.Models
         public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast, ComboBox GuiZoom, CheckBox MinToTaskBar, CheckBox HideSidebar,
             CheckBox chkAllowBanners, CheckBox chkAllowBoxart, CheckBox chkAllowScreenshots, CheckBox chkAllowFanart, CheckBox chkPreferGenesis, 
             CheckBox chkAllowManuals, CheckBox chkAllowMedia, CheckBox chkSecondaryScraperBackup, RadioButton rbGDB, RadioButton rbMoby, Slider slScreenshotsPerHost, Slider slFanrtsPerHost,
-            CheckBox chkAllBaseSettings, CheckBox chkAllowUpdateCheck)
+            CheckBox chkAllBaseSettings, CheckBox chkAllowUpdateCheck, CheckBox chkBackupMednafenConfig)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
@@ -215,6 +217,8 @@ namespace MedLaunch.Models
             slFanrtsPerHost.Value = gs.maxFanarts;
 
             chkAllowUpdateCheck.IsChecked = gs.checkUpdatesOnStart;
+
+            chkBackupMednafenConfig.IsChecked = gs.backupMednafenConfig;
 
             if (gs.primaryScraper == 1)
             {
@@ -359,6 +363,13 @@ namespace MedLaunch.Models
         {
             GlobalSettings gs = GetGlobals();
             gs.enabledSecondaryScraper = chkSecondaryScraperBackup.IsChecked.Value;
+            SetGlobals(gs);
+        }
+
+        public static void UpdateBackupMednafenConfig(CheckBox chkBackupMednafenConfig)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.backupMednafenConfig = chkBackupMednafenConfig.IsChecked.Value;
             SetGlobals(gs);
         }
 

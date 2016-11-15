@@ -7547,6 +7547,10 @@
                                                     Allow MedLaunch to check for updates on start (NOT auto-install)
                                                 </CheckBox>
 
+                                                <CheckBox x:Name="chkBackupMednafenConfig" Grid.ColumnSpan="2" Grid.Row="8" Checked="chkBackupMednafenConfig_Checked" Unchecked="chkBackupMednafenConfig_Unchecked">
+                                                    Auto-backup Mednafen config file (mednafen-09x.cfg) when MedLaunch is started
+                                                </CheckBox>
+
 
 
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="17">

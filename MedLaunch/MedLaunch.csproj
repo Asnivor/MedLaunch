@@ -201,6 +201,7 @@
     <Compile Include="AccentStyleWindow.xaml.cs">
       <DependentUpon>AccentStyleWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\BackupConfig.cs" />
     <Compile Include="Classes\CMenu.cs" />
     <Compile Include="Classes\ConfigImport.cs" />
     <Compile Include="Classes\ConfigReflection.cs" />

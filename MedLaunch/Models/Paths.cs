@@ -203,17 +203,17 @@ namespace MedLaunch.Models
                         ConfigImport ci = new ConfigImport();
                         ci.ImportConfigsFromDisk(null);
                     }
-                    else
-                    {
-                        return;
-                    }
+
                     
                 }
             }
             else
             {
-                return;
+                
             }
+
+            // if option is selected make a backup of the mednafen config file
+            BackupConfig.BackupMain();
         }
 
     }
