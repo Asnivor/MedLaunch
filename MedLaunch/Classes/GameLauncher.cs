@@ -66,6 +66,9 @@ namespace MedLaunch.Classes
                 }
 
             }
+
+            gSystem = GSystem.GetSystems().Where(a => a.systemId == SystemId).Single();
+            SystemCode = gSystem.systemCode;
            
             
             
@@ -74,72 +77,17 @@ namespace MedLaunch.Classes
             MednafenFolder = (from m in db.Paths
                               select m.mednafenExe).SingleOrDefault();
 
-            // get GameSystems
+            // set the config id
+            int actualConfigId = SystemId + 2000000000;
 
-            GSystem gSys = new GSystem(SystemId);
-            SystemName = gSys.systemName;
-
-            if (gSys.systemId == 18)
-            {
-                SystemCode = "pce";
-            }
-            else
-            {
-                SystemCode = gSys.systemCode;
-            }
-
-
-
-            // get config
-
-            // check whether system specific config is enabled
-            int actualConfigId = 2000000000;
-            
-            // pcecd check
-            if (SystemId == 18)
-            {
-                actualConfigId = 2000000007;
-            }
-            else
-            {
-                actualConfigId = SystemId + 2000000000;
-            }
-            
             // take general settings from base config (2000000000) and system specific settings from actual config
 
-            ConfigBaseSettings _base = (from c in db.ConfigBaseSettings
-                                          where (c.ConfigId == 2000000000)
-                                          select c).SingleOrDefault();
+
 
             ConfigBaseSettings _config = (from c in db.ConfigBaseSettings
                                           where (c.ConfigId == actualConfigId)
                                           select c).SingleOrDefault();
-
-
-            // Get a Dictionary object with a list of config parameter names, along with the object itself for the general config options
-            GenConfigObject = ListFromType(_base).Where(a => (
-            !a.Key.StartsWith("__") || 
-            !a.Key.StartsWith("gb__") ||
-            !a.Key.StartsWith("gba__") ||
-            !a.Key.StartsWith("lynx__") ||
-            !a.Key.StartsWith("md__") ||
-            !a.Key.StartsWith("gg__") ||
-            !a.Key.StartsWith("ngp__") ||
-            !a.Key.StartsWith("pce__") ||
-            !a.Key.StartsWith("pcfx__") ||
-            !a.Key.StartsWith("psx__") ||
-            !a.Key.StartsWith("sms__") ||
-            !a.Key.StartsWith("nes__") ||
-            !a.Key.StartsWith("snes__") ||
-            !a.Key.StartsWith("ss__") ||
-            !a.Key.StartsWith("vb__") ||
-            !a.Key.StartsWith("wswan__") ||
-            !a.Key.StartsWith("snes_faust__") ||
-            !a.Key.StartsWith("pce_fast__")
-            )).ToList();
-
-            // Get a Dictionary object with a list of config parameter names, along with the object itself for the system configuration
-            //SysConfigObject = ListFromType(_config).Where(a => a.Key.StartsWith(SystemCode)).ToList();
+            
             List<ConfigObject> sysConfigObject = ListFromType(_config).Where(a => !a.Key.StartsWith("__")).ToList();
             SysConfigObject = new List<ConfigObject>();
 
@@ -149,7 +97,7 @@ namespace MedLaunch.Classes
                 bool isValid = true;
                 foreach (var sc in systems)
                 {
-                    if (x.Key.StartsWith(sc.systemCode))
+                    if (x.Key.StartsWith(sc.systemCode + "__"))
                     {
                         isValid = false;
                         break;
@@ -670,6 +618,7 @@ namespace MedLaunch.Classes
         public ConfigServerSettings Server { get; set; }
         public ConfigServerSettings ServerOveride { get; set; }
         public GlobalSettings Global { get; set; }
+        public GSystem gSystem { get; set; }
     }
 
     public class ConfigKeyValue

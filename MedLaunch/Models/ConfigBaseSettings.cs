@@ -1960,7 +1960,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_") || ((ComboBoxItem)control.SelectedItem) == null)
                     {
                         // checkbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
