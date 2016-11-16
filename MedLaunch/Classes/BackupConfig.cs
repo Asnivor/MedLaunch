@@ -25,7 +25,11 @@ namespace MedLaunch.Classes
                     // get timestamp
                     string timeStamp = DateTime.Now.ToString("yyyyMMdd_HH-mm-ss");
                     // create new filename
-                    string destPath = cfgPath.Replace("mednafen-09x.cfg", "mednafen-09x(MLBackup-" + timeStamp + ").cfg");
+                    //string destPath = cfgPath.Replace("mednafen-09x.cfg", "mednafen-09x(MLBackup-" + timeStamp + ").cfg");
+                    string backupDir = AppDomain.CurrentDomain.BaseDirectory + "Data\\MednafenCFGBackups";
+                    // create directory if it doesnt exist
+                    Directory.CreateDirectory(backupDir);
+                    string destPath = backupDir + "\\mednafen-09x(MLBackup-" + timeStamp + ").cfg";
                     // create a backup
                     File.Copy(cfgPath, destPath);
                 }
