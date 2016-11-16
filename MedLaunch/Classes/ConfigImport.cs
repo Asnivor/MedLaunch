@@ -185,7 +185,7 @@ namespace MedLaunch.Classes
             foreach (string s in cfg.Where(a => (a != "" || a != "\r" || a != "\n")))
             {
                 // split to array based on whitespace
-                string st = s.TrimEnd().Replace("\r", "").Replace("\n\r", "").Replace("\r\n", "").Replace("\n", "");
+                string st = s.Trim().Replace("\r", "").Replace("\n\r", "").Replace("\r\n", "").Replace("\n", "");
                 string[] arr = st.Split(' ');
                 // normal (non controller) settings should only have 2 items in the array
                 if (arr.Length != 2)
