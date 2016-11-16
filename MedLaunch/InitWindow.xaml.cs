@@ -171,12 +171,19 @@ namespace MedLaunch
                 DbEF.InitialSeed();
                 UpdateStatus("Done", false);
 
-                // Games Scraping db initial seed
+                // ask whether to enable auto-update checking
+                GlobalSettings gs = GlobalSettings.GetGlobals();
+                MessageBoxResult re = MessageBox.Show("MedLaunch can automatically check for new updates when it starts.\n Do you wish to enable this feature?\n(An internet connection is required)", "Update Checking", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (re == MessageBoxResult.Yes)
+                {
+                    gs.checkUpdatesOnStart = true;
+                }
+                else
+                {
+                    gs.checkUpdatesOnStart = false;
+                }
+                GlobalSettings.SetGlobals(gs);
 
-                /*
-                UpdateStatus("Importing PlatformGames list (thegamesdb.net)", true);
-                GDBPlatformGame.InitialSeed();
-                */
                 UpdateStatus("Done", false);
 
                 return;
