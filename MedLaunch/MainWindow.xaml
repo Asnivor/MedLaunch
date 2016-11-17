@@ -2419,6 +2419,194 @@
                                         </StackPanel>
                                     </Expander>
                                 </Border>
+                                
+                                <!-- gg -->
+                                <Border x:Name="brdSpecificGg1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="Game Gear Filters/Misc">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_gg__enable">Enable (Automatic) Usage of this module</CheckBox>
+                                            <CheckBox x:Name="cfg_gg__forcemono">Force Mono Sound Output</CheckBox>
+                                            <CheckBox Name="cfg_gg__tblur">Temporal Blur</CheckBox>
+                                            <CheckBox Name="cfg_gg__tblur__accum">Accumulate Color Data</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="1">OGL Pixel Shader</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_gg__pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
+                                                    <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
+                                                    <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
+                                                    <ComboBoxItem Tag="scale2x">Scale2x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="sabr">SABR v3.0</ComboBoxItem>
+                                                    <ComboBoxItem Tag="ipsharper">Sharper Bilinear Int.</ComboBoxItem>
+                                                    <ComboBoxItem Tag="ipxnoty">Linear Int. on X Axis</ComboBoxItem>
+                                                    <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
+                                                    <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
+                                                    <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                </ComboBox>
+                                                <Label Grid.Row="2">Special Video Scaler</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_gg__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
+                                                    <ComboBoxItem Tag="hq2x">hq2x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="hq3x">hq3x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="hq4x">hq4x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="scale2x">scale2x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="scale3x">scale3x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="scale4x">scale4x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="2xsai">2xSaI</ComboBoxItem>
+                                                    <ComboBoxItem Tag="super2xsai">Super 2xSaI</ComboBoxItem>
+                                                    <ComboBoxItem Tag="supereagle">Super Eagle</ComboBoxItem>
+                                                    <ComboBoxItem Tag="nn2x">Nearest-neighbor 2x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="nn3x">Nearest-neighbor 3x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="nn4x">Nearest-neighbor 4x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="nny2x">Nearest-neighbor 2x Y Axis</ComboBoxItem>
+                                                    <ComboBoxItem Tag="nny3x">Nearest-neighbor 3x Y Axis</ComboBoxItem>
+                                                    <ComboBoxItem Tag="nny4x">Nearest-neighbor 4x Y Axis</ComboBoxItem>
+                                                </ComboBox>
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
+                                                        <TextBox Text="{Binding ElementName=cfg_gg__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_gg__scanlines"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_gg__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_gg__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdSpecificGg2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="Game Gear Resolution">
+
+                                        <StackPanel>
+
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="0">Stretching</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_gg__stretch" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
+                                                    <ComboBoxItem Tag="full">Full</ComboBoxItem>
+                                                    <ComboBoxItem Tag="aspect">Asp. Preserve</ComboBoxItem>
+                                                    <ComboBoxItem Tag="aspect_int">Asp. Preserve + Int</ComboBoxItem>
+                                                    <ComboBoxItem Tag="aspect_mult2">Asp. Preserve + x2</ComboBoxItem>
+                                                </ComboBox>
+                                                <Label Grid.Row="1">Interpolation</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_gg__videoip" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
+                                                    <ComboBoxItem Tag="1">Bilinear</ComboBoxItem>
+                                                    <ComboBoxItem Tag="x">Linear (X)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="y">Linear (Y)</ComboBoxItem>
+                                                </ComboBox>
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="2" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="0.5*" />
+                                                        <ColumnDefinition Width="0.5*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
+                                                    <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+                                                    <ComboBox SelectedValuePath="Tag" Name="cfg_gg__xres" Grid.Column="0" Grid.Row="2">
+                                                        <ComboBoxItem Tag="0">Native</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1920">1920</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1856">1856</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1792">1792</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1680">1680</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1600">1600</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1440">1440</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1366">1366</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1280">1280</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1152">1152</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1024">1024</ComboBoxItem>
+                                                        <ComboBoxItem Tag="800">800</ComboBoxItem>
+                                                        <ComboBoxItem Tag="640">640</ComboBoxItem>
+                                                    </ComboBox>
+                                                    <ComboBox SelectedValuePath="Tag" Name="cfg_gg__yres" Grid.Column="2" Grid.Row="2">
+                                                        <ComboBoxItem Tag="0">Native</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1920">1920</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1856">1856</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1792">1792</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1680">1680</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1600">1600</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1440">1440</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1366">1366</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1280">1280</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1152">1152</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1024">1024</ComboBoxItem>
+                                                        <ComboBoxItem Tag="800">800</ComboBoxItem>
+                                                        <ComboBoxItem Tag="640">640</ComboBoxItem>
+                                                    </ComboBox>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
+                                                    <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
+                                                    <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
+                                                    <Controls:NumericUpDown Name="cfg_gg__xscalefs" Grid.Column="0" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
+                                                    <Controls:NumericUpDown Name="cfg_gg__yscalefs" Grid.Column="1" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
+                                                    <Label Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center">Window Scaling</Label>
+                                                    <Label Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center">X</Label>
+                                                    <Label Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center">Y</Label>
+                                                    <Controls:NumericUpDown Name="cfg_gg__xscale" Grid.Column="0" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
+                                                    <Controls:NumericUpDown Name="cfg_gg__yscale" Grid.Column="1" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
+                                                </Grid>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
 
 
                                 <!-- gb -->
