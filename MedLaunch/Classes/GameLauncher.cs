@@ -62,7 +62,7 @@ namespace MedLaunch.Classes
                 }
                 else
                 {
-                    SystemId = game.systemId;
+                    SystemId = 7;
                 }
 
             }
