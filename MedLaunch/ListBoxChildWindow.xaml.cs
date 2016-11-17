@@ -47,6 +47,12 @@ namespace MedLaunch
             //MessageBox.Show(GameId.ToString());
             int systemId = (Game.GetGame(GameId)).systemId;
 
+            
+            // check for pcecd games
+            if (systemId == 18)
+                systemId = 7;
+               
+
             string sysName = GSystem.GetSystemName(systemId);
             this.Title = "Fuzzy Search Results for " + sysName;
             this.Refresh();
