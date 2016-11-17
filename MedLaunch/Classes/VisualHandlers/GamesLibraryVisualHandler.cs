@@ -662,9 +662,12 @@ namespace MedLaunch.Classes
                 double windowHeight = mw.ActualHeight;
 
                 // set max dimensions on Image.ToolTip
+
+                double ttPercentage = GlobalSettings.GetGlobals().imageToolTipPercentage;
+
                 ToolTip tt = (ToolTip)img.ToolTip;
-                tt.MaxHeight = windowHeight / 1.1;
-                tt.MaxWidth = windowWidth / 1.1;
+                tt.MaxHeight = windowHeight * ttPercentage;
+                tt.MaxWidth = windowWidth * ttPercentage;
                 img.ToolTip = tt;
             }
 

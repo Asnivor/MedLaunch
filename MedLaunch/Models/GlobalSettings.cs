@@ -58,6 +58,7 @@ namespace MedLaunch.Models
 
         // application settings
         public bool? checkUpdatesOnStart { get; set; }
+        public double imageToolTipPercentage { get; set; }           // what percentage of the current windows size can the image tooltips be
 
         public static GlobalSettings GetGlobalDefaults()
         {
@@ -100,7 +101,8 @@ namespace MedLaunch.Models
                 colorAccent = "Emerald",
                 checkUpdatesOnStart = false,
                 backupMednafenConfig = true,
-                saveSystemConfigs = true
+                saveSystemConfigs = true,
+                imageToolTipPercentage = 0.9
             };
             return gs;
         }
@@ -187,7 +189,7 @@ namespace MedLaunch.Models
         public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast, ComboBox GuiZoom, CheckBox MinToTaskBar, CheckBox HideSidebar,
             CheckBox chkAllowBanners, CheckBox chkAllowBoxart, CheckBox chkAllowScreenshots, CheckBox chkAllowFanart, CheckBox chkPreferGenesis, 
             CheckBox chkAllowManuals, CheckBox chkAllowMedia, CheckBox chkSecondaryScraperBackup, RadioButton rbGDB, RadioButton rbMoby, Slider slScreenshotsPerHost, Slider slFanrtsPerHost,
-            CheckBox chkAllowUpdateCheck, CheckBox chkBackupMednafenConfig, CheckBox chkSaveSysConfigs)
+            CheckBox chkAllowUpdateCheck, CheckBox chkBackupMednafenConfig, CheckBox chkSaveSysConfigs, ComboBox comboImageTooltipSize)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
@@ -203,6 +205,8 @@ namespace MedLaunch.Models
             HideSidebar.IsChecked = gs.hideSidebar;
 
             chkSaveSysConfigs.IsChecked = gs.saveSystemConfigs;
+
+            comboImageTooltipSize.SelectedValue = gs.imageToolTipPercentage;
 
             //chkAllBaseSettings.IsChecked = gs.showAllBaseSettings;
             //MessageBox.Show(gs.guiZoom.ToString());

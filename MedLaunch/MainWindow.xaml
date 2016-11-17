@@ -7736,6 +7736,34 @@
                                                     Auto-save system.cfg files in Mednafen directory on game launch
                                                 </CheckBox>
 
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="10">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="0.8*" />
+                                                        <ColumnDefinition Width="0.2*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />                                                        
+                                                    </Grid.RowDefinitions>
+
+                                                    <Label Grid.Row="10" HorizontalContentAlignment="Left" Grid.Column="0">Image ToolTip size (% of current window size)</Label>
+                                                    <ComboBox SelectedValuePath="Tag" Name="comboImageTooltipSize" Grid.Row="10" Grid.Column="1" Margin="0,0,0,10">
+                                                        <ComboBoxItem Tag="0.3">30%</ComboBoxItem>
+                                                        <ComboBoxItem Tag="0.4">40%</ComboBoxItem>
+                                                        <ComboBoxItem Tag="0.5">50%</ComboBoxItem>
+                                                        <ComboBoxItem Tag="0.6">60%</ComboBoxItem>
+                                                        <ComboBoxItem Tag="0.7">70%</ComboBoxItem>
+                                                        <ComboBoxItem Tag="0.8">80%</ComboBoxItem>
+                                                        <ComboBoxItem Tag="0.9">90%</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1">100%</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1.1">110%</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1.2">120%</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1.3">130%</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1.4">140%</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1.5">150%</ComboBoxItem>
+                                                    </ComboBox>
+
+                                                </Grid>
+                                                
 
 
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="17">
