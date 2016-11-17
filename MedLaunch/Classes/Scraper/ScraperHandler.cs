@@ -239,8 +239,10 @@ namespace MedLaunch.Classes.Scraper
             {
                 if (gameObject.Manuals == null)
                     gameObject.Manuals = new List<string>();
+
+                gameObject.Manuals = MasterRecord.IDDBManual;
             }
-            gameObject.Manuals = MasterRecord.IDDBManual;
+            
 
             // enumerate globalsettings
             switch (_GlobalSettings.primaryScraper)
@@ -270,8 +272,13 @@ namespace MedLaunch.Classes.Scraper
             glsc.SaveJson(gameObject);
 
             // Download all the files
-            controller.SetMessage(message + "Downloading media");
-            ContentDownloadManager(gameObject, controller, glsc, message + "Downloading media...\n");
+            if (_GlobalSettings.scrapeBanners == true || _GlobalSettings.scrapeBoxart == true || _GlobalSettings.scrapeFanart == true || _GlobalSettings.scrapeManuals == true ||
+                _GlobalSettings.scrapeMedia == true || _GlobalSettings.scrapeScreenshots == true)
+            {
+                controller.SetMessage(message + "Downloading media");
+                ContentDownloadManager(gameObject, controller, glsc, message + "Downloading media...\n");
+            }
+            
 
             // Create / Update GDBLink table
             CreateDatabaseLink(GameId, gameObject.GdbId);

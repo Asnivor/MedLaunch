@@ -8317,6 +8317,11 @@
                         Dump all basic mobygames list from database to local json
                     </Button>
                     -->
+
+                    <Button Margin="5" x:Name="btnPJoyTest" Click="btnPJoyTest_Click">
+                        Joystick test
+                    </Button>
+
                 </WrapPanel>
             </TabItem>
 

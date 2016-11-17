@@ -184,109 +184,122 @@ namespace MedLaunch.Classes
                 }                   
             }
 
-            // cover art
-            // query the coverart page
-            string baseurlcover = "http://www.mobygames.com/game/";
-            string paramcover = masterrecord.MobyData.MobyPlatformName + "/" + masterrecord.MobyData.MobyURLName + "/cover-art";
-            string coverPage = ReturnWebpage(baseurlcover, paramcover, 10000);
-
-            // convert page string to htmldoc
-            HtmlDocument cDoc = new HtmlDocument();
-            cDoc.LoadHtml(coverPage);
-
-            // get all divs of class "row"
-            List<HtmlNode> coverDivs = cDoc.DocumentNode.SelectNodes("//div[@class ='row']").ToList();
-            // take the second one
-            HtmlNode cDiv = coverDivs[1];
-            // now get the div classes that make up the 3 images we want
-            if (coverPage.Contains("There are no covers for the selected platform."))
+            if (gs.scrapeBoxart == true || gs.scrapeMedia == true)
             {
-                // no cover images found - skip
-            }
-            else
-            {            
-                List<HtmlNode> imageDivs = cDiv.SelectNodes("//div[@class ='thumbnail']").ToList();
+                // cover art
+                // query the coverart page
+                string baseurlcover = "http://www.mobygames.com/game/";
+                string paramcover = masterrecord.MobyData.MobyPlatformName + "/" + masterrecord.MobyData.MobyURLName + "/cover-art";
+                string coverPage = ReturnWebpage(baseurlcover, paramcover, 10000);
 
-                bool frontFound = false;
-                bool backFound = false;
-                bool mediaFound = false;
+                // convert page string to htmldoc
+                HtmlDocument cDoc = new HtmlDocument();
+                cDoc.LoadHtml(coverPage);
 
-                // iterate through every 'row' div
-                foreach (HtmlNode h in imageDivs)
+                // get all divs of class "row"
+                List<HtmlNode> coverDivs = cDoc.DocumentNode.SelectNodes("//div[@class ='row']").ToList();
+                // take the second one
+                HtmlNode cDiv = coverDivs[1];
+                // now get the div classes that make up the 3 images we want
+                if (coverPage.Contains("There are no covers for the selected platform."))
                 {
-                    // get media type
-                    List<HtmlNode> type = h.SelectNodes("//div[@class ='thumbnail-cover-caption']").ToList();
-                    List<HtmlNode> img = h.SelectNodes("//a[@class ='thumbnail-cover']").ToList();
-                    int typeCount = type.Count;
+                    // no cover images found - skip
+                }
+                else
+                {
+                    List<HtmlNode> imageDivs = cDiv.SelectNodes("//div[@class ='thumbnail']").ToList();
 
-                    for (int i = 0; i < typeCount; i++)
+                    bool frontFound = false;
+                    bool backFound = false;
+                    bool mediaFound = false;
+
+                    // iterate through every 'row' div
+                    foreach (HtmlNode h in imageDivs)
                     {
-                        string t = type[i].InnerText.Trim().ToLower();
-                        string MEDIA = "http://mobygames.com" + img[i].Attributes["style"].Value.Replace(");", "").Replace("background-image:url(", "").Replace("/s/", "/l/");
+                        // get media type
+                        List<HtmlNode> type = h.SelectNodes("//div[@class ='thumbnail-cover-caption']").ToList();
+                        List<HtmlNode> img = h.SelectNodes("//a[@class ='thumbnail-cover']").ToList();
+                        int typeCount = type.Count;
 
-                        if (frontFound == false && t == "front cover")
+                        for (int i = 0; i < typeCount; i++)
                         {
-                            if (o.FrontCovers == null || o.FrontCovers.Count == 0)
-                            {
-                                o.FrontCovers = new List<string>();
-                                o.FrontCovers.Add(MEDIA);
-                            }                            
-                            frontFound = true;
-                        }
-                        if (backFound == false && t == "back cover")
-                        {
-                            if (o.BackCovers == null || o.BackCovers.Count == 0)
-                            {
-                                o.BackCovers = new List<string>();
-                                o.BackCovers.Add(MEDIA);
-                            }
-                            backFound = true;
-                        }
-                        if (mediaFound == false && t == "media")
-                        {
-                            if (o.Medias == null || o.Medias.Count == 0)
-                            {
-                                o.Medias = new List<string>();
-                                o.Medias.Add(MEDIA);
-                            }
-                            mediaFound = true;
-                        }
+                            string t = type[i].InnerText.Trim().ToLower();
+                            string MEDIA = "http://mobygames.com" + img[i].Attributes["style"].Value.Replace(");", "").Replace("background-image:url(", "").Replace("/s/", "/l/");
 
-                        if (mediaFound == true && backFound == true && frontFound == true)
-                            break;
+                            if (frontFound == false && t == "front cover")
+                            {
+                                if (o.FrontCovers == null || o.FrontCovers.Count == 0)
+                                {
+                                    if (gs.scrapeBoxart == true)
+                                    {
+                                        o.FrontCovers = new List<string>();
+                                        o.FrontCovers.Add(MEDIA);
+                                    }                                    
+                                }
+                                frontFound = true;
+                            }
+                            if (backFound == false && t == "back cover")
+                            {
+                                if (o.BackCovers == null || o.BackCovers.Count == 0)
+                                {
+                                    if (gs.scrapeBoxart == true)
+                                    {
+                                        o.BackCovers = new List<string>();
+                                        o.BackCovers.Add(MEDIA);
+                                    }                                        
+                                }
+                                backFound = true;
+                            }
+                            if (mediaFound == false && t == "media")
+                            {
+                                if (o.Medias == null || o.Medias.Count == 0)
+                                {
+                                    if (gs.scrapeMedia == true)
+                                    {
+                                        o.Medias = new List<string>();
+                                        o.Medias.Add(MEDIA);
+                                    }                                    
+                                }
+                                mediaFound = true;
+                            }
+
+                            if (mediaFound == true && backFound == true && frontFound == true)
+                                break;
+                        }
                     }
                 }
             }
 
-            // screenshots
-            // query the screenshots page
-            string baseurlscreen = "http://www.mobygames.com/game/";
-            string paramscreen = masterrecord.MobyData.MobyPlatformName + "/" + masterrecord.MobyData.MobyURLName + "/screenshots";
-            string screenPage = ReturnWebpage(baseurlscreen, paramscreen, 10000);
-
-            // convert page string to htmldoc
-            HtmlDocument sDoc = new HtmlDocument();
-            sDoc.LoadHtml(screenPage);
-
-            // get core information
-            if (!screenPage.Contains("There are no user screenshots on file"))
+            if (gs.scrapeScreenshots == true)
             {
-                List<HtmlNode> screens = sDoc.DocumentNode.SelectNodes("//a[@class ='thumbnail-image']").ToList();
-                if (o.Screenshots == null)
-                    o.Screenshots = new List<string>();
-                int co = 0;
-                foreach (var screen in screens)
+                // screenshots
+                // query the screenshots page
+                string baseurlscreen = "http://www.mobygames.com/game/";
+                string paramscreen = masterrecord.MobyData.MobyPlatformName + "/" + masterrecord.MobyData.MobyURLName + "/screenshots";
+                string screenPage = ReturnWebpage(baseurlscreen, paramscreen, 10000);
+
+                // convert page string to htmldoc
+                HtmlDocument sDoc = new HtmlDocument();
+                sDoc.LoadHtml(screenPage);
+
+                // get core information
+                if (!screenPage.Contains("There are no user screenshots on file"))
                 {
-                    if (co >= gs.maxScreenshots)
-                        break;
-                    var attrib = screen.Attributes["style"].Value;
-                    string path = attrib.Replace(");", "").Replace("background-image:url(", "").Replace("/s/", "/l/");
-                    o.Screenshots.Add("http://mobygames.com" + path);
-                    co++;
+                    List<HtmlNode> screens = sDoc.DocumentNode.SelectNodes("//a[@class ='thumbnail-image']").ToList();
+                    if (o.Screenshots == null)
+                        o.Screenshots = new List<string>();
+                    int co = 0;
+                    foreach (var screen in screens)
+                    {
+                        if (co >= gs.maxScreenshots)
+                            break;
+                        var attrib = screen.Attributes["style"].Value;
+                        string path = attrib.Replace(");", "").Replace("background-image:url(", "").Replace("/s/", "/l/");
+                        o.Screenshots.Add("http://mobygames.com" + path);
+                        co++;
+                    }
                 }
             }
-            
-
             return o;
         }
 

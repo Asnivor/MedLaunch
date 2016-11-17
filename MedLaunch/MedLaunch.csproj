@@ -145,6 +145,10 @@
       <HintPath>..\packages\Remotion.Linq.2.0.1\lib\net45\Remotion.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SDLJoystick, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ExternalAssemblies\SDLJoystick.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.Concurrent" />
     <Reference Include="System.Collections.Immutable, Version=1.1.36.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -205,6 +209,7 @@
     <Compile Include="Classes\CMenu.cs" />
     <Compile Include="Classes\ConfigImport.cs" />
     <Compile Include="Classes\ConfigReflection.cs" />
+    <Compile Include="Classes\Input\Controller.cs" />
     <Compile Include="Classes\LogParser.cs" />
     <Compile Include="Classes\Scraper\ReplacementDocs\RdScraper.cs" />
     <Compile Include="Classes\Scraper\ScraperHandler.cs" />
@@ -401,6 +406,9 @@
     <Resource Include="Data\Graphics\Systems\wswan.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ExternalAssemblies\SDL.dll" />
+    <Content Include="ExternalAssemblies\SDL64.dll" />
+    <Content Include="ExternalAssemblies\SDLJoystick.dll" />
     <Resource Include="LatestVersion.txt" />
     <Resource Include="Data\Graphics\mediconsplash.png" />
     <Content Include="ExternalAssemblies\FuzzyString.dll" />

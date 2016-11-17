@@ -41,6 +41,7 @@ using MedLaunch.Classes.TheGamesDB;
 using MedLaunch.Classes.Scraper;
 using MedLaunch.Classes.Scraper.ReplacementDocs;
 using MahApps.Metro;
+using MedLaunch.Classes.Input;
 
 namespace MedLaunch
 {
@@ -2968,7 +2969,10 @@ namespace MedLaunch
             string sysCode = rb.Name.Replace("btnConfig", "");
         }
 
-        
+        private void btnPJoyTest_Click(object sender, RoutedEventArgs e)
+        {
+            Controller.Start();
+        }
     }
         /*
         public class SliderIgnoreDelta : Slider
