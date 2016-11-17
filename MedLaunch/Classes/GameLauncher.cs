@@ -113,6 +113,9 @@ namespace MedLaunch.Classes
             // if option is enabled save system specific config for this system
             if (Global.saveSystemConfigs == true)
             {
+                if (SystemCode == "pcecd")
+                    SystemCode = "pce";
+
                 SaveSystemConfigToDisk(SystemCode, SysConfigObject);
             }
 
