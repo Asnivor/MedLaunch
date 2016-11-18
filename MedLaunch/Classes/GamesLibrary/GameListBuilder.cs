@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MedLaunch.Classes.GamesLibrary
 {
@@ -14,50 +15,136 @@ namespace MedLaunch.Classes.GamesLibrary
         public List<DataGridGamesView> AllGames { get; set; }
         public int SystemId { get; set; }
         public string SearchString { get; set; }
+        public bool UpdateRequired { get; set; }
 
         // constructors
-      
+
         public GameListBuilder()
         {
-            using (var context = new MyDbContext())
+            AllGames = new List<DataGridGamesView>();
+            UpdateRequired = true;
+            using (var cnt = new MyDbContext())
             {
+                List<LibraryDataGDBLink> lib = (from all in cnt.LibraryDataGDBLink
+                                                select all).ToList();
+                var ag = (from game in cnt.Game
+                          from link in cnt.GDBLink
+                          .Where(v => v.GameId == game.gameId)
+                          .DefaultIfEmpty()
+                          select new DataGridGamesView
+                          {
+                              ID = game.gameId,
+                              Game = game.gameName,
+                              System = GSystem.GetSystemName(game.systemId),
+                              LastPlayed = DbEF.FormatDate(game.gameLastPlayed),
+                              Favorite = game.isFavorite,
+
+                              Publisher = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Publisher, 
+                              Developer = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Developer,
+                              Year = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Year,
+                              Players = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Players,
+                              Coop = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Coop,
+                              ESRB = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().ESRB                              
+                          }).ToList();
                 
-                List<DataGridGamesView> allGames = (from game in context.Game
-                                                    join l in context.GDBLink on game.gameId equals l.GameId
-                                                    join s in context.LibraryDataGDBLink on l.GdbId equals s.GDBId
-                                                    select new
-                                                    {
-                                                        ID = game.gameId,
-                                                        Game = game.gameName,
-                                                        System = GSystem.GetSystemName(game.systemId),
-                                                        LastPlayed = FormatDate(game.gameLastPlayed),
-                                                        Favorite = game.isFavorite,
-                                                        Publisher = s.Publisher,
-                                                        Developer = s.Developer,
-                                                        Year = s.Year,
-                                                        Players = s.Players,
-                                                        Coop = s.Coop,
-                                                        ESRB = s.ESRB
-                                                    }).ToList();
-                AllGames = allGames;    
+                AllGames = ag;
             }
+            UpdateRequired = false;
+        }
+
+
+        public static List<DataGridGamesView> Filter(int systemId, string search)
+        {
+            List<DataGridGamesView> results = new List<DataGridGamesView>();
+            App _App = ((App)Application.Current);
+
+            if (_App.GamesList.UpdateRequired == true)
+                GameListBuilder.Update();
+
+            // system id selector
+            switch (systemId)
+            {
+                case -1:        // favorites
+                    results = (from g in _App.GamesList.AllGames
+                               where g.Favorite == true
+                             select g).ToList();
+                    break;
+                case 0:         // all games
+                    results = _App.GamesList.AllGames;
+                    break;
+                case -100:      // unscraped games
+                    // ignore for now
+                    results = _App.GamesList.AllGames;
+                    break;
+                default:        // based on actual system id
+                    results = (from g in _App.GamesList.AllGames
+                               where GSystem.GetSystemId(g.System) == systemId
+                             select g).ToList();
+                    break;
+            }
+
+            // now we have results based on the system filter - process file search
+            List<DataGridGamesView> srch = DoSearch(results, search);
+            return srch;
+        }
+
+        public static List<DataGridGamesView> DoSearch(List<DataGridGamesView> list, string sStr)
+        {
+            // check whether we need to search the gdb columns
+            GlobalSettings gs = GlobalSettings.GetGlobals();
+
+            List<DataGridGamesView> search = new List<DataGridGamesView>();
+
+            search = (from g in list
+                     where g.Game.ToLower().Contains(sStr.ToLower())
+                     select g).ToList();
+
+            return search;
+        }
+
+        /// <summary>
+        /// Set the update flag so that on the next local operation the data is refreshed from the database
+        /// </summary>
+        public static void UpdateFlag()
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.UpdateRequired = true;
         }
       
-
-        public static string FormatDate(DateTime dt)
+        public static void Update()
         {
-            string lp;
-            if (dt.ToString("yyyy-MM-dd HH:mm:ss") == "0001-01-01 00:00:00")
+            using (var cnt = new MyDbContext())
             {
-                lp = "NEVER";
-            }
-            else
-            {
-                lp = dt.ToString("yyyy-MM-dd HH:mm:ss");
-            }
-            return lp;
-        }
+                App _App = ((App)Application.Current);
 
+                List<LibraryDataGDBLink> lib = (from all in cnt.LibraryDataGDBLink
+                                                select all).ToList();
+                var ag = (from game in cnt.Game
+                          from link in cnt.GDBLink
+                          .Where(v => v.GameId == game.gameId)
+                          .DefaultIfEmpty()
+                          select new DataGridGamesView
+                          {
+                              ID = game.gameId,
+                              Game = game.gameName,
+                              System = GSystem.GetSystemName(game.systemId),
+                              LastPlayed = game.gameLastPlayed.ToString(),
+                              Favorite = game.isFavorite,
+                              Publisher = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Publisher,
+                              Developer = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Developer,
+                              Year = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Year,
+                              Players = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Players,
+                              Coop = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Coop,
+                              ESRB = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().ESRB
+                          }).ToList();
+
+               
+                _App.GamesList.AllGames = ag;
+            }                
+        }
+        
+
+        /*
         public GameListBuilder(int systemId)
         {
             List<Game> games = new List<Game>();
@@ -132,6 +219,8 @@ namespace MedLaunch.Classes.GamesLibrary
                 FilteredSet.Add(dgv);
             }
         }
+
+        */
         /*
         public List<DataGridGamesView> Search (string SearchString)
         {

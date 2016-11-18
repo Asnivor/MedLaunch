@@ -126,6 +126,10 @@ namespace MedLaunch
             // is DB path to Mednafen set and working? If not force user to select it
             Paths.MedPathRoutine(btnPathMednafen, tbPathMednafen);
 
+            // instatiate GamesList
+            //App _App = ((App)Application.Current);
+            //_App.GamesList = new Classes.GamesLibrary.GameListBuilder();
+
             // ensure 'show all' filter is checked on startup
             btnShowAll.IsChecked = true;
 

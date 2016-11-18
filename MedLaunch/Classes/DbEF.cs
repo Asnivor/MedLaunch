@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using MedLaunch.Classes.GamesLibrary;
+using System.Windows;
 
 namespace MedLaunch.Classes
 {
@@ -343,15 +344,50 @@ namespace MedLaunch.Classes
         }
         */
 
-        
+        public static int GetGDBId(int GameId)
+        {
+            using (var c = new MyDbContext())
+            {
+                int i = (from a in c.GDBLink
+                         where a.GameId == GameId
+                         select a.GdbId.Value).FirstOrDefault();
+                return i;
+            }
+        }
+
+        public static string FormatDate(DateTime dt)
+        {
+            string lp;
+            if (dt.ToString("yyyy-MM-dd HH:mm:ss") == "0001-01-01 00:00:00")
+            {
+                lp = "NEVER";
+            }
+            else
+            {
+                lp = dt.ToString("yyyy-MM-dd HH:mm:ss");
+            }
+            return lp;
+        }
 
 
         // update game data for games datagrid including search
         public static void GetGames(DataGrid datagrid, int systemId, string search)
         {
-            List<DataGridGamesView> gms = new List<DataGridGamesView>();
+            // get the full dataset from application
+            App _App = ((App)Application.Current);
+            //List<DataGridGamesView> allGames = _App.GamesList.AllGames;
 
-            GameListBuilder gl = new GameListBuilder(systemId);
+            var result = GameListBuilder.Filter(systemId, search);
+
+            datagrid.ItemsSource = result;
+
+            // filter based on request
+
+
+
+            //List<DataGridGamesView> gms = new List<DataGridGamesView>();
+
+            //GameListBuilder gl = new GameListBuilder(systemId);
             //gms = gl.FilteredSet;
 
             /*
@@ -477,7 +513,7 @@ namespace MedLaunch.Classes
             */
 
             //return gms;
-            datagrid.ItemsSource = gl.FilteredSet;
+            //datagrid.ItemsSource = gl.FilteredSet;
 
         }
 

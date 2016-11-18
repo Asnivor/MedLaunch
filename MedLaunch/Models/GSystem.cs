@@ -49,6 +49,14 @@ namespace MedLaunch.Models
             return _systemName;
         }
 
+        public static int GetSystemId(string systemName)
+        {
+            int _sysid = (from a in GetSystems()
+                                  where a.systemName == systemName
+                                  select a.systemId).FirstOrDefault();
+            return _sysid;
+        }
+
         public static string GetSystemDesc(int _systemId)
         {
             string _systemDesc = (from a in GetSystems()

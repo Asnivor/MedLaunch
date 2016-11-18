@@ -33,20 +33,26 @@ namespace MedLaunch
             Thread.Sleep(1000);
             // init should have completed - run MainWindow
 
-            
+            // instantiate GamesList object  
+            GamesList = new GameListBuilder();
+
 
             MainWindow mw = new MedLaunch.MainWindow();
             Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
-            Application.Current.MainWindow = mw;
+            Application.Current.MainWindow = mw;            
             mw.Show();
+
+            // instantiate GamesList object  
+            GamesList = new GameListBuilder();
+
+
 
             splashScreen.Close(TimeSpan.FromSeconds(1));
 
             // instantiate ScrapedContent Object
             ScrapedData = new GamesLibraryScrapedContent();
 
-            // instantiate GamesList object
-            GamesList = new GameListBuilder();
+            
 
 
             // set color scheme from database
