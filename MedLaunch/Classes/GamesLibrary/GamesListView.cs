@@ -64,7 +64,17 @@ namespace MedLaunch.Classes
         public string System { get; set; }
         public string LastPlayed { get; set; }
         public bool Favorite { get; set; }
+
+        public string Publisher { get; set; }
+        public string Developer { get; set; }
+        public string Year { get; set; }
+        public string Players { get; set; }
+        public string Coop { get; set; }
+        public string ESRB { get; set; }
+
         //public string SystemDescription { get; set; }
         //public int SystemId { get; set; }
     }
+
+    
 }

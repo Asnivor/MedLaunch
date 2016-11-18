@@ -24,6 +24,7 @@ namespace MedLaunch.Models
         public bool hidden { get; set; }
         public string disks { get; set; }
         public bool isDiskBased { get; set; }
+        public bool? isScraped { get; set; }
 
         public static Game GetGame(int gameId)
         {
@@ -42,6 +43,16 @@ namespace MedLaunch.Models
             {
                 var cData = (from g in context.Game
                              where g.systemId == systemId
+                             select g);
+                return cData.ToList();
+            }
+        }
+
+        public static List<Game> GetGames()
+        {
+            using (var context = new MyDbContext())
+            {
+                var cData = (from g in context.Game
                              select g);
                 return cData.ToList();
             }

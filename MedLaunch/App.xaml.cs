@@ -11,6 +11,7 @@ using MedLaunch.Classes;
 using MahApps.Metro;
 using MedLaunch.Models;
 using System.IO;
+using MedLaunch.Classes.GamesLibrary;
 
 namespace MedLaunch
 {
@@ -20,6 +21,7 @@ namespace MedLaunch
     public partial class App : Application
     {
         public GamesLibraryScrapedContent ScrapedData { get; set; }
+        public GameListBuilder GamesList { get; set; }
 
         private void ApplicationStart(object sender, StartupEventArgs e)
         {
@@ -42,6 +44,9 @@ namespace MedLaunch
 
             // instantiate ScrapedContent Object
             ScrapedData = new GamesLibraryScrapedContent();
+
+            // instantiate GamesList object
+            GamesList = new GameListBuilder();
 
 
             // set color scheme from database

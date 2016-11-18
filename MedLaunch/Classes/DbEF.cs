@@ -9,11 +9,14 @@ using Microsoft.Data.Entity.Migrations;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using MedLaunch.Classes.GamesLibrary;
 
 namespace MedLaunch.Classes
 {
     class DbEF
     {
+        public static object GamesListView { get; private set; }
+
         public static void InitialSeed()
         {
             // check whether initial seed needs to continue
@@ -339,11 +342,19 @@ namespace MedLaunch.Classes
             
         }
         */
+
+        
+
+
         // update game data for games datagrid including search
         public static void GetGames(DataGrid datagrid, int systemId, string search)
         {
             List<DataGridGamesView> gms = new List<DataGridGamesView>();
 
+            GameListBuilder gl = new GameListBuilder(systemId);
+            //gms = gl.FilteredSet;
+
+            /*
             using (var context = new MyDbContext())
             {
                 switch (systemId)
@@ -462,6 +473,8 @@ namespace MedLaunch.Classes
                         break;
                 }
             }
+
+            */
 
             //return gms;
             datagrid.ItemsSource = gms;

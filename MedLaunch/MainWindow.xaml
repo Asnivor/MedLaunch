@@ -315,7 +315,9 @@
                                      Controls:TextBoxHelper.Watermark="Dynamic Search" />
                             <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
 
-                            <DataGrid PreviewMouseRightButtonDown="DataGrid_PreviewMouseRightButtonDown" PreviewMouseRightButtonUp="DataGrid_PreviewMouseRightButtonDown" RowBackground="Transparent" Background="Transparent" MouseDoubleClick="LaunchRom_Click" Grid.Row="2" Name="dgGameList" IsReadOnly="True" SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Single" ContextMenuOpening="dgGameList_ContextMenuOpening">
+                            <DataGrid PreviewMouseRightButtonDown="DataGrid_PreviewMouseRightButtonDown" PreviewMouseRightButtonUp="DataGrid_PreviewMouseRightButtonDown" 
+                                      RowBackground="Transparent" Background="Transparent" MouseDoubleClick="LaunchRom_Click" Grid.Row="2" Name="dgGameList" IsReadOnly="True" 
+                                      SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Single" ContextMenuOpening="dgGameList_ContextMenuOpening">
                                 <DataGrid.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Style.Triggers>
@@ -7787,6 +7789,10 @@
                                      Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" 
                                      CommandParameter="{Binding Parent, RelativeSource={RelativeSource Self}}" Content="MedLaunch"/>
 
+                                    <RadioButton GroupName="grpSettings" x:Name="btnLibrary" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" 
+                                     CommandParameter="{Binding Parent, RelativeSource={RelativeSource Self}}" Content="Library"/>
+
                                     <RadioButton GroupName="grpSettings" x:Name="btnScrapingSettings" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" 
                                      CommandParameter="{Binding Parent, RelativeSource={RelativeSource Self}}" Content="Scraping Options"/>
@@ -7908,10 +7914,11 @@
                                                     Minimise MedLaunch to the taskbar when a game is launched
                                                 </CheckBox>
 
+                                                <!--
                                                 <CheckBox x:Name="chkHideSidebar" Grid.ColumnSpan="2" Grid.Row="6" Checked="chkHideSidebar_Checked" Unchecked="chkHideSidebar_Unchecked">
                                                     Never show the Games Library Sidebar
                                                 </CheckBox>
-
+                                                -->
                                                 <CheckBox x:Name="chkAllowUpdateCheck" Grid.ColumnSpan="2" Grid.Row="7" Checked="chkAllowUpdateCheck_Checked" Unchecked="chkAllowUpdateCheck_Unchecked">
                                                     Allow MedLaunch to check for updates on start (NOT auto-install)
                                                 </CheckBox>
@@ -7961,6 +7968,68 @@
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="17">
                                                     
                                                 </StackPanel>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border x:Name="brdLibrary" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="Library Settings" >
+                                        <StackPanel x:Name="spLibrary">
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="105" />
+                                                    <ColumnDefinition Width="280" />
+
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+
+                                                <CheckBox x:Name="chkHideSidebar" Grid.ColumnSpan="2" Grid.Row="0" Checked="chkHideSidebar_Checked" Unchecked="chkHideSidebar_Unchecked">
+                                                    Never show the Games Library Sidebar
+                                                </CheckBox>
+
+                                                <CheckBox x:Name="chkshowGLYear" Grid.ColumnSpan="2" Grid.Row="1" Checked="chkshowGLYear_Checked" Unchecked="chkshowGLYear_Unchecked">
+                                                    Show grid YEAR column
+                                                </CheckBox>
+
+                                                <CheckBox x:Name="chkshowGLESRB" Grid.ColumnSpan="2" Grid.Row="2" Checked="chkshowGLESRB_Checked" Unchecked="chkshowGLESRB_Unchecked">
+                                                    Show grid ESRB column
+                                                </CheckBox>
+
+                                                <CheckBox x:Name="chkshowGLCoop" Grid.ColumnSpan="2" Grid.Row="3" Checked="chkshowGLCoop_Checked" Unchecked="chkshowGLCoop_Unchecked">
+                                                    Show grid CO-OP column
+                                                </CheckBox>
+
+                                                <CheckBox x:Name="chkshowGLDeveloper" Grid.ColumnSpan="2" Grid.Row="4" Checked="chkshowGLDeveloper_Checked" Unchecked="chkshowGLDeveloper_Unchecked">
+                                                    Show grid DEVELOPER column
+                                                </CheckBox>
+
+                                                <CheckBox x:Name="chkshowGLPublisher" Grid.ColumnSpan="2" Grid.Row="5" Checked="chkshowGLPublisher_Checked" Unchecked="chkshowGLPublisher_Unchecked">
+                                                    Show grid PUBLISHER column
+                                                </CheckBox>
+
+                                                <CheckBox x:Name="chkshowGLPlayers" Grid.ColumnSpan="2" Grid.Row="6" Checked="chkshowGLPlayers_Checked" Unchecked="chkshowGLPlayers_Unchecked">
+                                                    Show grid PLAYERS column
+                                                </CheckBox>
+
                                             </Grid>
                                         </StackPanel>
                                     </Expander>

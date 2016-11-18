@@ -132,7 +132,8 @@ namespace MedLaunch
             // load globalsettings for front page
             GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar,
                chkAllowBanners, chkAllowBoxart, chkAllowScreenshots, chkAllowFanart, chkPreferGenesis, chkAllowManuals, chkAllowMedia, chkSecondaryScraperBackup,
-               rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost, chkAllowUpdateCheck, chkBackupMednafenConfig, chkSaveSysConfigs, comboImageTooltipSize, chkLoadConfigsOnStart);
+               rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost, chkAllowUpdateCheck, chkBackupMednafenConfig, chkSaveSysConfigs, comboImageTooltipSize, chkLoadConfigsOnStart,
+               chkshowGLYear, chkshowGLESRB, chkshowGLCoop, chkshowGLDeveloper, chkshowGLPublisher, chkshowGLPlayers);
             //gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
             GlobalSettings gs = GlobalSettings.GetGlobals();
             mainScaleTransform.ScaleX = Convert.ToDouble(gs.guiZoom);
@@ -1275,6 +1276,67 @@ namespace MedLaunch
         {
             GlobalSettings.UpdateHideSidebar(chkHideSidebar);
         }
+
+        private void chkshowGLCoop_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateshowGLCoop(chkshowGLCoop);
+        }
+
+        private void chkshowGLCoop_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateshowGLCoop(chkshowGLCoop);
+        }
+
+        private void chkshowGLDeveloper_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateshowGLDeveloper(chkshowGLDeveloper);
+        }
+
+        private void chkshowGLDeveloper_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateshowGLDeveloper(chkshowGLDeveloper);
+        }
+
+        private void chkshowGLESRB_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateshowGLESRB(chkshowGLESRB);
+        }
+
+        private void chkshowGLESRB_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateshowGLESRB(chkshowGLESRB);
+        }
+
+        private void chkshowGLPlayers_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateshowGLPlayers(chkshowGLPlayers);
+        }
+
+        private void chkshowGLPlayers_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateshowGLPlayers(chkshowGLPlayers);
+        }
+
+        private void chkshowGLPublisher_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateshowGLPublisher(chkshowGLPublisher);
+        }
+
+        private void chkshowGLPublisher_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateshowGLPublisher(chkshowGLPublisher);
+        }
+
+        private void chkshowGLYear_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateshowGLYear(chkshowGLYear);
+        }
+
+        private void chkshowGLYear_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateshowGLYear(chkshowGLYear);
+        }
+
 
         private void chkPreferGenesis_Checked(object sender, RoutedEventArgs e)
         {

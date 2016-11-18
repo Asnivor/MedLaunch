@@ -38,6 +38,14 @@ namespace MedLaunch.Models
         public bool glSystemInfo { get; set; }
         public bool glManuals { get; set; }
 
+        // games library columns
+        public bool showGLPublisher { get; set; }
+        public bool showGLDeveloper { get; set; }
+        public bool showGLYear { get; set; }
+        public bool showGLPlayers { get; set; }
+        public bool showGLCoop { get; set; }
+        public bool showGLESRB { get; set; }
+
         // Game scraping options
         public bool scrapeBanners { get; set; }
         public bool scrapeBoxart { get; set; }
@@ -104,7 +112,15 @@ namespace MedLaunch.Models
                 backupMednafenConfig = true,
                 saveSystemConfigs = true,
                 imageToolTipPercentage = 0.9,
-                importConfigsOnStart = false
+                importConfigsOnStart = false,
+
+                showGLCoop = true,
+                showGLDeveloper = true,
+                showGLESRB = true,
+                showGLPlayers = true,
+                showGLPublisher = true,
+                showGLYear = true
+               
             };
             return gs;
         }
@@ -191,7 +207,8 @@ namespace MedLaunch.Models
         public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast, ComboBox GuiZoom, CheckBox MinToTaskBar, CheckBox HideSidebar,
             CheckBox chkAllowBanners, CheckBox chkAllowBoxart, CheckBox chkAllowScreenshots, CheckBox chkAllowFanart, CheckBox chkPreferGenesis, 
             CheckBox chkAllowManuals, CheckBox chkAllowMedia, CheckBox chkSecondaryScraperBackup, RadioButton rbGDB, RadioButton rbMoby, Slider slScreenshotsPerHost, Slider slFanrtsPerHost,
-            CheckBox chkAllowUpdateCheck, CheckBox chkBackupMednafenConfig, CheckBox chkSaveSysConfigs, ComboBox comboImageTooltipSize, CheckBox chkLoadConfigsOnStart)
+            CheckBox chkAllowUpdateCheck, CheckBox chkBackupMednafenConfig, CheckBox chkSaveSysConfigs, ComboBox comboImageTooltipSize, CheckBox chkLoadConfigsOnStart,
+            CheckBox chkshowGLYear, CheckBox chkshowGLESRB, CheckBox chkshowGLCoop, CheckBox chkshowGLDeveloper, CheckBox chkshowGLPublisher, CheckBox chkshowGLPlayers)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
@@ -231,6 +248,13 @@ namespace MedLaunch.Models
 
             chkBackupMednafenConfig.IsChecked = gs.backupMednafenConfig;
 
+            chkshowGLYear.IsChecked = gs.showGLYear;
+            chkshowGLCoop.IsChecked = gs.showGLCoop;
+            chkshowGLDeveloper.IsChecked = gs.showGLDeveloper;
+            chkshowGLESRB.IsChecked = gs.showGLESRB;
+            chkshowGLPlayers.IsChecked = gs.showGLPlayers;
+            chkshowGLPublisher.IsChecked = gs.showGLPublisher;
+
             if (gs.primaryScraper == 1)
             {
                 // thegamesdb
@@ -245,6 +269,44 @@ namespace MedLaunch.Models
 
 
         }
+
+        public static void UpdateshowGLYear(CheckBox chkshowGLYear)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.showGLYear = chkshowGLYear.IsChecked.Value;
+            SetGlobals(gs);
+        }
+        public static void UpdateshowGLCoop(CheckBox chkshowGLCoop)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.showGLCoop = chkshowGLCoop.IsChecked.Value;
+            SetGlobals(gs);
+        }
+        public static void UpdateshowGLDeveloper(CheckBox chkshowGLDeveloper)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.showGLDeveloper = chkshowGLDeveloper.IsChecked.Value;
+            SetGlobals(gs);
+        }
+        public static void UpdateshowGLESRB(CheckBox chkshowGLESRB)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.showGLESRB = chkshowGLESRB.IsChecked.Value;
+            SetGlobals(gs);
+        }
+        public static void UpdateshowGLPlayers(CheckBox chkshowGLPlayers)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.showGLPlayers = chkshowGLPlayers.IsChecked.Value;
+            SetGlobals(gs);
+        }
+        public static void UpdateshowGLPublisher(CheckBox chkshowGLPublisher)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.showGLPublisher = chkshowGLPublisher.IsChecked.Value;
+            SetGlobals(gs);
+        }
+
 
         public static void UpdateMaxScreenshots(Slider slScreenshotsPerHost)
         {

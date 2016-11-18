@@ -73,6 +73,9 @@ namespace MedLaunch.Classes
                     case "MedLaunch":
                         MedLaunch.Add(b);
                         break;
+                    case "Library":
+                        Library.Add(b);
+                        break;
                     case "ScrapingSettings":
                         ScrapingSettings.Add(b);
                         break;
@@ -156,6 +159,7 @@ namespace MedLaunch.Classes
         public List<Border> Netplay { get; set; }
         public List<Border> Emulator { get; set; }
         public List<Border> MedLaunch { get; set; }
+        public List<Border> Library { get; set; }
         public List<Border> ScrapingSettings { get; set; }
     }
 }

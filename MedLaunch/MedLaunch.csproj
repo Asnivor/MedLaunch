@@ -209,6 +209,7 @@
     <Compile Include="Classes\CMenu.cs" />
     <Compile Include="Classes\ConfigImport.cs" />
     <Compile Include="Classes\ConfigReflection.cs" />
+    <Compile Include="Classes\GamesLibrary\GameListBuilder.cs" />
     <Compile Include="Classes\Input\Controller.cs" />
     <Compile Include="Classes\LogParser.cs" />
     <Compile Include="Classes\Scraper\ReplacementDocs\RdScraper.cs" />
@@ -264,6 +265,7 @@
     <Compile Include="Models\GDBLink.cs" />
     <Compile Include="Models\GDBPlatformGame.cs" />
     <Compile Include="Models\GlobalSettings.cs" />
+    <Compile Include="Models\LibraryDataGDBLink.cs" />
     <Compile Include="Models\LibrarySidebar.cs" />
     <Compile Include="Models\MobyPlatformGame.cs" />
     <Compile Include="Models\Paths.cs" />
