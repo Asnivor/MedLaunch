@@ -46,7 +46,7 @@ namespace MedLaunch
             ScrapedData = new GamesLibraryScrapedContent();
 
             // instantiate GamesList object
-            GamesList = new GameListBuilder();
+            //GamesList = new GameListBuilder();
 
 
             // set color scheme from database

@@ -10,12 +10,12 @@ namespace MedLaunch.Classes.GamesLibrary
     public class GameListBuilder
     {
         // properties
-        public IEnumerable<DataGridGamesView> FilteredSet { get; set; }
+        public List<DataGridGamesView> FilteredSet { get; set; }
         public int SystemId { get; set; }
         public string SearchString { get; set; }
 
         // constructors
-
+        /*
         public GameListBuilder()
         {
             using (var context = new MyDbContext())
@@ -41,6 +41,7 @@ namespace MedLaunch.Classes.GamesLibrary
                 FilteredSet = allGames;    
             }
         }
+        */
 
         public static string FormatDate(DateTime dt)
         {
@@ -127,7 +128,7 @@ namespace MedLaunch.Classes.GamesLibrary
                 }                
 
                 // add to filtered list
-                //FilteredSet.Add(dgv);
+                FilteredSet.Add(dgv);
             }
         }
         /*

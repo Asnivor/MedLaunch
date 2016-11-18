@@ -477,7 +477,7 @@ namespace MedLaunch.Classes
             */
 
             //return gms;
-            datagrid.ItemsSource = gms;
+            datagrid.ItemsSource = gl.FilteredSet;
 
         }
 
