@@ -648,6 +648,10 @@ namespace MedLaunch.Classes.MasterScraper
                 return SearchCollection;
             }
 
+            // convert pce-cd systemid
+            if (systemId == 18)
+                systemId = 7;
+
             // get a list with all games for this system
             SystemCollection = PlatformGames.Where(a => a.MedLaunchSystemId == systemId).ToList();
 
