@@ -11,37 +11,38 @@ namespace MedLaunch.Classes.GamesLibrary
     {
         // properties
         public List<DataGridGamesView> FilteredSet { get; set; }
+        public List<DataGridGamesView> AllGames { get; set; }
         public int SystemId { get; set; }
         public string SearchString { get; set; }
 
         // constructors
-        /*
+      
         public GameListBuilder()
         {
             using (var context = new MyDbContext())
             {
-                var allGames = (from game in context.Game
-                                join l in context.GDBLink on game.gameId equals l.GameId
-                                join s in context.LibraryDataGDBLink on l.GdbId equals s.GDBId
-                                select new
-                                {
-                                    ID = game.gameId,
-                                    Game = game.gameName,
-                                    System = GSystem.GetSystemName(game.systemId),
-                                    LastPlayed = FormatDate(game.gameLastPlayed),
-                                    Favorite = game.isFavorite,
-                                    Publisher = s.Publisher,
-                                    Developer = s.Developer,
-                                    Year = s.Year,
-                                    Players = s.Players,
-                                    Coop = s.Coop,
-                                    ESRB = s.ESRB
-                                });
-
-                FilteredSet = allGames;    
+                
+                List<DataGridGamesView> allGames = (from game in context.Game
+                                                    join l in context.GDBLink on game.gameId equals l.GameId
+                                                    join s in context.LibraryDataGDBLink on l.GdbId equals s.GDBId
+                                                    select new
+                                                    {
+                                                        ID = game.gameId,
+                                                        Game = game.gameName,
+                                                        System = GSystem.GetSystemName(game.systemId),
+                                                        LastPlayed = FormatDate(game.gameLastPlayed),
+                                                        Favorite = game.isFavorite,
+                                                        Publisher = s.Publisher,
+                                                        Developer = s.Developer,
+                                                        Year = s.Year,
+                                                        Players = s.Players,
+                                                        Coop = s.Coop,
+                                                        ESRB = s.ESRB
+                                                    }).ToList();
+                AllGames = allGames;    
             }
         }
-        */
+      
 
         public static string FormatDate(DateTime dt)
         {

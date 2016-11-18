@@ -341,7 +341,6 @@
                                         <MenuItem Header="Favorites" Click="MenuItemFavorite_Click" />
                                         <MenuItem Header="Copy Launch String to Clipboard" Click="CopyLaunchStringToClipboard_Click" />
                                         <MenuItem Header="Identify and Scrape Game" Click="btnScrapingPickGame_Click" />
-
                                         <MenuItem x:Name="DeleteRom" Header="Delete From Games Library" Click="DeleteRom_Click" />
                                     </ContextMenu>
                                 </DataGrid.ContextMenu>
