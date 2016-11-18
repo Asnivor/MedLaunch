@@ -59,6 +59,7 @@ namespace MedLaunch.Models
         // application settings
         public bool? checkUpdatesOnStart { get; set; }
         public double imageToolTipPercentage { get; set; }           // what percentage of the current windows size can the image tooltips be
+        public bool? importConfigsOnStart { get; set; }
 
         public static GlobalSettings GetGlobalDefaults()
         {
@@ -102,7 +103,8 @@ namespace MedLaunch.Models
                 checkUpdatesOnStart = false,
                 backupMednafenConfig = true,
                 saveSystemConfigs = true,
-                imageToolTipPercentage = 0.9
+                imageToolTipPercentage = 0.9,
+                importConfigsOnStart = false
             };
             return gs;
         }
@@ -189,7 +191,7 @@ namespace MedLaunch.Models
         public static void LoadGlobalSettings(CheckBox EnableNetplay, CheckBox EnableSnes_Faust, CheckBox EnablePce_Fast, ComboBox GuiZoom, CheckBox MinToTaskBar, CheckBox HideSidebar,
             CheckBox chkAllowBanners, CheckBox chkAllowBoxart, CheckBox chkAllowScreenshots, CheckBox chkAllowFanart, CheckBox chkPreferGenesis, 
             CheckBox chkAllowManuals, CheckBox chkAllowMedia, CheckBox chkSecondaryScraperBackup, RadioButton rbGDB, RadioButton rbMoby, Slider slScreenshotsPerHost, Slider slFanrtsPerHost,
-            CheckBox chkAllowUpdateCheck, CheckBox chkBackupMednafenConfig, CheckBox chkSaveSysConfigs, ComboBox comboImageTooltipSize)
+            CheckBox chkAllowUpdateCheck, CheckBox chkBackupMednafenConfig, CheckBox chkSaveSysConfigs, ComboBox comboImageTooltipSize, CheckBox chkLoadConfigsOnStart)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
@@ -205,6 +207,7 @@ namespace MedLaunch.Models
             HideSidebar.IsChecked = gs.hideSidebar;
 
             chkSaveSysConfigs.IsChecked = gs.saveSystemConfigs;
+            chkLoadConfigsOnStart.IsChecked = gs.importConfigsOnStart;
 
             comboImageTooltipSize.SelectedValue = gs.imageToolTipPercentage;
 
@@ -385,6 +388,13 @@ namespace MedLaunch.Models
         {
             GlobalSettings gs = GetGlobals();
             gs.saveSystemConfigs = chkSaveSysConfigs.IsChecked.Value;
+            SetGlobals(gs);
+        }
+
+        public static void UpdateImportConfigsOnStart(CheckBox chkLoadConfigsOnStart)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.importConfigsOnStart = chkLoadConfigsOnStart.IsChecked.Value;
             SetGlobals(gs);
         }
 

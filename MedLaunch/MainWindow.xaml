@@ -7924,7 +7924,11 @@
                                                     Auto-save system.cfg files in Mednafen directory on game launch
                                                 </CheckBox>
 
-                                                <Grid Grid.ColumnSpan="2" Grid.Row="10">
+                                                <CheckBox x:Name="chkLoadConfigsOnStart" Grid.ColumnSpan="2" Grid.Row="10" Checked="chkLoadConfigsOnStart_Checked" Unchecked="chkLoadConfigsOnStart_Unchecked">
+                                                    Import Mednafen configs from disk every time MedLaunch starts
+                                                </CheckBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="11">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="0.8*" />
                                                         <ColumnDefinition Width="0.2*" />

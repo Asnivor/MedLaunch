@@ -132,7 +132,7 @@ namespace MedLaunch
             // load globalsettings for front page
             GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar,
                chkAllowBanners, chkAllowBoxart, chkAllowScreenshots, chkAllowFanart, chkPreferGenesis, chkAllowManuals, chkAllowMedia, chkSecondaryScraperBackup,
-               rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost, chkAllowUpdateCheck, chkBackupMednafenConfig, chkSaveSysConfigs, comboImageTooltipSize);
+               rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost, chkAllowUpdateCheck, chkBackupMednafenConfig, chkSaveSysConfigs, comboImageTooltipSize, chkLoadConfigsOnStart);
             //gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
             GlobalSettings gs = GlobalSettings.GetGlobals();
             mainScaleTransform.ScaleX = Convert.ToDouble(gs.guiZoom);
@@ -1173,6 +1173,14 @@ namespace MedLaunch
                 {
                     UpdateCheck(true);
                 }
+
+                // if import configs on start is enabled then import configs
+                bool importCheck = GlobalSettings.GetGlobals().importConfigsOnStart.Value;
+                if (importCheck == true && Directory.Exists(Paths.GetPaths().mednafenExe))
+                {
+                    ConfigImport ci = new ConfigImport();
+                    ci.ImportAll(null);
+                }
             }
 
             //System.Windows.Data.CollectionViewSource globalSettingsViewModelViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("globalSettingsViewModelViewSource")));
@@ -1307,6 +1315,17 @@ namespace MedLaunch
         {
             GlobalSettings.UpdateSaveSysConfigs(chkSaveSysConfigs);
         }
+
+        private void chkLoadConfigsOnStart_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateImportConfigsOnStart(chkLoadConfigsOnStart);
+        }
+
+        private void chkLoadConfigsOnStart_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateImportConfigsOnStart(chkLoadConfigsOnStart);
+        }
+
 
 
 
@@ -2974,6 +2993,8 @@ namespace MedLaunch
         {
             Controller.Start();
         }
+
+        
     }
         /*
         public class SliderIgnoreDelta : Slider

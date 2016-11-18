@@ -156,6 +156,7 @@ namespace MedLaunch
                     UpdateStatus("Database upgrade is needed", true);
                     DoDbUpgrade(dbVersion, appVersion);
                 }
+
                 
             }
             else
