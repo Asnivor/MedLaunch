@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls.Dialogs;
+using MedLaunch.Classes.GamesLibrary;
 using MedLaunch.Classes.MasterScraper;
 using MedLaunch.Classes.TheGamesDB;
 using MedLaunch.Models;
@@ -202,6 +203,7 @@ namespace MedLaunch.Classes.Scraper
                     
                     ScraperHandler sh = new ScraperHandler(l.GdbId.Value, l.GameId.Value, false);
                     sh.ScrapeGame(controller);
+                    GameListBuilder.UpdateFlag();
                     //gs.ScrapeGame(game.GdbId, controller, message);
                 }
 

@@ -1100,7 +1100,7 @@ namespace MedLaunch
         private void UpdateStatus(string s, bool newline)
         {
             // get window
-            Window win = Application.Current.Windows.OfType<Window>().SingleOrDefault();
+            Window win = Application.Current.Windows.OfType<Window>().FirstOrDefault();
             // get textbox
             TextBlock t = (TextBlock)win.FindName("tbStatus");
             // get scrollviewer
@@ -1145,7 +1145,7 @@ namespace MedLaunch
 
 
             // init has returned true - close this window and start mainwindow
-            Window win = Application.Current.Windows.OfType<Window>().SingleOrDefault();
+            Window win = Application.Current.Windows.OfType<Window>().FirstOrDefault();
             win.Close();
         }
     }

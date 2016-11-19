@@ -42,6 +42,7 @@ using MedLaunch.Classes.Scraper;
 using MedLaunch.Classes.Scraper.ReplacementDocs;
 using MahApps.Metro;
 using MedLaunch.Classes.Input;
+using MedLaunch.Classes.GamesLibrary;
 
 namespace MedLaunch
 {
@@ -722,6 +723,10 @@ namespace MedLaunch
             // ensure 'show all' filter is checked on startup
             //btnFavorites.IsChecked = true;
             //btnShowAll.IsChecked = true;
+
+            // update data is changes have been made
+            if (addedStats > 0 || updatedStats > 0 || hiddenStats > 0)
+                GameListBuilder.UpdateFlag();
 
             // refresh library view
             GamesLibraryVisualHandler.RefreshGamesLibrary();
@@ -1862,6 +1867,7 @@ namespace MedLaunch
             int romId = drv.ID;
             GameScanner.FavoriteToggle(romId);
             // refresh library view
+            GameListBuilder.UpdateFlag();
             GamesLibraryVisualHandler.RefreshGamesLibrary();
 
 
@@ -1883,6 +1889,7 @@ namespace MedLaunch
             }
 
             // refresh library view
+            GameListBuilder.UpdateFlag();
             GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 
@@ -2012,7 +2019,7 @@ namespace MedLaunch
 
                 await controller.CloseAsync();
             }
-
+            GameListBuilder.UpdateFlag();
             GamesLibraryVisualHandler.UpdateSidebar(gl.GameId);
 
 

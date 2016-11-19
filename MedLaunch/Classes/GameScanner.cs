@@ -12,6 +12,7 @@ using System.Windows;
 using Ookii.Dialogs.Wpf;
 using Microsoft.Win32;
 using MahApps.Metro.Controls.Dialogs;
+using MedLaunch.Classes.GamesLibrary;
 
 namespace MedLaunch.Classes
 {
@@ -274,6 +275,7 @@ namespace MedLaunch.Classes
                     List<Game> roms = (from a in context.Game
                                        select a).ToList();
                     Game.DeleteGames(roms);
+                    GameListBuilder.UpdateFlag();
                     
                 }
             }            
@@ -292,7 +294,7 @@ namespace MedLaunch.Classes
                                        where a.systemId == sysId
                                        select a).ToList();
                     Game.DeleteGames(roms);
-
+                    GameListBuilder.UpdateFlag();
                 }
             }                         
         }
@@ -310,6 +312,7 @@ namespace MedLaunch.Classes
                                         where a.systemId == sysId
                                         select a).ToList();
                     Game.DeleteGames(disks);
+                    GameListBuilder.UpdateFlag();
                 }
             }                
         }

@@ -1,4 +1,5 @@
 ﻿using MedLaunch.Classes;
+using MedLaunch.Classes.GamesLibrary;
 using Microsoft.Data.Entity;
 using System;
 using System.Collections.Generic;
@@ -80,6 +81,7 @@ namespace MedLaunch.Models
                 db.Game.UpdateRange(toUpdate);
                 db.Game.AddRange(toAdd);
                 db.SaveChanges();
+                GameListBuilder.UpdateFlag();
             }
         }
 
@@ -89,6 +91,7 @@ namespace MedLaunch.Models
             game.gameLastPlayed = DateTime.Now;
             
             SetGame(game);
+            GameListBuilder.UpdateFlag();
         }
         public static void SetFinishedPlaying(int gameId)
         {
@@ -97,6 +100,7 @@ namespace MedLaunch.Models
             SetGame(game);
 
             SetTotalGameTime(gameId);
+            GameListBuilder.UpdateFlag();
         }
 
         public static void SetTotalGameTime(int gameId)
@@ -116,6 +120,7 @@ namespace MedLaunch.Models
                 game.gameTime = newTotalTime;
                 game.timesPlayed++;
                 SetGame(game);
+                GameListBuilder.UpdateFlag();
             }
         }
 
@@ -127,6 +132,7 @@ namespace MedLaunch.Models
                 cfDef.Entry(game).State = Microsoft.Data.Entity.EntityState.Modified;
                 cfDef.SaveChanges();
                 GamesLibData.ForceUpdate();
+                GameListBuilder.UpdateFlag();
             }
         }
 
@@ -137,6 +143,7 @@ namespace MedLaunch.Models
                 cont.Game.Remove(game);
                 cont.SaveChanges();
                 GamesLibData.ForceUpdate();
+                GameListBuilder.UpdateFlag();
             }
 
         }
@@ -148,6 +155,7 @@ namespace MedLaunch.Models
                 cont.Game.RemoveRange(games);
                 cont.SaveChanges();
                 GamesLibData.ForceUpdate();
+                GameListBuilder.UpdateFlag();
             }
         }
     }    

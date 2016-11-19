@@ -140,6 +140,7 @@ namespace MedLaunch.Classes.GamesLibrary
 
                
                 _App.GamesList.AllGames = ag;
+                _App.GamesList.UpdateRequired = false;
             }                
         }
         
