@@ -3069,15 +3069,16 @@ namespace MedLaunch
 
         
     }
-        /*
-        public class SliderIgnoreDelta : Slider
+    /*
+    public class SliderIgnoreDelta : Slider
+    {
+        protected override void OnThumbDragDelta(DragDeltaEventArgs e)
         {
-            protected override void OnThumbDragDelta(DragDeltaEventArgs e)
-            {
-                // Do nothing
-            }
+            // Do nothing
         }
-        */
-
-
     }
+    */
+
+
+
+}

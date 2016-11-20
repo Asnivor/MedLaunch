@@ -240,6 +240,7 @@
     <Compile Include="Classes\Scraper\TheGamesDB\GDBScraper.cs" />
     <Compile Include="Classes\UserAgent.cs" />
     <Compile Include="Classes\WebOps.cs" />
+    <Compile Include="Controls\CustomTextBox.cs" />
     <Compile Include="Extensions\ImageExtension.cs" />
     <Compile Include="Extensions\LabelExtension.cs" />
     <Compile Include="Extensions\UIElementExtension.cs" />
@@ -354,7 +355,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controls\" />
     <Folder Include="Data\Settings\" />
     <Folder Include="_Content\" />
   </ItemGroup>

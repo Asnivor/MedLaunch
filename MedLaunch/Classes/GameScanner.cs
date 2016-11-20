@@ -505,7 +505,9 @@ namespace MedLaunch.Classes
                     
                 }
             }
-                  
+
+            GameListBuilder.UpdateFlag();
+
         }
 
         public void SaveToDatabase()
@@ -611,6 +613,7 @@ namespace MedLaunch.Classes
                         // add to GamesToUpdate to be processed later
                         RomsToUpdate.Add(newGame);
                         HiddenStats++;
+                        GameListBuilder.UpdateFlag();
 
                     }
                     else
@@ -641,6 +644,7 @@ namespace MedLaunch.Classes
                     // add to GamesToUpdate to be processed later
                     RomsToUpdate.Add(newGame);
                     HiddenStats++;
+                    GameListBuilder.UpdateFlag();
                 } 
                 else
                 {
@@ -694,6 +698,7 @@ namespace MedLaunch.Classes
                         g.gamePath = relPath;
 
                         UpdateRom(g);
+                        GameListBuilder.UpdateFlag();
                         return 2;
                     }
                 }
@@ -710,6 +715,7 @@ namespace MedLaunch.Classes
                     g.hidden = false;
 
                     InsertRom(g);
+                    GameListBuilder.UpdateFlag();
                     return 1;
                 }
             }
@@ -793,7 +799,7 @@ namespace MedLaunch.Classes
 
                 // update ROM
                 UpdateRom(rom);
-
+                GameListBuilder.UpdateFlag();
                 romaContext.Dispose();
             }
         }
@@ -812,6 +818,7 @@ namespace MedLaunch.Classes
                 InsertOrUpdateDisk(gameFile, sysId);
                 SaveToDatabase();
                 MessageBox.Show("Game: " + gameFile.FileName + " has added to (or updated in) the library", "MedLaunch: Import or Update Completed");
+                GameListBuilder.UpdateFlag();
             }          
 
         }
@@ -932,6 +939,7 @@ namespace MedLaunch.Classes
                 DisksToAdd.Add(newGame);
                 // increment the added counter
                 AddedStats++;
+                GameListBuilder.UpdateFlag();
             }
             else
             {
@@ -954,6 +962,7 @@ namespace MedLaunch.Classes
                     DisksToUpdate.Add(newGame);
                     // increment updated counter
                     UpdatedStats++;
+                    GameListBuilder.UpdateFlag();
                 }
 
             }

@@ -128,7 +128,7 @@ namespace MedLaunch.Classes.GamesLibrary
                               ID = game.gameId,
                               Game = game.gameName,
                               System = GSystem.GetSystemName(game.systemId),
-                              LastPlayed = game.gameLastPlayed.ToString(),
+                              LastPlayed = DbEF.FormatDate(game.gameLastPlayed),
                               Favorite = game.isFavorite,
                               Publisher = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Publisher,
                               Developer = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Developer,

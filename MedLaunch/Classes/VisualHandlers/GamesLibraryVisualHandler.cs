@@ -16,6 +16,20 @@ namespace MedLaunch.Classes
 {
     public static class GamesLibraryVisualHandler
     {
+
+        public static string ConvertDateString(DateTime dt)
+        {
+            string lp;
+            if (dt.ToString("yyyy-MM-dd HH:mm:ss") == "0001-01-01 00:00:00")
+            {
+                lp = "NEVER";
+            }
+            else
+            {
+                lp = dt.ToString("yyyy-MM-dd HH:mm:ss");
+            }
+            return lp;
+        }
         public static void UpdateSidebar()
         {
             // no gameId specified - hide everything
