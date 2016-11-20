@@ -513,6 +513,32 @@ namespace MedLaunch.Classes.Scraper
                 GDBLink.DeleteRecord(l);
             }
             GDBLink.SaveToDatabase(link);
+            PopulateLibraryData(link);
+        }
+
+        /// <summary>
+        /// create data in the LibraryDataGDBLink table
+        /// </summary>
+        /// <param name="link"></param>
+        public static void PopulateLibraryData(GDBLink link)
+        {
+            LibraryDataGDBLink lib = new LibraryDataGDBLink();
+            var data = LibraryDataGDBLink.GetLibraryData(link.GdbId.Value);
+            if (data != null)
+                lib = data;
+
+            GamesLibraryScrapedContent gd = new GamesLibraryScrapedContent();
+            ScrapedGameObject o = gd.GetScrapedGameObject(link.GameId.Value);
+
+            lib.GDBId = o.GdbId;
+            lib.Coop = o.Data.Coop;
+            lib.Developer = o.Data.Developer;
+            lib.ESRB = o.Data.ESRB;
+            lib.Players = o.Data.Players;
+            lib.Publisher = o.Data.Publisher;
+            lib.Year = o.Data.Released;
+
+            LibraryDataGDBLink.SaveToDataBase(lib);
         }
 
 

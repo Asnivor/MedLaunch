@@ -129,13 +129,14 @@ namespace MedLaunch.Classes.GamesLibrary
                               Game = game.gameName,
                               System = GSystem.GetSystemName(game.systemId),
                               LastPlayed = DbEF.FormatDate(game.gameLastPlayed),
-                              Favorite = game.isFavorite,
+                              Favorite = game.isFavorite /*,
                               Publisher = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Publisher,
                               Developer = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Developer,
                               Year = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Year,
                               Players = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Players,
                               Coop = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Coop,
                               ESRB = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().ESRB
+                              */
                           }).ToList();
 
                
