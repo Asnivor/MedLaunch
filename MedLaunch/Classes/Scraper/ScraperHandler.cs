@@ -216,10 +216,12 @@ namespace MedLaunch.Classes.Scraper
             if (controller.IsCanceled)
             {
                 await MWindow.ShowMessageAsync("MedLaunch Scraper", "Scraping Cancelled");
+                GamesLibraryVisualHandler.RefreshGamesLibrary();
             }
             else
             {
                 await MWindow.ShowMessageAsync("MedLaunch Scraper", "Scraping Completed");
+                GamesLibraryVisualHandler.RefreshGamesLibrary();
             }
         }
 
@@ -514,6 +516,7 @@ namespace MedLaunch.Classes.Scraper
             }
             GDBLink.SaveToDatabase(link);
             PopulateLibraryData(link);
+            GameListBuilder.UpdateFlag();
         }
 
         /// <summary>
@@ -522,23 +525,22 @@ namespace MedLaunch.Classes.Scraper
         /// <param name="link"></param>
         public static void PopulateLibraryData(GDBLink link)
         {
-            LibraryDataGDBLink lib = new LibraryDataGDBLink();
             var data = LibraryDataGDBLink.GetLibraryData(link.GdbId.Value);
-            if (data != null)
-                lib = data;
+            if (data == null)
+                data = new LibraryDataGDBLink();
 
             GamesLibraryScrapedContent gd = new GamesLibraryScrapedContent();
             ScrapedGameObject o = gd.GetScrapedGameObject(link.GameId.Value);
 
-            lib.GDBId = o.GdbId;
-            lib.Coop = o.Data.Coop;
-            lib.Developer = o.Data.Developer;
-            lib.ESRB = o.Data.ESRB;
-            lib.Players = o.Data.Players;
-            lib.Publisher = o.Data.Publisher;
-            lib.Year = o.Data.Released;
+            data.GDBId = o.GdbId;
+            data.Coop = o.Data.Coop;
+            data.Developer = o.Data.Developer;
+            data.ESRB = o.Data.ESRB;
+            data.Players = o.Data.Players;
+            data.Publisher = o.Data.Publisher;
+            data.Year = o.Data.Released;
 
-            LibraryDataGDBLink.SaveToDataBase(lib);
+            LibraryDataGDBLink.SaveToDataBase(data);
         }
 
 

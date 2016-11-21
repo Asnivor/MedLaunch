@@ -36,14 +36,16 @@ namespace MedLaunch
             // instantiate GamesList object  
             GamesList = new GameListBuilder();
 
-
             MainWindow mw = new MedLaunch.MainWindow();
             Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
-            Application.Current.MainWindow = mw;            
+            Application.Current.MainWindow = mw;
+
+            
+
             mw.Show();
 
             // instantiate GamesList object  
-            GamesList = new GameListBuilder();
+            //GamesList = new GameListBuilder();
 
 
 

@@ -2431,6 +2431,7 @@ namespace MedLaunch
         private void btnScrapingUnlinkGame_Click(object sender, RoutedEventArgs e)
         {
             GameScraper.UnlinkGameData(dgGameList);
+            GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 
         private void btnTestGameSearch_Click(object sender, RoutedEventArgs e)
@@ -2519,6 +2520,7 @@ namespace MedLaunch
                 if (controller.IsCanceled)
                 {
                     await mw.ShowMessageAsync("MedLaunch Scraper", "Scraping Cancelled");
+                    GamesLibraryVisualHandler.RefreshGamesLibrary();
                 }
                 else
                 {

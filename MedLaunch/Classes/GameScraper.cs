@@ -16,6 +16,7 @@ using System.Windows.Controls;
 using MahApps.Metro.SimpleChildWindow;
 using System.Threading;
 using MedLaunch.Classes.MasterScraper;
+using MedLaunch.Classes.GamesLibrary;
 
 namespace MedLaunch.Classes
 {
@@ -696,7 +697,9 @@ namespace MedLaunch.Classes
                 }
             }
 
+            GameListBuilder.UpdateFlag();
             GamesLibraryVisualHandler.UpdateSidebar(GameId);
+
 
         }
 

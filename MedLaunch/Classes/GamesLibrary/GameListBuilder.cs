@@ -21,34 +21,13 @@ namespace MedLaunch.Classes.GamesLibrary
 
         public GameListBuilder()
         {
+            // instantiate new AllGames object for the first time
             AllGames = new List<DataGridGamesView>();
-            UpdateRequired = true;
-            using (var cnt = new MyDbContext())
-            {
-                List<LibraryDataGDBLink> lib = (from all in cnt.LibraryDataGDBLink
-                                                select all).ToList();
-                var ag = (from game in cnt.Game
-                          from link in cnt.GDBLink
-                          .Where(v => v.GameId == game.gameId)
-                          .DefaultIfEmpty()
-                          select new DataGridGamesView
-                          {
-                              ID = game.gameId,
-                              Game = game.gameName,
-                              System = GSystem.GetSystemName(game.systemId),
-                              LastPlayed = DbEF.FormatDate(game.gameLastPlayed),
-                              Favorite = game.isFavorite,
 
-                              Publisher = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Publisher, 
-                              Developer = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Developer,
-                              Year = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Year,
-                              Players = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Players,
-                              Coop = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Coop,
-                              ESRB = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().ESRB                              
-                          }).ToList();
-                
-                AllGames = ag;
-            }
+            // populate the object
+            AllGames = GamesLibraryDataGridRefresh.Update(AllGames);
+
+            UpdateRequired = true;
             UpdateRequired = false;
         }
 
@@ -59,7 +38,7 @@ namespace MedLaunch.Classes.GamesLibrary
             App _App = ((App)Application.Current);
 
             if (_App.GamesList.UpdateRequired == true)
-                GameListBuilder.Update();
+                GamesLibraryDataGridRefresh.Update();
 
             // system id selector
             switch (systemId)
@@ -110,40 +89,8 @@ namespace MedLaunch.Classes.GamesLibrary
             App _App = ((App)Application.Current);
             _App.GamesList.UpdateRequired = true;
         }
+             
       
-        public static void Update()
-        {
-            using (var cnt = new MyDbContext())
-            {
-                App _App = ((App)Application.Current);
-
-                List<LibraryDataGDBLink> lib = (from all in cnt.LibraryDataGDBLink
-                                                select all).ToList();
-                var ag = (from game in cnt.Game
-                          from link in cnt.GDBLink
-                          .Where(v => v.GameId == game.gameId)
-                          .DefaultIfEmpty()
-                          select new DataGridGamesView
-                          {
-                              ID = game.gameId,
-                              Game = game.gameName,
-                              System = GSystem.GetSystemName(game.systemId),
-                              LastPlayed = DbEF.FormatDate(game.gameLastPlayed),
-                              Favorite = game.isFavorite /*,
-                              Publisher = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Publisher,
-                              Developer = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Developer,
-                              Year = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Year,
-                              Players = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Players,
-                              Coop = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Coop,
-                              ESRB = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().ESRB
-                              */
-                          }).ToList();
-
-               
-                _App.GamesList.AllGames = ag;
-                _App.GamesList.UpdateRequired = false;
-            }                
-        }
         
 
         /*

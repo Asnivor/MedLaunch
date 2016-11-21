@@ -87,6 +87,7 @@ namespace MedLaunch.Classes.MasterScraper
             }, RootGrid);
 
             GamesLibraryVisualHandler.UpdateSidebar(GameId);
+            //GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 
         /// <summary>

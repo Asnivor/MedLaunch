@@ -210,6 +210,7 @@
     <Compile Include="Classes\ConfigImport.cs" />
     <Compile Include="Classes\ConfigReflection.cs" />
     <Compile Include="Classes\GamesLibrary\GameListBuilder.cs" />
+    <Compile Include="Classes\GamesLibrary\GamesLibraryDataGridRefresh.cs" />
     <Compile Include="Classes\Input\Controller.cs" />
     <Compile Include="Classes\LogParser.cs" />
     <Compile Include="Classes\Scraper\ReplacementDocs\RdScraper.cs" />

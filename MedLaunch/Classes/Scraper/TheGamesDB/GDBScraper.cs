@@ -119,15 +119,23 @@ namespace MedLaunch.Classes.TheGamesDB
                 }
                 
                 if (o.Data.AlternateTitles == null && g.AlternateTitles.Count > 0)
+                {
+                    o.Data.AlternateTitles = new List<string>();
                     o.Data.AlternateTitles.AddRange(g.AlternateTitles);
+                }
+                    
                 if (o.Data.Coop == null && g.Coop != null)
                     o.Data.Coop = g.Coop;
                 if (o.Data.Developer == null && g.Developer != null)
                     o.Data.Developer = g.Developer;
                 if (o.Data.ESRB == null && g.ESRB != null)
                     o.Data.ESRB = g.ESRB;
-                if (o.Data.Genres.Count == 0 && g.Genres != null)
+                if (o.Data.Genres == null && g.Genres != null)
+                {
+                    o.Data.Genres = new List<string>();
                     o.Data.Genres.AddRange(g.Genres);
+                }
+                    
                 if (o.Data.Overview == null)
                     o.Data.Overview = g.Overview;
                 if (o.Data.Players == null)

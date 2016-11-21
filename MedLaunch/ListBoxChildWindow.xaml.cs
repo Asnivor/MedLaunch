@@ -143,6 +143,8 @@ namespace MedLaunch
             var ro = (DataGridGamesView)dgGameList.SelectedItem;
             dgGameList.SelectedItem = null;
             dgGameList.SelectedItem = ro;
+
+            GamesLibraryVisualHandler.RefreshGamesLibrary();
             
             this.Close();
 
