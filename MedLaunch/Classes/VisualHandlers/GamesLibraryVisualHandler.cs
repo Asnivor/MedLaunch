@@ -837,10 +837,47 @@ namespace MedLaunch.Classes
             // restore settings
             rtTarget.IsChecked = true;
             tbFilterDatagrid.Text = tbText;
+            /*
+            // set column visibuilities
+            GlobalSettings gs = GlobalSettings.GetGlobals();
 
-            // now reselct the row
+            DataGridTextColumn colYear = (DataGridTextColumn)mw.FindName("colYear");
+            DataGridTextColumn colPlayers = (DataGridTextColumn)mw.FindName("colPlayers");
+            DataGridTextColumn colCoop = (DataGridTextColumn)mw.FindName("colCoop");
+            DataGridTextColumn colPublisher = (DataGridTextColumn)mw.FindName("colPublisher");
+            DataGridTextColumn colDeveloper = (DataGridTextColumn)mw.FindName("colDeveloper");
+            DataGridTextColumn colRating = (DataGridTextColumn)mw.FindName("colRating");
 
+            if (gs.showGLCoop == false)
+                colCoop.Visibility = Visibility.Collapsed;
+            else
+                colCoop.Visibility = Visibility.Visible;
 
+            if (gs.showGLPlayers == false)
+                colPlayers.Visibility = Visibility.Collapsed;
+            else
+                colPlayers.Visibility = Visibility.Visible;
+
+            if (gs.showGLYear == false)
+                colYear.Visibility = Visibility.Collapsed;
+            else
+                colYear.Visibility = Visibility.Visible;
+
+            if (gs.showGLPublisher== false)
+                colPublisher.Visibility = Visibility.Collapsed;
+            else
+                colPublisher.Visibility = Visibility.Visible;
+
+            if (gs.showGLDeveloper == false)
+                colDeveloper.Visibility = Visibility.Collapsed;
+            else
+                colDeveloper.Visibility = Visibility.Visible;
+
+            if (gs.showGLESRB == false)
+                colRating.Visibility = Visibility.Collapsed;
+            else
+                colRating.Visibility = Visibility.Visible;
+                */
         }
 
         public  static List<Expander> GetExpanderControls()

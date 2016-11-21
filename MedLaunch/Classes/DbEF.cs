@@ -374,8 +374,17 @@ namespace MedLaunch.Classes
         {
             string pattern = @"\d{4}";
             Regex r = new Regex(pattern);
-            string year = r.Match(str).ToString();
-            return year;
+            if (str == null)
+                return null;
+            Match match = r.Match(str);
+            if (match.Success)
+            {
+                return match.Value;
+            }
+            else
+            {
+                return null;
+            }
             //return Regex.Replace(str, pattern, "___").ToString();
         }
 

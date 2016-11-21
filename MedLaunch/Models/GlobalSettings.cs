@@ -255,6 +255,13 @@ namespace MedLaunch.Models
             chkshowGLPlayers.IsChecked = gs.showGLPlayers;
             chkshowGLPublisher.IsChecked = gs.showGLPublisher;
 
+            chkshowGLYear.Visibility = Visibility.Collapsed;
+            chkshowGLCoop.Visibility = Visibility.Collapsed;
+            chkshowGLDeveloper.Visibility = Visibility.Collapsed;
+            chkshowGLESRB.Visibility = Visibility.Collapsed;
+            chkshowGLPlayers.Visibility = Visibility.Collapsed;
+            chkshowGLPublisher.Visibility = Visibility.Collapsed;
+
             if (gs.primaryScraper == 1)
             {
                 // thegamesdb

@@ -315,11 +315,29 @@
                                      Controls:TextBoxHelper.Watermark="Dynamic Search" />
                             <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
 
+
                             <DataGrid PreviewMouseRightButtonDown="DataGrid_PreviewMouseRightButtonDown" PreviewMouseRightButtonUp="DataGrid_PreviewMouseRightButtonDown" 
                                       RowBackground="Transparent" Background="Transparent" MouseDoubleClick="LaunchRom_Click" Grid.Row="2" Name="dgGameList" IsReadOnly="True" 
-                                      SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Single" ContextMenuOpening="dgGameList_ContextMenuOpening" AutoGenerateColumns="True"
+                                      SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Single" ContextMenuOpening="dgGameList_ContextMenuOpening" AutoGenerateColumns="False"
                                       ItemsSource="{Binding FilteredSet, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DataContext="{Binding Source={x:Static Application.Current}, Path=GamesList}" 
-                                      IsSynchronizedWithCurrentItem="True">
+                                      IsSynchronizedWithCurrentItem="True"
+                                      >
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="ID" Binding="{Binding ID}"  />
+                                    <DataGridTextColumn Header="Game" Binding="{Binding Game}" />
+                                    <DataGridTextColumn Header="System" Binding="{Binding System}" />
+                                    <DataGridTextColumn Header="LastRun" Binding="{Binding LastPlayed}" />
+                                    <DataGridCheckBoxColumn Header="Fav" Binding="{Binding Favorite}" />
+                                    <DataGridTextColumn x:Name="colYear" Header="Year" Binding="{Binding Year}" Visibility="{Binding ElementName=chkshowGLYear, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                    <DataGridTextColumn x:Name="colPlayers"  Header="Players" Binding="{Binding Players}" Visibility="{Binding ElementName=chkshowGLPlayers, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                    <DataGridTextColumn x:Name="colCoop"  Header="Co-Op" Binding="{Binding Coop}" Visibility="{Binding ElementName=chkshowGLCoop, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                    <DataGridTextColumn x:Name="colPublisher"  Header="Publisher" Binding="{Binding Publisher}" Visibility="{Binding ElementName=chkshowGLPublisher, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                    <DataGridTextColumn x:Name="colDeveloper"  Header="Developer" Binding="{Binding Developer}" Visibility="{Binding ElementName=chkshowGLDeveloper, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                    <DataGridTextColumn x:Name="colRating"  Header="Rating" Binding="{Binding ESRB}" Visibility="{Binding ElementName=chkshowGLESRB, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                </DataGrid.Columns>
+                                
+                                
                                 <DataGrid.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Style.Triggers>
@@ -347,9 +365,6 @@
                                     </ContextMenu>
                                 </DataGrid.ContextMenu>
 
-                                <DataGrid.Columns>
-                                    
-                                </DataGrid.Columns>
                                 
                                 
                             </DataGrid>
