@@ -23,6 +23,7 @@ using System.Data.SQLite;
 using System.Threading;
 using System.Reflection;
 using MedLaunch.Extensions;
+using MedLaunch.Classes.GamesLibrary;
 
 namespace MedLaunch
 {
@@ -443,7 +444,7 @@ namespace MedLaunch
                                 _games.Add(settings);
                             }
                             UpdateStatus("Init Database Update: Games", true);
-                            Game.SaveToDatabase(_games);
+                            Game.SaveToDatabase(_games, true);
                            
                             break;
                         case "GlobalSettings":
@@ -517,12 +518,15 @@ namespace MedLaunch
                     }
                 }
 
-               
-               
+
+
                 // skip versions
 
                 // Now we should be done - proceed with main application
-                
+
+                // start re-linking routine
+                UpdateStatus("Re-Linking orphaned scraped data...", true);
+                GameListBuilder.ReLinkData();
             }     
         }
 
@@ -867,7 +871,7 @@ namespace MedLaunch
                 var v = Convert.ToBoolean(Convert.ToInt32(value));
                 p.SetValue(settings, v, null);
             }
-            if (p.PropertyType == typeof(bool?))
+            if (p.PropertyType == typeof(bool?) && value != "")
             {
                 var v = Convert.ToBoolean(Convert.ToInt32(value));
                 p.SetValue(settings, v, null);

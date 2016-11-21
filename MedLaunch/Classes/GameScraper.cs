@@ -694,6 +694,9 @@ namespace MedLaunch.Classes
                 foreach (GDBLink g in link)
                 {
                     GDBLink.DeleteRecord(g);
+                    Game ga = Game.GetGame(g.GameId.Value);
+                    ga.isScraped = false;
+                    Game.SetGame(ga);
                 }
             }
 

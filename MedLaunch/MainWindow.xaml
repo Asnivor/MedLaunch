@@ -8052,6 +8052,12 @@
                                                     Show grid PLAYERS column
                                                 </CheckBox>
 
+                                                <Button Grid.ColumnSpan="2" Grid.Row="7" x:Name="btnReLink" 
+                                                        ToolTip="Populates the datagrid view with any missing scraped information (data that appears in the sidebar but is not appearing in the main list)"
+                                                        Click="btnReLink_Click">
+                                                    Re-link games library datagrid
+                                                </Button>
+
                                             </Grid>
                                         </StackPanel>
                                     </Expander>

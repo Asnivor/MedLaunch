@@ -85,6 +85,31 @@ namespace MedLaunch.Models
             }
         }
 
+        public static void SaveToDatabase(List<Game> games, bool init)
+        {
+            using (var db = new MyDbContext())
+            {
+                // get current database context
+                var current = db.Game.AsNoTracking().ToList();
+
+                List<Game> toAdd = new List<Game>();
+                List<Game> toUpdate = new List<Game>();
+
+                // iterate through the games list and separete out games to be added and games to be updated
+                foreach (var g in games)
+                {
+                    Game t = (from a in current
+                              where a.gameId == g.gameId
+                              select a).SingleOrDefault();
+                    if (t == null) { toAdd.Add(g); }
+                    else { toUpdate.Add(g); }
+                }
+                db.Game.UpdateRange(toUpdate);
+                db.Game.AddRange(toAdd);
+                db.SaveChanges();
+            }
+        }
+
         public static void SetStartedPlaying(int gameId)
         {
             Game game = GetGame(gameId);
@@ -133,6 +158,15 @@ namespace MedLaunch.Models
                 cfDef.SaveChanges();
                 GamesLibData.ForceUpdate();
                 GameListBuilder.UpdateFlag();
+            }
+        }
+
+        public static void SetGame(Game game, bool init)
+        {
+            using (var cfDef = new MyDbContext())
+            {
+                cfDef.Entry(game).State = Microsoft.Data.Entity.EntityState.Modified;
+                cfDef.SaveChanges();
             }
         }
 

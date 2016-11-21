@@ -541,6 +541,10 @@ namespace MedLaunch.Classes.Scraper
             data.Year = o.Data.Released;
 
             LibraryDataGDBLink.SaveToDataBase(data);
+
+            Game ga = Game.GetGame(link.GameId.Value);
+            ga.isScraped = true;
+            Game.SetGame(ga);
         }
 
 

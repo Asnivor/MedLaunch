@@ -3096,7 +3096,39 @@ namespace MedLaunch
             Controller.Start();
         }
 
-        
+        private async void btnReLink_Click(object sender, RoutedEventArgs e)
+        {
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel Import",
+                AnimateShow = false,
+                AnimateHide = false
+            };
+            var controller = await this.ShowProgressAsync("Data Re-Linker", "Re-importing orphaned scraped data into games library main datagrid view", true, settings: mySettings);
+            controller.SetCancelable(true);
+            controller.SetIndeterminate();
+            await Task.Delay(1000);
+
+            this.Dispatcher.Invoke(() =>
+            {
+                GameListBuilder.ReLinkData();
+            });
+
+            await controller.CloseAsync();
+
+            if (controller.IsCanceled)
+            {
+                await this.ShowMessageAsync("Data Re-Linker", "Linking Cancelled");
+                GameListBuilder.UpdateFlag();
+                GamesLibraryVisualHandler.RefreshGamesLibrary();
+            }
+            else
+            {
+                await this.ShowMessageAsync("Data Re-Linker", "Linking Completed");
+                GamesLibraryVisualHandler.RefreshGamesLibrary();
+                GameListBuilder.UpdateFlag();
+            }
+        }
     }
     /*
     public class SliderIgnoreDelta : Slider

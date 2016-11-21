@@ -59,6 +59,52 @@ namespace MedLaunch.Classes.GamesLibrary
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public static void ReLinkData()
+        {
+
+            using (var db = new MyDbContext())
+            {
+                var allLib = (from a in db.LibraryDataGDBLink
+                              select a).ToList();
+
+                var allLinks = GDBLink.GetAllRecords().ToList();
+
+                List<LibraryDataGDBLink> linksToAdd = new List<LibraryDataGDBLink>();
+
+                // iterate through each entry in allLinks
+                foreach (var l in allLinks)
+                {
+                    // try to match with the library link
+                    var ll = allLib.Where(a => a.GDBId == l.GdbId).ToList();
+                    if (ll.Count == 0)
+                    {
+                        // no entry was found - this needs linking
+                        GamesLibraryScrapedContent gd = new GamesLibraryScrapedContent();
+                        ScrapedGameObject o = gd.GetScrapedGameObject(l.GameId.Value);
+                        if (o == null)
+                            continue;
+
+                        LibraryDataGDBLink d = new LibraryDataGDBLink();
+                        d.GDBId = l.GdbId.Value;
+                        d.Coop = o.Data.Coop;
+                        d.Developer = o.Data.Developer;
+                        d.ESRB = o.Data.ESRB;
+                        d.Players = o.Data.Players;
+                        d.Publisher = o.Data.Publisher;
+                        d.Year = o.Data.Released;
+
+                        linksToAdd.Add(d);
+                        LibraryDataGDBLink.SaveToDataBase(d);
+                        
+                    }
+
+                    // make sure GAME entry has scraped flag set
+                    Game g = Game.GetGame(l.GameId.Value);
+                    g.isScraped = true;
+                    Game.SetGame(g, true);
+                }
+            }
+        }
 
         public static List<DataGridGamesView> Filter(int systemId, string search)
         {
