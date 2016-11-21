@@ -43,6 +43,7 @@ using MedLaunch.Classes.Scraper.ReplacementDocs;
 using MahApps.Metro;
 using MedLaunch.Classes.Input;
 using MedLaunch.Classes.GamesLibrary;
+using System.Collections.ObjectModel;
 
 namespace MedLaunch
 {
@@ -51,6 +52,8 @@ namespace MedLaunch
     /// </summary>
     public partial class MainWindow
     {
+        public ObservableCollection<DataGridGamesView> dg { get; set; }
+
         public MainWindow()
         {
             // make sure class libraries are built
@@ -131,8 +134,13 @@ namespace MedLaunch
             //App _App = ((App)Application.Current);
             //_App.GamesList = new Classes.GamesLibrary.GameListBuilder();
 
+            
+
             // ensure 'show all' filter is checked on startup
             btnShowAll.IsChecked = true;
+
+            //App _App = ((App)Application.Current);
+            //dg = _App.GamesList.FilteredSet;
 
             // load globalsettings for front page
             GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar,
@@ -897,95 +905,114 @@ namespace MedLaunch
         private void btnShowAll_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, 0, tbFilterDatagrid.Text);
+           // dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnFavorites_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, -1, tbFilterDatagrid.Text);
+            //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnUnscraped_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, -100, tbFilterDatagrid.Text);
+            //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnNes_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, 11, tbFilterDatagrid.Text);
+            //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnSnes_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, 12, tbFilterDatagrid.Text);
+            //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnSms_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, 10, tbFilterDatagrid.Text);
+            //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnMd_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, 4, tbFilterDatagrid.Text);
+            //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnSs_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, 13, tbFilterDatagrid.Text);
+            //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnPsx_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, 9, tbFilterDatagrid.Text);
+            //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnPce_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, 7, tbFilterDatagrid.Text);
+            //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
         private void btnPcecd_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, 18, tbFilterDatagrid.Text);
+            //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnPcfx_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, 8, tbFilterDatagrid.Text);
+           // dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnVb_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, 14, tbFilterDatagrid.Text);
+            //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnNgp_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, 6, tbFilterDatagrid.Text);
+            //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnWswan_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, 15, tbFilterDatagrid.Text);
+            //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnGb_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, 1, tbFilterDatagrid.Text);
+            //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnGba_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, 2, tbFilterDatagrid.Text);
+            //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnGg_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, 5, tbFilterDatagrid.Text);
+            //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnLynx_Checked(object sender, RoutedEventArgs e)
         {
             DbEF.GetGames(dgGameList, 3, tbFilterDatagrid.Text);
+            //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         // game filter context menu events
@@ -1890,7 +1917,7 @@ namespace MedLaunch
 
             // refresh library view
             GameListBuilder.UpdateFlag();
-            GamesLibraryVisualHandler.RefreshGamesLibrary();
+           GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 
         private void CopyLaunchStringToClipboard_Click(object sender, RoutedEventArgs e)
@@ -2520,7 +2547,7 @@ namespace MedLaunch
                 if (controller.IsCanceled)
                 {
                     await mw.ShowMessageAsync("MedLaunch Scraper", "Scraping Cancelled");
-                    GamesLibraryVisualHandler.RefreshGamesLibrary();
+                    //GamesLibraryVisualHandler.RefreshGamesLibrary();
                 }
                 else
                 {

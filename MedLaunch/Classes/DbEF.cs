@@ -379,7 +379,25 @@ namespace MedLaunch.Classes
 
             var result = GameListBuilder.Filter(systemId, search);
 
-            datagrid.ItemsSource = result;
+            //datagrid.ItemsSource = result;
+
+            /*
+            // hide columns
+            GlobalSettings gs = GlobalSettings.GetGlobals();
+
+            var cols = datagrid.Columns;
+            foreach (var c in cols)
+            {                
+                string header = c.Header.ToString();
+                switch (header)
+                {
+                    case "Publisher":
+                        if (gs.showGLPublisher != true)
+                            c.Visibility = Visibility.Collapsed;
+                        break;
+                }
+            }
+            */
 
             // filter based on request
 

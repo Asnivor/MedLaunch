@@ -317,7 +317,9 @@
 
                             <DataGrid PreviewMouseRightButtonDown="DataGrid_PreviewMouseRightButtonDown" PreviewMouseRightButtonUp="DataGrid_PreviewMouseRightButtonDown" 
                                       RowBackground="Transparent" Background="Transparent" MouseDoubleClick="LaunchRom_Click" Grid.Row="2" Name="dgGameList" IsReadOnly="True" 
-                                      SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Single" ContextMenuOpening="dgGameList_ContextMenuOpening">
+                                      SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Single" ContextMenuOpening="dgGameList_ContextMenuOpening" AutoGenerateColumns="True"
+                                      ItemsSource="{Binding FilteredSet, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DataContext="{Binding Source={x:Static Application.Current}, Path=GamesList}" 
+                                      IsSynchronizedWithCurrentItem="True">
                                 <DataGrid.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Style.Triggers>
@@ -344,6 +346,12 @@
                                         <MenuItem x:Name="DeleteRom" Header="Delete From Games Library" Click="DeleteRom_Click" />
                                     </ContextMenu>
                                 </DataGrid.ContextMenu>
+
+                                <DataGrid.Columns>
+                                    
+                                </DataGrid.Columns>
+                                
+                                
                             </DataGrid>
                         </Grid>
 

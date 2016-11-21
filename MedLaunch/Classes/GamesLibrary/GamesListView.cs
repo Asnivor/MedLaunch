@@ -7,10 +7,211 @@ using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Migrations;
 using MedLaunch.Models;
 using MedLaunch.Classes;
-
+using System.ComponentModel;
 
 namespace MedLaunch.Classes
-{
+{  
+    public class DataGridGamesView : INotifyPropertyChanged
+    {
+        private int iD;
+        public int ID
+        {
+            get
+            {
+                return iD;
+            }
+            set
+            {
+                if (iD != value)
+                {
+                    iD = value;
+                    OnPropertyChanged("ID");
+                }
+            }
+        }
+
+        private string game;
+        public string Game
+        {
+            get
+            {
+                return game;
+            }
+            set
+            {
+                if (game != value)
+                {
+                    game = value;
+                    OnPropertyChanged("Game");
+                }
+            }
+        }
+
+        private string system;
+        public string System
+        {
+            get
+            {
+                return system;
+            }
+            set
+            {
+                if (system != value)
+                {
+                    system = value;
+                    OnPropertyChanged("System");
+                }
+            }
+        }
+
+        private string lastPlayed;
+        public string LastPlayed
+        {
+            get
+            {
+                return lastPlayed;
+            }
+            set
+            {
+                if (lastPlayed != value)
+                {
+                    lastPlayed = value;
+                    OnPropertyChanged("LastPlayed");
+                }
+            }
+        }
+
+        private bool favorite;
+        public bool Favorite
+        {
+            get
+            {
+                return favorite;
+            }
+            set
+            {
+                if (favorite != value)
+                {
+                    favorite = value;
+                    OnPropertyChanged("Favorite");
+                }
+            }
+        }
+
+        private string publisher;
+        public string Publisher
+        {
+            get
+            {
+                return publisher;
+            }
+            set
+            {
+                if (publisher != value)
+                {
+                    publisher = value;
+                    OnPropertyChanged("Publisher");
+                }
+            }
+        }
+
+        private string developer;
+        public string Developer
+        {
+            get
+            {
+                return developer;
+            }
+            set
+            {
+                if (developer != value)
+                {
+                    developer = value;
+                    OnPropertyChanged("Developer");
+                }
+            }
+        }
+
+        private string year;
+        public string Year
+        {
+            get
+            {
+                return year;
+            }
+            set
+            {
+                if (year != value)
+                {
+                    year = value;
+                    OnPropertyChanged("Year");
+                }
+            }
+        }
+
+        private string players;
+        public string Players
+        {
+            get
+            {
+                return players;
+            }
+            set
+            {
+                if (players != value)
+                {
+                    players = value;
+                    OnPropertyChanged("Players");
+                }
+            }
+        }
+
+        private string coop;
+        public string Coop
+        {
+            get
+            {
+                return coop;
+            }
+            set
+            {
+                if (coop != value)
+                {
+                    coop = value;
+                    OnPropertyChanged("Coop");
+                }
+            }
+        }
+
+        private string esrb;
+        public string ESRB
+        {
+            get
+            {
+                return esrb;
+            }
+            set
+            {
+                if (esrb != value)
+                {
+                    esrb = value;
+                    OnPropertyChanged("ESRB");
+                }
+            }
+        }
+
+
+        protected void OnPropertyChanged(string propertyname)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+    }
+
     public class GameListView
     {
         public GameListView()
@@ -37,44 +238,4 @@ namespace MedLaunch.Classes
         public string SystemDescription { get; set; }
         public int SystemId { get; set; }
     }
-
-    public class DataGridGamesView
-    {
-        public DataGridGamesView()
-        { }
-
-        public DataGridGamesView(int gameId, string gameName, string gameLastPlayed, string systemName, bool isFavorite)
-        {
-            this.ID = gameId;
-            //this.Path = gamePath;
-            this.Game = gameName;
-            
-            
-            this.System = systemName;
-            this.LastPlayed = gameLastPlayed;
-            this.Favorite = isFavorite;
-            //this.SystemDescription = systemDescription;
-            //this.SystemId = systemId;
-        }
-
-        public int ID { get; set; }
-        //public string Path { get; set; }
-        public string Game { get; set; }
-        
-        public string System { get; set; }
-        public string LastPlayed { get; set; }
-        public bool Favorite { get; set; }
-
-        public string Publisher { get; set; }
-        public string Developer { get; set; }
-        public string Year { get; set; }
-        public string Players { get; set; }
-        public string Coop { get; set; }
-        public string ESRB { get; set; }
-
-        //public string SystemDescription { get; set; }
-        //public int SystemId { get; set; }
-    }
-
-    
 }

@@ -11,6 +11,7 @@ using System.IO;
 using MedLaunch.Extensions;
 using System.Windows.Controls.Primitives;
 using System.Windows.Markup;
+using System.Windows.Input;
 
 namespace MedLaunch.Classes
 {
@@ -793,7 +794,13 @@ namespace MedLaunch.Classes
         {
             // get an instance of the MainWindow
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-
+            App _App = ((App)Application.Current);
+            //var data = _App.GamesList.FilteredSet;
+            //_App.GamesList.FilteredSet = new System.Collections.ObjectModel.ObservableCollection<DataGridGamesView>(data);
+            DataGrid dg = (DataGrid)mw.FindName("dgGameList");
+            
+            //var items = dg.ItemsSource;
+            
             // get btnClearFilters button
             Button btnClearFilters = (Button)mw.FindName("btnClearFilters");
 
@@ -820,7 +827,9 @@ namespace MedLaunch.Classes
             RadioButton btnShowAll = buttons
                 .Where(r => r.Name == "btnShowAll").Single();
 
-
+            // get selected item in datagrid
+            DataGridGamesView row = (DataGridGamesView)dg.SelectedItem;
+            
             // Clear all settings
             btnShowAll.IsChecked = true;
             tbFilterDatagrid.Text = "1337";
@@ -828,6 +837,9 @@ namespace MedLaunch.Classes
             // restore settings
             rtTarget.IsChecked = true;
             tbFilterDatagrid.Text = tbText;
+
+            // now reselct the row
+
 
         }
 

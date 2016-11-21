@@ -12,16 +12,34 @@ using MahApps.Metro;
 using MedLaunch.Models;
 using System.IO;
 using MedLaunch.Classes.GamesLibrary;
+using System.ComponentModel;
 
 namespace MedLaunch
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App : Application, INotifyPropertyChanged
     {
         public GamesLibraryScrapedContent ScrapedData { get; set; }
-        public GameListBuilder GamesList { get; set; }
+
+        private GameListBuilder gamesList;
+        public GameListBuilder GamesList
+        {
+            get
+            {
+                return gamesList;
+            }
+            set
+            {
+                if (gamesList != value)
+                {
+                    gamesList = value;
+                    OnPropertyChanged("GamesList");
+
+                }
+            }
+        }
 
         private void ApplicationStart(object sender, StartupEventArgs e)
         {
@@ -83,5 +101,14 @@ namespace MedLaunch
             Application.Current.MainWindow = init;
             init.ShowDialog();
         }
+
+        protected void OnPropertyChanged(string propertyname)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

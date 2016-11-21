@@ -1,6 +1,8 @@
 ﻿using MedLaunch.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,10 +10,28 @@ using System.Windows;
 
 namespace MedLaunch.Classes.GamesLibrary
 {
-    public class GameListBuilder
+    public class GameListBuilder : INotifyPropertyChanged
     {
         // properties
-        public List<DataGridGamesView> FilteredSet { get; set; }
+        private ObservableCollection<DataGridGamesView> filteredSet;
+        public ObservableCollection<DataGridGamesView> FilteredSet
+        {
+            get
+            {
+                return filteredSet;
+            }
+            set
+            {
+                if (filteredSet != value)
+                {
+                    filteredSet = value;
+                    OnPropertyChanged("FilteredSet");
+
+                }
+            }
+        }
+
+
         public List<DataGridGamesView> AllGames { get; set; }
         public int SystemId { get; set; }
         public string SearchString { get; set; }
@@ -26,10 +46,18 @@ namespace MedLaunch.Classes.GamesLibrary
 
             // populate the object
             AllGames = GamesLibraryDataGridRefresh.Update(AllGames);
-
-            UpdateRequired = true;
+            
             UpdateRequired = false;
         }
+
+        protected void OnPropertyChanged(string propertyname)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
 
         public static List<DataGridGamesView> Filter(int systemId, string search)
@@ -64,6 +92,9 @@ namespace MedLaunch.Classes.GamesLibrary
 
             // now we have results based on the system filter - process file search
             List<DataGridGamesView> srch = DoSearch(results, search);
+
+            _App.GamesList.FilteredSet = new ObservableCollection<DataGridGamesView>(srch);
+
             return srch;
         }
 
