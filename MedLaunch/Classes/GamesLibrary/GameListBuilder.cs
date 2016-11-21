@@ -126,8 +126,21 @@ namespace MedLaunch.Classes.GamesLibrary
                     results = _App.GamesList.AllGames;
                     break;
                 case -100:      // unscraped games
-                    // ignore for now
-                    results = _App.GamesList.AllGames;
+                    var re = _App.GamesList.AllGames.ToList();
+                    List<Game> games = (from a in Game.GetGames()
+                                        where a.isScraped != true
+                                        select a).ToList();
+                    foreach (var ga in re)
+                    {
+                        var i = (from b in games
+                                 where b.gameId == ga.ID
+                                 select b).ToList();
+                        if (i.Count == 1)
+                        {
+                            results.Add(ga);
+                        }
+                    }
+
                     break;
                 default:        // based on actual system id
                     results = (from g in _App.GamesList.AllGames
