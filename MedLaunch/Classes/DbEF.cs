@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using MedLaunch.Classes.GamesLibrary;
 using System.Windows;
+using System.Text.RegularExpressions;
 
 namespace MedLaunch.Classes
 {
@@ -367,6 +368,15 @@ namespace MedLaunch.Classes
                 lp = dt.ToString("yyyy-MM-dd HH:mm:ss");
             }
             return lp;
+        }
+
+        public static string ReturnYear(string str)
+        {
+            string pattern = @"\d{4}";
+            Regex r = new Regex(pattern);
+            string year = r.Match(str).ToString();
+            return year;
+            //return Regex.Replace(str, pattern, "___").ToString();
         }
 
 

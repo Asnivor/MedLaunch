@@ -78,7 +78,7 @@ namespace MedLaunch.Classes.GamesLibrary
                     d.ESRB = sc.ESRB;
                     d.Players = sc.Players;
                     d.Publisher = sc.Publisher;
-                    d.Year = sc.Year;
+                    d.Year = DbEF.ReturnYear(sc.Year);
 
                     ng.Add(d);
                 }
