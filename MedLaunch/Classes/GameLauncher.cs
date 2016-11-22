@@ -332,7 +332,7 @@ namespace MedLaunch.Classes
                 // host
                 if (Server.netplay__host == null || Server.netplay__host.Trim() == "")
                 {
-                    // no host set - ignore
+                    // ignore
                 }
                 else
                 {
@@ -355,7 +355,8 @@ namespace MedLaunch.Classes
                 // password
                 if (ServerOveride.netplay__password == null || ServerOveride.netplay__password.Trim() == "")
                 {
-                    // no password set
+                    // no password set - apply blank
+                    baseStr += "-netplay.password \"\""  + sep;
                 }
                 else
                 {
@@ -365,7 +366,8 @@ namespace MedLaunch.Classes
                 // gamekey
                 if (ServerOveride.netplay__gamekey == null || ServerOveride.netplay__gamekey.Trim() == "")
                 {
-                    // no gamekey set
+                    // no gamekey set - set blank
+                    baseStr += "-netplay.gamekey \"\"" + sep;
                 }
                 else
                 {
