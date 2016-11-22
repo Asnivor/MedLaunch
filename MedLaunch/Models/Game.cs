@@ -26,6 +26,7 @@ namespace MedLaunch.Models
         public string disks { get; set; }
         public bool isDiskBased { get; set; }
         public bool? isScraped { get; set; }
+        public int? gdbId { get; set; }
 
         public static Game GetGame(int gameId)
         {
@@ -191,6 +192,14 @@ namespace MedLaunch.Models
                 GamesLibData.ForceUpdate();
                 GameListBuilder.UpdateFlag();
             }
+        }
+
+        public static void SetGdbId(int GameId, int GdbId)
+        {
+            Game game = GetGame(GameId);
+            game.gdbId = GdbId;
+            SetGame(game);
+            GameListBuilder.UpdateFlag();
         }
     }    
 }

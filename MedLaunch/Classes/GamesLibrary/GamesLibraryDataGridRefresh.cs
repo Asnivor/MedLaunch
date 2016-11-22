@@ -14,76 +14,107 @@ namespace MedLaunch.Classes.GamesLibrary
         {
             using (var cnt = new MyDbContext())
             {
-                List<LibraryDataGDBLink> lib = (from all in cnt.LibraryDataGDBLink
-                                                select all).ToList();
+                /*
+                   var result = 
+                       (from game in cnt.Game
+                       join lib in cnt.LibraryDataGDBLink
+                       on game.gdbId equals lib.GDBId
+                       into gameGroups
+                       from lib in gameGroups.DefaultIfEmpty()
+                       select new DataGridGamesView
+                       {
+                           ID = game.gameId,
+                           Game = game.gameName,
+                           System = GSystem.GetSystemName(game.systemId),
+                           LastPlayed = DbEF.FormatDate(game.gameLastPlayed),
+                           Favorite = game.isFavorite,
+                           Publisher = lib.Publisher,
+                           Developer = lib.Developer,
+                           Year = DbEF.ReturnYear(lib.Year),
+                           Players = lib.Players,
+                           Coop = lib.Coop,
+                           ESRB = lib.ESRB
+                       }).ToList();
+                     */
+                /*
                 List<DataGridGamesView> ag = (from game in cnt.Game
-                                              from link in cnt.GDBLink
-                                              .Where(v => v.GameId == game.gameId)
+                                             
+                                              from link in cnt.LibraryDataGDBLink
+                                              .Where(v => v.GDBId == game.gdbId)
                                               .DefaultIfEmpty()
-                                              /*
-                                              from s in cnt.LibraryDataGDBLink
-                                              .Where(a => a.GDBId == link.GdbId)
-                                              .DefaultIfEmpty()
-                                              */
+                                            
                                               select new DataGridGamesView
                                               {
                                                   ID = game.gameId,
                                                   Game = game.gameName,
                                                   System = GSystem.GetSystemName(game.systemId),
                                                   LastPlayed = DbEF.FormatDate(game.gameLastPlayed),
-                                                  Favorite = game.isFavorite/*,
-
-                                                  Publisher = GetScrapedData("Publisher", lib, link.GdbId.Value),
-                                                  Developer = GetScrapedData("Developer", lib, link.GdbId.Value),
-                                                  Year = GetScrapedData("Year", lib, link.GdbId.Value),
-                                                  Players = GetScrapedData("Players", lib, link.GdbId.Value),
-                                                  Coop = GetScrapedData("Coop", lib, link.GdbId.Value),
-                                                  ESRB = GetScrapedData("ESRB", lib, link.GdbId.Value),*/
-
-                                                  /*
-                                                  Publisher = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Publisher,
-                                                  Developer = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Developer,
-                                                  Year = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Year,
-                                                  Players = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Players,
-                                                  Coop = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().Coop,
-                                                  ESRB = lib.Where(a => a.GDBId == link.GdbId).FirstOrDefault().ESRB */
+                                                  Favorite = game.isFavorite,
+                                                
+                                                  Publisher = link.Publisher,
+                                                  Developer = link.Developer,
+                                                  Year = DbEF.ReturnYear(link.Year),
+                                                  Players = link.Players,
+                                                  Coop = link.Coop,
+                                                  ESRB = link.ESRB
+                                                
                                               }).ToList();
-                List<DataGridGamesView> ng = new List<DataGridGamesView>();
-                foreach (var x in ag)
+               
+              */
+                /*
+                  var q = (from game in cnt.Game
+                          join link in cnt.LibraryDataGDBLink on game.gdbId equals link.GDBId into ps
+                          from link in ps.DefaultIfEmpty()
+                          select new DataGridGamesView
+                          {
+                              ID = game.gameId,
+                              Game = game.gameName,
+                              System = GSystem.GetSystemName(game.systemId),
+                              LastPlayed = DbEF.FormatDate(game.gameLastPlayed),
+                              Favorite = game.isFavorite,
+
+                              Publisher = link.Publisher,
+                              Developer = link.Developer,
+                              Year = DbEF.ReturnYear(link.Year),
+                              Players = link.Players,
+                              Coop = link.Coop,
+                              ESRB = link.ESRB
+
+                          }).ToList();
+                          */
+                List<LibraryDataGDBLink> links = LibraryDataGDBLink.GetLibraryData().ToList();
+                List<DataGridGamesView> q = new List<DataGridGamesView>();
+                var games = (from g in cnt.Game
+                             where g.hidden != true
+                             select g).ToList();
+                foreach (var game in games)
                 {
                     DataGridGamesView d = new DataGridGamesView();
-                    d = x;
+                    d.ID = game.gameId;
+                    d.Game = game.gameName;
+                    d.System = GSystem.GetSystemName(game.systemId);
+                    d.LastPlayed = DbEF.FormatDate(game.gameLastPlayed);
+                    d.Favorite = game.isFavorite;
 
-                    var link = cnt.GDBLink.Where(l => l.GameId == d.ID).ToList();
-                    if (link.Count < 1)
+                    if (game.gdbId != null && game.gdbId > 0)
                     {
-                        ng.Add(d);
-                        continue;
-                    }
-                        
-
-                    int gdbId = link.First().GdbId.Value;
-
-                    var s = cnt.LibraryDataGDBLink.Where(i => i.GDBId == gdbId).ToList();
-                    if (s.Count < 1)
-                    {
-                        ng.Add(d);
-                        continue;
+                        var link = links.Where(x => x.GDBId == game.gdbId).SingleOrDefault(); // LibraryDataGDBLink.GetLibraryData(game.gdbId.Value);
+                        if (link != null)
+                        {
+                            d.Publisher = link.Publisher;
+                            d.Developer = link.Developer;
+                            d.Year = DbEF.ReturnYear(link.Year);
+                            d.Players = link.Players;
+                            d.Coop = link.Coop;
+                            d.ESRB = link.ESRB;
+                        }
                     }
 
-                    var sc = s.First();
-
-                    d.Coop = sc.Coop;
-                    d.Developer = sc.Developer;
-                    d.ESRB = sc.ESRB;
-                    d.Players = sc.Players;
-                    d.Publisher = sc.Publisher;
-                    d.Year = DbEF.ReturnYear(sc.Year);
-
-                    ng.Add(d);
+                    q.Add(d);
                 }
 
-                return ng;
+                
+                return q;
                 
                 //AllGames = ng;
             }
@@ -93,9 +124,11 @@ namespace MedLaunch.Classes.GamesLibrary
         {
             App _App = ((App)Application.Current);
             List<DataGridGamesView> view = Update(_App.GamesList.AllGames);
+            _App.GamesList.UpdateRequired = false;
             _App.GamesList.AllGames = view;     
         }
 
+        /*
         public static string GetScrapedData(string type, List<LibraryDataGDBLink> libraryData, int gdbId)
         {
             string result = null;
@@ -128,5 +161,6 @@ namespace MedLaunch.Classes.GamesLibrary
             }
             return result;           
         }
+        */
     }
 }

@@ -302,10 +302,11 @@ namespace MedLaunch.Classes
             // get the link table record
 
             GamesLibraryScrapedContent gd = new GamesLibraryScrapedContent();
-            ScrapedGameObject o = gd.GetScrapedGameObject(gameId);
+            
+            Game game = Game.GetGame(gameId);
+            
 
-            GDBLink link = GDBLink.GetRecord(gameId);
-            if (link == null)
+            if (game.gdbId == null || game.gdbId == 0)
             {
                 // no gdb data has been scraped - hide controls
                 foreach (Image i in gdbImages)
@@ -326,6 +327,8 @@ namespace MedLaunch.Classes
             }
             else
             {
+                ScrapedGameObject o = gd.GetScrapedGameObject(gameId, game.gdbId.Value);
+
                 // link is there - SET DATA and control states
                 bool isGameInfoData = false;                            //GameInfo Expander
                 bool isScreenshotsData = false;                         //Screenshots Expander

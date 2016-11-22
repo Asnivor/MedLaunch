@@ -50,17 +50,15 @@ namespace MedLaunch.Classes
         }
 
         // looks up and returns scrapeddataobject based on Internal GameId (not gamesdb id)
-        public ScrapedGameObject GetScrapedGameObject(int GameId)
+        public ScrapedGameObject GetScrapedGameObject(int GameId, int GdbId)
         {
-            // look up in link table to see if game has a link
-            List<GDBLink> links = GDBLink.GetRecords(GameId);
-            if (links.Count == 0)
-                return null;
-            GDBLink link = links.First();
+            //Game link = Game.GetGame(GameId);
 
             // we have a link record - proceed and generate object
             ScrapedGameObject sgo = new ScrapedGameObject();
-            sgo.GdbId = link.GdbId.Value;
+            if (GdbId < 1)
+                return null;
+            sgo.GdbId = GdbId;
 
             // attempt to load game data json
             string gPath = AppDomain.CurrentDomain.BaseDirectory + @"Data\Games\" + sgo.GdbId.ToString() + @"\" + sgo.GdbId.ToString() + ".json";

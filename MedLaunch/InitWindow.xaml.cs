@@ -246,8 +246,10 @@ namespace MedLaunch
                 List<ConfigBaseSettings> _configBaseSettings = new List<ConfigBaseSettings>();
                 List<ConfigNetplaySettings> _configNetplaySettings = new List<ConfigNetplaySettings>();
                 List<ConfigServerSettings> _configServerSettings = new List<ConfigServerSettings>();
+                /*
                 List<GDBGameData> _gDBGameDatas = new List<GDBGameData>();
                 List<GDBLink> _gDBLinks = new List<GDBLink>();
+                */
                 List<GDBPlatformGame> _gDBPlatformGames = new List<GDBPlatformGame>();
                 List<Game> _games = new List<Game>();
                 List<GlobalSettings> _globalSettings = new List<GlobalSettings>();
@@ -341,6 +343,7 @@ namespace MedLaunch
                             ConfigServerSettings.SaveToDatabase(_configServerSettings);
                            
                             break;
+                            /*
                         case "GDBGameData":
                             List<List<Data>> gdbgdRows = ReturnRows(dbData.Tables, tableName);
                             foreach (List<Data> row in gdbgdRows)
@@ -393,6 +396,7 @@ namespace MedLaunch
                             GDBLink.SaveToDatabase(_gDBLinks);
                             
                             break;
+                            */
                             /*
                         case "GDBPlatformGame":
                             List<List<Data>> gdbpgRows = ReturnRows(dbData.Tables, tableName);
@@ -684,6 +688,7 @@ namespace MedLaunch
                 }
             }
         }
+        /*
         private static void SetPropertyValue(GDBGameData settings, PropertyInfo p, string type, string value)
         {
             if (p.PropertyType == typeof(string))
@@ -736,7 +741,8 @@ namespace MedLaunch
                 
             }
         }
-
+        */
+        /*
         private static void SetPropertyValue(GDBLink settings, PropertyInfo p, string type, string value)
         {
             if (p.PropertyType == typeof(string))
@@ -788,6 +794,7 @@ namespace MedLaunch
                 }
             }
         }
+        */
         private static void SetPropertyValue(GDBPlatformGame settings, PropertyInfo p, string type, string value)
         {
             if (p.PropertyType == typeof(string))

@@ -61,12 +61,12 @@ namespace MedLaunch.Classes.GamesLibrary
 
         public static void ReLinkData()
         {
+            /*
+            var allLib = LibraryDataGDBLink.GetLibraryData();
 
             using (var db = new MyDbContext())
             {
-                var allLib = (from a in db.LibraryDataGDBLink
-                              select a).ToList();
-
+                
                 var allLinks = GDBLink.GetAllRecords().ToList();
 
                 List<LibraryDataGDBLink> linksToAdd = new List<LibraryDataGDBLink>();
@@ -104,6 +104,7 @@ namespace MedLaunch.Classes.GamesLibrary
                     Game.SetGame(g, true);
                 }
             }
+            */
         }
 
         public static List<DataGridGamesView> Filter(int systemId, string search)
@@ -126,6 +127,18 @@ namespace MedLaunch.Classes.GamesLibrary
                     results = _App.GamesList.AllGames;
                     break;
                 case -100:      // unscraped games
+
+                    results = (from a in _App.GamesList.AllGames
+                               where a.Coop == null &&
+                               a.Developer == null &&
+                               a.ESRB == null &&
+                               a.Players == null &&
+                               a.Publisher == null &&
+                               a.Year == null
+                               select a).ToList();
+
+
+                    /*
                     var re = _App.GamesList.AllGames.ToList();
                     List<Game> games = (from a in Game.GetGames()
                                         where a.isScraped != true
@@ -140,6 +153,7 @@ namespace MedLaunch.Classes.GamesLibrary
                             results.Add(ga);
                         }
                     }
+                    */
 
                     break;
                 default:        // based on actual system id

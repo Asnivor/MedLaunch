@@ -7,6 +7,7 @@ using Microsoft.Data.Entity;
 
 namespace MedLaunch.Models
 {
+    /*
     public class GDBLink
     {
         public int Id { get; set; }
@@ -112,5 +113,5 @@ namespace MedLaunch.Models
 
     }
 
-    
+    */
 }

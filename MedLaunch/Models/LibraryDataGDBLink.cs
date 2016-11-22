@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace MedLaunch.Models
 {
+
     public class LibraryDataGDBLink
     {
         public int GDBId { get; set; }
@@ -25,6 +26,16 @@ namespace MedLaunch.Models
             using (var db = new MyDbContext())
             {
                 var c = db.LibraryDataGDBLink.Where(a => a.GDBId == gamesdbID).FirstOrDefault();
+                return c;
+            }
+        }
+
+        public static List<LibraryDataGDBLink> GetLibraryData()
+        {
+            using (var db = new MyDbContext())
+            {
+                var c = (from a in db.LibraryDataGDBLink
+                        select a).ToList();
                 return c;
             }
         }
@@ -51,4 +62,5 @@ namespace MedLaunch.Models
             }
         }
     }
+  
 }

@@ -300,7 +300,7 @@
     </Compile>
     <Compile Include="Classes\DbEF.cs" />
     <Compile Include="Classes\Enums.cs" />
-    <Compile Include="Classes\GamesLibrary\GamesListView.cs" />
+    <Compile Include="Classes\GamesLibrary\DataGridGamesView.cs" />
     <Compile Include="Classes\SetupDirectories.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

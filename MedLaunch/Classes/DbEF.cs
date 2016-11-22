@@ -345,6 +345,7 @@ namespace MedLaunch.Classes
         }
         */
 
+            /*
         public static int GetGDBId(int GameId)
         {
             using (var c = new MyDbContext())
@@ -355,6 +356,7 @@ namespace MedLaunch.Classes
                 return i;
             }
         }
+        */
 
         public static string FormatDate(DateTime dt)
         {

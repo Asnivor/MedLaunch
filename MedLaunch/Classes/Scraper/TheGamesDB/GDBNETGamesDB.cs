@@ -198,8 +198,9 @@ namespace MedLaunch.Classes.TheGamesDB
             string result = wo.ApiCall();
 
             // save to xml locally
-            GameScraper.CreateFolderStructure(ID);
-            File.WriteAllText(System.AppDomain.CurrentDomain.BaseDirectory + @"\Data\Graphics\thegamesdb\" + ID + @"\" + ID  + "-external.xml", result);
+            //GamesLibraryScrapedContent glsc = new Classes.GamesLibraryScrapedContent();
+            //glsc.CreateFolderStructure(ID);
+            //File.WriteAllText(System.AppDomain.CurrentDomain.BaseDirectory + @"\Data\Graphics\thegamesdb\" + ID + @"\" + ID  + "-external.xml", result);
 
             /*
             wo.GDBApiCall();

@@ -1907,13 +1907,7 @@ namespace MedLaunch
             Game game = Game.GetGame(romId);
             // delete from library
             Game.DeleteGame(game);
-
-            // remove any entries in the link table for this game id
-            var links = GDBLink.GetAllRecords().Where(a => a.GameId == romId).ToList();
-            foreach (var l in links)
-            {
-                GDBLink.DeleteRecord(l);
-            }
+            
 
             // refresh library view
             GameListBuilder.UpdateFlag();
@@ -2457,7 +2451,7 @@ namespace MedLaunch
         // unlink selected game
         private void btnScrapingUnlinkGame_Click(object sender, RoutedEventArgs e)
         {
-            GameScraper.UnlinkGameData(dgGameList);
+            ScraperHandler.UnlinkGameData(dgGameList);
             GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 
@@ -2498,11 +2492,11 @@ namespace MedLaunch
         {
             var r = (DataGridGamesView)dgGameList.SelectedItem;
             // get the gamesdbid
-            var link = GDBLink.GetRecord(Convert.ToInt32(r.ID));
-            if (link != null)
+            int gdbId = Game.GetGame(Convert.ToInt32(r.ID)).gdbId.Value;
+            if (gdbId > 0)
             {
                 // open the folder in windows explorer
-                string dirPath = System.AppDomain.CurrentDomain.BaseDirectory + @"\Data\Games\" + link.GdbId;
+                string dirPath = System.AppDomain.CurrentDomain.BaseDirectory + @"\Data\Games\" + gdbId;
                 // check folder exists
                 if (Directory.Exists(dirPath))
                 {
@@ -2517,9 +2511,9 @@ namespace MedLaunch
         {
             var r = (DataGridGamesView)dgGameList.SelectedItem;
             // get the gamesdbid
-            var link = GDBLink.GetRecord(Convert.ToInt32(r.ID));
+            int gdbId = Game.GetGame(Convert.ToInt32(r.ID)).gdbId.Value;
             // re-scrape the game
-            if (link != null)
+            if (gdbId > 0)
             {
                 MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
                 var mySettings = new MetroDialogSettings()
@@ -2530,7 +2524,7 @@ namespace MedLaunch
                 };
                 var controller = await mw.ShowProgressAsync("Scraping Data", "Initialising...", true, settings: mySettings);
 
-                ScraperHandler sh = new ScraperHandler(link.GdbId.Value, r.ID);
+                ScraperHandler sh = new ScraperHandler(gdbId, r.ID);
                 await Task.Delay(100);
                 await Task.Run(() =>
                 {

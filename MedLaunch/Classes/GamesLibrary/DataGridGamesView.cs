@@ -212,6 +212,8 @@ namespace MedLaunch.Classes
 
     }
 
+    /*
+
     public class GameListView
     {
         public GameListView()
@@ -238,4 +240,6 @@ namespace MedLaunch.Classes
         public string SystemDescription { get; set; }
         public int SystemId { get; set; }
     }
+
+    */
 }

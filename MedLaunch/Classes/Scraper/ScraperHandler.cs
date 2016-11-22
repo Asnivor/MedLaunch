@@ -11,6 +11,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Threading;
 
 namespace MedLaunch.Classes.Scraper
@@ -75,36 +76,9 @@ namespace MedLaunch.Classes.Scraper
             {
                 controller.SetMessage("Getting Local Games");
 
-                // get all local games for this system already in the database
-                gs.LocalGames = MedLaunch.Models.Game.GetGames(systemId).ToList();
-
-                // get all games that have been matched but not yet scraped.
-                List<GDBLink> link = new List<GDBLink>();
-                using (var context = new MyDbContext())
-                {
-                    link = context.GDBLink.ToList();
-                }
-
-                if (link.Count > 0)
-                {
-                    foreach (var g in link)
-                    {
-                        if (controller.IsCanceled)
-                        {
-                            controller.CloseAsync();
-                            return;
-                        }
-                        var gam = (from a in gs.LocalGames
-                                   where (a.gameId == g.GameId && a.systemId == systemId && a.hidden == false)
-                                   select a).ToList();
-                        // remove these games so they are not re-scanned
-                        foreach (var gj in gam)
-                        {
-                            gs.LocalGames.Remove(gj);
-                        }
-                    }
-                }
-
+                // get all local games for this system where GdbId is not set or is 0
+                gs.LocalGames = MedLaunch.Models.Game.GetGames(systemId).Where(a => a.gdbId == null || a.gdbId == 0).ToList();
+                
                 // count number of games to scan for
                 int numGames = gs.LocalGames.Count;
                 controller.Minimum = 0;
@@ -129,87 +103,60 @@ namespace MedLaunch.Classes.Scraper
                     }
                     if (results.Count == 1)
                     {
-                        // one result returned - create entry (or update existing) in the GDBLink table
-                        GDBLink l = new GDBLink();
-                        l.GdbId = results.Single().GamesDbId;
-                        l.GameId = g.gameId;
-                        GDBLink.SaveToDatabase(l);
+                        // one result returned - add GdbId to the Game table
+                        Game.SetGdbId(g.gameId, results.Single().GamesDbId);                         
                     }
                 }
 
                 /* Begin actual scraping */
 
-                // Get all games from link table and determine if they need scraping (is json file present for them)
-
-                List<GDBLink> links = GDBLink.GetAllRecords();
-
-                List<GDBLink> linksToScrape = new List<GDBLink>();
+                // Get all games that have a GdbId set and determine if they need scraping (is json file present for them)
+                var gamesTmp = MedLaunch.Models.Game.GetGames(systemId).Where(a => a.gdbId != null && a.gdbId > 0).ToList();
                 gs.LocalGames = new List<Game>();
-                foreach (var l in links)
+                foreach (var g in gamesTmp)
                 {
                     // check each game directory
-                    if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"Data\Games\" + l.GdbId.ToString()))
+                    if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"Data\Games\" + g.gdbId.ToString()))
                     {
                         // directory does not exist - scraping needed
-                        Game g = Game.GetGame(l.GameId.Value);
-                        if (g.systemId == systemId)
-                            linksToScrape.Add(l);
+                        gs.LocalGames.Add(g);
                     }
                     else
                     {
                         // directory does exist - check whether json file is present
-                        if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"Data\Games\" + l.GdbId.ToString() + @"\" + l.GdbId.ToString() + ".json"))
+                        if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"Data\Games\" + g.gdbId.ToString() + @"\" + g.gdbId.ToString() + ".json"))
                         {
                             // json file is not present - scraping needed
-                            Game g = Game.GetGame(l.GameId.Value);
-                            if (g.systemId == systemId)
-                                linksToScrape.Add(l);
+                            gs.LocalGames.Add(g);
                         }
 
                     }
-                 }
-                // remove duplicates
-                //linksToScrape.Distinct();
-                int gamesCount = linksToScrape.Count;
+                }
+                
+                int gamesCount = gs.LocalGames.Count;
                 i = 0;
                 controller.Minimum = 0;
                 controller.Maximum = gamesCount;
-                foreach (GDBLink l in linksToScrape)
+                foreach (var g in gs.LocalGames)
                 {
-                    Game g = Game.GetGame(l.GameId.Value);
                     if (controller.IsCanceled)
                     {
                         controller.CloseAsync();
                         return;
                     }
-                    if (g == null)
-                    {
-                        // no medlaunch game returned from the database - remove the link entry from GDBLink and continue
-                        GDBLink rec = l;
-                        GDBLink.DeleteRecord(rec);
-                        continue;
-                    }
+                    
                     // iterate through each game that requires scraping and attempt to download the data and import to database
                     i++;
                     controller.SetProgress(i);
                     string message = "Scraping Started....\nGetting data for: " + g.gameName + "\n(" + i + " of " + gamesCount + ")\n\n";
                     controller.SetMessage(message);
-
-                    // if json is already present - skip scraping
-                    if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"Data\Games\" + l.GdbId.ToString() + @"\" + l.GdbId.ToString() + ".json"))
-                    {
-                        continue;
-                    }
                     
-                    ScraperHandler sh = new ScraperHandler(l.GdbId.Value, l.GameId.Value, false);
+                    // do actual scraping                    
+                    ScraperHandler sh = new ScraperHandler(g.gdbId.Value, g.gameId, false);
                     sh.ScrapeGame(controller);
                     GameListBuilder.UpdateFlag();
-                    //gs.ScrapeGame(game.GdbId, controller, message);
                 }
-
-
             });
-
 
             await controller.CloseAsync();
 
@@ -265,8 +212,6 @@ namespace MedLaunch.Classes.Scraper
                     break;
             }
 
-            
-
             // gameObject should now be populated - create folder structure on disk if it does not already exist
             controller.SetMessage(message + "Determining local folder structure");
             glsc.CreateFolderStructure(gameObject.GdbId);
@@ -282,10 +227,11 @@ namespace MedLaunch.Classes.Scraper
                 controller.SetMessage(message + "Downloading media");
                 ContentDownloadManager(gameObject, controller, glsc, message + "Downloading media...\n");
             }
-            
 
-            // Create / Update GDBLink table
-            CreateDatabaseLink(GameId, gameObject.GdbId);
+
+            // Populate library data
+            PopulateLibraryData(GameId, gameObject.GdbId);
+            //CreateDatabaseLink(GameId, gameObject.GdbId);
             
             
         }
@@ -503,6 +449,8 @@ namespace MedLaunch.Classes.Scraper
         /// </summary>
         /// <param name="gameId"></param>
         /// <param name="gamesDbId"></param>
+        /// 
+        /*
         public static void CreateDatabaseLink(int gameId, int gamesDbId)
         {
             GDBLink link = new GDBLink();
@@ -518,19 +466,20 @@ namespace MedLaunch.Classes.Scraper
             PopulateLibraryData(link);
             GameListBuilder.UpdateFlag();
         }
+        */
 
         /// <summary>
         /// create data in the LibraryDataGDBLink table
         /// </summary>
         /// <param name="link"></param>
-        public static void PopulateLibraryData(GDBLink link)
+        public static void PopulateLibraryData(int gameId, int gdbId)
         {
-            var data = LibraryDataGDBLink.GetLibraryData(link.GdbId.Value);
+            var data = LibraryDataGDBLink.GetLibraryData(gdbId);
             if (data == null)
                 data = new LibraryDataGDBLink();
 
             GamesLibraryScrapedContent gd = new GamesLibraryScrapedContent();
-            ScrapedGameObject o = gd.GetScrapedGameObject(link.GameId.Value);
+            ScrapedGameObject o = gd.GetScrapedGameObject(gameId, gdbId);
 
             data.GDBId = o.GdbId;
             data.Coop = o.Data.Coop;
@@ -540,11 +489,31 @@ namespace MedLaunch.Classes.Scraper
             data.Publisher = o.Data.Publisher;
             data.Year = o.Data.Released;
 
+            // save library data
             LibraryDataGDBLink.SaveToDataBase(data);
 
-            Game ga = Game.GetGame(link.GameId.Value);
+            // set isScraped flag in Game table
+            Game ga = Game.GetGame(gameId);
             ga.isScraped = true;
+            ga.gdbId = gdbId;
             Game.SetGame(ga);
+        }
+
+        public static void UnlinkGameData(DataGrid dgGameList)
+        {
+            // get selected row
+            var row = (DataGridGamesView)dgGameList.SelectedItem;
+            if (dgGameList.SelectedItem == null)
+            {
+                // game is not selected
+                return;
+            }
+            int GameId = row.ID;
+            
+            Game.SetGdbId(GameId, 0);
+
+            GameListBuilder.UpdateFlag();
+            GamesLibraryVisualHandler.UpdateSidebar(GameId);
         }
 
 

@@ -737,7 +737,7 @@ namespace MedLaunch.Classes.MasterScraper
             if (WorkingSearchCollection.Count == 1)
             {
                 ScraperMaster g = WorkingSearchCollection.FirstOrDefault();
-                GDBGameData gd = new GDBGameData();
+                //GDBGameData gd = new GDBGameData();
                 /*
                 gd.Id = gameId;
                 gd.GDBGameId = g.id;

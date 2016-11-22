@@ -10,6 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedLaunch.Models
 {
+    /*
     public class GDBGameData
     {
         public static string Serialize(List<string> strList)
@@ -141,7 +142,7 @@ namespace MedLaunch.Models
 
     }
 
-    
+    */
 }
 
    
