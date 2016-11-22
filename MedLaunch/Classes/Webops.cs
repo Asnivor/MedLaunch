@@ -26,11 +26,11 @@ namespace MedLaunch.Classes
         public string GetResponseText(string address, int timeout)
         {
             var request = (HttpWebRequest)WebRequest.Create(address) as HttpWebRequest;
-            request.Timeout = 20000;
+            request.Timeout = 30000;
             request.Proxy = null;
             request.KeepAlive = false;
-            request.ServicePoint.ConnectionLeaseTimeout = 10000;
-            request.ServicePoint.MaxIdleTime = 10000;
+            request.ServicePoint.ConnectionLeaseTimeout = 30000;
+            request.ServicePoint.MaxIdleTime = 30000;
             request.UserAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
 
 

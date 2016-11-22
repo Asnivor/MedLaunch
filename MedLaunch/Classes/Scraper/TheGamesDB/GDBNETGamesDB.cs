@@ -194,7 +194,7 @@ namespace MedLaunch.Classes.TheGamesDB
         {
             WebOps wo = new WebOps();
             wo.Params = "/GetGame.php?id=" + ID;
-            wo.Timeout = 20000;
+            wo.Timeout = 30000;
             string result = wo.ApiCall();
 
             // save to xml locally
