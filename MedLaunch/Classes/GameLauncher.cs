@@ -337,7 +337,7 @@ namespace MedLaunch.Classes
                 else
                 {
                     // host has been set
-                    baseStr += "-netplay.host " + Validate(Server.netplay__host + sep);
+                    baseStr += "-netplay.host " + Validate(Server.netplay__host) + sep;
                 }
 
                 // port
