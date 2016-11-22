@@ -1,0 +1,12 @@
+{
+  "Version": "0.2.20.0",
+  "Date": "2016-11-22T00:00:00",
+  "Notes": "#### Important Release Notes\r\nThis latest release completely overhauls much of the Games Library code, along with the underlying database structure. These changes should provide much better performance for large libraries (so far tested with approx 20,000 games in the library).\r\n\r\nBecause of the database changes, you will find that updating your current version of MedLaunch results in all the games in your library showing as not scraped. You will have to scrape them again - although if any media files have been previously downloaded these will be found once scraping has been completed.\r\n\r\n#### New Install\r\n* Extract this release to a folder, run the 'MedLaunch.exe' executable and choose your Mednafen directory (must be the Mednafen 0.9.39.x branch and 64-bit version if you want to emulate Saturn games). \r\n* You are then prompted to choose whether to import all config settings from your Mednafen folder into the MedLaunch database (this is recommended).\r\n* If you currently use system-specific config files with Mednafen the settings from these will be imported with the above process. However MedLaunch will write to these files when you launch a game - so back them up somewhere if you are not happy with this.\r\n\r\n#### Upgrade\r\n##### Preferred Method: \r\n* Automatically download and upgrade using the 'Updates' tab within MedLaunch itself.\r\n* Once MedLaunch has upgraded, go to the 'Configs' tab and click the 'IMPORT ALL CONFIGS FROM DISK' button\r\n\r\n##### Manual Method: \r\n* You can safely extract this new release over an existing MedLaunch folder (providing you do not have MedLaunch running at the time) \r\n* Once extracted run the MedLaunch.exe executable and your current database will be upgraded before the application starts proper.\r\n* Once MedLaunch has upgraded, go to the 'Configs' tab and click the 'IMPORT ALL CONFIGS FROM DISK' button",
+  "Changelog": [
+    "* Fixed media content from downloading when option is de-selected in settings",
+    "* Fixed launch strings not being passed to mednafen for PCE CD games",
+    "* Fixed (unneeded) pcecd.cfg config being created in mednafen folder",
+    "* Fixed game scraping local match for PCD-CD games (games were not being found)",
+    "* Added option to set the size of the image tooltip popups (based on a percentage of the current MedLaunch window size)"
+  ]
+}
