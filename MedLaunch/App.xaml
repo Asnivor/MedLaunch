@@ -29,14 +29,35 @@
                 </Setter>                
             </Style>
 
+            <!-- Left Menu Button Styling -->
+            <Style x:Key="MenuButton" TargetType="Button" BasedOn="{StaticResource MetroButton}">
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Name="border" BorderThickness="0" BorderBrush="{TemplateBinding BorderBrush}" 
+                                    CornerRadius="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,5,0" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
             <!-- ToggleButton Styling -->
             <Style TargetType="ToggleButton" BasedOn="{StaticResource MetroToggleButton}">
                 <Setter Property="Cursor" Value="Hand" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ToggleButton}">
-                            <Border Name="border" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" 
-                                    CornerRadius="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Background="{TemplateBinding Background}">
+                            <Border Name="border" BorderThickness="0" BorderBrush="{TemplateBinding BorderBrush}" 
+                                    CornerRadius="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Background="{TemplateBinding Background}"
+                                    Margin="1">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,5,0" />
                             </Border>
                             <ControlTemplate.Triggers>
