@@ -224,7 +224,24 @@
             </Style>
 
 
-
+            <!-- ScrollBar styling -->
+            <Style TargetType="ScrollBar" BasedOn="{StaticResource MetroScrollBar}">
+                <Setter Property="OverridesDefaultStyle" Value="True" />
+                <Setter Property="SnapsToDevicePixels" Value="True" />
+                <Setter Property="Background" Value="{DynamicResource AccentColorBrush}" />
+                <Style.Triggers>
+                    <Trigger Property="Orientation" Value="Horizontal">
+                        <Setter Property="Height" Value="{DynamicResource MetroScrollBarHeight}" />
+                        <Setter Property="Template" Value="{DynamicResource HorizontalScrollBar}" />
+                        <Setter Property="Width" Value="Auto" />
+                    </Trigger>
+                    <Trigger Property="Orientation" Value="Vertical">
+                        <Setter Property="Height" Value="Auto" />
+                        <Setter Property="Template" Value="{DynamicResource VerticalScrollBar}" />
+                        <Setter Property="Width" Value="{DynamicResource MetroScrollBarWidth}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
 
             <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
             <Storyboard x:Key="expandStoryboard">
