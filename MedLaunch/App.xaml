@@ -3,10 +3,207 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MedLaunch"
              Startup="ApplicationStart"
+             
              >
     <Application.Resources>
         
         <ResourceDictionary>
+
+            <!-- Basic Button Styling -->
+            <Style TargetType="Button" BasedOn="{StaticResource MetroButton}">
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Name="border" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" 
+                                    CornerRadius="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,5,0" />                                
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush}"/>                                    
+                                </Trigger>                                                             
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>                
+            </Style>
+
+            <!-- ToggleButton Styling -->
+            <Style TargetType="ToggleButton" BasedOn="{StaticResource MetroToggleButton}">
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                            <Border Name="border" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" 
+                                    CornerRadius="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,5,0" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush}"/>
+                                </Trigger>                                
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsChecked" Value="True">
+                        <Setter Property="Background" Value="{DynamicResource AccentColorBrush2}" />
+                      
+                        <Setter Property="BorderBrush" Value="{DynamicResource GrayBrush5}" />
+                        <Setter Property="BorderThickness" Value="0" />
+                      
+                    </Trigger>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsMouseOver" Value="True" />
+                            <Condition Property="IsChecked" Value="False" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="Background" Value="{DynamicResource GrayBrush8}" />
+                    </MultiTrigger>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsMouseOver" Value="True" />
+                            <Condition Property="IsChecked" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="Background" Value="{DynamicResource GrayBrush3}" />
+                    </MultiTrigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="Background" Value="{DynamicResource GrayBrush7}" />
+                    </Trigger>
+                    <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                        <Setter Property="BorderBrush" Value="{DynamicResource ButtonMouseOverBorderBrush}" />
+                        <Setter Property="BorderThickness" Value="0" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <!-- CheckBox Styling -->
+            <Style TargetType="CheckBox" BasedOn="{StaticResource MetroCheckBox}">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Cursor" Value="Hand" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <!-- ComboBox Styling -->
+            <Style TargetType="ComboBox" BasedOn="{StaticResource MetroComboBox}">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Cursor" Value="Hand" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+          
+            <!-- Slider Styling -->
+           
+            <Style TargetType="Slider" BasedOn="{StaticResource MetroSlider}">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Cursor" Value="Hand" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            
+          
+
+            <!-- RadioButton Styling -->
+            <Style TargetType="RadioButton" BasedOn="{StaticResource MetroRadioButton}">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Cursor" Value="Hand" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <!-- Border Styling -->
+            <Style TargetType="Border" x:Key="Borders1">
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
+            </Style>
+
+
+            <!-- TabControl Styling -->
+            <Style x:Key="MetroTabControl" TargetType="{x:Type TabControl}">
+                <Setter Property="Background" Value="{x:Null}" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="SnapsToDevicePixels" Value="True" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TabControl}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition x:Name="ColumnDefinition0" />
+                                    <ColumnDefinition x:Name="ColumnDefinition1" Width="0" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition x:Name="RowDefinition0" Height="Auto" />
+                                    <RowDefinition x:Name="RowDefinition1" Height="*" />
+                                </Grid.RowDefinitions>
+                                <TabPanel x:Name="HeaderPanel"
+                                  Grid.Row="0"
+                                  Grid.Column="0"
+                                  Panel.ZIndex="1"
+                                  IsItemsHost="true"
+                                  KeyboardNavigation.TabIndex="1" />
+                                <Border x:Name="ContentPanel"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                KeyboardNavigation.DirectionalNavigation="Contained"
+                                KeyboardNavigation.TabIndex="2"
+                                KeyboardNavigation.TabNavigation="Local"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                    <ContentPresenter x:Name="PART_SelectedContentHost"
+                                              Margin="{TemplateBinding Padding}"
+                                              ContentSource="SelectedContent"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                </Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="TabStripPlacement" Value="Bottom">
+                                    <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
+                                    <Setter TargetName="HeaderPanel" Property="Grid.Row" Value="1" />
+                                    <Setter TargetName="HeaderPanel" Property="Margin" Value="2 0 2 2" />
+                                    <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
+                                    <Setter TargetName="RowDefinition1" Property="Height" Value="Auto" />
+                                </Trigger>
+                                <Trigger Property="TabStripPlacement" Value="Left">
+                                    <Setter TargetName="ColumnDefinition0" Property="Width" Value="Auto" />
+                                    <Setter TargetName="ColumnDefinition1" Property="Width" Value="*" />
+                                    <Setter TargetName="ContentPanel" Property="Grid.Column" Value="1" />
+                                    <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
+                                    <Setter TargetName="HeaderPanel" Property="Grid.Column" Value="0" />
+                                    <Setter TargetName="HeaderPanel" Property="Grid.Row" Value="0" />
+                                    <Setter TargetName="HeaderPanel" Property="Margin" Value="2 2 0 2" />
+                                    <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
+                                    <Setter TargetName="RowDefinition1" Property="Height" Value="0" />
+                                </Trigger>
+                                <Trigger Property="TabStripPlacement" Value="Right">
+                                    <Setter TargetName="ColumnDefinition0" Property="Width" Value="*" />
+                                    <Setter TargetName="ColumnDefinition1" Property="Width" Value="Auto" />
+                                    <Setter TargetName="ContentPanel" Property="Grid.Column" Value="0" />
+                                    <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
+                                    <Setter TargetName="HeaderPanel" Property="Grid.Column" Value="1" />
+                                    <Setter TargetName="HeaderPanel" Property="Grid.Row" Value="0" />
+                                    <Setter TargetName="HeaderPanel" Property="Margin" Value="0 2 2 2" />
+                                    <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
+                                    <Setter TargetName="RowDefinition1" Property="Height" Value="0" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+
 
             <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
             <Storyboard x:Key="expandStoryboard">

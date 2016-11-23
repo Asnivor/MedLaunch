@@ -66,7 +66,7 @@
                         <RadioButton GroupName="flt" x:Name="btnFavorites" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnFavorites_Checked">Favorites</RadioButton>
                         <RadioButton GroupName="flt" x:Name="btnUnscraped" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnUnscraped_Checked">Unscraped Games</RadioButton>
 
-                        <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0">
+                        <Border Style="{StaticResource Borders1}" Margin="0" Grid.Column="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Roms">
                                 <Expander.ContextMenu>
                                     <ContextMenu>
@@ -210,7 +210,7 @@
                             </Expander>
                         </Border>
 
-                        <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0">
+                        <Border Style="{StaticResource Borders1}"  Margin="0" Grid.Column="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Disks" >
                                 <Expander.ContextMenu>
                                     <ContextMenu>
@@ -270,7 +270,7 @@
                                 </StackPanel>
                             </Expander>
                         </Border>
-                        <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0">
+                        <Border Style="{StaticResource Borders1}" Margin="0" Grid.Column="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Scanning" >
                                 <StackPanel x:Name="spScanning">
                                     <Button x:Name="btnRescanRoms" HorizontalContentAlignment="Left" Background="{DynamicResource AccentColorBrush}" Click="RescanRoms">Rescan All Roms</Button>
@@ -279,7 +279,7 @@
                             </Expander>
                         </Border>
 <!--
-                        <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0">
+                        <Border Style="{StaticResource Borders1}" Margin="0" Grid.Column="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Misc" >
                                 <StackPanel x:Name="spGlobalSettings">
                                     
@@ -386,7 +386,7 @@
                             <ScrollViewer x:Name="srcSidebar" Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" MinWidth="150" Width="{Binding ElementName=grdGamesSidebar, Path=ActualWidth}" Height="{Binding ElementName=grdGamesSidebar, Path=ActualHeight}">
                                 <WrapPanel  Orientation="Horizontal" x:Name="SidebarWrapPanel">
 
-                                <Border x:Name="brdSidebarGame" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSidebarGame" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
                                     <Expander x:Name="expGameInfo" BorderThickness="0" Header="Game Stats">
                                         <StackPanel x:Name="spSidebarGame">
                                             <Grid Margin="0">
@@ -453,7 +453,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSidebarGameInformation" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSidebarGameInformation" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
                                     <Expander x:Name="expGameInformation" IsExpanded="True" BorderThickness="0" Header="Game Info" >
                                         <StackPanel x:Name="spSidebarGameInformation">
                                             <Grid Margin="0">
@@ -481,7 +481,7 @@
                                                 <Image x:Name="imgBanner" Grid.Column="0" Grid.Row="0" Margin="5" Grid.ColumnSpan="2">
                                                     <Image.ToolTip>
                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top" />
                                                             </Border>
                                                         </ToolTip>
@@ -493,7 +493,7 @@
                                                     <Image x:Name="imgBoxartFront" Grid.Column="0" Grid.Row="0" Margin="5" >
                                                         <Image.ToolTip>
                                                             <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                     <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                 </Border>
                                                             </ToolTip>
@@ -502,7 +502,7 @@
                                                     <Image x:Name="imgBoxartBack" Grid.Column="1" Grid.Row="0" Margin="5">
                                                         <Image.ToolTip>
                                                             <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                     <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                 </Border>
                                                             </ToolTip>
@@ -511,7 +511,7 @@
                                                     <Image x:Name="imgMedia" Grid.Column="2" Grid.Row="0" Margin="5">
                                                         <Image.ToolTip>
                                                             <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                     <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                 </Border>
                                                             </ToolTip>
@@ -621,7 +621,7 @@
 
                                                 <!-- Screenshots -->
 
-                                                <Border Grid.Row="7" Grid.ColumnSpan="2" x:Name="brdSidebarOverview" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0"  >
+                                                <Border Style="{StaticResource Borders1}" Grid.Row="7" Grid.ColumnSpan="2" x:Name="brdSidebarOverview" Margin="0" Grid.Column="0"  >
                                                     <Expander x:Name="expOverview" Grid.Row="7" Grid.ColumnSpan="2"  Header="Overview">
                                                         <TextBlock x:Name="tbOverview" TextWrapping="Wrap" >
 
@@ -629,7 +629,7 @@
                                                     </Expander>
                                                 </Border>
 
-                                                <Border Grid.Row="8" Grid.ColumnSpan="2" x:Name="brdManuals" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0"  >
+                                                <Border Style="{StaticResource Borders1}" Grid.Row="8" Grid.ColumnSpan="2" x:Name="brdManuals" Margin="0" Grid.Column="0"  >
                                                     <Expander x:Name="expManuals" Grid.Row="7" Grid.ColumnSpan="2"  Header="Game Documents">
                                                         <UniformGrid x:Name="gridManuals" Columns="1">
                                                             <Button x:Name="btnMan1" Click="btnOpenManual_Click" Content="Manual 1"  />
@@ -656,7 +656,7 @@
                                                     </Expander>
                                                 </Border>
 
-                                                <Border Grid.Row="9" Grid.ColumnSpan="2" x:Name="brdSidebarScreenshots" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0">
+                                                <Border Style="{StaticResource Borders1}" Grid.Row="9" Grid.ColumnSpan="2" x:Name="brdSidebarScreenshots" Margin="0" Grid.Column="0">
                                                     <Expander x:Name="expScreenshots" IsExpanded="True" BorderThickness="0" Header="Screenshots" >
                                                         <StackPanel x:Name="spSidebarScreenshots">
 
@@ -664,7 +664,7 @@
                                                                 <Image x:Name="ss1" Grid.Column="0" Grid.Row="0" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -673,7 +673,7 @@
                                                                 <Image x:Name="ss2" Grid.Column="1" Grid.Row="0" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -682,7 +682,7 @@
                                                                 <Image x:Name="ss3" Grid.Column="2" Grid.Row="0" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -691,7 +691,7 @@
                                                                 <Image x:Name="ss4" Grid.Column="3" Grid.Row="0" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -700,7 +700,7 @@
                                                                 <Image x:Name="ss5" Grid.Column="0" Grid.Row="1" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -709,7 +709,7 @@
                                                                 <Image x:Name="ss6" Grid.Column="1" Grid.Row="1" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -718,7 +718,7 @@
                                                                 <Image x:Name="ss7" Grid.Column="2" Grid.Row="1" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -727,7 +727,7 @@
                                                                 <Image x:Name="ss8" Grid.Column="3" Grid.Row="1" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -736,7 +736,7 @@
                                                                 <Image x:Name="ss9" Grid.Column="0" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -745,7 +745,7 @@
                                                                 <Image x:Name="ss10" Grid.Column="1" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -754,7 +754,7 @@
                                                                 <Image x:Name="ss11" Grid.Column="2" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -763,7 +763,7 @@
                                                                 <Image x:Name="ss12" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -772,7 +772,7 @@
                                                                 <Image x:Name="ss13" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -781,7 +781,7 @@
                                                                 <Image x:Name="ss14" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -790,7 +790,7 @@
                                                                 <Image x:Name="ss15" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -799,7 +799,7 @@
                                                                 <Image x:Name="ss16" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -808,7 +808,7 @@
                                                                 <Image x:Name="ss17" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -817,7 +817,7 @@
                                                                 <Image x:Name="ss18" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -826,7 +826,7 @@
                                                                 <Image x:Name="ss19" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -835,7 +835,7 @@
                                                                 <Image x:Name="ss20" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -844,7 +844,7 @@
                                                                 <Image x:Name="ss21" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -853,7 +853,7 @@
                                                                 <Image x:Name="ss22" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -862,7 +862,7 @@
                                                                 <Image x:Name="ss23" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -871,7 +871,7 @@
                                                                 <Image x:Name="ss24" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -880,7 +880,7 @@
                                                                 <Image x:Name="ss25" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -889,7 +889,7 @@
                                                                 <Image x:Name="ss26" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -898,7 +898,7 @@
                                                                 <Image x:Name="ss27" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -907,7 +907,7 @@
                                                                 <Image x:Name="ss28" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -916,7 +916,7 @@
                                                                 <Image x:Name="ss29" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -925,7 +925,7 @@
                                                                 <Image x:Name="ss30" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -934,7 +934,7 @@
                                                                 <Image x:Name="ss31" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -943,7 +943,7 @@
                                                                 <Image x:Name="ss32" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -952,7 +952,7 @@
                                                                 <Image x:Name="ss33" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -961,7 +961,7 @@
                                                                 <Image x:Name="ss34" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -970,7 +970,7 @@
                                                                 <Image x:Name="ss35" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -979,7 +979,7 @@
                                                                 <Image x:Name="ss36" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -994,7 +994,7 @@
 
                                                 <!-- FanArt -->
 
-                                                <Border Grid.Row="10" Grid.ColumnSpan="2" x:Name="brdSidebarFanArt" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0" >
+                                                <Border Style="{StaticResource Borders1}" Grid.Row="10" Grid.ColumnSpan="2" x:Name="brdSidebarFanArt" Margin="0" Grid.Column="0" >
                                                     <Expander x:Name="expFanArt" IsExpanded="True" BorderThickness="0" Header="FanArt" >
                                                         <StackPanel x:Name="spSidebarFanArt">
 
@@ -1003,7 +1003,7 @@
                                                                 <Image x:Name="fa1" Grid.Column="0" Grid.Row="0" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1012,7 +1012,7 @@
                                                                 <Image x:Name="fa2" Grid.Column="1" Grid.Row="0" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1021,7 +1021,7 @@
                                                                 <Image x:Name="fa3" Grid.Column="2" Grid.Row="0" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1030,7 +1030,7 @@
                                                                 <Image x:Name="fa4" Grid.Column="3" Grid.Row="0" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1039,7 +1039,7 @@
                                                                 <Image x:Name="fa5" Grid.Column="0" Grid.Row="1" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1048,7 +1048,7 @@
                                                                 <Image x:Name="fa6" Grid.Column="1" Grid.Row="1" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1057,7 +1057,7 @@
                                                                 <Image x:Name="fa7" Grid.Column="2" Grid.Row="1" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1066,7 +1066,7 @@
                                                                 <Image x:Name="fa8" Grid.Column="3" Grid.Row="1" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1075,7 +1075,7 @@
                                                                 <Image x:Name="fa9" Grid.Column="0" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1084,7 +1084,7 @@
                                                                 <Image x:Name="fa10" Grid.Column="1" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1093,7 +1093,7 @@
                                                                 <Image x:Name="fa11" Grid.Column="2" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1102,7 +1102,7 @@
                                                                 <Image x:Name="fa12" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1111,7 +1111,7 @@
                                                                 <Image x:Name="fa13" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1120,7 +1120,7 @@
                                                                 <Image x:Name="fa14" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1129,7 +1129,7 @@
                                                                 <Image x:Name="fa15" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1138,7 +1138,7 @@
                                                                 <Image x:Name="fa16" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1147,7 +1147,7 @@
                                                                 <Image x:Name="fa17" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1156,7 +1156,7 @@
                                                                 <Image x:Name="fa18" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1165,7 +1165,7 @@
                                                                 <Image x:Name="fa19" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1174,7 +1174,7 @@
                                                                 <Image x:Name="fa20" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1183,7 +1183,7 @@
                                                                 <Image x:Name="fa21" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1192,7 +1192,7 @@
                                                                 <Image x:Name="fa22" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1201,7 +1201,7 @@
                                                                 <Image x:Name="fa23" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1210,7 +1210,7 @@
                                                                 <Image x:Name="fa24" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1219,7 +1219,7 @@
                                                                 <Image x:Name="fa25" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1228,7 +1228,7 @@
                                                                 <Image x:Name="fa26" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1237,7 +1237,7 @@
                                                                 <Image x:Name="fa27" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1246,7 +1246,7 @@
                                                                 <Image x:Name="fa28" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1255,7 +1255,7 @@
                                                                 <Image x:Name="fa29" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1264,7 +1264,7 @@
                                                                 <Image x:Name="fa30" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1273,7 +1273,7 @@
                                                                 <Image x:Name="fa31" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1282,7 +1282,7 @@
                                                                 <Image x:Name="fa32" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1291,7 +1291,7 @@
                                                                 <Image x:Name="fa33" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1300,7 +1300,7 @@
                                                                 <Image x:Name="fa34" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1309,7 +1309,7 @@
                                                                 <Image x:Name="fa35" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1318,7 +1318,7 @@
                                                                 <Image x:Name="fa36" Grid.Column="3" Grid.Row="2" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                                 <Image Source="{Binding Source}" Stretch="Uniform" ToolTipService.Placement="Top"/>
                                                                             </Border>
                                                                         </ToolTip>
@@ -1338,7 +1338,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdScrapingOptions" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdScrapingOptions" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
                                     <Expander x:Name="expScrapingOptions" IsExpanded="True" BorderThickness="0" Header="Scraping Options" >
                                         <StackPanel x:Name="spSidebarScrapingOptions">
 
@@ -1388,7 +1388,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSidebarSystem" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSidebarSystem" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
                                     <Expander x:Name="expSysInfo" IsExpanded="True" BorderThickness="0" Header="System Info" >
                                         <StackPanel x:Name="spSidebarSystem">
                                             <Grid Margin="0">
@@ -1409,7 +1409,7 @@
 
                                                     <Image.ToolTip>
                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
-                                                            <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                                            <Border Style="{StaticResource Borders1}" BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
                                                                 <Image Source="{Binding Source}" Stretch="None" />
                                                             </Border>
                                                         </ToolTip>
@@ -1476,7 +1476,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <WrapPanel Orientation="Vertical" Grid.Column="0" Margin="0" x:FieldModifier="public" x:Name="wpConfigLeftPane">
-                        <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0">
+                        <Border Style="{StaticResource Borders1}" Margin="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Configs" >
                                 <WrapPanel Orientation="Vertical" x:Name="ConfigSelectorWrapPanel">
                                     <!--
@@ -1772,7 +1772,7 @@
                             <WrapPanel HorizontalAlignment="Left" Orientation="Vertical" x:Name="ConfigWrapPanel">
 
                                 <!-- General Border -->
-                                <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="General">
                                         <StackPanel Margin="10">
 
@@ -1832,7 +1832,7 @@
                                     </Expander>
                                 </Border>
                                 <!-- Audio Border -->
-                                <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Audio">
                                         <StackPanel Margin="10">
 
@@ -1906,7 +1906,7 @@
                                     </Expander>
                                 </Border>
                                 <!-- OSD Border -->
-                                <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="OSD">
                                         <StackPanel Margin="10">
 
@@ -1949,7 +1949,7 @@
                                     </Expander>
                                 </Border>
                                 <!-- Video Border -->
-                                <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Video">
                                         <StackPanel Margin="10">
 
@@ -2092,7 +2092,7 @@
                                     </Expander>
                                 </Border>
                                 <!-- Video Filters Border -->
-                                <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Name="brdNONDYNAMICvfilters">
+                                <Border Style="{StaticResource Borders1}" Margin="10" Name="brdNONDYNAMICvfilters">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Video Filters">
                                         <StackPanel Margin="10">
 
@@ -2196,7 +2196,7 @@
                                     </Expander>
                                 </Border>
                                 <!-- Control Border -->
-                                <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Control">
                                         <StackPanel Margin="10">
 
@@ -2248,7 +2248,7 @@
 
                                 <!-- lynx -->      
                                 
-                                <Border x:Name="brdSpecificLynx2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificLynx2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Lynx Filters/Misc">
 
                                         <StackPanel>
@@ -2340,7 +2340,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificLynx3" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificLynx3" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Lynx Resolution">
 
                                         <StackPanel>
@@ -2435,7 +2435,7 @@
                                     </Expander>
                                 </Border>
                                 
-                                <Border x:Name="brdSpecificLynx1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificLynx1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Lynx Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_lynx__lowpass">Enable Lowpass Filter (sound)</CheckBox>
@@ -2445,7 +2445,7 @@
                                 </Border>
                                 
                                 <!-- gg -->
-                                <Border x:Name="brdSpecificGg1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGg1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Game Gear Filters/Misc">
 
                                         <StackPanel>
@@ -2537,7 +2537,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificGg2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGg2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Game Gear Resolution">
 
                                         <StackPanel>
@@ -2635,7 +2635,7 @@
 
                                 <!-- gb -->
 
-                                <Border x:Name="brdSpecificGb2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGb2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Gameboy Filters/Misc">
 
                                         <StackPanel>
@@ -2727,7 +2727,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificGb3" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGb3" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Gameboy Resolution">
 
                                         <StackPanel>
@@ -2822,7 +2822,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificGb1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGb1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Gameboy Specific Settings">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -2847,7 +2847,7 @@
                                 
                                 
                                 <!-- gba -->
-                                <Border x:Name="brdSpecificGba1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGba1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Gameboy Advance Filters/Misc">
 
                                         <StackPanel>
@@ -2939,7 +2939,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificGba2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGba2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Gameboy Advance Resolution">
 
                                         <StackPanel>
@@ -3036,7 +3036,7 @@
                                 
                                 <!-- ngp -->
                                 
-                                <Border x:Name="brdSpecificNgp2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNgp2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="NGP Filters/Misc">
 
                                         <StackPanel>
@@ -3128,7 +3128,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificNgp3" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNgp3" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="NGP Resolution">
 
                                         <StackPanel>
@@ -3223,7 +3223,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificNgp1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNgp1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="NeoGeo Pocket Specific Settings">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -3246,7 +3246,7 @@
 
                                 <!-- nes -->
 
-                                <Border x:Name="brdSpecificNes5" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNes5" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="NES Filters/Misc">
 
                                         <StackPanel>
@@ -3337,7 +3337,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificNes6" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNes6" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="NES Resolution">
 
                                         <StackPanel>
@@ -3432,7 +3432,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificNes1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNes1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="NES Specific General Settings">
                                         <StackPanel Margin="10">
 
@@ -3547,7 +3547,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificNes2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNes2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="NES NTSC Advanced">
                                         <StackPanel Margin="10">
 
@@ -3616,7 +3616,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificNes3" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNes3" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="NES Specific Video Settings">
                                         <StackPanel Margin="10">
 
@@ -3688,7 +3688,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificNes4" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNes4" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="NES Video Settings (Cont.)">
                                         <StackPanel Margin="10">
 
@@ -3746,7 +3746,7 @@
 
                                 <!-- pce_fast -->
 
-                                <Border x:Name="brdSpecificPce_fast3" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce_fast3" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PC-Engine (fast) Filters/Misc">
 
                                         <StackPanel>
@@ -3838,7 +3838,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPce_fast4" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce_fast4" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PC-Engine (fast) Resolution">
 
                                         <StackPanel>
@@ -3934,7 +3934,7 @@
                                 </Border>
 
 
-                                <Border x:Name="brdSpecificPce_fast1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce_fast1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PC-Engine (fast) Specific Settings">
                                         <StackPanel Margin="10">
 
@@ -3998,7 +3998,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPce_fast2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce_fast2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PC-Engine (fast) Continued">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -4093,7 +4093,7 @@
 
                                 <!-- pce -->
 
-                                <Border x:Name="brdSpecificPce3" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce3" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PC-Engine Filters/Misc">
 
                                         <StackPanel>
@@ -4185,7 +4185,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPce4" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce4" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PC-Engine Resolution">
 
                                         <StackPanel>
@@ -4281,7 +4281,7 @@
                                 </Border>
 
 
-                                <Border x:Name="brdSpecificPce1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PC-Engine Specific Settings">
                                         <StackPanel Margin="10">
 
@@ -4358,7 +4358,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPce2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PC-Engine Continued">
                                         <StackPanel Margin="10">
 
@@ -4487,7 +4487,7 @@
                                 <!-- pcfx-->
 
 
-                                <Border x:Name="brdSpecificPcfx4" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPcfx4" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PC-FX Filters/Misc">
 
                                         <StackPanel>
@@ -4579,7 +4579,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPcfx3" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPcfx3" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PC-FX Resolution">
 
                                         <StackPanel>
@@ -4674,7 +4674,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPcfx1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPcfx1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PC-FX Specific Settings">
                                         <StackPanel Margin="10">
 
@@ -4767,7 +4767,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPcfx2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPcfx2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PC-FX Continued">
                                         <StackPanel Margin="10">
 
@@ -4882,7 +4882,7 @@
 
                                 <!-- sms -->
 
-                                <Border x:Name="brdSpecificSms2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSms2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Master System Filters/Misc">
 
                                         <StackPanel>
@@ -4974,7 +4974,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificSms3" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSms3" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Master System Resolution">
 
                                         <StackPanel>
@@ -5069,7 +5069,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificSms1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSms1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Master System Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_sms__fm">FM Sound Emulation</CheckBox>
@@ -5096,7 +5096,7 @@
 
                                 <!-- md -->
 
-                                <Border x:Name="brdSpecificMd2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificMd2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="MegaDrive Filters/Misc">
 
                                         <StackPanel>
@@ -5188,7 +5188,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificMd3" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificMd3" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="MegaDrive Resolution">
 
                                         <StackPanel>
@@ -5283,7 +5283,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificMd1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificMd1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="MegaDrive Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_md__correct_aspect">Correct Aspect Ratio</CheckBox>
@@ -5446,7 +5446,7 @@
 
                                 <!-- snes_faust -->
 
-                                <Border x:Name="brdSpecificSnes_faust2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes_faust2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Snes (Faust) Filters/Misc">
 
                                         <StackPanel>
@@ -5538,7 +5538,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificSnes_faust3" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes_faust3" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="SNES (Faust) Resolution">
 
                                         <StackPanel>
@@ -5633,7 +5633,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificSnes_faust1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes_faust1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="SNES (Faust) Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_snes_faust__spex">1-Frame Speculative Video Execution</CheckBox>
@@ -5700,7 +5700,7 @@
 
                                 <!-- snes -->
 
-                                <Border x:Name="brdSpecificSnes2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Snes Filters/Misc">
 
                                         <StackPanel>
@@ -5792,7 +5792,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificSnes3" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes3" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Snes Resolution">
 
                                         <StackPanel>
@@ -5887,7 +5887,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificSnes1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="SNES Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_snes__correct_aspect">Correct Aspect Ratio</CheckBox>
@@ -5960,7 +5960,7 @@
 
                                 <!-- vb -->
 
-                                <Border x:Name="brdSpecificVb2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificVb2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Virtual Boy Filters/Misc">
 
                                         <StackPanel>
@@ -6052,7 +6052,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificVb3" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificVb3" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Virtual Boy Resolution">
 
                                         <StackPanel>
@@ -6147,7 +6147,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificVb1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificVb1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Virtual Boy Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_vb__input__instant_read_hack">Input Latency Reduction Hack</CheckBox>
@@ -6254,7 +6254,7 @@
 
                                 <!-- ss -->
 
-                                <Border x:Name="brdSpecificSs3" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSs3" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Saturn Filters/Misc">
 
                                         <StackPanel>
@@ -6346,7 +6346,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificSs4" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSs4" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Saturn Resolution">
 
                                         <StackPanel>
@@ -6441,7 +6441,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificSs1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSs1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Saturn Specific Settings">
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_ss__bios_sanity">Enable BIOS (ROM) Sanity Checks</CheckBox>
@@ -6565,7 +6565,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificSs2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSs2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Saturn Controller Settings">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -6708,7 +6708,7 @@
 
                                 <!-- psx -->
 
-                                <Border x:Name="brdSpecificPsx11" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx11" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Psx Filters/Misc">
 
                                         <StackPanel>
@@ -6800,7 +6800,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsx12" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx12" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Psx Resolution">
 
                                         <StackPanel>
@@ -6895,7 +6895,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsx1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Playstation Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_psx__bios_sanity">Enable BIOS (ROM) Sanity Checks</CheckBox>
@@ -6998,7 +6998,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsx2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PSX Control Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_psx__input__analog_mode_ct">Analog Mode Combo-Button Toggle</CheckBox>
@@ -7044,7 +7044,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsx3" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx3" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 1">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -7099,7 +7099,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsx4" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx4" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 2">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -7154,7 +7154,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsx5" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx5" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 3">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -7209,7 +7209,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsx6" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx6" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 4">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -7264,7 +7264,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsx7" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx7" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 5">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -7319,7 +7319,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsx8" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx8" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 6">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -7374,7 +7374,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsx9" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx9" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 7">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -7429,7 +7429,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificPsx10" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx10" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 8">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
@@ -7489,7 +7489,7 @@
                                 <!-- wswan -->
 
 
-                                <Border x:Name="brdSpecificWswan2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificWswan2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="WonderSwan Filters/Misc">
 
                                         <StackPanel>
@@ -7581,7 +7581,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificWswan3" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificWswan3" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="WonderSwan Resolution">
 
                                         <StackPanel>
@@ -7676,7 +7676,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSpecificWswan1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificWswan1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="WonderSwan Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_wswan__rotateinput">Virtually Rotate D-Pads With Screen</CheckBox>
@@ -7802,7 +7802,7 @@
                             Show All Settings
                         </RadioButton>
 
-                        <Border BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="0">
+                        <Border Style="{StaticResource Borders1}" Margin="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Filters" >
                                 <WrapPanel Orientation="Vertical" x:Name="SettingsSelectorWrapPanel">
 
@@ -7867,7 +7867,7 @@
                         <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Width="{Binding ElementName=SettingGrid, Path=ActualWidth}" Height="{Binding ElementName=settingGrid, Path=ActualHeight}">
                             <WrapPanel HorizontalAlignment="Left" Orientation="Vertical" x:Name="SettingWrapPanel">
 
-                                <Border x:Name="brdMedLaunch" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdMedLaunch" Margin="10" Grid.Column="0">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="MedLaunch Settings" >
                                         <StackPanel x:Name="spMedLaunchSettings">
                                             <Grid Margin="0">
@@ -7896,7 +7896,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
 
-                                                <Button HorizontalContentAlignment="Left" x:Name="btnPathMednafen" Grid.Column="0" Grid.Row="1" Click="btnPathMednafen_Click">Mednafen Folder</Button>
+                                                <Button  HorizontalContentAlignment="Left" x:Name="btnPathMednafen" Grid.Column="0" Grid.Row="1" Click="btnPathMednafen_Click">Mednafen Folder</Button>
                                                 <TextBox x:Name="tbPathMednafen" Grid.Column="1" Grid.Row="1"></TextBox>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3" x:Name="dpZoomSlider">
@@ -7995,7 +7995,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdLibrary" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdLibrary" Margin="10" Grid.Column="0">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Library Settings" >
                                         <StackPanel x:Name="spLibrary">
                                             <Grid Margin="0">
@@ -8063,7 +8063,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdScrapingSettings" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdScrapingSettings" Margin="10" Grid.Column="0">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Game Scraping Options" >
                                         <StackPanel x:Name="spScrapingSettings">
                                             <Grid Margin="0">
@@ -8149,7 +8149,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdMednafenPaths" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdMednafenPaths" Margin="10" Grid.Column="0">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Mednafen Paths" >
                                         <StackPanel x:Name="spMedPathSettings">
                                             <Grid Margin="0">
@@ -8214,7 +8214,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdGameFolders" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdGameFolders" Margin="10" Grid.Column="0">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Game Folders" >
                                         <StackPanel x:Name="spPathSettings">
                                             <Grid Margin="0">
@@ -8306,7 +8306,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdSystemBios" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSystemBios" Margin="10" Grid.Column="0">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="System BIOS/ROMs" >
                                         <StackPanel x:Name="spSysBiosSettings">
                                             <Grid Margin="0">
@@ -8373,7 +8373,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdNetplay1" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdNetplay1" Margin="10" Grid.Column="0">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Netplay Settings" >
                                                                              
 
@@ -8446,7 +8446,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdNetplay2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="2">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdNetplay2" Margin="10" Grid.Column="2">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Netplay Server Settings" >
 
 
@@ -8524,7 +8524,7 @@
                                     </Expander>
                                 </Border>
 
-                                <Border x:Name="brdEmulator" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="2" Margin="10" Grid.Column="0">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdEmulator" Margin="10" Grid.Column="0">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Emulator Engine" >
                                         <StackPanel x:Name="spEmulatorSettings">
 

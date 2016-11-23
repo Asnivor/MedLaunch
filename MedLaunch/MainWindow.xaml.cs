@@ -301,6 +301,23 @@ namespace MedLaunch
             lbl6.Visibility = Visibility.Collapsed;
             lblNoUpdate.Visibility = Visibility.Collapsed;
 
+            /*
+            // change mouse-over cursor on buttons to hand
+            foreach (Button btn in FindVisualChildren<Button>(this))
+            {
+                btn.Cursor = Cursors.Hand;
+            }
+            // change mouse-over cursor on checkboxes to hand
+            foreach (CheckBox cb in FindVisualChildren<CheckBox>(this))
+            {
+                cb.Cursor = Cursors.Hand;
+            }
+            // change mouse-over cursor on togglebutton to hand
+            foreach (ToggleButton btn in FindVisualChildren<ToggleButton>(this))
+            {
+                btn.Cursor = Cursors.Hand;
+            }
+            */
 
         }
 
@@ -3123,6 +3140,28 @@ namespace MedLaunch
                 GameListBuilder.UpdateFlag();
             }
         }
+
+
+        public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        {
+            if (depObj != null)
+            {
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+                {
+                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+                    if (child != null && child is T)
+                    {
+                        yield return (T)child;
+                    }
+
+                    foreach (T childOfChild in FindVisualChildren<T>(child))
+                    {
+                        yield return childOfChild;
+                    }
+                }
+            }
+        }
+
     }
     /*
     public class SliderIgnoreDelta : Slider
@@ -3134,6 +3173,6 @@ namespace MedLaunch
     }
     */
 
-
+    
 
 }
