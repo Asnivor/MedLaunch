@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace MedLaunch.Classes.Scraper.DAT.NOINTRO
 {
@@ -34,46 +35,34 @@ namespace MedLaunch.Classes.Scraper.DAT.NOINTRO
             return l;
         }
 
+       
+
         public static List<NoIntroObject> Parse(string dat, int systemId)
         {
             List<NoIntroObject> list = new List<NoIntroObject>();
 
-            // spit the string based on 2 new lines
-            string[] split1 = dat.Split(new string[] { "\r\n\r\n" }, StringSplitOptions.None);
-            // count the number of entities
-            int count = split1.Length;
-            // iterate over each entity (exluding the first)
-            for (int i = 1; i < count; i++)
+            // replace illegal characters
+            dat = dat.Replace(" & ", " &amp; ");
+
+            // parse into an xml document
+            XDocument xmlDoc = XDocument.Parse(dat);
+            //var games = xmlDoc.Descendants("game");
+
+            // iterate through each game
+            foreach (XElement element in xmlDoc.Root.Elements("game"))
             {
-                // now split the entity based on single new line
-                string[] split2 = split1[i].Replace("\t", "").Split(new string[] { "\r\n" }, StringSplitOptions.None);
-
-                // continue the loop if the entity is empty
-                if (split2.Length < 2)
-                    continue;
-
                 NoIntroObject no = new NoIntroObject();
                 no.SystemId = systemId;
+                no.Name = (string)element.Attribute("name");
+                no.Description = (string)element.Element("description");
+                XElement rom = element.Element("rom");
 
-                // process name line
-                no.Name = split2[1].Replace("name", "").Replace("\"", "").Trim();
-                // process description
-                no.Description = split2[2].Replace("description", "").Replace("\"", "").Trim();
-                // process big line
-                string bigline = split2[3].Replace("rom ( name ", "").Replace("\"", "").Trim();
-                // split based on size
-                string[] split3 = bigline.Split(new string[] { "size" }, StringSplitOptions.None);
-                no.Rom = split3[0].Trim();
-                // split remaining details
-                string[] split4 = split3[1].Trim().Split(' ');
-                no.Size = split4[0].Trim();
-                no.CRC = split4[2].Trim();
-                no.MD5 = split4[4].Trim();
-                no.SHA1 = split4[6].Replace(")", "").Trim();
-
+                no.RomName = (string)rom.Attribute("name");
+                no.Size = (string)rom.Attribute("size");
+                no.CRC = (string)rom.Attribute("crc");
+                
                 list.Add(no);
             }
-
             return list;
         }
 
@@ -82,28 +71,28 @@ namespace MedLaunch.Classes.Scraper.DAT.NOINTRO
             List<string> searchStr = new List<string>();
             switch (systemId)
             {
-                case 1:
-                    searchStr.Add("Nintendo - Game Boy (");
-                    searchStr.Add("Nintendo - Game Boy Color (");
-                    break;
                 case 2:
-                    searchStr.Add("Nintendo - Game Boy Advance (");
+                    searchStr.Add("Nintendo - Game Boy Advance Parent-Clone ");
                     break;
+                case 1:
+                    searchStr.Add("Nintendo - Game Boy Parent-Clone ");
+                    searchStr.Add("Nintendo - Game Boy Color Parent-Clone ");
+                    break;                
                 case 3:
-                    searchStr.Add("Atari - Lynx (");
+                    searchStr.Add("Atari - Lynx Parent-Clone ");
                     break;
                 case 4:
-                    searchStr.Add("Sega - Mega Drive - Genesis (");
+                    searchStr.Add("Sega - Mega Drive - Genesis Parent-Clone ");
                     break;
                 case 5:
-                    searchStr.Add("Sega - Game Gear (");
+                    searchStr.Add("Sega - Game Gear Parent-Clone ");
                     break;
                 case 6:
                     searchStr.Add("SNK - Neo Geo Pocket ");
                     break;
                 case 7:
-                    searchStr.Add("NEC - PC Engine");
-                    searchStr.Add("NEC - Super");
+                    searchStr.Add("NEC - PC Engine ");
+                    searchStr.Add("NEC - PC Engine ");
                     break;
                 case 10:
                     searchStr.Add("Sega - Master System ");

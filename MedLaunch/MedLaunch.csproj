@@ -212,6 +212,7 @@
     <Compile Include="Classes\GamesLibrary\GameListBuilder.cs" />
     <Compile Include="Classes\GamesLibrary\GamesLibraryDataGridRefresh.cs" />
     <Compile Include="Classes\Input\Controller.cs" />
+    <Compile Include="Classes\IO\Crypto.cs" />
     <Compile Include="Classes\LogParser.cs" />
     <Compile Include="Classes\Scraper\DAT\NOINTRO\ImportNoIntroData.cs" />
     <Compile Include="Classes\Scraper\DAT\NOINTRO\Models\NoIntroCollection.cs" />
@@ -340,61 +341,52 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Data\System\DAT\NOINTRO\Atari - Lynx %2820130303-222635_CM%29.dat">
+    <None Include="Data\System\DAT\NOINTRO\Atari - Lynx Parent-Clone %2820130303-222635%29.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\System\DAT\NOINTRO\Bandai - WonderSwan %2820161023-173917_CM%29.dat">
+    <None Include="Data\System\DAT\NOINTRO\Bandai - WonderSwan Color Parent-Clone %2820160925-023748%29.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\System\DAT\NOINTRO\Bandai - WonderSwan Color %2820160925-023748_CM%29.dat">
+    <None Include="Data\System\DAT\NOINTRO\Bandai - WonderSwan Parent-Clone %2820161023-173917%29.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\System\DAT\NOINTRO\NEC - PC Engine - TurboGrafx 16 %2820161023-001335_CM%29.dat">
+    <None Include="Data\System\DAT\NOINTRO\NEC - PC Engine - TurboGrafx 16 Parent-Clone %2820161023-001335%29.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\System\DAT\NOINTRO\NEC - PC Engine SuperGrafx %2820161023-001148_CM%29.dat">
+    <None Include="Data\System\DAT\NOINTRO\NEC - PC Engine SuperGrafx Parent-Clone %2820161023-001148%29.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\System\DAT\NOINTRO\NEC - Super Grafx %2820110307-113453_CM%29.dat">
+    <None Include="Data\System\DAT\NOINTRO\Nintendo - Game Boy Advance Parent-Clone %2820161117-180412%29.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\System\DAT\NOINTRO\NEC - SuperGrafx %2820161023-001148_CM%29.dat">
+    <None Include="Data\System\DAT\NOINTRO\Nintendo - Game Boy Color Parent-Clone %2820161106-163037%29.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\System\DAT\NOINTRO\Nintendo - Game Boy %2820161106-155610_CM%29.dat">
+    <None Include="Data\System\DAT\NOINTRO\Nintendo - Game Boy Parent-Clone %2820161106-155610%29.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\System\DAT\NOINTRO\Nintendo - Game Boy Advance %2820161117-180412_CM%29.dat">
+    <None Include="Data\System\DAT\NOINTRO\Nintendo - Nintendo Entertainment System Parent-Clone %2820161121-011006%29.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\System\DAT\NOINTRO\Nintendo - Game Boy Advance %28e-Cards%29 %2820160328-074818_CM%29.dat">
+    <None Include="Data\System\DAT\NOINTRO\Nintendo - Super Nintendo Entertainment System Parent-Clone %2820161123-101137%29.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\System\DAT\NOINTRO\Nintendo - Game Boy Color %2820161106-163037_CM%29.dat">
+    <None Include="Data\System\DAT\NOINTRO\Nintendo - Virtual Boy Parent-Clone %2820160317-160921%29.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\System\DAT\NOINTRO\Nintendo - Nintendo Entertainment System %2820161121-011006_CM%29.dat">
+    <None Include="Data\System\DAT\NOINTRO\Sega - Game Gear Parent-Clone %2820161022-094907%29.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\System\DAT\NOINTRO\Nintendo - Super Nintendo Entertainment System %2820161115-051033_CM%29.dat">
+    <None Include="Data\System\DAT\NOINTRO\Sega - Master System - Mark III Parent-Clone %2820160925-050521%29.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\System\DAT\NOINTRO\Nintendo - Virtual Boy %2820160317-160921_CM%29.dat">
+    <None Include="Data\System\DAT\NOINTRO\Sega - Mega Drive - Genesis Parent-Clone %2820161023-001129%29.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\System\DAT\NOINTRO\Sega - Game Gear %2820161022-094907_CM%29.dat">
+    <None Include="Data\System\DAT\NOINTRO\SNK - Neo Geo Pocket Color Parent-Clone %2820151122-095540%29.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\System\DAT\NOINTRO\Sega - Master System - Mark III %2820160925-050521_CM%29.dat">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\System\DAT\NOINTRO\Sega - Mega Drive - Genesis %2820161023-001129_CM%29.dat">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\System\DAT\NOINTRO\SNK - Neo Geo Pocket %2820120228-094313_CM%29.dat">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\System\DAT\NOINTRO\SNK - Neo Geo Pocket Color %2820151122-095540_CM%29.dat">
+    <None Include="Data\System\DAT\NOINTRO\SNK - Neo Geo Pocket Parent-Clone %2820120228-094313%29.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\System\DAT\TOSEC\Atari Lynx - Applications %28TOSEC-v2013-12-13_CM%29.dat">

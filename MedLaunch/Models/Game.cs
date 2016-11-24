@@ -14,6 +14,7 @@ namespace MedLaunch.Models
         public int gameId { get; set; }
         public string gamePath { get; set; }
         public string gameName { get; set; }
+        public string gameNameFromDAT { get; set; }
         public DateTime gameLastPlayed { get; set; }
         public DateTime gameLastFinished { get; set; }
         public int timesPlayed { get; set; }
@@ -27,6 +28,7 @@ namespace MedLaunch.Models
         public bool isDiskBased { get; set; }
         public bool? isScraped { get; set; }
         public int? gdbId { get; set; }
+        public string CRC32 { get; set; }
 
         public static Game GetGame(int gameId)
         {

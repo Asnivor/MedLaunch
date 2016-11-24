@@ -858,7 +858,7 @@ namespace MedLaunch
                 var v = Convert.ToDouble(value);
                 p.SetValue(settings, v, null);
             }
-            if (p.PropertyType == typeof(double?))
+            if (p.PropertyType == typeof(double?) && value != "")
             {
                 var v = Convert.ToDouble(value);
                 p.SetValue(settings, v, null);
@@ -868,7 +868,7 @@ namespace MedLaunch
                 var v = Convert.ToInt32(value);
                 p.SetValue(settings, v, null);
             }
-            if (p.PropertyType == typeof(int?))
+            if (p.PropertyType == typeof(int?) && value != "")
             {
                 var v = Convert.ToInt32(value);
                 p.SetValue(settings, v, null);
@@ -888,7 +888,7 @@ namespace MedLaunch
                 var v = Convert.ToDateTime(value);
                 p.SetValue(settings, v, null);
             }
-            if (p.PropertyType == typeof(DateTime?))
+            if (p.PropertyType == typeof(DateTime?) && value != "")
             {
                 if (value != "")
                 {

@@ -13,6 +13,8 @@ using Ookii.Dialogs.Wpf;
 using Microsoft.Win32;
 using MahApps.Metro.Controls.Dialogs;
 using MedLaunch.Classes.GamesLibrary;
+using MedLaunch.Classes.Scraper.DAT.NOINTRO.Models;
+using MedLaunch.Classes.IO;
 
 namespace MedLaunch.Classes
 {
@@ -390,6 +392,9 @@ namespace MedLaunch.Classes
             // create new final list to be populated with approved files
             List<Game> finalGames = new List<Game>();
 
+            // instantiate DAT classes
+            NoIntroCollection ni = new NoIntroCollection();
+
             // now we have a list of allowed files, loop through them
             foreach (string file in allowedFiles)
             {
@@ -409,7 +414,8 @@ namespace MedLaunch.Classes
                 //dialog.SetProgress(progress);
 
                 Game newGame = new Game();
-                
+                string hash = String.Empty;
+
                 // inspect ZIP files
                 if (extension == ".zip")
                 {
@@ -426,6 +432,17 @@ namespace MedLaunch.Classes
                                     //MessageBoxResult result3 = MessageBox.Show(entry.FullName);
                                     // zip file contains at least one recognised filetype for this system
                                     isAllowed = true;
+
+                                    // calculate crc32
+                                    Crypto.Crc32 crc32 = new Crypto.Crc32();        
+                                    using (var stream = entry.Open())
+                                    {
+                                        foreach (byte b in crc32.ComputeHash(stream))
+                                        {
+                                            hash += b.ToString("x2").ToLower();
+                                        }
+                                    }
+
                                     break;
                                 }
                                 else
@@ -443,22 +460,40 @@ namespace MedLaunch.Classes
                     
                     if (isAllowed == false) { continue; }
                 }
+                else
+                {
+                    // file is not an archive - calculate crc32
+                    hash = Crypto.Crc32.ComputeFileHash(file);
+                }
+               
 
                 // check whether game already exists (by gameName and systemId)
                 Game chkGame = (from g in Games
                                 where g.systemId == systemId && g.gameName == romName
                                 select g).FirstOrDefault();
 
+                // lookup game in nointro
+                var lookup = (from a in ni.Data
+                              where a.CRC.ToLower().Trim() == hash.ToLower().Trim()
+                              select a).FirstOrDefault();
+                
                 if (chkGame == null)
                 {
                     // does not already exist - create new game
                     newGame.configId = 1;
+
+                    if (lookup != null)
+                    {
+                        newGame.gameNameFromDAT = lookup.Description;
+                    }
+
                     newGame.gameName = romName;
                     newGame.gamePath = relPath;
                     newGame.hidden = false;
                     newGame.isDiskBased = false;
                     newGame.isFavorite = false;
                     newGame.systemId = systemId;
+                    newGame.CRC32 = hash;
 
                     // add to finaGames list
                     RomsToAdd.Add(newGame);
@@ -468,7 +503,7 @@ namespace MedLaunch.Classes
                 else
                 {
                     // matching game found - update it
-                    if (chkGame.gamePath == relPath && chkGame.hidden == false)
+                    if (chkGame.gamePath == relPath && chkGame.hidden == false && chkGame.CRC32 == hash)
                     {
                         //nothing to update - increment untouched counter
                         UntouchedStats++;
@@ -481,7 +516,11 @@ namespace MedLaunch.Classes
                         // mark as not hidden
                         newGame.hidden = false;
 
-                        
+                        newGame.CRC32 = hash;
+                        if (lookup != null)
+                        {
+                            newGame.gameNameFromDAT = lookup.Description;
+                        }
 
                         // add to finalGames list
                         RomsToUpdate.Add(newGame);
