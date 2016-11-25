@@ -14,5 +14,7 @@ namespace MedLaunch.Classes.Scraper.DAT.NOINTRO.Models
         public string Description { get; set; }
         public string Size { get; set; }
         public string CRC { get; set; }
+        public string Year { get; set; }
+        public string Publisher { get; set; }
     }
 }

@@ -44,6 +44,8 @@ using MahApps.Metro;
 using MedLaunch.Classes.Input;
 using MedLaunch.Classes.GamesLibrary;
 using System.Collections.ObjectModel;
+using MedLaunch.Classes.Scraper.DAT.TOSEC.Models;
+using MedLaunch.Classes.Scraper.DAT.NOINTRO.Models;
 
 namespace MedLaunch
 {
@@ -3162,6 +3164,48 @@ namespace MedLaunch
             }
         }
 
+        private async void btnBuildFromDat_Click(object sender, RoutedEventArgs e)
+        {
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel Import",
+                AnimateShow = false,
+                AnimateHide = false
+            };
+            var controller = await this.ShowProgressAsync("DAT Builder", "Scanning local DAT files...", true, settings: mySettings);
+            controller.SetCancelable(true);
+            controller.SetIndeterminate();
+            await Task.Delay(1000);
+            
+            ToSecCollection tCol = new ToSecCollection();
+            NoIntroCollection nCol = new NoIntroCollection();
+
+            this.Dispatcher.Invoke(() =>
+            {                
+                            
+            });
+
+            
+            this.Dispatcher.Invoke(() =>
+            {
+                
+            });
+
+            await controller.CloseAsync();
+
+            if (controller.IsCanceled)
+            {
+                await this.ShowMessageAsync("DAT Builder", "Linking Cancelled");
+                GameListBuilder.UpdateFlag();
+                GamesLibraryVisualHandler.RefreshGamesLibrary();
+            }
+            else
+            {
+                await this.ShowMessageAsync("DAT Builder", "Linking Completed");
+                GameListBuilder.UpdateFlag();
+                GamesLibraryVisualHandler.RefreshGamesLibrary();                
+            }
+        }
     }
     /*
     public class SliderIgnoreDelta : Slider
