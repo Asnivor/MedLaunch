@@ -46,6 +46,7 @@ using MedLaunch.Classes.GamesLibrary;
 using System.Collections.ObjectModel;
 using MedLaunch.Classes.Scraper.DAT.TOSEC.Models;
 using MedLaunch.Classes.Scraper.DAT.NOINTRO.Models;
+using MedLaunch.Classes.Scraper.DAT.Models;
 
 namespace MedLaunch
 {
@@ -3177,8 +3178,130 @@ namespace MedLaunch
             controller.SetIndeterminate();
             await Task.Delay(1000);
             
-            ToSecCollection tCol = new ToSecCollection();
-            NoIntroCollection nCol = new NoIntroCollection();
+            
+
+
+            await Task.Run(() =>
+            {
+                controller.SetMessage("Parsing TOSEC DAT files");
+                ToSecCollection tCol = new ToSecCollection();
+                controller.SetMessage("Parsing NOINTRO DAT files");
+                NoIntroCollection nCol = new NoIntroCollection();
+
+                // create a temp version of nCol
+                List<NoIntroObject> nTemp = nCol.Data;
+
+                // iterate through each ToSec entry and try to match it with nointro
+                List<DATMerge> Master = new List<DATMerge>();
+
+                string message = "Matching TOSEC releases with No-Intro releases (based on CRC32)...\n";
+                controller.SetMessage(message);
+
+                int toCount = 0;
+                int matched = 0;
+                int unmatched = 0;
+
+                foreach (var a in tCol.Data)
+                {
+                    toCount++;
+
+                    // create a new DATMerge object
+                    DATMerge dat = new DATMerge();
+
+                    // check whether name already exists in master
+                    var m = (from r in Master
+                             where r.CRC == a.CRC && r.SystemId == a.SystemId
+                             select r).ToList();
+
+                    if (m.Count == 0)
+                    {
+                        // no existing record found
+                        dat.SystemId = a.SystemId;
+                        dat.GameName = a.Name;
+                        dat.Description = a.Description;
+                        dat.RomName = a.RomName;
+                        dat.Size = a.Size;
+                        dat.CRC = a.CRC;
+                        dat.Year = a.Year;
+                        dat.Publisher = a.Publisher;
+                        dat.Country = a.Country;
+                        dat.Language = a.Language;
+                        dat.Copyright = a.Copyright;
+                        dat.DevelopmentStatus = a.DevelopmentStatus;
+                        dat.OtherFlags = a.OtherFlags;
+                    }
+                    if (m.Count > 0)
+                    {
+                        // existing record found
+                        dat = m.First();
+                    }
+                    if (m.Count > 1)
+                    {
+                        // multiple records with same CRC - this shoudnt happen
+                        //throw new System.ArgumentException("This should not happen...", "Duplicate Record in TOSEC DATs");
+                    }
+
+                    // search for CRC in NOINTRO data
+                    var result = (from o in nCol.Data
+                                  where o.CRC == dat.CRC
+                                  select o).ToList();
+
+                    if (result.Count > 0)
+                    {
+                        matched++;
+
+                        dat.CloneOf = result.First().CloneOf;
+                        dat.NoIntroName = result.First().Name;
+
+                        // remove game from nointro list
+                        nTemp.Remove(result.Single());
+                    }
+                    else
+                    {
+                        unmatched++;
+                    }
+                    if (result.Count > 1)
+                    {
+                        // multiple records with same CRC - this shoudnt happen
+                        //throw new System.ArgumentException("This should not happen...", "Duplicate Record in NOINTRO DATs");
+                    }
+
+                    Master.Add(dat);
+
+                    controller.SetMessage(message + "TOSEC Games Parsed: " + toCount + "\nNoIntro Games Matched: " + matched + "\nNoIntro Games Unmatched: " + unmatched);
+                }
+
+                // now all tosec games have been processed - work through nointro games that are left over
+                var NoMatchedNoIntro = Master.Where(p => p.NoIntroName == null || p.NoIntroName == "").ToList();
+
+                message = "Parsing unmatched No-Intro releases\n";
+                controller.SetMessage(message);
+                int noCount = 0;
+
+                foreach (var a in nTemp)
+                {
+                    noCount++;
+                    DATMerge dat = new DATMerge();
+                    dat.SystemId = a.SystemId;
+                    dat.GameName = a.Name;
+                    dat.Description = a.Description;
+                    dat.RomName = a.RomName;
+                    dat.Size = a.Size;
+                    dat.CRC = a.CRC;
+                    dat.Year = a.Year;
+                    dat.Publisher = a.Publisher;
+                    dat.Country = a.Country;
+                    dat.Language = a.Language;
+                    dat.Copyright = a.Copyright;
+                    dat.DevelopmentStatus = a.DevelopmentStatus;
+                    dat.OtherFlags = a.OtherFlags;
+
+                    Master.Add(dat);
+
+                    controller.SetMessage(message + "NOINTRO Games Parsed: " + noCount);
+                }
+
+            });
 
             this.Dispatcher.Invoke(() =>
             {                
@@ -3205,6 +3328,46 @@ namespace MedLaunch
                 GameListBuilder.UpdateFlag();
                 GamesLibraryVisualHandler.RefreshGamesLibrary();                
             }
+        }
+
+        private void chkStreamDisk_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void chkStreamDisk_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void chkStreamTwitch_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void chkStreamTwitch_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnPathFfmpeg_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnPathOutputFolder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void chkForceOverwrite_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void chkForceOverwrite_Unchecked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
     /*

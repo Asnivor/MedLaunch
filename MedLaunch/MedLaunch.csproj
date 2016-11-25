@@ -65,6 +65,10 @@
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Feeble, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ExternalAssemblies\Feeble.dll</HintPath>
+    </Reference>
     <Reference Include="FuzzyString, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>ExternalAssemblies\FuzzyString.dll</HintPath>
@@ -214,6 +218,7 @@
     <Compile Include="Classes\Input\Controller.cs" />
     <Compile Include="Classes\IO\Crypto.cs" />
     <Compile Include="Classes\LogParser.cs" />
+    <Compile Include="Classes\Scraper\DAT\Models\DATMerge.cs" />
     <Compile Include="Classes\Scraper\DAT\NOINTRO\ImportNoIntroData.cs" />
     <Compile Include="Classes\Scraper\DAT\NOINTRO\Models\NoIntroCollection.cs" />
     <Compile Include="Classes\Scraper\DAT\NOINTRO\Models\NoIntroObject.cs" />
@@ -521,6 +526,7 @@
     <Resource Include="Data\Graphics\Systems\wswan.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ExternalAssemblies\Feeble.dll" />
     <Content Include="ExternalAssemblies\SDL.dll" />
     <Content Include="ExternalAssemblies\SDL64.dll" />
     <Content Include="ExternalAssemblies\SDLJoystick.dll" />

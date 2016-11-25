@@ -8565,7 +8565,217 @@
 
             </TabItem>
 -->
+            <TabItem Header="Capture">
+                <Grid x:Name="grdCapture">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="0" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <WrapPanel Orientation="Vertical" Grid.Column="0" Margin="0" x:FieldModifier="public" x:Name="wpCaptureLeftPane">
+                        <RadioButton GroupName="grpCap" x:Name="btnAllCapture" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" 
+                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
+                            Show All Settings
+                        </RadioButton>
 
+                        <Border Style="{StaticResource Borders1}" Margin="0">
+                            <Expander IsExpanded="True" BorderThickness="0" Header="Filters" >
+                                <WrapPanel Orientation="Vertical" x:Name="CaptureSelectorWrapPanel">
+
+
+                                    <RadioButton GroupName="grpCap" x:Name="btnCapGeneral" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" 
+                                     CommandParameter="{Binding Parent, RelativeSource={RelativeSource Self}}" Content="General Capture Settings"/>
+
+                                    <RadioButton GroupName="grpCap" x:Name="btnCapRecord" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" 
+                                     CommandParameter="{Binding Parent, RelativeSource={RelativeSource Self}}" Content="Recording"/>
+
+                                    <RadioButton GroupName="grpCap" x:Name="btnCapStream" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" 
+                                     CommandParameter="{Binding Parent, RelativeSource={RelativeSource Self}}" Content="Streaming"/>
+
+                                </WrapPanel>
+                            </Expander>
+                        </Border>
+
+                        <Button Style="{StaticResource MenuButton}"  x:Name="btnCaptureSaveAllChanges"  Content="SAVE ALL CHANGES" Background="{DynamicResource AccentColorBrush}" Click="btnSettingsSaveAllChanges_Click" ></Button>
+                     
+                        <Label x:Name="lblCaptureLabel" HorizontalContentAlignment="Center"></Label>
+
+
+                    </WrapPanel>
+
+                    <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+
+                    <Grid x:Name="CaptureGrid" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <!--<RowDefinition Height="Auto" /> -->
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Width="{Binding ElementName=CaptureGrid, Path=ActualWidth}" Height="{Binding ElementName=CaptureGrid, Path=ActualHeight}">
+                            <WrapPanel HorizontalAlignment="Left" Orientation="Vertical" x:Name="CapWrapPanel">
+
+                                
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdCapGeneral" Margin="10" Grid.Column="0">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="General Capture Settings" >
+                                        <StackPanel x:Name="spCapGeneral">
+
+                                            <CheckBox x:Name="chkStreamDisk" Checked="chkStreamDisk_Checked" Unchecked="chkStreamDisk_Unchecked">Enable Recording to Disk</CheckBox>
+                                            <CheckBox x:Name="chkStreamTwitch" Checked="chkStreamTwitch_Checked" Unchecked="chkStreamTwitch_Unchecked">Enable Streaming to Twitch</CheckBox>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="230" />
+                                                    <ColumnDefinition Width="120" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                
+                                                <Label Grid.Row="0" HorizontalContentAlignment="Left" Grid.Column="0">Recording Region Type</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="comboRecordingRegionType" Grid.Row="0" Grid.Column="1" Margin="0,0,0,0">
+                                                    <ComboBoxItem Tag="window">Window</ComboBoxItem>
+                                                    <ComboBoxItem Tag="desktop">Desktop (FullScreen)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Button HorizontalContentAlignment="Left" x:Name="btnPathFfmpeg" Grid.Column="1" Grid.Row="1" Click="btnPathFfmpeg_Click">Path to FFMPEG EXE</Button>
+                                                <TextBox x:Name="tbPathFfmpeg" Grid.Column="0" Grid.Row="1"></TextBox>
+
+                                                <TextBlock x:Name="lblXOffset" Grid.ColumnSpan="2" Grid.Row="2" TextAlignment="Center" Margin="0,10,0,0">
+                                                    Fullscreen X and Y Offset (in pixels)<LineBreak />
+                                                    Origin for both is top left corner of the primary monitor<LineBreak />
+                                                    (Positive and negative integer values accepted)
+                                                </TextBlock>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="0.5*" />
+                                                        <ColumnDefinition Width="0.5*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">X Offset</Label>
+                                                    <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Y Offset</Label>
+                                                    <Controls:NumericUpDown Name="updownXOffset" Grid.Column="0" Grid.Row="2" Minimum="-10000" Maximum="10000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="updownYOffset" Grid.Column="1" Grid.Row="2" Minimum="-10000" Maximum="10000" Interval="1"/>
+                                                </Grid>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdCapLocal" Margin="10" Grid.Column="0">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="Recording Settings" >
+                                        <StackPanel x:Name="spCapRecording1">
+
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="230" />
+                                                    <ColumnDefinition Width="120" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+
+                                                <Button HorizontalContentAlignment="Left" x:Name="btnPathOutputFolder" Grid.Column="1" Grid.Row="0" Click="btnPathOutputFolder_Click">Output Folder</Button>
+                                                <TextBox x:Name="tbPathOutputFolder" Grid.Column="0" Grid.Row="0"></TextBox>
+
+                                                <Label Grid.Row="1" HorizontalContentAlignment="Left" Grid.Column="0">Output File Type</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="comboFileType" Grid.Row="1" Grid.Column="1" Margin="0,0,0,0">
+                                                    <ComboBoxItem Tag="mp4">MP4 (H.264)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <CheckBox ToolTip="If this is unchecked a filename will be generated with a datetime stamp appended" Grid.ColumnSpan="2" Grid.Row="2"
+                                                          x:Name="chkForceOverwrite" Checked="chkForceOverwrite_Checked" Unchecked="chkForceOverwrite_Unchecked">
+                                                    Overwrite Existing File
+                                                </CheckBox>
+
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdCapTwitch" Margin="10" Grid.Column="0">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="Streaming Settings" >
+                                        <StackPanel x:Name="spCapStreaming1">
+
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="120" />
+                                                    <ColumnDefinition Width="230" />
+
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="10">
+                                                    <Label Name="lblStreamVideoBitrate" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Video Bitrate (kbps)</Label>
+                                                    <TextBox Name="tbStreamVideoBitrate" Text="{Binding ElementName=slVideoBitrate, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="3500" Minimum="20" TickPlacement="BottomRight" TickFrequency="20" IsSnapToTickEnabled="True" 
+                                        Name="slVideoBitrate"/>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="10">
+                                                    <Label Name="lblStreamKeyframeInterval" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Keyframe Interval (seconds)</Label>
+                                                    <TextBox Name="tbStreamKeyframeInterval" Text="{Binding ElementName=slStreamKeyframeInterval, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="20" Minimum="2" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="slStreamKeyframeInterval"/>
+                                                </DockPanel>
+
+                                                <Label Name="lblTwitchStreamKey" Grid.Row="2" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">Twitch Stream Key</Label>
+                                                <TextBox x:Name="tbTwitchStreamKey" Grid.Row="2" Grid.Column="1" Margin="10" />
+
+                                                <Label Name="lblTwitchBroadcastUrl" Grid.Row="3" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">Twitch Broadcast URL</Label>
+                                                <TextBox x:Name="tbTwitchBroadcastUrl" Grid.Row="3" Grid.Column="1" Margin="10" />
+
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+
+
+                            </WrapPanel>
+                        </ScrollViewer>
+                    </Grid>
+
+
+                </Grid>
+            </TabItem>
 
 
             <TabItem Header="Debug" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">

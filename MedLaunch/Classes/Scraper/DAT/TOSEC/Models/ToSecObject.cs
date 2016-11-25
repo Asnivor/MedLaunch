@@ -12,6 +12,7 @@ namespace MedLaunch.Classes.Scraper.DAT.TOSEC.Models
         public string Name { get; set; }
         public string RomName { get; set; }
         public string Description { get; set; }
+        public string CloneOf { get; set; }
         public string Size { get; set; }
         public string CRC { get; set; }
         public string Year { get; set; }

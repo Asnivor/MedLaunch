@@ -54,6 +54,7 @@ namespace MedLaunch.Classes.Scraper.DAT.NOINTRO
                 NoIntroObject no = new NoIntroObject();
                 no.SystemId = systemId;
                 no.Name = (string)element.Attribute("name");
+                no.CloneOf = (string)element.Attribute("cloneof");
                 no.Description = (string)element.Element("description");
                 XElement rom = element.Element("rom");
 
