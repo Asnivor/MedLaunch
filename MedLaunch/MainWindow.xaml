@@ -2027,10 +2027,15 @@
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
 
-                                                    <Label Name="lbl_Generic__fullscreen" Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Name="lbl_Generic__fullscreen" Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
                                                     <Label Name="lbl_cfg___xres" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
                                                     <Label Name="lbl_cfg___yres" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
 
+                                                    <Controls:NumericUpDown Name="cfg___xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg___yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+
+
+                                                    <!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg___xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -2061,6 +2066,8 @@
                                                         <ComboBoxItem Tag="800">800</ComboBoxItem>
                                                         <ComboBoxItem Tag="640">640</ComboBoxItem>
                                                     </ComboBox>
+                                                    
+                                                    -->
 
                                                     <Label Name="lbl_Generic__fsscaling" Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
                                                     <Label Name="lbl_cfg___xscalefs" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
@@ -2391,9 +2398,13 @@
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
                                                     <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
                                                     <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+
+                                                    <Controls:NumericUpDown Name="cfg_lynx__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg_lynx__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+<!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_lynx__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -2424,6 +2435,7 @@
                                                         <ComboBoxItem Tag="800">800</ComboBoxItem>
                                                         <ComboBoxItem Tag="640">640</ComboBoxItem>
                                                     </ComboBox>
+                                                    -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
                                                     <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
                                                     <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
@@ -2588,9 +2600,13 @@
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
                                                     <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
                                                     <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+
+                                                    <Controls:NumericUpDown Name="cfg_gg__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg_gg__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+<!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_gg__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -2621,6 +2637,7 @@
                                                         <ComboBoxItem Tag="800">800</ComboBoxItem>
                                                         <ComboBoxItem Tag="640">640</ComboBoxItem>
                                                     </ComboBox>
+                                                    -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
                                                     <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
                                                     <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
@@ -2778,9 +2795,13 @@
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
                                                     <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
                                                     <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+
+                                                    <Controls:NumericUpDown Name="cfg_gb__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg_gb__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+<!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_gb__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -2811,6 +2832,7 @@
                                                         <ComboBoxItem Tag="800">800</ComboBoxItem>
                                                         <ComboBoxItem Tag="640">640</ComboBoxItem>
                                                     </ComboBox>
+                                                    -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
                                                     <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
                                                     <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
@@ -2990,9 +3012,13 @@
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
                                                     <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
                                                     <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+
+                                                    <Controls:NumericUpDown Name="cfg_gba__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg_gba__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+<!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_gba__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -3023,6 +3049,7 @@
                                                         <ComboBoxItem Tag="800">800</ComboBoxItem>
                                                         <ComboBoxItem Tag="640">640</ComboBoxItem>
                                                     </ComboBox>
+                                                    -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
                                                     <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
                                                     <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
@@ -3179,9 +3206,13 @@
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
                                                     <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
                                                     <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+
+                                                    <Controls:NumericUpDown Name="cfg_ngp__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg_ngp__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+<!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_ngp__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -3212,6 +3243,7 @@
                                                         <ComboBoxItem Tag="800">800</ComboBoxItem>
                                                         <ComboBoxItem Tag="640">640</ComboBoxItem>
                                                     </ComboBox>
+                                                    -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
                                                     <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
                                                     <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
@@ -3388,9 +3420,13 @@
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
                                                     <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
                                                     <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+
+                                                    <Controls:NumericUpDown Name="cfg_nes__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg_nes__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+<!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_nes__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -3421,6 +3457,7 @@
                                                         <ComboBoxItem Tag="800">800</ComboBoxItem>
                                                         <ComboBoxItem Tag="640">640</ComboBoxItem>
                                                     </ComboBox>
+                                                    -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
                                                     <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
                                                     <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
@@ -3889,9 +3926,13 @@
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
                                                     <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
                                                     <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+
+                                                    <Controls:NumericUpDown Name="cfg_pce_fast__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg_pce_fast__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+<!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_pce_fast__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -3922,6 +3963,7 @@
                                                         <ComboBoxItem Tag="800">800</ComboBoxItem>
                                                         <ComboBoxItem Tag="640">640</ComboBoxItem>
                                                     </ComboBox>
+                                                    -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
                                                     <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
                                                     <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
@@ -4236,9 +4278,13 @@
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
                                                     <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
                                                     <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+
+                                                    <Controls:NumericUpDown Name="cfg_pce__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg_pce__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+<!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_pce__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -4269,6 +4315,7 @@
                                                         <ComboBoxItem Tag="800">800</ComboBoxItem>
                                                         <ComboBoxItem Tag="640">640</ComboBoxItem>
                                                     </ComboBox>
+                                                    -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
                                                     <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
                                                     <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
@@ -4630,9 +4677,13 @@
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
                                                     <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
                                                     <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+
+                                                    <Controls:NumericUpDown Name="cfg_pcfx__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg_pcfx__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+<!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_pcfx__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -4663,6 +4714,7 @@
                                                         <ComboBoxItem Tag="800">800</ComboBoxItem>
                                                         <ComboBoxItem Tag="640">640</ComboBoxItem>
                                                     </ComboBox>
+                                                    -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
                                                     <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
                                                     <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
@@ -5025,9 +5077,13 @@
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
                                                     <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
                                                     <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+
+                                                    <Controls:NumericUpDown Name="cfg_sms__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg_sms__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+<!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_sms__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -5058,6 +5114,7 @@
                                                         <ComboBoxItem Tag="800">800</ComboBoxItem>
                                                         <ComboBoxItem Tag="640">640</ComboBoxItem>
                                                     </ComboBox>
+                                                    -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
                                                     <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
                                                     <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
@@ -5239,9 +5296,13 @@
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
                                                     <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
                                                     <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+
+                                                    <Controls:NumericUpDown Name="cfg_md__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg_md__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+<!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_md__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -5272,6 +5333,7 @@
                                                         <ComboBoxItem Tag="800">800</ComboBoxItem>
                                                         <ComboBoxItem Tag="640">640</ComboBoxItem>
                                                     </ComboBox>
+                                                    -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
                                                     <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
                                                     <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
@@ -5589,9 +5651,13 @@
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
                                                     <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
                                                     <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+
+                                                    <Controls:NumericUpDown Name="cfg_snes_faust__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg_snes_faust__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+<!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_snes_faust__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -5622,6 +5688,7 @@
                                                         <ComboBoxItem Tag="800">800</ComboBoxItem>
                                                         <ComboBoxItem Tag="640">640</ComboBoxItem>
                                                     </ComboBox>
+                                                    -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
                                                     <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
                                                     <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
@@ -5843,9 +5910,13 @@
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
                                                     <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
                                                     <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+
+                                                    <Controls:NumericUpDown Name="cfg_snes__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg_snes__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+<!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_snes__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -5876,6 +5947,7 @@
                                                         <ComboBoxItem Tag="800">800</ComboBoxItem>
                                                         <ComboBoxItem Tag="640">640</ComboBoxItem>
                                                     </ComboBox>
+                                                    -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
                                                     <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
                                                     <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
@@ -6103,9 +6175,13 @@
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
                                                     <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
                                                     <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+
+                                                    <Controls:NumericUpDown Name="cfg_vb__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg_vb__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+<!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_vb__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -6136,6 +6212,7 @@
                                                         <ComboBoxItem Tag="800">800</ComboBoxItem>
                                                         <ComboBoxItem Tag="640">640</ComboBoxItem>
                                                     </ComboBox>
+                                                    -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
                                                     <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
                                                     <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
@@ -6397,9 +6474,13 @@
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
                                                     <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
                                                     <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+
+                                                    <Controls:NumericUpDown Name="cfg_ss__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg_ss__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+<!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_ss__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -6430,6 +6511,7 @@
                                                         <ComboBoxItem Tag="800">800</ComboBoxItem>
                                                         <ComboBoxItem Tag="640">640</ComboBoxItem>
                                                     </ComboBox>
+                                                    -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
                                                     <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
                                                     <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
@@ -6851,9 +6933,13 @@
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
                                                     <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
                                                     <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+
+                                                    <Controls:NumericUpDown Name="cfg_psx__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg_psx__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+<!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_psx__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -6884,6 +6970,7 @@
                                                         <ComboBoxItem Tag="800">800</ComboBoxItem>
                                                         <ComboBoxItem Tag="640">640</ComboBoxItem>
                                                     </ComboBox>
+                                                    -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
                                                     <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
                                                     <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
@@ -7632,9 +7719,13 @@
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution</Label>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
                                                     <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
                                                     <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+
+                                                    <Controls:NumericUpDown Name="cfg_wswan__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg_wswan__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+<!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_wswan__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -7665,6 +7756,7 @@
                                                         <ComboBoxItem Tag="800">800</ComboBoxItem>
                                                         <ComboBoxItem Tag="640">640</ComboBoxItem>
                                                     </ComboBox>
+                                                    -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
                                                     <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
                                                     <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
