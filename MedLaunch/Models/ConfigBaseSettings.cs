@@ -1618,7 +1618,7 @@ namespace MedLaunch.Models
             SetControlValues(ui, settings, 1);
         }
 
-        // save settings - mednafen paths controls
+        // save settings - mednafen bios controls
         public static void SaveBiosPathValues(StackPanel wp)
         {
             // get a class object with all child controls
@@ -1640,6 +1640,51 @@ namespace MedLaunch.Models
             foreach (ConfigBaseSettings settings in AllSettings)
             {
                 SetControlValues(ui, settings, 2);
+            }
+        }
+
+        public static void SaveBiosPaths()
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            // get all the path values
+            string gba = ((TextBox)mw.FindName("cfg_gba__bios")).Text;
+            string pcege = ((TextBox)mw.FindName("cfg_pce__gecdbios")).Text;
+            string pcecd = ((TextBox)mw.FindName("cfg_pce__cdbios")).Text;
+            string pcefastcd = ((TextBox)mw.FindName("cfg_pce_fast__cdbios")).Text;
+            string pcfx = ((TextBox)mw.FindName("cfg_pcfx__bios")).Text;
+            string mdcd = ((TextBox)mw.FindName("cfg_md__cdbios")).Text;
+            string nesgg = ((TextBox)mw.FindName("cfg_nes__ggrom")).Text;
+            string ssjp = ((TextBox)mw.FindName("cfg_ss__bios_jp")).Text;
+            string ssnaeu = ((TextBox)mw.FindName("cfg_ss__bios_na_eu")).Text;
+            string psxeu = ((TextBox)mw.FindName("cfg_psx__bios_eu")).Text;
+            string psxjp = ((TextBox)mw.FindName("cfg_psx__bios_jp")).Text;
+            string psxna = ((TextBox)mw.FindName("cfg_psx__bios_na")).Text;
+
+            using (var db = new MyDbContext())
+            {
+                // get all configs
+                var configs = from a in db.ConfigBaseSettings
+                              select a;
+                foreach (var c in configs)
+                {
+                    // update each config file
+                    c.gba__bios = gba;
+                    c.pce__gecdbios = pcege;
+                    c.pce__cdbios = pcecd;
+                    c.pce_fast__cdbios = pcefastcd;
+                    c.pcfx__bios = pcfx;
+                    c.md__cdbios = mdcd;
+                    c.nes__ggrom = nesgg;
+                    c.ss__bios_jp = ssjp;
+                    c.ss__bios_na_eu = ssnaeu;
+                    c.psx__bios_eu = psxeu;
+                    c.psx__bios_jp = psxjp;
+                    c.psx__bios_na = psxna;
+                }
+
+                // save changes
+                db.SaveChanges();
             }
         }
 
@@ -1678,6 +1723,45 @@ namespace MedLaunch.Models
             {
                 SetControlValues(ui, settings, 2);
             }       
+        }
+
+        public static void SaveMednafenPaths()
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            // get all the path values
+            string cheats = ((TextBox)mw.FindName("cfg_filesys__path_cheat")).Text;
+            string firmware = ((TextBox)mw.FindName("cfg_filesys__path_firmware")).Text;
+            string movies = ((TextBox)mw.FindName("cfg_filesys__path_movie")).Text;
+            string palettes = ((TextBox)mw.FindName("cfg_filesys__path_palette")).Text;
+            string pgc = ((TextBox)mw.FindName("cfg_filesys__path_pgconfig")).Text;
+            string saves = ((TextBox)mw.FindName("cfg_filesys__path_sav")).Text;
+            string savebackup = ((TextBox)mw.FindName("cfg_filesys__path_savbackup")).Text;
+            string snapshots = ((TextBox)mw.FindName("cfg_filesys__path_snap")).Text;
+            string savestates = ((TextBox)mw.FindName("cfg_filesys__path_state")).Text;
+
+            using (var db = new MyDbContext())
+            {
+                // get all configs
+                var configs = from a in db.ConfigBaseSettings
+                              select a;
+                foreach (var c in configs)
+                {
+                    // update each config file
+                    c.filesys__path_cheat = cheats;
+                    c.filesys__path_firmware = firmware;
+                    c.filesys__path_movie = movies;
+                    c.filesys__path_palette = palettes;
+                    c.filesys__path_pgconfig = pgc;
+                    c.filesys__path_sav = saves;
+                    c.filesys__path_savbackup = savebackup;
+                    c.filesys__path_snap = snapshots;
+                    c.filesys__path_state = savestates;
+                }
+
+                // save changes
+                db.SaveChanges();
+            }
         }
 
         public static void SetControlValues(UIHandler ui, ConfigBaseSettings settings, int LoadOrSave)

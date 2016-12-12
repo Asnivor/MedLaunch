@@ -2346,7 +2346,9 @@ namespace MedLaunch
                 ConfigNetplaySettings.SaveNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
                 ConfigServerSettings.SaveCustomServerSettings(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
                 //ConfigBaseSettings.SaveMednafenPathValues(spMedPathSettings);
-                ConfigBaseSettings.SaveBiosPathValues(spSysBiosSettings);
+                ConfigBaseSettings.SaveMednafenPaths();
+                //ConfigBaseSettings.SaveBiosPathValues(spSysBiosSettings);
+                ConfigBaseSettings.SaveBiosPaths();
 
                 // global settings
                 GlobalSettings gs = GlobalSettings.GetGlobals();
