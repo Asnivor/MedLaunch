@@ -13,6 +13,10 @@ namespace MedLaunch.Classes.GamesLibrary
     public class GameListBuilder : INotifyPropertyChanged
     {
         // properties
+
+        public string SortColumnName { get; set; }
+        public ListSortDirection SortDirection { get; set; }
+
         private ObservableCollection<DataGridGamesView> filteredSet;
         public ObservableCollection<DataGridGamesView> FilteredSet
         {
@@ -46,6 +50,10 @@ namespace MedLaunch.Classes.GamesLibrary
 
             // populate the object
             AllGames = GamesLibraryDataGridRefresh.Update(AllGames);
+
+            // set initial sorting
+            SortColumnName = "GAME";
+            SortDirection = ListSortDirection.Ascending;
             
             UpdateRequired = false;
         }
@@ -166,7 +174,95 @@ namespace MedLaunch.Classes.GamesLibrary
             // now we have results based on the system filter - process file search
             List<DataGridGamesView> srch = DoSearch(results, search);
 
-            _App.GamesList.FilteredSet = new ObservableCollection<DataGridGamesView>(srch);
+            List<DataGridGamesView> sorted = new List<DataGridGamesView>();
+            // perform sorting
+            if (_App.GamesList.SortDirection == ListSortDirection.Ascending)
+            {
+                switch (_App.GamesList.SortColumnName.ToUpper())
+                {
+                    case "ID":
+                        sorted = srch.OrderBy(x => x.ID).ToList();
+                        break;
+                    case "GAME":
+                        sorted = srch.OrderBy(x => x.Game).ToList();
+                        break;
+                    case "SYSTEM":
+                        sorted = srch.OrderBy(x => x.System).ToList();
+                        break;
+                    case "LASTRUN":
+                        sorted = srch.OrderBy(x => x.LastPlayed).ToList();
+                        break;
+                    case "FAV":
+                        sorted = srch.OrderBy(x => x.Favorite).ToList();
+                        break;
+                    case "YEAR":
+                        sorted = srch.OrderBy(x => x.Year).ToList();
+                        break;
+                    case "PLAYERS":
+                        sorted = srch.OrderBy(x => x.Players).ToList();
+                        break;
+                    case "CO-OP":
+                        sorted = srch.OrderBy(x => x.Coop).ToList();
+                        break;
+                    case "PUBLISHER":
+                        sorted = srch.OrderBy(x => x.Publisher).ToList();
+                        break;
+                    case "DEVELOPER":
+                        sorted = srch.OrderBy(x => x.Developer).ToList();
+                        break;
+                    case "RATING":
+                        sorted = srch.OrderBy(x => x.ESRB).ToList();
+                        break;
+                    default:
+                        sorted = srch.OrderBy(s => s.Game).ToList();
+                        break;
+                }
+            }
+            else
+            {
+                switch (_App.GamesList.SortColumnName.ToUpper())
+                {
+                    case "ID":
+                        sorted = srch.OrderByDescending(x => x.ID).ToList();
+                        break;
+                    case "GAME":
+                        sorted = srch.OrderByDescending(x => x.Game).ToList();
+                        break;
+                    case "SYSTEM":
+                        sorted = srch.OrderByDescending(x => x.System).ToList();
+                        break;
+                    case "LASTRUN":
+                        sorted = srch.OrderByDescending(x => x.LastPlayed).ToList();
+                        break;
+                    case "FAV":
+                        sorted = srch.OrderByDescending(x => x.Favorite).ToList();
+                        break;
+                    case "YEAR":
+                        sorted = srch.OrderByDescending(x => x.Year).ToList();
+                        break;
+                    case "PLAYERS":
+                        sorted = srch.OrderByDescending(x => x.Players).ToList();
+                        break;
+                    case "CO-OP":
+                        sorted = srch.OrderByDescending(x => x.Coop).ToList();
+                        break;
+                    case "PUBLISHER":
+                        sorted = srch.OrderByDescending(x => x.Publisher).ToList();
+                        break;
+                    case "DEVELOPER":
+                        sorted = srch.OrderByDescending(x => x.Developer).ToList();
+                        break;
+                    case "RATING":
+                        sorted = srch.OrderByDescending(x => x.ESRB).ToList();
+                        break;
+                    default:
+                        sorted = srch.OrderByDescending(s => s.Game).ToList();
+                        break;
+                }
+            }
+                
+            // trigger update in datagrid with sorting      
+            _App.GamesList.FilteredSet = new ObservableCollection<DataGridGamesView>(sorted);
 
             return srch;
         }

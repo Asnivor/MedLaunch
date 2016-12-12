@@ -3210,7 +3210,7 @@ namespace MedLaunch
 
                     // check whether name already exists in master
                     var m = (from r in Master
-                             where r.CRC == a.CRC && r.SystemId == a.SystemId
+                             where r.CRC.ToLower() == a.CRC.ToLower() && r.SystemId == a.SystemId
                              select r).ToList();
 
                     if (m.Count == 0)
@@ -3222,6 +3222,8 @@ namespace MedLaunch
                         dat.RomName = a.RomName;
                         dat.Size = a.Size;
                         dat.CRC = a.CRC;
+                        dat.MD5 = a.MD5;
+                        dat.SHA1 = a.SHA1;
                         dat.Year = a.Year;
                         dat.Publisher = a.Publisher;
                         dat.Country = a.Country;
@@ -3243,7 +3245,7 @@ namespace MedLaunch
 
                     // search for CRC in NOINTRO data
                     var result = (from o in nCol.Data
-                                  where o.CRC == dat.CRC
+                                  where o.CRC.ToLower() == dat.CRC.ToLower()
                                   select o).ToList();
 
                     if (result.Count > 0)
@@ -3253,8 +3255,20 @@ namespace MedLaunch
                         dat.CloneOf = result.First().CloneOf;
                         dat.NoIntroName = result.First().Name;
 
-                        // remove game from nointro list
-                        nTemp.Remove(result.Single());
+                        if (result.Count > 1)
+                        {
+                            // multiples found - remove both
+                            foreach (var t in result)
+                            {
+                                nTemp.Remove(t);
+                            }
+                        }
+                        else
+                        {
+                            // single found
+                            // remove game from nointro list
+                            nTemp.Remove(result.Single());
+                        }                            
                     }
                     else
                     {
@@ -3369,6 +3383,26 @@ namespace MedLaunch
         {
 
         }
+
+
+        private void columnHeaderDGGAMES_Click(object sender, RoutedEventArgs e)
+        {
+            var columnHeader = sender as DataGridColumnHeader;
+            
+            if (columnHeader != null)
+            {
+                string columnName = ((DataGridColumnHeader)sender).Content.ToString();
+
+                App _App = ((App)Application.Current);
+
+                ListSortDirection sortDirection = (((DataGridColumnHeader)sender).SortDirection != ListSortDirection.Ascending) ?
+                                ListSortDirection.Ascending : ListSortDirection.Descending;
+                _App.GamesList.SortColumnName = columnName;
+                _App.GamesList.SortDirection = sortDirection;
+            }
+        }
+
+
     }
     /*
     public class SliderIgnoreDelta : Slider

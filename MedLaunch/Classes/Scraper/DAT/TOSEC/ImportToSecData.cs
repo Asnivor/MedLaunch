@@ -62,6 +62,8 @@ namespace MedLaunch.Classes.Scraper.DAT.TOSEC
                 no.RomName = (string)rom.Attribute("name");
                 no.Size = (string)rom.Attribute("size");
                 no.CRC = (string)rom.Attribute("crc");
+                no.MD5 = (string)rom.Attribute("md5");
+                no.SHA1 = (string)rom.Attribute("sha1");
 
                 list.Add(no);
             }

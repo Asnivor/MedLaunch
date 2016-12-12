@@ -15,6 +15,8 @@ namespace MedLaunch.Classes.Scraper.DAT.NOINTRO.Models
         public string CloneOf { get; set; }
         public string Size { get; set; }
         public string CRC { get; set; }
+        public string MD5 { get; set; }
+        public string SHA1 { get; set; }
         public string Year { get; set; }
         public string Publisher { get; set; }
         public string Country { get; set; }

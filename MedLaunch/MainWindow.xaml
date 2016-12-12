@@ -321,10 +321,15 @@
                                       SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Single" ContextMenuOpening="dgGameList_ContextMenuOpening" AutoGenerateColumns="False"
                                       ItemsSource="{Binding FilteredSet, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DataContext="{Binding Source={x:Static Application.Current}, Path=GamesList}" 
                                       IsSynchronizedWithCurrentItem="True"
+                                      
                                       >
-
+                                <DataGrid.ColumnHeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <EventSetter Event="Click" Handler="columnHeaderDGGAMES_Click" />
+                                    </Style>
+                                </DataGrid.ColumnHeaderStyle>
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="ID" Binding="{Binding ID}"  />
+                                    <DataGridTextColumn Header="ID" Binding="{Binding ID}" />
                                     <DataGridTextColumn Header="Game" Binding="{Binding Game}" />
                                     <DataGridTextColumn Header="System" Binding="{Binding System}" />
                                     <DataGridTextColumn Header="LastRun" Binding="{Binding LastPlayed}" />
