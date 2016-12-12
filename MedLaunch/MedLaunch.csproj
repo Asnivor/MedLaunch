@@ -222,6 +222,9 @@
     <Compile Include="Classes\Scraper\DAT\NOINTRO\ImportNoIntroData.cs" />
     <Compile Include="Classes\Scraper\DAT\NOINTRO\Models\NoIntroCollection.cs" />
     <Compile Include="Classes\Scraper\DAT\NOINTRO\Models\NoIntroObject.cs" />
+    <Compile Include="Classes\Scraper\DAT\OFFLINENOINTRO\OfflineImportNoIntroData.cs" />
+    <Compile Include="Classes\Scraper\DAT\OFFLINENOINTRO\Models\OfflineNoIntroCollection.cs" />
+    <Compile Include="Classes\Scraper\DAT\OFFLINENOINTRO\Models\OfflineNoIntroObject.cs" />
     <Compile Include="Classes\Scraper\DAT\TOSEC\ImportToSecData.cs" />
     <Compile Include="Classes\Scraper\DAT\TOSEC\Models\ToSecCollection.cs" />
     <Compile Include="Classes\Scraper\DAT\TOSEC\Models\ToSecObject.cs" />

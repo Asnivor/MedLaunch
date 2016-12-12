@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO.Models
 {
-    public class NoIntroObject
+    public class OfflineNoIntroObject
     {
         public int SystemId { get; set; }
         public string Name { get; set; }

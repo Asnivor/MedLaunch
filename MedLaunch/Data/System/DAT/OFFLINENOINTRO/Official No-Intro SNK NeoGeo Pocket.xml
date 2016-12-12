@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!-- Dat by Patrick (nointro@free.fr) aka [-F1-] on IRC, Dat and Images Hosted on http://nointro.free.fr -->
+<!-- Please visit official no-intro website on http://www.gbadat.altervista.org> -->
+<!-- Download OfflineList on http://offlinelist.free.fr> -->
+
+<!-- Datter : CrossFire & NGEfreak -->
+<!-- Pictures by : Gee_LoVe -->
+<!-- OL Datter : Gee_LoVe -->
+
+<dat xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="datas.xsd">
+	<configuration>
+		<datName>Official No-Intro SNK NeoGeo Pocket</datName>
+		<datVersion>830174329</datVersion>
+		<system>SNK Neo Geo Pocket</system>
+		<screenshotsWidth>160</screenshotsWidth>
+		<screenshotsHeight>152</screenshotsHeight>
+		<infos>
+			<title visible="false" inNamingOption="true" default="false"></title>
+			<location visible="true" inNamingOption="true" default="true"></location>
+			<publisher visible="true" inNamingOption="true" default="true"></publisher>
+			<sourceRom visible="true" inNamingOption="true" default="true"></sourceRom>
+			<saveType visible="false" inNamingOption="false" default="false"></saveType>
+			<romSize visible="true" inNamingOption="true" default="true"></romSize>
+			<releaseNumber visible="true" inNamingOption="true" default="false"></releaseNumber>
+			<languageNumber visible="true" inNamingOption="true" default="false"></languageNumber>
+			<comment visible="true" inNamingOption="true" default="true"></comment>
+			<romCRC visible="true" inNamingOption="true" default="true"></romCRC>
+			<im1CRC visible="true" inNamingOption="true" default="false"></im1CRC>
+			<im2CRC visible="true" inNamingOption="true" default="false"></im2CRC>
+			<languages visible="true" inNamingOption="true" default="true"></languages>
+		</infos>
+		<canOpen>
+			<extension>.ngp</extension>
+		</canOpen>
+		<newDat>
+			<datVersionURL>http://nointro.free.fr/version/Official%20No-Intro%20SNK%20NeoGeo%20Pocket_version</datVersionURL>
+			<datURL fileName="Official No-Intro SNK NeoGeo Pocket.zip">http://nointro.free.fr/datas/Official%20No-Intro%20SNK%20NeoGeo%20Pocket.zip</datURL>
+			<imURL>http://nointro.free.fr/imgs/Official%20No-Intro%20SNK%20NeoGeo%20Pocket/</imURL>
+		</newDat>
+		<search>
+			<to value="location" default="true" auto="true"></to>
+			<to value="romSize" default="true" auto="false">
+				<find operation="=" value="524288">= 4 MBits</find>
+				<find operation="=" value="1048576">= 8 MBits</find>
+				<find operation="=" value="2097152">= 16 MBits</find>
+				<find operation="=" value="4194304">= 32 MBits</find>
+			</to>
+			<to value="languages" default="true" auto="true"></to>
+			<to value="publisher" default="true" auto="true"></to>
+			<to value="sourceRom" default="true" auto="true"></to>
+		</search>
+		<romTitle>%n %o %m %e</romTitle>
+	</configuration>
+	<games>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>0</releaseNumber>
+			<title>[BIOS] SNK Neo Geo Pocket</title>
+			<saveType></saveType>
+			<romSize>65536</romSize>
+			<publisher></publisher>
+			<location>17</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".ngp">6EEB6F40</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>1</imageNumber>
+			<releaseNumber>1</releaseNumber>
+			<title>Baseball Stars</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngp">4781AE84</romCRC>
+			</files>
+			<im1CRC>7696AFB3</im1CRC>
+			<im2CRC>C98FE9C5</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>22</imageNumber>
+			<releaseNumber>22</releaseNumber>
+			<title>Dokodemo Mahjong</title>
+			<saveType></saveType>
+			<romSize>524288</romSize>
+			<publisher>SNK-ADK</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngp">78C21B5E</romCRC>
+			</files>
+			<im1CRC>BAEDC254</im1CRC>
+			<im2CRC>7E40D207</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>35</imageNumber>
+			<releaseNumber>35</releaseNumber>
+			<title>King of Fighters R-1</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngp">DCEB7E11</romCRC>
+			</files>
+			<im1CRC>79A70697</im1CRC>
+			<im2CRC>7B11B271</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>45</imageNumber>
+			<releaseNumber>45</releaseNumber>
+			<title>Melon-chan no Seichou Nikki</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-ADK</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngp">4939F933</romCRC>
+			</files>
+			<im1CRC>1B4EAA51</im1CRC>
+			<im2CRC>26A575B6</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>52</imageNumber>
+			<releaseNumber>52</releaseNumber>
+			<title>Neo Cherry Master - Real Casino Series</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Dyna Corporation</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngp">5C067579</romCRC>
+			</files>
+			<im1CRC>F92E08F4</im1CRC>
+			<im2CRC>20ADB979</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>60</imageNumber>
+			<releaseNumber>60</releaseNumber>
+			<title>Neo Geo Cup '98</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngp">33ADD5BD</romCRC>
+			</files>
+			<im1CRC>1B715E17</im1CRC>
+			<im2CRC>6C3018B8</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>79</imageNumber>
+			<releaseNumber>79</releaseNumber>
+			<title>Pocket Tennis - Pocket Sports Series</title>
+			<saveType></saveType>
+			<romSize>524288</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngp">89410850</romCRC>
+			</files>
+			<im1CRC>A1EBED23</im1CRC>
+			<im2CRC>3A3CFA99</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>85</imageNumber>
+			<releaseNumber>85</releaseNumber>
+			<title>Renketsu Puzzle Tsunagete Pon!</title>
+			<saveType></saveType>
+			<romSize>524288</romSize>
+			<publisher>SNK-Yumekobo</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngp">37E79AFC</romCRC>
+			</files>
+			<im1CRC>0BB108B4</im1CRC>
+			<im2CRC>14EAB968</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>89</imageNumber>
+			<releaseNumber>89</releaseNumber>
+			<title>Samurai Shodown! - Pocket Fighting Series</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".ngp">32E4696A</romCRC>
+			</files>
+			<im1CRC>66434648</im1CRC>
+			<im2CRC>3B4EEEAE</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>44</imageNumber>
+			<releaseNumber>44</releaseNumber>
+			<title>Shougi no Tatsujin</title>
+			<saveType></saveType>
+			<romSize>524288</romSize>
+			<publisher>SNK-ADK</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngp">F34D0C9B</romCRC>
+			</files>
+			<im1CRC>37BC269B</im1CRC>
+			<im2CRC>9FC93A24</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+	</games>
+</dat>
+

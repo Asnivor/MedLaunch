@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO.Models
 {
-    public class NoIntroCollection
+    public class OfflineNoIntroCollection
     {
         // Properties
-        public List<NoIntroObject> Data { get; set; }
+        public List<OfflineNoIntroObject> Data { get; set; }
 
         // Constructors
-        public NoIntroCollection()
+        public OfflineNoIntroCollection()
         {
-            Data = new List<NoIntroObject>();
+            Data = new List<OfflineNoIntroObject>();
 
-            Data = ImportNoIntroData.Go();
+            Data = OfflineImportNoIntroData.Go();
         }
     }
 }

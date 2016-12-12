@@ -1,0 +1,3577 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!-- Dat by Patrick (nointro@free.fr) aka [-F1-] on IRC, Dat and Images Hosted on http://nointro.free.fr -->
+<!-- Please visit official no-intro website on http://www.gbadat.altervista.org> -->
+<!-- Download OfflineList on http://offlinelist.free.fr> -->
+
+<!-- Datter : TOSEC Team -->
+<!-- Pictures by :  -->
+<!-- OL Datter : Patrick -->
+
+<dat xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="datas.xsd">
+	<configuration>
+		<datName>Official TOSEC Atari Lynx - Commercial Games</datName>
+		<datVersion>86214155</datVersion>
+		<system>Atari Lynx - Commercial Games (TOSEC-v2004-06-14)</system>
+		<screenshotsWidth>160</screenshotsWidth>
+		<screenshotsHeight>144</screenshotsHeight>
+		<infos>
+			<title visible="false" inNamingOption="true" default="false"></title>
+			<location visible="true" inNamingOption="true" default="false"></location>
+			<publisher visible="false" inNamingOption="false" default="false"></publisher>
+			<sourceRom visible="false" inNamingOption="false" default="false"></sourceRom>
+			<saveType visible="false" inNamingOption="false" default="false"></saveType>
+			<romSize visible="false" inNamingOption="false" default="false"></romSize>
+			<releaseNumber visible="true" inNamingOption="true" default="false"></releaseNumber>
+			<languageNumber visible="false" inNamingOption="false" default="false"></languageNumber>
+			<comment visible="true" inNamingOption="true" default="false"></comment>
+			<romCRC visible="true" inNamingOption="true" default="true"></romCRC>
+			<im1CRC visible="true" inNamingOption="true" default="false"></im1CRC>
+			<im2CRC visible="true" inNamingOption="true" default="false"></im2CRC>
+			<languages visible="false" inNamingOption="false" default="false"></languages>
+		</infos>
+		<canOpen>
+			<extension>.lnx</extension>
+		</canOpen>
+		<newDat>
+			<datVersionURL>http://tosec.free.fr/version/Official%20TOSEC%20Atari%20Lynx%20-%20Commercial%20Games_version</datVersionURL>
+			<datURL fileName="Official TOSEC Atari Lynx - Commercial Games.zip">http://tosec.free.fr/datas/Official%20TOSEC%20Atari%20Lynx%20-%20Commercial%20Games.zip</datURL>
+			<imURL>http://tosec.free.fr/imgs/Official%20TOSEC%20Atari%20Lynx%20-%20Commercial%20Games/</imURL>
+		</newDat>
+		<search>
+			<to value="location" default="false" auto="true"></to>
+		</search>
+		<romTitle>%n</romTitle>
+	</configuration>
+	<games>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>1</releaseNumber>
+			<title>Alien Vs Predator (1994)(Images)(proto)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">D6843E8E</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>2</releaseNumber>
+			<title>All Points Bulletin (1990)(Tengen Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">68A0ACAB</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>3</releaseNumber>
+			<title>All Points Bulletin (1990)(Tengen Inc)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">3160B73B</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>4</releaseNumber>
+			<title>Awesome Golf (1991)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">2B90E818</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>5</releaseNumber>
+			<title>Awesome Golf (1991)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">12025ADF</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>6</releaseNumber>
+			<title>Awesome Golf (1991)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">EE52BADD</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>7</releaseNumber>
+			<title>Baseball Heroes (199x)(-)[b2]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">D9873C03</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>8</releaseNumber>
+			<title>Baseball Heroes (199x)(-)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">400989EA</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>9</releaseNumber>
+			<title>Basketbrawl (1992)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">A41B3D47</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>10</releaseNumber>
+			<title>Basketbrawl (1992)(Atari Corp)[a2]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">CF67513A</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>11</releaseNumber>
+			<title>Basketbrawl (1992)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">3D4004EC</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>12</releaseNumber>
+			<title>Basketbrawl (1992)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">DA9BBE68</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>13</releaseNumber>
+			<title>Batman Returns (1992)(DC Comics Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">68CD6DCB</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>14</releaseNumber>
+			<title>Batman Returns (1992)(DC Comics Inc)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">6F161065</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>15</releaseNumber>
+			<title>Battle Wheels (1993)(Beyond Games)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">DB45D5C4</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>16</releaseNumber>
+			<title>Battle Wheels (1993)(Beyond Games)[a2]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">57EFFF37</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>17</releaseNumber>
+			<title>Battle Wheels (1993)(Beyond Games)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">FD5AE3DB</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>18</releaseNumber>
+			<title>Battlezone 2000 (1993)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">E3AF09CE</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>19</releaseNumber>
+			<title>Battlezone 2000 (1993)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">414BDA9A</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>20</releaseNumber>
+			<title>Bill &amp; Ted's Excellent Adventure (1991)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">C91AFF8A</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>21</releaseNumber>
+			<title>Bill &amp; Ted's Excellent Adventure (1991)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">92E517BE</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>22</releaseNumber>
+			<title>Block Out (1990)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">F2DA1756</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>23</releaseNumber>
+			<title>Block Out (1990)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">C96E5BC6</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>24</releaseNumber>
+			<title>Blue Lightning (1989)(Epyx Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">0782722A</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>25</releaseNumber>
+			<title>Blue Lightning (1989)(Epyx Inc)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">35AF173C</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>26</releaseNumber>
+			<title>Blue Lightning Demo (1989)(Epyx Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">6CE4B9B0</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>27</releaseNumber>
+			<title>Blue Lightning Demo (1989)(Epyx Inc)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">0BD1B69C</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>28</releaseNumber>
+			<title>Bubble Trouble (1993)(Lore Design Ltd)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">F85D0806</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>29</releaseNumber>
+			<title>Bubble Trouble (1993)(Lore Design Ltd)[a]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">75F2EE47</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>30</releaseNumber>
+			<title>California Games (1991)(Epyx Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">0CE53B00</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>31</releaseNumber>
+			<title>California Games (1991)(Epyx Inc)[a2]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">2918EA2E</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>32</releaseNumber>
+			<title>California Games (1991)(Epyx Inc)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">DA7D96FD</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>33</releaseNumber>
+			<title>Centipede (198x)(Shadowsoft Inc)</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">E38A0F69</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>34</releaseNumber>
+			<title>Centipede (198x)(Shadowsoft Inc)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">70CC4AE8</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>35</releaseNumber>
+			<title>Checkered Flag (1991)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">6687F846</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>36</releaseNumber>
+			<title>Checkered Flag (1991)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">A9C64AA1</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>37</releaseNumber>
+			<title>Chip's Challenge (1989)(Epyx Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">AD7C002B</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>38</releaseNumber>
+			<title>Chip's Challenge (1989)(Epyx Inc)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">F45F784A</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>39</releaseNumber>
+			<title>Crystal Mines II (1991)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">58FF6DB3</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>40</releaseNumber>
+			<title>Crystal Mines II (1991)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">0535E6C9</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>41</releaseNumber>
+			<title>Desert Strike - Return to the Gulf (1993)(Telegames)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">2EAAE973</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>42</releaseNumber>
+			<title>Desert Strike - Return to the Gulf (1993)(Telegames)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">DE0EC161</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>43</releaseNumber>
+			<title>Dinolympics (1992)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">0ED9EB06</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>44</releaseNumber>
+			<title>Dinolympics (1992)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">47D57C30</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>45</releaseNumber>
+			<title>Dirty Larry - Renegade Cop (1992)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">C6017733</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>46</releaseNumber>
+			<title>Dirty Larry - Renegade Cop (1992)(Atari Corp)[a2]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">3CD319BD</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>47</releaseNumber>
+			<title>Dirty Larry - Renegade Cop (1992)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">8953DFCA</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>48</releaseNumber>
+			<title>Dirty Larry - Renegade Cop (1992)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">D3AE054A</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>49</releaseNumber>
+			<title>Double Dragon (1993)(Telegames)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">BCB2E75A</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>50</releaseNumber>
+			<title>Double Dragon (1993)(Telegames)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">A4E78202</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>51</releaseNumber>
+			<title>Dracula - The Undead (1991)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">0F4B4071</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>52</releaseNumber>
+			<title>Dracula - The Undead (1991)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">ADFB50E9</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>53</releaseNumber>
+			<title>Electrocop (1989)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">CD9B18D3</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>54</releaseNumber>
+			<title>Electrocop (1989)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">765D742D</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>55</releaseNumber>
+			<title>European Soccer Challenge (1993)(Telegames)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">D25C3D35</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>56</releaseNumber>
+			<title>European Soccer Challenge (1993)(Telegames)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">8EC43452</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>57</releaseNumber>
+			<title>Eye of the Beholder (1990)(Atari Corp)(proto)</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">A0010717</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>58</releaseNumber>
+			<title>Fat Bobby (1993)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">8C76BDE2</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>59</releaseNumber>
+			<title>Fat Bobby (1993)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">03F4E2A7</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>60</releaseNumber>
+			<title>Fidelity Ultimate Chess Challenge (1991)(Telegames)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">27D2D190</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>61</releaseNumber>
+			<title>Fidelity Ultimate Chess Challenge (1991)(Telegames)[a2]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">BD77D5F2</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>62</releaseNumber>
+			<title>Fidelity Ultimate Chess Challenge (1991)(Telegames)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">96643BAA</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>63</releaseNumber>
+			<title>Gates of Zendocon, The (1989)(Epyx Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">42DFE400</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>64</releaseNumber>
+			<title>Gates of Zendocon, The (1989)(Epyx Inc)[a2]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">D852DBA7</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>65</releaseNumber>
+			<title>Gates of Zendocon, The (1989)(Epyx Inc)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">2B37A774</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>66</releaseNumber>
+			<title>Gauntlet - The Third Encounter (1989)(Tengen Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">C3497FB2</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>67</releaseNumber>
+			<title>Gauntlet - The Third Encounter (1989)(Tengen Inc)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">8E0908E5</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>68</releaseNumber>
+			<title>Gordo 106 - The Mutated Lab Monkey (1992)(Tenth Planet)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">0671ACEA</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>69</releaseNumber>
+			<title>Gordo 106 - The Mutated Lab Monkey (1992)(Tenth Planet)[b2]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">CEA6795B</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>70</releaseNumber>
+			<title>Gordo 106 - The Mutated Lab Monkey (1992)(Tenth Planet)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">ABB60103</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>71</releaseNumber>
+			<title>Hard Drivin' (1993)(Tengen Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">2F20BAC7</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>72</releaseNumber>
+			<title>Hard Drivin' (1993)(Tengen Inc)[a2]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">9ADD0861</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>73</releaseNumber>
+			<title>Hard Drivin' (1993)(Tengen Inc)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">69B874B2</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>74</releaseNumber>
+			<title>Hockey (1992)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">0904A4D9</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>75</releaseNumber>
+			<title>Hockey (1992)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">5670704B</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>76</releaseNumber>
+			<title>Hydra (1992)(Tengen Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">8980A322</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>77</releaseNumber>
+			<title>Hydra (1992)(Tengen Inc)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">D2CEC8C7</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>78</releaseNumber>
+			<title>Ishido - The Way of the Stones (1991)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">7C58AEA4</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>79</releaseNumber>
+			<title>Ishido - The Way of the Stones (1991)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">4AA0E0B9</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>80</releaseNumber>
+			<title>Jimmy Connors Tennis (1993)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>524352</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">FDD6536D</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>81</releaseNumber>
+			<title>Jimmy Connors Tennis (1993)(Atari Corp)[b2]</title>
+			<saveType></saveType>
+			<romSize>524352</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">7D96476A</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>82</releaseNumber>
+			<title>Jimmy Connors Tennis (1993)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>524352</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">AEBEE319</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>83</releaseNumber>
+			<title>Joust (1993)(Shadowsoft Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">D7B28EF1</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>84</releaseNumber>
+			<title>Joust (1993)(Shadowsoft Inc)[a2]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">85A2A177</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>85</releaseNumber>
+			<title>Joust (1993)(Shadowsoft Inc)[a]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">9F7662C2</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>86</releaseNumber>
+			<title>Klax (1990)(Tengen Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">EC53A878</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>87</releaseNumber>
+			<title>Klax (1990)(Tengen Inc)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">5DD61084</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>88</releaseNumber>
+			<title>Krazy Ace Minature Golf (1992)(Telegames)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">96C5D9B9</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>89</releaseNumber>
+			<title>Krazy Ace Minature Golf (1992)(Telegames)[a]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">B9F9175D</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>90</releaseNumber>
+			<title>Krazy Ace Minature Golf (1992)(Telegames)[b2]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">CB482C7F</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>91</releaseNumber>
+			<title>Krazy Ace Minature Golf (1992)(Telegames)[b3]</title>
+			<saveType></saveType>
+			<romSize>20904</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">3C4D4A7E</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>92</releaseNumber>
+			<title>Krazy Ace Minature Golf (1992)(Telegames)[b]</title>
+			<saveType></saveType>
+			<romSize>261938</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">D0A29ECD</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>93</releaseNumber>
+			<title>Kung Food (1992)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">3529D2D7</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>94</releaseNumber>
+			<title>Kung Food (1992)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">AC145F2F</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>95</releaseNumber>
+			<title>Lemmings (1993)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">A77B6B64</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>96</releaseNumber>
+			<title>Lemmings (1993)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">AE32C303</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>97</releaseNumber>
+			<title>Lexis (1994)(Shadowsoft Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">265710CE</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>98</releaseNumber>
+			<title>Lexis (1994)(Shadowsoft Inc)[a]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">E89999BC</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>99</releaseNumber>
+			<title>Lode Runner (1996)(Broderbund Software)</title>
+			<saveType></saveType>
+			<romSize>47626</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">3469D418</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>100</releaseNumber>
+			<title>Loopz v0.06 (1992)(Hand Made Software)(proto)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">1B745804</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>101</releaseNumber>
+			<title>Loopz v0.06 (1992)(Hand Made Software)(proto)[a]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">93281104</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>102</releaseNumber>
+			<title>Lynx Casino (1992)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">5539BAF4</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>103</releaseNumber>
+			<title>Lynx Casino (1992)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">BE1ADE2C</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>104</releaseNumber>
+			<title>Lynx II Production Test v0.02 (1989)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">E1D69A7E</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>105</releaseNumber>
+			<title>Malibu Bikini Volleyball (1993)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">ABA3E776</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>106</releaseNumber>
+			<title>Malibu Bikini Volleyball (1993)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">9BAB5462</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>107</releaseNumber>
+			<title>Marlboro Go! (1993)(Digital Image)(proto)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">CD20D749</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>108</releaseNumber>
+			<title>Marlboro Go! (1993)(Digital Image)(proto)[a]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">8D484E65</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>109</releaseNumber>
+			<title>Ms. Pac-Man (1990)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">2EC48DFD</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>110</releaseNumber>
+			<title>Ms. Pac-Man (1990)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">A4D77DE9</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>111</releaseNumber>
+			<title>Ms. Pac-Man (1990)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">0A54736F</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>112</releaseNumber>
+			<title>NFL Football (1990)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">C398359E</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>113</releaseNumber>
+			<title>NFL Football (1990)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">CDF2732F</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>114</releaseNumber>
+			<title>Ninja Gaiden (1990)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">5ADF25F0</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>115</releaseNumber>
+			<title>Ninja Gaiden (1990)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">5CDD4A0C</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>116</releaseNumber>
+			<title>Ninja Gaiden III - Ancient Ship of Doom (1993)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>524352</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">CD2FFBCC</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>117</releaseNumber>
+			<title>Ninja Gaiden III - Ancient Ship of Doom (1993)(Atari Corp)[b2]</title>
+			<saveType></saveType>
+			<romSize>173056</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">23275880</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>118</releaseNumber>
+			<title>Ninja Gaiden III - Ancient Ship of Doom (1993)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>524352</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">9799F932</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>119</releaseNumber>
+			<title>Pac-Land (1991)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">635179BA</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>120</releaseNumber>
+			<title>Pac-Land (1991)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">5B57126A</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>121</releaseNumber>
+			<title>Paperboy (1990)(Tengen Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">B77F6C21</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>122</releaseNumber>
+			<title>Paperboy (1990)(Tengen Inc)[a2]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">D6A4C70B</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>123</releaseNumber>
+			<title>Paperboy (1990)(Tengen Inc)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">25C1BBD8</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>124</releaseNumber>
+			<title>Pinball Jam (1992)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">8863C28D</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>125</releaseNumber>
+			<title>Pinball Jam (1992)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">1060661E</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>126</releaseNumber>
+			<title>Pit Fighter (1992)(Tengen Inc)</title>
+			<saveType></saveType>
+			<romSize>524352</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">CBAF54F3</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>127</releaseNumber>
+			<title>Pit Fighter (1992)(Tengen Inc)[b]</title>
+			<saveType></saveType>
+			<romSize>524352</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">C0770884</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>128</releaseNumber>
+			<title>Power Factor (1992)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">5DB41679</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>129</releaseNumber>
+			<title>Power Factor (1992)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">4A02F2BC</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>130</releaseNumber>
+			<title>Qix (1991)(Telegames)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">48E45BD2</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>131</releaseNumber>
+			<title>Qix (1991)(Telegames)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">5651E1A8</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>132</releaseNumber>
+			<title>Raiden (1997)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">DF1741BB</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>133</releaseNumber>
+			<title>Raiden (1997)(Atari Corp)[a2]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">51D8C2E8</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>134</releaseNumber>
+			<title>Raiden (1997)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">2702BA4F</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>135</releaseNumber>
+			<title>Rampage (1991)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">490033C9</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>136</releaseNumber>
+			<title>Rampage (1991)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">47039625</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>137</releaseNumber>
+			<title>Rampart (1991)(Tengen Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">ADAB7883</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>138</releaseNumber>
+			<title>Rampart (1991)(Tengen Inc)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">EC4566BD</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>139</releaseNumber>
+			<title>Road Blasters (1990)(Tengen Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">47F69051</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>140</releaseNumber>
+			<title>Road Blasters (1990)(Tengen Inc)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">449BE149</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>141</releaseNumber>
+			<title>Road Riot (1994)(Tengen Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">3BEBB6D1</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>142</releaseNumber>
+			<title>Robo Squash (1990)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">168BE6B1</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>143</releaseNumber>
+			<title>Robo Squash (1990)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">AEED3E7E</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>144</releaseNumber>
+			<title>Robotron 2084 (1991)(Shadowsoft Inc)</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">28C789C8</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>145</releaseNumber>
+			<title>Robotron 2084 (1991)(Shadowsoft Inc)[a2]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">82729524</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>146</releaseNumber>
+			<title>Robotron 2084 (1991)(Shadowsoft Inc)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">7117E9F7</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>147</releaseNumber>
+			<title>Rygar - Legendary Warrior (1990)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">1DFCA564</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>148</releaseNumber>
+			<title>Rygar - Legendary Warrior (1990)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">997E3DCE</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>149</releaseNumber>
+			<title>S.T.U.N. Runner (1991)(Tengen Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">4B3BF84F</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>150</releaseNumber>
+			<title>S.T.U.N. Runner (1991)(Tengen Inc)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">946B66CF</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>151</releaseNumber>
+			<title>Scrapyard Dog (1991)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">CA0D1BDA</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>152</releaseNumber>
+			<title>Scrapyard Dog (1991)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">40BC876D</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>153</releaseNumber>
+			<title>Shadow of the Beast (1992)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">904FF064</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>154</releaseNumber>
+			<title>Shadow of the Beast (1992)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">D43A8430</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>155</releaseNumber>
+			<title>Shadow of the Beast (1992)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">0948227A</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>156</releaseNumber>
+			<title>Shanghai (1990)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">2441A8B7</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>157</releaseNumber>
+			<title>Shanghai (1990)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">78BA01FD</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>158</releaseNumber>
+			<title>Steel Talons (1991)(Tengen Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">AB814832</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>159</releaseNumber>
+			<title>Steel Talons (1991)(Tengen Inc)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">F4FFBA4A</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>160</releaseNumber>
+			<title>Super Asteroids &amp; Missile Command (1994)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">F4B32067</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>161</releaseNumber>
+			<title>Super Asteroids &amp; Missile Command (1994)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">7D8A25D1</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>162</releaseNumber>
+			<title>Super Off Road (1993)(Telegames)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">C51B7A2F</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>163</releaseNumber>
+			<title>Super Skweek (1991)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">11B712F6</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>164</releaseNumber>
+			<title>Super Skweek (1991)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">D6084B14</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>165</releaseNumber>
+			<title>Super Skweek (1991)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">8BEF6B4F</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>166</releaseNumber>
+			<title>Switchblade II (1992)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">63144491</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>167</releaseNumber>
+			<title>Switchblade II (1992)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">8B8B560F</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>168</releaseNumber>
+			<title>Tetris (199x)(-)[b2]</title>
+			<saveType></saveType>
+			<romSize>262175</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">8C803B33</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>169</releaseNumber>
+			<title>Tetris (199x)(-)[b3]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">22BFCEDF</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>170</releaseNumber>
+			<title>Tetris (199x)(-)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">77A3D4F6</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>171</releaseNumber>
+			<title>Todd's Adventures - Slime World (1990)(Epyx Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">C1D05F3E</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>172</releaseNumber>
+			<title>Todd's Adventures - Slime World (1990)(Epyx Inc)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">39BF3C25</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>173</releaseNumber>
+			<title>Toki (1990)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">52B94A6C</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>174</releaseNumber>
+			<title>Toki (1990)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">7AF58340</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>175</releaseNumber>
+			<title>Tournament Cyberball 2072 (1991)(Tengen Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">70D0C9BF</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>176</releaseNumber>
+			<title>Tournament Cyberball 2072 (1991)(Tengen Inc)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">A966742B</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>177</releaseNumber>
+			<title>Turbo Sub (1991)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">9D4ED688</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>178</releaseNumber>
+			<title>Turbo Sub (1991)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">5247B5F3</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>179</releaseNumber>
+			<title>Viking Child (1991)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">45969EB0</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>180</releaseNumber>
+			<title>Viking Child (1991)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">31FE9876</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>181</releaseNumber>
+			<title>Warbirds (1990)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">78574D46</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>182</releaseNumber>
+			<title>Warbirds (1990)(Atari Corp)[a2]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">A6AE2301</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>183</releaseNumber>
+			<title>Warbirds (1990)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">FF7E433E</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>184</releaseNumber>
+			<title>World Class Soccer (1992)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">9D929F2C</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>185</releaseNumber>
+			<title>World Class Soccer (1992)(Atari Corp)[b2]</title>
+			<saveType></saveType>
+			<romSize>262118</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">1D460BE0</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>186</releaseNumber>
+			<title>World Class Soccer (1992)(Atari Corp)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">7A17A94C</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>187</releaseNumber>
+			<title>Xenophobe (1990)(Atari Corp)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">BC1194F6</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>188</releaseNumber>
+			<title>Xenophobe (1990)(Atari Corp)[a2]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">03506A42</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>189</releaseNumber>
+			<title>Xenophobe (1990)(Atari Corp)[a3]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">0D9F4BDA</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>190</releaseNumber>
+			<title>Xenophobe (1990)(Atari Corp)[a4]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">922A9DD0</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>191</releaseNumber>
+			<title>Xenophobe (1990)(Atari Corp)[a]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">CB179390</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>192</releaseNumber>
+			<title>Xybots (1991)(Tengen Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">CAC9A246</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>193</releaseNumber>
+			<title>Xybots (1991)(Tengen Inc)[b]</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">A612C8AF</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>194</releaseNumber>
+			<title>Zarlor Mercenary (1990)(Epyx Inc)</title>
+			<saveType></saveType>
+			<romSize>262208</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">5DAE45C2</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>195</releaseNumber>
+			<title>Zarlor Mercenary (1990)(Epyx Inc)[a]</title>
+			<saveType></saveType>
+			<romSize>131136</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">35BC4FF9</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>196</releaseNumber>
+			<title>Zarlor Mercenary (1990)(Epyx Inc)[b]</title>
+			<saveType></saveType>
+			<romSize>196672</romSize>
+			<publisher></publisher>
+			<location>-1</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".lnx">B0CCD073</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment></comment>
+		</game>
+	</games>
+</dat>
+

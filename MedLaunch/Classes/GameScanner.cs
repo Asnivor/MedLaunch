@@ -13,7 +13,7 @@ using Ookii.Dialogs.Wpf;
 using Microsoft.Win32;
 using MahApps.Metro.Controls.Dialogs;
 using MedLaunch.Classes.GamesLibrary;
-using MedLaunch.Classes.Scraper.DAT.NOINTRO.Models;
+using MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO.Models;
 using MedLaunch.Classes.IO;
 
 namespace MedLaunch.Classes

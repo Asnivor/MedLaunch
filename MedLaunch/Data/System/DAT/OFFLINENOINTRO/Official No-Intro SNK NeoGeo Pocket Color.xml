@@ -1,0 +1,1844 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!-- Dat by Patrick (nointro@free.fr) aka [-F1-] on IRC, Dat and Images Hosted on http://nointro.free.fr -->
+<!-- Please visit official no-intro website on http://www.gbadat.altervista.org> -->
+<!-- Download OfflineList on http://offlinelist.free.fr> -->
+
+<!-- Datter : NGEfreak -->
+<!-- Pictures by : Patrick & Gee_LoVe -->
+<!-- OL Datter : Gee_LoVe -->
+
+<dat xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="datas.xsd">
+	<configuration>
+		<datName>Official No-Intro SNK NeoGeo Pocket Color</datName>
+		<datVersion>830174425</datVersion>
+		<system>SNK Neo Geo Pocket Color</system>
+		<screenshotsWidth>160</screenshotsWidth>
+		<screenshotsHeight>152</screenshotsHeight>
+		<infos>
+			<title visible="false" inNamingOption="true" default="false"></title>
+			<location visible="true" inNamingOption="true" default="true"></location>
+			<publisher visible="true" inNamingOption="true" default="true"></publisher>
+			<sourceRom visible="true" inNamingOption="true" default="true"></sourceRom>
+			<saveType visible="false" inNamingOption="false" default="false"></saveType>
+			<romSize visible="true" inNamingOption="true" default="true"></romSize>
+			<releaseNumber visible="true" inNamingOption="true" default="false"></releaseNumber>
+			<languageNumber visible="true" inNamingOption="true" default="false"></languageNumber>
+			<comment visible="true" inNamingOption="true" default="true"></comment>
+			<romCRC visible="true" inNamingOption="true" default="true"></romCRC>
+			<im1CRC visible="true" inNamingOption="true" default="false"></im1CRC>
+			<im2CRC visible="true" inNamingOption="true" default="false"></im2CRC>
+			<languages visible="true" inNamingOption="true" default="true"></languages>
+		</infos>
+		<canOpen>
+			<extension>.ngc</extension>
+		</canOpen>
+		<newDat>
+			<datVersionURL>http://nointro.free.fr/version/Official%20No-Intro%20SNK%20NeoGeo%20Pocket%20Color_version</datVersionURL>
+			<datURL fileName="Official No-Intro SNK NeoGeo Pocket Color.zip">http://nointro.free.fr/datas/Official%20No-Intro%20SNK%20NeoGeo%20Pocket%20Color.zip</datURL>
+			<imURL>http://nointro.free.fr/imgs/Official%20No-Intro%20SNK%20NeoGeo%20Pocket%20Color/</imURL>
+		</newDat>
+		<search>
+			<to value="location" default="true" auto="true"></to>
+			<to value="romSize" default="true" auto="false">
+				<find operation="=" value="524288">= 4 MBits</find>
+				<find operation="=" value="1048576">= 8 MBits</find>
+				<find operation="=" value="2097152">= 16 MBits</find>
+				<find operation="=" value="4194304">= 32 MBits</find>
+			</to>
+			<to value="languages" default="true" auto="true"></to>
+			<to value="publisher" default="true" auto="true"></to>
+			<to value="sourceRom" default="true" auto="true"></to>
+		</search>
+		<romTitle>%n %o %m %e</romTitle>
+	</configuration>
+	<games>
+
+		<game>
+			<imageNumber>39</imageNumber>
+			<releaseNumber>39</releaseNumber>
+			<title>Bakumatsu Rouman Tokubetsu Hen - Gekka no Kenshi - Tsuki ni Saku Hana, Chiri Yuku Hana</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">12AFACB0</romCRC>
+			</files>
+			<im1CRC>B679E1AA</im1CRC>
+			<im2CRC>293218AD</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>2</imageNumber>
+			<releaseNumber>2</releaseNumber>
+			<title>Baseball Stars Color</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">FFA7E88D</romCRC>
+			</files>
+			<im1CRC>08F5FDBF</im1CRC>
+			<im2CRC>0D2A972D</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>3</imageNumber>
+			<releaseNumber>3</releaseNumber>
+			<title>Big Bang Pro Wrestling</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">B783C372</romCRC>
+			</files>
+			<im1CRC>C09C1DF2</im1CRC>
+			<im2CRC>16C1D88F</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>4</imageNumber>
+			<releaseNumber>4</releaseNumber>
+			<title>Bikkuriman 2000 - Viva! Pocket Festiva!</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>Segatoys</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">4DB0AB6C</romCRC>
+			</files>
+			<im1CRC>62862FFA</im1CRC>
+			<im2CRC>4EF13ECB</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>5</imageNumber>
+			<releaseNumber>5</releaseNumber>
+			<title>Biomotor Unitron</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Yumekobo</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">ECEE99F3</romCRC>
+			</files>
+			<im1CRC>A0D45A95</im1CRC>
+			<im2CRC>9972E8E3</im2CRC>
+			<comment></comment>
+			<duplicateID>1</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>6</imageNumber>
+			<releaseNumber>6</releaseNumber>
+			<title>Biomotor Unitron</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Yumekobo</publisher>
+			<location>16</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">3807DF4F</romCRC>
+			</files>
+			<im1CRC>2D9CEB03</im1CRC>
+			<im2CRC>309E84CF</im2CRC>
+			<comment></comment>
+			<duplicateID>1</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>7</imageNumber>
+			<releaseNumber>7</releaseNumber>
+			<title>Bust-A-Move Pocket</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>1</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">85FE6AE3</romCRC>
+			</files>
+			<im1CRC>E1ED7AF2</im1CRC>
+			<im2CRC>00219A94</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>8</imageNumber>
+			<releaseNumber>8</releaseNumber>
+			<title>Cool Boarders Pocket</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>UEP Systems</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">833F9C22</romCRC>
+			</files>
+			<im1CRC>2E6C978F</im1CRC>
+			<im2CRC>334C099B</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>9</imageNumber>
+			<releaseNumber>9</releaseNumber>
+			<title>Cool Cool Jam</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">4FDA5D8A</romCRC>
+			</files>
+			<im1CRC>D8A04D5B</im1CRC>
+			<im2CRC>3A517071</im2CRC>
+			<comment></comment>
+			<duplicateID>2</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>10</imageNumber>
+			<releaseNumber>10</releaseNumber>
+			<title>Cool Cool Jam</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>16</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">4D8D27F0</romCRC>
+			</files>
+			<im1CRC>CC5BEAB6</im1CRC>
+			<im2CRC>6D870656</im2CRC>
+			<comment>(Sample)</comment>
+			<duplicateID>2</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>0</releaseNumber>
+			<title>Crush Roller</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher></publisher>
+			<location>17</location>
+			<sourceRom></sourceRom>
+			<language>258</language>
+			<files>
+				<romCRC extension=".ngc">6200C65E</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>14</imageNumber>
+			<releaseNumber>14</releaseNumber>
+			<title>Dark Arms - Beast Buster 1999</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">6F353F34</romCRC>
+			</files>
+			<im1CRC>F06712FC</im1CRC>
+			<im2CRC>F99D318D</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>15</imageNumber>
+			<releaseNumber>15</releaseNumber>
+			<title>Delta Warp</title>
+			<saveType></saveType>
+			<romSize>524288</romSize>
+			<publisher>Sacnoth</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">ADD4FDFF</romCRC>
+			</files>
+			<im1CRC>6A93B7D6</im1CRC>
+			<im2CRC>11F5BDFE</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>16</imageNumber>
+			<releaseNumber>16</releaseNumber>
+			<title>Densetsu no Ogre Battle Gaiden - Zenobia no Ouji</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>Atlus Co-Riverhillsoft</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">EEEEFD6A</romCRC>
+			</files>
+			<im1CRC>6B76B60C</im1CRC>
+			<im2CRC>A2856AD3</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>17</imageNumber>
+			<releaseNumber>17</releaseNumber>
+			<title>Densha de Go! 2 on Neo Geo Pocket</title>
+			<saveType></saveType>
+			<romSize>4194304</romSize>
+			<publisher>SNK-Taito</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">D5CED9E9</romCRC>
+			</files>
+			<im1CRC>8C4BA07D</im1CRC>
+			<im2CRC>5A29AA13</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>18</imageNumber>
+			<releaseNumber>18</releaseNumber>
+			<title>Dive Alert - Becky's Version</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>Sacnoth</publisher>
+			<location>16</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">83DB5772</romCRC>
+			</files>
+			<im1CRC>D309FE4C</im1CRC>
+			<im2CRC>E0BFD017</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>19</imageNumber>
+			<releaseNumber>19</releaseNumber>
+			<title>Dive Alert - Burn Hen</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>Sacnoth</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">C213941D</romCRC>
+			</files>
+			<im1CRC>FDC32CAA</im1CRC>
+			<im2CRC>40BF81AD</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>20</imageNumber>
+			<releaseNumber>20</releaseNumber>
+			<title>Dive Alert - Matt's Version</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>Sacnoth</publisher>
+			<location>16</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">EF75081B</romCRC>
+			</files>
+			<im1CRC>5BA786C7</im1CRC>
+			<im2CRC>F8A18B03</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>21</imageNumber>
+			<releaseNumber>21</releaseNumber>
+			<title>Dive Alert - Rebecca Hen</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>Sacnoth</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">3C4AF4F5</romCRC>
+			</files>
+			<im1CRC>E9C0D144</im1CRC>
+			<im2CRC>CF09FC6E</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>23</imageNumber>
+			<releaseNumber>23</releaseNumber>
+			<title>Dynamite Slugger</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-ADK</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">7F1779CD</romCRC>
+			</files>
+			<im1CRC>FD47365C</im1CRC>
+			<im2CRC>5ACCD6A0</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>25</imageNumber>
+			<releaseNumber>25</releaseNumber>
+			<title>Evolution - Eternal Dungeons</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SEGA-ESP</publisher>
+			<location>0</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">BE47E531</romCRC>
+			</files>
+			<im1CRC>F1A37788</im1CRC>
+			<im2CRC>63FE443D</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>12</imageNumber>
+			<releaseNumber>12</releaseNumber>
+			<title>Fantastic Night Dreams Cotton</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Success</publisher>
+			<location>0</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">1BF412F5</romCRC>
+			</files>
+			<im1CRC>233A2E41</im1CRC>
+			<im2CRC>C2015B73</im2CRC>
+			<comment></comment>
+			<duplicateID>3</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>11</imageNumber>
+			<releaseNumber>11</releaseNumber>
+			<title>Fantastic Night Dreams Cotton</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Success</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">B8A12409</romCRC>
+			</files>
+			<im1CRC>233A2E41</im1CRC>
+			<im2CRC>6236E321</im2CRC>
+			<comment></comment>
+			<duplicateID>3</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>28</imageNumber>
+			<releaseNumber>28</releaseNumber>
+			<title>Faselei!</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>Sacnoth</publisher>
+			<location>0</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">E705E30E</romCRC>
+			</files>
+			<im1CRC>0E140246</im1CRC>
+			<im2CRC>4AA76E26</im2CRC>
+			<comment></comment>
+			<duplicateID>4</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>27</imageNumber>
+			<releaseNumber>27</releaseNumber>
+			<title>Faselei!</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>Sacnoth</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">8F585838</romCRC>
+			</files>
+			<im1CRC>4A636C9C</im1CRC>
+			<im2CRC>10283A99</im2CRC>
+			<comment></comment>
+			<duplicateID>4</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>29</imageNumber>
+			<releaseNumber>29</releaseNumber>
+			<title>Fatal Fury F-Contact</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">A9119B5A</romCRC>
+			</files>
+			<im1CRC>BD25BA68</im1CRC>
+			<im2CRC>7F78E56F</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>32</imageNumber>
+			<releaseNumber>32</releaseNumber>
+			<title>Ganbare Neo Poke-kun</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">6DF986A3</romCRC>
+			</files>
+			<im1CRC>399B77AB</im1CRC>
+			<im2CRC>1FF8E807</im2CRC>
+			<comment>(J)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>33</imageNumber>
+			<releaseNumber>33</releaseNumber>
+			<title>Infinity Cure</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>Kid</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">32DC2AA2</romCRC>
+			</files>
+			<im1CRC>E1732AA1</im1CRC>
+			<im2CRC>888F99DD</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>34</imageNumber>
+			<releaseNumber>34</releaseNumber>
+			<title>Kikou Seiki Unitron - Sono Tsuide. Hikari Umareru Chi Yori.</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-Yumekobo</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">84580D66</romCRC>
+			</files>
+			<im1CRC>D733109B</im1CRC>
+			<im2CRC>3B3A957A</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>0</imageNumber>
+			<releaseNumber>0</releaseNumber>
+			<title>King of Fighters R-2</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher></publisher>
+			<location>17</location>
+			<sourceRom></sourceRom>
+			<language>258</language>
+			<files>
+				<romCRC extension=".ngc">47E490A2</romCRC>
+			</files>
+			<im1CRC>78175125</im1CRC>
+			<im2CRC>78175125</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>37</imageNumber>
+			<releaseNumber>37</releaseNumber>
+			<title>King of Fighters, The - Battle de Paradise</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">77E37BAC</romCRC>
+			</files>
+			<im1CRC>8A0ABE24</im1CRC>
+			<im2CRC>CEAA63F5</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>38</imageNumber>
+			<releaseNumber>38</releaseNumber>
+			<title>Koi Koi Mahjong</title>
+			<saveType></saveType>
+			<romSize>524288</romSize>
+			<publisher>Visco</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">B51C3EBA</romCRC>
+			</files>
+			<im1CRC>0724CB77</im1CRC>
+			<im2CRC>234EE9B6</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>40</imageNumber>
+			<releaseNumber>40</releaseNumber>
+			<title>Last Blade, The - Beyond the Destiny</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>0</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">94FCFD1E</romCRC>
+			</files>
+			<im1CRC>7B722D84</im1CRC>
+			<im2CRC>3057AF7F</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>41</imageNumber>
+			<releaseNumber>41</releaseNumber>
+			<title>Magical Drop Pocket</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>Data East Corp</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">6C465716</romCRC>
+			</files>
+			<im1CRC>AE70FAFB</im1CRC>
+			<im2CRC>D18811B2</im2CRC>
+			<comment></comment>
+			<duplicateID>5</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>42</imageNumber>
+			<releaseNumber>42</releaseNumber>
+			<title>Magical Drop Pocket</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>Data East Corp</publisher>
+			<location>16</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">72184DE7</romCRC>
+			</files>
+			<im1CRC>B3847890</im1CRC>
+			<im2CRC>5F2E296B</im2CRC>
+			<comment></comment>
+			<duplicateID>5</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>46</imageNumber>
+			<releaseNumber>46</releaseNumber>
+			<title>Memories Off - Pure</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>-</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">3F592E99</romCRC>
+			</files>
+			<im1CRC>C9C45A48</im1CRC>
+			<im2CRC>5F16D347</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>47</imageNumber>
+			<releaseNumber>47</releaseNumber>
+			<title>Metal Slug - 1st Mission</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">4FF91807</romCRC>
+			</files>
+			<im1CRC>14FCCA31</im1CRC>
+			<im2CRC>177FA7FB</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>48</imageNumber>
+			<releaseNumber>48</releaseNumber>
+			<title>Metal Slug - 2nd Mission</title>
+			<saveType></saveType>
+			<romSize>4194304</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">AC549144</romCRC>
+			</files>
+			<im1CRC>6315C41A</im1CRC>
+			<im2CRC>4A317CE4</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>49</imageNumber>
+			<releaseNumber>49</releaseNumber>
+			<title>Mezase! Kanji Ou</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>Kid</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">C3C9992E</romCRC>
+			</files>
+			<im1CRC>7A234FC1</im1CRC>
+			<im2CRC>4D96B6A5</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>50</imageNumber>
+			<releaseNumber>50</releaseNumber>
+			<title>Mizuki Shigeru no Youkai Shashinkan</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">DDE08335</romCRC>
+			</files>
+			<im1CRC>83F2645D</im1CRC>
+			<im2CRC>417FDCD2</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>59</imageNumber>
+			<releaseNumber>59</releaseNumber>
+			<title>Neo 21 - Real Casino Series</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Dyna Corporation</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">0A2A2F28</romCRC>
+			</files>
+			<im1CRC>FCF18A96</im1CRC>
+			<im2CRC>6B1B12C6</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>51</imageNumber>
+			<releaseNumber>51</releaseNumber>
+			<title>Neo Baccarat - Real Casino Series</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Dyna Corporation</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">22AAB454</romCRC>
+			</files>
+			<im1CRC>42199DC5</im1CRC>
+			<im2CRC>4933CBA7</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>53</imageNumber>
+			<releaseNumber>53</releaseNumber>
+			<title>Neo Cherry Master Color - Real Casino Series</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Dyna Corporation</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">A6DCA584</romCRC>
+			</files>
+			<im1CRC>3B250DE8</im1CRC>
+			<im2CRC>1FC634E1</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>54</imageNumber>
+			<releaseNumber>54</releaseNumber>
+			<title>Neo Derby Champ Daiyosou</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-Dyna Corporation</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">5A053559</romCRC>
+			</files>
+			<im1CRC>168C7C26</im1CRC>
+			<im2CRC>888659A9</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>50001</imageNumber>
+			<releaseNumber>0</releaseNumber>
+			<title>Neo Dragon's Wild - Real Casino Series</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher></publisher>
+			<location>17</location>
+			<sourceRom></sourceRom>
+			<language>258</language>
+			<files>
+				<romCRC extension=".ngc">225FD7F9</romCRC>
+			</files>
+			<im1CRC>9B7D853F</im1CRC>
+			<im2CRC>6C2F1781</im2CRC>
+			<comment>(M2) (v1.11)</comment>
+			<duplicateID>6</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>55</imageNumber>
+			<releaseNumber>55</releaseNumber>
+			<title>Neo Dragon's Wild - Real Casino Series</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Dyna Corporation</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">5D028C99</romCRC>
+			</files>
+			<im1CRC>972A41BF</im1CRC>
+			<im2CRC>BF1A6AC3</im2CRC>
+			<comment>(M2) (v1.13)</comment>
+			<duplicateID>6</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>61</imageNumber>
+			<releaseNumber>61</releaseNumber>
+			<title>Neo Geo Cup '98 Plus</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">C0DA4FE9</romCRC>
+			</files>
+			<im1CRC>2367EDF2</im1CRC>
+			<im2CRC>56FDCDEA</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>56</imageNumber>
+			<releaseNumber>56</releaseNumber>
+			<title>Neo Mystery Bonus - Real Casino Series</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Dyna Corporation</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">E79DC5B3</romCRC>
+			</files>
+			<im1CRC>A09EC928</im1CRC>
+			<im2CRC>2C2A20FE</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>57</imageNumber>
+			<releaseNumber>57</releaseNumber>
+			<title>Neo Poke Pro Yakyuu</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-ADK</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">F4D78F12</romCRC>
+			</files>
+			<im1CRC>9D89B49A</im1CRC>
+			<im2CRC>4C6CBE47</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>58</imageNumber>
+			<releaseNumber>58</releaseNumber>
+			<title>Neo Turf Masters</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">317A66D2</romCRC>
+			</files>
+			<im1CRC>2D0077A4</im1CRC>
+			<im2CRC>6B9F70BD</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>62</imageNumber>
+			<releaseNumber>62</releaseNumber>
+			<title>Nigeronpa</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>Dennou Eizo</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">3CC3E269</romCRC>
+			</files>
+			<im1CRC>5AD305C9</im1CRC>
+			<im2CRC>EE9C0F9A</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>63</imageNumber>
+			<releaseNumber>63</releaseNumber>
+			<title>Oekaki Puzzle</title>
+			<saveType></saveType>
+			<romSize>524288</romSize>
+			<publisher>SNK-Success</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">0C4DAFE8</romCRC>
+			</files>
+			<im1CRC>E4D3E236</im1CRC>
+			<im2CRC>3A655D8A</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>73</imageNumber>
+			<releaseNumber>73</releaseNumber>
+			<title>Pac-Man</title>
+			<saveType></saveType>
+			<romSize>524288</romSize>
+			<publisher>Namco-Namco</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">21E8CC15</romCRC>
+			</files>
+			<im1CRC>E1D54437</im1CRC>
+			<im2CRC>1E475129</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>70</imageNumber>
+			<releaseNumber>70</releaseNumber>
+			<title>Pachi-Slot Aruze Oukoku Pocket - Azteca</title>
+			<saveType></saveType>
+			<romSize>524288</romSize>
+			<publisher>SNK-Aruze</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">C56EF8C3</romCRC>
+			</files>
+			<im1CRC>352040FF</im1CRC>
+			<im2CRC>3F70E0C9</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>72</imageNumber>
+			<releaseNumber>72</releaseNumber>
+			<title>Pachi-Slot Aruze Oukoku Pocket - Dekahel 2</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Aruze</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">346F3C46</romCRC>
+			</files>
+			<im1CRC>318C12F7</im1CRC>
+			<im2CRC>24E56070</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>71</imageNumber>
+			<releaseNumber>71</releaseNumber>
+			<title>Pachi-Slot Aruze Oukoku Pocket - Delsol 2</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Aruze</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">B98B498A</romCRC>
+			</files>
+			<im1CRC>88AAD175</im1CRC>
+			<im2CRC>138E2915</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>66</imageNumber>
+			<releaseNumber>66</releaseNumber>
+			<title>Pachi-Slot Aruze Oukoku Pocket - e-Cup</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Aruze</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">0A7C32DF</romCRC>
+			</files>
+			<im1CRC>87A0EAB7</im1CRC>
+			<im2CRC>720555BE</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>50002</imageNumber>
+			<releaseNumber>0</releaseNumber>
+			<title>Pachi-Slot Aruze Oukoku Pocket - Hanabi</title>
+			<saveType></saveType>
+			<romSize>524288</romSize>
+			<publisher></publisher>
+			<location>7</location>
+			<sourceRom></sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">CFD1C8F2</romCRC>
+			</files>
+			<im1CRC>DF2EA3B2</im1CRC>
+			<im2CRC>735B0757</im2CRC>
+			<comment>(v1.02)</comment>
+			<duplicateID>7</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>68</imageNumber>
+			<releaseNumber>68</releaseNumber>
+			<title>Pachi-Slot Aruze Oukoku Pocket - Hanabi</title>
+			<saveType></saveType>
+			<romSize>524288</romSize>
+			<publisher>SNK-Aruze</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">A0C26F9B</romCRC>
+			</files>
+			<im1CRC>F978214C</im1CRC>
+			<im2CRC>FBA4A398</im2CRC>
+			<comment>(v1.04)</comment>
+			<duplicateID>7</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>67</imageNumber>
+			<releaseNumber>67</releaseNumber>
+			<title>Pachi-Slot Aruze Oukoku Pocket - Oohanabi</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Aruze</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">8A88C50F</romCRC>
+			</files>
+			<im1CRC>2E6B09A6</im1CRC>
+			<im2CRC>6C379C50</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>65</imageNumber>
+			<releaseNumber>65</releaseNumber>
+			<title>Pachi-Slot Aruze Oukoku Pocket - Porcano 2</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Aruze</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">96DDFBE3</romCRC>
+			</files>
+			<im1CRC>3A2A1FE4</im1CRC>
+			<im2CRC>38C2EE35</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>69</imageNumber>
+			<releaseNumber>69</releaseNumber>
+			<title>Pachi-Slot Aruze Oukoku Pocket - Ward of Lights</title>
+			<saveType></saveType>
+			<romSize>524288</romSize>
+			<publisher>SNK-Aruze</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">E9816E43</romCRC>
+			</files>
+			<im1CRC>45EFFCF3</im1CRC>
+			<im2CRC>1C23A033</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>64</imageNumber>
+			<releaseNumber>64</releaseNumber>
+			<title>Pachinko Hisshou Guide - Pocket Parlor</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>Byakuka Syobo-Japan Vistec</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">C3D6B28B</romCRC>
+			</files>
+			<im1CRC>E50847E2</im1CRC>
+			<im2CRC>55AF74D6</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>74</imageNumber>
+			<releaseNumber>74</releaseNumber>
+			<title>Party Mail</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-ADK</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">4DA8A1C0</romCRC>
+			</files>
+			<im1CRC>761293D8</im1CRC>
+			<im2CRC>5493E50D</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>75</imageNumber>
+			<releaseNumber>75</releaseNumber>
+			<title>Picture Puzzle</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Success</publisher>
+			<location>16</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">67E6DC56</romCRC>
+			</files>
+			<im1CRC>C2FC8375</im1CRC>
+			<im2CRC>47AC7FB4</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>76</imageNumber>
+			<releaseNumber>76</releaseNumber>
+			<title>Pocket Love if</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>Kid</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">C2EE1EE5</romCRC>
+			</files>
+			<im1CRC>33A42828</im1CRC>
+			<im2CRC>732FBF82</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>78</imageNumber>
+			<releaseNumber>78</releaseNumber>
+			<title>Pocket Reversi</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>Itsui-Success</publisher>
+			<location>0</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">20F09880</romCRC>
+			</files>
+			<im1CRC>37786B01</im1CRC>
+			<im2CRC>E61305E6</im2CRC>
+			<comment></comment>
+			<duplicateID>8</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>77</imageNumber>
+			<releaseNumber>77</releaseNumber>
+			<title>Pocket Reversi</title>
+			<saveType></saveType>
+			<romSize>524288</romSize>
+			<publisher>Itsui-Success</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">FB0B55B8</romCRC>
+			</files>
+			<im1CRC>4B5CD04E</im1CRC>
+			<im2CRC>769AC4E1</im2CRC>
+			<comment></comment>
+			<duplicateID>8</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>80</imageNumber>
+			<releaseNumber>80</releaseNumber>
+			<title>Pocket Tennis Color - Pocket Sports Series</title>
+			<saveType></saveType>
+			<romSize>524288</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">D8590B96</romCRC>
+			</files>
+			<im1CRC>430C3D0B</im1CRC>
+			<im2CRC>24297355</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>50004</imageNumber>
+			<releaseNumber>0</releaseNumber>
+			<title>Puyo Pop</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher></publisher>
+			<location>17</location>
+			<sourceRom></sourceRom>
+			<language>258</language>
+			<files>
+				<romCRC extension=".ngc">3090B2FD</romCRC>
+			</files>
+			<im1CRC>5F259484</im1CRC>
+			<im2CRC>9D0B9659</im2CRC>
+			<comment>(M2) (v1.05)</comment>
+			<duplicateID>9</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>81</imageNumber>
+			<releaseNumber>81</releaseNumber>
+			<title>Puyo Pop</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>258</language>
+			<files>
+				<romCRC extension=".ngc">5C649D1E</romCRC>
+			</files>
+			<im1CRC>E0863A3E</im1CRC>
+			<im2CRC>70BD5A56</im2CRC>
+			<comment>(M2) (v1.06)</comment>
+			<duplicateID>9</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>50005</imageNumber>
+			<releaseNumber>0</releaseNumber>
+			<title>Puzzle Bobble Mini</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher></publisher>
+			<location>17</location>
+			<sourceRom></sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".ngc">C94B173A</romCRC>
+			</files>
+			<im1CRC>FEA162B8</im1CRC>
+			<im2CRC>64922804</im2CRC>
+			<comment>(v1.09)</comment>
+			<duplicateID>10</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>82</imageNumber>
+			<releaseNumber>82</releaseNumber>
+			<title>Puzzle Bobble Mini</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Taito</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>0</language>
+			<files>
+				<romCRC extension=".ngc">E69EAE3E</romCRC>
+			</files>
+			<im1CRC>BED20FB2</im1CRC>
+			<im2CRC>7411D3AF</im2CRC>
+			<comment>(v1.10)</comment>
+			<duplicateID>10</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>83</imageNumber>
+			<releaseNumber>83</releaseNumber>
+			<title>Puzzle Link</title>
+			<saveType></saveType>
+			<romSize>524288</romSize>
+			<publisher>SNK-Yumekobo</publisher>
+			<location>0</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">FE95938C</romCRC>
+			</files>
+			<im1CRC>44CA1E81</im1CRC>
+			<im2CRC>EE35B749</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>84</imageNumber>
+			<releaseNumber>84</releaseNumber>
+			<title>Puzzle Link 2</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Yumekobo</publisher>
+			<location>16</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">E2A09BB7</romCRC>
+			</files>
+			<im1CRC>2017521B</im1CRC>
+			<im2CRC>7E3683EE</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>87</imageNumber>
+			<releaseNumber>87</releaseNumber>
+			<title>Renketsu Puzzle Tsunagete Pon! Color</title>
+			<saveType></saveType>
+			<romSize>524288</romSize>
+			<publisher>SNK-Yumekobo</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">615F1F2F</romCRC>
+			</files>
+			<im1CRC>660C8DDD</im1CRC>
+			<im2CRC>45B16370</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>88</imageNumber>
+			<releaseNumber>88</releaseNumber>
+			<title>Rockman - Battle &amp; Fighters</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>Capcom</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">9C861E49</romCRC>
+			</files>
+			<im1CRC>C24413D3</im1CRC>
+			<im2CRC>9F29F1D0</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>90</imageNumber>
+			<releaseNumber>90</releaseNumber>
+			<title>Samurai Shodown! 2 - Pocket Fighting Series</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>258</language>
+			<files>
+				<romCRC extension=".ngc">4F7FB156</romCRC>
+			</files>
+			<im1CRC>B1AA4476</im1CRC>
+			<im2CRC>7F813288</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>91</imageNumber>
+			<releaseNumber>91</releaseNumber>
+			<title>Shanghai Mini</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>-</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>258</language>
+			<files>
+				<romCRC extension=".ngc">90732D53</romCRC>
+			</files>
+			<im1CRC>13F9BCD1</im1CRC>
+			<im2CRC>9ADC1F92</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>26</imageNumber>
+			<releaseNumber>26</releaseNumber>
+			<title>Shinki Sekai Evolution - Hateshinai Dungeon</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SEGA-ESP</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">E006F42F</romCRC>
+			</files>
+			<im1CRC>7E3ADA00</im1CRC>
+			<im2CRC>62582349</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>43</imageNumber>
+			<releaseNumber>43</releaseNumber>
+			<title>Shougi no Tatsujin Color</title>
+			<saveType></saveType>
+			<romSize>524288</romSize>
+			<publisher>SNK-ADK</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">1F2872ED</romCRC>
+			</files>
+			<im1CRC>B3E4B53B</im1CRC>
+			<im2CRC>2E69F8BF</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>30</imageNumber>
+			<releaseNumber>30</releaseNumber>
+			<title>SNK Gals' Fighters</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">6A9FFA47</romCRC>
+			</files>
+			<im1CRC>CD8F00F8</im1CRC>
+			<im2CRC>DAB431C4</im2CRC>
+			<comment></comment>
+			<duplicateID>11</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>31</imageNumber>
+			<releaseNumber>31</releaseNumber>
+			<title>SNK Gals' Fighters</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>16</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">B02C2BE7</romCRC>
+			</files>
+			<im1CRC>3FE47A4A</im1CRC>
+			<im2CRC>E92C29F0</im2CRC>
+			<comment></comment>
+			<duplicateID>11</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>92</imageNumber>
+			<releaseNumber>92</releaseNumber>
+			<title>SNK vs. Capcom - Card Fighters 2 - Expand Edition</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">CCBCFDA7</romCRC>
+			</files>
+			<im1CRC>B5F30998</im1CRC>
+			<im2CRC>70A50AA8</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>94</imageNumber>
+			<releaseNumber>94</releaseNumber>
+			<title>SNK vs. Capcom - Card Fighters' Clash - Capcom Version</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>16</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">80CE137B</romCRC>
+			</files>
+			<im1CRC>68B3F4BF</im1CRC>
+			<im2CRC>0FBD8F10</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>96</imageNumber>
+			<releaseNumber>96</releaseNumber>
+			<title>SNK vs. Capcom - Card Fighters' Clash - SNK Version</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>16</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">94B63A97</romCRC>
+			</files>
+			<im1CRC>92131A71</im1CRC>
+			<im2CRC>F9BC1434</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>93</imageNumber>
+			<releaseNumber>93</releaseNumber>
+			<title>SNK vs. Capcom - Gekitotsu Card Fighters - Capcom Supporter Version</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">9217159B</romCRC>
+			</files>
+			<im1CRC>E7F9D1A5</im1CRC>
+			<im2CRC>796D40B6</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>95</imageNumber>
+			<releaseNumber>95</releaseNumber>
+			<title>SNK vs. Capcom - Gekitotsu Card Fighters - SNK Supporter Version</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">7065295C</romCRC>
+			</files>
+			<im1CRC>3122EAC7</im1CRC>
+			<im2CRC>C5499E4E</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>97</imageNumber>
+			<releaseNumber>97</releaseNumber>
+			<title>SNK vs. Capcom - The Match of the Millennium</title>
+			<saveType></saveType>
+			<romSize>4194304</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>258</language>
+			<files>
+				<romCRC extension=".ngc">B173030A</romCRC>
+			</files>
+			<im1CRC>F34DE418</im1CRC>
+			<im2CRC>092DF039</im2CRC>
+			<comment>(M2)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>98</imageNumber>
+			<releaseNumber>98</releaseNumber>
+			<title>Sonic the Hedgehog - Pocket Adventure</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>17</location>
+			<sourceRom>??</sourceRom>
+			<language>258</language>
+			<files>
+				<romCRC extension=".ngc">356F0849</romCRC>
+			</files>
+			<im1CRC>3344860D</im1CRC>
+			<im2CRC>430C53E1</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>99</imageNumber>
+			<releaseNumber>99</releaseNumber>
+			<title>Soreike!! Hanafuda Doujou</title>
+			<saveType></saveType>
+			<romSize>524288</romSize>
+			<publisher>SNK-Dyna Corporation</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">05FA3EB0</romCRC>
+			</files>
+			<im1CRC>E007D743</im1CRC>
+			<im2CRC>DBD94A03</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>100</imageNumber>
+			<releaseNumber>100</releaseNumber>
+			<title>Super Real Mahjong - Premium Collection</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-Seta Corporation</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">C6E620C3</romCRC>
+			</files>
+			<im1CRC>3749C9F0</im1CRC>
+			<im2CRC>3DC42704</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>86</imageNumber>
+			<releaseNumber>86</releaseNumber>
+			<title>Tsunagete Pon! 2</title>
+			<saveType></saveType>
+			<romSize>1048576</romSize>
+			<publisher>SNK-Yumekobo</publisher>
+			<location>7</location>
+			<sourceRom>??</sourceRom>
+			<language>256</language>
+			<files>
+				<romCRC extension=".ngc">98ACC37A</romCRC>
+			</files>
+			<im1CRC>B2DE5AD0</im1CRC>
+			<im2CRC>873BA0C3</im2CRC>
+			<comment></comment>
+			<duplicateID>0</duplicateID>
+		</game>
+
+		<game>
+			<imageNumber>101</imageNumber>
+			<releaseNumber>101</releaseNumber>
+			<title>Wrestling Madness</title>
+			<saveType></saveType>
+			<romSize>2097152</romSize>
+			<publisher>SNK-SNK</publisher>
+			<location>16</location>
+			<sourceRom>??</sourceRom>
+			<language>2</language>
+			<files>
+				<romCRC extension=".ngc">16B0BE9B</romCRC>
+			</files>
+			<im1CRC>7A8B691B</im1CRC>
+			<im2CRC>45C3E3EC</im2CRC>
+			<comment>(Beta)</comment>
+			<duplicateID>0</duplicateID>
+		</game>
+	</games>
+</dat>
+

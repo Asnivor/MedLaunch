@@ -10,14 +10,14 @@ using System.Xml.Linq;
 
 namespace MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO
 {
-    public class ImportNoIntroData
+    public class OfflineImportNoIntroData
     {
-        public static List<NoIntroObject> Go()
+        public static List<OfflineNoIntroObject> Go()
         {
             // Import data for each system
             List <GSystem> systems = GSystem.GetSystems().ToList();
 
-            List<NoIntroObject> l = new List<NoIntroObject>();
+            List<OfflineNoIntroObject> l = new List<OfflineNoIntroObject>();
 
             foreach (var sys in systems)
             {
@@ -27,7 +27,7 @@ namespace MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO
                 // iterate through each data and parse the information into a new object
                 foreach (string s in dats)
                 {
-                    List<NoIntroObject> list = Parse(s, sys.systemId);
+                    List<OfflineNoIntroObject> list = Parse(s, sys.systemId);
                     l.AddRange(list);
                 }
             }
@@ -37,9 +37,9 @@ namespace MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO
 
        
 
-        public static List<NoIntroObject> Parse(string dat, int systemId)
+        public static List<OfflineNoIntroObject> Parse(string dat, int systemId)
         {
-            List<NoIntroObject> list = new List<NoIntroObject>();
+            List<OfflineNoIntroObject> list = new List<OfflineNoIntroObject>();
 
             // replace illegal characters
             dat = dat.Replace(" & ", " &amp; ");
@@ -48,15 +48,47 @@ namespace MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO
             XDocument xmlDoc = XDocument.Parse(dat);
             //var games = xmlDoc.Descendants("game");
 
-            // iterate through each game
-            foreach (XElement element in xmlDoc.Root.Elements("game"))
+            IEnumerable<XElement> els =
+                from el in xmlDoc.Descendants("game")
+                select el;
+
+            foreach (XElement x in els)
             {
-                NoIntroObject no = new NoIntroObject();
+                OfflineNoIntroObject no = new OfflineNoIntroObject();
                 no.SystemId = systemId;
-                no.Name = (string)element.Attribute("name");
-                no.CloneOf = (string)element.Attribute("cloneof");
-                no.Description = (string)element.Element("description");
-                XElement rom = element.Element("rom");
+                no.Name = (string)x.Element("title");
+                no.Publisher = (string)x.Element("publisher");
+                no.Size = (string)x.Element("romSize");
+                no.OtherFlags = (string)x.Element("comment");
+
+                IEnumerable<XElement> roms = x.Descendants("files");
+                var rom = roms.FirstOrDefault();
+
+                if (rom != null)
+                {
+                    no.CRC = (string)rom.Element("romCRC");
+                    string ext = (string)rom.Attribute("extension");
+                    no.RomName = no.Name + ext;
+                }
+
+            }
+            
+
+            // iterate through each game
+            foreach (XElement element in xmlDoc.Elements("game"))
+            {
+                OfflineNoIntroObject no = new OfflineNoIntroObject();
+                no.SystemId = systemId;
+                //no.Name = (string)element.Attribute("name");
+                no.Name = (string)element.Element("title");
+                //no.CloneOf = (string)element.Attribute("cloneof");
+                //no.Description = (string)element.Element("description");
+                no.Publisher = (string)element.Element("publisher");
+                no.Size = (string)element.Element("romSize");
+                
+
+
+                XElement rom = element.Element("files");
 
                 no.RomName = (string)rom.Attribute("name");
                 no.Size = (string)rom.Attribute("size");
@@ -75,47 +107,46 @@ namespace MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO
             switch (systemId)
             {
                 case 2:
-                    searchStr.Add("Nintendo - Game Boy Advance Parent-Clone ");
+                    searchStr.Add("Nintendo Gameboy Advance ");
                     break;
                 case 1:
-                    searchStr.Add("Nintendo - Game Boy Parent-Clone ");
-                    searchStr.Add("Nintendo - Game Boy Color Parent-Clone ");
+                    searchStr.Add("Nintendo Gameboy.xml");
+                    searchStr.Add("Nintendo Gameboy Color ");
                     break;                
                 case 3:
-                    searchStr.Add("Atari - Lynx Parent-Clone ");
+                    searchStr.Add("Atari Lynx ");
                     break;
                 case 4:
-                    searchStr.Add("Sega - Mega Drive - Genesis Parent-Clone ");
+                    searchStr.Add("Sega Genesis ");
                     break;
                 case 5:
-                    searchStr.Add("Sega - Game Gear Parent-Clone ");
+                    searchStr.Add("Sega GameGear ");
                     break;
                 case 6:
-                    searchStr.Add("SNK - Neo Geo Pocket ");
+                    searchStr.Add("SNK NeoGeo ");
                     break;
                 case 7:
-                    searchStr.Add("NEC - PC Engine ");
-                    searchStr.Add("NEC - PC Engine ");
+                    searchStr.Add("NEC PC Engine ");
                     break;
                 case 10:
-                    searchStr.Add("Sega - Master System ");
+                    searchStr.Add("Sega Master System ");
                     break;
                 case 11:
-                    searchStr.Add("Nintendo - Nintendo Entertainment System");
+                    searchStr.Add("Nintendo NES ");
                     break;
                 case 12:
-                    searchStr.Add("Nintendo - Super Nintendo Entertainment System");
+                    searchStr.Add("Nintendo Super NES ");
                     break;
                 case 14:
-                    searchStr.Add("Nintendo - Virtual Boy ");
+                    searchStr.Add("Nintendo Virtualboy");
                     break;
                 case 15:
-                    searchStr.Add("Bandai - WonderSwan ");
+                    searchStr.Add("Bandai WonderSwan");
                     break;
             }
 
             List<string> data = new List<string>();
-            string folder = AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\DAT\NOINTRO";
+            string folder = AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\DAT\OFFLINENOINTRO";
 
             // get all data files for this system
             if (!Directory.Exists(folder))
@@ -125,7 +156,7 @@ namespace MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO
             List<string> f = new List<string>();
             foreach (string s in searchStr)
             {
-                foreach (string b in files.Where(a => a.Contains(".dat")))
+                foreach (string b in files.Where(a => a.Contains(".xml")))
                 {
                     if (b.ToLower().Contains(s.ToLower()))
                     {
