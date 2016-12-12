@@ -324,7 +324,7 @@
                                       
                                       >
                                 <DataGrid.ColumnHeaderStyle>
-                                    <Style TargetType="DataGridColumnHeader">
+                                    <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MetroDataGridColumnHeader}">
                                         <EventSetter Event="Click" Handler="columnHeaderDGGAMES_Click" />
                                     </Style>
                                 </DataGrid.ColumnHeaderStyle>
