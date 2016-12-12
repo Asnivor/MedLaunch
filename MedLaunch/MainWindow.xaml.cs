@@ -2325,7 +2325,7 @@ namespace MedLaunch
         {
             //SettingsHandler sh = new SettingsHandler();
             //sh.SaveAllSettings();
-
+            
             var mySettings = new MetroDialogSettings()
             {
                 NegativeButtonText = "Cancel Scanning",

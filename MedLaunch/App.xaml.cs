@@ -41,8 +41,53 @@ namespace MedLaunch
             }
         }
 
+        /// <summary>
+        /// unhandled exception logging
+        /// </summary>
+        /// <param name="exception"></param>
+        /// <param name="s"></param>
+        private static void LogUnhandledException(Exception exception, string s)
+        {
+            string DirectoryName = AppDomain.CurrentDomain.BaseDirectory;
+
+            if (!Directory.Exists(DirectoryName))
+            {
+                Directory.CreateDirectory(DirectoryName);
+            }
+
+            var contents =
+                string.Format(
+                    "HResult:    {1}{0}" + "HelpLink:   {2}{0}" + "Message:    {3}{0}" + "Source:     {4}{0}"
+                    + "StackTrace: {5}{0}" + "{0}",
+                    Environment.NewLine,
+                    exception.HResult,
+                    exception.HelpLink,
+                    exception.Message,
+                    exception.Source,
+                    exception.StackTrace);
+            File.AppendAllText(DirectoryName + "\\Exceptions.log", "******************** Exception detail - " + DateTime.Now.ToString() + " - ********************\n\n");
+            File.AppendAllText(string.Format("{0}Exceptions.log", DirectoryName), contents);
+            File.AppendAllText(DirectoryName + "\\Exceptions.log", "\n\n****************************************\n\n");
+        }
+
+
         private void ApplicationStart(object sender, StartupEventArgs e)
         {
+            // unhandled exception events
+            AppDomain.CurrentDomain.UnhandledException +=
+                (s, exception) =>
+                LogUnhandledException((Exception)exception.ExceptionObject, "AppDomain.CurrentDomain.UnhandledException");
+
+            DispatcherUnhandledException +=
+                (s, exception) =>
+                LogUnhandledException(exception.Exception, "Application.Current.DispatcherUnhandledException");
+
+            TaskScheduler.UnobservedTaskException +=
+                (s, exception) =>
+                LogUnhandledException(exception.Exception, "TaskScheduler.UnobservedException");
+
+
+
             var splashScreen = new SplashScreen(@"Data\Graphics\mediconsplash.png");
             splashScreen.Show(false);
             Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
