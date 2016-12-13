@@ -3190,7 +3190,7 @@ namespace MedLaunch
                 controller.SetMessage("Parsing NOINTRO DAT files");
                 NoIntroCollection nCol = new NoIntroCollection();
                 controller.SetMessage("Parsing OFFLINENOINTRO DAT files");
-                OfflineNoIntroCollection oCol = new OfflineNoIntroCollection();
+                //OfflineNoIntroCollection oCol = new OfflineNoIntroCollection();
 
                 // create a temp version of nCol
                 List<NoIntroObject> nTemp = nCol.Data;
@@ -3221,11 +3221,17 @@ namespace MedLaunch
                     var cr = Master.Where(p => p.Roms.Any(x => x.MD5.ToUpper() == a.MD5.ToUpper()));
 
                     if (cr.ToList().Count > 0)
+                    {
+                        duplicateCount++;
                         continue;
+                    }
+
+                    // check based on name
+                       
 
                     // check whether GameName is present in Master
                     var n = (from r in Master
-                             where r.GameName.ToUpper() == a.Name.ToUpper()
+                             where (r.GameName.ToUpper() == a.Name.ToUpper() && r.SystemId == a.SystemId)
                              select r);
                     int mCount = n.ToList().Count();
 
@@ -3273,6 +3279,7 @@ namespace MedLaunch
                         dm.GameName = a.Name;
                         dm.Publisher = a.Publisher;
                         dm.Year = a.Year;
+                        dm.SystemId = a.SystemId;
 
                         RomEntry r = new RomEntry();
 
@@ -3295,8 +3302,7 @@ namespace MedLaunch
                     }
                     if (mCount > 1)
                     {
-                        // duplicate discovered this shoudlnt happen
-                        throw new Exception();
+                        // duplicate found - add row to first
                     }
                 }
 
@@ -3323,7 +3329,11 @@ namespace MedLaunch
                     var cr = Master.Where(p => p.Roms.Any(x => x.MD5.ToUpper() == a.MD5.ToUpper()));
 
                     if (cr.ToList().Count > 0)
+                    {
+                        duplicateCount++;
                         continue;
+                    }
+                        
 
                     // check whether GameName is present in Master
                     var n = (from r in Master
@@ -3375,6 +3385,7 @@ namespace MedLaunch
                         dm.GameName = a.Name;
                         dm.Publisher = a.Publisher;
                         dm.Year = a.Year;
+                        dm.SystemId = a.SystemId;
 
                         RomEntry r = new RomEntry();
 
@@ -3398,7 +3409,7 @@ namespace MedLaunch
                     if (mCount > 1)
                     {
                         // duplicate discovered this shoudlnt happen
-                        throw new Exception();
+                        //do nothing
                     }
                 }
 
@@ -3529,7 +3540,17 @@ namespace MedLaunch
                                     controller.SetMessage(message + "NOINTRO Games Parsed: " + noCount);
                                 }
                                 */
+
+
+                // save to json file
+                controller.SetMessage("Saving MasterDAT JSON...");
+                string filepath = AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\DATMaster.json";
+                string output = JsonConvert.SerializeObject(Master, Formatting.Indented);
+                File.AppendAllText(filepath, output);
             });
+
+            
+
 
             this.Dispatcher.Invoke(() =>
             {                

@@ -1,4 +1,5 @@
 ﻿using MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO.Models;
+using MedLaunch.Classes.Scraper.DAT.TOSEC;
 using MedLaunch.Models;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,7 @@ namespace MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO
             List<NoIntroObject> list = new List<NoIntroObject>();
 
             // replace illegal characters
-            dat = dat.Replace(" & ", " &amp; ");
+            dat = dat.Replace(" & ", " &amp; ").Replace(" and ", " &amp; ");
 
             // parse into an xml document
             XDocument xmlDoc = XDocument.Parse(dat);
@@ -51,18 +52,21 @@ namespace MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO
             // iterate through each game
             foreach (XElement element in xmlDoc.Root.Elements("game"))
             {
-                NoIntroObject no = new NoIntroObject();
+                
+                string nameString = (string)element.Attribute("name");
+
+                NoIntroObject no = StringConverterNoIntro.ParseString(nameString);
                 no.SystemId = systemId;
-                no.Name = (string)element.Attribute("name");
+
                 no.CloneOf = (string)element.Attribute("cloneof");
-                no.Description = (string)element.Element("description");
+                //no.Description = (string)element.Element("description");
                 XElement rom = element.Element("rom");
 
-                no.RomName = (string)rom.Attribute("name");
-                no.Size = (string)rom.Attribute("size");
-                no.CRC = (string)rom.Attribute("crc");
-                no.MD5 = (string)rom.Attribute("md5");
-                no.SHA1 = (string)rom.Attribute("sha1");
+                no.RomName = ((string)rom.Attribute("name")).Trim();
+                no.Size = ((string)rom.Attribute("size")).Trim();
+                no.CRC = ((string)rom.Attribute("crc")).Trim();
+                no.MD5 = ((string)rom.Attribute("md5")).Trim();
+                no.SHA1 = ((string)rom.Attribute("sha1")).Trim();
 
                 list.Add(no);
             }

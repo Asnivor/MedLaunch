@@ -12,7 +12,8 @@ namespace MedLaunch.Classes.Scraper.DAT.Models
         public string GameName { get; set; }
         public List<RomEntry> Roms { get; set; }
         public string Year { get; set; }        
-        public string Publisher { get; set; }  
+        public string Publisher { get; set; }
+        public int GdbId { get; set; }
 
         public DATMerge()
         {

@@ -42,7 +42,7 @@ namespace MedLaunch.Classes.Scraper.DAT.TOSEC
             List<ToSecObject> list = new List<ToSecObject>();
 
             // replace illegal characters
-            dat = dat.Replace(" & ", " &amp; ");
+            dat = dat.Replace(" & ", " &amp; ").Replace(" and ", " &amp; ");
 
             // parse into an xml document
             XDocument xmlDoc = XDocument.Parse(dat);
@@ -53,7 +53,7 @@ namespace MedLaunch.Classes.Scraper.DAT.TOSEC
             {            
                 string nameString = (string)element.Attribute("name");
 
-                ToSecObject no = StringConverter.ParseString(nameString);
+                ToSecObject no = StringConverterToSec.ParseString(nameString);
                 no.SystemId = systemId;
                 
                 no.Description = (string)element.Element("description");
