@@ -47,6 +47,7 @@ using System.Collections.ObjectModel;
 using MedLaunch.Classes.Scraper.DAT.TOSEC.Models;
 using MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO.Models;
 using MedLaunch.Classes.Scraper.DAT.Models;
+using MedLaunch.Classes.Scraper.DAT.TRURIP.Models;
 
 namespace MedLaunch
 {
@@ -3185,18 +3186,30 @@ namespace MedLaunch
 
             await Task.Run(() =>
             {
+                controller.SetMessage("Loading MasterDAT JSON if present...");
+                string filepath = AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\DATMaster.json";
+                List<DATMerge> Master = new List<DATMerge>();
+
+                if (File.Exists(filepath))
+                {
+                    // DAT already exists - load it
+                    Master = JsonConvert.DeserializeObject<List<DATMerge>>(File.ReadAllText(filepath));
+                }
+
+
                 controller.SetMessage("Parsing TOSEC DAT files");
                 ToSecCollection tCol = new ToSecCollection();
                 controller.SetMessage("Parsing NOINTRO DAT files");
                 NoIntroCollection nCol = new NoIntroCollection();
-                controller.SetMessage("Parsing OFFLINENOINTRO DAT files");
+                controller.SetMessage("Parsing TRURIP DAT files");
                 //OfflineNoIntroCollection oCol = new OfflineNoIntroCollection();
+                TruRipCollection trCol = new TruRipCollection();
 
                 // create a temp version of nCol
                 List<NoIntroObject> nTemp = nCol.Data;
 
-                // iterate through each ToSec entry and try to match it with nointro
-                List<DATMerge> Master = new List<DATMerge>();
+                // iterate through each ToSec entry
+                
 
                 string message = "Importing TOSEC releases to Master object\n";
                 controller.SetMessage(message);
@@ -3218,20 +3231,17 @@ namespace MedLaunch
                               where rom.MD5.ToUpper() == a.MD5.ToUpper()
                               select rom);
 */
-                    var cr = Master.Where(p => p.Roms.Any(x => x.MD5.ToUpper() == a.MD5.ToUpper()));
+                    var cr = Master.Where(p => p.Roms.Any(x => x.MD5.ToUpper().Trim() == a.MD5.ToUpper().Trim()));
 
                     if (cr.ToList().Count > 0)
                     {
                         duplicateCount++;
                         continue;
                     }
-
-                    // check based on name
-                       
-
+                    
                     // check whether GameName is present in Master
                     var n = (from r in Master
-                             where (r.GameName.ToUpper() == a.Name.ToUpper() && r.SystemId == a.SystemId)
+                             where (r.GameName.ToUpper().Replace(":", "").Replace("-", "").Replace("'", "").Replace(",", "").Replace("  ", " ") == a.Name.ToUpper().Replace(":", "").Replace("-", "").Replace("'", "").Replace(",", "").Replace("  ", " ") && r.SystemId == a.SystemId)
                              select r);
                     int mCount = n.ToList().Count();
 
@@ -3242,7 +3252,7 @@ namespace MedLaunch
 
                         // search roms present for this game
                         var roms = (from rom in one.Roms
-                                    where rom.CRC == a.CRC
+                                    where rom.MD5.ToUpper().Trim() == a.CRC.ToUpper().Trim()
                                     select rom).ToList();
 
                         if (roms.ToList().Count == 0)
@@ -3260,6 +3270,10 @@ namespace MedLaunch
                             r.CRC = a.CRC;
                             r.MD5 = a.MD5;
                             r.SHA1 = a.SHA1;
+                            r.Year = a.Year;
+                            r.Publisher = a.Publisher;
+
+                            r.FromDAT = "T";
 
                             one.Roms.Add(r);
                             romCount++;
@@ -3268,6 +3282,7 @@ namespace MedLaunch
                         if (roms.Count == 1)
                         {
                             // rom was already found with matching CRC - do nothing
+                            duplicateCount++;
                         }
                     }
                     if (mCount == 0)
@@ -3294,17 +3309,143 @@ namespace MedLaunch
                         r.CRC = a.CRC;
                         r.MD5 = a.MD5;
                         r.SHA1 = a.SHA1;
+                        r.Year = a.Year;
+                        r.Publisher = a.Publisher;
+
+                        r.FromDAT = "T";
 
                         dm.Roms.Add(r);
 
                         Master.Add(dm);
                         gameCount++;
+                        romCount++;
                     }
                     if (mCount > 1)
                     {
                         // duplicate found - add row to first
                     }
                 }
+
+
+                message = "Importing TRURIP releases to Master object\n";
+                controller.SetMessage(message);
+
+                gameCount = 0;
+                romCount = 0;
+                duplicateCount = 0;
+
+                foreach (var a in trCol.Data)
+                {
+
+                    controller.SetMessage(message + "TRURIP Games Parsed: " + gameCount + "\nTRURIP Roms Parsed: " + romCount + "\nDuplicate Roms Skipped: " + duplicateCount);
+                    //Thread.Sleep(1);
+
+                    // first check whether MD5 is already present
+                    /*
+                    var cr = (from game in Master
+                              from rom in game.Roms
+                              where rom.MD5.ToUpper() == a.MD5.ToUpper()
+                              select rom);
+*/
+                    var cr = Master.Where(p => p.Roms.Any(x => x.MD5.ToUpper().Trim() == a.MD5.ToUpper().Trim()));
+
+                    if (cr.ToList().Count > 0)
+                    {
+                        duplicateCount++;
+                        continue;
+                    }
+
+
+                    // check whether GameName is present in Master
+                    var n = (from r in Master
+                             where (r.GameName.ToUpper().Replace(":", "").Replace("-", "").Replace("'", "").Replace(",", "").Replace("  ", " ") == a.Name.ToUpper().Replace(":", "").Replace("-", "").Replace("'", "").Replace(",", "").Replace("  ", " "))
+                             && r.SystemId == a.SystemId
+                             select r);
+                    int mCount = n.ToList().Count();
+
+                    if (mCount == 1)
+                    {
+                        /* one record returned - dig into this further */
+                        var one = n.Single();
+
+                        // search roms present for this game
+                        var roms = (from rom in one.Roms
+                                    where rom.MD5.ToUpper().Trim() == a.MD5.ToUpper().Trim()
+                                    select rom).ToList();
+
+                        if (roms.ToList().Count == 0)
+                        {
+                            // rom with matching CRC was not found - add it
+                            RomEntry r = new RomEntry();
+                            r.RomName = a.RomName;
+                            r.Country = a.Country;
+                            r.Language = a.Language;
+                            r.DevelopmentStatus = a.DevelopmentStatus;
+                            r.OtherFlags = a.OtherFlags;
+                            r.CloneOf = a.CloneOf;
+                            r.Copyright = a.Copyright;
+                            r.Size = a.Size;
+                            r.CRC = a.CRC;
+                            r.MD5 = a.MD5;
+                            r.SHA1 = a.SHA1;
+                            r.Year = a.Year;
+                            r.Publisher = a.Publisher;
+
+                            r.FromDAT = "TR";
+
+                            one.Roms.Add(r);
+                            romCount++;
+
+                        }
+                        if (roms.Count == 1)
+                        {
+                            // rom was already found with matching CRC - do nothing
+                            duplicateCount++;
+                        }
+                    }
+                    if (mCount == 0)
+                    {
+
+                        // no records return - add this record
+                        DATMerge dm = new DATMerge();
+
+                        dm.GameName = a.Name;
+                        dm.Publisher = a.Publisher;
+                        dm.Year = a.Year;
+                        dm.SystemId = a.SystemId;
+
+                        RomEntry r = new RomEntry();
+
+                        r.RomName = a.RomName;
+                        r.Country = a.Country;
+                        r.Language = a.Language;
+                        r.DevelopmentStatus = a.DevelopmentStatus;
+                        r.OtherFlags = a.OtherFlags;
+                        r.CloneOf = a.CloneOf;
+                        r.Copyright = a.Copyright;
+                        r.Size = a.Size;
+                        r.CRC = a.CRC;
+                        r.MD5 = a.MD5;
+                        r.SHA1 = a.SHA1;
+                        r.Year = a.Year;
+                        r.Publisher = a.Publisher;
+
+                        r.FromDAT = "TR";
+
+                        dm.Roms.Add(r);
+
+                        Master.Add(dm);
+                        gameCount++;
+                        romCount++;
+                    }
+                    if (mCount > 1)
+                    {
+                        // duplicate discovered this shoudlnt happen
+                        //do nothing
+                    }
+                }
+
+
 
                 message = "Importing NOINTRO releases to Master object\n";
                 controller.SetMessage(message);
@@ -3326,7 +3467,7 @@ namespace MedLaunch
                               where rom.MD5.ToUpper() == a.MD5.ToUpper()
                               select rom);
 */
-                    var cr = Master.Where(p => p.Roms.Any(x => x.MD5.ToUpper() == a.MD5.ToUpper()));
+                    var cr = Master.Where(p => p.Roms.Any(x => x.MD5.ToUpper().Trim() == a.MD5.ToUpper().Trim()));
 
                     if (cr.ToList().Count > 0)
                     {
@@ -3337,7 +3478,8 @@ namespace MedLaunch
 
                     // check whether GameName is present in Master
                     var n = (from r in Master
-                             where r.GameName.ToUpper() == a.Name.ToUpper()
+                             where (r.GameName.ToUpper().Replace(":", "").Replace("-", "").Replace("'", "").Replace(",", "").Replace("  ", " ") == a.Name.ToUpper().Replace(":", "").Replace("-", "").Replace("'", "").Replace(",", "").Replace("  ", " "))
+                             && r.SystemId == a.SystemId
                              select r);
                     int mCount = n.ToList().Count();
 
@@ -3348,7 +3490,7 @@ namespace MedLaunch
 
                         // search roms present for this game
                         var roms = (from rom in one.Roms
-                                    where rom.CRC == a.CRC
+                                    where rom.MD5.ToUpper().Trim() == a.MD5.ToUpper().Trim()
                                     select rom).ToList();
 
                         if (roms.ToList().Count == 0)
@@ -3366,6 +3508,10 @@ namespace MedLaunch
                             r.CRC = a.CRC;
                             r.MD5 = a.MD5;
                             r.SHA1 = a.SHA1;
+                            r.Year = a.Year;
+                            r.Publisher = a.Publisher;
+
+                            r.FromDAT = "N";
 
                             one.Roms.Add(r);
                             romCount++;
@@ -3374,6 +3520,7 @@ namespace MedLaunch
                         if (roms.Count == 1)
                         {
                             // rom was already found with matching CRC - do nothing
+                            duplicateCount++;
                         }
                     }
                     if (mCount == 0)
@@ -3400,11 +3547,16 @@ namespace MedLaunch
                         r.CRC = a.CRC;
                         r.MD5 = a.MD5;
                         r.SHA1 = a.SHA1;
+                        r.Year = a.Year;
+                        r.Publisher = a.Publisher;
+
+                        r.FromDAT = "N";
 
                         dm.Roms.Add(r);
 
                         Master.Add(dm);
                         gameCount++;
+                        romCount++;
                     }
                     if (mCount > 1)
                     {
@@ -3414,139 +3566,15 @@ namespace MedLaunch
                 }
 
 
-                /*
-                                message = "Matching TOSEC releases with No-Intro releases (based on CRC32)...\n";
-                                controller.SetMessage(message);
+                
 
-                                int toCount = 0;
-                                int matched = 0;
-                                int unmatched = 0;
-
-
-
-
-
-                                foreach (var a in tCol.Data)
-                                {
-                                    toCount++;
-
-                                    // create a new DATMerge object
-                                    DATMerge dat = new DATMerge();
-
-                                    // check whether name already exists in master
-                                    var m = (from r in Master
-                                             where r.CRC.ToLower() == a.CRC.ToLower() && r.SystemId == a.SystemId
-                                             select r).ToList();
-
-                                    if (m.Count == 0)
-                                    {
-                                        // no existing record found
-                                        dat.SystemId = a.SystemId;
-                                        dat.GameName = a.Name;
-                                        dat.Description = a.Description;
-                                        dat.RomName = a.RomName;
-                                        dat.Size = a.Size;
-                                        dat.CRC = a.CRC;
-                                        dat.MD5 = a.MD5;
-                                        dat.SHA1 = a.SHA1;
-                                        dat.Year = a.Year;
-                                        dat.Publisher = a.Publisher;
-                                        dat.Country = a.Country;
-                                        dat.Language = a.Language;
-                                        dat.Copyright = a.Copyright;
-                                        dat.DevelopmentStatus = a.DevelopmentStatus;
-                                        dat.OtherFlags = a.OtherFlags;
-                                    }
-                                    if (m.Count > 0)
-                                    {
-                                        // existing record found
-                                        dat = m.First();
-                                    }
-                                    if (m.Count > 1)
-                                    {
-                                        // multiple records with same CRC - this shoudnt happen
-                                        //throw new System.ArgumentException("This should not happen...", "Duplicate Record in TOSEC DATs");
-                                    }
-
-                                    // search for CRC in NOINTRO data
-                                    var result = (from o in nCol.Data
-                                                  where o.CRC.ToLower() == dat.CRC.ToLower()
-                                                  select o).ToList();
-
-                                    if (result.Count > 0)
-                                    {
-                                        matched++;
-
-                                        dat.CloneOf = result.First().CloneOf;
-                                        dat.NoIntroName = result.First().Name;
-
-                                        if (result.Count > 1)
-                                        {
-                                            // multiples found - remove both
-                                            foreach (var t in result)
-                                            {
-                                                nTemp.Remove(t);
-                                            }
-                                        }
-                                        else
-                                        {
-                                            // single found
-                                            // remove game from nointro list
-                                            nTemp.Remove(result.Single());
-                                        }                            
-                                    }
-                                    else
-                                    {
-                                        unmatched++;
-                                    }
-                                    if (result.Count > 1)
-                                    {
-                                        // multiple records with same CRC - this shoudnt happen
-                                        //throw new System.ArgumentException("This should not happen...", "Duplicate Record in NOINTRO DATs");
-                                    }
-
-                                    Master.Add(dat);
-
-                                    controller.SetMessage(message + "TOSEC Games Parsed: " + toCount + "\nNoIntro Games Matched: " + matched + "\nNoIntro Games Unmatched: " + unmatched);
-                                }
-
-                                // now all tosec games have been processed - work through nointro games that are left over
-                                var NoMatchedNoIntro = Master.Where(p => p.NoIntroName == null || p.NoIntroName == "").ToList();
-
-                                message = "Parsing unmatched No-Intro releases\n";
-                                controller.SetMessage(message);
-                                int noCount = 0;
-
-                                foreach (var a in nTemp)
-                                {
-                                    noCount++;
-                                    DATMerge dat = new DATMerge();
-                                    dat.SystemId = a.SystemId;
-                                    dat.GameName = a.Name;
-                                    dat.Description = a.Description;
-                                    dat.RomName = a.RomName;
-                                    dat.Size = a.Size;
-                                    dat.CRC = a.CRC;
-                                    dat.Year = a.Year;
-                                    dat.Publisher = a.Publisher;
-                                    dat.Country = a.Country;
-                                    dat.Language = a.Language;
-                                    dat.Copyright = a.Copyright;
-                                    dat.DevelopmentStatus = a.DevelopmentStatus;
-                                    dat.OtherFlags = a.OtherFlags;
-
-                                    Master.Add(dat);
-
-                                    controller.SetMessage(message + "NOINTRO Games Parsed: " + noCount);
-                                }
-                                */
 
 
                 // save to json file
                 controller.SetMessage("Saving MasterDAT JSON...");
-                string filepath = AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\DATMaster.json";
+                filepath = AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\DATMaster.json";
                 string output = JsonConvert.SerializeObject(Master, Formatting.Indented);
-                File.AppendAllText(filepath, output);
+                File.WriteAllText(filepath, output);
             });
 
             

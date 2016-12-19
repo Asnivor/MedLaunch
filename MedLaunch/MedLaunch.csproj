@@ -226,6 +226,10 @@
     <Compile Include="Classes\Scraper\DAT\OFFLINENOINTRO\OfflineImportNoIntroData.cs" />
     <Compile Include="Classes\Scraper\DAT\OFFLINENOINTRO\Models\OfflineNoIntroCollection.cs" />
     <Compile Include="Classes\Scraper\DAT\OFFLINENOINTRO\Models\OfflineNoIntroObject.cs" />
+    <Compile Include="Classes\Scraper\DAT\TRURIP\ImportTruRipData.cs" />
+    <Compile Include="Classes\Scraper\DAT\TRURIP\Models\TruRipCollection.cs" />
+    <Compile Include="Classes\Scraper\DAT\TRURIP\Models\TruRipObject.cs" />
+    <Compile Include="Classes\Scraper\DAT\TRURIP\StringConverterTruRip.cs" />
     <Compile Include="Classes\Scraper\DAT\TOSEC\ImportToSecData.cs" />
     <Compile Include="Classes\Scraper\DAT\TOSEC\Models\ToSecCollection.cs" />
     <Compile Include="Classes\Scraper\DAT\TOSEC\Models\ToSecObject.cs" />

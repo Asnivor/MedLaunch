@@ -182,7 +182,13 @@ namespace MedLaunch.Classes.Scraper.DAT.TOSEC
                 "US", "VN", "YU", "ZA"
             };
 
-            bool b = CC.Any(s.Contains);
+            bool b = false;
+
+            if (!s.Contains("[") && !s.Contains("]"))
+            {
+                b = CC.Any(s.Contains);
+            }
+
             return b;
         }
 

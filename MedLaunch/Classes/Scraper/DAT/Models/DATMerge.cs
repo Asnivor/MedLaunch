@@ -34,6 +34,9 @@ namespace MedLaunch.Classes.Scraper.DAT.Models
         public string CRC { get; set; }
         public string MD5 { get; set; }
         public string SHA1 { get; set; }
+        public string Year { get; set; }
+        public string Publisher { get; set; }
+        public string FromDAT { get; set; }
     }
 }
     

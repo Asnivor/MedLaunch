@@ -60,15 +60,18 @@ namespace MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO
 
                 no.CloneOf = (string)element.Attribute("cloneof");
                 //no.Description = (string)element.Element("description");
-                XElement rom = element.Element("rom");
+                IEnumerable<XElement> roms = element.Elements("rom");
 
-                no.RomName = ((string)rom.Attribute("name")).Trim();
-                no.Size = ((string)rom.Attribute("size")).Trim();
-                no.CRC = ((string)rom.Attribute("crc")).Trim();
-                no.MD5 = ((string)rom.Attribute("md5")).Trim();
-                no.SHA1 = ((string)rom.Attribute("sha1")).Trim();
+                foreach (XElement rom in roms)
+                {
+                    no.RomName = (string)rom.Attribute("name");
+                    no.Size = (string)rom.Attribute("size");
+                    no.CRC = (string)rom.Attribute("crc");
+                    no.MD5 = (string)rom.Attribute("md5");
+                    no.SHA1 = (string)rom.Attribute("sha1");
 
-                list.Add(no);
+                    list.Add(no);
+                }
             }
             return list;
         }
