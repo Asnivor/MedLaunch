@@ -15,6 +15,8 @@ using MahApps.Metro.Controls.Dialogs;
 using MedLaunch.Classes.GamesLibrary;
 using MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO.Models;
 using MedLaunch.Classes.IO;
+using MedLaunch.Classes.Scraper.DAT.Models;
+using Newtonsoft.Json;
 
 namespace MedLaunch.Classes
 {
@@ -25,6 +27,10 @@ namespace MedLaunch.Classes
         // constructor
         public GameScanner()
         {
+            // load master dat from disk
+            string filePath = AppDomain.CurrentDomain.BaseDirectory + @"Data\System\DATMaster.json";
+            DAT = JsonConvert.DeserializeObject<List<DATMerge>>(File.ReadAllText(filePath));
+
             db = new MyDbContext();            
 
             Games = (from g in db.Game
@@ -204,6 +210,8 @@ namespace MedLaunch.Classes
         public int HiddenStats { get; set; }
         public int UpdatedStats { get; set; }
         public int UntouchedStats { get; set; }
+
+        public List<DATMerge> DAT { get; set; }
 
         // methods
         public string GetPath(int systemId)

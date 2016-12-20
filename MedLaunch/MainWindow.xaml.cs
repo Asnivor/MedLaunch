@@ -48,6 +48,7 @@ using MedLaunch.Classes.Scraper.DAT.TOSEC.Models;
 using MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO.Models;
 using MedLaunch.Classes.Scraper.DAT.Models;
 using MedLaunch.Classes.Scraper.DAT.TRURIP.Models;
+using MedLaunch.Classes.Scraper.DAT.REDUMP.Models;
 
 namespace MedLaunch
 {
@@ -3202,8 +3203,9 @@ namespace MedLaunch
                 controller.SetMessage("Parsing NOINTRO DAT files");
                 NoIntroCollection nCol = new NoIntroCollection();
                 controller.SetMessage("Parsing TRURIP DAT files");
-                //OfflineNoIntroCollection oCol = new OfflineNoIntroCollection();
                 TruRipCollection trCol = new TruRipCollection();
+                controller.SetMessage("Parsing REDUMP DAT files");
+                RedumpCollection rdCol = new RedumpCollection();
 
                 // create a temp version of nCol
                 List<NoIntroObject> nTemp = nCol.Data;
@@ -3222,15 +3224,7 @@ namespace MedLaunch
                 {
 
                 controller.SetMessage(message + "TOSEC Games Parsed: " + gameCount + "\nTOSEC Roms Parsed: " + romCount + "\nDuplicate Roms Skipped: " + duplicateCount);
-                    //Thread.Sleep(1);
 
-                    // first check whether MD5 is already present
-                    /*
-                    var cr = (from game in Master
-                              from rom in game.Roms
-                              where rom.MD5.ToUpper() == a.MD5.ToUpper()
-                              select rom);
-*/
                     var cr = Master.Where(p => p.Roms.Any(x => x.MD5.ToUpper().Trim() == a.MD5.ToUpper().Trim()));
 
                     if (cr.ToList().Count > 0)
@@ -3252,7 +3246,7 @@ namespace MedLaunch
 
                         // search roms present for this game
                         var roms = (from rom in one.Roms
-                                    where rom.MD5.ToUpper().Trim() == a.CRC.ToUpper().Trim()
+                                    where rom.MD5.ToUpper().Trim() == a.MD5.ToUpper().Trim()
                                     select rom).ToList();
 
                         if (roms.ToList().Count == 0)
@@ -3566,8 +3560,123 @@ namespace MedLaunch
                 }
 
 
-                
+                message = "Importing REDUMP releases to Master object\n";
+                controller.SetMessage(message);
 
+                gameCount = 0;
+                romCount = 0;
+                duplicateCount = 0;
+
+                foreach (var a in rdCol.Data)
+                {
+
+                    controller.SetMessage(message + "REDUMP Games Parsed: " + gameCount + "\nREDUMP Roms Parsed: " + romCount + "\nDuplicate Roms Skipped: " + duplicateCount);
+                    //Thread.Sleep(1);
+
+                    // first check whether MD5 is already present
+                    /*
+                    var cr = (from game in Master
+                              from rom in game.Roms
+                              where rom.MD5.ToUpper() == a.MD5.ToUpper()
+                              select rom);
+*/
+                    var cr = Master.Where(p => p.Roms.Any(x => x.MD5.ToUpper().Trim() == a.MD5.ToUpper().Trim()));
+
+                    if (cr.ToList().Count > 0)
+                    {
+                        duplicateCount++;
+                        continue;
+                    }
+
+
+                    // check whether GameName is present in Master
+                    var n = (from r in Master
+                             where (r.GameName.ToUpper().Replace(":", "").Replace("-", "").Replace("'", "").Replace(",", "").Replace("  ", " ") == a.Name.ToUpper().Replace(":", "").Replace("-", "").Replace("'", "").Replace(",", "").Replace("  ", " "))
+                             && r.SystemId == a.SystemId
+                             select r);
+                    int mCount = n.ToList().Count();
+
+                    if (mCount == 1)
+                    {
+                        /* one record returned - dig into this further */
+                        var one = n.Single();
+
+                        // search roms present for this game
+                        var roms = (from rom in one.Roms
+                                    where rom.MD5.ToUpper().Trim() == a.MD5.ToUpper().Trim()
+                                    select rom).ToList();
+
+                        if (roms.ToList().Count == 0)
+                        {
+                            // rom with matching CRC was not found - add it
+                            RomEntry r = new RomEntry();
+                            r.RomName = a.RomName;
+                            r.Country = a.Country;
+                            r.Language = a.Language;
+                            r.DevelopmentStatus = a.DevelopmentStatus;
+                            r.OtherFlags = a.OtherFlags;
+                            r.CloneOf = a.CloneOf;
+                            r.Copyright = a.Copyright;
+                            r.Size = a.Size;
+                            r.CRC = a.CRC;
+                            r.MD5 = a.MD5;
+                            r.SHA1 = a.SHA1;
+                            r.Year = a.Year;
+                            r.Publisher = a.Publisher;
+
+                            r.FromDAT = "R";
+
+                            one.Roms.Add(r);
+                            romCount++;
+
+                        }
+                        if (roms.Count == 1)
+                        {
+                            // rom was already found with matching CRC - do nothing
+                            duplicateCount++;
+                        }
+                    }
+                    if (mCount == 0)
+                    {
+
+                        // no records return - add this record
+                        DATMerge dm = new DATMerge();
+
+                        dm.GameName = a.Name;
+                        dm.Publisher = a.Publisher;
+                        dm.Year = a.Year;
+                        dm.SystemId = a.SystemId;
+
+                        RomEntry r = new RomEntry();
+
+                        r.RomName = a.RomName;
+                        r.Country = a.Country;
+                        r.Language = a.Language;
+                        r.DevelopmentStatus = a.DevelopmentStatus;
+                        r.OtherFlags = a.OtherFlags;
+                        r.CloneOf = a.CloneOf;
+                        r.Copyright = a.Copyright;
+                        r.Size = a.Size;
+                        r.CRC = a.CRC;
+                        r.MD5 = a.MD5;
+                        r.SHA1 = a.SHA1;
+                        r.Year = a.Year;
+                        r.Publisher = a.Publisher;
+
+                        r.FromDAT = "R";
+
+                        dm.Roms.Add(r);
+
+                        Master.Add(dm);
+                        gameCount++;
+                        romCount++;
+                    }
+                    if (mCount > 1)
+                    {
+                        // duplicate discovered this shoudlnt happen
+                        //do nothing
+                    }
+                }
 
 
                 // save to json file
@@ -3606,6 +3715,126 @@ namespace MedLaunch
                 GamesLibraryVisualHandler.RefreshGamesLibrary();                
             }
         }
+
+
+        private async void btnmatchDATyears_Click(object sender, RoutedEventArgs e)
+        {
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel Import",
+                AnimateShow = false,
+                AnimateHide = false
+            };
+            var controller = await this.ShowProgressAsync("DAT Builder", "Resolving missing information", true, settings: mySettings);
+            controller.SetCancelable(true);
+            controller.SetIndeterminate();
+            await Task.Delay(1000);
+
+
+            string filepath = AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\DATMaster.json";
+            string json = File.ReadAllText(filepath);
+            List<DATMerge> dm = JsonConvert.DeserializeObject<List<DATMerge>>(json);
+
+            string gdbjson = File.ReadAllText(@"..\..\Data\System\TheGamesDB.json");
+            List < GDBPlatformGame > gdb = JsonConvert.DeserializeObject<List<GDBPlatformGame>>(gdbjson);
+
+            await Task.Run(() =>
+            {
+                int skipped = 0;
+                int matched = 0;
+                int unmatched = 0;
+
+                // match exactly gamesdb games and get date
+                int length = dm.Count();
+
+                for (int i = 0; i < length; i++)
+                {
+                    controller.SetMessage("Parsing MASTER DAT file..\n\nSkipped (already matched): " + skipped + "\nMatched (against tgdb list): " + matched + "\nUnmatched: " + unmatched);
+
+                    if (dm[i].Year != null)
+                    {
+                        // year is already present
+                        skipped++;
+                        continue;
+                    }
+
+                    // now do an exact name match - first get the systemid
+                    int systemId = dm[i].SystemId;
+
+                    // filter the gdb object
+                    var g = gdb.Where(a => a.SystemId == systemId);
+
+                    var result = (from entry in g
+                                  where entry.GameTitle.Trim().ToLower().Replace(":", "").Replace("'", "").Replace("-", "").Replace("&amp;", "").Replace("and", "").Replace("&", "").Replace("  ", " ") 
+                                  == 
+                                  dm[i].GameName.Trim().ToLower().Replace(":", "").Replace("'", "").Replace("-", "").Replace("&amp;", "").Replace("and", "").Replace("&", "").Replace("  ", " ")
+                                  select entry).ToList();
+
+                    if (result.Count() > 0)
+                    {
+                        if (result.First().ReleaseDate == null)
+                        {
+                            unmatched++;
+                            continue;
+                        }
+                            
+                        string date = result.First().ReleaseDate;
+                        // split based on /
+
+                        string[] s = date.Split('/');
+                        if (s.Length < 3)
+                        {
+                            // incorrect date format unless the string is only 4 characters
+                            if (s.Length == 1)
+                            {
+                                if (s[0].Length == 4)
+                                {
+                                    dm[i].Year = s[0];
+                                    continue;
+                                }
+                                continue;
+                            }
+                            continue;
+                        }
+
+                        dm[i].Year = s[2];
+                        matched++;
+                        continue;
+                    }
+                    else
+                    {
+                        unmatched++;
+                    }
+                }
+
+                
+            });
+
+            await Task.Delay(5000);
+            controller.SetMessage("Saving master DAT");
+            string output = JsonConvert.SerializeObject(dm, Formatting.Indented);
+            File.WriteAllText(filepath, output);
+
+            await controller.CloseAsync();
+
+            if (controller.IsCanceled)
+            {
+                await this.ShowMessageAsync("DAT Builder", "Linking Cancelled");
+                GameListBuilder.UpdateFlag();
+                GamesLibraryVisualHandler.RefreshGamesLibrary();
+            }
+            else
+            {
+                await this.ShowMessageAsync("DAT Builder", "Linking Completed");
+                GameListBuilder.UpdateFlag();
+                GamesLibraryVisualHandler.RefreshGamesLibrary();
+            }
+        }
+
+
+
+
+
 
         private void chkStreamDisk_Checked(object sender, RoutedEventArgs e)
         {
@@ -3665,7 +3894,7 @@ namespace MedLaunch
             }
         }
 
-
+        
     }
     /*
     public class SliderIgnoreDelta : Slider

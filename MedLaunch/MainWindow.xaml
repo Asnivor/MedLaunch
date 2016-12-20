@@ -8950,7 +8950,11 @@
                     <Button Margin="5" x:Name="btnBuildFromDat" Click="btnBuildFromDat_Click">
                         Build master information file from DATs (tosec / nointro etc)
                     </Button>
-                    
+
+                    <Button Margin="5" x:Name="btnmatchDATyears" Click="btnmatchDATyears_Click">
+                        Populate entries in the master DAT that do not have date information
+                    </Button>
+
 
                 </WrapPanel>
             </TabItem>

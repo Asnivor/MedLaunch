@@ -71,14 +71,10 @@ namespace MedLaunch.Classes.Scraper.DAT.TRURIP
                     no.Language = lang;
                 }
 
-
-
                 IEnumerable<XElement> roms = element.Elements("rom");
 
                 foreach (XElement rom in roms)
                 {
-
-
                     string rName = (string)rom.Attribute("name");
 
                     if (rName.EndsWith(".pdf") ||
@@ -90,22 +86,30 @@ namespace MedLaunch.Classes.Scraper.DAT.TRURIP
                         continue;
                     }
 
-                    // remove leading \
-                    no.RomName = rName.Replace(@"Media (CD-ROM)\", "").Replace(@"Media (ROM)\", "");
+                    TruRipObject n = new TruRipObject
+                    {
+                        Name = no.Name,
+                        CloneOf = no.CloneOf,
+                        Copyright = no.Copyright,
+                        Country = no.Country,
+                        CRC = (string)rom.Attribute("crc"),
+                        Size = (string)rom.Attribute("size"),
+                        MD5 = (string)rom.Attribute("md5"),
+                        SHA1 = (string)rom.Attribute("sha1"),
+                        DevelopmentStatus = no.DevelopmentStatus,
+                        Language = no.Language,
+                        RomName = rName.Replace(@"Media (CD-ROM)\", "").Replace(@"Media (ROM)\", ""),
+                        SystemId = no.SystemId,
+                        OtherFlags = no.OtherFlags,
+                        Publisher = no.Publisher,
+                        Description = no.Description,
+                        Year = no.Year
+                    };
 
-                    no.RomName = (string)rom.Attribute("name");
-                    no.Size = (string)rom.Attribute("size");
-                    no.CRC = (string)rom.Attribute("crc");
-                    no.MD5 = (string)rom.Attribute("md5");
-                    no.SHA1 = (string)rom.Attribute("sha1");
-
-                    list.Add(no);
-                }
-                
+                    list.Add(n);
+                }                
             }
             return list;
-
-            
         }
 
         public static List<string> LoadDATs(int systemId)

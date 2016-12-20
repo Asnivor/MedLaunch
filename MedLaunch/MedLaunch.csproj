@@ -226,6 +226,10 @@
     <Compile Include="Classes\Scraper\DAT\OFFLINENOINTRO\OfflineImportNoIntroData.cs" />
     <Compile Include="Classes\Scraper\DAT\OFFLINENOINTRO\Models\OfflineNoIntroCollection.cs" />
     <Compile Include="Classes\Scraper\DAT\OFFLINENOINTRO\Models\OfflineNoIntroObject.cs" />
+    <Compile Include="Classes\Scraper\DAT\REDUMP\ImportRedumpData.cs" />
+    <Compile Include="Classes\Scraper\DAT\REDUMP\Models\RedumpCollection.cs" />
+    <Compile Include="Classes\Scraper\DAT\REDUMP\Models\RedumpObject.cs" />
+    <Compile Include="Classes\Scraper\DAT\REDUMP\StringConverterRedump.cs" />
     <Compile Include="Classes\Scraper\DAT\TRURIP\ImportTruRipData.cs" />
     <Compile Include="Classes\Scraper\DAT\TRURIP\Models\TruRipCollection.cs" />
     <Compile Include="Classes\Scraper\DAT\TRURIP\Models\TruRipObject.cs" />
@@ -356,6 +360,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Data\System\DATMaster.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Data\System\DAT\NOINTRO\Atari - Lynx Parent-Clone %2820130303-222635%29.dat" />
     <None Include="Data\System\DAT\NOINTRO\Bandai - WonderSwan Color Parent-Clone %2820160925-023748%29.dat" />
     <None Include="Data\System\DAT\NOINTRO\Bandai - WonderSwan Parent-Clone %2820161023-173917%29.dat" />

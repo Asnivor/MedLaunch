@@ -35,8 +35,6 @@ namespace MedLaunch.Classes.Scraper.DAT.TOSEC
             return l;
         }
 
-
-
         public static List<ToSecObject> Parse(string dat, int systemId)
         {
             List<ToSecObject> list = new List<ToSecObject>();
@@ -61,13 +59,28 @@ namespace MedLaunch.Classes.Scraper.DAT.TOSEC
 
                 foreach (XElement rom in roms)
                 {
-                    no.RomName = (string)rom.Attribute("name");
-                    no.Size = (string)rom.Attribute("size");
-                    no.CRC = (string)rom.Attribute("crc");
-                    no.MD5 = (string)rom.Attribute("md5");
-                    no.SHA1 = (string)rom.Attribute("sha1");
 
-                    list.Add(no);
+                    ToSecObject t = new ToSecObject
+                    {
+                        Name = no.Name,
+                        CloneOf = no.CloneOf,
+                        Copyright = no.Copyright,
+                        Country = no.Country,
+                        CRC = (string)rom.Attribute("crc"),
+                        Size = (string)rom.Attribute("size"),
+                        MD5 = (string)rom.Attribute("md5"),
+                        SHA1 = (string)rom.Attribute("sha1"),
+                        DevelopmentStatus = no.DevelopmentStatus,
+                        Language = no.Language,
+                        RomName = (string)rom.Attribute("name"),
+                        SystemId = no.SystemId,
+                        OtherFlags = no.OtherFlags,
+                        Publisher = no.Publisher,
+                        Description = no.Description,
+                        Year = no.Year
+                    };
+
+                    list.Add(t);
                 }
                 
             }
