@@ -79,6 +79,7 @@
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms11" Click="ScanRoms_Click" Header="Rescan NES ROMs" />
                                                 <MenuItem x:Name="ScrapeGames11" Click="ScrapeGames_Click" Header="Scrape (previously unscraped) NES Game Info" />
+                                                <MenuItem x:Name="RescrapeGames11" Click="RescrapeGames_Click" Header="Re-Scrape ALL NES Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms11" Click="RemoveRoms_Click" Header="Remove All NES ROMs from Database" />
                                             </ContextMenu>
@@ -90,6 +91,7 @@
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms12" Click="ScanRoms_Click" Header="Rescan SNES ROMs" />
                                                 <MenuItem x:Name="ScrapeGames12" Click="ScrapeGames_Click" Header="Scrape (previously unscraped) SNES Game Info" />
+                                                <MenuItem x:Name="RescrapeGames12" Click="RescrapeGames_Click" Header="Re-Scrape ALL SNES Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms12" Click="RemoveRoms_Click" Header="Remove All SNES ROMs from Database" />
                                             </ContextMenu>
@@ -101,6 +103,7 @@
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms10" Click="ScanRoms_Click" Header="Rescan SMS ROMs" />
                                                 <MenuItem x:Name="ScrapeGames10" Click="ScrapeGames_Click" Header="Scrape (previously unscraped) SMS Game Info" />
+                                                <MenuItem x:Name="RescrapeGames10" Click="RescrapeGames_Click" Header="Re-Scrape ALL SMS Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms10" Click="RemoveRoms_Click" Header="Remove All SMS ROMs from Database" />
                                             </ContextMenu>
@@ -112,6 +115,7 @@
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms4" Click="ScanRoms_Click" Header="Rescan MD ROMs" />
                                                 <MenuItem x:Name="ScrapeGames4" Click="ScrapeGames_Click" Header="Scrape (previously unscraped) MD Game Info" />
+                                                <MenuItem x:Name="RescrapeGames4" Click="RescrapeGames_Click" Header="Re-Scrape ALL MD Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms4" Click="RemoveRoms_Click" Header="Remove All MD ROMs from Database" />
                                             </ContextMenu>
@@ -123,6 +127,7 @@
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms7" Click="ScanRoms_Click" Header="Rescan PCE ROMs"  />
                                                 <MenuItem x:Name="ScrapeGames7" Click="ScrapeGames_Click" Header="Scrape (previously unscraped) PCE Game Info" />
+                                                <MenuItem x:Name="RescrapeGames7" Click="RescrapeGames_Click" Header="Re-Scrape ALL PCE Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms7" Click="RemoveRoms_Click" Header="Remove All PCE ROMs from Database" />
                                             </ContextMenu>
@@ -134,6 +139,7 @@
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms14" Click="ScanRoms_Click" Header="Rescan VB ROMs" />
                                                 <MenuItem x:Name="ScrapeGames14" Click="ScrapeGames_Click" Header="Scrape (previously unscraped) VB Game Info" />
+                                                <MenuItem x:Name="RescrapeGames14" Click="RescrapeGames_Click" Header="Re-Scrape ALL VB Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms14" Click="RemoveRoms_Click" Header="Remove All VB ROMs from Database" />
                                             </ContextMenu>
@@ -145,6 +151,7 @@
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms6" Click="ScanRoms_Click" Header="Rescan NGP ROMs" />
                                                 <MenuItem x:Name="ScrapeGames6" Click="ScrapeGames_Click" Header="Scrape (previously unscraped) NGP Game Info" />
+                                                <MenuItem x:Name="RescrapeGames6" Click="RescrapeGames_Click" Header="Re-Scrape ALL NGP Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms6" Click="RemoveRoms_Click" Header="Remove All NGP ROMs from Database" />
                                             </ContextMenu>
@@ -156,6 +163,7 @@
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms15" Click="ScanRoms_Click" Header="Rescan WSWAN ROMs" />
                                                 <MenuItem x:Name="ScrapeGames15" Click="ScrapeGames_Click" Header="Scrape (previously unscraped) WSWAN Game Info" />
+                                                <MenuItem x:Name="RescrapeGames15" Click="RescrapeGames_Click" Header="Re-Scrape ALL WSWAN Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms15" Click="RemoveRoms_Click" Header="Remove All WSWAN ROMs from Database" />
                                             </ContextMenu>
@@ -167,6 +175,7 @@
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms1" Click="ScanRoms_Click" Header="Rescan GB ROMs" />
                                                 <MenuItem x:Name="ScrapeGames1" Click="ScrapeGames_Click" Header="Scrape (previously unscraped) GB Game Info" />
+                                                <MenuItem x:Name="RescrapeGames1" Click="RescrapeGames_Click" Header="Re-Scrape ALL GB Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms1" Click="RemoveRoms_Click" Header="Remove All GB ROMs from Database" />
                                             </ContextMenu>
@@ -178,6 +187,7 @@
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms2" Click="ScanRoms_Click" Header="Rescan GBA ROMs" />
                                                 <MenuItem x:Name="ScrapeGames2" Click="ScrapeGames_Click" Header="Scrape (previously unscraped) GBA Game Info" />
+                                                <MenuItem x:Name="RescrapeGames2" Click="RescrapeGames_Click" Header="Re-Scrape ALL GBA Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms2" Click="RemoveRoms_Click" Header="Remove All GBA ROMs from Database" />
                                             </ContextMenu>
@@ -189,6 +199,7 @@
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms5" Click="ScanRoms_Click" Header="Rescan GG ROMs" />
                                                 <MenuItem x:Name="ScrapeGames5" Click="ScrapeGames_Click" Header="Scrape (previously unscraped) GG Game Info" />
+                                                <MenuItem x:Name="RescrapeGames5" Click="RescrapeGames_Click" Header="Re-Scrape ALL GG Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms5" Click="RemoveRoms_Click" Header="Remove All GG ROMs from Database" />
                                             </ContextMenu>
@@ -200,6 +211,7 @@
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms3" Click="ScanRoms_Click" Header="Rescan LYNX ROMs" />
                                                 <MenuItem x:Name="ScrapeGames3" Click="ScrapeGames_Click" Header="Scrape (previously unscraped) LYNX Game Info" />
+                                                <MenuItem x:Name="RescrapeGames3" Click="RescrapeGames_Click" Header="Re-Scrape ALL LYNX Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms3" Click="RemoveRoms_Click" Header="Remove All LYNX ROMs from Database" />
                                             </ContextMenu>
@@ -224,6 +236,7 @@
                                                 <MenuItem x:Name="ManualAddGame13" Click="ManualAddGame_Click" Header="Manually Import a Saturn Game"  />
                                                 <MenuItem x:Name="ScanDisks13" Click="ScanDisks_Click" Header="Rescan SS Disks"  />
                                                 <MenuItem x:Name="ScrapeGames13" Click="ScrapeGames_Click" Header="Scrape (previously unscraped) SS Game Info" />
+                                                <MenuItem x:Name="RescrapeGames13" Click="RescrapeGames_Click" Header="Re-Scrape ALL SS Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveDisks13" Click="RemoveDisks_Click" Header="Remove All SS Games From Database" />
                                             </ContextMenu>
@@ -236,6 +249,7 @@
                                                 <MenuItem x:Name="ManualAddGame9" Click="ManualAddGame_Click" Header="Manually Import a PSX Game"  />
                                                 <MenuItem x:Name="ScanDisks9" Click="ScanDisks_Click" Header="Rescan PSX Disks" />
                                                 <MenuItem x:Name="ScrapeGames9" Click="ScrapeGames_Click" Header="Scrape (previously unscraped) PSX Game Info" />
+                                                <MenuItem x:Name="RescrapeGames9" Click="RescrapeGames_Click" Header="Re-Scrape ALL PSX Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveDisks9" Click="RemoveDisks_Click" Header="Remove All PSX Games From Database" />
                                             </ContextMenu>
@@ -249,6 +263,7 @@
                                                 <MenuItem x:Name="ManualAddGame18" Click="ManualAddGame_Click" Header="Manually Import a PCE Game"  />
                                                 <MenuItem x:Name="ScanDisks18" Click="ScanDisks_Click" Header="Rescan PCE Disks"  />
                                                 <MenuItem x:Name="ScrapeGames18" Click="ScrapeGames_Click" Header="Scrape (previously unscraped) PCE Game Info" />
+                                                <MenuItem x:Name="RescrapeGames18" Click="RescrapeGames_Click" Header="Re-Scrape ALL PCE Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveDisks18" Click="RemoveDisks_Click" Header="Remove All PCE(CD) Games From Database" />
                                             </ContextMenu>
@@ -261,6 +276,7 @@
                                                 <MenuItem x:Name="ManualAddGame8" Click="ManualAddGame_Click" Header="Manually Import a PC-FX Game"  />
                                                 <MenuItem x:Name="ScanDisks8" Click="ScanDisks_Click" Header="Rescan PCFX Disks"  />
                                                 <MenuItem x:Name="ScrapeGames8" Click="ScrapeGames_Click" Header="Scrape (previously unscraped) PCFX Game Info" />
+                                                <MenuItem x:Name="RescrapeGames8" Click="RescrapeGames_Click" Header="Re-Scrape ALL PCFX Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveDisks8" Click="RemoveDisks_Click" Header="Remove All PCFX Games From Database" />
                                             </ContextMenu>

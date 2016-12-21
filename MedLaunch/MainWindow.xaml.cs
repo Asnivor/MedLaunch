@@ -1092,10 +1092,19 @@ namespace MedLaunch
             string menuName = (sender as MenuItem).Name;
             int sysId = Convert.ToInt32(menuName.Replace("ScrapeGames", ""));
 
-            ScraperHandler.ScrapeGames(sysId);
+            ScraperHandler.ScrapeGames(sysId, false);
             //GameScraper.ScrapeGames(sysId);
         }
 
+        private void RescrapeGames_Click(object sender, RoutedEventArgs e)
+        {
+            // get systemId from menu name
+            string menuName = (sender as MenuItem).Name;
+            int sysId = Convert.ToInt32(menuName.Replace("RescrapeGames", ""));
+
+            ScraperHandler.ScrapeGames(sysId, true);
+            //GameScraper.ScrapeGames(sysId);
+        }
 
         // Games grid filter text box event
         private void tbFilterDatagrid_TextChanged(object sender, TextChangedEventArgs e)

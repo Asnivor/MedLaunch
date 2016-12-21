@@ -53,7 +53,7 @@ namespace MedLaunch.Classes.Scraper
 
         /* Methods */
 
-        public async static void ScrapeGames(int systemId)
+        public async static void ScrapeGames(int systemId, bool rescrapeAll)
         {
             // instantiate instance of this class
             ScraperMainSearch gs = new ScraperMainSearch();
@@ -74,10 +74,18 @@ namespace MedLaunch.Classes.Scraper
 
             await Task.Run(() =>
             {
-                controller.SetMessage("Getting Local Games");
-
-                // get all local games for this system where GdbId is not set or is 0
-                gs.LocalGames = MedLaunch.Models.Game.GetGames(systemId).Where(a => a.gdbId == null || a.gdbId == 0).ToList();
+                if (rescrapeAll == false)
+                {
+                    controller.SetMessage("Getting Local Games that require Scraping");
+                    // get all local games for this system where GdbId is not set or is 0
+                    gs.LocalGames = MedLaunch.Models.Game.GetGames(systemId).Where(a => a.gdbId == null || a.gdbId == 0).ToList();
+                }
+                else
+                {
+                    controller.SetMessage("Getting ALL Local Games for Scraping");
+                    // get all local games for this system regardless of whether they have been scraped or not
+                    gs.LocalGames = MedLaunch.Models.Game.GetGames(systemId).ToList();
+                }
                 
                 // count number of games to scan for
                 int numGames = gs.LocalGames.Count;
@@ -112,9 +120,24 @@ namespace MedLaunch.Classes.Scraper
 
                 // Get all games that have a GdbId set and determine if they need scraping (is json file present for them)
                 var gamesTmp = MedLaunch.Models.Game.GetGames(systemId).Where(a => a.gdbId != null && a.gdbId > 0).ToList();
+
+                /*
+                if (rescrapeAll == true)
+                {
+                    gamesTmp = MedLaunch.Models.Game.GetGames(systemId);
+                }
+                */
+
                 gs.LocalGames = new List<Game>();
                 foreach (var g in gamesTmp)
                 {
+                    if (rescrapeAll == true)
+                    {
+                        gs.LocalGames.Add(g);
+                        continue;
+                    }
+
+
                     // check each game directory
                     if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"Data\Games\" + g.gdbId.ToString()))
                     {
