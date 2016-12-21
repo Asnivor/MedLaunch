@@ -3079,13 +3079,13 @@
   },
   {
     "Title": "Space Invaders",
-    "UrlName": "space-invaders_",
+    "UrlName": "space-invaders-",
     "SystemId": 1,
     "PlatformName": "gameboy"
   },
   {
     "Title": "Space Invaders",
-    "UrlName": "space-invaders-",
+    "UrlName": "space-invaders_",
     "SystemId": 1,
     "PlatformName": "gameboy"
   },
@@ -9150,8 +9150,8 @@
     "PlatformName": "gameboy-advance"
   },
   {
-    "Title": "JGTO Kounin Golf Master: Japan Golf Tour Game",
-    "UrlName": "jgto-kounin-golf-master-japan-golf-tour-game",
+    "Title": "JGTO Kounin Golf Master Mobile: Japan Golf Tour Game",
+    "UrlName": "jgto-kounin-golf-master-mobile-japan-golf-tour-game",
     "SystemId": 2,
     "PlatformName": "gameboy-advance"
   },
@@ -9230,6 +9230,12 @@
   {
     "Title": "Kawa no Nushi Tsuri 3 & 4",
     "UrlName": "kawa-no-nushi-tsuri-3-4",
+    "SystemId": 2,
+    "PlatformName": "gameboy-advance"
+  },
+  {
+    "Title": "Kawa no Nushi Tsuri 5: Fushigi no Mori Kawa",
+    "UrlName": "kawa-no-nushi-tsuri-5-fushigi-no-mori-kawa",
     "SystemId": 2,
     "PlatformName": "gameboy-advance"
   },
@@ -13537,13 +13543,13 @@
   },
   {
     "Title": "Championship Soccer '94",
-    "UrlName": "championship-soccer-94",
+    "UrlName": "championship-soccer-94_",
     "SystemId": 4,
     "PlatformName": "genesis"
   },
   {
     "Title": "Championship Soccer '94",
-    "UrlName": "championship-soccer-94_",
+    "UrlName": "championship-soccer-94",
     "SystemId": 4,
     "PlatformName": "genesis"
   },
@@ -19309,13 +19315,13 @@
   },
   {
     "Title": "The Lion King",
-    "UrlName": "lion-king_",
+    "UrlName": "lion-king",
     "SystemId": 5,
     "PlatformName": "game-gear"
   },
   {
     "Title": "The Lion King",
-    "UrlName": "lion-king",
+    "UrlName": "lion-king_",
     "SystemId": 5,
     "PlatformName": "game-gear"
   },
@@ -19387,13 +19393,13 @@
   },
   {
     "Title": "Magic Knight Rayearth",
-    "UrlName": "magic-knight-rayearth",
+    "UrlName": "magic-knight-rayearth__",
     "SystemId": 5,
     "PlatformName": "game-gear"
   },
   {
     "Title": "Magic Knight Rayearth",
-    "UrlName": "magic-knight-rayearth__",
+    "UrlName": "magic-knight-rayearth",
     "SystemId": 5,
     "PlatformName": "game-gear"
   },
@@ -20245,13 +20251,13 @@
   },
   {
     "Title": "Terminator 2: Judgment Day",
-    "UrlName": "terminator-2-judgment-day___",
+    "UrlName": "terminator-2-judgment-day_",
     "SystemId": 5,
     "PlatformName": "game-gear"
   },
   {
     "Title": "Terminator 2: Judgment Day",
-    "UrlName": "terminator-2-judgment-day_",
+    "UrlName": "terminator-2-judgment-day___",
     "SystemId": 5,
     "PlatformName": "game-gear"
   },
@@ -23803,13 +23809,13 @@
   },
   {
     "Title": "Bishi Bashi Special",
-    "UrlName": "bishi-bashi-special",
+    "UrlName": "bishi-bashi-special_",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "Bishi Bashi Special",
-    "UrlName": "bishi-bashi-special_",
+    "UrlName": "bishi-bashi-special",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -24470,6 +24476,12 @@
   {
     "Title": "Castrol Honda Superbike 2000",
     "UrlName": "castrol-honda-superbike-2000",
+    "SystemId": 9,
+    "PlatformName": "playstation"
+  },
+  {
+    "Title": "Castrol Honda Superbike Racing",
+    "UrlName": "castrol-honda-superbike-racing",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -25488,7 +25500,7 @@
     "PlatformName": "playstation"
   },
   {
-    "Title": "Destruction Derby Raw",
+    "Title": "Destruction Derby: Raw",
     "UrlName": "destruction-derby-raw",
     "SystemId": 9,
     "PlatformName": "playstation"
@@ -28249,13 +28261,13 @@
   },
   {
     "Title": "King's Field",
-    "UrlName": "kings-field",
+    "UrlName": "kings-field_",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "King's Field",
-    "UrlName": "kings-field_",
+    "UrlName": "kings-field",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -31236,7 +31248,7 @@
     "PlatformName": "playstation"
   },
   {
-    "Title": "Power Spike Pro Beach Volleyball",
+    "Title": "Power Spike: Pro Beach Volleyball",
     "UrlName": "power-spike-pro-beach-volleyball",
     "SystemId": 9,
     "PlatformName": "playstation"
@@ -33361,13 +33373,13 @@
   },
   {
     "Title": "Strikers 1945",
-    "UrlName": "strikers-1945_",
+    "UrlName": "strikers-1945",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "Strikers 1945",
-    "UrlName": "strikers-1945",
+    "UrlName": "strikers-1945_",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -36289,13 +36301,13 @@
   },
   {
     "Title": "Great Soccer",
-    "UrlName": "great-soccer",
+    "UrlName": "great-soccer_",
     "SystemId": 10,
     "PlatformName": "sega-master-system"
   },
   {
     "Title": "Great Soccer",
-    "UrlName": "great-soccer_",
+    "UrlName": "great-soccer",
     "SystemId": 10,
     "PlatformName": "sega-master-system"
   },
@@ -36487,13 +36499,13 @@
   },
   {
     "Title": "The Lion King",
-    "UrlName": "lion-king_",
+    "UrlName": "lion-king",
     "SystemId": 10,
     "PlatformName": "sega-master-system"
   },
   {
     "Title": "The Lion King",
-    "UrlName": "lion-king",
+    "UrlName": "lion-king_",
     "SystemId": 10,
     "PlatformName": "sega-master-system"
   },
@@ -36984,6 +36996,12 @@
     "PlatformName": "sega-master-system"
   },
   {
+    "Title": "Sega World Tournament Golf",
+    "UrlName": "sega-world-tournament-golf",
+    "SystemId": 10,
+    "PlatformName": "sega-master-system"
+  },
+  {
     "Title": "Sensible Soccer: European Champions",
     "UrlName": "sensible-soccer-european-champions__",
     "SystemId": 10,
@@ -37291,13 +37309,13 @@
   },
   {
     "Title": "Terminator 2: Judgment Day",
-    "UrlName": "terminator-2-judgment-day___",
+    "UrlName": "terminator-2-judgment-day_",
     "SystemId": 10,
     "PlatformName": "sega-master-system"
   },
   {
     "Title": "Terminator 2: Judgment Day",
-    "UrlName": "terminator-2-judgment-day_",
+    "UrlName": "terminator-2-judgment-day___",
     "SystemId": 10,
     "PlatformName": "sega-master-system"
   },
@@ -42847,13 +42865,13 @@
   },
   {
     "Title": "Rainbow Islands",
-    "UrlName": "rainbow-islands_",
+    "UrlName": "rainbow-islands",
     "SystemId": 11,
     "PlatformName": "nes"
   },
   {
     "Title": "Rainbow Islands",
-    "UrlName": "rainbow-islands",
+    "UrlName": "rainbow-islands_",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -42877,13 +42895,13 @@
   },
   {
     "Title": "Rampart",
-    "UrlName": "rampart",
+    "UrlName": "rampart_",
     "SystemId": 11,
     "PlatformName": "nes"
   },
   {
     "Title": "Rampart",
-    "UrlName": "rampart_",
+    "UrlName": "rampart",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -44209,12 +44227,6 @@
   },
   {
     "Title": "Tetris",
-    "UrlName": "tetris_____",
-    "SystemId": 11,
-    "PlatformName": "nes"
-  },
-  {
-    "Title": "Tetris",
     "UrlName": "tetris_atari",
     "SystemId": 11,
     "PlatformName": "nes"
@@ -44222,6 +44234,12 @@
   {
     "Title": "Tetris",
     "UrlName": "tetris_nes",
+    "SystemId": 11,
+    "PlatformName": "nes"
+  },
+  {
+    "Title": "Tetris",
+    "UrlName": "tetris_____",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -50538,6 +50556,12 @@
     "PlatformName": "snes"
   },
   {
+    "Title": "Super Dany",
+    "UrlName": "super-dany",
+    "SystemId": 12,
+    "PlatformName": "snes"
+  },
+  {
     "Title": "Super Double Dragon",
     "UrlName": "super-double-dragon",
     "SystemId": 12,
@@ -50840,6 +50864,12 @@
   {
     "Title": "Super Tetris 2 + Bombliss",
     "UrlName": "super-tetris-2-bombliss",
+    "SystemId": 12,
+    "PlatformName": "snes"
+  },
+  {
+    "Title": "Super Tetris 2 + Bombliss (Genteiban)",
+    "UrlName": "super-tetris-2-bombliss-genteiban",
     "SystemId": 12,
     "PlatformName": "snes"
   },
@@ -56005,13 +56035,13 @@
   },
   {
     "Title": "Final Fantasy II",
-    "UrlName": "final-fantasy-ii_",
+    "UrlName": "final-fantasy-ii___",
     "SystemId": 15,
     "PlatformName": "wonderswan-color"
   },
   {
     "Title": "Final Fantasy II",
-    "UrlName": "final-fantasy-ii___",
+    "UrlName": "final-fantasy-ii_",
     "SystemId": 15,
     "PlatformName": "wonderswan-color"
   },

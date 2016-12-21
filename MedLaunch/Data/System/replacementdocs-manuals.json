@@ -635,10 +635,24 @@
     ]
   },
   {
+    "GameName": "DK - King of Swing",
+    "TGBSystemName": "Nintendo Game Boy Advance",
+    "Urls": [
+      "http://www.replacementdocs.com/request.php?9673"
+    ]
+  },
+  {
     "GameName": "Donkey Kong Country 2",
     "TGBSystemName": "Nintendo Game Boy Advance",
     "Urls": [
       "http://www.replacementdocs.com/request.php?4153"
+    ]
+  },
+  {
+    "GameName": "Donkey Kong Country 3",
+    "TGBSystemName": "Nintendo Game Boy Advance",
+    "Urls": [
+      "http://www.replacementdocs.com/request.php?9668"
     ]
   },
   {
@@ -741,6 +755,22 @@
     "TGBSystemName": "Nintendo Game Boy Advance",
     "Urls": [
       "http://www.replacementdocs.com/request.php?7546"
+    ]
+  },
+  {
+    "GameName": "Fire Emblem",
+    "TGBSystemName": "Nintendo Game Boy Advance",
+    "Urls": [
+      "http://www.replacementdocs.com/request.php?9667",
+      "http://www.replacementdocs.com/request.php?9669"
+    ]
+  },
+  {
+    "GameName": "Fire Emblem",
+    "TGBSystemName": "Nintendo Game Boy Advance",
+    "Urls": [
+      "http://www.replacementdocs.com/request.php?9667",
+      "http://www.replacementdocs.com/request.php?9669"
     ]
   },
   {
@@ -916,6 +946,13 @@
     ]
   },
   {
+    "GameName": "Kurukuru Kururin",
+    "TGBSystemName": "Nintendo Game Boy Advance",
+    "Urls": [
+      "http://www.replacementdocs.com/request.php?9672"
+    ]
+  },
+  {
     "GameName": "Lego Star Wars",
     "TGBSystemName": "Nintendo Game Boy Advance",
     "Urls": [
@@ -972,6 +1009,13 @@
     ]
   },
   {
+    "GameName": "Mario Pinball Land",
+    "TGBSystemName": "Nintendo Game Boy Advance",
+    "Urls": [
+      "http://www.replacementdocs.com/request.php?9674"
+    ]
+  },
+  {
     "GameName": "Mario vs Donkey Kong",
     "TGBSystemName": "Nintendo Game Boy Advance",
     "Urls": [
@@ -982,7 +1026,16 @@
     "GameName": "Mega Man and Bass",
     "TGBSystemName": "Nintendo Game Boy Advance",
     "Urls": [
-      "http://www.replacementdocs.com/request.php?9652"
+      "http://www.replacementdocs.com/request.php?9652",
+      "http://www.replacementdocs.com/request.php?9663"
+    ]
+  },
+  {
+    "GameName": "Mega Man and Bass",
+    "TGBSystemName": "Nintendo Game Boy Advance",
+    "Urls": [
+      "http://www.replacementdocs.com/request.php?9652",
+      "http://www.replacementdocs.com/request.php?9663"
     ]
   },
   {
@@ -990,6 +1043,13 @@
     "TGBSystemName": "Nintendo Game Boy Advance",
     "Urls": [
       "http://www.replacementdocs.com/request.php?9588"
+    ]
+  },
+  {
+    "GameName": "Metroid Fusion",
+    "TGBSystemName": "Nintendo Game Boy Advance",
+    "Urls": [
+      "http://www.replacementdocs.com/request.php?9670"
     ]
   },
   {
@@ -1014,6 +1074,13 @@
     ]
   },
   {
+    "GameName": "Mr Driller 2",
+    "TGBSystemName": "Nintendo Game Boy Advance",
+    "Urls": [
+      "http://www.replacementdocs.com/request.php?9675"
+    ]
+  },
+  {
     "GameName": "Need For Speed V - Porsche Unleashed",
     "TGBSystemName": "Nintendo Game Boy Advance",
     "Urls": [
@@ -1025,6 +1092,13 @@
     "TGBSystemName": "Nintendo Game Boy Advance",
     "Urls": [
       "http://www.replacementdocs.com/request.php?9549"
+    ]
+  },
+  {
+    "GameName": "Pac-Man Collection",
+    "TGBSystemName": "Nintendo Game Boy Advance",
+    "Urls": [
+      "http://www.replacementdocs.com/request.php?9671"
     ]
   },
   {
@@ -1202,10 +1276,60 @@
     ]
   },
   {
+    "GameName": "Super Mario Advance",
+    "TGBSystemName": "Nintendo Game Boy Advance",
+    "Urls": [
+      "http://www.replacementdocs.com/request.php?9660",
+      "http://www.replacementdocs.com/request.php?9664"
+    ]
+  },
+  {
+    "GameName": "Super Mario Advance",
+    "TGBSystemName": "Nintendo Game Boy Advance",
+    "Urls": [
+      "http://www.replacementdocs.com/request.php?9660",
+      "http://www.replacementdocs.com/request.php?9664"
+    ]
+  },
+  {
     "GameName": "Super Mario Advance 4",
     "TGBSystemName": "Nintendo Game Boy Advance",
     "Urls": [
       "http://www.replacementdocs.com/request.php?2343"
+    ]
+  },
+  {
+    "GameName": "Super Mario Advance 4 - Super Mario Bros 3",
+    "TGBSystemName": "Nintendo Game Boy Advance",
+    "Urls": [
+      "http://www.replacementdocs.com/request.php?9666"
+    ]
+  },
+  {
+    "GameName": "Super Mario World - Super Mario Advance 2",
+    "TGBSystemName": "Nintendo Game Boy Advance",
+    "Urls": [
+      "http://www.replacementdocs.com/request.php?9659",
+      "http://www.replacementdocs.com/request.php?9661",
+      "http://www.replacementdocs.com/request.php?9665"
+    ]
+  },
+  {
+    "GameName": "Super Mario World - Super Mario Advance 2",
+    "TGBSystemName": "Nintendo Game Boy Advance",
+    "Urls": [
+      "http://www.replacementdocs.com/request.php?9659",
+      "http://www.replacementdocs.com/request.php?9661",
+      "http://www.replacementdocs.com/request.php?9665"
+    ]
+  },
+  {
+    "GameName": "Super Mario World - Super Mario Advance 2",
+    "TGBSystemName": "Nintendo Game Boy Advance",
+    "Urls": [
+      "http://www.replacementdocs.com/request.php?9659",
+      "http://www.replacementdocs.com/request.php?9661",
+      "http://www.replacementdocs.com/request.php?9665"
     ]
   },
   {
@@ -1324,7 +1448,16 @@
     "GameName": "Yoshis Island - Super Mario Advance 3",
     "TGBSystemName": "Nintendo Game Boy Advance",
     "Urls": [
-      "http://www.replacementdocs.com/request.php?4170"
+      "http://www.replacementdocs.com/request.php?4170",
+      "http://www.replacementdocs.com/request.php?9662"
+    ]
+  },
+  {
+    "GameName": "Yoshis Island - Super Mario Advance 3",
+    "TGBSystemName": "Nintendo Game Boy Advance",
+    "Urls": [
+      "http://www.replacementdocs.com/request.php?4170",
+      "http://www.replacementdocs.com/request.php?9662"
     ]
   },
   {
