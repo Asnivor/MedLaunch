@@ -1023,6 +1023,32 @@ namespace MedLaunch.Classes
             // create new Game object for import
             Game newGame = new Game();
 
+            string hash = string.Empty;
+
+            // calculate MD5 checksum hashes            
+            if (f.Extension.Contains("m3u"))
+            {
+                // this is an m3u playlist - inspect and get relevant cue files
+                string[] lines = File.ReadAllLines(f.FullPath);
+
+                if (lines.Length > 0)
+                {
+                    // get hash for first cue/toc/ccd
+                    hash = Crypto.checkMD5(lines[0]);
+                }
+            }
+            else
+            {
+                hash = Crypto.checkMD5(f.FullPath);
+            }
+
+                 
+
+            // lookup md5 in master DAT
+            List<DATMerge> lookup = (from i in DAT
+                                     where i.SystemId == sysId && i.Roms.Any(l => l.MD5.ToUpper().Trim() == hash)
+                                     select i).ToList();
+
             if (chkGame == null)
             {
                 // does not already exist - create new game
@@ -1033,6 +1059,34 @@ namespace MedLaunch.Classes
                 newGame.isDiskBased = true;
                 newGame.isFavorite = false;
                 newGame.systemId = sysId;
+
+                if (lookup != null && lookup.Count > 0)
+                {
+                    newGame.gameNameFromDAT = lookup.First().GameName;
+                    newGame.Publisher = lookup.First().Publisher;
+                    newGame.Year = lookup.First().Year;
+
+                    // get rom we are interested in
+                    var rom = (from ro in lookup.First().Roms
+                               where ro.MD5.ToUpper().Trim() == hash.ToUpper().Trim()
+                               select ro).First();
+                    newGame.romNameFromDAT = rom.RomName;
+                    newGame.Copyright = rom.Copyright;
+                    newGame.Country = rom.Country;
+                    newGame.DevelopmentStatus = rom.DevelopmentStatus;
+                    newGame.Language = rom.Language;
+                    newGame.OtherFlags = rom.OtherFlags;
+
+                    if (rom.Year != null && rom.Year != "")
+                    {
+                        newGame.Year = rom.Year;
+                    }
+                    if (rom.Publisher != null && rom.Publisher != "")
+                    {
+                        newGame.Publisher = rom.Publisher;
+                    }
+
+                }
 
                 // add to finaGames list
                 DisksToAdd.Add(newGame);
@@ -1056,6 +1110,34 @@ namespace MedLaunch.Classes
                     // mark as not hidden
                     newGame.hidden = false;
                     newGame.isDiskBased = true;
+
+                    if (lookup != null && lookup.Count > 0)
+                    {
+                        newGame.gameNameFromDAT = lookup.First().GameName;
+                        newGame.Publisher = lookup.First().Publisher;
+                        newGame.Year = lookup.First().Year;
+
+                        // get rom we are interested in
+                        var rom = (from ro in lookup.First().Roms
+                                   where ro.MD5.ToUpper().Trim() == hash.ToUpper().Trim()
+                                   select ro).First();
+                        newGame.romNameFromDAT = rom.RomName;
+                        newGame.Copyright = rom.Copyright;
+                        newGame.Country = rom.Country;
+                        newGame.DevelopmentStatus = rom.DevelopmentStatus;
+                        newGame.Language = rom.Language;
+                        newGame.OtherFlags = rom.OtherFlags;
+
+                        if (rom.Year != null && rom.Year != "")
+                        {
+                            newGame.Year = rom.Year;
+                        }
+                        if (rom.Publisher != null && rom.Publisher != "")
+                        {
+                            newGame.Publisher = rom.Publisher;
+                        }
+
+                    }
 
                     // add to finalGames list
                     DisksToUpdate.Add(newGame);
