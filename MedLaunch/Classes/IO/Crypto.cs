@@ -10,6 +10,19 @@ namespace MedLaunch.Classes.IO
 {
     public class Crypto
     {
+        public static string UTF8toASCII(string text)
+        {
+            System.Text.Encoding utf8 = System.Text.Encoding.UTF8;
+            Byte[] encodedBytes = utf8.GetBytes(text);
+            Byte[] convertedBytes =
+                    Encoding.Convert(Encoding.UTF8, Encoding.ASCII, encodedBytes);
+            System.Text.Encoding ascii = System.Text.Encoding.ASCII;
+
+            return ascii.GetString(convertedBytes);
+        }
+
+
+
         /// <summary>
         /// Calculate md5 checksum of a file and returns as string
         /// </summary>
@@ -21,7 +34,8 @@ namespace MedLaunch.Classes.IO
             {
                 using (var stream = File.OpenRead(filename))
                 {
-                    return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "‌​").ToUpper();
+                    string hash = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty);
+                    return hash;
                 }
             }
         }

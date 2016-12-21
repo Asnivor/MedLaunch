@@ -661,7 +661,7 @@ namespace MedLaunch
             if (scanRoms.Count > 0)
             {
                 // start the operations on a different thread
-                await Task.Run(async () =>
+                await Task.Run(() =>
                 {
                     // data has been returned
 
@@ -682,7 +682,7 @@ namespace MedLaunch
 
                         // start scanning
                         controller.SetTitle("Starting " + s.systemName + " (" + s.systemCode + ") Scan");
-                        await Task.Delay(100);
+                        Task.Delay(100);
                         //output += "Scanning....";
                         controller.SetMessage(output);
 
@@ -709,7 +709,7 @@ namespace MedLaunch
                         rs.UntouchedStats = 0;
                         rs.HiddenStats = 0;
 
-                        await Task.Delay(200);
+                         Task.Delay(200);
                     }
                 });
 
@@ -3225,7 +3225,11 @@ namespace MedLaunch
 
                 controller.SetMessage(message + "TOSEC Games Parsed: " + gameCount + "\nTOSEC Roms Parsed: " + romCount + "\nDuplicate Roms Skipped: " + duplicateCount);
 
-                    var cr = Master.Where(p => p.Roms.Any(x => x.MD5.ToUpper().Trim() == a.MD5.ToUpper().Trim()));
+                    //var cr = Master.Where(p => p.Roms.Any(x => x.MD5.ToUpper().Trim() == a.MD5.ToUpper().Trim()));
+                    var cr = from p in Master
+                             where p.SystemId == a.SystemId &&
+                             p.Roms.Any(x => x.MD5.ToUpper().Trim() == a.MD5.ToUpper().Trim())
+                             select p;
 
                     if (cr.ToList().Count > 0)
                     {

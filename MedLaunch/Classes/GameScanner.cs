@@ -17,6 +17,7 @@ using MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO.Models;
 using MedLaunch.Classes.IO;
 using MedLaunch.Classes.Scraper.DAT.Models;
 using Newtonsoft.Json;
+using System.Security.Cryptography;
 
 namespace MedLaunch.Classes
 {
@@ -29,7 +30,7 @@ namespace MedLaunch.Classes
         {
             // load master dat from disk
             string filePath = AppDomain.CurrentDomain.BaseDirectory + @"Data\System\DATMaster.json";
-            DAT = JsonConvert.DeserializeObject<List<DATMerge>>(File.ReadAllText(filePath));
+            DAT = JsonConvert.DeserializeObject<IEnumerable<DATMerge>>(File.ReadAllText(filePath));
 
             db = new MyDbContext();            
 
@@ -211,7 +212,7 @@ namespace MedLaunch.Classes
         public int UpdatedStats { get; set; }
         public int UntouchedStats { get; set; }
 
-        public List<DATMerge> DAT { get; set; }
+        public IEnumerable<DATMerge> DAT { get; set; }
 
         // methods
         public string GetPath(int systemId)
@@ -441,13 +442,13 @@ namespace MedLaunch.Classes
                                     // zip file contains at least one recognised filetype for this system
                                     isAllowed = true;
 
-                                    // calculate crc32
-                                    Crypto.Crc32 crc32 = new Crypto.Crc32();        
-                                    using (var stream = entry.Open())
+                                    // calculate md5
+                                    using (var md5 = MD5.Create())
                                     {
-                                        foreach (byte b in crc32.ComputeHash(stream))
+                                        using (var stream = entry.Open())
                                         {
-                                            hash += b.ToString("x2").ToLower();
+                                            string h = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty);
+                                            hash = h;
                                         }
                                     }
 
@@ -470,8 +471,9 @@ namespace MedLaunch.Classes
                 }
                 else
                 {
-                    // file is not an archive - calculate crc32
-                    hash = Crypto.Crc32.ComputeFileHash(file);
+                    // file is not an archive - calculate md5
+                    //hash = Crypto.Crc32.ComputeFileHash(file);
+                    hash = Crypto.checkMD5(file);
                 }
                
 
@@ -480,19 +482,47 @@ namespace MedLaunch.Classes
                                 where g.systemId == systemId && g.gameName == romName
                                 select g).FirstOrDefault();
 
-                // lookup game in nointro
-                var lookup = (from a in ni.Data
-                              where a.CRC.ToLower().Trim() == hash.ToLower().Trim()
-                              select a).FirstOrDefault();
-                
+                // lookup game in master dat
+                //var sysFilter = DAT.Where(p => p.SystemId == systemId);
+                // var lookup = DAT.Where(p => p.Roms.Any(x => x.MD5.ToUpper().Trim() == hash.ToUpper().Trim())).ToList();
+
+                //var lookup = DAT.Where(p => p.Roms.Any(x => x.MD5.ToUpper() == hash)).ToList();
+                string nHash = hash.ToUpper().Trim().ToString();
+                List<DATMerge> lookup = (from i in DAT
+                              where i.SystemId == systemId && i.Roms.Any(l => l.MD5.ToUpper().Trim() == hash)
+                                         select i).ToList();
+
                 if (chkGame == null)
                 {
                     // does not already exist - create new game
                     newGame.configId = 1;
 
-                    if (lookup != null)
+                    if (lookup != null && lookup.Count > 0)
                     {
-                        newGame.gameNameFromDAT = lookup.Description;
+                        newGame.gameNameFromDAT = lookup.First().GameName;
+                        newGame.Publisher = lookup.First().Publisher;
+                        newGame.Year = lookup.First().Year;
+
+                        // get rom we are interested in
+                        var rom = (from ro in lookup.First().Roms
+                                   where ro.MD5.ToUpper().Trim() == hash.ToUpper().Trim()
+                                   select ro).First();
+                        newGame.romNameFromDAT = rom.RomName;
+                        newGame.Copyright = rom.Copyright;
+                        newGame.Country = rom.Country;
+                        newGame.DevelopmentStatus = rom.DevelopmentStatus;
+                        newGame.Language = rom.Language;
+                        newGame.OtherFlags = rom.OtherFlags;
+
+                        if (rom.Year != null && rom.Year != "")
+                        {
+                            newGame.Year = rom.Year;
+                        }
+                        if (rom.Publisher != null && rom.Publisher != "")
+                        {
+                            newGame.Publisher = rom.Publisher;
+                        }
+                        
                     }
 
                     newGame.gameName = romName;
@@ -525,9 +555,31 @@ namespace MedLaunch.Classes
                         newGame.hidden = false;
 
                         newGame.CRC32 = hash;
-                        if (lookup != null)
+                        if (lookup != null && lookup.Count > 0)
                         {
-                            newGame.gameNameFromDAT = lookup.Description;
+                            newGame.gameNameFromDAT = lookup.First().GameName;
+                            newGame.Publisher = lookup.First().Publisher;
+                            newGame.Year = lookup.First().Year;
+
+                            // get rom we are interested in
+                            var rom = (from ro in lookup.First().Roms
+                                       where ro.MD5.ToUpper().Trim() == hash.ToUpper().Trim()
+                                       select ro).First();
+                            newGame.romNameFromDAT = rom.RomName;
+                            newGame.Copyright = rom.Copyright;
+                            newGame.Country = rom.Country;
+                            newGame.DevelopmentStatus = rom.DevelopmentStatus;
+                            newGame.Language = rom.Language;
+                            newGame.OtherFlags = rom.OtherFlags;
+
+                            if (rom.Year != null && rom.Year != "")
+                            {
+                                newGame.Year = rom.Year;
+                            }
+                            if (rom.Publisher != null && rom.Publisher != "")
+                            {
+                                newGame.Publisher = rom.Publisher;
+                            }
                         }
 
                         // add to finalGames list
