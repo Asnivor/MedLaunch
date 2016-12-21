@@ -213,6 +213,15 @@ namespace MedLaunch.Classes.GamesLibrary
                     case "RATING":
                         sorted = srch.OrderBy(x => x.ESRB).ToList();
                         break;
+                    case "COUNTRY":
+                        sorted = srch.OrderBy(x => x.Country).ToList();
+                        break;
+                    case "FLAGS":
+                        sorted = srch.OrderBy(x => x.Flags).ToList();
+                        break;
+                    case "DETECTED ROM":
+                        sorted = srch.OrderBy(x => x.DatRom).ToList();
+                        break;
                     default:
                         sorted = srch.OrderBy(s => s.Game).ToList();
                         break;

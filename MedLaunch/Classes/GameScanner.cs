@@ -1034,7 +1034,7 @@ namespace MedLaunch.Classes
                 if (lines.Length > 0)
                 {
                     // get hash for first cue/toc/ccd
-                    hash = Crypto.checkMD5(lines[0]);
+                    hash = Crypto.checkMD5(f.FolderPath + "\\" + lines[0]);
                 }
             }
             else

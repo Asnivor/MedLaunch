@@ -330,14 +330,25 @@
                                 </DataGrid.ColumnHeaderStyle>
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="ID" Binding="{Binding ID}" />
-                                    <DataGridTextColumn Header="Game" Binding="{Binding Game}" />
-                                    <DataGridTextColumn Header="System" Binding="{Binding System}" />
+                                    <DataGridTextColumn Header="Game" Binding="{Binding Game}" Width="190" />
+                                    <!--
+                                    <DataGridTextColumn Header="DAT Name" Binding="{Binding DatName}" />
+                                    -->
+                                    
+                                    <DataGridTextColumn Header="System" Binding="{Binding System}" Width="100" />
                                     <DataGridTextColumn Header="LastRun" Binding="{Binding LastPlayed}" />
                                     <DataGridCheckBoxColumn Header="Fav" Binding="{Binding Favorite}" />
+                                    <DataGridTextColumn Header="Country" Binding="{Binding Country}" />
+                                    <!--
+                                    <DataGridTextColumn Header="Language" Binding="{Binding Language}" />
+                                    -->
                                     <DataGridTextColumn x:Name="colYear" Header="Year" Binding="{Binding Year}" Visibility="{Binding ElementName=chkshowGLYear, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                                    <DataGridTextColumn x:Name="colPlayers"  Header="Players" Binding="{Binding Players}" Visibility="{Binding ElementName=chkshowGLPlayers, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                    <DataGridTextColumn x:Name="colPublisher" Width="100"  Header="Publisher" Binding="{Binding Publisher}" Visibility="{Binding ElementName=chkshowGLPublisher, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}"/>
+
+                                    <DataGridTextColumn Header="Flags" Binding="{Binding Flags}" />
+                                    <DataGridTextColumn Header="Detected ROM" Binding="{Binding DatRom}" Width="180" />
+                                     <DataGridTextColumn x:Name="colPlayers"  Header="Players" Binding="{Binding Players}" Visibility="{Binding ElementName=chkshowGLPlayers, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}"/>
                                     <DataGridTextColumn x:Name="colCoop"  Header="Co-Op" Binding="{Binding Coop}" Visibility="{Binding ElementName=chkshowGLCoop, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                                    <DataGridTextColumn x:Name="colPublisher"  Header="Publisher" Binding="{Binding Publisher}" Visibility="{Binding ElementName=chkshowGLPublisher, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}"/>
                                     <DataGridTextColumn x:Name="colDeveloper"  Header="Developer" Binding="{Binding Developer}" Visibility="{Binding ElementName=chkshowGLDeveloper, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}"/>
                                     <DataGridTextColumn x:Name="colRating"  Header="Rating" Binding="{Binding ESRB}" Visibility="{Binding ElementName=chkshowGLESRB, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}" />
                                 </DataGrid.Columns>

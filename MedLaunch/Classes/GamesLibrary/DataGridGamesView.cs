@@ -47,6 +47,40 @@ namespace MedLaunch.Classes
             }
         }
 
+        private string datName;
+        public string DatName
+        {
+            get
+            {
+                return datName;
+            }
+            set
+            {
+                if (datName != value)
+                {
+                    datName = value;
+                    OnPropertyChanged("DatName");
+                }
+            }
+        }
+
+        private string datRom;
+        public string DatRom
+        {
+            get
+            {
+                return datRom;
+            }
+            set
+            {
+                if (datRom != value)
+                {
+                    datRom = value;
+                    OnPropertyChanged("DatRom");
+                }
+            }
+        }
+
         private string system;
         public string System
         {
@@ -94,6 +128,57 @@ namespace MedLaunch.Classes
                 {
                     favorite = value;
                     OnPropertyChanged("Favorite");
+                }
+            }
+        }
+
+        private string country;
+        public string Country
+        {
+            get
+            {
+                return country;
+            }
+            set
+            {
+                if (country != value)
+                {
+                    country = value;
+                    OnPropertyChanged("Country");
+                }
+            }
+        }
+
+        private string language;
+        public string Language
+        {
+            get
+            {
+                return language;
+            }
+            set
+            {
+                if (language != value)
+                {
+                    language = value;
+                    OnPropertyChanged("Language");
+                }
+            }
+        }
+
+        private string flags;
+        public string Flags
+        {
+            get
+            {
+                return flags;
+            }
+            set
+            {
+                if (flags != value)
+                {
+                    flags = value;
+                    OnPropertyChanged("Flags");
                 }
             }
         }
@@ -212,34 +297,5 @@ namespace MedLaunch.Classes
 
     }
 
-    /*
-
-    public class GameListView
-    {
-        public GameListView()
-        {
-
-        }
-
-        public GameListView(int gameId, string gamePath, string gameName, DateTime gameLastPlayed, string systemName, string systemDescription, int systemId)
-        {
-            this.GameId = gameId;
-            this.GamePath = gamePath;
-            this.GameName = gameName;
-            this.GameLastPlayed = gameLastPlayed;
-            this.SystemName = systemName;
-            this.SystemDescription = systemDescription;
-            this.SystemId = systemId;
-        }
-
-        public int GameId { get; set; }
-        public string GamePath { get; set; }
-        public string GameName { get; set; }
-        public DateTime GameLastPlayed { get; set; }
-        public string SystemName { get; set; }
-        public string SystemDescription { get; set; }
-        public int SystemId { get; set; }
-    }
-
-    */
+  
 }
