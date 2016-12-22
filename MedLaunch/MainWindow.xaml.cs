@@ -45,7 +45,7 @@ using MedLaunch.Classes.Input;
 using MedLaunch.Classes.GamesLibrary;
 using System.Collections.ObjectModel;
 using MedLaunch.Classes.Scraper.DAT.TOSEC.Models;
-using MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO.Models;
+using MedLaunch.Classes.Scraper.DAT.NOINTRO.Models;
 using MedLaunch.Classes.Scraper.DAT.Models;
 using MedLaunch.Classes.Scraper.DAT.TRURIP.Models;
 using MedLaunch.Classes.Scraper.DAT.REDUMP.Models;

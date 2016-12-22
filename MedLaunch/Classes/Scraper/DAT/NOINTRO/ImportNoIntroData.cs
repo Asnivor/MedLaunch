@@ -1,4 +1,4 @@
-﻿using MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO.Models;
+﻿using MedLaunch.Classes.Scraper.DAT.NOINTRO.Models;
 using MedLaunch.Classes.Scraper.DAT.TOSEC;
 using MedLaunch.Models;
 using System;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO
+namespace MedLaunch.Classes.Scraper.DAT.NOINTRO
 {
     public class ImportNoIntroData
     {

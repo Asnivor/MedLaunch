@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO.Models
+namespace MedLaunch.Classes.Scraper.DAT.NOINTRO.Models
 {
     public class NoIntroCollection
     {

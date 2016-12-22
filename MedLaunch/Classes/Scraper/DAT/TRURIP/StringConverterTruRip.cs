@@ -1,4 +1,4 @@
-﻿using MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO.Models;
+﻿using MedLaunch.Classes.Scraper.DAT.NOINTRO.Models;
 using MedLaunch.Classes.Scraper.DAT.TOSEC.Models;
 using MedLaunch.Classes.Scraper.DAT.TRURIP.Models;
 using System;

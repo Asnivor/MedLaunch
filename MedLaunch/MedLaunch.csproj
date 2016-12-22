@@ -223,9 +223,6 @@
     <Compile Include="Classes\Scraper\DAT\NOINTRO\Models\NoIntroCollection.cs" />
     <Compile Include="Classes\Scraper\DAT\NOINTRO\Models\NoIntroObject.cs" />
     <Compile Include="Classes\Scraper\DAT\NOINTRO\StringConverterNoIntro.cs" />
-    <Compile Include="Classes\Scraper\DAT\OFFLINENOINTRO\OfflineImportNoIntroData.cs" />
-    <Compile Include="Classes\Scraper\DAT\OFFLINENOINTRO\Models\OfflineNoIntroCollection.cs" />
-    <Compile Include="Classes\Scraper\DAT\OFFLINENOINTRO\Models\OfflineNoIntroObject.cs" />
     <Compile Include="Classes\Scraper\DAT\REDUMP\ImportRedumpData.cs" />
     <Compile Include="Classes\Scraper\DAT\REDUMP\Models\RedumpCollection.cs" />
     <Compile Include="Classes\Scraper\DAT\REDUMP\Models\RedumpObject.cs" />

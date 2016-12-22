@@ -13,7 +13,7 @@ using Ookii.Dialogs.Wpf;
 using Microsoft.Win32;
 using MahApps.Metro.Controls.Dialogs;
 using MedLaunch.Classes.GamesLibrary;
-using MedLaunch.Classes.Scraper.DAT.OFFLINENOINTRO.Models;
+using MedLaunch.Classes.Scraper.DAT.NOINTRO.Models;
 using MedLaunch.Classes.IO;
 using MedLaunch.Classes.Scraper.DAT.Models;
 using Newtonsoft.Json;
@@ -401,8 +401,7 @@ namespace MedLaunch.Classes
             // create new final list to be populated with approved files
             List<Game> finalGames = new List<Game>();
 
-            // instantiate DAT classes
-            NoIntroCollection ni = new NoIntroCollection();
+            
 
             // now we have a list of allowed files, loop through them
             foreach (string file in allowedFiles)
