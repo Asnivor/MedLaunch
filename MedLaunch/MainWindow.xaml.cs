@@ -2527,7 +2527,17 @@ namespace MedLaunch
         {
             var r = (DataGridGamesView)dgGameList.SelectedItem;
             // get the gamesdbid
-            int gdbId = Game.GetGame(Convert.ToInt32(r.ID)).gdbId.Value;
+
+            int gdbId = 0;
+
+            Game ga = Game.GetGame(Convert.ToInt32(r.ID));
+            if (ga.gdbId == null || ga.gdbId == 0)
+                return;
+            else
+            {
+                gdbId = ga.gdbId.Value;
+            }
+            
             if (gdbId > 0)
             {
                 // open the folder in windows explorer
