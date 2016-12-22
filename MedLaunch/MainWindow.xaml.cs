@@ -3907,7 +3907,25 @@ namespace MedLaunch
             }
         }
 
-        
+        private void btnViewMednafenLogFile_Click(object sender, RoutedEventArgs e)
+        {
+            // get path to mednafen folder
+            Paths p = Paths.GetPaths();
+            string folderPath = p.mednafenExe;
+            string logPath = folderPath + "\\" + "stdout.txt";
+
+            // test whether log exists
+            if (!File.Exists(logPath))
+                return;
+
+            // open log
+            ProcessStartInfo pi = new ProcessStartInfo();
+            pi.Arguments = logPath;
+            pi.FileName = "notepad.exe";
+
+            Process.Start(pi);
+
+        }
     }
     /*
     public class SliderIgnoreDelta : Slider

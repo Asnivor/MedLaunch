@@ -35,6 +35,7 @@
    
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
+            <Button x:Name="btnViewMednafenLogFile" Content="Open Mednafen Log" Click="btnViewMednafenLogFile_Click" />
             <Button x:Name="btnChangeColorScheme" Content="Change Colour Scheme" Click="btnChangeColorScheme_Click" />
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
