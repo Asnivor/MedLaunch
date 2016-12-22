@@ -105,7 +105,19 @@ namespace MedLaunch
                             Console.WriteLine("Hint: Manual solution 1 is recommended.");
                             Console.WriteLine("");
                             Console.WriteLine("Press any key to abort Medlaunch initialisation......");
-                            Console.ReadKey();
+
+                            StringBuilder sb = new StringBuilder();
+                            sb.AppendLine("WARNING: Your MedLaunch database version is NEWER than your installed MedLaunch application!");
+                            sb.AppendLine("It looks like you have installed an older version of MedLaunch over an existing MedLaunch directory.");
+                            sb.AppendLine("This can only be bad and will need to be resolved by you before you continue.");
+                            sb.AppendLine("Manual solution 1: Press any key to terminate this application. Then download the latest version of MedLaunch from GitHub and extract it over your current MedLaunch folder");
+                            sb.AppendLine("Manual solution 2: Press any key to terminate this application. Then delete your MedLaunch database (.Data/Settings/MedLaunch.db). This will wipe out all of your settings/games/etc.");
+                            sb.AppendLine("Hint: Manual solution 1 is recommended.");
+                            sb.AppendLine("Press OK to quit MedLaunch");
+
+                            //Console.ReadKey();
+                            //Thread.Sleep(10000);
+                            MessageBox.Show(sb.ToString());
                             Environment.Exit(0);
                             break;
                         }
@@ -117,6 +129,7 @@ namespace MedLaunch
                         {
                             // database is OLDER than application - upgrade needed
                             upgradeNeeded = true;
+                            break;
                         }
 
                     }
