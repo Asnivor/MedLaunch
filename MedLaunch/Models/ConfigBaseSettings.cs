@@ -9,6 +9,8 @@ using System.Windows;
 using Microsoft.Data.Entity;
 using System.Reflection;
 using MahApps.Metro.Controls;
+using Xceed.Wpf.Toolkit;
+using System.Windows.Media;
 
 namespace MedLaunch.Models
 {
@@ -1924,6 +1926,38 @@ namespace MedLaunch.Models
                         control.Value = v;
                     }
                 }
+
+                // ColorPickers
+                foreach (ColorPicker control in ui.Colorpickers)
+                {
+                    // get config entry name from control name
+                    string propName = ConvertControlNameToConfigName(control.Name);
+                    //MessageBoxResult result = MessageBox.Show(propName);
+                    // make sure name is not null
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
+                    {
+                        // checkbox does not have a name set - skip
+                        //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
+                    }
+                    else
+                    {
+                        var value = settings.GetType().GetProperty(propName).GetValue(settings, null);
+                        string v = value.ToString();
+
+                        // update wpf control
+
+                        string n = string.Empty;
+
+                        // strip leading 0x
+                        if (v.StartsWith("0x"))
+                            n = v.Replace("0x", "");
+                        else
+                            n = v;
+
+                            control.SelectedColor = (Color)System.Windows.Media.ColorConverter.ConvertFromString("#" + n);
+                    }
+                }
+
             }
             if (LoadOrSave == 2)
             {
@@ -2120,6 +2154,30 @@ namespace MedLaunch.Models
                             //MessageBoxResult aresult = MessageBox.Show(propInfo.PropertyType.ToString());
                             propInfo.SetValue(settings, Convert.ToInt32(v), null);
                         }
+                    }
+                }
+
+                // Colorpickers
+                foreach (ColorPicker control in ui.Colorpickers)
+                {
+                    // get config entry name from control name
+                    string propName = ConvertControlNameToConfigName(control.Name);
+                    //MessageBoxResult result = MessageBox.Show(propName);
+                    // make sure name is not null
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
+                    {
+                        // textbox does not have a name set - skip
+                        //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
+                    }
+                    else
+                    {
+                        // get the control value
+                        System.Windows.Media.Color color = control.SelectedColor.Value;
+                        string hex = new ColorConverter().ConvertToString(color);
+                        string v = "0x" + hex.Replace("#", "").ToUpper().Substring(2, 6);
+                        // update settings object with value
+                        PropertyInfo propInfo = settings.GetType().GetProperty(propName);
+                        propInfo.SetValue(settings, v, null);
                     }
                 }
 

@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:MedLaunch"
                       xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
         
@@ -6333,14 +6334,23 @@
                                                 </ComboBox>
 
                                                 <Label Grid.Column="0" Grid.Row="5">Default Max-Brightness (Non-Anaglyph)</Label>
+                                                <!--
                                                 <TextBox x:Name="cfg_vb__default_color" Grid.Column="1" Grid.Row="5"></TextBox>
+                                                -->
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="1" Grid.Row="5" x:Name="cfg_vb__default_color" />
 
                                                 <Label Grid.Column="0" Grid.Row="6">Max-Brightness (Anaglyph) Left View</Label>
+                                                <!--
                                                 <TextBox x:Name="cfg_vb__anaglyph__lcolor" Grid.Column="1" Grid.Row="6"></TextBox>
+                                                -->
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="1" Grid.Row="6" x:Name="cfg_vb__anaglyph__lcolor" />
 
                                                 <Label Grid.Column="0" Grid.Row="7">Max-Brightness (Anaglyph) Right View</Label>
+                                                <!--
                                                 <TextBox x:Name="cfg_vb__anaglyph__rcolor" Grid.Column="1" Grid.Row="7"></TextBox>
-
+                                                -->
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="1" Grid.Row="7" x:Name="cfg_vb__anaglyph__rcolor" />
+                                                
                                                 <Label Grid.Column="0" Grid.Row="8">Disassembly Font Size</Label>
                                                 <ComboBox x:Name="cfg_vb__debugger__disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="8">
                                                     <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
@@ -7212,7 +7222,10 @@
                                         Name="cfg_psx__input__port1__dualshock__axis_scale"/>
                                                 </DockPanel>
                                                 <Label Grid.Column="0" Grid.Row="4">Crosshair Color (Lightgun - Port 1)</Label>
+                                                <!--
                                                 <TextBox x:Name="cfg_psx__input__port1__gun_chairs" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                -->
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="1" Grid.Row="4" x:Name="cfg_psx__input__port1__gun_chairs" />
                                                 <CheckBox x:Name="cfg_psx__input__port1__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 1</CheckBox>
                                             </Grid>
                                         </StackPanel>
@@ -7267,7 +7280,10 @@
                                         Name="cfg_psx__input__port2__dualshock__axis_scale"/>
                                                 </DockPanel>
                                                 <Label Grid.Column="0" Grid.Row="4">Crosshair Color (Lightgun - Port 2)</Label>
+                                                <!--
                                                 <TextBox x:Name="cfg_psx__input__port2__gun_chairs" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                -->
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="1" Grid.Row="4" x:Name="cfg_psx__input__port2__gun_chairs" />
                                                 <CheckBox x:Name="cfg_psx__input__port2__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 2</CheckBox>
                                             </Grid>
                                         </StackPanel>
@@ -7322,7 +7338,10 @@
                                         Name="cfg_psx__input__port3__dualshock__axis_scale"/>
                                                 </DockPanel>
                                                 <Label Grid.Column="0" Grid.Row="4">Crosshair Color (Lightgun - Port 3)</Label>
+                                                <!--
                                                 <TextBox x:Name="cfg_psx__input__port3__gun_chairs" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                -->
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="1" Grid.Row="4" x:Name="cfg_psx__input__port3__gun_chairs" />
                                                 <CheckBox x:Name="cfg_psx__input__port3__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 3</CheckBox>
                                             </Grid>
                                         </StackPanel>
@@ -7377,7 +7396,10 @@
                                         Name="cfg_psx__input__port4__dualshock__axis_scale"/>
                                                 </DockPanel>
                                                 <Label Grid.Column="0" Grid.Row="4">Crosshair Color (Lightgun - Port 4)</Label>
+                                                <!--
                                                 <TextBox x:Name="cfg_psx__input__port4__gun_chairs" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                -->
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="1" Grid.Row="4" x:Name="cfg_psx__input__port4__gun_chairs" />
                                                 <CheckBox x:Name="cfg_psx__input__port4__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 4</CheckBox>
                                             </Grid>
                                         </StackPanel>
@@ -7432,7 +7454,10 @@
                                         Name="cfg_psx__input__port5__dualshock__axis_scale"/>
                                                 </DockPanel>
                                                 <Label Grid.Column="0" Grid.Row="4">Crosshair Color (Lightgun - Port 5)</Label>
+                                                <!--
                                                 <TextBox x:Name="cfg_psx__input__port5__gun_chairs" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                -->
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="1" Grid.Row="4" x:Name="cfg_psx__input__port5__gun_chairs" />
                                                 <CheckBox x:Name="cfg_psx__input__port5__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 5</CheckBox>
                                             </Grid>
                                         </StackPanel>
@@ -7487,7 +7512,10 @@
                                         Name="cfg_psx__input__port6__dualshock__axis_scale"/>
                                                 </DockPanel>
                                                 <Label Grid.Column="0" Grid.Row="4">Crosshair Color (Lightgun - Port 6)</Label>
+                                                <!--
                                                 <TextBox x:Name="cfg_psx__input__port6__gun_chairs" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                -->
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="1" Grid.Row="4" x:Name="cfg_psx__input__port6__gun_chairs" />
                                                 <CheckBox x:Name="cfg_psx__input__port6__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 6</CheckBox>
                                             </Grid>
                                         </StackPanel>
@@ -7542,7 +7570,10 @@
                                         Name="cfg_psx__input__port7__dualshock__axis_scale"/>
                                                 </DockPanel>
                                                 <Label Grid.Column="0" Grid.Row="4">Crosshair Color (Lightgun - Port 7)</Label>
+                                                <!--
                                                 <TextBox x:Name="cfg_psx__input__port7__gun_chairs" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                -->
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="1" Grid.Row="4" x:Name="cfg_psx__input__port7__gun_chairs" />
                                                 <CheckBox x:Name="cfg_psx__input__port7__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 7</CheckBox>
                                             </Grid>
                                         </StackPanel>
@@ -7597,7 +7628,11 @@
                                         Name="cfg_psx__input__port8__dualshock__axis_scale"/>
                                                 </DockPanel>
                                                 <Label Grid.Column="0" Grid.Row="4">Crosshair Color (Lightgun - Port 8)</Label>
+                                                
+                                                <!--
                                                 <TextBox x:Name="cfg_psx__input__port8__gun_chairs" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                -->
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="1" Grid.Row="4" x:Name="cfg_psx__input__port8__gun_chairs" />
                                                 <CheckBox x:Name="cfg_psx__input__port8__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 8</CheckBox>
                                             </Grid>
                                         </StackPanel>
