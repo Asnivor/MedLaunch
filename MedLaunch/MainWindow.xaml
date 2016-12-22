@@ -8690,7 +8690,7 @@
 
             </TabItem>
 -->
-            <TabItem Header="Capture">
+            <TabItem Header="Capture" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
                 <Grid x:Name="grdCapture">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
