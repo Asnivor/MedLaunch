@@ -324,6 +324,8 @@ namespace MedLaunch
             }
             */
 
+            btnReLink.Visibility = Visibility.Collapsed;
+
         }
 
         private MetroWindow colorSchemeChanger;
