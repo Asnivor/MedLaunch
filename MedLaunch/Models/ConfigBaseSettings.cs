@@ -41,7 +41,7 @@ namespace MedLaunch.Models
         public bool? filesys__untrusted_fip_check { get; set; }   // filesys.untrusted_fip_check
         public int? input__autofirefreq { get; set; }                // input.autofirefreq               (0 through 1000)
         public int? input__ckdelay { get; set; }                     // 0 through 99999
-        public decimal? input__joystick__axis_threshold { get; set; }    // 0 through 100
+        public double? input__joystick__axis_threshold { get; set; }    // 0 through 100
         public bool? input__joystick__global_focus { get; set; }
         public bool? nothrottle { get; set; }
         public bool? osd__alpha_blend { get; set; }
@@ -730,7 +730,7 @@ namespace MedLaunch.Models
                 filesys__untrusted_fip_check = true,
                 input__autofirefreq = 3,                            // control placed
                 input__ckdelay = 0,                                 // control placed
-                input__joystick__axis_threshold = 75,               // control placed
+                input__joystick__axis_threshold = 75.00,               // control placed
                 input__joystick__global_focus = true,               // control placed
                 nothrottle = false,                                 // control placed
                 osd__alpha_blend = true,                            // control placed
