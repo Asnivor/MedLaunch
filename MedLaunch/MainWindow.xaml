@@ -7171,6 +7171,26 @@
                                     <Expander IsExpanded="True" BorderThickness="0" Header="PSX Control Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_psx__input__analog_mode_ct">Analog Mode Combo-Button Toggle</CheckBox>
+
+                                            <Grid Margin="0">
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+
+                                                <Label Grid.Column="0" Grid.Row="0">Debugger Char Encoding</Label>
+                                                <TextBox x:Name="cfg_psx__input__analog_mode_ct__compare" Grid.Column="1" Grid.Row="0" />
+
+                                            </Grid>
+                                            
                                             <CheckBox x:Name="cfg_psx__input__pport1__multitap">Enable MultiTap on PSX Port 1</CheckBox>
                                             <CheckBox x:Name="cfg_psx__input__pport2__multitap">Enable MultiTap on PSX Port 2</CheckBox>
                                             <Grid Margin="0">

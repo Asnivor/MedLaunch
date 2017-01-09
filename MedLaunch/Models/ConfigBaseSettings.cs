@@ -595,6 +595,8 @@ namespace MedLaunch.Models
         public double? psx__yscale { get; set; }                       // 0.01 through 256
         public double? psx__yscalefs { get; set; }                     // 0.01 through 256
 
+        public string psx__input__analog_mode_ct__compare { get; set; }
+
         // SNES (Faust)
         public string snes_faust__input__port1 { get; set; }
         public string snes_faust__input__port2 { get; set; }
@@ -1188,9 +1190,9 @@ namespace MedLaunch.Models
                 ss__yscale = 1,                                       // control placed
                 ss__yscalefs = 1,                                     // control placed
 
-                ss__correct_aspect = true,
-                ss__h_blend = false,
-                ss__h_overscan = true,
+                ss__correct_aspect = true,                              // control placed
+                ss__h_blend = false,                                    // control placed
+                ss__h_overscan = true,                                  // control placed
 
                 // playstation
                 psx__bios_eu = "scph5502.bin",
@@ -1278,6 +1280,8 @@ namespace MedLaunch.Models
                 psx__yres = 0,                                         // control placed
                 psx__yscale = 1,                                       // control placed
                 psx__yscalefs = 1,                                     // control placed
+
+                psx__input__analog_mode_ct__compare = "0x0F09",
 
                 // snes faust
                 snes_faust__input__port1 = "gamepad",               // placed
