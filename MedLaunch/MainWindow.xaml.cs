@@ -2221,6 +2221,11 @@ namespace MedLaunch
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
             ConfigsVisualHandler.HideControls(ConfigWrapPanel, systemIdSelected);
             ConfigsVisualHandler.ButtonClick();
+
+            // populate the psx combo fields
+            string hexCode = cfg_psx__input__analog_mode_ct__compare.Text;
+            CalculateComboChecks(hexCode);
+
         }
 
         // Generic Config Selection Buttons UNCHECKED
@@ -3938,6 +3943,167 @@ namespace MedLaunch
             Process.Start(pi);
 
         }
+
+        private void comboPsxRecalculate_Click(object sender, RoutedEventArgs e)
+        {
+            List<CheckBox> chks = new List<CheckBox>
+            {
+                comboPsx1,
+                comboPsx2,
+                comboPsx3,
+                comboPsx4,
+                comboPsx5,
+                comboPsx6,
+                comboPsx7,
+                comboPsx8,
+                comboPsx9,
+                comboPsx10,
+                comboPsx11,
+                comboPsx12,
+                comboPsx13,
+                comboPsx14,
+                comboPsx15,
+                comboPsx16
+            };
+
+            // get all checked checkboxes
+            var chked = (from a in chks
+                         where a.IsChecked == true
+                         select a).ToList();
+
+            string hex = CalculateCombo(chked);
+
+            // set text box 
+            cfg_psx__input__analog_mode_ct__compare.Text = hex;
+
+        }
+
+        public void CalculateComboChecks(string hexValue)
+        {
+            // get list of checkboxes
+            List<CheckBox> chks = new List<CheckBox>
+            {
+                comboPsx1,
+                comboPsx2,
+                comboPsx3,
+                comboPsx4,
+                comboPsx5,
+                comboPsx6,
+                comboPsx7,
+                comboPsx8,
+                comboPsx9,
+                comboPsx10,
+                comboPsx11,
+                comboPsx12,
+                comboPsx13,
+                comboPsx14,
+                comboPsx15,
+                comboPsx16
+            };
+
+            int value = int.Parse(hexValue.TrimStart('0').TrimStart('x'), System.Globalization.NumberStyles.HexNumber);
+            for (int i = 16; i > 0; i--)
+            {
+                int testValue = 1 * Convert.ToInt32(Math.Pow(2, Convert.ToDouble(i - 1)));
+                if (value / testValue == 1)
+                {
+                    // checkbox that ends with 'i' needs to be ticked - 
+                    CheckBox cb = chks.Where(a => a.Name.Contains(i.ToString())).First();
+                    cb.IsChecked = true;
+
+                    //now set remainder
+                    value = value % testValue;
+                }
+            }              
+        }
+
+
+        public static string CalculateCombo(List<CheckBox> chkboxes)
+        {
+            int total = 0;
+
+            foreach (var c in chkboxes)
+            {
+                string name = c.Name.Replace("comboPsx", "");
+
+                int value = Convert.ToInt32(name);
+
+                int calc = 1;
+                for (int i = 1; i <= value; i++)
+                {
+                    if (i == 1)
+                    {
+                        calc = 1;
+                        continue;
+                    }
+
+                    calc = calc * 2;
+                }
+
+                total += calc;
+
+                /*
+                switch (name)
+                {
+                    case "01":
+                        total += 1;
+                        break;
+                    case "02":
+                        total += 2;
+                        break;
+                    case "03":
+                        total += 4;
+                        break;
+                    case "04":
+                        total += 8;
+                        break;
+                    case "05":
+                        total += 16;
+                        break;
+                    case "06":
+                        total += 23;
+                        break;
+                    case "07":
+                        total += 64;
+                        break;
+                    case "08":
+                        total += 128;
+                        break;
+                    case "09":
+                        total += 256;
+                        break;
+                    case "10":
+                        total += 512;
+                        break;
+                    case "11":
+                        total += 1024;
+                        break;
+                    case "12":
+                        total += 2048;
+                        break;
+                    case "13":
+                        total += 4096;
+                        break;
+                    case "14":
+                        total += 8192;
+                        break;
+                    case "15":
+                        total += 16384;
+                        break;
+                    case "16":
+                        total += 32768;
+                        break;
+                }
+
+            */
+            }
+
+            // convert to hex string
+            string hexValue = "0x" + total.ToString("X4");
+            return hexValue;
+            
+        }
+
     }
     /*
     public class SliderIgnoreDelta : Slider

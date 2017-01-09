@@ -71,7 +71,7 @@ namespace MedLaunch.Models
         // generic system specific settings -   <system>.setting
         public bool? __enable { get; set; }
         public bool? __forcemono { get; set; }                      // force mono output
-        public string __pixshader { get; set; }
+        public string __shader { get; set; }
         public int? __scanlines { get; set; }                       // -100 through 100
         public string __special { get; set; }
         public string __stretch { get; set; }
@@ -94,7 +94,7 @@ namespace MedLaunch.Models
 
         public bool? lynx__enable { get; set; }
         public bool? lynx__forcemono { get; set; }
-        public string lynx__pixshader { get; set; }
+        public string lynx__shader { get; set; }
         public int? lynx__scanlines { get; set; }
         public string lynx__special { get; set; }
         public string lynx__stretch { get; set; }
@@ -115,7 +115,7 @@ namespace MedLaunch.Models
 
         public bool? gb__enable { get; set; }
         public bool? gb__forcemono { get; set; }
-        public string gb__pixshader { get; set; }
+        public string gb__shader { get; set; }
         public int? gb__scanlines { get; set; }
         public string gb__special { get; set; }
         public string gb__stretch { get; set; }
@@ -135,7 +135,7 @@ namespace MedLaunch.Models
 
         public bool? gba__enable { get; set; }
         public bool? gba__forcemono { get; set; }
-        public string gba__pixshader { get; set; }
+        public string gba__shader { get; set; }
         public int? gba__scanlines { get; set; }
         public string gba__special { get; set; }
         public string gba__stretch { get; set; }
@@ -155,7 +155,7 @@ namespace MedLaunch.Models
 
         public bool? ngp__enable { get; set; }
         public bool? ngp__forcemono { get; set; }
-        public string ngp__pixshader { get; set; }
+        public string ngp__shader { get; set; }
         public int? ngp__scanlines { get; set; }
         public string ngp__special { get; set; }
         public string ngp__stretch { get; set; }
@@ -210,7 +210,7 @@ namespace MedLaunch.Models
         public string nes__debugger__memcharenc { get; set; }
 
         public bool? nes__enable { get; set; }
-        public string nes__pixshader { get; set; }
+        public string nes__shader { get; set; }
         public int? nes__scanlines { get; set; }
         public string nes__special { get; set; }
         public string nes__stretch { get; set; }
@@ -249,7 +249,7 @@ namespace MedLaunch.Models
 
         public bool? pce_fast__enable { get; set; }
         public bool? pce_fast__forcemono { get; set; }
-        public string pce_fast__pixshader { get; set; }
+        public string pce_fast__shader { get; set; }
         public int? pce_fast__scanlines { get; set; }
         public string pce_fast__special { get; set; }
         public string pce_fast__stretch { get; set; }
@@ -296,7 +296,7 @@ namespace MedLaunch.Models
 
         public bool? pce__enable { get; set; }
         public bool? pce__forcemono { get; set; }
-        public string pce__pixshader { get; set; }
+        public string pce__shader { get; set; }
         public int? pce__scanlines { get; set; }
         public string pce__special { get; set; }
         public string pce__stretch { get; set; }
@@ -343,7 +343,7 @@ namespace MedLaunch.Models
 
         public bool? pcfx__enable { get; set; }
         public bool? pcfx__forcemono { get; set; }
-        public string pcfx__pixshader { get; set; }
+        public string pcfx__shader { get; set; }
         public int? pcfx__scanlines { get; set; }
         public string pcfx__special { get; set; }
         public string pcfx__stretch { get; set; }
@@ -362,7 +362,7 @@ namespace MedLaunch.Models
 
         public bool? gg__enable { get; set; }
         public bool? gg__forcemono { get; set; }
-        public string gg__pixshader { get; set; }
+        public string gg__shader { get; set; }
         public int? gg__scanlines { get; set; }
         public string gg__special { get; set; }
         public string gg__stretch { get; set; }
@@ -383,7 +383,7 @@ namespace MedLaunch.Models
 
         public bool? sms__enable { get; set; }
         public bool? sms__forcemono { get; set; }
-        public string sms__pixshader { get; set; }
+        public string sms__shader { get; set; }
         public int? sms__scanlines { get; set; }
         public string sms__special { get; set; }
         public string sms__stretch { get; set; }
@@ -400,9 +400,9 @@ namespace MedLaunch.Models
 
         // mednafen version 0.9.41
         public int? sms__slstart { get; set; }
-        public int? sms_slend { get; set; }
-        public int? sms_slstartp { get; set; }
-        public int? sms_slendp { get; set; }
+        public int? sms__slend { get; set; }
+        public int? sms__slstartp { get; set; }
+        public int? sms__slendp { get; set; }
 
         // Sega Megadrive
         public string md__cdbios { get; set; }
@@ -425,7 +425,7 @@ namespace MedLaunch.Models
 
         public bool? md__enable { get; set; }
         public bool? md__forcemono { get; set; }
-        public string md__pixshader { get; set; }
+        public string md__shader { get; set; }
         public int? md__scanlines { get; set; }
         public string md__special { get; set; }
         public string md__stretch { get; set; }
@@ -477,7 +477,7 @@ namespace MedLaunch.Models
 
         public bool? ss__enable { get; set; }
         public bool? ss__forcemono { get; set; }
-        public string ss__pixshader { get; set; }
+        public string ss__shader { get; set; }
         public int? ss__scanlines { get; set; }
         public string ss__special { get; set; }
         public string ss__stretch { get; set; }
@@ -580,7 +580,7 @@ namespace MedLaunch.Models
 
         public bool? psx__enable { get; set; }
         public bool? psx__forcemono { get; set; }
-        public string psx__pixshader { get; set; }
+        public string psx__shader { get; set; }
         public int? psx__scanlines { get; set; }
         public string psx__special { get; set; }
         public string psx__stretch { get; set; }
@@ -607,7 +607,7 @@ namespace MedLaunch.Models
 
         public bool? snes_faust__enable { get; set; }
         public bool? snes_faust__forcemono { get; set; }
-        public string snes_faust__pixshader { get; set; }
+        public string snes_faust__shader { get; set; }
         public int? snes_faust__scanlines { get; set; }
         public string snes_faust__special { get; set; }
         public string snes_faust__stretch { get; set; }
@@ -633,7 +633,7 @@ namespace MedLaunch.Models
 
         public bool? snes__enable { get; set; }
         public bool? snes__forcemono { get; set; }
-        public string snes__pixshader { get; set; }
+        public string snes__shader { get; set; }
         public int? snes__scanlines { get; set; }
         public string snes__special { get; set; }
         public string snes__stretch { get; set; }
@@ -668,7 +668,7 @@ namespace MedLaunch.Models
 
         public bool? vb__enable { get; set; }
         public bool? vb__forcemono { get; set; }
-        public string vb__pixshader { get; set; }
+        public string vb__shader { get; set; }
         public int? vb__scanlines { get; set; }
         public string vb__special { get; set; }
         public string vb__stretch { get; set; }
@@ -695,7 +695,7 @@ namespace MedLaunch.Models
 
         public bool? wswan__enable { get; set; }
         public bool? wswan__forcemono { get; set; }
-        public string wswan__pixshader { get; set; }
+        public string wswan__shader { get; set; }
         public int? wswan__scanlines { get; set; }
         public string wswan__special { get; set; }
         public string wswan__stretch { get; set; }
@@ -773,7 +773,7 @@ namespace MedLaunch.Models
                 // generic system specific settings
                 __enable = true,
                 __forcemono = false,                                // control placed
-                __pixshader = "none",                               // control placed
+                __shader = "none",                               // control placed
                 __scanlines = 0,                                    // control placed
                 __special = "none",                                 // control placed
                 __stretch = "aspect_mult2",                         // control placed
@@ -796,7 +796,7 @@ namespace MedLaunch.Models
 
                 lynx__enable = true,
                 lynx__forcemono = false,                                // control placed
-                lynx__pixshader = "none",                               // control placed
+                lynx__shader = "none",                               // control placed
                 lynx__scanlines = 0,                                    // control placed
                 lynx__special = "none",                                 // control placed
                 lynx__stretch = "aspect_mult2",                         // control placed
@@ -816,7 +816,7 @@ namespace MedLaunch.Models
 
                 gb__enable = true,
                 gb__forcemono = false,                                // control placed
-                gb__pixshader = "none",                               // control placed
+                gb__shader = "none",                               // control placed
                 gb__scanlines = 0,                                    // control placed
                 gb__special = "none",                                 // control placed
                 gb__stretch = "aspect_mult2",                         // control placed
@@ -836,7 +836,7 @@ namespace MedLaunch.Models
 
                 gba__enable = true,
                 gba__forcemono = false,                                // control placed
-                gba__pixshader = "none",                               // control placed
+                gba__shader = "none",                               // control placed
                 gba__scanlines = 0,                                    // control placed
                 gba__special = "none",                                 // control placed
                 gba__stretch = "aspect_mult2",                         // control placed
@@ -856,7 +856,7 @@ namespace MedLaunch.Models
 
                 ngp__enable = true,
                 ngp__forcemono = false,                                // control placed
-                ngp__pixshader = "none",                               // control placed
+                ngp__shader = "none",                               // control placed
                 ngp__scanlines = 0,                                    // control placed
                 ngp__special = "none",                                 // control placed
                 ngp__stretch = "aspect_mult2",                         // control placed
@@ -911,7 +911,7 @@ namespace MedLaunch.Models
                 nes__debugger__memcharenc = "cp437",                     // placed
 
                 nes__enable = true,
-                nes__pixshader = "none",                               // control placed
+                nes__shader = "none",                               // control placed
                 nes__scanlines = 0,                                    // control placed
                 nes__special = "none",                                 // control placed
                 nes__stretch = "aspect_mult2",                         // control placed
@@ -952,7 +952,7 @@ namespace MedLaunch.Models
 
                 pce_fast__enable = true,
                 pce_fast__forcemono = false,                                // control placed
-                pce_fast__pixshader = "none",                               // control placed
+                pce_fast__shader = "none",                               // control placed
                 pce_fast__scanlines = 0,                                    // control placed
                 pce_fast__special = "none",                                 // control placed
                 pce_fast__stretch = "aspect_mult2",                         // control placed
@@ -996,7 +996,7 @@ namespace MedLaunch.Models
 
                 pce__enable = true,
                 pce__forcemono = false,                                // control placed
-                pce__pixshader = "none",                               // control placed
+                pce__shader = "none",                               // control placed
                 pce__scanlines = 0,                                    // control placed
                 pce__special = "none",                                 // control placed
                 pce__stretch = "aspect_mult2",                         // control placed
@@ -1043,7 +1043,7 @@ namespace MedLaunch.Models
 
                 pcfx__enable = true,
                 pcfx__forcemono = false,                                // control placed
-                pcfx__pixshader = "none",                               // control placed
+                pcfx__shader = "none",                               // control placed
                 pcfx__scanlines = 0,                                    // control placed
                 pcfx__special = "none",                                 // control placed
                 pcfx__stretch = "aspect_mult2",                         // control placed
@@ -1062,7 +1062,7 @@ namespace MedLaunch.Models
 
                 gg__enable = true,
                 gg__forcemono = false,                                // control placed
-                gg__pixshader = "none",                               // control placed
+                gg__shader = "none",                               // control placed
                 gg__scanlines = 0,                                    // control placed
                 gg__special = "none",                                 // control placed
                 gg__stretch = "aspect_mult2",                         // control placed
@@ -1083,7 +1083,7 @@ namespace MedLaunch.Models
 
                 sms__enable = true,
                 sms__forcemono = false,                                // control placed
-                sms__pixshader = "none",                               // control placed
+                sms__shader = "none",                               // control placed
                 sms__scanlines = 0,                                    // control placed
                 sms__special = "none",                                 // control placed
                 sms__stretch = "aspect_mult2",                         // control placed
@@ -1098,9 +1098,9 @@ namespace MedLaunch.Models
                 sms__yscale = 1,                                       // control placed
                 sms__yscalefs = 1,                                     // control placed
 
-                sms_slend = 239,                                        // control placed
-                sms_slendp = 239,                                       // control placed
-                sms_slstartp = 0,                                       // control placed
+                sms__slend = 239,                                        // control placed
+                sms__slendp = 239,                                       // control placed
+                sms__slstartp = 0,                                       // control placed
                 sms__slstart = 0,                                       // control placed
 
                 // Mega Drive
@@ -1124,7 +1124,7 @@ namespace MedLaunch.Models
 
                 md__enable = true,
                 md__forcemono = false,                                // control placed
-                md__pixshader = "none",                               // control placed
+                md__shader = "none",                               // control placed
                 md__scanlines = 0,                                    // control placed
                 md__special = "none",                                 // control placed
                 md__stretch = "aspect_mult2",                         // control placed
@@ -1175,7 +1175,7 @@ namespace MedLaunch.Models
 
                 ss__enable = true,
                 ss__forcemono = false,                                // control placed
-                ss__pixshader = "none",                               // control placed
+                ss__shader = "none",                               // control placed
                 ss__scanlines = 0,                                    // control placed
                 ss__special = "none",                                 // control placed
                 ss__stretch = "aspect_mult2",                         // control placed
@@ -1266,7 +1266,7 @@ namespace MedLaunch.Models
 
                 psx__enable = true,
                 psx__forcemono = false,                                // control placed
-                psx__pixshader = "none",                               // control placed
+                psx__shader = "none",                               // control placed
                 psx__scanlines = 0,                                    // control placed
                 psx__special = "none",                                 // control placed
                 psx__stretch = "aspect_mult2",                         // control placed
@@ -1293,7 +1293,7 @@ namespace MedLaunch.Models
 
                 snes_faust__enable = true,
                 snes_faust__forcemono = false,                                // control placed
-                snes_faust__pixshader = "none",                               // control placed
+                snes_faust__shader = "none",                               // control placed
                 snes_faust__scanlines = 0,                                    // control placed
                 snes_faust__special = "none",                                 // control placed
                 snes_faust__stretch = "aspect_mult2",                         // control placed
@@ -1319,7 +1319,7 @@ namespace MedLaunch.Models
 
                 snes__enable = true,
                 snes__forcemono = false,                                // control placed
-                snes__pixshader = "none",                               // control placed
+                snes__shader = "none",                               // control placed
                 snes__scanlines = 0,                                    // control placed
                 snes__special = "none",                                 // control placed
                 snes__stretch = "aspect_mult2",                         // control placed
@@ -1353,7 +1353,7 @@ namespace MedLaunch.Models
 
                 vb__enable = true,
                 vb__forcemono = false,                                // control placed
-                vb__pixshader = "none",                               // control placed
+                vb__shader = "none",                               // control placed
                 vb__scanlines = 0,                                    // control placed
                 vb__special = "none",                                 // control placed
                 vb__stretch = "aspect_mult2",                         // control placed
@@ -1383,7 +1383,7 @@ namespace MedLaunch.Models
 
                 wswan__enable = true,
                 wswan__forcemono = false,                                // control placed
-                wswan__pixshader = "none",                               // control placed
+                wswan__shader = "none",                               // control placed
                 wswan__scanlines = 0,                                    // control placed
                 wswan__special = "none",                                 // control placed
                 wswan__stretch = "aspect_mult2",                         // control placed
@@ -1840,7 +1840,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_") || control.Name.Contains("comboPsx"))
                     {
                         // checkbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    
@@ -2024,7 +2024,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_") || control.Name.Contains("comboPsx"))
                     {
                         // checkbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");                    

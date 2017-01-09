@@ -550,6 +550,9 @@ namespace MedLaunch
         
         public static void SetPropertyValue(ConfigBaseSettings settings, PropertyInfo p, string type, string value)
         {
+            if (p == null)
+                return;
+
             if (p.PropertyType == typeof(string))
             {
                 var v = Convert.ToString(value);

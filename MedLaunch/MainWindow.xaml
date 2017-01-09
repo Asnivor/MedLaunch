@@ -2154,7 +2154,7 @@
                                                 </Grid.RowDefinitions>
 
                                                 <Label Name="lbl_Generic__oglpixshader" Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg___pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg___shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -2165,6 +2165,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
                                                 </ComboBox>
 
                                                 <Label Name="lbl_Generic__vscaler" Grid.Row="2">Special Video Scaler</Label>
@@ -2310,7 +2311,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_lynx__pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_lynx__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -2321,6 +2322,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_lynx__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -2512,7 +2514,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_gg__pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_gg__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -2523,6 +2525,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gg__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -2707,7 +2710,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_gb__pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_gb__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -2718,6 +2721,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gb__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -2924,7 +2928,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_gba__pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_gba__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -2935,6 +2939,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gba__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -3118,7 +3123,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_ngp__pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_ngp__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -3129,6 +3134,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_ngp__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -3332,7 +3338,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_nes__pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_nes__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -3343,6 +3349,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_nes__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -3838,7 +3845,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_pce_fast__pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_pce_fast__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -3849,6 +3856,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_pce_fast__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -4190,7 +4198,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_pce__pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_pce__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -4201,6 +4209,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_pce__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -4589,7 +4598,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_pcfx__pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_pcfx__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -4600,6 +4609,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_pcfx__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -4989,7 +4999,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_sms__pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_sms__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -5000,6 +5010,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_sms__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -5242,7 +5253,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_md__pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_md__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -5253,6 +5264,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_md__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -5597,7 +5609,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_snes_faust__pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_snes_faust__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -5608,6 +5620,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_snes_faust__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -5856,7 +5869,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_snes__pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_snes__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -5867,6 +5880,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_snes__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -6121,7 +6135,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_vb__pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_vb__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -6132,6 +6146,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_vb__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -6434,7 +6449,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_ss__pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_ss__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -6445,6 +6460,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_ss__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -6893,7 +6909,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_psx__pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_psx__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -6904,6 +6920,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_psx__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -7186,8 +7203,29 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
 
-                                                <Label Grid.Column="0" Grid.Row="0">Debugger Char Encoding</Label>
+                                                <Label Grid.Column="0" Grid.Row="0">Compare Value for Analog Mode Combo-Button Alternate Toggle</Label>
                                                 <TextBox x:Name="cfg_psx__input__analog_mode_ct__compare" Grid.Column="1" Grid.Row="0" />
+                                                <Expander Header="Expand to Configure Combo-Buttons" Grid.Row="1" Grid.ColumnSpan="2">
+                                                    <UniformGrid  Columns="3">
+                                                        <CheckBox x:Name="comboPsx1">SELECT</CheckBox>
+                                                        <CheckBox x:Name="comboPsx2">L3</CheckBox>
+                                                        <CheckBox x:Name="comboPsx3">R3</CheckBox>
+                                                        <CheckBox x:Name="comboPsx4">START</CheckBox>
+                                                        <CheckBox x:Name="comboPsx5">D-Pad UP</CheckBox>
+                                                        <CheckBox x:Name="comboPsx6">D-Pad Right</CheckBox>
+                                                        <CheckBox x:Name="comboPsx7">D-Pad Down</CheckBox>
+                                                        <CheckBox x:Name="comboPsx8">D-Pad Left</CheckBox>
+                                                        <CheckBox x:Name="comboPsx9">L2</CheckBox>
+                                                        <CheckBox x:Name="comboPsx10">R2</CheckBox>
+                                                        <CheckBox x:Name="comboPsx11">L1</CheckBox>
+                                                        <CheckBox x:Name="comboPsx12">R1</CheckBox>
+                                                        <CheckBox x:Name="comboPsx13">△</CheckBox>
+                                                        <CheckBox x:Name="comboPsx14">○</CheckBox>
+                                                        <CheckBox x:Name="comboPsx15">x</CheckBox>
+                                                        <CheckBox x:Name="comboPsx16">□</CheckBox>
+                                                        <Button x:Name="comboPsxRecalculate" Content="Recalculate" Click="comboPsxRecalculate_Click" />
+                                                    </UniformGrid>
+                                                </Expander>
 
                                             </Grid>
                                             
@@ -7724,7 +7762,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_wswan__pixshader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_wswan__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -7735,6 +7773,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_wswan__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
