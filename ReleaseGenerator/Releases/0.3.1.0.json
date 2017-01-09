@@ -1,0 +1,8 @@
+{
+  "Version": "0.3.1.0",
+  "Date": "2017-01-09T00:00:00",
+  "Notes": "#### Important Release Notes\r\nThis is a very small bugfix release.\r\n\r\n#### New Install\r\n* Extract this release to a folder, run the 'MedLaunch.exe' executable and choose your Mednafen directory (must be the Mednafen 0.9.39.x branch and 64-bit version if you want to emulate Saturn games). \r\n* You are then prompted to choose whether to import all config settings from your Mednafen folder into the MedLaunch database (this is recommended).\r\n* If you currently use system-specific config files with Mednafen the settings from these will be imported with the above process. However MedLaunch will write to these files when you launch a game - so back them up somewhere if you are not happy with this.\r\n\r\n#### Upgrade\r\n##### Preferred Method: \r\n* Automatically download and upgrade using the 'Updates' tab within MedLaunch itself.\r\n* Once MedLaunch has upgraded, go to the 'Configs' tab and click the 'IMPORT ALL CONFIGS FROM DISK' button\r\n\r\n##### Manual Method: \r\n* You can safely extract this new release over an existing MedLaunch folder (providing you do not have MedLaunch running at the time) \r\n* Once extracted run the MedLaunch.exe executable and your current database will be upgraded before the application starts proper.\r\n* Once MedLaunch has upgraded, go to the 'Configs' tab and click the 'IMPORT ALL CONFIGS FROM DISK' button",
+  "Changelog": [
+    "* Fixed 'Joystick Axis Threshold' config value not saving to database"
+  ]
+}
