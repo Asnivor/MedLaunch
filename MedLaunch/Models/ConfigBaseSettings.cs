@@ -492,6 +492,11 @@ namespace MedLaunch.Models
         public double? ss__yscale { get; set; }                       // 0.01 through 256
         public double? ss__yscalefs { get; set; }                     // 0.01 through 256
 
+        // added controls mednafen 0.9.41
+        public bool? ss__correct_aspect { get; set; }
+        public bool? ss__h_blend { get; set; }
+        public bool? ss__h_overscan { get; set; }
+
 
         // Sony Playstation
         public string psx__bios_eu { get; set; }
@@ -1182,6 +1187,10 @@ namespace MedLaunch.Models
                 ss__yres = 0,                                         // control placed
                 ss__yscale = 1,                                       // control placed
                 ss__yscalefs = 1,                                     // control placed
+
+                ss__correct_aspect = true,
+                ss__h_blend = false,
+                ss__h_overscan = true,
 
                 // playstation
                 psx__bios_eu = "scph5502.bin",

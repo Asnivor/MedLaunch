@@ -6416,6 +6416,11 @@
                                             <CheckBox x:Name="cfg_ss__forcemono">Force Mono Sound Output</CheckBox>
                                             <CheckBox Name="cfg_ss__tblur">Temporal Blur</CheckBox>
                                             <CheckBox Name="cfg_ss__tblur__accum">Accumulate Color Data</CheckBox>
+
+                                            <CheckBox Name="ss__correct_aspect">Correct Aspect Ratio</CheckBox>
+                                            <CheckBox Name="ss__h_blend">Enable Horizontal Blend(blur) Filter</CheckBox>
+                                            <CheckBox Name="ss__h_overscan">Show Horizontal Overscan Area</CheckBox>
+
                                             <Grid Margin="0,10,0,0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
