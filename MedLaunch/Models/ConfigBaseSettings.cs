@@ -398,6 +398,12 @@ namespace MedLaunch.Models
         public double? sms__yscale { get; set; }                       // 0.01 through 256
         public double? sms__yscalefs { get; set; }                     // 0.01 through 256
 
+        // mednafen version 0.9.41
+        public int? sms__slstart { get; set; }
+        public int? sms_slend { get; set; }
+        public int? sms_slstartp { get; set; }
+        public int? sms_slendp { get; set; }
+
         // Sega Megadrive
         public string md__cdbios { get; set; }
         public bool? md__correct_aspect { get; set; }
@@ -1084,6 +1090,11 @@ namespace MedLaunch.Models
                 sms__yres = 0,                                         // control placed
                 sms__yscale = 1,                                       // control placed
                 sms__yscalefs = 1,                                     // control placed
+
+                sms_slend = 239,                                        // control placed
+                sms_slendp = 239,                                       // control placed
+                sms_slstartp = 0,                                       // control placed
+                sms__slstart = 0,                                       // control placed
 
                 // Mega Drive
                 md__cdbios = "us_scd1_9210.bin",
