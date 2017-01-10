@@ -4041,61 +4041,6 @@ namespace MedLaunch
                 }
 
                 total += calc;
-
-                /*
-                switch (name)
-                {
-                    case "01":
-                        total += 1;
-                        break;
-                    case "02":
-                        total += 2;
-                        break;
-                    case "03":
-                        total += 4;
-                        break;
-                    case "04":
-                        total += 8;
-                        break;
-                    case "05":
-                        total += 16;
-                        break;
-                    case "06":
-                        total += 23;
-                        break;
-                    case "07":
-                        total += 64;
-                        break;
-                    case "08":
-                        total += 128;
-                        break;
-                    case "09":
-                        total += 256;
-                        break;
-                    case "10":
-                        total += 512;
-                        break;
-                    case "11":
-                        total += 1024;
-                        break;
-                    case "12":
-                        total += 2048;
-                        break;
-                    case "13":
-                        total += 4096;
-                        break;
-                    case "14":
-                        total += 8192;
-                        break;
-                    case "15":
-                        total += 16384;
-                        break;
-                    case "16":
-                        total += 32768;
-                        break;
-                }
-
-            */
             }
 
             // convert to hex string

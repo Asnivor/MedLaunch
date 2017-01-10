@@ -109,6 +109,13 @@ namespace MedLaunch.Models
         public double? lynx__yscale { get; set; }                       // 0.01 through 256
         public double? lynx__yscalefs { get; set; }                     // 0.01 through 256
 
+        public bool? lynx__shader__goat__fprog { get; set; }
+        public double? lynx__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
+        public string lynx__shader__goat__pat { get; set; }
+        public bool? lynx__shader__goat__slen { get; set; }
+        public double? lynx__shader__goat__tp { get; set; }              // 0.00 through 1.00
+        public double? lynx__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
+
 
         // Gameboy
         public string gb__system_type { get; set; }                 // auto dmg cgb agb
@@ -130,6 +137,13 @@ namespace MedLaunch.Models
         public double? gb__yscale { get; set; }                       // 0.01 through 256
         public double? gb__yscalefs { get; set; }                     // 0.01 through 256
 
+        public bool? gb__shader__goat__fprog { get; set; }
+        public double? gb__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
+        public string gb__shader__goat__pat { get; set; }
+        public bool? gb__shader__goat__slen { get; set; }
+        public double? gb__shader__goat__tp { get; set; }              // 0.00 through 1.00
+        public double? gb__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
+
         // Gameboy Advance
         public string gba__bios { get; set; }
 
@@ -150,6 +164,13 @@ namespace MedLaunch.Models
         public double? gba__yscale { get; set; }                       // 0.01 through 256
         public double? gba__yscalefs { get; set; }                     // 0.01 through 256
 
+        public bool? gba__shader__goat__fprog { get; set; }
+        public double? gba__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
+        public string gba__shader__goat__pat { get; set; }
+        public bool? gba__shader__goat__slen { get; set; }
+        public double? gba__shader__goat__tp { get; set; }              // 0.00 through 1.00
+        public double? gba__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
+
         // NeoGeo Pocket Color
         public string npg__language { get; set; }                   // english japanese
 
@@ -169,6 +190,13 @@ namespace MedLaunch.Models
         public int? ngp__yres { get; set; }                            // 0 through 65536
         public double? ngp__yscale { get; set; }                       // 0.01 through 256
         public double? ngp__yscalefs { get; set; }                     // 0.01 through 256
+
+        public bool? ngp__shader__goat__fprog { get; set; }
+        public double? ngp__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
+        public string ngp__shader__goat__pat { get; set; }
+        public bool? ngp__shader__goat__slen { get; set; }
+        public double? ngp__shader__goat__tp { get; set; }              // 0.00 through 1.00
+        public double? ngp__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
 
         // NES
         public bool? nes__clipsides { get; set; }
@@ -225,6 +253,13 @@ namespace MedLaunch.Models
         public double? nes__yscale { get; set; }                       // 0.01 through 256
         public double? nes__yscalefs { get; set; }                     // 0.01 through 256
 
+        public bool? nes__shader__goat__fprog { get; set; }
+        public double? nes__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
+        public string nes__shader__goat__pat { get; set; }
+        public bool? nes__shader__goat__slen { get; set; }
+        public double? nes__shader__goat__tp { get; set; }              // 0.00 through 1.00
+        public double? nes__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
+
         // PC-Engine (Fast)
         public bool? pce_fast__adpcmlp { get; set; }
         public int? pce_fast__adpcmvolume { get; set; }             // 0 through 200
@@ -263,6 +298,13 @@ namespace MedLaunch.Models
         public int? pce_fast__yres { get; set; }                            // 0 through 65536
         public double? pce_fast__yscale { get; set; }                       // 0.01 through 256
         public double? pce_fast__yscalefs { get; set; }                     // 0.01 through 256
+
+        public bool? pce_fast__shader__goat__fprog { get; set; }
+        public double? pce_fast__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
+        public string pce_fast__shader__goat__pat { get; set; }
+        public bool? pce_fast__shader__goat__slen { get; set; }
+        public double? pce_fast__shader__goat__tp { get; set; }              // 0.00 through 1.00
+        public double? pce_fast__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
 
 
         // PC-Engine
@@ -311,6 +353,13 @@ namespace MedLaunch.Models
         public double? pce__yscale { get; set; }                       // 0.01 through 256
         public double? pce__yscalefs { get; set; }                     // 0.01 through 256
 
+        public bool? pce__shader__goat__fprog { get; set; }
+        public double? pce__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
+        public string pce__shader__goat__pat { get; set; }
+        public bool? pce__shader__goat__slen { get; set; }
+        public double? pce__shader__goat__tp { get; set; }              // 0.00 through 1.00
+        public double? pce__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
+
         // PC-FX
         public bool? pcfx__adpcm__emulate_buggy_codec { get; set; }
         public bool? pcfx__adpcm__suppress_channel_reset_clicks { get; set; }
@@ -358,6 +407,13 @@ namespace MedLaunch.Models
         public double? pcfx__yscale { get; set; }                       // 0.01 through 256
         public double? pcfx__yscalefs { get; set; }                     // 0.01 through 256
 
+        public bool? pcfx__shader__goat__fprog { get; set; }
+        public double? pcfx__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
+        public string pcfx__shader__goat__pat { get; set; }
+        public bool? pcfx__shader__goat__slen { get; set; }
+        public double? pcfx__shader__goat__tp { get; set; }              // 0.00 through 1.00
+        public double? pcfx__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
+
         // Sega GameGear
 
         public bool? gg__enable { get; set; }
@@ -376,6 +432,13 @@ namespace MedLaunch.Models
         public int? gg__yres { get; set; }                            // 0 through 65536
         public double? gg__yscale { get; set; }                       // 0.01 through 256
         public double? gg__yscalefs { get; set; }                     // 0.01 through 256
+
+        public bool? gg__shader__goat__fprog { get; set; }
+        public double? gg__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
+        public string gg__shader__goat__pat { get; set; }
+        public bool? gg__shader__goat__slen { get; set; }
+        public double? gg__shader__goat__tp { get; set; }              // 0.00 through 1.00
+        public double? gg__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
 
         // Sega Master System
         public bool? sms__fm { get; set; }
@@ -403,6 +466,13 @@ namespace MedLaunch.Models
         public int? sms__slend { get; set; }
         public int? sms__slstartp { get; set; }
         public int? sms__slendp { get; set; }
+
+        public bool? sms__shader__goat__fprog { get; set; }
+        public double? sms__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
+        public string sms__shader__goat__pat { get; set; }
+        public bool? sms__shader__goat__slen { get; set; }
+        public double? sms__shader__goat__tp { get; set; }              // 0.00 through 1.00
+        public double? sms__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
 
         // Sega Megadrive
         public string md__cdbios { get; set; }
@@ -439,6 +509,13 @@ namespace MedLaunch.Models
         public int? md__yres { get; set; }                            // 0 through 65536
         public double? md__yscale { get; set; }                       // 0.01 through 256
         public double? md__yscalefs { get; set; }                     // 0.01 through 256
+
+        public bool? md__shader__goat__fprog { get; set; }
+        public double? md__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
+        public string md__shader__goat__pat { get; set; }
+        public bool? md__shader__goat__slen { get; set; }
+        public double? md__shader__goat__tp { get; set; }              // 0.00 through 1.00
+        public double? md__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
 
 
         // Sega Saturn
@@ -496,6 +573,13 @@ namespace MedLaunch.Models
         public bool? ss__correct_aspect { get; set; }
         public bool? ss__h_blend { get; set; }
         public bool? ss__h_overscan { get; set; }
+
+        public bool? ss__shader__goat__fprog { get; set; }
+        public double? ss__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
+        public string ss__shader__goat__pat { get; set; }
+        public bool? ss__shader__goat__slen { get; set; }
+        public double? ss__shader__goat__tp { get; set; }              // 0.00 through 1.00
+        public double? ss__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
 
 
         // Sony Playstation
@@ -597,6 +681,13 @@ namespace MedLaunch.Models
 
         public string psx__input__analog_mode_ct__compare { get; set; }
 
+        public bool? psx__shader__goat__fprog { get; set; }
+        public double? psx__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
+        public string psx__shader__goat__pat { get; set; }
+        public bool? psx__shader__goat__slen { get; set; }
+        public double? psx__shader__goat__tp { get; set; }              // 0.00 through 1.00
+        public double? psx__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
+
         // SNES (Faust)
         public string snes_faust__input__port1 { get; set; }
         public string snes_faust__input__port2 { get; set; }
@@ -621,6 +712,13 @@ namespace MedLaunch.Models
         public int? snes_faust__yres { get; set; }                            // 0 through 65536
         public double? snes_faust__yscale { get; set; }                       // 0.01 through 256
         public double? snes_faust__yscalefs { get; set; }                     // 0.01 through 256
+
+        public bool? snes_faust__shader__goat__fprog { get; set; }
+        public double? snes_faust__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
+        public string snes_faust__shader__goat__pat { get; set; }
+        public bool? snes_faust__shader__goat__slen { get; set; }
+        public double? snes_faust__shader__goat__tp { get; set; }              // 0.00 through 1.00
+        public double? snes_faust__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
 
         // SNES
         public int? snes__apu__resamp_quality { get; set; }                     // 0 through 10
@@ -647,6 +745,13 @@ namespace MedLaunch.Models
         public int? snes__yres { get; set; }                            // 0 through 65536
         public double? snes__yscale { get; set; }                       // 0.01 through 256
         public double? snes__yscalefs { get; set; }                     // 0.01 through 256
+
+        public bool? snes__shader__goat__fprog { get; set; }
+        public double? snes__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
+        public string snes__shader__goat__pat { get; set; }
+        public bool? snes__shader__goat__slen { get; set; }
+        public double? snes__shader__goat__tp { get; set; }              // 0.00 through 1.00
+        public double? snes__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
 
         // Virtual Boy
         public string vb__3dmode { get; set; }
@@ -683,6 +788,13 @@ namespace MedLaunch.Models
         public double? vb__yscale { get; set; }                       // 0.01 through 256
         public double? vb__yscalefs { get; set; }                     // 0.01 through 256
 
+        public bool? vb__shader__goat__fprog { get; set; }
+        public double? vb__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
+        public string vb__shader__goat__pat { get; set; }
+        public bool? vb__shader__goat__slen { get; set; }
+        public double? vb__shader__goat__tp { get; set; }              // 0.00 through 1.00
+        public double? vb__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
+
         // WonderSwan
         public int? wswan__bday { get; set; }                                   // 1 through 31
         public string wswan__blood { get; set; }
@@ -712,6 +824,13 @@ namespace MedLaunch.Models
 
         public string wswan__debugger__disfontsize { get; set; }
         public string wswan__debugger__memcharenc { get; set; }
+
+        public bool? wswan__shader__goat__fprog { get; set; }
+        public double? wswan__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
+        public string wswan__shader__goat__pat { get; set; }
+        public bool? wswan__shader__goat__slen { get; set; }
+        public double? wswan__shader__goat__tp { get; set; }              // 0.00 through 1.00
+        public double? wswan__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
 
         public static ConfigBaseSettings GetConfigDefaults()
         {
@@ -811,6 +930,13 @@ namespace MedLaunch.Models
                 lynx__yscale = 1,                                       // control placed
                 lynx__yscalefs = 1,                                     // control placed
 
+                lynx__shader__goat__fprog = false,                      
+                lynx__shader__goat__hdiv = 0.50,
+                lynx__shader__goat__pat = "goatron",
+                lynx__shader__goat__slen = true,
+                lynx__shader__goat__tp = 0.50,
+                lynx__shader__goat__vdiv = 0.50,
+                
                 // gameboy
                 gb__system_type = "auto",                               // placed
 
@@ -830,6 +956,13 @@ namespace MedLaunch.Models
                 gb__yres = 0,                                         // control placed
                 gb__yscale = 1,                                       // control placed
                 gb__yscalefs = 1,                                     // control placed
+
+                gb__shader__goat__fprog = false,
+                gb__shader__goat__hdiv = 0.50,
+                gb__shader__goat__pat = "goatron",
+                gb__shader__goat__slen = true,
+                gb__shader__goat__tp = 0.50,
+                gb__shader__goat__vdiv = 0.50,
 
                 // gameboy advance
                 gba__bios = "",
@@ -851,6 +984,13 @@ namespace MedLaunch.Models
                 gba__yscale = 1,                                       // control placed
                 gba__yscalefs = 1,                                     // control placed
 
+                gba__shader__goat__fprog = false,
+                gba__shader__goat__hdiv = 0.50,
+                gba__shader__goat__pat = "goatron",
+                gba__shader__goat__slen = true,
+                gba__shader__goat__tp = 0.50,
+                gba__shader__goat__vdiv = 0.50,
+
                 // neogeo pocket
                 npg__language = "english",                              // placed
 
@@ -870,6 +1010,13 @@ namespace MedLaunch.Models
                 ngp__yres = 0,                                         // control placed
                 ngp__yscale = 1,                                       // control placed
                 ngp__yscalefs = 1,                                     // control placed
+
+                ngp__shader__goat__fprog = false,
+                ngp__shader__goat__hdiv = 0.50,
+                ngp__shader__goat__pat = "goatron",
+                ngp__shader__goat__slen = true,
+                ngp__shader__goat__tp = 0.50,
+                ngp__shader__goat__vdiv = 0.50,
 
                 // NES
                 nes__clipsides = false,                                 // placed
@@ -926,6 +1073,13 @@ namespace MedLaunch.Models
                 nes__yscale = 1,                                       // control placed
                 nes__yscalefs = 1,                                     // control placed
 
+                nes__shader__goat__fprog = false,
+                nes__shader__goat__hdiv = 0.50,
+                nes__shader__goat__pat = "goatron",
+                nes__shader__goat__slen = true,
+                nes__shader__goat__tp = 0.50,
+                nes__shader__goat__vdiv = 0.50,
+
                 // PCE fast
                 pce_fast__adpcmlp = false,                              // placed
                 pce_fast__adpcmvolume = 100,                            // placed
@@ -967,6 +1121,13 @@ namespace MedLaunch.Models
                 pce_fast__yscale = 1,                                       // control placed
                 pce_fast__yscalefs = 1,                                     // control placed
 
+                pce_fast__shader__goat__fprog = false,
+                pce_fast__shader__goat__hdiv = 0.50,
+                pce_fast__shader__goat__pat = "goatron",
+                pce_fast__shader__goat__slen = true,
+                pce_fast__shader__goat__tp = 0.50,
+                pce_fast__shader__goat__vdiv = 0.50,
+
                 // PCE
                 pce__adpcmextraprec = false,                            // placed
                 pce__adpcmvolume = 100,                                 // placed
@@ -993,6 +1154,13 @@ namespace MedLaunch.Models
                 pce__resamp_rate_error = 0.0000009,
                 pce__slend = 235,
                 pce__slstart = 4,
+
+                pce__shader__goat__fprog = false,
+                pce__shader__goat__hdiv = 0.50,
+                pce__shader__goat__pat = "goatron",
+                pce__shader__goat__slen = true,
+                pce__shader__goat__tp = 0.50,
+                pce__shader__goat__vdiv = 0.50,
 
                 pce__enable = true,
                 pce__forcemono = false,                                // control placed
@@ -1058,6 +1226,13 @@ namespace MedLaunch.Models
                 pcfx__yscale = 1,                                       // control placed
                 pcfx__yscalefs = 1,                                     // control placed
 
+                pcfx__shader__goat__fprog = false,
+                pcfx__shader__goat__hdiv = 0.50,
+                pcfx__shader__goat__pat = "goatron",
+                pcfx__shader__goat__slen = true,
+                pcfx__shader__goat__tp = 0.50,
+                pcfx__shader__goat__vdiv = 0.50,
+
                 // Game Gear
 
                 gg__enable = true,
@@ -1076,6 +1251,13 @@ namespace MedLaunch.Models
                 gg__yres = 0,                                         // control placed
                 gg__yscale = 1,                                       // control placed
                 gg__yscalefs = 1,                                     // control placed
+
+                gg__shader__goat__fprog = false,
+                gg__shader__goat__hdiv = 0.50,
+                gg__shader__goat__pat = "goatron",
+                gg__shader__goat__slen = true,
+                gg__shader__goat__tp = 0.50,
+                gg__shader__goat__vdiv = 0.50,
 
                 // Mster system
                 sms__fm = true,                                             // placed
@@ -1102,6 +1284,13 @@ namespace MedLaunch.Models
                 sms__slendp = 239,                                       // control placed
                 sms__slstartp = 0,                                       // control placed
                 sms__slstart = 0,                                       // control placed
+
+                sms__shader__goat__fprog = false,
+                sms__shader__goat__hdiv = 0.50,
+                sms__shader__goat__pat = "goatron",
+                sms__shader__goat__slen = true,
+                sms__shader__goat__tp = 0.50,
+                sms__shader__goat__vdiv = 0.50,
 
                 // Mega Drive
                 md__cdbios = "us_scd1_9210.bin",
@@ -1138,6 +1327,13 @@ namespace MedLaunch.Models
                 md__yres = 0,                                         // control placed
                 md__yscale = 1,                                       // control placed
                 md__yscalefs = 1,                                     // control placed
+
+                md__shader__goat__fprog = false,
+                md__shader__goat__hdiv = 0.50,
+                md__shader__goat__pat = "goatron",
+                md__shader__goat__slen = true,
+                md__shader__goat__tp = 0.50,
+                md__shader__goat__vdiv = 0.50,
 
                 // saturn
                 ss__bios_jp = "sega_101.bin",
@@ -1193,6 +1389,15 @@ namespace MedLaunch.Models
                 ss__correct_aspect = true,                              // control placed
                 ss__h_blend = false,                                    // control placed
                 ss__h_overscan = true,                                  // control placed
+
+                ss__shader__goat__fprog = false,
+                ss__shader__goat__hdiv = 0.50,
+                ss__shader__goat__pat = "goatron",
+                ss__shader__goat__slen = true,
+                ss__shader__goat__tp = 0.50,
+                ss__shader__goat__vdiv = 0.50,
+
+
 
                 // playstation
                 psx__bios_eu = "scph5502.bin",
@@ -1283,6 +1488,13 @@ namespace MedLaunch.Models
 
                 psx__input__analog_mode_ct__compare = "0x0F09",
 
+                psx__shader__goat__fprog = false,
+                psx__shader__goat__hdiv = 0.50,
+                psx__shader__goat__pat = "goatron",
+                psx__shader__goat__slen = true,
+                psx__shader__goat__tp = 0.50,
+                psx__shader__goat__vdiv = 0.50,
+
                 // snes faust
                 snes_faust__input__port1 = "gamepad",               // placed
                 snes_faust__input__port2 = "gamepad",               // placed
@@ -1307,6 +1519,13 @@ namespace MedLaunch.Models
                 snes_faust__yres = 0,                                         // control placed
                 snes_faust__yscale = 1,                                       // control placed
                 snes_faust__yscalefs = 1,                                     // control placed
+
+                snes_faust__shader__goat__fprog = false,
+                snes_faust__shader__goat__hdiv = 0.50,
+                snes_faust__shader__goat__pat = "goatron",
+                snes_faust__shader__goat__slen = true,
+                snes_faust__shader__goat__tp = 0.50,
+                snes_faust__shader__goat__vdiv = 0.50,
 
                 // snes
                 snes__apu__resamp_quality = 5,                      // placed
@@ -1333,6 +1552,13 @@ namespace MedLaunch.Models
                 snes__yres = 0,                                         // control placed
                 snes__yscale = 1,                                       // control placed
                 snes__yscalefs = 1,                                     // control placed
+
+                snes__shader__goat__fprog = false,
+                snes__shader__goat__hdiv = 0.50,
+                snes__shader__goat__pat = "goatron",
+                snes__shader__goat__slen = true,
+                snes__shader__goat__tp = 0.50,
+                snes__shader__goat__vdiv = 0.50,
 
                 // virtual boy
                 vb__3dmode = "anaglyph",                            // placed
@@ -1368,6 +1594,13 @@ namespace MedLaunch.Models
                 vb__yscale = 1,                                       // control placed
                 vb__yscalefs = 1,                                     // control placed
 
+                vb__shader__goat__fprog = false,
+                vb__shader__goat__hdiv = 0.50,
+                vb__shader__goat__pat = "goatron",
+                vb__shader__goat__slen = true,
+                vb__shader__goat__tp = 0.50,
+                vb__shader__goat__vdiv = 0.50,
+
                 // wonderswan
                 wswan__bday = 23,                                   // placed
                 wswan__blood = "o",                                 // placed
@@ -1397,6 +1630,13 @@ namespace MedLaunch.Models
                 wswan__yres = 0,                                         // control placed
                 wswan__yscale = 1,                                       // control placed
                 wswan__yscalefs = 1,                                     // control placed
+
+                wswan__shader__goat__fprog = false,
+                wswan__shader__goat__hdiv = 0.50,
+                wswan__shader__goat__pat = "goatron",
+                wswan__shader__goat__slen = true,
+                wswan__shader__goat__tp = 0.50,
+                wswan__shader__goat__vdiv = 0.50,
 
 
             };

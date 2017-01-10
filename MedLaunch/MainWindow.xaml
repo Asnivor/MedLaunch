@@ -2165,7 +2165,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
 
                                                 <Label Name="lbl_Generic__vscaler" Grid.Row="2">Special Video Scaler</Label>
@@ -2322,7 +2322,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_lynx__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -2376,6 +2376,88 @@
                                                     <TextBox Text="{Binding ElementName=cfg_lynx__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_lynx__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificLynx99" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="Lynx OGL Goat Filter Settings">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_lynx__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
+                                            <CheckBox x:Name="cfg_lynx__shader__goat__slen">Enable Goat Scanlines Effect</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_lynx__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
+                                                </ComboBox>
+                                               
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <TextBox Text="{Binding ElementName=cfg_lynx__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_lynx__shader__goat__hdiv"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_lynx__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_lynx__shader__goat__vdiv"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_lynx__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_lynx__shader__goat__tp"/>
                                                 </DockPanel>
                                             </Grid>
 
@@ -2525,7 +2607,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gg__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -2579,6 +2661,88 @@
                                                     <TextBox Text="{Binding ElementName=cfg_gg__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_gg__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGg99" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="GG OGL Goat Filter Settings">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_gg__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
+                                            <CheckBox x:Name="cfg_gg__shader__goat__slen">Enable Goat Scanlines Effect</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_gg__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <TextBox Text="{Binding ElementName=cfg_gg__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_gg__shader__goat__hdiv"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_gg__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_gg__shader__goat__vdiv"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_gg__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_gg__shader__goat__tp"/>
                                                 </DockPanel>
                                             </Grid>
 
@@ -2721,7 +2885,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gb__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -2775,6 +2939,88 @@
                                                     <TextBox Text="{Binding ElementName=cfg_gb__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_gb__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGb99" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="GB OGL Goat Filter Settings">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_gb__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
+                                            <CheckBox x:Name="cfg_gb__shader__goat__slen">Enable Goat Scanlines Effect</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_gb__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <TextBox Text="{Binding ElementName=cfg_gb__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_gb__shader__goat__hdiv"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_gb__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_gb__shader__goat__vdiv"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_gb__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_gb__shader__goat__tp"/>
                                                 </DockPanel>
                                             </Grid>
 
@@ -2939,7 +3185,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gba__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -2993,6 +3239,88 @@
                                                     <TextBox Text="{Binding ElementName=cfg_gba__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_gba__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGba99" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="GBA OGL Goat Filter Settings">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_gba__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
+                                            <CheckBox x:Name="cfg_gba__shader__goat__slen">Enable Goat Scanlines Effect</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_gba__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <TextBox Text="{Binding ElementName=cfg_gba__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_gba__shader__goat__hdiv"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_gba__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_gba__shader__goat__vdiv"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_gba__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_gba__shader__goat__tp"/>
                                                 </DockPanel>
                                             </Grid>
 
@@ -3134,7 +3462,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_ngp__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -3188,6 +3516,88 @@
                                                     <TextBox Text="{Binding ElementName=cfg_ngp__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_ngp__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNgp99" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="NGP OGL Goat Filter Settings">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_ngp__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
+                                            <CheckBox x:Name="cfg_ngp__shader__goat__slen">Enable Goat Scanlines Effect</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_ngp__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <TextBox Text="{Binding ElementName=cfg_ngp__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_ngp__shader__goat__hdiv"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_ngp__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_ngp__shader__goat__vdiv"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_ngp__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_ngp__shader__goat__tp"/>
                                                 </DockPanel>
                                             </Grid>
 
@@ -3349,7 +3759,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_nes__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -3403,6 +3813,88 @@
                                                     <TextBox Text="{Binding ElementName=cfg_nes__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNes99" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="NES OGL Goat Filter Settings">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_nes__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
+                                            <CheckBox x:Name="cfg_nes__shader__goat__slen">Enable Goat Scanlines Effect</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_nes__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <TextBox Text="{Binding ElementName=cfg_nes__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_nes__shader__goat__hdiv"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_nes__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_nes__shader__goat__vdiv"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_nes__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_nes__shader__goat__tp"/>
                                                 </DockPanel>
                                             </Grid>
 
@@ -3856,7 +4348,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_pce_fast__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -3910,6 +4402,88 @@
                                                     <TextBox Text="{Binding ElementName=cfg_pce_fast__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce_fast__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce_fast99" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="PCE (Fast) OGL Goat Filter Settings">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_pce_fast__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
+                                            <CheckBox x:Name="cfg_pce_fast__shader__goat__slen">Enable Goat Scanlines Effect</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_pce_fast__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <TextBox Text="{Binding ElementName=cfg_pce_fast__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_pce_fast__shader__goat__hdiv"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_pce_fast__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_pce_fast__shader__goat__vdiv"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_pce_fast__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_pce_fast__shader__goat__tp"/>
                                                 </DockPanel>
                                             </Grid>
 
@@ -4209,7 +4783,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_pce__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -4263,6 +4837,88 @@
                                                     <TextBox Text="{Binding ElementName=cfg_pce__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce99" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="PCE OGL Goat Filter Settings">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_pce__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
+                                            <CheckBox x:Name="cfg_pce__shader__goat__slen">Enable Goat Scanlines Effect</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_pce__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <TextBox Text="{Binding ElementName=cfg_pce__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_pce__shader__goat__hdiv"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_pce__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_pce__shader__goat__vdiv"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_pce__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_pce__shader__goat__tp"/>
                                                 </DockPanel>
                                             </Grid>
 
@@ -4609,7 +5265,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_pcfx__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -4663,6 +5319,88 @@
                                                     <TextBox Text="{Binding ElementName=cfg_pcfx__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_pcfx__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPcfx99" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="PCFX OGL Goat Filter Settings">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_pcfx__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
+                                            <CheckBox x:Name="cfg_pcfx__shader__goat__slen">Enable Goat Scanlines Effect</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_pcfx__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <TextBox Text="{Binding ElementName=cfg_pcfx__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_pcfx__shader__goat__hdiv"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_pcfx__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_pcfx__shader__goat__vdiv"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_pcfx__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_pcfx__shader__goat__tp"/>
                                                 </DockPanel>
                                             </Grid>
 
@@ -5010,7 +5748,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_sms__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -5064,6 +5802,88 @@
                                                     <TextBox Text="{Binding ElementName=cfg_sms__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_sms__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSms99" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="SMS OGL Goat Filter Settings">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_sms__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
+                                            <CheckBox x:Name="cfg_sms__shader__goat__slen">Enable Goat Scanlines Effect</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_sms__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <TextBox Text="{Binding ElementName=cfg_sms__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_sms__shader__goat__hdiv"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_sms__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_sms__shader__goat__vdiv"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_sms__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_sms__shader__goat__tp"/>
                                                 </DockPanel>
                                             </Grid>
 
@@ -5264,7 +6084,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_md__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -5318,6 +6138,88 @@
                                                     <TextBox Text="{Binding ElementName=cfg_md__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_md__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificMd99" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="MD OGL Goat Filter Settings">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_md__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
+                                            <CheckBox x:Name="cfg_md__shader__goat__slen">Enable Goat Scanlines Effect</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_md__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <TextBox Text="{Binding ElementName=cfg_md__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_md__shader__goat__hdiv"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_md__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_md__shader__goat__vdiv"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_md__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_md__shader__goat__tp"/>
                                                 </DockPanel>
                                             </Grid>
 
@@ -5620,7 +6522,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_snes_faust__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -5674,6 +6576,88 @@
                                                     <TextBox Text="{Binding ElementName=cfg_snes_faust__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_snes_faust__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes_faust99" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="SNES (Faust) OGL Goat Filter Settings">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_snes_faust__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
+                                            <CheckBox x:Name="cfg_snes_faust__shader__goat__slen">Enable Goat Scanlines Effect</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_snes_faust__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <TextBox Text="{Binding ElementName=cfg_snes_faust__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_snes_faust__shader__goat__hdiv"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_snes_faust__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_snes_faust__shader__goat__vdiv"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_snes_faust__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_snes_faust__shader__goat__tp"/>
                                                 </DockPanel>
                                             </Grid>
 
@@ -5880,7 +6864,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_snes__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -5934,6 +6918,88 @@
                                                     <TextBox Text="{Binding ElementName=cfg_snes__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_snes__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes99" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="SNES OGL Goat Filter Settings">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_snes__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
+                                            <CheckBox x:Name="cfg_snes__shader__goat__slen">Enable Goat Scanlines Effect</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_snes__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <TextBox Text="{Binding ElementName=cfg_snes__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_snes__shader__goat__hdiv"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_snes__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_snes__shader__goat__vdiv"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_snes__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_snes__shader__goat__tp"/>
                                                 </DockPanel>
                                             </Grid>
 
@@ -6146,7 +7212,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_vb__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -6200,6 +7266,88 @@
                                                     <TextBox Text="{Binding ElementName=cfg_vb__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_vb__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificVb99" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="VB OGL Goat Filter Settings">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_vb__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
+                                            <CheckBox x:Name="cfg_vb__shader__goat__slen">Enable Goat Scanlines Effect</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_vb__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <TextBox Text="{Binding ElementName=cfg_vb__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_vb__shader__goat__hdiv"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_vb__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_vb__shader__goat__vdiv"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_vb__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_vb__shader__goat__tp"/>
                                                 </DockPanel>
                                             </Grid>
 
@@ -6460,7 +7608,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_ss__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -6514,6 +7662,88 @@
                                                     <TextBox Text="{Binding ElementName=cfg_ss__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_ss__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSs99" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="SS OGL Goat Filter Settings">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_ss__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
+                                            <CheckBox x:Name="cfg_ss__shader__goat__slen">Enable Goat Scanlines Effect</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_ss__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <TextBox Text="{Binding ElementName=cfg_ss__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_ss__shader__goat__hdiv"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_ss__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_ss__shader__goat__vdiv"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_ss__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_ss__shader__goat__tp"/>
                                                 </DockPanel>
                                             </Grid>
 
@@ -6920,7 +8150,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_psx__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -6974,6 +8204,88 @@
                                                     <TextBox Text="{Binding ElementName=cfg_psx__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx99" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX OGL Goat Filter Settings">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_psx__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
+                                            <CheckBox x:Name="cfg_psx__shader__goat__slen">Enable Goat Scanlines Effect</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_psx__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <TextBox Text="{Binding ElementName=cfg_psx__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__shader__goat__hdiv"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__shader__goat__vdiv"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_psx__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_psx__shader__goat__tp"/>
                                                 </DockPanel>
                                             </Grid>
 
@@ -7773,7 +9085,7 @@
                                                     <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Simple Approximation of Color TV CRT</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
                                                 <Label Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_wswan__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
@@ -7827,6 +9139,88 @@
                                                     <TextBox Text="{Binding ElementName=cfg_wswan__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_wswan__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Expander>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificWswan99" Margin="10">
+                                    <Expander IsExpanded="True" BorderThickness="0" Header="WSWAN OGL Goat Filter Settings">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_wswan__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
+                                            <CheckBox x:Name="cfg_wswan__shader__goat__slen">Enable Goat Scanlines Effect</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_wswan__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <TextBox Text="{Binding ElementName=cfg_wswan__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_wswan__shader__goat__hdiv"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_wswan__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_wswan__shader__goat__vdiv"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_wswan__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_wswan__shader__goat__tp"/>
                                                 </DockPanel>
                                             </Grid>
 
