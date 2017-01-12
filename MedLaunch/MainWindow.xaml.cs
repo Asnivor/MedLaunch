@@ -126,7 +126,7 @@ namespace MedLaunch
 
             // set title
             string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
-            this.Title = "MedLaunch - Windows Front-End for Mednafen (v" + appVersion + ")";
+            this.Title = "MedLaunch (v" + appVersion + ") - Windows Front-End for Mednafen (v" + Versions.CompatibleMednafenBranch() + " only)";
             //this.Title = "MedLaunch - Windows Front-End for Mednafen (v" + versionMajor + "." + versionMinor + "." + versionBuild + "." + versionPrivate + ")"; // - Built: "+ linkTimeLocal;
             //this.Title = "MedLaunch - Windows Front-End for Mednafen (" + fVersion + ")";
 
@@ -1960,6 +1960,14 @@ namespace MedLaunch
             if (drv == null)
                 return;
             int romId = drv.ID;
+
+            bool b = Versions.MednafenVersionCheck();
+
+            if (b == false)
+            {
+                return;
+            }
+
 
             // create new GameLauncher instance
             GameLauncher gl = new GameLauncher(romId);
