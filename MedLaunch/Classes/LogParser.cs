@@ -18,6 +18,7 @@ namespace MedLaunch.Classes
         public string LogPath { get; set; }
         public string MednafenEXE { get; set; }
 
+
         // constructor
         public LogParser()
         {

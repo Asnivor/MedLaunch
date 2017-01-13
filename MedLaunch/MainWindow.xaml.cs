@@ -126,7 +126,7 @@ namespace MedLaunch
 
             // set title
             string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
-            this.Title = "MedLaunch - Windows Front-End for Mednafen (v" + appVersion + ")";
+            this.Title = "MedLaunch (v" + appVersion + ") - Windows Front-End for Mednafen (v" + Versions.CompatibleMednafenBranch() + " only)";
             //this.Title = "MedLaunch - Windows Front-End for Mednafen (v" + versionMajor + "." + versionMinor + "." + versionBuild + "." + versionPrivate + ")"; // - Built: "+ linkTimeLocal;
             //this.Title = "MedLaunch - Windows Front-End for Mednafen (" + fVersion + ")";
 
@@ -1961,6 +1961,14 @@ namespace MedLaunch
                 return;
             int romId = drv.ID;
 
+            bool b = Versions.MednafenVersionCheck();
+
+            if (b == false)
+            {
+                return;
+            }
+
+
             // create new GameLauncher instance
             GameLauncher gl = new GameLauncher(romId);
 
@@ -2221,6 +2229,11 @@ namespace MedLaunch
             ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, systemIdSelected);
             ConfigsVisualHandler.HideControls(ConfigWrapPanel, systemIdSelected);
             ConfigsVisualHandler.ButtonClick();
+
+            // populate the psx combo fields
+            string hexCode = cfg_psx__input__analog_mode_ct__compare.Text;
+            CalculateComboChecks(hexCode);
+
         }
 
         // Generic Config Selection Buttons UNCHECKED
@@ -3938,6 +3951,112 @@ namespace MedLaunch
             Process.Start(pi);
 
         }
+
+        private void comboPsxRecalculate_Click(object sender, RoutedEventArgs e)
+        {
+            List<CheckBox> chks = new List<CheckBox>
+            {
+                comboPsx1,
+                comboPsx2,
+                comboPsx3,
+                comboPsx4,
+                comboPsx5,
+                comboPsx6,
+                comboPsx7,
+                comboPsx8,
+                comboPsx9,
+                comboPsx10,
+                comboPsx11,
+                comboPsx12,
+                comboPsx13,
+                comboPsx14,
+                comboPsx15,
+                comboPsx16
+            };
+
+            // get all checked checkboxes
+            var chked = (from a in chks
+                         where a.IsChecked == true
+                         select a).ToList();
+
+            string hex = CalculateCombo(chked);
+
+            // set text box 
+            cfg_psx__input__analog_mode_ct__compare.Text = hex;
+
+        }
+
+        public void CalculateComboChecks(string hexValue)
+        {
+            // get list of checkboxes
+            List<CheckBox> chks = new List<CheckBox>
+            {
+                comboPsx1,
+                comboPsx2,
+                comboPsx3,
+                comboPsx4,
+                comboPsx5,
+                comboPsx6,
+                comboPsx7,
+                comboPsx8,
+                comboPsx9,
+                comboPsx10,
+                comboPsx11,
+                comboPsx12,
+                comboPsx13,
+                comboPsx14,
+                comboPsx15,
+                comboPsx16
+            };
+
+            int value = int.Parse(hexValue.TrimStart('0').TrimStart('x'), System.Globalization.NumberStyles.HexNumber);
+            for (int i = 16; i > 0; i--)
+            {
+                int testValue = 1 * Convert.ToInt32(Math.Pow(2, Convert.ToDouble(i - 1)));
+                if (value / testValue == 1)
+                {
+                    // checkbox that ends with 'i' needs to be ticked - 
+                    CheckBox cb = chks.Where(a => a.Name.Contains(i.ToString())).First();
+                    cb.IsChecked = true;
+
+                    //now set remainder
+                    value = value % testValue;
+                }
+            }              
+        }
+
+
+        public static string CalculateCombo(List<CheckBox> chkboxes)
+        {
+            int total = 0;
+
+            foreach (var c in chkboxes)
+            {
+                string name = c.Name.Replace("comboPsx", "");
+
+                int value = Convert.ToInt32(name);
+
+                int calc = 1;
+                for (int i = 1; i <= value; i++)
+                {
+                    if (i == 1)
+                    {
+                        calc = 1;
+                        continue;
+                    }
+
+                    calc = calc * 2;
+                }
+
+                total += calc;
+            }
+
+            // convert to hex string
+            string hexValue = "0x" + total.ToString("X4");
+            return hexValue;
+            
+        }
+
     }
     /*
     public class SliderIgnoreDelta : Slider
