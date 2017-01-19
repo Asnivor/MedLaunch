@@ -753,6 +753,10 @@ namespace MedLaunch.Models
         public double? snes__shader__goat__tp { get; set; }              // 0.00 through 1.00
         public double? snes__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
 
+        public bool? snes__h_blend { get; set; }
+
+
+
         // Virtual Boy
         public string vb__3dmode { get; set; }
         public bool? vb__3dreverse { get; set; }
@@ -1559,6 +1563,10 @@ namespace MedLaunch.Models
                 snes__shader__goat__slen = true,
                 snes__shader__goat__tp = 0.50,
                 snes__shader__goat__vdiv = 0.50,
+
+                snes__h_blend = false,
+
+
 
                 // virtual boy
                 vb__3dmode = "anaglyph",                            // placed

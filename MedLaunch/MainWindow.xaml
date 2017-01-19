@@ -1834,21 +1834,21 @@
                                                 </Grid.RowDefinitions>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Fast-Forward Speed</Label>
+                                                    <Label x:Name="cfglbl_ffspeed" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Fast-Forward Speed</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_ffspeed, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="15" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_ffspeed"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Slow-Forward Speed</Label>
+                                                    <Label x:Name="cfglbl_sfspeed" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Slow-Forward Speed</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_sfspeed, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0.25" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_sfspeed"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Frames to Keep States For</Label>
+                                                    <Label x:Name="cfglbl_srwframes" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Frames to Keep States For</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_srwframes, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="99999" Minimum="600" TickPlacement="BottomRight" TickFrequency="50" IsSnapToTickEnabled="True" 
                                         Name="cfg_srwframes"/>
@@ -1891,7 +1891,7 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
 
-                                                <Label Grid.Row="1">Sound Driver</Label>
+                                                <Label x:Name="cfglbl_sound__driver" Grid.Row="1">Sound Driver</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_sound__driver" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="default">Default Sount Driver</ComboBoxItem>
                                                     <ComboBoxItem Tag="wasapish">WASAPI(Shared Mode)</ComboBoxItem>
@@ -1900,6 +1900,7 @@
                                                     <ComboBoxItem Tag="Simple Directmedia Layer">overlay</ComboBoxItem>
                                                 </ComboBox>
 
+                                                <Label x:Name="cfglbl_sound__rate" Grid.Row="2">Rate</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_sound__rate" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="22050">22050Hz</ComboBoxItem>
                                                     <ComboBoxItem Tag="22050">32000Hz</ComboBoxItem>
@@ -1908,7 +1909,7 @@
                                                 </ComboBox>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Sound Volume</Label>
+                                                    <Label x:Name="cfglbl_sound__volume" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Sound Volume</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_sound__volume, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="150" Minimum="0" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" 
                                         Name="cfg_sound__volume"/>
@@ -1916,7 +1917,7 @@
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Buffer Time</Label>
+                                                    <Label x:Name="cfglbl_sound__buffer_time" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Buffer Time</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_sound__buffer_time, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1000" Minimum="0" TickPlacement="BottomRight" TickFrequency="100" IsSnapToTickEnabled="True" 
                                         Name="cfg_sound__buffer_time"/>
@@ -1924,7 +1925,7 @@
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Period Time</Label>
+                                                    <Label x:Name="cfglbl_sound__period_time" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Period Time</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_sound__period_time, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1000" Minimum="0" TickPlacement="BottomRight" TickFrequency="100" IsSnapToTickEnabled="True" 
                                         Name="cfg_sound__period_time"/>
@@ -1964,14 +1965,14 @@
                                                 </Grid.RowDefinitions>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Message Display Time</Label>
+                                                    <Label Name="cfglbl_osd__message_display_time" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Message Display Time</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_osd__message_display_time, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="15000" Minimum="0" TickPlacement="BottomRight" TickFrequency="100" IsSnapToTickEnabled="True" 
                                         Name="cfg_osd__message_display_time"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">State Display Time</Label>
+                                                    <Label Name="cfglbl_osd__state_display_time" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">State Display Time</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_osd__state_display_time, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="15000" Minimum="0" TickPlacement="BottomRight" TickFrequency="100" IsSnapToTickEnabled="True" 
                                         Name="cfg_osd__state_display_time"/>
@@ -2004,21 +2005,21 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
 
-                                                <Label Grid.Row="1">Video Driver</Label>
+                                                <Label Name="cfglbl_video__driver" Grid.Row="1">Video Driver</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_video__driver" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="opengl">OpenGL</ComboBoxItem>
                                                     <ComboBoxItem Tag="sdl">SDL</ComboBoxItem>
                                                     <ComboBoxItem Tag="overlay">Overlay</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Grid.Row="2">De-interlacer</Label>
+                                                <Label Name="cfglbl_video__deinterlacer" Grid.Row="2">De-interlacer</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_video__deinterlacer" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="weave">Weave</ComboBoxItem>
                                                     <ComboBoxItem Tag="bob">Bob</ComboBoxItem>
                                                     <ComboBoxItem Tag="bob_offset">Bob Offset</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="lbl_cfg___stretch" Grid.Row="3">Stretching</Label>
+                                                <Label Name="cfglbl___stretch" Grid.Row="3">Stretching</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg___stretch" Grid.Row="3" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="full">Full</ComboBoxItem>
@@ -2027,7 +2028,7 @@
                                                     <ComboBoxItem Tag="aspect_mult2">Asp. Preserve + x2</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="lbl_cfg___videoip" Grid.Row="4">Interpolation</Label>
+                                                <Label Name="cfglbl___videoip" Grid.Row="4">Interpolation</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg___videoip" Grid.Row="4" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="1">Bilinear</ComboBoxItem>
@@ -2056,9 +2057,9 @@
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
 
-                                                    <Label Name="lbl_Generic__fullscreen" Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
-                                                    <Label Name="lbl_cfg___xres" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
-                                                    <Label Name="lbl_cfg___yres" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+                                                    <Label Name="cfglbl_Generic__fullscreen" Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
+                                                    <Label Name="cfglbl___xres" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
+                                                    <Label Name="cfglbl___yres" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
 
                                                     <Controls:NumericUpDown Name="cfg___xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg___yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
@@ -2098,15 +2099,15 @@
                                                     
                                                     -->
 
-                                                    <Label Name="lbl_Generic__fsscaling" Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
-                                                    <Label Name="lbl_cfg___xscalefs" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
-                                                    <Label Name="lbl_cfg___yscalefs" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
+                                                    <Label Name="cfglbl_Generic__fsscaling" Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
+                                                    <Label Name="cfglbl___xscalefs" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
+                                                    <Label Name="cfglbl___yscalefs" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
                                                     <Controls:NumericUpDown Name="cfg___xscalefs" Grid.Column="0" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Controls:NumericUpDown Name="cfg___yscalefs" Grid.Column="1" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
 
-                                                    <Label Name="lbl_Generic__winscaling" Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center">Window Scaling</Label>
-                                                    <Label Name="lbl_cfg___xscale" Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center">X</Label>
-                                                    <Label Name="lbl_cfg___yscale" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center">Y</Label>
+                                                    <Label Name="cfglbl_Generic__winscaling" Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center">Window Scaling</Label>
+                                                    <Label Name="cfglbl_cfg___xscale" Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center">X</Label>
+                                                    <Label Name="cfglbl_cfg___yscale" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center">Y</Label>
                                                     <Controls:NumericUpDown Name="cfg___xscale" Grid.Column="0" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Controls:NumericUpDown Name="cfg___yscale" Grid.Column="1" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                 </Grid>
@@ -2261,21 +2262,21 @@
                                                 </Grid.RowDefinitions>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Autofire Frequency</Label>
+                                                    <Label Name="cfglbl_input__autofirefreq" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Autofire Frequency</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_input__autofirefreq, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1000" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_input__autofirefreq"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Dangerous Key Action Delay</Label>
+                                                    <Label Name="cfglbl_input__ckdelay" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Dangerous Key Action Delay</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_input__ckdelay, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="99999" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_input__ckdelay"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Joystick Axis Threshold</Label>
+                                                    <Label Name="cfglbl_input__joystick__axis_threshold" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Joystick Axis Threshold</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_input__joystick__axis_threshold, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_input__joystick__axis_threshold"/>
@@ -2310,7 +2311,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Row="1">OGL Pixel Shader</Label>
+                                                <Label Name="cfglbl_lynx__shader" Grid.Row="1">OGL Pixel Shader</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_lynx__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
@@ -2324,7 +2325,7 @@
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
                                                     <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
-                                                <Label Grid.Row="2">Special Video Scaler</Label>
+                                                <Label Name="cfglbl_lynx__special" Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_lynx__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="hq2x">hq2x</ComboBoxItem>
@@ -2355,7 +2356,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
+                                                        <Label Name="cfglbl_lynx__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
                                                         <TextBox Text="{Binding ElementName=cfg_lynx__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_lynx__scanlines"/>
@@ -2372,7 +2373,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
+                                                    <Label Name="cfglbl_lynx__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_lynx__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_lynx__tblur__accum__amount"/>
@@ -2401,7 +2402,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <Label Name="cfglbl_lynx__shader__goat__pat" Grid.Row="1">Goat Mask Pattern</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_lynx__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
                                                     <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
@@ -2420,7 +2421,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <Label Name="cfglbl_lynx__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
                                                         <TextBox Text="{Binding ElementName=cfg_lynx__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_lynx__shader__goat__hdiv"/>
@@ -2437,7 +2438,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <Label Name="cfglbl_lynx__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_lynx__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_lynx__shader__goat__vdiv"/>
@@ -2454,7 +2455,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <Label Name="cfglbl_lynx__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_lynx__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_lynx__shader__goat__tp"/>
@@ -2480,7 +2481,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Row="0">Stretching</Label>
+                                                <Label Name="cfglbl_lynx__stretch" Grid.Row="0">Stretching</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_lynx__stretch" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="full">Full</ComboBoxItem>
@@ -2488,7 +2489,7 @@
                                                     <ComboBoxItem Tag="aspect_int">Asp. Preserve + Int</ComboBoxItem>
                                                     <ComboBoxItem Tag="aspect_mult2">Asp. Preserve + x2</ComboBoxItem>
                                                 </ComboBox>
-                                                <Label Grid.Row="1">Interpolation</Label>
+                                                <Label Name="cfglbl_lynx__videoip" Grid.Row="1">Interpolation</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_lynx__videoip" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="1">Bilinear</ComboBoxItem>
@@ -2512,8 +2513,8 @@
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
-                                                    <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
-                                                    <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+                                                    <Label Name="cfglbl_lynx__xres" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
+                                                    <Label Name="cfglbl_lynx__yres" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
 
                                                     <Controls:NumericUpDown Name="cfg_lynx__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_lynx__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
@@ -2550,13 +2551,13 @@
                                                     </ComboBox>
                                                     -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
-                                                    <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
-                                                    <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
+                                                    <Label Name="cfglbl_lynx__xscalefs" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
+                                                    <Label Name="cfglbl_lynx__yscalefs" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
                                                     <Controls:NumericUpDown Name="cfg_lynx__xscalefs" Grid.Column="0" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Controls:NumericUpDown Name="cfg_lynx__yscalefs" Grid.Column="1" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Label Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center">Window Scaling</Label>
-                                                    <Label Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center">X</Label>
-                                                    <Label Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center">Y</Label>
+                                                    <Label Name="cfglbl_lynx__xscale" Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center">X</Label>
+                                                    <Label Name="cfglbl_lynx__yscale" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center">Y</Label>
                                                     <Controls:NumericUpDown Name="cfg_lynx__xscale" Grid.Column="0" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Controls:NumericUpDown Name="cfg_lynx__yscale" Grid.Column="1" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                 </Grid>
@@ -2595,7 +2596,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Row="1">OGL Pixel Shader</Label>
+                                                <Label Name="cfglbl_gg__shader" Grid.Row="1">OGL Pixel Shader</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gg__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
@@ -2609,7 +2610,7 @@
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
                                                     <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
-                                                <Label Grid.Row="2">Special Video Scaler</Label>
+                                                <Label Name="cfglbl_gg__special" Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gg__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="hq2x">hq2x</ComboBoxItem>
@@ -2640,7 +2641,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
+                                                        <Label Name="cfglbl_gg__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
                                                         <TextBox Text="{Binding ElementName=cfg_gg__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_gg__scanlines"/>
@@ -2657,7 +2658,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
+                                                    <Label Name="cfglbl_gg__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_gg__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_gg__tblur__accum__amount"/>
@@ -2686,7 +2687,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <Label Name="cfglbl_gg__shader__goat__pat" Grid.Row="1">Goat Mask Pattern</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gg__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
                                                     <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
@@ -2705,7 +2706,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <Label Name="cfglbl_gg__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
                                                         <TextBox Text="{Binding ElementName=cfg_gg__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_gg__shader__goat__hdiv"/>
@@ -2722,7 +2723,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <Label Name="cfglbl_gg__shader__goat__vdi" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_gg__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_gg__shader__goat__vdiv"/>
@@ -2739,7 +2740,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <Label Name="cfglbl_gg__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_gg__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_gg__shader__goat__tp"/>
@@ -2765,7 +2766,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Row="0">Stretching</Label>
+                                                <Label Name="cfglbl_gg__stretch" Grid.Row="0">Stretching</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gg__stretch" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="full">Full</ComboBoxItem>
@@ -2773,7 +2774,7 @@
                                                     <ComboBoxItem Tag="aspect_int">Asp. Preserve + Int</ComboBoxItem>
                                                     <ComboBoxItem Tag="aspect_mult2">Asp. Preserve + x2</ComboBoxItem>
                                                 </ComboBox>
-                                                <Label Grid.Row="1">Interpolation</Label>
+                                                <Label Name="cfglbl_gg__videoip" Grid.Row="1">Interpolation</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gg__videoip" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="1">Bilinear</ComboBoxItem>
@@ -2797,8 +2798,8 @@
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
-                                                    <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
-                                                    <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+                                                    <Label Name="cfglbl_gg__xres" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
+                                                    <Label Name="cfglbl_gg__yres" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
 
                                                     <Controls:NumericUpDown Name="cfg_gg__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_gg__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
@@ -2835,13 +2836,13 @@
                                                     </ComboBox>
                                                     -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
-                                                    <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
-                                                    <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
+                                                    <Label Name="cfglbl_gg__xscalefs" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
+                                                    <Label Name="cfglbl_gg__yscalefs" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
                                                     <Controls:NumericUpDown Name="cfg_gg__xscalefs" Grid.Column="0" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Controls:NumericUpDown Name="cfg_gg__yscalefs" Grid.Column="1" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Label Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center">Window Scaling</Label>
-                                                    <Label Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center">X</Label>
-                                                    <Label Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center">Y</Label>
+                                                    <Label Name="cfglbl_gg__xscale" Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center">X</Label>
+                                                    <Label Name="cfglbl_gg__yscale" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center">Y</Label>
                                                     <Controls:NumericUpDown Name="cfg_gg__xscale" Grid.Column="0" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Controls:NumericUpDown Name="cfg_gg__yscale" Grid.Column="1" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                 </Grid>
@@ -2918,7 +2919,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
+                                                        <Label Name="cfglbl_gb__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
                                                         <TextBox Text="{Binding ElementName=cfg_gb__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_gb__scanlines"/>
@@ -2935,7 +2936,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
+                                                    <Label Name="cfglbl_gb__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_gb__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_gb__tblur__accum__amount"/>
@@ -2964,7 +2965,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <Label Name="cfglbl_gb__shader__goat__pat" Grid.Row="1">Goat Mask Pattern</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gb__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
                                                     <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
@@ -2983,7 +2984,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <Label Name="cfglbl_gb__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
                                                         <TextBox Text="{Binding ElementName=cfg_gb__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_gb__shader__goat__hdiv"/>
@@ -3000,7 +3001,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <Label Name="cfglbl_gb__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_gb__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_gb__shader__goat__vdiv"/>
@@ -3017,7 +3018,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <Label Name="cfglbl_gb__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_gb__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_gb__shader__goat__tp"/>
@@ -3043,7 +3044,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Row="0">Stretching</Label>
+                                                <Label Name="cfglbl_gb__stretch" Grid.Row="0">Stretching</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gb__stretch" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="full">Full</ComboBoxItem>
@@ -3051,7 +3052,7 @@
                                                     <ComboBoxItem Tag="aspect_int">Asp. Preserve + Int</ComboBoxItem>
                                                     <ComboBoxItem Tag="aspect_mult2">Asp. Preserve + x2</ComboBoxItem>
                                                 </ComboBox>
-                                                <Label Grid.Row="1">Interpolation</Label>
+                                                <Label Name="cfglbl_gb__videoip" Grid.Row="1">Interpolation</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gb__videoip" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="1">Bilinear</ComboBoxItem>
@@ -3075,8 +3076,8 @@
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
-                                                    <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
-                                                    <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+                                                    <Label Name="cfglbl_gb__xres" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
+                                                    <Label Name="cfglbl_gb__yres" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
 
                                                     <Controls:NumericUpDown Name="cfg_gb__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_gb__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
@@ -3113,13 +3114,13 @@
                                                     </ComboBox>
                                                     -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
-                                                    <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
-                                                    <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
+                                                    <Label Name="cfglbl_gb__xscalefs" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
+                                                    <Label Name="cfglbl_gb__yscalefs" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
                                                     <Controls:NumericUpDown Name="cfg_gb__xscalefs" Grid.Column="0" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Controls:NumericUpDown Name="cfg_gb__yscalefs" Grid.Column="1" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Label Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center">Window Scaling</Label>
-                                                    <Label Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center">X</Label>
-                                                    <Label Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center">Y</Label>
+                                                    <Label Name="cfglbl_gb__xscale" Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center">X</Label>
+                                                    <Label Name="cfglbl_gb__yscale" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center">Y</Label>
                                                     <Controls:NumericUpDown Name="cfg_gb__xscale" Grid.Column="0" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Controls:NumericUpDown Name="cfg_gb__yscale" Grid.Column="1" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                 </Grid>
@@ -3139,7 +3140,7 @@
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Column="0">GB Type</Label>
+                                                <Label Name="cfglbl_gb__system_type" Grid.Column="0">GB Type</Label>
                                                 <ComboBox x:Name="cfg_gb__system_type" SelectedValuePath="Tag" Grid.Column="1">
                                                     <ComboBoxItem Tag="auto">Auto</ComboBoxItem>
                                                     <ComboBoxItem Tag="dmg">GB Monochrome</ComboBoxItem>
@@ -3173,7 +3174,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Row="1">OGL Pixel Shader</Label>
+                                                <Label Name="cfglbl_gba__shader" Grid.Row="1">OGL Pixel Shader</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gba__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
@@ -3187,7 +3188,7 @@
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
                                                     <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
-                                                <Label Grid.Row="2">Special Video Scaler</Label>
+                                                <Label Name="cfglbl_gba__special" Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gba__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="hq2x">hq2x</ComboBoxItem>
@@ -3218,7 +3219,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
+                                                        <Label Name="cfglbl_gba__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
                                                         <TextBox Text="{Binding ElementName=cfg_gba__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_gba__scanlines"/>
@@ -3235,7 +3236,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
+                                                    <Label Name="cfglbl_gba__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_gba__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_gba__tblur__accum__amount"/>
@@ -3264,7 +3265,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <Label Name="cfglbl_gba__shader__goat__pat" Grid.Row="1">Goat Mask Pattern</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gba__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
                                                     <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
@@ -3283,7 +3284,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <Label Name="cfglbl_gba__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
                                                         <TextBox Text="{Binding ElementName=cfg_gba__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_gba__shader__goat__hdiv"/>
@@ -3300,7 +3301,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <Label Name="cfglbl_gba__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_gba__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_gba__shader__goat__vdiv"/>
@@ -3317,7 +3318,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <Label Name="cfglbl_gba__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_gba__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_gba__shader__goat__tp"/>
@@ -3343,7 +3344,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Row="0">Stretching</Label>
+                                                <Label Name="cfglbl_gba__stretch" Grid.Row="0">Stretching</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gba__stretch" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="full">Full</ComboBoxItem>
@@ -3351,7 +3352,7 @@
                                                     <ComboBoxItem Tag="aspect_int">Asp. Preserve + Int</ComboBoxItem>
                                                     <ComboBoxItem Tag="aspect_mult2">Asp. Preserve + x2</ComboBoxItem>
                                                 </ComboBox>
-                                                <Label Grid.Row="1">Interpolation</Label>
+                                                <Label Name="cfglbl_gba__videoip" Grid.Row="1">Interpolation</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_gba__videoip" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="1">Bilinear</ComboBoxItem>
@@ -3375,8 +3376,8 @@
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
-                                                    <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
-                                                    <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+                                                    <Label Name="cfglbl_gba__xres" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
+                                                    <Label Name="cfglbl_gba__yres" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
 
                                                     <Controls:NumericUpDown Name="cfg_gba__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_gba__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
@@ -3413,13 +3414,13 @@
                                                     </ComboBox>
                                                     -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
-                                                    <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
-                                                    <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
+                                                    <Label Name="cfglbl_gba__xscalefs" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
+                                                    <Label Name="cfglbl_gba__yscalefs" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
                                                     <Controls:NumericUpDown Name="cfg_gba__xscalefs" Grid.Column="0" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Controls:NumericUpDown Name="cfg_gba__yscalefs" Grid.Column="1" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Label Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center">Window Scaling</Label>
-                                                    <Label Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center">X</Label>
-                                                    <Label Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center">Y</Label>
+                                                    <Label Name="cfglbl_gba__xscale" Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center">X</Label>
+                                                    <Label Name="cfglbl_gba__yscale" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center">Y</Label>
                                                     <Controls:NumericUpDown Name="cfg_gba__xscale" Grid.Column="0" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Controls:NumericUpDown Name="cfg_gba__yscale" Grid.Column="1" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                 </Grid>
@@ -3450,7 +3451,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Row="1">OGL Pixel Shader</Label>
+                                                <Label Name="cfglbl_ngp__shader" Grid.Row="1">OGL Pixel Shader</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_ngp__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
@@ -3464,7 +3465,7 @@
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
                                                     <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
-                                                <Label Grid.Row="2">Special Video Scaler</Label>
+                                                <Label Name="cfglbl_ngp__special" Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_ngp__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="hq2x">hq2x</ComboBoxItem>
@@ -3495,7 +3496,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
+                                                        <Label Name="cfglbl_ngp__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
                                                         <TextBox Text="{Binding ElementName=cfg_ngp__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_ngp__scanlines"/>
@@ -3512,7 +3513,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
+                                                    <Label Name="cfglbl_ngp__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_ngp__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_ngp__tblur__accum__amount"/>
@@ -3541,7 +3542,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <Label Name="cfglbl_ngp__shader__goat__pat" Grid.Row="1">Goat Mask Pattern</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_ngp__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
                                                     <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
@@ -3560,7 +3561,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <Label Name="cfglbl_ngp__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
                                                         <TextBox Text="{Binding ElementName=cfg_ngp__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_ngp__shader__goat__hdiv"/>
@@ -3577,7 +3578,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <Label Name="cfglbl_ngp__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_ngp__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_ngp__shader__goat__vdiv"/>
@@ -3594,7 +3595,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <Label Name="cfglbl_ngp__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_ngp__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_ngp__shader__goat__tp"/>
@@ -3620,7 +3621,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Row="0">Stretching</Label>
+                                                <Label Name="cfglbl_ngp__stretch" Grid.Row="0">Stretching</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_ngp__stretch" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="full">Full</ComboBoxItem>
@@ -3628,7 +3629,7 @@
                                                     <ComboBoxItem Tag="aspect_int">Asp. Preserve + Int</ComboBoxItem>
                                                     <ComboBoxItem Tag="aspect_mult2">Asp. Preserve + x2</ComboBoxItem>
                                                 </ComboBox>
-                                                <Label Grid.Row="1">Interpolation</Label>
+                                                <Label Name="cfglbl_ngp__videoip" Grid.Row="1">Interpolation</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_ngp__videoip" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="1">Bilinear</ComboBoxItem>
@@ -3652,8 +3653,8 @@
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
-                                                    <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
-                                                    <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+                                                    <Label Name="cfglbl_ngp__xres" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
+                                                    <Label Name="cfglbl_ngp__yres" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
 
                                                     <Controls:NumericUpDown Name="cfg_ngp__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_ngp__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
@@ -3690,13 +3691,13 @@
                                                     </ComboBox>
                                                     -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
-                                                    <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
-                                                    <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
+                                                    <Label Name="cfglbl_ngp__xscalefs" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
+                                                    <Label Name="cfglbl_ngp__yscalefs" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
                                                     <Controls:NumericUpDown Name="cfg_ngp__xscalefs" Grid.Column="0" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Controls:NumericUpDown Name="cfg_ngp__yscalefs" Grid.Column="1" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Label Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center">Window Scaling</Label>
-                                                    <Label Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center">X</Label>
-                                                    <Label Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center">Y</Label>
+                                                    <Label Name="cfglbl_ngp__xscale" Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center">X</Label>
+                                                    <Label Name="cfglbl_ngp__yscale" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center">Y</Label>
                                                     <Controls:NumericUpDown Name="cfg_ngp__xscale" Grid.Column="0" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Controls:NumericUpDown Name="cfg_ngp__yscale" Grid.Column="1" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                 </Grid>
@@ -3716,7 +3717,7 @@
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Column="0">Language</Label>
+                                                <Label Name="cfglbl_npg__language" Grid.Column="0">Language</Label>
                                                 <ComboBox x:Name="cfg_npg__language" SelectedValuePath="Tag" Grid.Column="1">
                                                     <ComboBoxItem Tag="english">English</ComboBoxItem>
                                                     <ComboBoxItem Tag="japanese">Japanese</ComboBoxItem>
@@ -3747,7 +3748,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Row="1">OGL Pixel Shader</Label>
+                                                <Label Name="cfglbl_nes__shader" Grid.Row="1">OGL Pixel Shader</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_nes__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
@@ -3761,7 +3762,7 @@
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
                                                     <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
-                                                <Label Grid.Row="2">Special Video Scaler</Label>
+                                                <Label Name="cfglbl_nes__special" Grid.Row="2">Special Video Scaler</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_nes__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="hq2x">hq2x</ComboBoxItem>
@@ -3792,7 +3793,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
+                                                        <Label Name="cfglbl_nes__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
                                                         <TextBox Text="{Binding ElementName=cfg_nes__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__scanlines"/>
@@ -3809,7 +3810,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
+                                                    <Label Name="cfglbl_nes__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__tblur__accum__amount"/>
@@ -3838,7 +3839,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Row="1">Goat Mask Pattern</Label>
+                                                <Label Name="cfglbl_nes__shader__goat__pat" Grid.Row="1">Goat Mask Pattern</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_nes__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
                                                     <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
@@ -3857,7 +3858,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                        <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <Label Name="cfglbl_nes__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
                                                         <TextBox Text="{Binding ElementName=cfg_nes__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__shader__goat__hdiv"/>
@@ -3874,7 +3875,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <Label Name="cfglbl_nes__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__shader__goat__vdiv"/>
@@ -3891,7 +3892,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <Label Name="cfglbl_nes__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__shader__goat__tp"/>
@@ -3917,7 +3918,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Row="0">Stretching</Label>
+                                                <Label Name="cfglbl_nes__stretch" Grid.Row="0">Stretching</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_nes__stretch" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="full">Full</ComboBoxItem>
@@ -3925,7 +3926,7 @@
                                                     <ComboBoxItem Tag="aspect_int">Asp. Preserve + Int</ComboBoxItem>
                                                     <ComboBoxItem Tag="aspect_mult2">Asp. Preserve + x2</ComboBoxItem>
                                                 </ComboBox>
-                                                <Label Grid.Row="1">Interpolation</Label>
+                                                <Label Name="cfglbl_nes__videoip" Grid.Row="1">Interpolation</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_nes__videoip" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="1">Bilinear</ComboBoxItem>
@@ -3949,8 +3950,8 @@
                                                         <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
-                                                    <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
-                                                    <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+                                                    <Label Name="cfglbl_nes__xres" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
+                                                    <Label Name="cfglbl_nes__yres" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
 
                                                     <Controls:NumericUpDown Name="cfg_nes__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_nes__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
@@ -3987,13 +3988,13 @@
                                                     </ComboBox>
                                                     -->
                                                     <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
-                                                    <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
-                                                    <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
+                                                    <Label Name="cfglbl_nes__xscalefs" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
+                                                    <Label Name="cfglbl_nes__yscalefs" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
                                                     <Controls:NumericUpDown Name="cfg_nes__xscalefs" Grid.Column="0" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Controls:NumericUpDown Name="cfg_nes__yscalefs" Grid.Column="1" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Label Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center">Window Scaling</Label>
-                                                    <Label Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center">X</Label>
-                                                    <Label Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center">Y</Label>
+                                                    <Label Name="cfglbl_nes__xscale" Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center">X</Label>
+                                                    <Label Name="cfglbl_nes__yscale" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center">Y</Label>
                                                     <Controls:NumericUpDown Name="cfg_nes__xscale" Grid.Column="0" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                     <Controls:NumericUpDown Name="cfg_nes__yscale" Grid.Column="1" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
                                                 </Grid>
@@ -4038,7 +4039,7 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Column="0">Expansion Port Input Device</Label>
+                                                <Label Name="cfglbl_nes__input__fcexp" Grid.Column="0">Expansion Port Input Device</Label>
                                                 <ComboBox x:Name="cfg_nes__input__fcexp" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="0">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
                                                     <ComboBoxItem Tag="arkanoid">Arkanoid Paddle</ComboBoxItem>
@@ -4054,7 +4055,7 @@
                                                     <ComboBoxItem Tag="bworld">Barcode World Scanner</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Grid.Column="0" Grid.Row="1">Port 1 Input Device</Label>
+                                                <Label Name="cfglbl_nes__input__port1" Grid.Column="0" Grid.Row="1">Port 1 Input Device</Label>
                                                 <ComboBox x:Name="cfg_nes__input__port1" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="1">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
                                                     <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
@@ -4064,7 +4065,7 @@
                                                     <ComboBoxItem Tag="arkanoid">Arkanoid Paddle</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Grid.Column="0" Grid.Row="2">Port 2 Input Device</Label>
+                                                <Label Name="cfglbl_nes__input__port2" Grid.Column="0" Grid.Row="2">Port 2 Input Device</Label>
                                                 <ComboBox x:Name="cfg_nes__input__port2" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="2">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
                                                     <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
@@ -4074,33 +4075,33 @@
                                                     <ComboBoxItem Tag="arkanoid">Arkanoid Paddle</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Grid.Column="0" Grid.Row="3">Port 1 Input Device</Label>
+                                                <Label Name="cfglbl_nes__input__port3" Grid.Column="0" Grid.Row="3">Port 1 Input Device</Label>
                                                 <ComboBox x:Name="cfg_nes__input__port3" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="3">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
                                                     <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Grid.Column="0" Grid.Row="4">Port 1 Input Device</Label>
+                                                <Label Name="cfglbl_nes__input__port4" Grid.Column="0" Grid.Row="4">Port 1 Input Device</Label>
                                                 <ComboBox x:Name="cfg_nes__input__port4" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="4">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
                                                     <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
                                                 </ComboBox>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Sound Quality</Label>
+                                                    <Label Name="cfglbl_nes__soundq" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Sound Quality</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__soundq, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="3" Minimum="-2" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__soundq"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Audio Output Rate Tolerance</Label>
+                                                    <Label Name="cfglbl_nes__sound_rate_error" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Audio Output Rate Tolerance</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__sound_rate_error, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="0.01" Minimum="0.0000001" TickPlacement="BottomRight" TickFrequency="0.00004" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__sound_rate_error"/>
                                                 </DockPanel>
 
-                                                <Label Grid.Column="0" Grid.Row="7">Disassembly Font Size</Label>
+                                                <Label Name="cfglbl_nes__debugger__disfontsize" Grid.Column="0" Grid.Row="7">Disassembly Font Size</Label>
                                                 <ComboBox x:Name="cfg_nes__debugger__disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="7">
                                                     <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
@@ -4109,7 +4110,7 @@
                                                     <ComboBoxItem Tag="9x18">9x18 (CJK Support)</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Grid.Column="0" Grid.Row="8">Debugger Char Encoding</Label>
+                                                <Label Name="cfglbl_nes__debugger__memcharenc" Grid.Column="0" Grid.Row="8">Debugger Char Encoding</Label>
                                                 <TextBox x:Name="cfg_nes__debugger__memcharenc" Grid.Column="1" Grid.Row="8" />
 
                                             </Grid>
@@ -4140,42 +4141,42 @@
 
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 0</Label>
+                                                    <Label Name="cfglbl_nes__ntsc__matrix__0" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 0</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__ntsc__matrix__0, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.001" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__ntsc__matrix__0"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 1</Label>
+                                                    <Label Name="cfglbl_nes__ntsc__matrix__1" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 1</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__ntsc__matrix__1, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.001" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__ntsc__matrix__1"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 2</Label>
+                                                    <Label Name="cfglbl_nes__ntsc__matrix__2" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 2</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__ntsc__matrix__2, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.001" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__ntsc__matrix__2"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 2</Label>
+                                                    <Label Name="cfglbl_nes__ntsc__matrix__3" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 2</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__ntsc__matrix__3, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.001" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__ntsc__matrix__3"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 2</Label>
+                                                    <Label Name="cfglbl_nes__ntsc__matrix__4" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 2</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__ntsc__matrix__4, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.001" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__ntsc__matrix__4"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 2</Label>
+                                                    <Label Name="cfglbl_nes__ntsc__matrix__5" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 2</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__ntsc__matrix__5, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.001" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__ntsc__matrix__5"/>
@@ -4213,34 +4214,34 @@
                                                 </Grid.RowDefinitions>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">PAL 1st Displayed Scanline</Label>
+                                                    <Label Name="cfglbl_nes__slstartp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">PAL 1st Displayed Scanline</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__slstartp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="239" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__slstartp"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">PAL Last Displayed Scanline</Label>
+                                                    <Label Name="cfglbl_nes__slendp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">PAL Last Displayed Scanline</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__slendp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="239" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__slendp"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC 1st Displayed Scanline</Label>
+                                                    <Label Name="cfglbl_nes__slstart" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC 1st Displayed Scanline</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__slstart, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="239" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__slstart"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Last Displayed Scanline</Label>
+                                                    <Label Name="cfglbl_nes__slend" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Last Displayed Scanline</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__slend, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="239" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__slend"/>
                                                 </DockPanel>
 
-                                                <Label Grid.Column="0" Grid.Row="4">NTSC Preset</Label>
+                                                <Label Name="cfglbl_nes__ntsc__preset" Grid.Column="0" Grid.Row="4">NTSC Preset</Label>
                                                 <ComboBox x:Name="cfg_nes__ntsc__preset" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="4">
                                                     <ComboBoxItem Tag="disabled">Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="composite">Composite Video</ComboBoxItem>
@@ -4287,21 +4288,21 @@
                                                 
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="9" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Composite Blitter Contrast</Label>
+                                                    <Label Name="cfglbl_nes__ntsc__hue" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Composite Blitter Contrast</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__ntsc__hue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="-1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__ntsc__hue"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="10" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Composite Blitter Saturation</Label>
+                                                    <Label Name="cfglbl_nes__ntsc__saturation" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Composite Blitter Saturation</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__ntsc__saturation, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="-1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__ntsc__saturation"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="11" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Composite Blitter Sharpness</Label>
+                                                    <Label Name="cfglbl_nes__ntsc__sharpness" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Composite Blitter Sharpness</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_nes__ntsc__sharpness, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="-1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__ntsc__sharpness"/>
@@ -6840,6 +6841,7 @@
                                             <CheckBox x:Name="cfg_snes__forcemono">Force Mono Sound Output</CheckBox>
                                             <CheckBox Name="cfg_snes__tblur">Temporal Blur</CheckBox>
                                             <CheckBox Name="cfg_snes__tblur__accum">Accumulate Color Data</CheckBox>
+                                            <CheckBox Name="cfg_snes__h_blend">Enable Horizontal Blend(blur) Filter</CheckBox>
                                             <Grid Margin="0,10,0,0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
