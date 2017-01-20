@@ -1,0 +1,2318 @@
+[
+  {
+    "Command": "lynx.lowpass",
+    "Description": "Enable sound output lowpass filter."
+  },
+  {
+    "Command": "lynx.rotateinput",
+    "Description": "Virtually rotate D-pad along with screen."
+  },
+  {
+    "Command": "lynx.enable",
+    "Description": "Enable (automatic) usage of this module."
+  },
+  {
+    "Command": "lynx.forcemono",
+    "Description": "Force monophonic sound output."
+  },
+  {
+    "Command": "lynx.pixshader",
+    "Description": "Enable specified OpenGL pixel shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support pixel shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. Bilinear interpolation is disabled with pixel shaders, and any interpolation, if present, will be noted in the description of each pixel shader.>\n\n<b>none</b> - None/Disabled\n\n\n<b>autoip</b> - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\n<b>autoipsharper</b> - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\n<b>scale2x</b> - Scale2x\n\n\n<b>sabr</b> - SABR v3.0\nGPU-intensive.\n\n<b>ipsharper</b> - Sharper bilinear interpolation.\n\n\n<b>ipxnoty</b> - Linear interpolation on X axis only.\n\n\n<b>ipynotx</b> - Linear interpolation on Y axis only.\n\n\n<b>ipxnotysharper</b> - Sharper version of \"ipxnoty\".\n\n\n<b>ipynotxsharper</b> - Sharper version of \"ipynotx\".\n"
+  },
+  {
+    "Command": "lynx.scanlines",
+    "Description": "Enable scanlines with specified opacity.\n\nOpacity is specified in %; IE a value of \"100\" will give entirely black scanlines.\n\n\n\nNegative values are the same as positive values for non-interlaced video, but for interlaced video will cause the scanlines to be overlaid over the previous field's lines(only if the video.deinterlacer setting is set to \"weave\", the default)."
+  },
+  {
+    "Command": "lynx.special",
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\n<b>none</b> - None/Disabled\n\n\n<b>hq2x</b> - hq2x\n\n\n<b>hq3x</b> - hq3x\n\n\n<b>hq4x</b> - hq4x\n\n\n<b>scale2x</b> - scale2x\n\n\n<b>scale3x</b> - scale3x\n\n\n<b>scale4x</b> - scale4x\n\n\n<b>2xsai</b> - 2xSaI\n\n\n<b>super2xsai</b> - Super 2xSaI\n\n\n<b>supereagle</b> - Super Eagle\n\n\n<b>nn2x</b> - Nearest-neighbor 2x\n\n\n<b>nn3x</b> - Nearest-neighbor 3x\n\n\n<b>nn4x</b> - Nearest-neighbor 4x\n\n\n<b>nny2x</b> - Nearest-neighbor 2x, y axis only\n\n\n<b>nny3x</b> - Nearest-neighbor 3x, y axis only\n\n\n<b>nny4x</b> - Nearest-neighbor 4x, y axis only\n"
+  },
+  {
+    "Command": "lynx.stretch",
+    "Description": "Stretch to fill screen.\n\n<b>0</b> - Disabled\n\n\n<b>full</b> - Full\nFull-screen stretch, disregarding aspect ratio.\n\n<b>aspect</b> - Aspect Preserve\nFull-screen stretch as far as the aspect ratio(in this sense, the equivalent xscalefs == yscalefs) can be maintained.\n\n<b>aspect_int</b> - Aspect Preserve + Integer Scale\nFull-screen stretch, same as \"aspect\" except that the equivalent xscalefs and yscalefs are rounded down to the nearest integer.\n\n<b>aspect_mult2</b> - Aspect Preserve + Integer Multiple-of-2 Scale\nFull-screen stretch, same as \"aspect_int\", but rounds down to the nearest multiple of 2."
+  },
+  {
+    "Command": "lynx.tblur",
+    "Description": "Enable video temporal blur(50/50 previous/current frame by default)."
+  },
+  {
+    "Command": "lynx.tblur.accum",
+    "Description": "Accumulate color data rather than discarding it."
+  },
+  {
+    "Command": "lynx.tblur.accum.amount",
+    "Description": "Blur amount in accumulation mode, specified in percentage of accumulation buffer to mix with the current frame."
+  },
+  {
+    "Command": "lynx.videoip",
+    "Description": "Enable (bi)linear interpolation.\n\n<b>0</b> - Disabled\n\n\n<b>1</b> - Bilinear\n\n\n<b>x</b> - Linear (X)\nInterpolation only on the X axis.\n\n<b>y</b> - Linear (Y)\nInterpolation only on the Y axis."
+  },
+  {
+    "Command": "lynx.xres",
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+  },
+  {
+    "Command": "lynx.xscale",
+    "Description": "Scaling factor for the X axis in windowed mode."
+  },
+  {
+    "Command": "lynx.xscalefs",
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "lynx.yres",
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+  },
+  {
+    "Command": "lynx.yscale",
+    "Description": "Scaling factor for the Y axis in windowed mode."
+  },
+  {
+    "Command": "lynx.yscalefs",
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "gb.system_type",
+    "Description": "Emulated GB type.\n\n<b>auto</b> - Auto\nAutomatic detection based on headers.\n\n<b>dmg</b> - DMG\nOriginal GameBoy Monochrome.\n\n<b>cgb</b> - CGB\nGameBoy Color.\n\n\n\nThis option is not fully implemented in regards to handling of DMG games.\n\n<b>agb</b> - AGB\nGameBoy Advance.\n\n\n\nThis option is not fully implemented in regards to handling of DMG games."
+  },
+  {
+    "Command": "gb.enable",
+    "Description": "Enable (automatic) usage of this module."
+  },
+  {
+    "Command": "gb.forcemono",
+    "Description": "Force monophonic sound output."
+  },
+  {
+    "Command": "gb.pixshader",
+    "Description": "Enable specified OpenGL pixel shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support pixel shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. Bilinear interpolation is disabled with pixel shaders, and any interpolation, if present, will be noted in the description of each pixel shader.>\n\n<b>none</b> - None/Disabled\n\n\n<b>autoip</b> - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\n<b>autoipsharper</b> - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\n<b>scale2x</b> - Scale2x\n\n\n<b>sabr</b> - SABR v3.0\nGPU-intensive.\n\n<b>ipsharper</b> - Sharper bilinear interpolation.\n\n\n<b>ipxnoty</b> - Linear interpolation on X axis only.\n\n\n<b>ipynotx</b> - Linear interpolation on Y axis only.\n\n\n<b>ipxnotysharper</b> - Sharper version of \"ipxnoty\".\n\n\n<b>ipynotxsharper</b> - Sharper version of \"ipynotx\".\n"
+  },
+  {
+    "Command": "gb.scanlines",
+    "Description": "Enable scanlines with specified opacity.\n\nOpacity is specified in %; IE a value of \"100\" will give entirely black scanlines.\n\n\n\nNegative values are the same as positive values for non-interlaced video, but for interlaced video will cause the scanlines to be overlaid over the previous field's lines(only if the video.deinterlacer setting is set to \"weave\", the default)."
+  },
+  {
+    "Command": "gb.special",
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\n<b>none</b> - None/Disabled\n\n\n<b>hq2x</b> - hq2x\n\n\n<b>hq3x</b> - hq3x\n\n\n<b>hq4x</b> - hq4x\n\n\n<b>scale2x</b> - scale2x\n\n\n<b>scale3x</b> - scale3x\n\n\n<b>scale4x</b> - scale4x\n\n\n<b>2xsai</b> - 2xSaI\n\n\n<b>super2xsai</b> - Super 2xSaI\n\n\n<b>supereagle</b> - Super Eagle\n\n\n<b>nn2x</b> - Nearest-neighbor 2x\n\n\n<b>nn3x</b> - Nearest-neighbor 3x\n\n\n<b>nn4x</b> - Nearest-neighbor 4x\n\n\n<b>nny2x</b> - Nearest-neighbor 2x, y axis only\n\n\n<b>nny3x</b> - Nearest-neighbor 3x, y axis only\n\n\n<b>nny4x</b> - Nearest-neighbor 4x, y axis only\n"
+  },
+  {
+    "Command": "gb.stretch",
+    "Description": "Stretch to fill screen.\n\n<b>0</b> - Disabled\n\n\n<b>full</b> - Full\nFull-screen stretch, disregarding aspect ratio.\n\n<b>aspect</b> - Aspect Preserve\nFull-screen stretch as far as the aspect ratio(in this sense, the equivalent xscalefs == yscalefs) can be maintained.\n\n<b>aspect_int</b> - Aspect Preserve + Integer Scale\nFull-screen stretch, same as \"aspect\" except that the equivalent xscalefs and yscalefs are rounded down to the nearest integer.\n\n<b>aspect_mult2</b> - Aspect Preserve + Integer Multiple-of-2 Scale\nFull-screen stretch, same as \"aspect_int\", but rounds down to the nearest multiple of 2."
+  },
+  {
+    "Command": "gb.tblur",
+    "Description": "Enable video temporal blur(50/50 previous/current frame by default)."
+  },
+  {
+    "Command": "gb.tblur.accum",
+    "Description": "Accumulate color data rather than discarding it."
+  },
+  {
+    "Command": "gb.tblur.accum.amount",
+    "Description": "Blur amount in accumulation mode, specified in percentage of accumulation buffer to mix with the current frame."
+  },
+  {
+    "Command": "gb.videoip",
+    "Description": "Enable (bi)linear interpolation.\n\n<b>0</b> - Disabled\n\n\n<b>1</b> - Bilinear\n\n\n<b>x</b> - Linear (X)\nInterpolation only on the X axis.\n\n<b>y</b> - Linear (Y)\nInterpolation only on the Y axis."
+  },
+  {
+    "Command": "gb.xres",
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+  },
+  {
+    "Command": "gb.xscale",
+    "Description": "Scaling factor for the X axis in windowed mode."
+  },
+  {
+    "Command": "gb.xscalefs",
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "gb.yres",
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+  },
+  {
+    "Command": "gb.yscale",
+    "Description": "Scaling factor for the Y axis in windowed mode."
+  },
+  {
+    "Command": "gb.yscalefs",
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "gba.bios",
+    "Description": "Path to optional GBA BIOS ROM image."
+  },
+  {
+    "Command": "gba.enable",
+    "Description": "Enable (automatic) usage of this module."
+  },
+  {
+    "Command": "gba.forcemono",
+    "Description": "Force monophonic sound output."
+  },
+  {
+    "Command": "gba.pixshader",
+    "Description": "Enable specified OpenGL pixel shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support pixel shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. Bilinear interpolation is disabled with pixel shaders, and any interpolation, if present, will be noted in the description of each pixel shader.>\n\n<b>none</b> - None/Disabled\n\n\n<b>autoip</b> - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\n<b>autoipsharper</b> - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\n<b>scale2x</b> - Scale2x\n\n\n<b>sabr</b> - SABR v3.0\nGPU-intensive.\n\n<b>ipsharper</b> - Sharper bilinear interpolation.\n\n\n<b>ipxnoty</b> - Linear interpolation on X axis only.\n\n\n<b>ipynotx</b> - Linear interpolation on Y axis only.\n\n\n<b>ipxnotysharper</b> - Sharper version of \"ipxnoty\".\n\n\n<b>ipynotxsharper</b> - Sharper version of \"ipynotx\".\n"
+  },
+  {
+    "Command": "gba.scanlines",
+    "Description": "Enable scanlines with specified opacity.\n\nOpacity is specified in %; IE a value of \"100\" will give entirely black scanlines.\n\n\n\nNegative values are the same as positive values for non-interlaced video, but for interlaced video will cause the scanlines to be overlaid over the previous field's lines(only if the video.deinterlacer setting is set to \"weave\", the default)."
+  },
+  {
+    "Command": "gba.special",
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\n<b>none</b> - None/Disabled\n\n\n<b>hq2x</b> - hq2x\n\n\n<b>hq3x</b> - hq3x\n\n\n<b>hq4x</b> - hq4x\n\n\n<b>scale2x</b> - scale2x\n\n\n<b>scale3x</b> - scale3x\n\n\n<b>scale4x</b> - scale4x\n\n\n<b>2xsai</b> - 2xSaI\n\n\n<b>super2xsai</b> - Super 2xSaI\n\n\n<b>supereagle</b> - Super Eagle\n\n\n<b>nn2x</b> - Nearest-neighbor 2x\n\n\n<b>nn3x</b> - Nearest-neighbor 3x\n\n\n<b>nn4x</b> - Nearest-neighbor 4x\n\n\n<b>nny2x</b> - Nearest-neighbor 2x, y axis only\n\n\n<b>nny3x</b> - Nearest-neighbor 3x, y axis only\n\n\n<b>nny4x</b> - Nearest-neighbor 4x, y axis only\n"
+  },
+  {
+    "Command": "gba.stretch",
+    "Description": "Stretch to fill screen.\n\n<b>0</b> - Disabled\n\n\n<b>full</b> - Full\nFull-screen stretch, disregarding aspect ratio.\n\n<b>aspect</b> - Aspect Preserve\nFull-screen stretch as far as the aspect ratio(in this sense, the equivalent xscalefs == yscalefs) can be maintained.\n\n<b>aspect_int</b> - Aspect Preserve + Integer Scale\nFull-screen stretch, same as \"aspect\" except that the equivalent xscalefs and yscalefs are rounded down to the nearest integer.\n\n<b>aspect_mult2</b> - Aspect Preserve + Integer Multiple-of-2 Scale\nFull-screen stretch, same as \"aspect_int\", but rounds down to the nearest multiple of 2."
+  },
+  {
+    "Command": "gba.tblur",
+    "Description": "Enable video temporal blur(50/50 previous/current frame by default)."
+  },
+  {
+    "Command": "gba.tblur.accum",
+    "Description": "Accumulate color data rather than discarding it."
+  },
+  {
+    "Command": "gba.tblur.accum.amount",
+    "Description": "Blur amount in accumulation mode, specified in percentage of accumulation buffer to mix with the current frame."
+  },
+  {
+    "Command": "gba.videoip",
+    "Description": "Enable (bi)linear interpolation.\n\n<b>0</b> - Disabled\n\n\n<b>1</b> - Bilinear\n\n\n<b>x</b> - Linear (X)\nInterpolation only on the X axis.\n\n<b>y</b> - Linear (Y)\nInterpolation only on the Y axis."
+  },
+  {
+    "Command": "gba.xres",
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+  },
+  {
+    "Command": "gba.xscale",
+    "Description": "Scaling factor for the X axis in windowed mode."
+  },
+  {
+    "Command": "gba.xscalefs",
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "gba.yres",
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+  },
+  {
+    "Command": "gba.yscale",
+    "Description": "Scaling factor for the Y axis in windowed mode."
+  },
+  {
+    "Command": "gba.yscalefs",
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "ngp.language",
+    "Description": "Language games should display text in.\n\n<b>japanese</b> - Japanese\n\n\n<b>english</b> - English\n"
+  },
+  {
+    "Command": "ngp.enable",
+    "Description": "Enable (automatic) usage of this module."
+  },
+  {
+    "Command": "ngp.forcemono",
+    "Description": "Force monophonic sound output."
+  },
+  {
+    "Command": "ngp.pixshader",
+    "Description": "Enable specified OpenGL pixel shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support pixel shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. Bilinear interpolation is disabled with pixel shaders, and any interpolation, if present, will be noted in the description of each pixel shader.>\n\n<b>none</b> - None/Disabled\n\n\n<b>autoip</b> - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\n<b>autoipsharper</b> - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\n<b>scale2x</b> - Scale2x\n\n\n<b>sabr</b> - SABR v3.0\nGPU-intensive.\n\n<b>ipsharper</b> - Sharper bilinear interpolation.\n\n\n<b>ipxnoty</b> - Linear interpolation on X axis only.\n\n\n<b>ipynotx</b> - Linear interpolation on Y axis only.\n\n\n<b>ipxnotysharper</b> - Sharper version of \"ipxnoty\".\n\n\n<b>ipynotxsharper</b> - Sharper version of \"ipynotx\".\n"
+  },
+  {
+    "Command": "ngp.scanlines",
+    "Description": "Enable scanlines with specified opacity.\n\nOpacity is specified in %; IE a value of \"100\" will give entirely black scanlines.\n\n\n\nNegative values are the same as positive values for non-interlaced video, but for interlaced video will cause the scanlines to be overlaid over the previous field's lines(only if the video.deinterlacer setting is set to \"weave\", the default)."
+  },
+  {
+    "Command": "ngp.special",
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\n<b>none</b> - None/Disabled\n\n\n<b>hq2x</b> - hq2x\n\n\n<b>hq3x</b> - hq3x\n\n\n<b>hq4x</b> - hq4x\n\n\n<b>scale2x</b> - scale2x\n\n\n<b>scale3x</b> - scale3x\n\n\n<b>scale4x</b> - scale4x\n\n\n<b>2xsai</b> - 2xSaI\n\n\n<b>super2xsai</b> - Super 2xSaI\n\n\n<b>supereagle</b> - Super Eagle\n\n\n<b>nn2x</b> - Nearest-neighbor 2x\n\n\n<b>nn3x</b> - Nearest-neighbor 3x\n\n\n<b>nn4x</b> - Nearest-neighbor 4x\n\n\n<b>nny2x</b> - Nearest-neighbor 2x, y axis only\n\n\n<b>nny3x</b> - Nearest-neighbor 3x, y axis only\n\n\n<b>nny4x</b> - Nearest-neighbor 4x, y axis only\n"
+  },
+  {
+    "Command": "ngp.stretch",
+    "Description": "Stretch to fill screen.\n\n<b>0</b> - Disabled\n\n\n<b>full</b> - Full\nFull-screen stretch, disregarding aspect ratio.\n\n<b>aspect</b> - Aspect Preserve\nFull-screen stretch as far as the aspect ratio(in this sense, the equivalent xscalefs == yscalefs) can be maintained.\n\n<b>aspect_int</b> - Aspect Preserve + Integer Scale\nFull-screen stretch, same as \"aspect\" except that the equivalent xscalefs and yscalefs are rounded down to the nearest integer.\n\n<b>aspect_mult2</b> - Aspect Preserve + Integer Multiple-of-2 Scale\nFull-screen stretch, same as \"aspect_int\", but rounds down to the nearest multiple of 2."
+  },
+  {
+    "Command": "ngp.tblur",
+    "Description": "Enable video temporal blur(50/50 previous/current frame by default)."
+  },
+  {
+    "Command": "ngp.tblur.accum",
+    "Description": "Accumulate color data rather than discarding it."
+  },
+  {
+    "Command": "ngp.tblur.accum.amount",
+    "Description": "Blur amount in accumulation mode, specified in percentage of accumulation buffer to mix with the current frame."
+  },
+  {
+    "Command": "ngp.videoip",
+    "Description": "Enable (bi)linear interpolation.\n\n<b>0</b> - Disabled\n\n\n<b>1</b> - Bilinear\n\n\n<b>x</b> - Linear (X)\nInterpolation only on the X axis.\n\n<b>y</b> - Linear (Y)\nInterpolation only on the Y axis."
+  },
+  {
+    "Command": "ngp.xres",
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+  },
+  {
+    "Command": "ngp.xscale",
+    "Description": "Scaling factor for the X axis in windowed mode."
+  },
+  {
+    "Command": "ngp.xscalefs",
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "ngp.yres",
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+  },
+  {
+    "Command": "ngp.yscale",
+    "Description": "Scaling factor for the Y axis in windowed mode."
+  },
+  {
+    "Command": "ngp.yscalefs",
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "nes.clipsides",
+    "Description": "Clip left+right 8 pixel columns."
+  },
+  {
+    "Command": "nes.correct_aspect",
+    "Description": "Correct the aspect ratio."
+  },
+  {
+    "Command": "nes.fnscan",
+    "Description": "Scan filename for (U),(J),(E),etc. strings to en/dis-able PAL emulation.\n\nWarning: This option may break NES network play when enabled IF the players are using ROM images with different filenames."
+  },
+  {
+    "Command": "nes.gg",
+    "Description": "Enable Game Genie emulation."
+  },
+  {
+    "Command": "nes.ggrom",
+    "Description": "Path to Game Genie ROM image."
+  },
+  {
+    "Command": "nes.input.fcexp",
+    "Description": "Input device for Famicom Expansion Port\n\n<b>none</b> - none\n\n\n<b>arkanoid</b> - Arkanoid Paddle\n\n\n<b>shadow</b> - Space Shadow Gun\n\n\n<b>4player</b> - 4-player Adapter\n\n\n<b>fkb</b> - Family Keyboard\n\n\n<b>hypershot</b> - Hypershot Paddles\n\n\n<b>mahjong</b> - Mahjong Controller\n\n\n<b>partytap</b> - Party Tap\n\n\n<b>ftrainera</b> - Family Trainer Side A\n\n\n<b>ftrainerb</b> - Family Trainer Side B\n\n\n<b>oekakids</b> - Oeka Kids Tablet\n\n\n<b>bworld</b> - Barcode World Scanner\n"
+  },
+  {
+    "Command": "nes.input.port1",
+    "Description": "Input device for Port 1\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Gamepad\n\n\n<b>zapper</b> - Zapper\n\n\n<b>powerpada</b> - Power Pad Side A\n\n\n<b>powerpadb</b> - Power Pad Side B\n\n\n<b>arkanoid</b> - Arkanoid Paddle\n"
+  },
+  {
+    "Command": "nes.input.port2",
+    "Description": "Input device for Port 2\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Gamepad\n\n\n<b>zapper</b> - Zapper\n\n\n<b>powerpada</b> - Power Pad Side A\n\n\n<b>powerpadb</b> - Power Pad Side B\n\n\n<b>arkanoid</b> - Arkanoid Paddle\n"
+  },
+  {
+    "Command": "nes.input.port3",
+    "Description": "Input device for Port 3\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Gamepad\n"
+  },
+  {
+    "Command": "nes.input.port4",
+    "Description": "Input device for Port 4\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Gamepad\n"
+  },
+  {
+    "Command": "nes.n106bs",
+    "Description": "Enable less-accurate, but better sounding, Namco 106(mapper 19) sound emulation."
+  },
+  {
+    "Command": "nes.no8lim",
+    "Description": "Remove 8-sprites-per-scanline hardware limit.\n\nWARNING: Enabling this option will cause graphical glitches in some games, including \"Solstice\"."
+  },
+  {
+    "Command": "nes.nofs",
+    "Description": "Disable four-score emulation."
+  },
+  {
+    "Command": "nes.ntsc.brightness",
+    "Description": "NTSC composite blitter brightness."
+  },
+  {
+    "Command": "nes.ntsc.contrast",
+    "Description": "NTSC composite blitter contrast."
+  },
+  {
+    "Command": "nes.ntsc.hue",
+    "Description": "NTSC composite blitter hue."
+  },
+  {
+    "Command": "nes.ntsc.matrix",
+    "Description": "Enable NTSC custom decoder matrix."
+  },
+  {
+    "Command": "nes.ntsc.matrix.0",
+    "Description": "NTSC custom decoder matrix element 0(red, value * V)."
+  },
+  {
+    "Command": "nes.ntsc.matrix.1",
+    "Description": "NTSC custom decoder matrix element 1(red, value * U)."
+  },
+  {
+    "Command": "nes.ntsc.matrix.2",
+    "Description": "NTSC custom decoder matrix element 2(green, value * V)."
+  },
+  {
+    "Command": "nes.ntsc.matrix.3",
+    "Description": "NTSC custom decoder matrix element 3(green, value * U)."
+  },
+  {
+    "Command": "nes.ntsc.matrix.4",
+    "Description": "NTSC custom decoder matrix element 4(blue, value * V)."
+  },
+  {
+    "Command": "nes.ntsc.matrix.5",
+    "Description": "NTSC custom decoder matrix element 5(blue, value * U."
+  },
+  {
+    "Command": "nes.ntsc.mergefields",
+    "Description": "Merge fields to partially work around !=60.1Hz refresh rates."
+  },
+  {
+    "Command": "nes.ntsc.preset",
+    "Description": "Video quality/type preset.\n\n<b>disabled</b> - Disabled\n\n\n<b>composite</b> - Composite Video\n\n\n<b>svideo</b> - S-Video\n\n\n<b>rgb</b> - RGB\n\n\n<b>monochrome</b> - Monochrome\n"
+  },
+  {
+    "Command": "nes.ntsc.saturation",
+    "Description": "NTSC composite blitter saturation."
+  },
+  {
+    "Command": "nes.ntsc.sharpness",
+    "Description": "NTSC composite blitter sharpness."
+  },
+  {
+    "Command": "nes.ntscblitter",
+    "Description": "Enable NTSC color generation and blitter.\n\nNOTE: If your refresh rate isn't very close to 60.1Hz(+-0.1), you will need to set the nes.ntsc.mergefields setting to \"1\" to avoid excessive flickering."
+  },
+  {
+    "Command": "nes.pal",
+    "Description": "Enable PAL(50Hz) NES emulation."
+  },
+  {
+    "Command": "nes.slend",
+    "Description": "Last displayed scanline in NTSC mode."
+  },
+  {
+    "Command": "nes.slendp",
+    "Description": "Last displayed scanline in PAL mode."
+  },
+  {
+    "Command": "nes.slstart",
+    "Description": "First displayed scanline in NTSC mode."
+  },
+  {
+    "Command": "nes.slstartp",
+    "Description": "First displayed scanline in PAL mode."
+  },
+  {
+    "Command": "nes.sound_rate_error",
+    "Description": "Output rate tolerance.\n\nLower values correspond to better matching of the output rate of the resampler to the actual desired output rate, at the expense of increased RAM usage and poorer CPU cache utilization.  DO NOT INCREASE THIS VALUE, OR SOUND WILL LIKELY BE OFF-KEY AND THE WRONG TEMPO, AMONG OTHER PROBLEMS."
+  },
+  {
+    "Command": "nes.soundq",
+    "Description": "Sound quality.\n\nHigher values correspond to better SNR and better preservation of higher frequencies(\"brightness\"), at the cost of increased computational complexity and a negligible(<0.5ms) increase=\"\" in=\"\"></0.5ms)"
+  },
+  {
+    "Command": "nes.debugger.disfontsize",
+    "Description": "Disassembly font size.\n\nNote: Setting the font size to larger than the default may cause text overlap in the debugger.>\n\n<b>5x7</b> - 5x7\n\n\n<b>6x9</b> - 6x9\n\n\n<b>6x12</b> - 6x12\n\n\n<b>6x13</b> - 6x13.  CJK support.\n\n\n<b>9x18</b> - 9x18;  CJK support.\n"
+  },
+  {
+    "Command": "nes.debugger.memcharenc",
+    "Description": "Character encoding for the debugger's memory editor."
+  },
+  {
+    "Command": "nes.enable",
+    "Description": "Enable (automatic) usage of this module."
+  },
+  {
+    "Command": "nes.pixshader",
+    "Description": "Enable specified OpenGL pixel shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support pixel shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. Bilinear interpolation is disabled with pixel shaders, and any interpolation, if present, will be noted in the description of each pixel shader.>\n\n<b>none</b> - None/Disabled\n\n\n<b>autoip</b> - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\n<b>autoipsharper</b> - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\n<b>scale2x</b> - Scale2x\n\n\n<b>sabr</b> - SABR v3.0\nGPU-intensive.\n\n<b>ipsharper</b> - Sharper bilinear interpolation.\n\n\n<b>ipxnoty</b> - Linear interpolation on X axis only.\n\n\n<b>ipynotx</b> - Linear interpolation on Y axis only.\n\n\n<b>ipxnotysharper</b> - Sharper version of \"ipxnoty\".\n\n\n<b>ipynotxsharper</b> - Sharper version of \"ipynotx\".\n"
+  },
+  {
+    "Command": "nes.scanlines",
+    "Description": "Enable scanlines with specified opacity.\n\nOpacity is specified in %; IE a value of \"100\" will give entirely black scanlines.\n\n\n\nNegative values are the same as positive values for non-interlaced video, but for interlaced video will cause the scanlines to be overlaid over the previous field's lines(only if the video.deinterlacer setting is set to \"weave\", the default)."
+  },
+  {
+    "Command": "nes.special",
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\n<b>none</b> - None/Disabled\n\n\n<b>hq2x</b> - hq2x\n\n\n<b>hq3x</b> - hq3x\n\n\n<b>hq4x</b> - hq4x\n\n\n<b>scale2x</b> - scale2x\n\n\n<b>scale3x</b> - scale3x\n\n\n<b>scale4x</b> - scale4x\n\n\n<b>2xsai</b> - 2xSaI\n\n\n<b>super2xsai</b> - Super 2xSaI\n\n\n<b>supereagle</b> - Super Eagle\n\n\n<b>nn2x</b> - Nearest-neighbor 2x\n\n\n<b>nn3x</b> - Nearest-neighbor 3x\n\n\n<b>nn4x</b> - Nearest-neighbor 4x\n\n\n<b>nny2x</b> - Nearest-neighbor 2x, y axis only\n\n\n<b>nny3x</b> - Nearest-neighbor 3x, y axis only\n\n\n<b>nny4x</b> - Nearest-neighbor 4x, y axis only\n"
+  },
+  {
+    "Command": "nes.stretch",
+    "Description": "Stretch to fill screen.\n\n<b>0</b> - Disabled\n\n\n<b>full</b> - Full\nFull-screen stretch, disregarding aspect ratio.\n\n<b>aspect</b> - Aspect Preserve\nFull-screen stretch as far as the aspect ratio(in this sense, the equivalent xscalefs == yscalefs) can be maintained.\n\n<b>aspect_int</b> - Aspect Preserve + Integer Scale\nFull-screen stretch, same as \"aspect\" except that the equivalent xscalefs and yscalefs are rounded down to the nearest integer.\n\n<b>aspect_mult2</b> - Aspect Preserve + Integer Multiple-of-2 Scale\nFull-screen stretch, same as \"aspect_int\", but rounds down to the nearest multiple of 2."
+  },
+  {
+    "Command": "nes.tblur",
+    "Description": "Enable video temporal blur(50/50 previous/current frame by default)."
+  },
+  {
+    "Command": "nes.tblur.accum",
+    "Description": "Accumulate color data rather than discarding it."
+  },
+  {
+    "Command": "nes.tblur.accum.amount",
+    "Description": "Blur amount in accumulation mode, specified in percentage of accumulation buffer to mix with the current frame."
+  },
+  {
+    "Command": "nes.videoip",
+    "Description": "Enable (bi)linear interpolation.\n\n<b>0</b> - Disabled\n\n\n<b>1</b> - Bilinear\n\n\n<b>x</b> - Linear (X)\nInterpolation only on the X axis.\n\n<b>y</b> - Linear (Y)\nInterpolation only on the Y axis."
+  },
+  {
+    "Command": "nes.xres",
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+  },
+  {
+    "Command": "nes.xscale",
+    "Description": "Scaling factor for the X axis in windowed mode."
+  },
+  {
+    "Command": "nes.xscalefs",
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "nes.yres",
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+  },
+  {
+    "Command": "nes.yscale",
+    "Description": "Scaling factor for the Y axis in windowed mode."
+  },
+  {
+    "Command": "nes.yscalefs",
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "pce_fast.adpcmlp",
+    "Description": "Enable dynamic ADPCM lowpass filter."
+  },
+  {
+    "Command": "pce_fast.adpcmvolume",
+    "Description": "ADPCM volume."
+  },
+  {
+    "Command": "pce_fast.arcadecard",
+    "Description": "Enable Arcade Card emulation."
+  },
+  {
+    "Command": "pce_fast.cdbios",
+    "Description": "Path to the CD BIOS"
+  },
+  {
+    "Command": "pce_fast.cddavolume",
+    "Description": "CD-DA volume."
+  },
+  {
+    "Command": "pce_fast.cdpsgvolume",
+    "Description": "PSG volume when playing a CD game."
+  },
+  {
+    "Command": "pce_fast.cdspeed",
+    "Description": "CD-ROM data transfer speed multiplier."
+  },
+  {
+    "Command": "pce_fast.correct_aspect",
+    "Description": "Correct the aspect ratio."
+  },
+  {
+    "Command": "pce_fast.disable_softreset",
+    "Description": "If set, when RUN+SEL are pressed simultaneously, disable both buttons temporarily."
+  },
+  {
+    "Command": "pce_fast.forcesgx",
+    "Description": "Force SuperGrafx emulation."
+  },
+  {
+    "Command": "pce_fast.input.port1",
+    "Description": "Input device for Port 1\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Gamepad\n\n\n<b>mouse</b> - Mouse\n"
+  },
+  {
+    "Command": "pce_fast.input.port2",
+    "Description": "Input device for Port 2\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Gamepad\n\n\n<b>mouse</b> - Mouse\n"
+  },
+  {
+    "Command": "pce_fast.input.port3",
+    "Description": "Input device for Port 3\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Gamepad\n\n\n<b>mouse</b> - Mouse\n"
+  },
+  {
+    "Command": "pce_fast.input.port4",
+    "Description": "Input device for Port 4\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Gamepad\n\n\n<b>mouse</b> - Mouse\n"
+  },
+  {
+    "Command": "pce_fast.input.port5",
+    "Description": "Input device for Port 5\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Gamepad\n\n\n<b>mouse</b> - Mouse\n"
+  },
+  {
+    "Command": "pce_fast.mouse_sensitivity",
+    "Description": "Mouse sensitivity."
+  },
+  {
+    "Command": "pce_fast.nospritelimit",
+    "Description": "Remove 16-sprites-per-scanline hardware limit."
+  },
+  {
+    "Command": "pce_fast.ocmultiplier",
+    "Description": "CPU overclock multiplier."
+  },
+  {
+    "Command": "pce_fast.slend",
+    "Description": "Last rendered scanline."
+  },
+  {
+    "Command": "pce_fast.slstart",
+    "Description": "First rendered scanline."
+  },
+  {
+    "Command": "pce_fast.enable",
+    "Description": "Enable (automatic) usage of this module."
+  },
+  {
+    "Command": "pce_fast.forcemono",
+    "Description": "Force monophonic sound output."
+  },
+  {
+    "Command": "pce_fast.pixshader",
+    "Description": "Enable specified OpenGL pixel shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support pixel shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. Bilinear interpolation is disabled with pixel shaders, and any interpolation, if present, will be noted in the description of each pixel shader.>\n\n<b>none</b> - None/Disabled\n\n\n<b>autoip</b> - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\n<b>autoipsharper</b> - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\n<b>scale2x</b> - Scale2x\n\n\n<b>sabr</b> - SABR v3.0\nGPU-intensive.\n\n<b>ipsharper</b> - Sharper bilinear interpolation.\n\n\n<b>ipxnoty</b> - Linear interpolation on X axis only.\n\n\n<b>ipynotx</b> - Linear interpolation on Y axis only.\n\n\n<b>ipxnotysharper</b> - Sharper version of \"ipxnoty\".\n\n\n<b>ipynotxsharper</b> - Sharper version of \"ipynotx\".\n"
+  },
+  {
+    "Command": "pce_fast.scanlines",
+    "Description": "Enable scanlines with specified opacity.\n\nOpacity is specified in %; IE a value of \"100\" will give entirely black scanlines.\n\n\n\nNegative values are the same as positive values for non-interlaced video, but for interlaced video will cause the scanlines to be overlaid over the previous field's lines(only if the video.deinterlacer setting is set to \"weave\", the default)."
+  },
+  {
+    "Command": "pce_fast.special",
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\n<b>none</b> - None/Disabled\n\n\n<b>hq2x</b> - hq2x\n\n\n<b>hq3x</b> - hq3x\n\n\n<b>hq4x</b> - hq4x\n\n\n<b>scale2x</b> - scale2x\n\n\n<b>scale3x</b> - scale3x\n\n\n<b>scale4x</b> - scale4x\n\n\n<b>2xsai</b> - 2xSaI\n\n\n<b>super2xsai</b> - Super 2xSaI\n\n\n<b>supereagle</b> - Super Eagle\n\n\n<b>nn2x</b> - Nearest-neighbor 2x\n\n\n<b>nn3x</b> - Nearest-neighbor 3x\n\n\n<b>nn4x</b> - Nearest-neighbor 4x\n\n\n<b>nny2x</b> - Nearest-neighbor 2x, y axis only\n\n\n<b>nny3x</b> - Nearest-neighbor 3x, y axis only\n\n\n<b>nny4x</b> - Nearest-neighbor 4x, y axis only\n"
+  },
+  {
+    "Command": "pce_fast.stretch",
+    "Description": "Stretch to fill screen.\n\n<b>0</b> - Disabled\n\n\n<b>full</b> - Full\nFull-screen stretch, disregarding aspect ratio.\n\n<b>aspect</b> - Aspect Preserve\nFull-screen stretch as far as the aspect ratio(in this sense, the equivalent xscalefs == yscalefs) can be maintained.\n\n<b>aspect_int</b> - Aspect Preserve + Integer Scale\nFull-screen stretch, same as \"aspect\" except that the equivalent xscalefs and yscalefs are rounded down to the nearest integer.\n\n<b>aspect_mult2</b> - Aspect Preserve + Integer Multiple-of-2 Scale\nFull-screen stretch, same as \"aspect_int\", but rounds down to the nearest multiple of 2."
+  },
+  {
+    "Command": "pce_fast.tblur",
+    "Description": "Enable video temporal blur(50/50 previous/current frame by default)."
+  },
+  {
+    "Command": "pce_fast.tblur.accum",
+    "Description": "Accumulate color data rather than discarding it."
+  },
+  {
+    "Command": "pce_fast.tblur.accum.amount",
+    "Description": "Blur amount in accumulation mode, specified in percentage of accumulation buffer to mix with the current frame."
+  },
+  {
+    "Command": "pce_fast.videoip",
+    "Description": "Enable (bi)linear interpolation.\n\n<b>0</b> - Disabled\n\n\n<b>1</b> - Bilinear\n\n\n<b>x</b> - Linear (X)\nInterpolation only on the X axis.\n\n<b>y</b> - Linear (Y)\nInterpolation only on the Y axis."
+  },
+  {
+    "Command": "pce_fast.xres",
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+  },
+  {
+    "Command": "pce_fast.xscale",
+    "Description": "Scaling factor for the X axis in windowed mode."
+  },
+  {
+    "Command": "pce_fast.xscalefs",
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "pce_fast.yres",
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+  },
+  {
+    "Command": "pce_fast.yscale",
+    "Description": "Scaling factor for the Y axis in windowed mode."
+  },
+  {
+    "Command": "pce_fast.yscalefs",
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "pce.adpcmextraprec",
+    "Description": "Output the full 12-bit ADPCM predictor.\n\nEnabling this option causes the MSM5205 ADPCM predictor to be outputted with full precision of 12-bits, rather than only outputting 10-bits of precision(as an actual MSM5205 does).  Enable this option to reduce whining noise during ADPCM playback."
+  },
+  {
+    "Command": "pce.adpcmvolume",
+    "Description": "ADPCM volume.\n\nSetting this volume control too high may cause sample clipping."
+  },
+  {
+    "Command": "pce.arcadecard",
+    "Description": "Enable Arcade Card emulation.\n\nLeaving this option enabled is recommended, unless you want to see special warning screens on ACD games, or you prefer the non-enhanced modes of ACD-enhanced SCD games.  Additionally, you may want to disable it you you wish to use state rewinding with a SCD ACD-enhanced game on a slow CPU, as the extra 2MiB of RAM the Arcade Card offers is difficult to compress in real-time."
+  },
+  {
+    "Command": "pce.cdbios",
+    "Description": "Path to the CD BIOS"
+  },
+  {
+    "Command": "pce.cddavolume",
+    "Description": "CD-DA volume.\n\nSetting this volume control too high may cause sample clipping."
+  },
+  {
+    "Command": "pce.cdpsgvolume",
+    "Description": "PSG volume when playing a CD game.\n\nSetting this volume control too high may cause sample clipping."
+  },
+  {
+    "Command": "pce.disable_bram_cd",
+    "Description": "Disable BRAM(saved game memory) for CD games.\n\nIt is intended for viewing CD games' error screens that may be different from simple BRAM full and uninitialized BRAM error screens, though it can cause the game to crash outright."
+  },
+  {
+    "Command": "pce.disable_bram_hucard",
+    "Description": "Disable BRAM(saved game memory) for HuCard games.\n\nIt is intended for changing the behavior(passwords vs save games) of some HuCard games."
+  },
+  {
+    "Command": "pce.disable_softreset",
+    "Description": "If set, when RUN+SEL are pressed simultaneously, disable both buttons temporarily."
+  },
+  {
+    "Command": "pce.forcesgx",
+    "Description": "Force SuperGrafx emulation.\n\nEnabling this option is not necessary to run unrecognized PCE ROM images in SuperGrafx mode, and enabling it is discouraged; ROM images with a file extension of \".sgx\" will automatically enable SuperGrafx emulation."
+  },
+  {
+    "Command": "pce.gecdbios",
+    "Description": "Path to the GE CD BIOS\n\nGames Express CD Card BIOS (Unlicensed)"
+  },
+  {
+    "Command": "pce.h_overscan",
+    "Description": "Show horizontal overscan area."
+  },
+  {
+    "Command": "pce.input.multitap",
+    "Description": "Enable multitap(TurboTap) emulation."
+  },
+  {
+    "Command": "pce.input.port1",
+    "Description": "Input device for Port 1\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Gamepad\n\n\n<b>mouse</b> - Mouse\n\n\n<b>tsushinkb</b> - Tsushin Keyboard\n"
+  },
+  {
+    "Command": "pce.input.port2",
+    "Description": "Input device for Port 2\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Gamepad\n\n\n<b>mouse</b> - Mouse\n"
+  },
+  {
+    "Command": "pce.input.port3",
+    "Description": "Input device for Port 3\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Gamepad\n\n\n<b>mouse</b> - Mouse\n"
+  },
+  {
+    "Command": "pce.input.port4",
+    "Description": "Input device for Port 4\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Gamepad\n\n\n<b>mouse</b> - Mouse\n"
+  },
+  {
+    "Command": "pce.input.port5",
+    "Description": "Input device for Port 5\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Gamepad\n\n\n<b>mouse</b> - Mouse\n"
+  },
+  {
+    "Command": "pce.mouse_sensitivity",
+    "Description": "Emulated mouse sensitivity."
+  },
+  {
+    "Command": "pce.nospritelimit",
+    "Description": "Remove 16-sprites-per-scanline hardware limit.\n\nWARNING: Enabling this option may cause undesirable graphics glitching on some games(such as \"Bloody Wolf\")."
+  },
+  {
+    "Command": "pce.psgrevision",
+    "Description": "Select PSG revision.\n\nWARNING: HES playback will always use the \"huc6280a\" revision if this setting is set to \"match\", since HES playback is always done with SuperGrafx emulation enabled.>\n\n<b>huc6280</b> - HuC6280\nHuC6280 as found in the original PC Engine.\n\n<b>huc6280a</b> - HuC6280A\nHuC6280A as found in the SuperGrafx and CoreGrafx I.  Provides proper channel amplitude centering, but may cause clicking in a few games designed with the original HuC6280's sound characteristics in mind.\n\n<b>match</b> - Match emulation mode.\nSelects \"huc6280\" for non-SuperGrafx mode, and \"huc6280a\" for SuperGrafx(full) mode."
+  },
+  {
+    "Command": "pce.resamp_quality",
+    "Description": "Sound quality.\n\nHigher values correspond to better SNR and better preservation of higher frequencies(\"brightness\"), at the cost of increased computational complexity and a negligible increase in latency.\n\n\n\nHigher values will also slightly increase the probability of sample clipping(relevant if Mednafen's volume control settings are set too high), due to increased (time-domain) ringing."
+  },
+  {
+    "Command": "pce.resamp_rate_error",
+    "Description": "Sound output rate tolerance.\n\nLower values correspond to better matching of the output rate of the resampler to the actual desired output rate, at the expense of increased RAM usage and poorer CPU cache utilization."
+  },
+  {
+    "Command": "pce.slend",
+    "Description": "Last rendered scanline."
+  },
+  {
+    "Command": "pce.slstart",
+    "Description": "First rendered scanline."
+  },
+  {
+    "Command": "pce.debugger.disfontsize",
+    "Description": "Disassembly font size.\n\nNote: Setting the font size to larger than the default may cause text overlap in the debugger.>\n\n<b>5x7</b> - 5x7\n\n\n<b>6x9</b> - 6x9\n\n\n<b>6x12</b> - 6x12\n\n\n<b>6x13</b> - 6x13.  CJK support.\n\n\n<b>9x18</b> - 9x18;  CJK support.\n"
+  },
+  {
+    "Command": "pce.debugger.memcharenc",
+    "Description": "Character encoding for the debugger's memory editor."
+  },
+  {
+    "Command": "pce.enable",
+    "Description": "Enable (automatic) usage of this module."
+  },
+  {
+    "Command": "pce.forcemono",
+    "Description": "Force monophonic sound output."
+  },
+  {
+    "Command": "pce.pixshader",
+    "Description": "Enable specified OpenGL pixel shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support pixel shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. Bilinear interpolation is disabled with pixel shaders, and any interpolation, if present, will be noted in the description of each pixel shader.>\n\n<b>none</b> - None/Disabled\n\n\n<b>autoip</b> - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\n<b>autoipsharper</b> - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\n<b>scale2x</b> - Scale2x\n\n\n<b>sabr</b> - SABR v3.0\nGPU-intensive.\n\n<b>ipsharper</b> - Sharper bilinear interpolation.\n\n\n<b>ipxnoty</b> - Linear interpolation on X axis only.\n\n\n<b>ipynotx</b> - Linear interpolation on Y axis only.\n\n\n<b>ipxnotysharper</b> - Sharper version of \"ipxnoty\".\n\n\n<b>ipynotxsharper</b> - Sharper version of \"ipynotx\".\n"
+  },
+  {
+    "Command": "pce.scanlines",
+    "Description": "Enable scanlines with specified opacity.\n\nOpacity is specified in %; IE a value of \"100\" will give entirely black scanlines.\n\n\n\nNegative values are the same as positive values for non-interlaced video, but for interlaced video will cause the scanlines to be overlaid over the previous field's lines(only if the video.deinterlacer setting is set to \"weave\", the default)."
+  },
+  {
+    "Command": "pce.special",
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\n<b>none</b> - None/Disabled\n\n\n<b>hq2x</b> - hq2x\n\n\n<b>hq3x</b> - hq3x\n\n\n<b>hq4x</b> - hq4x\n\n\n<b>scale2x</b> - scale2x\n\n\n<b>scale3x</b> - scale3x\n\n\n<b>scale4x</b> - scale4x\n\n\n<b>2xsai</b> - 2xSaI\n\n\n<b>super2xsai</b> - Super 2xSaI\n\n\n<b>supereagle</b> - Super Eagle\n\n\n<b>nn2x</b> - Nearest-neighbor 2x\n\n\n<b>nn3x</b> - Nearest-neighbor 3x\n\n\n<b>nn4x</b> - Nearest-neighbor 4x\n\n\n<b>nny2x</b> - Nearest-neighbor 2x, y axis only\n\n\n<b>nny3x</b> - Nearest-neighbor 3x, y axis only\n\n\n<b>nny4x</b> - Nearest-neighbor 4x, y axis only\n"
+  },
+  {
+    "Command": "pce.stretch",
+    "Description": "Stretch to fill screen.\n\n<b>0</b> - Disabled\n\n\n<b>full</b> - Full\nFull-screen stretch, disregarding aspect ratio.\n\n<b>aspect</b> - Aspect Preserve\nFull-screen stretch as far as the aspect ratio(in this sense, the equivalent xscalefs == yscalefs) can be maintained.\n\n<b>aspect_int</b> - Aspect Preserve + Integer Scale\nFull-screen stretch, same as \"aspect\" except that the equivalent xscalefs and yscalefs are rounded down to the nearest integer.\n\n<b>aspect_mult2</b> - Aspect Preserve + Integer Multiple-of-2 Scale\nFull-screen stretch, same as \"aspect_int\", but rounds down to the nearest multiple of 2."
+  },
+  {
+    "Command": "pce.tblur",
+    "Description": "Enable video temporal blur(50/50 previous/current frame by default)."
+  },
+  {
+    "Command": "pce.tblur.accum",
+    "Description": "Accumulate color data rather than discarding it."
+  },
+  {
+    "Command": "pce.tblur.accum.amount",
+    "Description": "Blur amount in accumulation mode, specified in percentage of accumulation buffer to mix with the current frame."
+  },
+  {
+    "Command": "pce.videoip",
+    "Description": "Enable (bi)linear interpolation.\n\n<b>0</b> - Disabled\n\n\n<b>1</b> - Bilinear\n\n\n<b>x</b> - Linear (X)\nInterpolation only on the X axis.\n\n<b>y</b> - Linear (Y)\nInterpolation only on the Y axis."
+  },
+  {
+    "Command": "pce.xres",
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+  },
+  {
+    "Command": "pce.xscale",
+    "Description": "Scaling factor for the X axis in windowed mode."
+  },
+  {
+    "Command": "pce.xscalefs",
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "pce.yres",
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+  },
+  {
+    "Command": "pce.yscale",
+    "Description": "Scaling factor for the Y axis in windowed mode."
+  },
+  {
+    "Command": "pce.yscalefs",
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "gg.enable",
+    "Description": "Enable (automatic) usage of this module."
+  },
+  {
+    "Command": "gg.forcemono",
+    "Description": "Force monophonic sound output."
+  },
+  {
+    "Command": "gg.pixshader",
+    "Description": "Enable specified OpenGL pixel shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support pixel shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. Bilinear interpolation is disabled with pixel shaders, and any interpolation, if present, will be noted in the description of each pixel shader.>\n\n<b>none</b> - None/Disabled\n\n\n<b>autoip</b> - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\n<b>autoipsharper</b> - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\n<b>scale2x</b> - Scale2x\n\n\n<b>sabr</b> - SABR v3.0\nGPU-intensive.\n\n<b>ipsharper</b> - Sharper bilinear interpolation.\n\n\n<b>ipxnoty</b> - Linear interpolation on X axis only.\n\n\n<b>ipynotx</b> - Linear interpolation on Y axis only.\n\n\n<b>ipxnotysharper</b> - Sharper version of \"ipxnoty\".\n\n\n<b>ipynotxsharper</b> - Sharper version of \"ipynotx\".\n"
+  },
+  {
+    "Command": "gg.scanlines",
+    "Description": "Enable scanlines with specified opacity.\n\nOpacity is specified in %; IE a value of \"100\" will give entirely black scanlines.\n\n\n\nNegative values are the same as positive values for non-interlaced video, but for interlaced video will cause the scanlines to be overlaid over the previous field's lines(only if the video.deinterlacer setting is set to \"weave\", the default)."
+  },
+  {
+    "Command": "gg.special",
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\n<b>none</b> - None/Disabled\n\n\n<b>hq2x</b> - hq2x\n\n\n<b>hq3x</b> - hq3x\n\n\n<b>hq4x</b> - hq4x\n\n\n<b>scale2x</b> - scale2x\n\n\n<b>scale3x</b> - scale3x\n\n\n<b>scale4x</b> - scale4x\n\n\n<b>2xsai</b> - 2xSaI\n\n\n<b>super2xsai</b> - Super 2xSaI\n\n\n<b>supereagle</b> - Super Eagle\n\n\n<b>nn2x</b> - Nearest-neighbor 2x\n\n\n<b>nn3x</b> - Nearest-neighbor 3x\n\n\n<b>nn4x</b> - Nearest-neighbor 4x\n\n\n<b>nny2x</b> - Nearest-neighbor 2x, y axis only\n\n\n<b>nny3x</b> - Nearest-neighbor 3x, y axis only\n\n\n<b>nny4x</b> - Nearest-neighbor 4x, y axis only\n"
+  },
+  {
+    "Command": "gg.stretch",
+    "Description": "Stretch to fill screen.\n\n<b>0</b> - Disabled\n\n\n<b>full</b> - Full\nFull-screen stretch, disregarding aspect ratio.\n\n<b>aspect</b> - Aspect Preserve\nFull-screen stretch as far as the aspect ratio(in this sense, the equivalent xscalefs == yscalefs) can be maintained.\n\n<b>aspect_int</b> - Aspect Preserve + Integer Scale\nFull-screen stretch, same as \"aspect\" except that the equivalent xscalefs and yscalefs are rounded down to the nearest integer.\n\n<b>aspect_mult2</b> - Aspect Preserve + Integer Multiple-of-2 Scale\nFull-screen stretch, same as \"aspect_int\", but rounds down to the nearest multiple of 2."
+  },
+  {
+    "Command": "gg.tblur",
+    "Description": "Enable video temporal blur(50/50 previous/current frame by default)."
+  },
+  {
+    "Command": "gg.tblur.accum",
+    "Description": "Accumulate color data rather than discarding it."
+  },
+  {
+    "Command": "gg.tblur.accum.amount",
+    "Description": "Blur amount in accumulation mode, specified in percentage of accumulation buffer to mix with the current frame."
+  },
+  {
+    "Command": "gg.videoip",
+    "Description": "Enable (bi)linear interpolation.\n\n<b>0</b> - Disabled\n\n\n<b>1</b> - Bilinear\n\n\n<b>x</b> - Linear (X)\nInterpolation only on the X axis.\n\n<b>y</b> - Linear (Y)\nInterpolation only on the Y axis."
+  },
+  {
+    "Command": "gg.xres",
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+  },
+  {
+    "Command": "gg.xscale",
+    "Description": "Scaling factor for the X axis in windowed mode."
+  },
+  {
+    "Command": "gg.xscalefs",
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "gg.yres",
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+  },
+  {
+    "Command": "gg.yscale",
+    "Description": "Scaling factor for the Y axis in windowed mode."
+  },
+  {
+    "Command": "gg.yscalefs",
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "md.cdbios",
+    "Description": "Path to the CD BIOS\n\nSegaCD/MegaCD emulation is currently nonfunctional."
+  },
+  {
+    "Command": "md.correct_aspect",
+    "Description": "Correct the aspect ratio."
+  },
+  {
+    "Command": "md.input.auto",
+    "Description": "Automatically select appropriate input devices.\n\nAutomatically select appropriate input devices, based on an internal database.  Currently, only multitap device usage data is contained in the database."
+  },
+  {
+    "Command": "md.input.mouse_sensitivity",
+    "Description": "Emulated mouse sensitivity."
+  },
+  {
+    "Command": "md.input.multitap",
+    "Description": "Enable multitap(s).\n\n<b>none</b> - No multitap(s).\n\n\n<b>tp1</b> - Team Player/Sega Tap on MD/Genesis port 1.\n\n\n<b>tp2</b> - Team Player/Sega Tap on MD/Genesis port 2.\n\n\n<b>tpd</b> - Team Player/Sega Tap on both MD/Genesis ports.\n\n\n<b>4way</b> - EA 4-Way Play\n"
+  },
+  {
+    "Command": "md.input.port1",
+    "Description": "Input device for Virtual Port 1\n\n<b>none</b> - none\n\n\n<b>gamepad2</b> - 2-Button Gamepad\n\n\n<b>gamepad</b> - 3-Button Gamepad\n\n\n<b>gamepad6</b> - 6-Button Gamepad\n\n\n<b>megamouse</b> - Sega Mega Mouse\n"
+  },
+  {
+    "Command": "md.input.port2",
+    "Description": "Input device for Virtual Port 2\n\n<b>none</b> - none\n\n\n<b>gamepad2</b> - 2-Button Gamepad\n\n\n<b>gamepad</b> - 3-Button Gamepad\n\n\n<b>gamepad6</b> - 6-Button Gamepad\n\n\n<b>megamouse</b> - Sega Mega Mouse\n"
+  },
+  {
+    "Command": "md.input.port3",
+    "Description": "Input device for Virtual Port 3\n\n<b>none</b> - none\n\n\n<b>gamepad2</b> - 2-Button Gamepad\n\n\n<b>gamepad</b> - 3-Button Gamepad\n\n\n<b>gamepad6</b> - 6-Button Gamepad\n\n\n<b>megamouse</b> - Sega Mega Mouse\n"
+  },
+  {
+    "Command": "md.input.port4",
+    "Description": "Input device for Virtual Port 4\n\n<b>none</b> - none\n\n\n<b>gamepad2</b> - 2-Button Gamepad\n\n\n<b>gamepad</b> - 3-Button Gamepad\n\n\n<b>gamepad6</b> - 6-Button Gamepad\n\n\n<b>megamouse</b> - Sega Mega Mouse\n"
+  },
+  {
+    "Command": "md.input.port5",
+    "Description": "Input device for Virtual Port 5\n\n<b>none</b> - none\n\n\n<b>gamepad2</b> - 2-Button Gamepad\n\n\n<b>gamepad</b> - 3-Button Gamepad\n\n\n<b>gamepad6</b> - 6-Button Gamepad\n\n\n<b>megamouse</b> - Sega Mega Mouse\n"
+  },
+  {
+    "Command": "md.input.port6",
+    "Description": "Input device for Virtual Port 6\n\n<b>none</b> - none\n\n\n<b>gamepad2</b> - 2-Button Gamepad\n\n\n<b>gamepad</b> - 3-Button Gamepad\n\n\n<b>gamepad6</b> - 6-Button Gamepad\n\n\n<b>megamouse</b> - Sega Mega Mouse\n"
+  },
+  {
+    "Command": "md.input.port7",
+    "Description": "Input device for Virtual Port 7\n\n<b>none</b> - none\n\n\n<b>gamepad2</b> - 2-Button Gamepad\n\n\n<b>gamepad</b> - 3-Button Gamepad\n\n\n<b>gamepad6</b> - 6-Button Gamepad\n\n\n<b>megamouse</b> - Sega Mega Mouse\n"
+  },
+  {
+    "Command": "md.input.port8",
+    "Description": "Input device for Virtual Port 8\n\n<b>none</b> - none\n\n\n<b>gamepad2</b> - 2-Button Gamepad\n\n\n<b>gamepad</b> - 3-Button Gamepad\n\n\n<b>gamepad6</b> - 6-Button Gamepad\n\n\n<b>megamouse</b> - Sega Mega Mouse\n"
+  },
+  {
+    "Command": "md.region",
+    "Description": "Emulate the specified region's Genesis/MegaDrive\n\n<b>game</b> - Match game's header.\nEmulate the region that the game indicates it expects to run in via data in the header(or in an internal database for a few games that may have bad header data).\n\n<b>overseas_ntsc</b> - Overseas(non-Japan), NTSC\nRegion used in North America.\n\n<b>overseas_pal</b> - Overseas(non-Japan), PAL\nRegion used in Europe.\n\n<b>domestic_ntsc</b> - Domestic(Japan), NTSC\nRegion used in Japan.\n\n<b>domestic_pal</b> - Domestic(Japan), PAL\nProbably an invalid region, but available for testing purposes anyway."
+  },
+  {
+    "Command": "md.reported_region",
+    "Description": "Region reported to the game.\n\n<b>same</b> - Match the region emulated.\n\n\n<b>game</b> - Match game's header.\nThis option, in conjunction with the \"md.region\" setting, can be used to run all games at NTSC speeds, or all games at PAL speeds.\n\n<b>overseas_ntsc</b> - Overseas(non-Japan), NTSC\nRegion used in North America.\n\n<b>overseas_pal</b> - Overseas(non-Japan), PAL\nRegion used in Europe.\n\n<b>domestic_ntsc</b> - Domestic(Japan), NTSC\nRegion used in Japan.\n\n<b>domestic_pal</b> - Domestic(Japan), PAL\nProbably an invalid region, but available for testing purposes anyway."
+  },
+  {
+    "Command": "md.debugger.disfontsize",
+    "Description": "Disassembly font size.\n\nNote: Setting the font size to larger than the default may cause text overlap in the debugger.>\n\n<b>5x7</b> - 5x7\n\n\n<b>6x9</b> - 6x9\n\n\n<b>6x12</b> - 6x12\n\n\n<b>6x13</b> - 6x13.  CJK support.\n\n\n<b>9x18</b> - 9x18;  CJK support.\n"
+  },
+  {
+    "Command": "md.debugger.memcharenc",
+    "Description": "Character encoding for the debugger's memory editor."
+  },
+  {
+    "Command": "md.enable",
+    "Description": "Enable (automatic) usage of this module."
+  },
+  {
+    "Command": "md.forcemono",
+    "Description": "Force monophonic sound output."
+  },
+  {
+    "Command": "md.pixshader",
+    "Description": "Enable specified OpenGL pixel shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support pixel shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. Bilinear interpolation is disabled with pixel shaders, and any interpolation, if present, will be noted in the description of each pixel shader.>\n\n<b>none</b> - None/Disabled\n\n\n<b>autoip</b> - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\n<b>autoipsharper</b> - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\n<b>scale2x</b> - Scale2x\n\n\n<b>sabr</b> - SABR v3.0\nGPU-intensive.\n\n<b>ipsharper</b> - Sharper bilinear interpolation.\n\n\n<b>ipxnoty</b> - Linear interpolation on X axis only.\n\n\n<b>ipynotx</b> - Linear interpolation on Y axis only.\n\n\n<b>ipxnotysharper</b> - Sharper version of \"ipxnoty\".\n\n\n<b>ipynotxsharper</b> - Sharper version of \"ipynotx\".\n"
+  },
+  {
+    "Command": "md.scanlines",
+    "Description": "Enable scanlines with specified opacity.\n\nOpacity is specified in %; IE a value of \"100\" will give entirely black scanlines.\n\n\n\nNegative values are the same as positive values for non-interlaced video, but for interlaced video will cause the scanlines to be overlaid over the previous field's lines(only if the video.deinterlacer setting is set to \"weave\", the default)."
+  },
+  {
+    "Command": "md.special",
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\n<b>none</b> - None/Disabled\n\n\n<b>hq2x</b> - hq2x\n\n\n<b>hq3x</b> - hq3x\n\n\n<b>hq4x</b> - hq4x\n\n\n<b>scale2x</b> - scale2x\n\n\n<b>scale3x</b> - scale3x\n\n\n<b>scale4x</b> - scale4x\n\n\n<b>2xsai</b> - 2xSaI\n\n\n<b>super2xsai</b> - Super 2xSaI\n\n\n<b>supereagle</b> - Super Eagle\n\n\n<b>nn2x</b> - Nearest-neighbor 2x\n\n\n<b>nn3x</b> - Nearest-neighbor 3x\n\n\n<b>nn4x</b> - Nearest-neighbor 4x\n\n\n<b>nny2x</b> - Nearest-neighbor 2x, y axis only\n\n\n<b>nny3x</b> - Nearest-neighbor 3x, y axis only\n\n\n<b>nny4x</b> - Nearest-neighbor 4x, y axis only\n"
+  },
+  {
+    "Command": "md.stretch",
+    "Description": "Stretch to fill screen.\n\n<b>0</b> - Disabled\n\n\n<b>full</b> - Full\nFull-screen stretch, disregarding aspect ratio.\n\n<b>aspect</b> - Aspect Preserve\nFull-screen stretch as far as the aspect ratio(in this sense, the equivalent xscalefs == yscalefs) can be maintained.\n\n<b>aspect_int</b> - Aspect Preserve + Integer Scale\nFull-screen stretch, same as \"aspect\" except that the equivalent xscalefs and yscalefs are rounded down to the nearest integer.\n\n<b>aspect_mult2</b> - Aspect Preserve + Integer Multiple-of-2 Scale\nFull-screen stretch, same as \"aspect_int\", but rounds down to the nearest multiple of 2."
+  },
+  {
+    "Command": "md.tblur",
+    "Description": "Enable video temporal blur(50/50 previous/current frame by default)."
+  },
+  {
+    "Command": "md.tblur.accum",
+    "Description": "Accumulate color data rather than discarding it."
+  },
+  {
+    "Command": "md.tblur.accum.amount",
+    "Description": "Blur amount in accumulation mode, specified in percentage of accumulation buffer to mix with the current frame."
+  },
+  {
+    "Command": "md.videoip",
+    "Description": "Enable (bi)linear interpolation.\n\n<b>0</b> - Disabled\n\n\n<b>1</b> - Bilinear\n\n\n<b>x</b> - Linear (X)\nInterpolation only on the X axis.\n\n<b>y</b> - Linear (Y)\nInterpolation only on the Y axis."
+  },
+  {
+    "Command": "md.xres",
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+  },
+  {
+    "Command": "md.xscale",
+    "Description": "Scaling factor for the X axis in windowed mode."
+  },
+  {
+    "Command": "md.xscalefs",
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "md.yres",
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+  },
+  {
+    "Command": "md.yscale",
+    "Description": "Scaling factor for the Y axis in windowed mode."
+  },
+  {
+    "Command": "md.yscalefs",
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "sms.fm",
+    "Description": "Enable FM sound emulation when playing domestic/Japan-region games."
+  },
+  {
+    "Command": "sms.territory",
+    "Description": "System territory/region.\n\n<b>domestic</b> - Domestic(Japanese)\n\n\n<b>export</b> - Export(World)\n"
+  },
+  {
+    "Command": "sms.enable",
+    "Description": "Enable (automatic) usage of this module."
+  },
+  {
+    "Command": "sms.forcemono",
+    "Description": "Force monophonic sound output."
+  },
+  {
+    "Command": "sms.pixshader",
+    "Description": "Enable specified OpenGL pixel shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support pixel shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. Bilinear interpolation is disabled with pixel shaders, and any interpolation, if present, will be noted in the description of each pixel shader.>\n\n<b>none</b> - None/Disabled\n\n\n<b>autoip</b> - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\n<b>autoipsharper</b> - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\n<b>scale2x</b> - Scale2x\n\n\n<b>sabr</b> - SABR v3.0\nGPU-intensive.\n\n<b>ipsharper</b> - Sharper bilinear interpolation.\n\n\n<b>ipxnoty</b> - Linear interpolation on X axis only.\n\n\n<b>ipynotx</b> - Linear interpolation on Y axis only.\n\n\n<b>ipxnotysharper</b> - Sharper version of \"ipxnoty\".\n\n\n<b>ipynotxsharper</b> - Sharper version of \"ipynotx\".\n"
+  },
+  {
+    "Command": "sms.scanlines",
+    "Description": "Enable scanlines with specified opacity.\n\nOpacity is specified in %; IE a value of \"100\" will give entirely black scanlines.\n\n\n\nNegative values are the same as positive values for non-interlaced video, but for interlaced video will cause the scanlines to be overlaid over the previous field's lines(only if the video.deinterlacer setting is set to \"weave\", the default)."
+  },
+  {
+    "Command": "sms.special",
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\n<b>none</b> - None/Disabled\n\n\n<b>hq2x</b> - hq2x\n\n\n<b>hq3x</b> - hq3x\n\n\n<b>hq4x</b> - hq4x\n\n\n<b>scale2x</b> - scale2x\n\n\n<b>scale3x</b> - scale3x\n\n\n<b>scale4x</b> - scale4x\n\n\n<b>2xsai</b> - 2xSaI\n\n\n<b>super2xsai</b> - Super 2xSaI\n\n\n<b>supereagle</b> - Super Eagle\n\n\n<b>nn2x</b> - Nearest-neighbor 2x\n\n\n<b>nn3x</b> - Nearest-neighbor 3x\n\n\n<b>nn4x</b> - Nearest-neighbor 4x\n\n\n<b>nny2x</b> - Nearest-neighbor 2x, y axis only\n\n\n<b>nny3x</b> - Nearest-neighbor 3x, y axis only\n\n\n<b>nny4x</b> - Nearest-neighbor 4x, y axis only\n"
+  },
+  {
+    "Command": "sms.stretch",
+    "Description": "Stretch to fill screen.\n\n<b>0</b> - Disabled\n\n\n<b>full</b> - Full\nFull-screen stretch, disregarding aspect ratio.\n\n<b>aspect</b> - Aspect Preserve\nFull-screen stretch as far as the aspect ratio(in this sense, the equivalent xscalefs == yscalefs) can be maintained.\n\n<b>aspect_int</b> - Aspect Preserve + Integer Scale\nFull-screen stretch, same as \"aspect\" except that the equivalent xscalefs and yscalefs are rounded down to the nearest integer.\n\n<b>aspect_mult2</b> - Aspect Preserve + Integer Multiple-of-2 Scale\nFull-screen stretch, same as \"aspect_int\", but rounds down to the nearest multiple of 2."
+  },
+  {
+    "Command": "sms.tblur",
+    "Description": "Enable video temporal blur(50/50 previous/current frame by default)."
+  },
+  {
+    "Command": "sms.tblur.accum",
+    "Description": "Accumulate color data rather than discarding it."
+  },
+  {
+    "Command": "sms.tblur.accum.amount",
+    "Description": "Blur amount in accumulation mode, specified in percentage of accumulation buffer to mix with the current frame."
+  },
+  {
+    "Command": "sms.videoip",
+    "Description": "Enable (bi)linear interpolation.\n\n<b>0</b> - Disabled\n\n\n<b>1</b> - Bilinear\n\n\n<b>x</b> - Linear (X)\nInterpolation only on the X axis.\n\n<b>y</b> - Linear (Y)\nInterpolation only on the Y axis."
+  },
+  {
+    "Command": "sms.xres",
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+  },
+  {
+    "Command": "sms.xscale",
+    "Description": "Scaling factor for the X axis in windowed mode."
+  },
+  {
+    "Command": "sms.xscalefs",
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "sms.yres",
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+  },
+  {
+    "Command": "sms.yscale",
+    "Description": "Scaling factor for the Y axis in windowed mode."
+  },
+  {
+    "Command": "sms.yscalefs",
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "ss.bios_jp",
+    "Description": "Path to the Japan ROM BIOS"
+  },
+  {
+    "Command": "ss.bios_na_eu",
+    "Description": "Path to the North America and Europe ROM BIOS"
+  },
+  {
+    "Command": "ss.bios_sanity",
+    "Description": "Enable BIOS ROM image sanity checks."
+  },
+  {
+    "Command": "ss.cart",
+    "Description": "Expansion cart.\n\n<b>auto</b> - Automatic\n\n\n<b>none</b> - None\n\n\n<b>backup</b> - Backup Memory(512KiB)\n\n\n<b>extram1</b> - 1MiB Extended RAM\n\n\n<b>extram4</b> - 4MiB Extended RAM\n"
+  },
+  {
+    "Command": "ss.cart.kof95_path",
+    "Description": "Path to KoF 95 ROM image."
+  },
+  {
+    "Command": "ss.cart.ultraman_path",
+    "Description": "Path to Ultraman ROM image."
+  },
+  {
+    "Command": "ss.cd_sanity",
+    "Description": "Enable CD (image) sanity checks."
+  },
+  {
+    "Command": "ss.input.mouse_sensitivity",
+    "Description": "Emulated mouse sensitivity."
+  },
+  {
+    "Command": "ss.input.port1",
+    "Description": "Input device for Virtual Port 1\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nStandard Saturn digital gamepad.\n\n<b>3dpad</b> - 3D Control Pad\n3D Control Pad\n\n<b>mouse</b> - Mouse\nMouse"
+  },
+  {
+    "Command": "ss.input.port10",
+    "Description": "Input device for Virtual Port 10\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nStandard Saturn digital gamepad.\n\n<b>3dpad</b> - 3D Control Pad\n3D Control Pad\n\n<b>mouse</b> - Mouse\nMouse"
+  },
+  {
+    "Command": "ss.input.port11",
+    "Description": "Input device for Virtual Port 11\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nStandard Saturn digital gamepad.\n\n<b>3dpad</b> - 3D Control Pad\n3D Control Pad\n\n<b>mouse</b> - Mouse\nMouse"
+  },
+  {
+    "Command": "ss.input.port12",
+    "Description": "Input device for Virtual Port 12\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nStandard Saturn digital gamepad.\n\n<b>3dpad</b> - 3D Control Pad\n3D Control Pad\n\n<b>mouse</b> - Mouse\nMouse"
+  },
+  {
+    "Command": "ss.input.port2",
+    "Description": "Input device for Virtual Port 2\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nStandard Saturn digital gamepad.\n\n<b>3dpad</b> - 3D Control Pad\n3D Control Pad\n\n<b>mouse</b> - Mouse\nMouse"
+  },
+  {
+    "Command": "ss.input.port3",
+    "Description": "Input device for Virtual Port 3\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nStandard Saturn digital gamepad.\n\n<b>3dpad</b> - 3D Control Pad\n3D Control Pad\n\n<b>mouse</b> - Mouse\nMouse"
+  },
+  {
+    "Command": "ss.input.port4",
+    "Description": "Input device for Virtual Port 4\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nStandard Saturn digital gamepad.\n\n<b>3dpad</b> - 3D Control Pad\n3D Control Pad\n\n<b>mouse</b> - Mouse\nMouse"
+  },
+  {
+    "Command": "ss.input.port5",
+    "Description": "Input device for Virtual Port 5\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nStandard Saturn digital gamepad.\n\n<b>3dpad</b> - 3D Control Pad\n3D Control Pad\n\n<b>mouse</b> - Mouse\nMouse"
+  },
+  {
+    "Command": "ss.input.port6",
+    "Description": "Input device for Virtual Port 6\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nStandard Saturn digital gamepad.\n\n<b>3dpad</b> - 3D Control Pad\n3D Control Pad\n\n<b>mouse</b> - Mouse\nMouse"
+  },
+  {
+    "Command": "ss.input.port7",
+    "Description": "Input device for Virtual Port 7\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nStandard Saturn digital gamepad.\n\n<b>3dpad</b> - 3D Control Pad\n3D Control Pad\n\n<b>mouse</b> - Mouse\nMouse"
+  },
+  {
+    "Command": "ss.input.port8",
+    "Description": "Input device for Virtual Port 8\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nStandard Saturn digital gamepad.\n\n<b>3dpad</b> - 3D Control Pad\n3D Control Pad\n\n<b>mouse</b> - Mouse\nMouse"
+  },
+  {
+    "Command": "ss.input.port9",
+    "Description": "Input device for Virtual Port 9\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nStandard Saturn digital gamepad.\n\n<b>3dpad</b> - 3D Control Pad\n3D Control Pad\n\n<b>mouse</b> - Mouse\nMouse"
+  },
+  {
+    "Command": "ss.midsync",
+    "Description": "Enable mid-frame synchronization.\n\nMid-frame synchronization can reduce input latency, but it will increase CPU requirements."
+  },
+  {
+    "Command": "ss.region_autodetect",
+    "Description": "Attempt to auto-detect region of game."
+  },
+  {
+    "Command": "ss.region_default",
+    "Description": "Default region to use.\n\nUsed if region autodetection fails or is disabled.>\n\n<b>jp</b> - Japan\n\n\n<b>na</b> - North America\n\n\n<b>eu</b> - Europe\n\n\n<b>kr</b> - South Korea\n\n\n<b>tw</b> - Taiwan\n\n\n<b>as</b> - China\n\n\n<b>br</b> - Brazil\n\n\n<b>la</b> - Latin America\n"
+  },
+  {
+    "Command": "ss.scsp.resamp_quality",
+    "Description": "SCSP output resampler quality.\n\n0 is lowest quality and CPU usage, 10 is highest quality and CPU usage.  The resampler that this setting refers to is used for converting from 44.1KHz to the sampling rate of the host audio device Mednafen is using.  Changing Mednafen's output rate, via the \"sound.rate\" setting, to \"44100\" may bypass the resampler, which can decrease CPU usage by Mednafen, and can increase or decrease audio quality, depending on various operating system and hardware factors."
+  },
+  {
+    "Command": "ss.slend",
+    "Description": "Last displayed scanline in NTSC mode."
+  },
+  {
+    "Command": "ss.slendp",
+    "Description": "Last displayed scanline in PAL mode."
+  },
+  {
+    "Command": "ss.slstart",
+    "Description": "First displayed scanline in NTSC mode."
+  },
+  {
+    "Command": "ss.slstartp",
+    "Description": "First displayed scanline in PAL mode."
+  },
+  {
+    "Command": "ss.smpc.autortc",
+    "Description": "Automatically set RTC on game load.\n\nAutomatically set the SMPC's emulated Real-Time Clock to the host system's current time and date upon game load."
+  },
+  {
+    "Command": "ss.smpc.autortc.lang",
+    "Description": "BIOS language.\n\nAlso affects language used in some games(e.g. the European release of \"Panzer Dragoon\").>\n\n<b>english</b> - English\n\n\n<b>german</b> - Deutsch\n\n\n<b>french</b> - FranÃ§ais\n\n\n<b>spanish</b> - EspaÃ±ol\n\n\n<b>italian</b> - Italiano\n\n\n<b>japanese</b> - æ—¥æœ¬èªž\n"
+  },
+  {
+    "Command": "ss.debugger.disfontsize",
+    "Description": "Disassembly font size.\n\nNote: Setting the font size to larger than the default may cause text overlap in the debugger.>\n\n<b>5x7</b> - 5x7\n\n\n<b>6x9</b> - 6x9\n\n\n<b>6x12</b> - 6x12\n\n\n<b>6x13</b> - 6x13.  CJK support.\n\n\n<b>9x18</b> - 9x18;  CJK support.\n"
+  },
+  {
+    "Command": "ss.debugger.memcharenc",
+    "Description": "Character encoding for the debugger's memory editor."
+  },
+  {
+    "Command": "ss.enable",
+    "Description": "Enable (automatic) usage of this module."
+  },
+  {
+    "Command": "ss.forcemono",
+    "Description": "Force monophonic sound output."
+  },
+  {
+    "Command": "ss.pixshader",
+    "Description": "Enable specified OpenGL pixel shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support pixel shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. Bilinear interpolation is disabled with pixel shaders, and any interpolation, if present, will be noted in the description of each pixel shader.>\n\n<b>none</b> - None/Disabled\n\n\n<b>autoip</b> - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\n<b>autoipsharper</b> - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\n<b>scale2x</b> - Scale2x\n\n\n<b>sabr</b> - SABR v3.0\nGPU-intensive.\n\n<b>ipsharper</b> - Sharper bilinear interpolation.\n\n\n<b>ipxnoty</b> - Linear interpolation on X axis only.\n\n\n<b>ipynotx</b> - Linear interpolation on Y axis only.\n\n\n<b>ipxnotysharper</b> - Sharper version of \"ipxnoty\".\n\n\n<b>ipynotxsharper</b> - Sharper version of \"ipynotx\".\n"
+  },
+  {
+    "Command": "ss.scanlines",
+    "Description": "Enable scanlines with specified opacity.\n\nOpacity is specified in %; IE a value of \"100\" will give entirely black scanlines.\n\n\n\nNegative values are the same as positive values for non-interlaced video, but for interlaced video will cause the scanlines to be overlaid over the previous field's lines(only if the video.deinterlacer setting is set to \"weave\", the default)."
+  },
+  {
+    "Command": "ss.special",
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\n<b>none</b> - None/Disabled\n\n\n<b>hq2x</b> - hq2x\n\n\n<b>hq3x</b> - hq3x\n\n\n<b>hq4x</b> - hq4x\n\n\n<b>scale2x</b> - scale2x\n\n\n<b>scale3x</b> - scale3x\n\n\n<b>scale4x</b> - scale4x\n\n\n<b>2xsai</b> - 2xSaI\n\n\n<b>super2xsai</b> - Super 2xSaI\n\n\n<b>supereagle</b> - Super Eagle\n\n\n<b>nn2x</b> - Nearest-neighbor 2x\n\n\n<b>nn3x</b> - Nearest-neighbor 3x\n\n\n<b>nn4x</b> - Nearest-neighbor 4x\n\n\n<b>nny2x</b> - Nearest-neighbor 2x, y axis only\n\n\n<b>nny3x</b> - Nearest-neighbor 3x, y axis only\n\n\n<b>nny4x</b> - Nearest-neighbor 4x, y axis only\n"
+  },
+  {
+    "Command": "ss.stretch",
+    "Description": "Stretch to fill screen.\n\n<b>0</b> - Disabled\n\n\n<b>full</b> - Full\nFull-screen stretch, disregarding aspect ratio.\n\n<b>aspect</b> - Aspect Preserve\nFull-screen stretch as far as the aspect ratio(in this sense, the equivalent xscalefs == yscalefs) can be maintained.\n\n<b>aspect_int</b> - Aspect Preserve + Integer Scale\nFull-screen stretch, same as \"aspect\" except that the equivalent xscalefs and yscalefs are rounded down to the nearest integer.\n\n<b>aspect_mult2</b> - Aspect Preserve + Integer Multiple-of-2 Scale\nFull-screen stretch, same as \"aspect_int\", but rounds down to the nearest multiple of 2."
+  },
+  {
+    "Command": "ss.tblur",
+    "Description": "Enable video temporal blur(50/50 previous/current frame by default)."
+  },
+  {
+    "Command": "ss.tblur.accum",
+    "Description": "Accumulate color data rather than discarding it."
+  },
+  {
+    "Command": "ss.tblur.accum.amount",
+    "Description": "Blur amount in accumulation mode, specified in percentage of accumulation buffer to mix with the current frame."
+  },
+  {
+    "Command": "ss.videoip",
+    "Description": "Enable (bi)linear interpolation.\n\n<b>0</b> - Disabled\n\n\n<b>1</b> - Bilinear\n\n\n<b>x</b> - Linear (X)\nInterpolation only on the X axis.\n\n<b>y</b> - Linear (Y)\nInterpolation only on the Y axis."
+  },
+  {
+    "Command": "ss.xres",
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+  },
+  {
+    "Command": "ss.xscale",
+    "Description": "Scaling factor for the X axis in windowed mode."
+  },
+  {
+    "Command": "ss.xscalefs",
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "ss.yres",
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+  },
+  {
+    "Command": "ss.yscale",
+    "Description": "Scaling factor for the Y axis in windowed mode."
+  },
+  {
+    "Command": "ss.yscalefs",
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "psx.bios_eu",
+    "Description": "Path to the Europe SCPH-5502/v3.0E ROM BIOS\n\nSHA-256 1faaa18fa820a0225e488d9f086296b8e6c46df739666093987ff7d8fd352c09"
+  },
+  {
+    "Command": "psx.bios_jp",
+    "Description": "Path to the Japan SCPH-5500/v3.0J ROM BIOS\n\nSHA-256 9c0421858e217805f4abe18698afea8d5aa36ff0727eb8484944e00eb5e7eadb"
+  },
+  {
+    "Command": "psx.bios_na",
+    "Description": "Path to the North America SCPH-5501/v3.0A ROM BIOS\n\nSHA-256 11052b6499e466bbf0a709b1f9cb6834a9418e66680387912451e971cf8a1fef"
+  },
+  {
+    "Command": "psx.bios_sanity",
+    "Description": "Enable BIOS ROM image sanity checks."
+  },
+  {
+    "Command": "psx.cd_sanity",
+    "Description": "Enable CD (image) sanity checks.\n\nSanity checks are only performed on discs detected(via heuristics) to be PS1 discs.  The checks primarily consist of ensuring that Q subchannel data is as expected for a typical commercially-released PS1 disc."
+  },
+  {
+    "Command": "psx.dbg_level",
+    "Description": "Debug printf verbosity level."
+  },
+  {
+    "Command": "psx.h_overscan",
+    "Description": "Show horizontal overscan area."
+  },
+  {
+    "Command": "psx.input.analog_mode_ct",
+    "Description": "Enable analog mode combo-button alternate toggle.\n\nWhen enabled, instead of the configured Analog mode toggle button for the emulated DualShock, use a combination of buttons to toggle it instead.  When Select, Start, and all four shoulder buttons are held down for about 1 second, the mode will toggle."
+  },
+  {
+    "Command": "psx.input.mouse_sensitivity",
+    "Description": "Emulated mouse sensitivity."
+  },
+  {
+    "Command": "psx.input.port1",
+    "Description": "Input device for Virtual Port 1\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nPlayStation digital gamepad; SCPH-1080.\n\n<b>dualshock</b> - DualShock\nDualShock gamepad; SCPH-1200.  Emulation in Mednafen includes the analog mode toggle button.  Rumble is emulated, but currently only supported on Linux, and MS Windows via the XInput API and XInput-compatible gamepads/joysticks.  If you're having trouble getting rumble to work on Linux, see if Mednafen is printing out error messages during startup regarding /dev/input/event*, and resolve the issue(s) as necessary.\n\n<b>dualanalog</b> - Dual Analog\nDual Analog gamepad; SCPH-1180.  It is the predecessor/prototype to the more advanced DualShock.  Emulated in Mednafen as forced to analog mode, and without rumble.\n\n<b>analogjoy</b> - Analog Joystick\nFlight-game-oriented dual-joystick controller; SCPH-1110.   Emulated in Mednafen as forced to analog mode.\n\n<b>mouse</b> - Mouse\n\n\n<b>negcon</b> - neGcon\nNamco's unconventional twisty racing-game-oriented gamepad; NPC-101.\n\n<b>guncon</b> - GunCon\nNamco's light gun; NPC-103.\n\n<b>justifier</b> - Konami Justifier\nKonami's light gun; SLUH-00017.  Rumored to be wrought of the coagulated rage of all who tried to shoot The Dog.  If the game you want to play supports the \"GunCon\", you should use that instead. NOTE: Currently does not work properly when on any of ports 1B-1D and 2B-2D.\n\n<b>dancepad</b> - Dance Pad\nDingo Dingo Rodeo!"
+  },
+  {
+    "Command": "psx.input.port1.analogjoy.axis_scale",
+    "Description": "Analog axis scale coefficient for Analog Joystick on Virtual Port 1."
+  },
+  {
+    "Command": "psx.input.port1.dualanalog.axis_scale",
+    "Description": "Analog axis scale coefficient for Dual Analog on Virtual Port 1."
+  },
+  {
+    "Command": "psx.input.port1.dualshock.axis_scale",
+    "Description": "Analog axis scale coefficient for DualShock on Virtual Port 1."
+  },
+  {
+    "Command": "psx.input.port1.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 1.\n\nA value of 0x1000000 disables crosshair drawing."
+  },
+  {
+    "Command": "psx.input.port1.memcard",
+    "Description": "Emulate memory card on virtual port 1."
+  },
+  {
+    "Command": "psx.input.port2",
+    "Description": "Input device for Virtual Port 2\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nPlayStation digital gamepad; SCPH-1080.\n\n<b>dualshock</b> - DualShock\nDualShock gamepad; SCPH-1200.  Emulation in Mednafen includes the analog mode toggle button.  Rumble is emulated, but currently only supported on Linux, and MS Windows via the XInput API and XInput-compatible gamepads/joysticks.  If you're having trouble getting rumble to work on Linux, see if Mednafen is printing out error messages during startup regarding /dev/input/event*, and resolve the issue(s) as necessary.\n\n<b>dualanalog</b> - Dual Analog\nDual Analog gamepad; SCPH-1180.  It is the predecessor/prototype to the more advanced DualShock.  Emulated in Mednafen as forced to analog mode, and without rumble.\n\n<b>analogjoy</b> - Analog Joystick\nFlight-game-oriented dual-joystick controller; SCPH-1110.   Emulated in Mednafen as forced to analog mode.\n\n<b>mouse</b> - Mouse\n\n\n<b>negcon</b> - neGcon\nNamco's unconventional twisty racing-game-oriented gamepad; NPC-101.\n\n<b>guncon</b> - GunCon\nNamco's light gun; NPC-103.\n\n<b>justifier</b> - Konami Justifier\nKonami's light gun; SLUH-00017.  Rumored to be wrought of the coagulated rage of all who tried to shoot The Dog.  If the game you want to play supports the \"GunCon\", you should use that instead. NOTE: Currently does not work properly when on any of ports 1B-1D and 2B-2D.\n\n<b>dancepad</b> - Dance Pad\nDingo Dingo Rodeo!"
+  },
+  {
+    "Command": "psx.input.port2.analogjoy.axis_scale",
+    "Description": "Analog axis scale coefficient for Analog Joystick on Virtual Port 2."
+  },
+  {
+    "Command": "psx.input.port2.dualanalog.axis_scale",
+    "Description": "Analog axis scale coefficient for Dual Analog on Virtual Port 2."
+  },
+  {
+    "Command": "psx.input.port2.dualshock.axis_scale",
+    "Description": "Analog axis scale coefficient for DualShock on Virtual Port 2."
+  },
+  {
+    "Command": "psx.input.port2.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 2.\n\nA value of 0x1000000 disables crosshair drawing."
+  },
+  {
+    "Command": "psx.input.port2.memcard",
+    "Description": "Emulate memory card on virtual port 2."
+  },
+  {
+    "Command": "psx.input.port3",
+    "Description": "Input device for Virtual Port 3\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nPlayStation digital gamepad; SCPH-1080.\n\n<b>dualshock</b> - DualShock\nDualShock gamepad; SCPH-1200.  Emulation in Mednafen includes the analog mode toggle button.  Rumble is emulated, but currently only supported on Linux, and MS Windows via the XInput API and XInput-compatible gamepads/joysticks.  If you're having trouble getting rumble to work on Linux, see if Mednafen is printing out error messages during startup regarding /dev/input/event*, and resolve the issue(s) as necessary.\n\n<b>dualanalog</b> - Dual Analog\nDual Analog gamepad; SCPH-1180.  It is the predecessor/prototype to the more advanced DualShock.  Emulated in Mednafen as forced to analog mode, and without rumble.\n\n<b>analogjoy</b> - Analog Joystick\nFlight-game-oriented dual-joystick controller; SCPH-1110.   Emulated in Mednafen as forced to analog mode.\n\n<b>mouse</b> - Mouse\n\n\n<b>negcon</b> - neGcon\nNamco's unconventional twisty racing-game-oriented gamepad; NPC-101.\n\n<b>guncon</b> - GunCon\nNamco's light gun; NPC-103.\n\n<b>justifier</b> - Konami Justifier\nKonami's light gun; SLUH-00017.  Rumored to be wrought of the coagulated rage of all who tried to shoot The Dog.  If the game you want to play supports the \"GunCon\", you should use that instead. NOTE: Currently does not work properly when on any of ports 1B-1D and 2B-2D.\n\n<b>dancepad</b> - Dance Pad\nDingo Dingo Rodeo!"
+  },
+  {
+    "Command": "psx.input.port3.analogjoy.axis_scale",
+    "Description": "Analog axis scale coefficient for Analog Joystick on Virtual Port 3."
+  },
+  {
+    "Command": "psx.input.port3.dualanalog.axis_scale",
+    "Description": "Analog axis scale coefficient for Dual Analog on Virtual Port 3."
+  },
+  {
+    "Command": "psx.input.port3.dualshock.axis_scale",
+    "Description": "Analog axis scale coefficient for DualShock on Virtual Port 3."
+  },
+  {
+    "Command": "psx.input.port3.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 3.\n\nA value of 0x1000000 disables crosshair drawing."
+  },
+  {
+    "Command": "psx.input.port3.memcard",
+    "Description": "Emulate memory card on virtual port 3."
+  },
+  {
+    "Command": "psx.input.port4",
+    "Description": "Input device for Virtual Port 4\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nPlayStation digital gamepad; SCPH-1080.\n\n<b>dualshock</b> - DualShock\nDualShock gamepad; SCPH-1200.  Emulation in Mednafen includes the analog mode toggle button.  Rumble is emulated, but currently only supported on Linux, and MS Windows via the XInput API and XInput-compatible gamepads/joysticks.  If you're having trouble getting rumble to work on Linux, see if Mednafen is printing out error messages during startup regarding /dev/input/event*, and resolve the issue(s) as necessary.\n\n<b>dualanalog</b> - Dual Analog\nDual Analog gamepad; SCPH-1180.  It is the predecessor/prototype to the more advanced DualShock.  Emulated in Mednafen as forced to analog mode, and without rumble.\n\n<b>analogjoy</b> - Analog Joystick\nFlight-game-oriented dual-joystick controller; SCPH-1110.   Emulated in Mednafen as forced to analog mode.\n\n<b>mouse</b> - Mouse\n\n\n<b>negcon</b> - neGcon\nNamco's unconventional twisty racing-game-oriented gamepad; NPC-101.\n\n<b>guncon</b> - GunCon\nNamco's light gun; NPC-103.\n\n<b>justifier</b> - Konami Justifier\nKonami's light gun; SLUH-00017.  Rumored to be wrought of the coagulated rage of all who tried to shoot The Dog.  If the game you want to play supports the \"GunCon\", you should use that instead. NOTE: Currently does not work properly when on any of ports 1B-1D and 2B-2D.\n\n<b>dancepad</b> - Dance Pad\nDingo Dingo Rodeo!"
+  },
+  {
+    "Command": "psx.input.port4.analogjoy.axis_scale",
+    "Description": "Analog axis scale coefficient for Analog Joystick on Virtual Port 4."
+  },
+  {
+    "Command": "psx.input.port4.dualanalog.axis_scale",
+    "Description": "Analog axis scale coefficient for Dual Analog on Virtual Port 4."
+  },
+  {
+    "Command": "psx.input.port4.dualshock.axis_scale",
+    "Description": "Analog axis scale coefficient for DualShock on Virtual Port 4."
+  },
+  {
+    "Command": "psx.input.port4.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 4.\n\nA value of 0x1000000 disables crosshair drawing."
+  },
+  {
+    "Command": "psx.input.port4.memcard",
+    "Description": "Emulate memory card on virtual port 4."
+  },
+  {
+    "Command": "psx.input.port5",
+    "Description": "Input device for Virtual Port 5\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nPlayStation digital gamepad; SCPH-1080.\n\n<b>dualshock</b> - DualShock\nDualShock gamepad; SCPH-1200.  Emulation in Mednafen includes the analog mode toggle button.  Rumble is emulated, but currently only supported on Linux, and MS Windows via the XInput API and XInput-compatible gamepads/joysticks.  If you're having trouble getting rumble to work on Linux, see if Mednafen is printing out error messages during startup regarding /dev/input/event*, and resolve the issue(s) as necessary.\n\n<b>dualanalog</b> - Dual Analog\nDual Analog gamepad; SCPH-1180.  It is the predecessor/prototype to the more advanced DualShock.  Emulated in Mednafen as forced to analog mode, and without rumble.\n\n<b>analogjoy</b> - Analog Joystick\nFlight-game-oriented dual-joystick controller; SCPH-1110.   Emulated in Mednafen as forced to analog mode.\n\n<b>mouse</b> - Mouse\n\n\n<b>negcon</b> - neGcon\nNamco's unconventional twisty racing-game-oriented gamepad; NPC-101.\n\n<b>guncon</b> - GunCon\nNamco's light gun; NPC-103.\n\n<b>justifier</b> - Konami Justifier\nKonami's light gun; SLUH-00017.  Rumored to be wrought of the coagulated rage of all who tried to shoot The Dog.  If the game you want to play supports the \"GunCon\", you should use that instead. NOTE: Currently does not work properly when on any of ports 1B-1D and 2B-2D.\n\n<b>dancepad</b> - Dance Pad\nDingo Dingo Rodeo!"
+  },
+  {
+    "Command": "psx.input.port5.analogjoy.axis_scale",
+    "Description": "Analog axis scale coefficient for Analog Joystick on Virtual Port 5."
+  },
+  {
+    "Command": "psx.input.port5.dualanalog.axis_scale",
+    "Description": "Analog axis scale coefficient for Dual Analog on Virtual Port 5."
+  },
+  {
+    "Command": "psx.input.port5.dualshock.axis_scale",
+    "Description": "Analog axis scale coefficient for DualShock on Virtual Port 5."
+  },
+  {
+    "Command": "psx.input.port5.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 5.\n\nA value of 0x1000000 disables crosshair drawing."
+  },
+  {
+    "Command": "psx.input.port5.memcard",
+    "Description": "Emulate memory card on virtual port 5."
+  },
+  {
+    "Command": "psx.input.port6",
+    "Description": "Input device for Virtual Port 6\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nPlayStation digital gamepad; SCPH-1080.\n\n<b>dualshock</b> - DualShock\nDualShock gamepad; SCPH-1200.  Emulation in Mednafen includes the analog mode toggle button.  Rumble is emulated, but currently only supported on Linux, and MS Windows via the XInput API and XInput-compatible gamepads/joysticks.  If you're having trouble getting rumble to work on Linux, see if Mednafen is printing out error messages during startup regarding /dev/input/event*, and resolve the issue(s) as necessary.\n\n<b>dualanalog</b> - Dual Analog\nDual Analog gamepad; SCPH-1180.  It is the predecessor/prototype to the more advanced DualShock.  Emulated in Mednafen as forced to analog mode, and without rumble.\n\n<b>analogjoy</b> - Analog Joystick\nFlight-game-oriented dual-joystick controller; SCPH-1110.   Emulated in Mednafen as forced to analog mode.\n\n<b>mouse</b> - Mouse\n\n\n<b>negcon</b> - neGcon\nNamco's unconventional twisty racing-game-oriented gamepad; NPC-101.\n\n<b>guncon</b> - GunCon\nNamco's light gun; NPC-103.\n\n<b>justifier</b> - Konami Justifier\nKonami's light gun; SLUH-00017.  Rumored to be wrought of the coagulated rage of all who tried to shoot The Dog.  If the game you want to play supports the \"GunCon\", you should use that instead. NOTE: Currently does not work properly when on any of ports 1B-1D and 2B-2D.\n\n<b>dancepad</b> - Dance Pad\nDingo Dingo Rodeo!"
+  },
+  {
+    "Command": "psx.input.port6.analogjoy.axis_scale",
+    "Description": "Analog axis scale coefficient for Analog Joystick on Virtual Port 6."
+  },
+  {
+    "Command": "psx.input.port6.dualanalog.axis_scale",
+    "Description": "Analog axis scale coefficient for Dual Analog on Virtual Port 6."
+  },
+  {
+    "Command": "psx.input.port6.dualshock.axis_scale",
+    "Description": "Analog axis scale coefficient for DualShock on Virtual Port 6."
+  },
+  {
+    "Command": "psx.input.port6.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 6.\n\nA value of 0x1000000 disables crosshair drawing."
+  },
+  {
+    "Command": "psx.input.port6.memcard",
+    "Description": "Emulate memory card on virtual port 6."
+  },
+  {
+    "Command": "psx.input.port7",
+    "Description": "Input device for Virtual Port 7\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nPlayStation digital gamepad; SCPH-1080.\n\n<b>dualshock</b> - DualShock\nDualShock gamepad; SCPH-1200.  Emulation in Mednafen includes the analog mode toggle button.  Rumble is emulated, but currently only supported on Linux, and MS Windows via the XInput API and XInput-compatible gamepads/joysticks.  If you're having trouble getting rumble to work on Linux, see if Mednafen is printing out error messages during startup regarding /dev/input/event*, and resolve the issue(s) as necessary.\n\n<b>dualanalog</b> - Dual Analog\nDual Analog gamepad; SCPH-1180.  It is the predecessor/prototype to the more advanced DualShock.  Emulated in Mednafen as forced to analog mode, and without rumble.\n\n<b>analogjoy</b> - Analog Joystick\nFlight-game-oriented dual-joystick controller; SCPH-1110.   Emulated in Mednafen as forced to analog mode.\n\n<b>mouse</b> - Mouse\n\n\n<b>negcon</b> - neGcon\nNamco's unconventional twisty racing-game-oriented gamepad; NPC-101.\n\n<b>guncon</b> - GunCon\nNamco's light gun; NPC-103.\n\n<b>justifier</b> - Konami Justifier\nKonami's light gun; SLUH-00017.  Rumored to be wrought of the coagulated rage of all who tried to shoot The Dog.  If the game you want to play supports the \"GunCon\", you should use that instead. NOTE: Currently does not work properly when on any of ports 1B-1D and 2B-2D.\n\n<b>dancepad</b> - Dance Pad\nDingo Dingo Rodeo!"
+  },
+  {
+    "Command": "psx.input.port7.analogjoy.axis_scale",
+    "Description": "Analog axis scale coefficient for Analog Joystick on Virtual Port 7."
+  },
+  {
+    "Command": "psx.input.port7.dualanalog.axis_scale",
+    "Description": "Analog axis scale coefficient for Dual Analog on Virtual Port 7."
+  },
+  {
+    "Command": "psx.input.port7.dualshock.axis_scale",
+    "Description": "Analog axis scale coefficient for DualShock on Virtual Port 7."
+  },
+  {
+    "Command": "psx.input.port7.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 7.\n\nA value of 0x1000000 disables crosshair drawing."
+  },
+  {
+    "Command": "psx.input.port7.memcard",
+    "Description": "Emulate memory card on virtual port 7."
+  },
+  {
+    "Command": "psx.input.port8",
+    "Description": "Input device for Virtual Port 8\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Digital Gamepad\nPlayStation digital gamepad; SCPH-1080.\n\n<b>dualshock</b> - DualShock\nDualShock gamepad; SCPH-1200.  Emulation in Mednafen includes the analog mode toggle button.  Rumble is emulated, but currently only supported on Linux, and MS Windows via the XInput API and XInput-compatible gamepads/joysticks.  If you're having trouble getting rumble to work on Linux, see if Mednafen is printing out error messages during startup regarding /dev/input/event*, and resolve the issue(s) as necessary.\n\n<b>dualanalog</b> - Dual Analog\nDual Analog gamepad; SCPH-1180.  It is the predecessor/prototype to the more advanced DualShock.  Emulated in Mednafen as forced to analog mode, and without rumble.\n\n<b>analogjoy</b> - Analog Joystick\nFlight-game-oriented dual-joystick controller; SCPH-1110.   Emulated in Mednafen as forced to analog mode.\n\n<b>mouse</b> - Mouse\n\n\n<b>negcon</b> - neGcon\nNamco's unconventional twisty racing-game-oriented gamepad; NPC-101.\n\n<b>guncon</b> - GunCon\nNamco's light gun; NPC-103.\n\n<b>justifier</b> - Konami Justifier\nKonami's light gun; SLUH-00017.  Rumored to be wrought of the coagulated rage of all who tried to shoot The Dog.  If the game you want to play supports the \"GunCon\", you should use that instead. NOTE: Currently does not work properly when on any of ports 1B-1D and 2B-2D.\n\n<b>dancepad</b> - Dance Pad\nDingo Dingo Rodeo!"
+  },
+  {
+    "Command": "psx.input.port8.analogjoy.axis_scale",
+    "Description": "Analog axis scale coefficient for Analog Joystick on Virtual Port 8."
+  },
+  {
+    "Command": "psx.input.port8.dualanalog.axis_scale",
+    "Description": "Analog axis scale coefficient for Dual Analog on Virtual Port 8."
+  },
+  {
+    "Command": "psx.input.port8.dualshock.axis_scale",
+    "Description": "Analog axis scale coefficient for DualShock on Virtual Port 8."
+  },
+  {
+    "Command": "psx.input.port8.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 8.\n\nA value of 0x1000000 disables crosshair drawing."
+  },
+  {
+    "Command": "psx.input.port8.memcard",
+    "Description": "Emulate memory card on virtual port 8."
+  },
+  {
+    "Command": "psx.input.pport1.multitap",
+    "Description": "Enable multitap on PSX port 1.\n\nMakes 3 more virtual ports available.\n\n\n\nNOTE: Enabling multitap in games that don't fully support it may cause deleterious effects."
+  },
+  {
+    "Command": "psx.input.pport2.multitap",
+    "Description": "Enable multitap on PSX port 2.\n\nMakes 3 more virtual ports available.\n\n\n\nNOTE: Enabling multitap in games that don't fully support it may cause deleterious effects."
+  },
+  {
+    "Command": "psx.region_autodetect",
+    "Description": "Attempt to auto-detect region of game."
+  },
+  {
+    "Command": "psx.region_default",
+    "Description": "Default region to use.\n\nUsed if region autodetection fails or is disabled.>\n\n<b>jp</b> - Japan\n\n\n<b>na</b> - North America\n\n\n<b>eu</b> - Europe\n"
+  },
+  {
+    "Command": "psx.slend",
+    "Description": "Last displayed scanline in NTSC mode."
+  },
+  {
+    "Command": "psx.slendp",
+    "Description": "Last displayed scanline in PAL mode."
+  },
+  {
+    "Command": "psx.slstart",
+    "Description": "First displayed scanline in NTSC mode."
+  },
+  {
+    "Command": "psx.slstartp",
+    "Description": "First displayed scanline in PAL mode."
+  },
+  {
+    "Command": "psx.spu.resamp_quality",
+    "Description": "SPU output resampler quality.\n\n0 is lowest quality and CPU usage, 10 is highest quality and CPU usage.  The resampler that this setting refers to is used for converting from 44.1KHz to the sampling rate of the host audio device Mednafen is using.  Changing Mednafen's output rate, via the \"sound.rate\" setting, to \"44100\" may bypass the resampler, which can decrease CPU usage by Mednafen, and can increase or decrease audio quality, depending on various operating system and hardware factors."
+  },
+  {
+    "Command": "psx.debugger.disfontsize",
+    "Description": "Disassembly font size.\n\nNote: Setting the font size to larger than the default may cause text overlap in the debugger.>\n\n<b>5x7</b> - 5x7\n\n\n<b>6x9</b> - 6x9\n\n\n<b>6x12</b> - 6x12\n\n\n<b>6x13</b> - 6x13.  CJK support.\n\n\n<b>9x18</b> - 9x18;  CJK support.\n"
+  },
+  {
+    "Command": "psx.debugger.memcharenc",
+    "Description": "Character encoding for the debugger's memory editor."
+  },
+  {
+    "Command": "psx.enable",
+    "Description": "Enable (automatic) usage of this module."
+  },
+  {
+    "Command": "psx.forcemono",
+    "Description": "Force monophonic sound output."
+  },
+  {
+    "Command": "psx.pixshader",
+    "Description": "Enable specified OpenGL pixel shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support pixel shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. Bilinear interpolation is disabled with pixel shaders, and any interpolation, if present, will be noted in the description of each pixel shader.>\n\n<b>none</b> - None/Disabled\n\n\n<b>autoip</b> - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\n<b>autoipsharper</b> - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\n<b>scale2x</b> - Scale2x\n\n\n<b>sabr</b> - SABR v3.0\nGPU-intensive.\n\n<b>ipsharper</b> - Sharper bilinear interpolation.\n\n\n<b>ipxnoty</b> - Linear interpolation on X axis only.\n\n\n<b>ipynotx</b> - Linear interpolation on Y axis only.\n\n\n<b>ipxnotysharper</b> - Sharper version of \"ipxnoty\".\n\n\n<b>ipynotxsharper</b> - Sharper version of \"ipynotx\".\n"
+  },
+  {
+    "Command": "psx.scanlines",
+    "Description": "Enable scanlines with specified opacity.\n\nOpacity is specified in %; IE a value of \"100\" will give entirely black scanlines.\n\n\n\nNegative values are the same as positive values for non-interlaced video, but for interlaced video will cause the scanlines to be overlaid over the previous field's lines(only if the video.deinterlacer setting is set to \"weave\", the default)."
+  },
+  {
+    "Command": "psx.special",
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\n<b>none</b> - None/Disabled\n\n\n<b>hq2x</b> - hq2x\n\n\n<b>hq3x</b> - hq3x\n\n\n<b>hq4x</b> - hq4x\n\n\n<b>scale2x</b> - scale2x\n\n\n<b>scale3x</b> - scale3x\n\n\n<b>scale4x</b> - scale4x\n\n\n<b>2xsai</b> - 2xSaI\n\n\n<b>super2xsai</b> - Super 2xSaI\n\n\n<b>supereagle</b> - Super Eagle\n\n\n<b>nn2x</b> - Nearest-neighbor 2x\n\n\n<b>nn3x</b> - Nearest-neighbor 3x\n\n\n<b>nn4x</b> - Nearest-neighbor 4x\n\n\n<b>nny2x</b> - Nearest-neighbor 2x, y axis only\n\n\n<b>nny3x</b> - Nearest-neighbor 3x, y axis only\n\n\n<b>nny4x</b> - Nearest-neighbor 4x, y axis only\n"
+  },
+  {
+    "Command": "psx.stretch",
+    "Description": "Stretch to fill screen.\n\n<b>0</b> - Disabled\n\n\n<b>full</b> - Full\nFull-screen stretch, disregarding aspect ratio.\n\n<b>aspect</b> - Aspect Preserve\nFull-screen stretch as far as the aspect ratio(in this sense, the equivalent xscalefs == yscalefs) can be maintained.\n\n<b>aspect_int</b> - Aspect Preserve + Integer Scale\nFull-screen stretch, same as \"aspect\" except that the equivalent xscalefs and yscalefs are rounded down to the nearest integer.\n\n<b>aspect_mult2</b> - Aspect Preserve + Integer Multiple-of-2 Scale\nFull-screen stretch, same as \"aspect_int\", but rounds down to the nearest multiple of 2."
+  },
+  {
+    "Command": "psx.tblur",
+    "Description": "Enable video temporal blur(50/50 previous/current frame by default)."
+  },
+  {
+    "Command": "psx.tblur.accum",
+    "Description": "Accumulate color data rather than discarding it."
+  },
+  {
+    "Command": "psx.tblur.accum.amount",
+    "Description": "Blur amount in accumulation mode, specified in percentage of accumulation buffer to mix with the current frame."
+  },
+  {
+    "Command": "psx.videoip",
+    "Description": "Enable (bi)linear interpolation.\n\n<b>0</b> - Disabled\n\n\n<b>1</b> - Bilinear\n\n\n<b>x</b> - Linear (X)\nInterpolation only on the X axis.\n\n<b>y</b> - Linear (Y)\nInterpolation only on the Y axis."
+  },
+  {
+    "Command": "psx.xres",
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+  },
+  {
+    "Command": "psx.xscale",
+    "Description": "Scaling factor for the X axis in windowed mode."
+  },
+  {
+    "Command": "psx.xscalefs",
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "psx.yres",
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+  },
+  {
+    "Command": "psx.yscale",
+    "Description": "Scaling factor for the Y axis in windowed mode."
+  },
+  {
+    "Command": "psx.yscalefs",
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "snes_faust.input.port1",
+    "Description": "Input device for Port 1\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Gamepad\n"
+  },
+  {
+    "Command": "snes_faust.input.port2",
+    "Description": "Input device for Port 2\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Gamepad\n"
+  },
+  {
+    "Command": "snes_faust.resamp_quality",
+    "Description": "Sound quality.\n\nHigher values correspond to better SNR and better preservation of higher frequencies(\"brightness\"), at the cost of increased computational complexity and a negligible increase in latency.\n\n\n\nHigher values will also slightly increase the probability of sample clipping(relevant if Mednafen's volume control settings are set too high), due to increased (time-domain) ringing."
+  },
+  {
+    "Command": "snes_faust.resamp_rate_error",
+    "Description": "Sound output rate tolerance.\n\nLower values correspond to better matching of the output rate of the resampler to the actual desired output rate, at the expense of increased RAM usage and poorer CPU cache utilization."
+  },
+  {
+    "Command": "snes_faust.spex",
+    "Description": "Enable 1-frame speculative execution for video output.\n\nHack to reduce input->output video latency by 1 frame.  Enabling will increase CPU usage, and may cause video glitches(such as \"jerkiness\") in some oddball games, but most commercially-released games should be fine."
+  },
+  {
+    "Command": "snes_faust.spex.sound",
+    "Description": "Enable speculative execution for sound output too.\n\nOnly has an effect when speculative-execution for video output is enabled.  Will cause minor sound glitches in some games."
+  },
+  {
+    "Command": "snes_faust.enable",
+    "Description": "Enable (automatic) usage of this module."
+  },
+  {
+    "Command": "snes_faust.forcemono",
+    "Description": "Force monophonic sound output."
+  },
+  {
+    "Command": "snes_faust.pixshader",
+    "Description": "Enable specified OpenGL pixel shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support pixel shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. Bilinear interpolation is disabled with pixel shaders, and any interpolation, if present, will be noted in the description of each pixel shader.>\n\n<b>none</b> - None/Disabled\n\n\n<b>autoip</b> - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\n<b>autoipsharper</b> - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\n<b>scale2x</b> - Scale2x\n\n\n<b>sabr</b> - SABR v3.0\nGPU-intensive.\n\n<b>ipsharper</b> - Sharper bilinear interpolation.\n\n\n<b>ipxnoty</b> - Linear interpolation on X axis only.\n\n\n<b>ipynotx</b> - Linear interpolation on Y axis only.\n\n\n<b>ipxnotysharper</b> - Sharper version of \"ipxnoty\".\n\n\n<b>ipynotxsharper</b> - Sharper version of \"ipynotx\".\n"
+  },
+  {
+    "Command": "snes_faust.scanlines",
+    "Description": "Enable scanlines with specified opacity.\n\nOpacity is specified in %; IE a value of \"100\" will give entirely black scanlines.\n\n\n\nNegative values are the same as positive values for non-interlaced video, but for interlaced video will cause the scanlines to be overlaid over the previous field's lines(only if the video.deinterlacer setting is set to \"weave\", the default)."
+  },
+  {
+    "Command": "snes_faust.special",
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\n<b>none</b> - None/Disabled\n\n\n<b>hq2x</b> - hq2x\n\n\n<b>hq3x</b> - hq3x\n\n\n<b>hq4x</b> - hq4x\n\n\n<b>scale2x</b> - scale2x\n\n\n<b>scale3x</b> - scale3x\n\n\n<b>scale4x</b> - scale4x\n\n\n<b>2xsai</b> - 2xSaI\n\n\n<b>super2xsai</b> - Super 2xSaI\n\n\n<b>supereagle</b> - Super Eagle\n\n\n<b>nn2x</b> - Nearest-neighbor 2x\n\n\n<b>nn3x</b> - Nearest-neighbor 3x\n\n\n<b>nn4x</b> - Nearest-neighbor 4x\n\n\n<b>nny2x</b> - Nearest-neighbor 2x, y axis only\n\n\n<b>nny3x</b> - Nearest-neighbor 3x, y axis only\n\n\n<b>nny4x</b> - Nearest-neighbor 4x, y axis only\n"
+  },
+  {
+    "Command": "snes_faust.stretch",
+    "Description": "Stretch to fill screen.\n\n<b>0</b> - Disabled\n\n\n<b>full</b> - Full\nFull-screen stretch, disregarding aspect ratio.\n\n<b>aspect</b> - Aspect Preserve\nFull-screen stretch as far as the aspect ratio(in this sense, the equivalent xscalefs == yscalefs) can be maintained.\n\n<b>aspect_int</b> - Aspect Preserve + Integer Scale\nFull-screen stretch, same as \"aspect\" except that the equivalent xscalefs and yscalefs are rounded down to the nearest integer.\n\n<b>aspect_mult2</b> - Aspect Preserve + Integer Multiple-of-2 Scale\nFull-screen stretch, same as \"aspect_int\", but rounds down to the nearest multiple of 2."
+  },
+  {
+    "Command": "snes_faust.tblur",
+    "Description": "Enable video temporal blur(50/50 previous/current frame by default)."
+  },
+  {
+    "Command": "snes_faust.tblur.accum",
+    "Description": "Accumulate color data rather than discarding it."
+  },
+  {
+    "Command": "snes_faust.tblur.accum.amount",
+    "Description": "Blur amount in accumulation mode, specified in percentage of accumulation buffer to mix with the current frame."
+  },
+  {
+    "Command": "snes_faust.videoip",
+    "Description": "Enable (bi)linear interpolation.\n\n<b>0</b> - Disabled\n\n\n<b>1</b> - Bilinear\n\n\n<b>x</b> - Linear (X)\nInterpolation only on the X axis.\n\n<b>y</b> - Linear (Y)\nInterpolation only on the Y axis."
+  },
+  {
+    "Command": "snes_faust.xres",
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+  },
+  {
+    "Command": "snes_faust.xscale",
+    "Description": "Scaling factor for the X axis in windowed mode."
+  },
+  {
+    "Command": "snes_faust.xscalefs",
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "snes_faust.yres",
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+  },
+  {
+    "Command": "snes_faust.yscale",
+    "Description": "Scaling factor for the Y axis in windowed mode."
+  },
+  {
+    "Command": "snes_faust.yscalefs",
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "snes.apu.resamp_quality",
+    "Description": "APU output resampler quality.\n\n0 is lowest quality and latency and CPU usage, 10 is highest quality and latency and CPU usage.\n\n\n\nWith a Mednafen sound output rate of about 32041Hz or higher: Quality \"0\" resampler has approximately 0.125ms of latency, quality \"5\" resampler has approximately 1.25ms of latency, and quality \"10\" resampler has approximately 3.99ms of latency."
+  },
+  {
+    "Command": "snes.correct_aspect",
+    "Description": "Correct the aspect ratio.\n\nNote that regardless of this setting's value, \"512\" and \"256\" width modes will be scaled to the same dimensions for display."
+  },
+  {
+    "Command": "snes.input.port1",
+    "Description": "Input device for Port 1/1A\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Gamepad\n\n\n<b>mouse</b> - Mouse\n"
+  },
+  {
+    "Command": "snes.input.port1.multitap",
+    "Description": "Enable multitap on SNES port 1."
+  },
+  {
+    "Command": "snes.input.port2",
+    "Description": "Input device for Port 2/2A\n\n<b>none</b> - none\n\n\n<b>gamepad</b> - Gamepad\n\n\n<b>mouse</b> - Mouse\n\n\n<b>superscope</b> - Super Scope\nMonkey!"
+  },
+  {
+    "Command": "snes.input.port2.multitap",
+    "Description": "Enable multitap on SNES port 2."
+  },
+  {
+    "Command": "snes.mouse_sensitivity",
+    "Description": "Emulated mouse sensitivity."
+  },
+  {
+    "Command": "snes.enable",
+    "Description": "Enable (automatic) usage of this module."
+  },
+  {
+    "Command": "snes.forcemono",
+    "Description": "Force monophonic sound output."
+  },
+  {
+    "Command": "snes.pixshader",
+    "Description": "Enable specified OpenGL pixel shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support pixel shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. Bilinear interpolation is disabled with pixel shaders, and any interpolation, if present, will be noted in the description of each pixel shader.>\n\n<b>none</b> - None/Disabled\n\n\n<b>autoip</b> - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\n<b>autoipsharper</b> - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\n<b>scale2x</b> - Scale2x\n\n\n<b>sabr</b> - SABR v3.0\nGPU-intensive.\n\n<b>ipsharper</b> - Sharper bilinear interpolation.\n\n\n<b>ipxnoty</b> - Linear interpolation on X axis only.\n\n\n<b>ipynotx</b> - Linear interpolation on Y axis only.\n\n\n<b>ipxnotysharper</b> - Sharper version of \"ipxnoty\".\n\n\n<b>ipynotxsharper</b> - Sharper version of \"ipynotx\".\n"
+  },
+  {
+    "Command": "snes.scanlines",
+    "Description": "Enable scanlines with specified opacity.\n\nOpacity is specified in %; IE a value of \"100\" will give entirely black scanlines.\n\n\n\nNegative values are the same as positive values for non-interlaced video, but for interlaced video will cause the scanlines to be overlaid over the previous field's lines(only if the video.deinterlacer setting is set to \"weave\", the default)."
+  },
+  {
+    "Command": "snes.special",
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\n<b>none</b> - None/Disabled\n\n\n<b>hq2x</b> - hq2x\n\n\n<b>hq3x</b> - hq3x\n\n\n<b>hq4x</b> - hq4x\n\n\n<b>scale2x</b> - scale2x\n\n\n<b>scale3x</b> - scale3x\n\n\n<b>scale4x</b> - scale4x\n\n\n<b>2xsai</b> - 2xSaI\n\n\n<b>super2xsai</b> - Super 2xSaI\n\n\n<b>supereagle</b> - Super Eagle\n\n\n<b>nn2x</b> - Nearest-neighbor 2x\n\n\n<b>nn3x</b> - Nearest-neighbor 3x\n\n\n<b>nn4x</b> - Nearest-neighbor 4x\n\n\n<b>nny2x</b> - Nearest-neighbor 2x, y axis only\n\n\n<b>nny3x</b> - Nearest-neighbor 3x, y axis only\n\n\n<b>nny4x</b> - Nearest-neighbor 4x, y axis only\n"
+  },
+  {
+    "Command": "snes.stretch",
+    "Description": "Stretch to fill screen.\n\n<b>0</b> - Disabled\n\n\n<b>full</b> - Full\nFull-screen stretch, disregarding aspect ratio.\n\n<b>aspect</b> - Aspect Preserve\nFull-screen stretch as far as the aspect ratio(in this sense, the equivalent xscalefs == yscalefs) can be maintained.\n\n<b>aspect_int</b> - Aspect Preserve + Integer Scale\nFull-screen stretch, same as \"aspect\" except that the equivalent xscalefs and yscalefs are rounded down to the nearest integer.\n\n<b>aspect_mult2</b> - Aspect Preserve + Integer Multiple-of-2 Scale\nFull-screen stretch, same as \"aspect_int\", but rounds down to the nearest multiple of 2."
+  },
+  {
+    "Command": "snes.tblur",
+    "Description": "Enable video temporal blur(50/50 previous/current frame by default)."
+  },
+  {
+    "Command": "snes.tblur.accum",
+    "Description": "Accumulate color data rather than discarding it."
+  },
+  {
+    "Command": "snes.tblur.accum.amount",
+    "Description": "Blur amount in accumulation mode, specified in percentage of accumulation buffer to mix with the current frame."
+  },
+  {
+    "Command": "snes.videoip",
+    "Description": "Enable (bi)linear interpolation.\n\n<b>0</b> - Disabled\n\n\n<b>1</b> - Bilinear\n\n\n<b>x</b> - Linear (X)\nInterpolation only on the X axis.\n\n<b>y</b> - Linear (Y)\nInterpolation only on the Y axis."
+  },
+  {
+    "Command": "snes.xres",
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+  },
+  {
+    "Command": "snes.xscale",
+    "Description": "Scaling factor for the X axis in windowed mode."
+  },
+  {
+    "Command": "snes.xscalefs",
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "snes.yres",
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+  },
+  {
+    "Command": "snes.yscale",
+    "Description": "Scaling factor for the Y axis in windowed mode."
+  },
+  {
+    "Command": "snes.yscalefs",
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "vb.3dmode",
+    "Description": "3D mode.\n\n<b>anaglyph</b> - Anaglyph\nUsed in conjunction with classic dual-lens-color glasses.\n\n<b>cscope</b> - CyberScope\nIntended for use with the CyberScope 3D device.\n\n<b>sidebyside</b> - Side-by-Side\nThe left-eye image is displayed on the left, and the right-eye image is displayed on the right.\n\n<b>vli</b> - Vertical Line Interlaced\nVertical lines alternate between left view and right view.\n\n<b>hli</b> - Horizontal Line Interlaced\nHorizontal lines alternate between left view and right view."
+  },
+  {
+    "Command": "vb.3dreverse",
+    "Description": "Reverse left/right 3D views."
+  },
+  {
+    "Command": "vb.allow_draw_skip",
+    "Description": "Allow draw skipping.\n\nIf vb.instant_display_hack is set to \"1\", and this setting is set to \"1\", then frame-skipping the drawing to the emulated framebuffer will be allowed.  THIS WILL CAUSE GRAPHICAL GLITCHES, AND THEORETICALLY(but unlikely) GAME CRASHES, ESPECIALLY WITH DIRECT FRAMEBUFFER DRAWING GAMES."
+  },
+  {
+    "Command": "vb.anaglyph.lcolor",
+    "Description": "Anaglyph maximum-brightness color for left view."
+  },
+  {
+    "Command": "vb.anaglyph.preset",
+    "Description": "Anaglyph preset colors.\n\n<b>disabled</b> - Disabled\nForces usage of custom anaglyph colors.\n\n<b>red_blue</b> - Red/Blue\nClassic red/blue anaglyph.\n\n<b>red_cyan</b> - Red/Cyan\nImproved quality red/cyan anaglyph.\n\n<b>red_electriccyan</b> - Red/Electric Cyan\nAlternate version of red/cyan\n\n<b>red_green</b> - Red/Green\n\n\n<b>green_magenta</b> - Green/Magenta\n\n\n<b>yellow_blue</b> - Yellow/Blue\n"
+  },
+  {
+    "Command": "vb.anaglyph.rcolor",
+    "Description": "Anaglyph maximum-brightness color for right view."
+  },
+  {
+    "Command": "vb.cpu_emulation",
+    "Description": "CPU emulation mode.\n\n<b>fast</b> - Fast Mode\nFast mode trades timing accuracy, cache emulation, and executing from hardware registers and RAM not intended for code use for performance.\n\n<b>accurate</b> - Accurate Mode\nIncreased timing accuracy, though not perfect, along with cache emulation, at the cost of decreased performance.  Additionally, even the pipeline isn't correctly and fully emulated in this mode."
+  },
+  {
+    "Command": "vb.default_color",
+    "Description": "Default maximum-brightness color to use in non-anaglyph 3D modes."
+  },
+  {
+    "Command": "vb.disable_parallax",
+    "Description": "Disable parallax for BG and OBJ rendering."
+  },
+  {
+    "Command": "vb.input.instant_read_hack",
+    "Description": "Input latency reduction hack.\n\nReduces latency in some games by 20ms by returning the current pad state, rather than latched state, on serial port data reads.  This hack may cause some homebrew software to malfunction, but it should be relatively safe for commercial official games."
+  },
+  {
+    "Command": "vb.instant_display_hack",
+    "Description": "Display latency reduction hack.\n\nReduces latency in games by displaying the framebuffer 20ms earlier.  This hack has some potential of causing graphical glitches, so it is disabled by default."
+  },
+  {
+    "Command": "vb.liprescale",
+    "Description": "Line Interlaced prescale."
+  },
+  {
+    "Command": "vb.sidebyside.separation",
+    "Description": "Number of pixels to separate L/R views by.\n\nThis setting refers to pixels before vb.xscale(fs) scaling is taken into consideration.  For example, a value of \"100\" here will result in a separation of 300 screen pixels if vb.xscale(fs) is set to \"3\"."
+  },
+  {
+    "Command": "vb.debugger.disfontsize",
+    "Description": "Disassembly font size.\n\nNote: Setting the font size to larger than the default may cause text overlap in the debugger.>\n\n<b>5x7</b> - 5x7\n\n\n<b>6x9</b> - 6x9\n\n\n<b>6x12</b> - 6x12\n\n\n<b>6x13</b> - 6x13.  CJK support.\n\n\n<b>9x18</b> - 9x18;  CJK support.\n"
+  },
+  {
+    "Command": "vb.debugger.memcharenc",
+    "Description": "Character encoding for the debugger's memory editor."
+  },
+  {
+    "Command": "vb.enable",
+    "Description": "Enable (automatic) usage of this module."
+  },
+  {
+    "Command": "vb.forcemono",
+    "Description": "Force monophonic sound output."
+  },
+  {
+    "Command": "vb.pixshader",
+    "Description": "Enable specified OpenGL pixel shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support pixel shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. Bilinear interpolation is disabled with pixel shaders, and any interpolation, if present, will be noted in the description of each pixel shader.>\n\n<b>none</b> - None/Disabled\n\n\n<b>autoip</b> - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\n<b>autoipsharper</b> - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\n<b>scale2x</b> - Scale2x\n\n\n<b>sabr</b> - SABR v3.0\nGPU-intensive.\n\n<b>ipsharper</b> - Sharper bilinear interpolation.\n\n\n<b>ipxnoty</b> - Linear interpolation on X axis only.\n\n\n<b>ipynotx</b> - Linear interpolation on Y axis only.\n\n\n<b>ipxnotysharper</b> - Sharper version of \"ipxnoty\".\n\n\n<b>ipynotxsharper</b> - Sharper version of \"ipynotx\".\n"
+  },
+  {
+    "Command": "vb.scanlines",
+    "Description": "Enable scanlines with specified opacity.\n\nOpacity is specified in %; IE a value of \"100\" will give entirely black scanlines.\n\n\n\nNegative values are the same as positive values for non-interlaced video, but for interlaced video will cause the scanlines to be overlaid over the previous field's lines(only if the video.deinterlacer setting is set to \"weave\", the default)."
+  },
+  {
+    "Command": "vb.special",
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\n<b>none</b> - None/Disabled\n\n\n<b>hq2x</b> - hq2x\n\n\n<b>hq3x</b> - hq3x\n\n\n<b>hq4x</b> - hq4x\n\n\n<b>scale2x</b> - scale2x\n\n\n<b>scale3x</b> - scale3x\n\n\n<b>scale4x</b> - scale4x\n\n\n<b>2xsai</b> - 2xSaI\n\n\n<b>super2xsai</b> - Super 2xSaI\n\n\n<b>supereagle</b> - Super Eagle\n\n\n<b>nn2x</b> - Nearest-neighbor 2x\n\n\n<b>nn3x</b> - Nearest-neighbor 3x\n\n\n<b>nn4x</b> - Nearest-neighbor 4x\n\n\n<b>nny2x</b> - Nearest-neighbor 2x, y axis only\n\n\n<b>nny3x</b> - Nearest-neighbor 3x, y axis only\n\n\n<b>nny4x</b> - Nearest-neighbor 4x, y axis only\n"
+  },
+  {
+    "Command": "vb.stretch",
+    "Description": "Stretch to fill screen.\n\n<b>0</b> - Disabled\n\n\n<b>full</b> - Full\nFull-screen stretch, disregarding aspect ratio.\n\n<b>aspect</b> - Aspect Preserve\nFull-screen stretch as far as the aspect ratio(in this sense, the equivalent xscalefs == yscalefs) can be maintained.\n\n<b>aspect_int</b> - Aspect Preserve + Integer Scale\nFull-screen stretch, same as \"aspect\" except that the equivalent xscalefs and yscalefs are rounded down to the nearest integer.\n\n<b>aspect_mult2</b> - Aspect Preserve + Integer Multiple-of-2 Scale\nFull-screen stretch, same as \"aspect_int\", but rounds down to the nearest multiple of 2."
+  },
+  {
+    "Command": "vb.tblur",
+    "Description": "Enable video temporal blur(50/50 previous/current frame by default)."
+  },
+  {
+    "Command": "vb.tblur.accum",
+    "Description": "Accumulate color data rather than discarding it."
+  },
+  {
+    "Command": "vb.tblur.accum.amount",
+    "Description": "Blur amount in accumulation mode, specified in percentage of accumulation buffer to mix with the current frame."
+  },
+  {
+    "Command": "vb.videoip",
+    "Description": "Enable (bi)linear interpolation.\n\n<b>0</b> - Disabled\n\n\n<b>1</b> - Bilinear\n\n\n<b>x</b> - Linear (X)\nInterpolation only on the X axis.\n\n<b>y</b> - Linear (Y)\nInterpolation only on the Y axis."
+  },
+  {
+    "Command": "vb.xres",
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+  },
+  {
+    "Command": "vb.xscale",
+    "Description": "Scaling factor for the X axis in windowed mode."
+  },
+  {
+    "Command": "vb.xscalefs",
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "vb.yres",
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+  },
+  {
+    "Command": "vb.yscale",
+    "Description": "Scaling factor for the Y axis in windowed mode."
+  },
+  {
+    "Command": "vb.yscalefs",
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "wswan.bday",
+    "Description": "Birth Day"
+  },
+  {
+    "Command": "wswan.blood",
+    "Description": "Blood Type\n\n<b>a</b> - A\n\n\n<b>b</b> - B\n\n\n<b>o</b> - O\n\n\n<b>ab</b> - AB\n"
+  },
+  {
+    "Command": "wswan.bmonth",
+    "Description": "Birth Month"
+  },
+  {
+    "Command": "wswan.byear",
+    "Description": "Birth Year"
+  },
+  {
+    "Command": "wswan.language",
+    "Description": "Language games should display text in.\n\nThe only game this setting is known to affect is \"Digimon Tamers - Battle Spirit\".>\n\n<b>japanese</b> - Japanese\n\n\n<b>english</b> - English\n"
+  },
+  {
+    "Command": "wswan.name",
+    "Description": "Name"
+  },
+  {
+    "Command": "wswan.rotateinput",
+    "Description": "Virtually rotate D-pads along with screen."
+  },
+  {
+    "Command": "wswan.sex",
+    "Description": "Sex\n\n<b>male</b> - Male\n\n\n<b>female</b> - Female\n"
+  },
+  {
+    "Command": "wswan.debugger.disfontsize",
+    "Description": "Disassembly font size.\n\nNote: Setting the font size to larger than the default may cause text overlap in the debugger.>\n\n<b>5x7</b> - 5x7\n\n\n<b>6x9</b> - 6x9\n\n\n<b>6x12</b> - 6x12\n\n\n<b>6x13</b> - 6x13.  CJK support.\n\n\n<b>9x18</b> - 9x18;  CJK support.\n"
+  },
+  {
+    "Command": "wswan.debugger.memcharenc",
+    "Description": "Character encoding for the debugger's memory editor."
+  },
+  {
+    "Command": "wswan.enable",
+    "Description": "Enable (automatic) usage of this module."
+  },
+  {
+    "Command": "wswan.forcemono",
+    "Description": "Force monophonic sound output."
+  },
+  {
+    "Command": "wswan.pixshader",
+    "Description": "Enable specified OpenGL pixel shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support pixel shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. Bilinear interpolation is disabled with pixel shaders, and any interpolation, if present, will be noted in the description of each pixel shader.>\n\n<b>none</b> - None/Disabled\n\n\n<b>autoip</b> - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\n<b>autoipsharper</b> - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\n<b>scale2x</b> - Scale2x\n\n\n<b>sabr</b> - SABR v3.0\nGPU-intensive.\n\n<b>ipsharper</b> - Sharper bilinear interpolation.\n\n\n<b>ipxnoty</b> - Linear interpolation on X axis only.\n\n\n<b>ipynotx</b> - Linear interpolation on Y axis only.\n\n\n<b>ipxnotysharper</b> - Sharper version of \"ipxnoty\".\n\n\n<b>ipynotxsharper</b> - Sharper version of \"ipynotx\".\n"
+  },
+  {
+    "Command": "wswan.scanlines",
+    "Description": "Enable scanlines with specified opacity.\n\nOpacity is specified in %; IE a value of \"100\" will give entirely black scanlines.\n\n\n\nNegative values are the same as positive values for non-interlaced video, but for interlaced video will cause the scanlines to be overlaid over the previous field's lines(only if the video.deinterlacer setting is set to \"weave\", the default)."
+  },
+  {
+    "Command": "wswan.special",
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\n<b>none</b> - None/Disabled\n\n\n<b>hq2x</b> - hq2x\n\n\n<b>hq3x</b> - hq3x\n\n\n<b>hq4x</b> - hq4x\n\n\n<b>scale2x</b> - scale2x\n\n\n<b>scale3x</b> - scale3x\n\n\n<b>scale4x</b> - scale4x\n\n\n<b>2xsai</b> - 2xSaI\n\n\n<b>super2xsai</b> - Super 2xSaI\n\n\n<b>supereagle</b> - Super Eagle\n\n\n<b>nn2x</b> - Nearest-neighbor 2x\n\n\n<b>nn3x</b> - Nearest-neighbor 3x\n\n\n<b>nn4x</b> - Nearest-neighbor 4x\n\n\n<b>nny2x</b> - Nearest-neighbor 2x, y axis only\n\n\n<b>nny3x</b> - Nearest-neighbor 3x, y axis only\n\n\n<b>nny4x</b> - Nearest-neighbor 4x, y axis only\n"
+  },
+  {
+    "Command": "wswan.stretch",
+    "Description": "Stretch to fill screen.\n\n<b>0</b> - Disabled\n\n\n<b>full</b> - Full\nFull-screen stretch, disregarding aspect ratio.\n\n<b>aspect</b> - Aspect Preserve\nFull-screen stretch as far as the aspect ratio(in this sense, the equivalent xscalefs == yscalefs) can be maintained.\n\n<b>aspect_int</b> - Aspect Preserve + Integer Scale\nFull-screen stretch, same as \"aspect\" except that the equivalent xscalefs and yscalefs are rounded down to the nearest integer.\n\n<b>aspect_mult2</b> - Aspect Preserve + Integer Multiple-of-2 Scale\nFull-screen stretch, same as \"aspect_int\", but rounds down to the nearest multiple of 2."
+  },
+  {
+    "Command": "wswan.tblur",
+    "Description": "Enable video temporal blur(50/50 previous/current frame by default)."
+  },
+  {
+    "Command": "wswan.tblur.accum",
+    "Description": "Accumulate color data rather than discarding it."
+  },
+  {
+    "Command": "wswan.tblur.accum.amount",
+    "Description": "Blur amount in accumulation mode, specified in percentage of accumulation buffer to mix with the current frame."
+  },
+  {
+    "Command": "wswan.videoip",
+    "Description": "Enable (bi)linear interpolation.\n\n<b>0</b> - Disabled\n\n\n<b>1</b> - Bilinear\n\n\n<b>x</b> - Linear (X)\nInterpolation only on the X axis.\n\n<b>y</b> - Linear (Y)\nInterpolation only on the Y axis."
+  },
+  {
+    "Command": "wswan.xres",
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+  },
+  {
+    "Command": "wswan.xscale",
+    "Description": "Scaling factor for the X axis in windowed mode."
+  },
+  {
+    "Command": "wswan.xscalefs",
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "wswan.yres",
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+  },
+  {
+    "Command": "wswan.yscale",
+    "Description": "Scaling factor for the Y axis in windowed mode."
+  },
+  {
+    "Command": "wswan.yscalefs",
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "autosave",
+    "Description": "Automatic load/save state on game load/save.\n\nAutomatically save and load save states when a game is closed or loaded, respectively."
+  },
+  {
+    "Command": "cd.image_memcache",
+    "Description": "Cache entire CD images in memory.\n\nReads the entire CD image(s) into memory at startup(which will cause a small delay).  Can help obviate emulation hiccups due to emulated CD access.  May cause more harm than good on low memory systems, systems with swap enabled, and/or when the disc images in question are on a fast SSD."
+  },
+  {
+    "Command": "cheats",
+    "Description": "Enable cheats."
+  },
+  {
+    "Command": "debugger.autostepmode",
+    "Description": "Automatically go into the debugger's step mode after a game is loaded."
+  },
+  {
+    "Command": "ffnosound",
+    "Description": "Silence sound output when fast-forwarding."
+  },
+  {
+    "Command": "ffspeed",
+    "Description": "Fast-forwarding speed multiplier."
+  },
+  {
+    "Command": "fftoggle",
+    "Description": "Treat the fast-forward button as a toggle."
+  },
+  {
+    "Command": "filesys.fname_movie",
+    "Description": "Format string for movie filename.\n\nSee <a href=\"fname_format.txt\">fname_format.txt for more information.  Edit at your own risk."
+  },
+  {
+    "Command": "filesys.fname_sav",
+    "Description": "Format string for save games filename.\n\nWARNING: %x should always be included, otherwise you run the risk of overwriting save data for games that create multiple save data files.\n\n\n\nSee <a href=\"fname_format.txt\">fname_format.txt for more information.  Edit at your own risk."
+  },
+  {
+    "Command": "filesys.fname_savbackup",
+    "Description": "Format string for save game backups filename.\n\nWARNING: %x and %p should always be included.\n\n\n\nSee <a href=\"fname_format.txt\">fname_format.txt for more information.  Edit at your own risk."
+  },
+  {
+    "Command": "filesys.fname_snap",
+    "Description": "Format string for screen snapshot filenames.\n\nWARNING: %x or %p should always be included, otherwise there will be a conflict between the numeric counter text file and the image data file.\n\n\n\nSee <a href=\"fname_format.txt\">fname_format.txt for more information.  Edit at your own risk."
+  },
+  {
+    "Command": "filesys.fname_state",
+    "Description": "Format string for state filename.\n\nSee <a href=\"fname_format.txt\">fname_format.txt for more information.  Edit at your own risk."
+  },
+  {
+    "Command": "filesys.path_cheat",
+    "Description": "Path to directory for cheats."
+  },
+  {
+    "Command": "filesys.path_firmware",
+    "Description": "Path to directory for firmware."
+  },
+  {
+    "Command": "filesys.path_movie",
+    "Description": "Path to directory for movies."
+  },
+  {
+    "Command": "filesys.path_palette",
+    "Description": "Path to directory for custom palettes."
+  },
+  {
+    "Command": "filesys.path_pgconfig",
+    "Description": "Path to directory for per-game configuration override files."
+  },
+  {
+    "Command": "filesys.path_sav",
+    "Description": "Path to directory for save games and nonvolatile memory.\n\nWARNING: Do not set this path to a directory that contains Famicom Disk System disk images, or you will corrupt them when you load an FDS game and exit Mednafen."
+  },
+  {
+    "Command": "filesys.path_savbackup",
+    "Description": "Path to directory for backups of save games and nonvolatile memory."
+  },
+  {
+    "Command": "filesys.path_snap",
+    "Description": "Path to directory for screen snapshots."
+  },
+  {
+    "Command": "filesys.path_state",
+    "Description": "Path to directory for save states."
+  },
+  {
+    "Command": "filesys.state_comp_level",
+    "Description": "Save state file compression level.\n\ngzip/deflate compression level for save states saved to files.  -1 will disable gzip compression and wrapping entirely."
+  },
+  {
+    "Command": "filesys.untrusted_fip_check",
+    "Description": "Enable untrusted file-inclusion path security check.\n\nWhen this setting is set to \"1\", the default, paths to files referenced from files like CUE sheets and PSF rips are checked for certain characters that can be used in directory traversal, and if found, loading is aborted.  Set it to \"0\" if you want to allow constructs like absolute paths in CUE sheets, but only if you understand the security implications of doing so(see \"Security Issues\" section in the documentation)."
+  },
+  {
+    "Command": "input.autofirefreq",
+    "Description": "Auto-fire frequency.\n\nAuto-fire frequency = GameSystemFrameRateHz / (value + 1)"
+  },
+  {
+    "Command": "input.ckdelay",
+    "Description": "Dangerous key action delay.\n\nThe length of time, in milliseconds, that a button/key corresponding to a \"dangerous\" command like power, reset, exit, etc. must be pressed before the command is executed."
+  },
+  {
+    "Command": "input.joystick.axis_threshold",
+    "Description": "Analog axis binary press detection threshold.\n\nThreshold for detecting a digital-like \"button\" press on analog axis, in percent."
+  },
+  {
+    "Command": "input.joystick.global_focus",
+    "Description": "Update physical joystick(s) internal state in Mednafen even when Mednafen lacks OS focus."
+  },
+  {
+    "Command": "netplay.console.font",
+    "Description": "Font for netplay chat console.\n\n<b>5x7</b> - 5x7\n\n\n<b>6x9</b> - 6x9\n\n\n<b>6x12</b> - 6x12\n\n\n<b>6x13</b> - 6x13.  CJK support.\n\n\n<b>9x18</b> - 9x18;  CJK support.\n"
+  },
+  {
+    "Command": "netplay.console.lines",
+    "Description": "Height of chat console, in lines."
+  },
+  {
+    "Command": "netplay.console.scale",
+    "Description": "Netplay chat console text scale factor.\n\nA value of 0 enables auto-scaling."
+  },
+  {
+    "Command": "netplay.gamekey",
+    "Description": "Key to hash with the MD5 hash of the game."
+  },
+  {
+    "Command": "netplay.host",
+    "Description": "Server hostname."
+  },
+  {
+    "Command": "netplay.localplayers",
+    "Description": "Local player count.\n\nNumber of local players for network play.  This number is advisory to the server, and the server may assign fewer players if the number of players requested is higher than the number of controllers currently available."
+  },
+  {
+    "Command": "netplay.nick",
+    "Description": "Nickname.\n\nNickname to use for network play chat."
+  },
+  {
+    "Command": "netplay.password",
+    "Description": "Server password.\n\nPassword to connect to the netplay server."
+  },
+  {
+    "Command": "netplay.port",
+    "Description": "Server port."
+  },
+  {
+    "Command": "nothrottle",
+    "Description": "Disable speed throttling when sound is disabled."
+  },
+  {
+    "Command": "osd.alpha_blend",
+    "Description": "Enable alpha blending for OSD elements."
+  },
+  {
+    "Command": "osd.message_display_time",
+    "Description": "Length of time, in milliseconds, to display internal status and error messages\n\nTime lengths less than 100ms are recommended against unless you understand you may miss important non-fatal error messages, and that the input configuration process may become unusable."
+  },
+  {
+    "Command": "osd.state_display_time",
+    "Description": "Length of time, in milliseconds, to display the save state or the movie selector after selecting a state or movie."
+  },
+  {
+    "Command": "qtrecord.h_double_threshold",
+    "Description": "Double the raw image's height if it's below this threshold."
+  },
+  {
+    "Command": "qtrecord.vcodec",
+    "Description": "Video codec to use.\n\n<b>raw</b> - Raw\nA fast codec, computationally, but will cause enormous file size and may exceed your storage medium's sustained write rate.\n\n<b>cscd</b> - CamStudio Screen Codec\nA good balance between performance and compression ratio.\n\n<b>png</b> - PNG\nHas a better compression ratio than \"cscd\", but is much more CPU intensive.  Use for compatibility with official QuickTime in cases where you have insufficient disk space for \"raw\"."
+  },
+  {
+    "Command": "qtrecord.w_double_threshold",
+    "Description": "Double the raw image's width if it's below this threshold."
+  },
+  {
+    "Command": "sfspeed",
+    "Description": "SLOW-forwarding speed multiplier."
+  },
+  {
+    "Command": "sftoggle",
+    "Description": "Treat the SLOW-forward button as a toggle."
+  },
+  {
+    "Command": "sound",
+    "Description": "Enable sound output."
+  },
+  {
+    "Command": "sound.buffer_time",
+    "Description": "Desired buffer size in milliseconds(ms).\n\nThe default value of 0 enables automatic buffer size selection."
+  },
+  {
+    "Command": "sound.device",
+    "Description": "Select sound output device.\n\nWhen using ALSA sound output under Linux, the \"sound.device\" setting \"default\" is Mednafen's default, IE \"hw:0\", not ALSA's \"default\". If you want to use ALSA's \"default\", use \"sexyal-literal-default\"."
+  },
+  {
+    "Command": "sound.driver",
+    "Description": "Select sound driver.\n\nThe following choices are possible, sorted by preference, high to low, when \"default\" driver is used, but dependent on being compiled in.>\n\n<b>default</b> - Default\nSelects the default sound driver.\n\n<b>alsa</b> - ALSA\nThe default for Linux(if available).\n\n<b>oss</b> - Open Sound System\nThe default for non-Linux UN*X/POSIX/BSD systems, or anywhere ALSA is unavailable. If the ALSA driver gives you problems, you can try using this one instead.\n\n\n\nIf you are using OSSv4 or newer, you should edit \"/usr/lib/oss/conf/osscore.conf\", uncomment the max_intrate= line, and change the value from 100(default) to 1000(or higher if you know what you're doing), and restart OSS. Otherwise, performance will be poor, and the sound buffer size in Mednafen will be orders of magnitude larger than specified.\n\n\n\nIf the sound buffer size is still excessively larger than what is specified via the \"sound.buffer_time\" setting, you can try setting \"sound.period_time\" to 2666, and as a last resort, 5333, to work around a design flaw/limitation/choice in the OSS API and OSS implementation.\n\n<b>wasapish</b> - WASAPI(Shared Mode)\nThe default when it's available(running on Microsoft Windows Vista and newer).\n\n<b>dsound</b> - DirectSound\nThe default for Microsoft Windows XP and older.\n\n<b>wasapi</b> - WASAPI(Exclusive Mode)\nExperimental exclusive-mode WASAPI driver, usable on Windows Vista and newer.  Use it for lower-latency sound.  May not work properly on all sound cards.\n\n<b>sdl</b> - Simple Directmedia Layer\nThis driver is not recommended, but it serves as a backup driver if the others aren't available. Its performance is generally sub-par, requiring higher latency or faster CPUs/SMP for glitch-free playback, except where the OS provides a sound callback API itself, such as with Mac OS X and BeOS.\n\n<b>jack</b> - JACK\nThe latency reported during startup is for the local sound buffer only and does not include server-side latency.  Please note that video card drivers(in the kernel or X), and hardware-accelerated OpenGL, may interfere with jackd's ability to effectively run with realtime response."
+  },
+  {
+    "Command": "sound.period_time",
+    "Description": "Desired period size in microseconds(Î¼s).\n\nCurrently only affects OSS, ALSA, WASAPI(exclusive mode), and SDL output.  A value of 0 defers to the default in the driver code in SexyAL.\n\n\n\nNote: This is not the \"sound buffer size\" setting, that would be \"sound.buffer_time\"."
+  },
+  {
+    "Command": "sound.rate",
+    "Description": "Specifies the sound playback rate, in sound frames per second(\"Hz\")."
+  },
+  {
+    "Command": "sound.volume",
+    "Description": "Sound volume level, in percent.\n\nSetting this volume control higher than the default of \"100\" may severely distort the sound."
+  },
+  {
+    "Command": "srwframes",
+    "Description": "Number of frames to keep states for when state rewinding is enabled.\n\nWARNING: Setting this to a large value may cause excessive RAM usage in some circumstances, such as with games that stream large volumes of data off of CDs."
+  },
+  {
+    "Command": "video.blit_timesync",
+    "Description": "Enable time synchronization(waiting) for frame blitting.\n\nDisable to reduce latency, at the cost of potentially increased video \"juddering\", with the maximum reduction in latency being about 1 video frame's time.\n\nWill work best with emulated systems that are not very computationally expensive to emulate, combined with running on a relatively fast CPU."
+  },
+  {
+    "Command": "video.deinterlacer",
+    "Description": "Deinterlacer to use for interlaced video.\n\n<b>weave</b> - Good for low-motion video; can be used in conjunction with negative <system>.scanlines setting values.\n</system>\n\n<b>bob</b> - Good for causing a headache.  All glory to Bob.\n\n\n<b>bob_offset</b> - Good for high-motion video, but is a bit flickery; reduces the subjective vertical resolution.\n"
+  },
+  {
+    "Command": "video.disable_composition",
+    "Description": "Attempt to disable desktop composition.\n\nCurrently, this setting only has an effect on Windows Vista and Windows 7(and probably the equivalent server versions as well)."
+  },
+  {
+    "Command": "video.driver",
+    "Description": "Video output method/driver.\n\n<b>opengl</b> - OpenGL + SDL\nThis output method is preferred, as all features are available with it.\n\n<b>sdl</b> - SDL Surface\nSlower with lower-quality scaling than OpenGL, but if you don't have hardware-accelerated OpenGL rendering, it will be faster than software OpenGL rendering. Bilinear interpolation not available. Pixel shaders do not work with this output method, of course.\n\n<b>overlay</b> - SDL Overlay\nAs fast as OpenGL, perhaps faster in some situations, *if* it's hardware-accelerated. Scanline effects are not available. hq2x, hq3x, hq4x are not available. The OSD may be missing or glitchy. PSX emulation will not display properly. Bilinear interpolation can't be turned off. Harsh chroma subsampling blurring in some picture types.  If you use this output method, it is strongly recommended to use a special scaler with it, such as nn2x."
+  },
+  {
+    "Command": "video.frameskip",
+    "Description": "Enable frameskip during emulation rendering.\n\nDisable for rendering code performance testing."
+  },
+  {
+    "Command": "video.fs",
+    "Description": "Enable fullscreen mode."
+  },
+  {
+    "Command": "video.glvsync",
+    "Description": "Attempt to synchronize OpenGL page flips to vertical retrace period.\n\nNote: Additionally, if the environment variable \"__GL_SYNC_TO_VBLANK\" does not exist, then it will be created and set to the value specified for this setting.  This has the effect of forcibly enabling or disabling vblank synchronization when running under Linux with NVidia's drivers."
+  },
+  {
+    "Command": "&lt;system&gt;.enable",
+    "Description": "Enable (automatic) usage of this module."
+  },
+  {
+    "Command": "&lt;system&gt;.forcemono",
+    "Description": "Force monophonic sound output."
+  },
+  {
+    "Command": "&lt;system&gt;.pixshader",
+    "Description": "Enable specified OpenGL pixel shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support pixel shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. Bilinear interpolation is disabled with pixel shaders, and any interpolation, if present, will be noted in the description of each pixel shader.>\n\n<b>none</b> - None/Disabled\n\n\n<b>autoip</b> - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\n<b>autoipsharper</b> - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\n<b>scale2x</b> - Scale2x\n\n\n<b>sabr</b> - SABR v3.0\nGPU-intensive.\n\n<b>ipsharper</b> - Sharper bilinear interpolation.\n\n\n<b>ipxnoty</b> - Linear interpolation on X axis only.\n\n\n<b>ipynotx</b> - Linear interpolation on Y axis only.\n\n\n<b>ipxnotysharper</b> - Sharper version of \"ipxnoty\".\n\n\n<b>ipynotxsharper</b> - Sharper version of \"ipynotx\".\n"
+  },
+  {
+    "Command": "&lt;system&gt;.scanlines",
+    "Description": "Enable scanlines with specified opacity.\n\nOpacity is specified in %; IE a value of \"100\" will give entirely black scanlines.\n\n\n\nNegative values are the same as positive values for non-interlaced video, but for interlaced video will cause the scanlines to be overlaid over the previous field's lines(only if the video.deinterlacer setting is set to \"weave\", the default)."
+  },
+  {
+    "Command": "&lt;system&gt;.special",
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\n<b>none</b> - None/Disabled\n\n\n<b>hq2x</b> - hq2x\n\n\n<b>hq3x</b> - hq3x\n\n\n<b>hq4x</b> - hq4x\n\n\n<b>scale2x</b> - scale2x\n\n\n<b>scale3x</b> - scale3x\n\n\n<b>scale4x</b> - scale4x\n\n\n<b>2xsai</b> - 2xSaI\n\n\n<b>super2xsai</b> - Super 2xSaI\n\n\n<b>supereagle</b> - Super Eagle\n\n\n<b>nn2x</b> - Nearest-neighbor 2x\n\n\n<b>nn3x</b> - Nearest-neighbor 3x\n\n\n<b>nn4x</b> - Nearest-neighbor 4x\n\n\n<b>nny2x</b> - Nearest-neighbor 2x, y axis only\n\n\n<b>nny3x</b> - Nearest-neighbor 3x, y axis only\n\n\n<b>nny4x</b> - Nearest-neighbor 4x, y axis only\n"
+  },
+  {
+    "Command": "&lt;system&gt;.stretch",
+    "Description": "Stretch to fill screen.\n\n<b>0</b> - Disabled\n\n\n<b>full</b> - Full\nFull-screen stretch, disregarding aspect ratio.\n\n<b>aspect</b> - Aspect Preserve\nFull-screen stretch as far as the aspect ratio(in this sense, the equivalent xscalefs == yscalefs) can be maintained.\n\n<b>aspect_int</b> - Aspect Preserve + Integer Scale\nFull-screen stretch, same as \"aspect\" except that the equivalent xscalefs and yscalefs are rounded down to the nearest integer.\n\n<b>aspect_mult2</b> - Aspect Preserve + Integer Multiple-of-2 Scale\nFull-screen stretch, same as \"aspect_int\", but rounds down to the nearest multiple of 2."
+  },
+  {
+    "Command": "&lt;system&gt;.tblur",
+    "Description": "Enable video temporal blur(50/50 previous/current frame by default)."
+  },
+  {
+    "Command": "&lt;system&gt;.tblur.accum",
+    "Description": "Accumulate color data rather than discarding it."
+  },
+  {
+    "Command": "&lt;system&gt;.tblur.accum.amount",
+    "Description": "Blur amount in accumulation mode, specified in percentage of accumulation buffer to mix with the current frame."
+  },
+  {
+    "Command": "&lt;system&gt;.videoip",
+    "Description": "Enable (bi)linear interpolation.\n\n<b>0</b> - Disabled\n\n\n<b>1</b> - Bilinear\n\n\n<b>x</b> - Linear (X)\nInterpolation only on the X axis.\n\n<b>y</b> - Linear (Y)\nInterpolation only on the Y axis."
+  },
+  {
+    "Command": "&lt;system&gt;.xres",
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+  },
+  {
+    "Command": "&lt;system&gt;.xscale",
+    "Description": "Scaling factor for the X axis in windowed mode."
+  },
+  {
+    "Command": "&lt;system&gt;.xscalefs",
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "&lt;system&gt;.yres",
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+  },
+  {
+    "Command": "&lt;system&gt;.yscale",
+    "Description": "Scaling factor for the Y axis in windowed mode."
+  },
+  {
+    "Command": "&lt;system&gt;.yscalefs",
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+  },
+  {
+    "Command": "&lt;system&gt;.debugger.disfontsize",
+    "Description": "Disassembly font size.\n\nNote: Setting the font size to larger than the default may cause text overlap in the debugger.>\n\n<b>5x7</b> - 5x7\n\n\n<b>6x9</b> - 6x9\n\n\n<b>6x12</b> - 6x12\n\n\n<b>6x13</b> - 6x13.  CJK support.\n\n\n<b>9x18</b> - 9x18;  CJK support.\n"
+  },
+  {
+    "Command": "&lt;system&gt;.debugger.memcharenc",
+    "Description": "Character encoding for the debugger's memory editor."
+  }
+]

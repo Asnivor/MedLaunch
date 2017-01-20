@@ -119,7 +119,7 @@ namespace MedLaunch.Classes
             UIHandler ui = UIHandler.GetChildren(wp);
 
             ConfigsVisualHandler cv = new ConfigsVisualHandler();
-            Border b = (Border)cv.MWindow.FindName("brdNONDYNAMICvfilters");
+            //Border b = (Border)cv.MWindow.FindName("brdNONDYNAMICvfilters");
 
             // get a list of system codes
             List<string> codes = (from a in GSystem.GetSystems()
@@ -128,7 +128,7 @@ namespace MedLaunch.Classes
             // iterate through each ui element and collapse the ones that are not needed for system specific settings
             if (configId != 2000000000)
             {
-                b.Visibility = Visibility.Collapsed;
+                //b.Visibility = Visibility.Collapsed;
                 foreach (Button x in ui.Buttons)
                 {
                     if (x.Name.StartsWith("cfg___"))
@@ -191,11 +191,11 @@ namespace MedLaunch.Classes
                 GlobalSettings gs = GlobalSettings.GetGlobals();
                 if (gs.showAllBaseSettings == true)
                 {
-                    b.Visibility = Visibility.Collapsed;
+                    //b.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
-                    b.Visibility = Visibility.Visible;
+                    //b.Visibility = Visibility.Visible;
                     foreach (Button x in ui.Buttons)
                     {
                         if (x.Name.StartsWith("cfg___"))

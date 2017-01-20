@@ -150,7 +150,7 @@ namespace MedLaunch
             // load globalsettings for front page
             GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar,
                chkAllowBanners, chkAllowBoxart, chkAllowScreenshots, chkAllowFanart, chkPreferGenesis, chkAllowManuals, chkAllowMedia, chkSecondaryScraperBackup,
-               rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost, chkAllowUpdateCheck, chkBackupMednafenConfig, chkSaveSysConfigs, comboImageTooltipSize, chkLoadConfigsOnStart,
+               rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost, chkAllowUpdateCheck, chkBackupMednafenConfig, chkSaveSysConfigs, comboImageTooltipSize, chkLoadConfigsOnStart, chkEnableConfigToolTips,
                chkshowGLYear, chkshowGLESRB, chkshowGLCoop, chkshowGLDeveloper, chkshowGLPublisher, chkshowGLPlayers);
             //gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
             GlobalSettings gs = GlobalSettings.GetGlobals();
@@ -325,6 +325,12 @@ namespace MedLaunch
             */
 
             btnReLink.Visibility = Visibility.Collapsed;
+
+            // enable tooltips if neccesary
+            if (gs.enableConfigToolTips == true)
+            {
+                ConfigToolTips.SetToolTips(1);
+            }
 
         }
 
@@ -1455,6 +1461,16 @@ namespace MedLaunch
         private void chkLoadConfigsOnStart_Unchecked(object sender, RoutedEventArgs e)
         {
             GlobalSettings.UpdateImportConfigsOnStart(chkLoadConfigsOnStart);
+        }
+
+        private void chkEnableConfigToolTips_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateEnableConfigToolTips(chkEnableConfigToolTips);
+        }
+
+        private void chkEnableConfigToolTips_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateEnableConfigToolTips(chkEnableConfigToolTips);
         }
 
 
@@ -4057,6 +4073,15 @@ namespace MedLaunch
             
         }
 
+        private void btnGenerateToolTips_Click(object sender, RoutedEventArgs e)
+        {
+            var r = ConfigToolTips.GetDocumentationStrings();
+        }
+
+        private void btnPopToolTips_Click(object sender, RoutedEventArgs e)
+        {
+            ConfigToolTips.SetToolTips(1);
+        }
     }
     /*
     public class SliderIgnoreDelta : Slider

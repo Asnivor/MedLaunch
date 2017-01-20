@@ -237,8 +237,16 @@
     <Compile Include="Classes\CMenu.cs" />
     <Compile Include="Classes\ConfigImport.cs" />
     <Compile Include="Classes\ConfigReflection.cs" />
+    <Compile Include="Classes\ConfigToolTips.cs" />
     <Compile Include="Classes\GamesLibrary\GameListBuilder.cs" />
     <Compile Include="Classes\GamesLibrary\GamesLibraryDataGridRefresh.cs" />
+    <Compile Include="Classes\HtmlToXaml\CssStylesheet.cs" />
+    <Compile Include="Classes\HtmlToXaml\HtmlCSSParser.cs" />
+    <Compile Include="Classes\HtmlToXaml\HtmlLexicalAnalyzer.cs" />
+    <Compile Include="Classes\HtmlToXaml\HtmlParser.cs" />
+    <Compile Include="Classes\HtmlToXaml\HtmlSchema.cs" />
+    <Compile Include="Classes\HtmlToXaml\HtmlTokenType.cs" />
+    <Compile Include="Classes\HtmlToXaml\HtmlToXamlConverter.cs" />
     <Compile Include="Classes\Input\Controller.cs" />
     <Compile Include="Classes\IO\Crypto.cs" />
     <Compile Include="Classes\LogParser.cs" />
@@ -493,6 +501,9 @@
     </None>
     <None Include="Data\System\MobyGames.json" />
     <None Include="Data\System\TheGamesDB.json" />
+    <None Include="Data\System\ToolTips.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="LICENSE">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -1989,133 +1989,7 @@
                                         <StackPanel Margin="10">
 
 
-                                            <Grid Margin="0">
-
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="*" />
-                                                </Grid.RowDefinitions>
-
-                                                <Label Name="cfglbl_video__driver" Grid.Row="1">Video Driver</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_video__driver" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
-                                                    <ComboBoxItem Tag="opengl">OpenGL</ComboBoxItem>
-                                                    <ComboBoxItem Tag="sdl">SDL</ComboBoxItem>
-                                                    <ComboBoxItem Tag="overlay">Overlay</ComboBoxItem>
-                                                </ComboBox>
-
-                                                <Label Name="cfglbl_video__deinterlacer" Grid.Row="2">De-interlacer</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_video__deinterlacer" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
-                                                    <ComboBoxItem Tag="weave">Weave</ComboBoxItem>
-                                                    <ComboBoxItem Tag="bob">Bob</ComboBoxItem>
-                                                    <ComboBoxItem Tag="bob_offset">Bob Offset</ComboBoxItem>
-                                                </ComboBox>
-
-                                                <Label Name="cfglbl___stretch" Grid.Row="3">Stretching</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg___stretch" Grid.Row="3" Grid.Column="1" Margin="0,0,0,10">
-                                                    <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
-                                                    <ComboBoxItem Tag="full">Full</ComboBoxItem>
-                                                    <ComboBoxItem Tag="aspect">Asp. Preserve</ComboBoxItem>
-                                                    <ComboBoxItem Tag="aspect_int">Asp. Preserve + Int</ComboBoxItem>
-                                                    <ComboBoxItem Tag="aspect_mult2">Asp. Preserve + x2</ComboBoxItem>
-                                                </ComboBox>
-
-                                                <Label Name="cfglbl___videoip" Grid.Row="4">Interpolation</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg___videoip" Grid.Row="4" Grid.Column="1" Margin="0,0,0,10">
-                                                    <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
-                                                    <ComboBoxItem Tag="1">Bilinear</ComboBoxItem>
-                                                    <ComboBoxItem Tag="x">Linear (X)</ComboBoxItem>
-                                                    <ComboBoxItem Tag="y">Linear (Y)</ComboBoxItem>
-                                                </ComboBox>
-
-                                                <Grid Grid.ColumnSpan="2" Grid.Row="5" Margin="0,5,0,5">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="0.5*" />
-                                                        <ColumnDefinition Width="0.5*" />
-                                                    </Grid.ColumnDefinitions>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                    </Grid.RowDefinitions>
-
-                                                    <Label Name="cfglbl_Generic__fullscreen" Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
-                                                    <Label Name="cfglbl___xres" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
-                                                    <Label Name="cfglbl___yres" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
-
-                                                    <Controls:NumericUpDown Name="cfg___xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-                                                    <Controls:NumericUpDown Name="cfg___yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-
-
-                                                    <!--
-                                                    <ComboBox SelectedValuePath="Tag" Name="cfg___xres" Grid.Column="0" Grid.Row="2">
-                                                        <ComboBoxItem Tag="0">Native</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1920">1920</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1856">1856</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1792">1792</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1680">1680</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1600">1600</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1440">1440</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1366">1366</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1280">1280</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1152">1152</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1024">1024</ComboBoxItem>
-                                                        <ComboBoxItem Tag="800">800</ComboBoxItem>
-                                                        <ComboBoxItem Tag="640">640</ComboBoxItem>
-                                                    </ComboBox>
-                                                    <ComboBox SelectedValuePath="Tag" Name="cfg___yres" Grid.Column="2" Grid.Row="2">
-                                                        <ComboBoxItem Tag="0">Native</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1920">1920</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1856">1856</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1792">1792</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1680">1680</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1600">1600</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1440">1440</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1366">1366</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1280">1280</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1152">1152</ComboBoxItem>
-                                                        <ComboBoxItem Tag="1024">1024</ComboBoxItem>
-                                                        <ComboBoxItem Tag="800">800</ComboBoxItem>
-                                                        <ComboBoxItem Tag="640">640</ComboBoxItem>
-                                                    </ComboBox>
-                                                    
-                                                    -->
-
-                                                    <Label Name="cfglbl_Generic__fsscaling" Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
-                                                    <Label Name="cfglbl___xscalefs" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
-                                                    <Label Name="cfglbl___yscalefs" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
-                                                    <Controls:NumericUpDown Name="cfg___xscalefs" Grid.Column="0" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
-                                                    <Controls:NumericUpDown Name="cfg___yscalefs" Grid.Column="1" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
-
-                                                    <Label Name="cfglbl_Generic__winscaling" Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center">Window Scaling</Label>
-                                                    <Label Name="cfglbl_cfg___xscale" Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center">X</Label>
-                                                    <Label Name="cfglbl_cfg___yscale" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center">Y</Label>
-                                                    <Controls:NumericUpDown Name="cfg___xscale" Grid.Column="0" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
-                                                    <Controls:NumericUpDown Name="cfg___yscale" Grid.Column="1" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
-                                                </Grid>
-
-
-
-
-                                            </Grid>
+                                           
 
                                             <CheckBox Name="cfg_video__fs">Full Screen</CheckBox>
                                             <CheckBox Name="cfg_video__frameskip">Frame Skip</CheckBox>
@@ -2133,111 +2007,7 @@
                                         </StackPanel>
                                     </Expander>
                                 </Border>
-                                <!-- Video Filters Border -->
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="brdNONDYNAMICvfilters">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Video Filters">
-                                        <StackPanel Margin="10">
-
-                                            <Grid Margin="0">
-
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="*" />
-                                                </Grid.RowDefinitions>
-
-                                                <Label Name="lbl_Generic__oglpixshader" Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg___shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
-                                                    <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
-                                                    <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
-                                                    <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
-                                                    <ComboBoxItem Tag="scale2x">Scale2x</ComboBoxItem>
-                                                    <ComboBoxItem Tag="sabr">SABR v3.0</ComboBoxItem>
-                                                    <ComboBoxItem Tag="ipsharper">Sharper Bilinear Int.</ComboBoxItem>
-                                                    <ComboBoxItem Tag="ipxnoty">Linear Int. on X Axis</ComboBoxItem>
-                                                    <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
-                                                    <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
-                                                    <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
-                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
-                                                </ComboBox>
-
-                                                <Label Name="lbl_Generic__vscaler" Grid.Row="2">Special Video Scaler</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg___special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
-                                                    <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
-                                                    <ComboBoxItem Tag="hq2x">hq2x</ComboBoxItem>
-                                                    <ComboBoxItem Tag="hq3x">hq3x</ComboBoxItem>
-                                                    <ComboBoxItem Tag="hq4x">hq4x</ComboBoxItem>
-                                                    <ComboBoxItem Tag="scale2x">scale2x</ComboBoxItem>
-                                                    <ComboBoxItem Tag="scale3x">scale3x</ComboBoxItem>
-                                                    <ComboBoxItem Tag="scale4x">scale4x</ComboBoxItem>
-                                                    <ComboBoxItem Tag="2xsai">2xSaI</ComboBoxItem>
-                                                    <ComboBoxItem Tag="super2xsai">Super 2xSaI</ComboBoxItem>
-                                                    <ComboBoxItem Tag="supereagle">Super Eagle</ComboBoxItem>
-                                                    <ComboBoxItem Tag="nn2x">Nearest-neighbor 2x</ComboBoxItem>
-                                                    <ComboBoxItem Tag="nn3x">Nearest-neighbor 3x</ComboBoxItem>
-                                                    <ComboBoxItem Tag="nn4x">Nearest-neighbor 4x</ComboBoxItem>
-                                                    <ComboBoxItem Tag="nny2x">Nearest-neighbor 2x Y Axis</ComboBoxItem>
-                                                    <ComboBoxItem Tag="nny3x">Nearest-neighbor 3x Y Axis</ComboBoxItem>
-                                                    <ComboBoxItem Tag="nny4x">Nearest-neighbor 4x Y Axis</ComboBoxItem>
-                                                </ComboBox>
-
-
-                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto" />
-                                                        <ColumnDefinition Width="*" />
-                                                    </Grid.ColumnDefinitions>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                    </Grid.RowDefinitions>
-
-                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                        <Label Name="lbl_Generic__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
-                                                        <TextBox Name="tb_Generic__scanlines" Text="{Binding ElementName=cfg___scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                        <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
-                                        Name="cfg___scanlines"/>
-                                                    </DockPanel>
-
-                                                </Grid>
-                                            </Grid>
-
-                                            <CheckBox Name="cfg___tblur">Temporal Blur</CheckBox>
-                                            <CheckBox Name="cfg___tblur__accum">Accumulate Color Data</CheckBox>
-
-                                            <Grid Margin="0">
-
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-
-                                                </Grid.RowDefinitions>
-
-                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
-                                                    <Label Name="lbl_Generic__tbluramount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
-                                                    <TextBox Name="tb_Generic__tbluramount" Text="{Binding ElementName=cfg___tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
-                                        Name="cfg___tblur__accum__amount"/>
-                                                </DockPanel>
-                                            </Grid>
-
-
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
+                                
                                 <!-- Control Border -->
                                 <Border Style="{StaticResource Borders1}" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Control">
@@ -5143,8 +4913,8 @@
 
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
-                                                    <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Mouse Sensitivity</Label>
-                                                    <TextBox Name="cfglbl_pce__mouse_sensitivity" Text="{Binding ElementName=cfg_pce__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Label Name="cfglbl_pce__mouse_sensitivity" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Mouse Sensitivity</Label>
+                                                    <TextBox  Text="{Binding ElementName=cfg_pce__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="0.125" TickPlacement="BottomRight" TickFrequency="0.005" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce__mouse_sensitivity"/>
                                                 </DockPanel>
@@ -9547,6 +9317,9 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
 
@@ -9638,6 +9411,10 @@
                                                     </ComboBox>
 
                                                 </Grid>
+
+                                                <CheckBox Grid.Row="12" Grid.ColumnSpan="2" Name="chkEnableConfigToolTips" Checked="chkEnableConfigToolTips_Checked" Unchecked="chkEnableConfigToolTips_Unchecked">
+                                                    Enable Config ToolTips (requires launcher restart)
+                                                </CheckBox>
                                                 
 
 
@@ -10511,6 +10288,17 @@
                     <Button Margin="5" x:Name="btnmatchDATyears" Click="btnmatchDATyears_Click">
                         Populate entries in the master DAT that do not have date information
                     </Button>
+
+
+                    <Button Margin="5" x:Name="btnGenerateToolTips" Click="btnGenerateToolTips_Click">
+                        Generate tooltips JSON
+                    </Button>
+
+                    <Button Margin="5" x:Name="btnPopToolTips" Click="btnPopToolTips_Click">
+                        ToolTip Populate
+                    </Button>
+
+
 
 
                 </WrapPanel>
