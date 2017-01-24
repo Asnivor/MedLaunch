@@ -21,9 +21,9 @@
 
 [http://medlaunch.asnitech.co.uk/](http://medlaunch.asnitech.co.uk/)
 
-**MedLaunch** is a .NET (Windows only) front-end for the excellent [Mednafen](http://mednafen.fobby.net/) multi-system emulator. I'm not a developer by profession so it started as a means to learn a bit more about C# .NET and to start learning about Windows Presentation Foundation (WPF). It really has been a steep learning curve and as such, there are a vast swathe of things in the code that are certainly not 'best-practice'. Top of this list is the fact that I have not used the 'Model-View-ViewModel' design pattern (MVVM) which means the source is pretty hard to decipher in places. I may or may not address this with a major re-write in the future.
+**MedLaunch** is a .NET (Windows only) front-end for the excellent [Mednafen](http://mednafen.fobby.net/) multi-system emulator. 
 
-! Please Note: You should consider this software alpha. There are a number of things that are not yet implemented properly (or in some cases not implemented at all). Some of these can be found in the '**Broken Features**' & '**To Do**' sections further down this page.
+! Please Note: You should consider this software beta.
 
 ### Features
 * Responsive GUI that allows for a wide range of monitor resolutions
@@ -31,22 +31,14 @@
 * Local (SQLite) auto-generated database where all settings are saved
 * Built-in games library (with system filters and dynamic search)
 * ROM scanner (for games library import)
+* Combined NoIntro/ToSec MD5 hash auto-lookup (for populating some of the games library data on ROM import).
 * Scraping of game data and media from thegamesdb.net
 * Games library sidebar for game info, stats and media
 * Manual import of disk-based games (both single and multiple disk games with auto-m3u playlist generation)
 * All Mednafen command line parameters available and configurable
-* So far uses only Mednafen command line options (and not local configuration files)
-* Optional per-system configuration options
 * Built-in browser control with links to Mednafen help pages
 * Built-in static netplay server selection along with the ability to specify a custom Mednafen netplay server to connect to
 * Customizable launcher color scheme
-
-### Broken Features
-* The launcher currently only handles absolute paths correctly. Relative path handling may or may not work but this part of the code needs a proper overhaul
-
-### To Do
-* Configure controllers from within MedLaunch
-* Option to bypass all MedLaunch command line parameters (and just use already existing Mednafen cfg files)
 
 This upcoming changes (and many others) can be found in the current roadmap [here](http://medlaunch.asnitech.co.uk/roadmap).
 
@@ -84,3 +76,4 @@ The project has been built using Visual Studio Community 2015. It may or may not
 * Clone the Master branch (or download as zip)
 * Open MedLaunch.sln in VisualStudio
 * Restore NuGet packages
+* Cross your fingers?
