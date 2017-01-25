@@ -294,5 +294,23 @@ namespace MedLaunch.Classes.Controls
             int asciiNum = Convert.ToInt32(asciiNumString);
             return ReturnKeyName(asciiNum);
         }
+
+        public static string ReturnKeyNum(string sdlName)
+        {
+            Keyboard k = new Keyboard();
+            var lookup = (from a in k.KeyList
+                          where a.Key == sdlName
+                          select a).ToList();
+
+            if (lookup.Count() == 0)
+            {
+                // not found
+                return "0";
+            }
+            else
+            {
+                return lookup.First().Value.ToString();
+            }
+        }
     }
 }
