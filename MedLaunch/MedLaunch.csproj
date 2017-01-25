@@ -238,6 +238,7 @@
     <Compile Include="Classes\ConfigImport.cs" />
     <Compile Include="Classes\ConfigReflection.cs" />
     <Compile Include="Classes\ConfigToolTips.cs" />
+    <Compile Include="Classes\Controls\Keyboard.cs" />
     <Compile Include="Classes\GamesLibrary\GameListBuilder.cs" />
     <Compile Include="Classes\GamesLibrary\GamesLibraryDataGridRefresh.cs" />
     <Compile Include="Classes\HtmlToXaml\CssStylesheet.cs" />
