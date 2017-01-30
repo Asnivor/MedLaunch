@@ -49,6 +49,7 @@ using MedLaunch.Classes.Scraper.DAT.NOINTRO.Models;
 using MedLaunch.Classes.Scraper.DAT.Models;
 using MedLaunch.Classes.Scraper.DAT.TRURIP.Models;
 using MedLaunch.Classes.Scraper.DAT.REDUMP.Models;
+using MedLaunch.Classes.VisualHandlers;
 
 namespace MedLaunch
 {
@@ -233,6 +234,8 @@ namespace MedLaunch
             brdSpecificWswan.Visibility = Visibility.Collapsed;
             */
 
+            // controls tab
+            btnControlNes.IsChecked = true;
 
             // settings tab
             btnAllSettings.IsChecked = true;
@@ -2232,6 +2235,36 @@ namespace MedLaunch
             ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
         }
 
+        // controls tab
+
+        // generic controls selections buttons
+        private void btnControl_Checked(object sender, RoutedEventArgs e)
+        {
+            ControlsVisualHandler.ButtonClick();
+        }
+
+        private void btnControl_UnChecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Controller_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // get the combobox
+            ComboBox cb = sender as ComboBox;
+            string cbName = cb.Name;
+            string selected = (e.AddedItems[0] as ComboBoxItem).Content.ToString();
+
+            // now parse based on system
+            string sysStr = cbName.Replace("cmb", "");
+
+            // nes standard gamepad
+            if (sysStr == "Nes1")
+            {
+
+            }
+        }
+
 
         // Config Tab               
 
@@ -4082,6 +4115,8 @@ namespace MedLaunch
         {
             ConfigToolTips.SetToolTips(1);
         }
+
+        
     }
     /*
     public class SliderIgnoreDelta : Slider

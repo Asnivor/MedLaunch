@@ -153,6 +153,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>ExternalAssemblies\SDLJoystick.dll</HintPath>
     </Reference>
+    <Reference Include="SharpDX, Version=3.1.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.3.1.1\lib\net45\SharpDX.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.DirectInput, Version=3.1.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.DirectInput.3.1.1\lib\net45\SharpDX.DirectInput.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.XInput, Version=3.1.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.XInput.3.1.1\lib\net45\SharpDX.XInput.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.Concurrent" />
     <Reference Include="System.Collections.Immutable, Version=1.1.36.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -276,6 +288,7 @@
     <Compile Include="Classes\GameScraper.cs" />
     <Compile Include="Classes\GamesLibData.cs" />
     <Compile Include="Classes\GamesLibrary\GamesLibraryScrapedContent.cs" />
+    <Compile Include="Classes\VisualHandlers\ControlsVisualHandler.cs" />
     <Compile Include="Classes\VisualHandlers\GamesLibraryVisualHandler.cs" />
     <Compile Include="Classes\GetBuildTime.cs" />
     <Compile Include="Classes\FuzzySearch.cs" />
@@ -324,6 +337,7 @@
     <Compile Include="Models\GlobalSettings.cs" />
     <Compile Include="Models\LibraryDataGDBLink.cs" />
     <Compile Include="Models\LibrarySidebar.cs" />
+    <Compile Include="Models\MednafenControls.cs" />
     <Compile Include="Models\MobyPlatformGame.cs" />
     <Compile Include="Models\Paths.cs" />
     <Compile Include="Models\GSystem.cs" />
@@ -574,6 +588,15 @@
     <Resource Include="Data\Graphics\Systems\wswan.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Data\Graphics\Controllers\lynx_controller.png" />
+    <Resource Include="Data\Graphics\Controllers\gb_controller.png" />
+    <Resource Include="Data\Graphics\Controllers\gba-controller.png" />
+    <Resource Include="Data\Graphics\Controllers\gg-controller.png" />
+    <Resource Include="Data\Graphics\Controllers\md-controller-3button.png" />
+    <Resource Include="Data\Graphics\Controllers\md-controller-6button.png" />
+    <Resource Include="Data\Graphics\Controllers\md-controller-megamouse.png" />
+    <Resource Include="Data\Graphics\Controllers\nes-controller.png" />
+    <Resource Include="Data\Graphics\Controllers\ngp-controller.png" />
     <Content Include="ExternalAssemblies\Feeble.dll" />
     <Content Include="ExternalAssemblies\SDL.dll" />
     <Content Include="ExternalAssemblies\SDL64.dll" />
