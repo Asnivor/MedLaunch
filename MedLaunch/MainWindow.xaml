@@ -11014,12 +11014,17 @@
                         <Label x:Name="lbl3" Grid.Column="0" Grid.Row="3" VerticalAlignment="Top" Margin="10" VerticalContentAlignment="Top">
                             Release Notes
                         </Label>
-                        <ScrollViewer x:Name="lbl4" Grid.Column="1" Grid.Row="3" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <ScrollViewer x:Name="lbl4" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                             <TextBlock TextWrapping="Wrap" x:Name="tbNotes" Margin="10">
 
                         </TextBlock>
                         </ScrollViewer>
 
+                        <Label x:Name="lbl5" Grid.Column="0" Grid.Row="5" VerticalAlignment="Top" Margin="10" VerticalContentAlignment="Top">
+                            Binary URL
+                        </Label>
+                        <Label x:Name="lblDownloadUrl" Grid.Column="1" Grid.Row="5" Margin="10"/>
+                        <!--
                         <Label x:Name="lbl5" Grid.Column="0" Grid.Row="4" VerticalAlignment="Top" Margin="10" VerticalContentAlignment="Top">
                             Changelog
                         </Label>
@@ -11028,6 +11033,7 @@
 
                             </TextBlock>
                         </ScrollViewer>
+                        -->
 
                         <Button Margin="0,50,0,0" Grid.ColumnSpan="2" Grid.Row="5" x:Name="btnUpdate" Content="Auto-Download and Install Latest MedLaunch Version" Click="btnUpdate_Click"/>
 

@@ -50,6 +50,7 @@ using MedLaunch.Classes.Scraper.DAT.Models;
 using MedLaunch.Classes.Scraper.DAT.TRURIP.Models;
 using MedLaunch.Classes.Scraper.DAT.REDUMP.Models;
 using MedLaunch.Classes.VisualHandlers;
+using Newtonsoft.Json.Linq;
 
 namespace MedLaunch
 {
@@ -299,14 +300,11 @@ namespace MedLaunch
             lblVersion.Visibility = Visibility.Collapsed;
             lblDate.Visibility = Visibility.Collapsed;
             tbNotes.Visibility = Visibility.Collapsed;
-            tbChangeLog.Visibility = Visibility.Collapsed;
             btnUpdate.Visibility = Visibility.Collapsed;
             lbl1.Visibility = Visibility.Collapsed;
             lbl2.Visibility = Visibility.Collapsed;
             lbl3.Visibility = Visibility.Collapsed;
             lbl4.Visibility = Visibility.Collapsed;
-            lbl5.Visibility = Visibility.Collapsed;
-            lbl6.Visibility = Visibility.Collapsed;
             lblNoUpdate.Visibility = Visibility.Collapsed;
 
             /*
@@ -2725,9 +2723,13 @@ namespace MedLaunch
             {
                 wc.Proxy = null;
                 wc.Timeout = 2000;
+                string userAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2;)";
+                wc.Headers.Add("user-agent", userAgent);
                 try
                 {
-                    contents = wc.DownloadString("https://raw.githubusercontent.com/Asnivor/MedLaunch/master/MedLaunch/LatestVersion.txt");
+                    //contents = wc.DownloadString("https://raw.githubusercontent.com/Asnivor/MedLaunch/master/MedLaunch/LatestVersion.txt");
+                    var c = wc.DownloadString("https://api.github.com/repos/Asnivor/MedLaunch/releases/latest");
+                    contents = c;
                 }
                 catch (Exception ex)
                 {
@@ -2746,8 +2748,11 @@ namespace MedLaunch
 
 
             controller.SetMessage("Determining latest version...");
+            // dynamically parse the github json latest release info
+            dynamic d = JObject.Parse(contents);
+
             // check whether the version is greater than the one we have installed
-            string latestVersion = contents.Replace(".json", "");
+            string latestVersion = d.tag_name;
             // compare versions and determine whether an upgrade is needed
             string[] CurrVersionArr = currVersion.Split('.');
             string[] newVersionArr = latestVersion.Split('.');
@@ -2786,35 +2791,15 @@ namespace MedLaunch
                 await Task.Delay(500);
                 string releaseInfo;
 
-                using (var wc = new CustomWebClient())
-                {
-                    wc.Proxy = null;
-                    wc.Timeout = 2000;
-                    try
-                    {
-                        releaseInfo = wc.DownloadString("https://raw.githubusercontent.com/Asnivor/MedLaunch/master/ReleaseGenerator/Releases/" + contents);
-                        newRelease = JsonConvert.DeserializeObject<Release>(releaseInfo);
-                    }
-                    catch (Exception ex)
-                    {
-                        controller.SetMessage("The request timed out - please try again");
-                        if (isStartup == false)
-                            await Task.Delay(2000);
-                        await controller.CloseAsync();
-                        wc.Dispose();
-                        return;
-                    }
-                    finally
-                    {
-                        wc.Dispose();
-                    }
-                }
+                // get release info from JSON
+                releaseInfo = d.body;
+
+                
             }
             else
             {
                 output = "Your Version of MedLaunch is up to date";
                 UpdatedHeader.Header = "Updates";
-                //await Task.Delay(1000);
             }
             controller.SetMessage(output);
             if (isStartup == false)
@@ -2830,22 +2815,24 @@ namespace MedLaunch
                 lbl3.Visibility = Visibility.Visible;
                 lbl4.Visibility = Visibility.Visible;
                 lbl5.Visibility = Visibility.Visible;
-                lbl6.Visibility = Visibility.Visible;
 
+                // new version
                 lblVersion.Visibility = Visibility.Visible;
-                lblVersion.Content = newRelease.Version;
+                lblVersion.Content = d.tag_name;
 
-                lblDate.Visibility = Visibility.Visible;
-                lblDate.Content = newRelease.Date.ToShortDateString();
+                // release date
+                lblDate.Visibility = Visibility.Visible;    // release date
+                string sDate = d.published_at;
+                string[] sD = sDate.Split('T');
+                lblDate.Content = sD[0];
 
+                // release notes
                 tbNotes.Visibility = Visibility.Visible;
-                tbNotes.Text = newRelease.Notes;
+                tbNotes.Text = d.body;
 
-                tbChangeLog.Visibility = Visibility.Visible;
-                foreach (string item in newRelease.Changelog)
-                {
-                    tbChangeLog.Text += "* " + item + "\r\n";
-                }
+                // download URL
+                lblDownloadUrl.Visibility = Visibility.Visible;
+                lblDownloadUrl.Content = d.assets[0].browser_download_url;
 
                 btnUpdate.Visibility = Visibility.Visible;
                 lblNoUpdate.Visibility = Visibility.Collapsed;
@@ -2855,14 +2842,13 @@ namespace MedLaunch
                 lblVersion.Visibility = Visibility.Collapsed;
                 lblDate.Visibility = Visibility.Collapsed;
                 tbNotes.Visibility = Visibility.Collapsed;
-                tbChangeLog.Visibility = Visibility.Collapsed;
+                lblDownloadUrl.Visibility = Visibility.Collapsed;
                 btnUpdate.Visibility = Visibility.Collapsed;
                 lbl1.Visibility = Visibility.Collapsed;
                 lbl2.Visibility = Visibility.Collapsed;
                 lbl3.Visibility = Visibility.Collapsed;
                 lbl4.Visibility = Visibility.Collapsed;
                 lbl5.Visibility = Visibility.Collapsed;
-                lbl6.Visibility = Visibility.Collapsed;
                 lblNoUpdate.Visibility = Visibility.Visible;
             }
         }
@@ -2900,10 +2886,13 @@ namespace MedLaunch
 
             string output;
 
-            // build the donwload url
-            string download = "https://github.com/Asnivor/MedLaunch/releases/download/" + v + "/MedLaunch_v" + vArr[0] + "_" + vArr[1] + "_" + vArr[2] + "_" + vArr[3] + ".zip";
+            // download url
+            string url = lblDownloadUrl.Content.ToString();
+            // get just the filename
+            string[] fArr = url.Split('/');
+            string fName = fArr[fArr.Length - 1];
 
-            // try the downlaod
+            // try the download
 
             using (var wc = new CustomWebClient())
             {
@@ -2911,7 +2900,7 @@ namespace MedLaunch
                 wc.Timeout = 2000;
                 try
                 {
-                    wc.DownloadFile(download, downloadsFolder + "\\" + "MedLaunch_v" + vArr[0] + "_" + vArr[1] + "_" + vArr[2] + "_" + vArr[3] + ".zip");
+                    wc.DownloadFile(url, downloadsFolder + "\\" + fName);
                 }
                 catch (Exception ex)
                 {
@@ -2931,7 +2920,7 @@ namespace MedLaunch
             // now run updater app to extract MedLaunch over the existing directory
             // build command line args
             string processArg = "/P:" + Process.GetCurrentProcess().Id.ToString();
-            string upgradeArg = "/U:" + "MedLaunch_v" + vArr[0] + "_" + vArr[1] + "_" + vArr[2] + "_" + vArr[3] + ".zip";
+            string upgradeArg = "/U:" + fName; // "MedLaunch_v" + vArr[0] + "_" + vArr[1] + "_" + vArr[2] + "_" + vArr[3] + ".zip";
             string args = processArg + " " + upgradeArg;
             // call the external updater app and close this one
             // call the updater app and close this one
