@@ -225,7 +225,7 @@
                         </Border>
 
                         <Border Style="{StaticResource Borders1}"  Margin="0" Grid.Column="0">
-                            <Expander IsExpanded="True" BorderThickness="0" Header="Disks" >
+                            <Expander IsExpanded="True" BorderThickness="0" Header="Discs" >
                                 <Expander.ContextMenu>
                                     <ContextMenu>
                                         <MenuItem Click="RemoveAllGames_Click" Header="Remove All Games From Database" />
