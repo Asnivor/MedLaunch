@@ -1,0 +1,12 @@
+{
+  "Version": "0.4.1.0",
+  "Date": "2017-02-09T00:00:00",
+  "Notes": "Beta release\r\n\r\nhttps://github.com/Asnivor/MedLaunch/releases/tag/0.4.1.0\r\n\r\nImportant Release Notes\r\n\r\n** This MedLaunch release is ONLY compatible with version 0.9.42.x of Mednafen. Do NOT upgrade if you are not planning to update Mednafen also **\r\n\r\nNew Install\r\n\r\nExtract this release to a folder, run the 'MedLaunch.exe' executable and choose your Mednafen directory (must be the Mednafen 0.9.42.x branch - 64-bit version is required if you want to emulate Saturn games).\r\nYou are then prompted to choose whether to import all config settings from your Mednafen folder into the MedLaunch database (this is recommended).\r\nIf you currently use system-specific config files with Mednafen the settings from these will be imported with the above process. However MedLaunch will write to these files when you launch a game - so back them up somewhere if you are not happy with this.\r\nUpgrade\r\n\r\nPreferred Method:\r\n\r\nAutomatically download and upgrade using the 'Updates' tab within MedLaunch itself.\r\nEnsure you have the correct version of Mednafen installed (v0.9.42.x)\r\nOnce MedLaunch has upgraded, go to the 'Configs' tab and click the 'IMPORT ALL CONFIGS FROM DISK' button\r\nIn settings change your mednafen directory if you installed the new version of mednafen somewhere else\r\nManual Method:\r\n\r\nYou can safely extract this new release over an existing MedLaunch folder (providing you do not have MedLaunch running at the time)\r\nOnce extracted run the MedLaunch.exe executable and your current database will be upgraded before the application starts proper.\r\nOnce MedLaunch has upgraded, go to the 'Configs' tab and click the 'IMPORT ALL CONFIGS FROM DISK' button\r\nIn settings change your mednafen directory if you installed the new version of mednafen somewhere else",
+  "Changelog": [
+    "Added new config controls for mednafen 0.9.42 (snes_faust multitap and additional virtual controller selection)",
+    "Fixed a few small UI bugs",
+    "Modified the update checker to use github's API rather than individually generated json files",
+    "",
+    ""
+  ]
+}
