@@ -689,8 +689,17 @@ namespace MedLaunch.Models
         public double? psx__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
 
         // SNES (Faust)
+        public bool snes_faust__input__sport1__multitap { get; set; }
+        public bool snes_faust__input__sport2__multitap { get; set; }
+
         public string snes_faust__input__port1 { get; set; }
         public string snes_faust__input__port2 { get; set; }
+        public string snes_faust__input__port3 { get; set; }
+        public string snes_faust__input__port4 { get; set; }
+        public string snes_faust__input__port5 { get; set; }
+        public string snes_faust__input__port6 { get; set; }
+        public string snes_faust__input__port7 { get; set; }
+        public string snes_faust__input__port8 { get; set; }
         public int? snes_faust__resamp_quality { get; set; }                    // 0 through 5
         public double? snes_faust__resamp_rate_error { get; set; }              // 0.0000001 through 0.0015
         public bool? snes_faust__spex { get; set; }
@@ -1500,8 +1509,16 @@ namespace MedLaunch.Models
                 psx__shader__goat__vdiv = 0.50,
 
                 // snes faust
+                snes_faust__input__sport1__multitap = false,
+                snes_faust__input__sport2__multitap = false,
                 snes_faust__input__port1 = "gamepad",               // placed
                 snes_faust__input__port2 = "gamepad",               // placed
+                snes_faust__input__port3 = "gamepad",               // placed
+                snes_faust__input__port4 = "gamepad",               // placed
+                snes_faust__input__port5 = "gamepad",               // placed
+                snes_faust__input__port6 = "gamepad",               // placed
+                snes_faust__input__port7 = "gamepad",               // placed
+                snes_faust__input__port8 = "gamepad",               // placed
                 snes_faust__resamp_quality = 3,                     // placed
                 snes_faust__resamp_rate_error = 0.000035,           // placed
                 snes_faust__spex = false,                           // placed
