@@ -335,7 +335,7 @@
 
 
                             <DataGrid PreviewMouseRightButtonDown="DataGrid_PreviewMouseRightButtonDown" PreviewMouseRightButtonUp="DataGrid_PreviewMouseRightButtonDown" 
-                                      RowBackground="Transparent" Background="Transparent" MouseDoubleClick="LaunchRom_Click" Grid.Row="2" Name="dgGameList" IsReadOnly="True" 
+                                      RowBackground="Transparent" Background="Transparent"  Grid.Row="2" Name="dgGameList" IsReadOnly="True" 
                                       SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Single" ContextMenuOpening="dgGameList_ContextMenuOpening" AutoGenerateColumns="False"
                                       ItemsSource="{Binding FilteredSet, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DataContext="{Binding Source={x:Static Application.Current}, Path=GamesList}" 
                                       IsSynchronizedWithCurrentItem="True"
@@ -384,7 +384,8 @@
                                     </Style>
                                 </DataGrid.CellStyle>
                                 <DataGrid.RowStyle>
-                                    <Style TargetType="DataGridRow">
+                                    <Style TargetType="{x:Type DataGridRow}">
+                                        <EventSetter Event="MouseDoubleClick" Handler="LaunchRom_Click"/>
                                         <Setter Property="VerticalContentAlignment" Value="Center" />
                                         <Setter Property="VerticalAlignment" Value="Center" />
                                     </Style>
