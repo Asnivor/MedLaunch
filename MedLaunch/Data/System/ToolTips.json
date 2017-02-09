@@ -1917,11 +1917,43 @@
   },
   {
     "Command": "snes_faust.input.port1",
-    "Description": "Input device for Port 1\n\nnone - none\n\n\ngamepad - Gamepad\n"
+    "Description": "Input device for Virtual Port 1\n\nnone - none\n\n\ngamepad - Gamepad\n"
   },
   {
     "Command": "snes_faust.input.port2",
-    "Description": "Input device for Port 2\n\nnone - none\n\n\ngamepad - Gamepad\n"
+    "Description": "Input device for Virtual Port 2\n\nnone - none\n\n\ngamepad - Gamepad\n"
+  },
+  {
+    "Command": "snes_faust.input.port3",
+    "Description": "Input device for Virtual Port 3\n\nnone - none\n\n\ngamepad - Gamepad\n"
+  },
+  {
+    "Command": "snes_faust.input.port4",
+    "Description": "Input device for Virtual Port 4\n\nnone - none\n\n\ngamepad - Gamepad\n"
+  },
+  {
+    "Command": "snes_faust.input.port5",
+    "Description": "Input device for Virtual Port 5\n\nnone - none\n\n\ngamepad - Gamepad\n"
+  },
+  {
+    "Command": "snes_faust.input.port6",
+    "Description": "Input device for Virtual Port 6\n\nnone - none\n\n\ngamepad - Gamepad\n"
+  },
+  {
+    "Command": "snes_faust.input.port7",
+    "Description": "Input device for Virtual Port 7\n\nnone - none\n\n\ngamepad - Gamepad\n"
+  },
+  {
+    "Command": "snes_faust.input.port8",
+    "Description": "Input device for Virtual Port 8\n\nnone - none\n\n\ngamepad - Gamepad\n"
+  },
+  {
+    "Command": "snes_faust.input.sport1.multitap",
+    "Description": "Enable multitap on SNES port 1."
+  },
+  {
+    "Command": "snes_faust.input.sport2.multitap",
+    "Description": "Enable multitap on SNES port 2."
   },
   {
     "Command": "snes_faust.resamp_quality",

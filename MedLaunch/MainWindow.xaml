@@ -6987,7 +6987,7 @@
                                                     <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <CheckBox x:Name="cfg_snes__input__port2__multitap" Grid.ColumnSpan="2" Grid.Row="2">Enable MultiTap (Port 2)</CheckBox>
+                                                <CheckBox x:Name="cfg_snes__input__port2__multitap" Grid.ColumnSpan="2" Grid.Row="4">Enable MultiTap (Port 2)</CheckBox>
 
                                                 <Label Name="cfglbl_snes__input__port2" Grid.Column="0" Grid.Row="5">Port 2 Input Device</Label>
                                                 <ComboBox x:Name="cfg_snes__input__port2" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="5">
