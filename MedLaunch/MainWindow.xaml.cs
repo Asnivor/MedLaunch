@@ -2616,6 +2616,9 @@ namespace MedLaunch
         {
             var r = (DataGridGamesView)dgGameList.SelectedItem;
             // get the gamesdbid
+            if (Game.GetGame(Convert.ToInt32(r.ID)).gdbId == null)
+                return;
+
             int gdbId = Game.GetGame(Convert.ToInt32(r.ID)).gdbId.Value;
             // re-scrape the game
             if (gdbId > 0)
