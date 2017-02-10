@@ -129,7 +129,9 @@ namespace MedLaunch
 
             // set title
             string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
-            this.Title = "MedLaunch (v" + appVersion + ") - Windows Front-End for Mednafen (v" + Versions.CompatibleMednafenBranch() + " only)";
+            this.Title = "MedLaunch (v" + appVersion + ") - Windows Front-End for Mednafen"; // (v" + Versions.CompatibleMednafenBranch() + " only)";
+
+            rightMenuLabel.Text = "(Compatible Mednafen v" + Versions.CompatibleMednafenBranch() + " only)";
             //this.Title = "MedLaunch - Windows Front-End for Mednafen (v" + versionMajor + "." + versionMinor + "." + versionBuild + "." + versionPrivate + ")"; // - Built: "+ linkTimeLocal;
             //this.Title = "MedLaunch - Windows Front-End for Mednafen (" + fVersion + ")";
 
@@ -1052,7 +1054,16 @@ namespace MedLaunch
         {
             // get systemId from menu name
             string menuName = (sender as MenuItem).Name;
-            int sysId = Convert.ToInt32(menuName.Replace("ScanRoms", ""));
+            int sysId = 0;
+            if (menuName.StartsWith("ScanRoms"))
+            {
+                sysId = Convert.ToInt32(menuName.Replace("ScanRoms", ""));
+            }
+            if (menuName.StartsWith("MenuScanRoms"))
+            {
+                sysId = Convert.ToInt32(menuName.Replace("MenuScanRoms", ""));
+            }
+
             RescanSystemRoms(sysId);
         }
 
@@ -4146,6 +4157,14 @@ namespace MedLaunch
         private void menuQuitMedLaunch_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void TopMenu_Click(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).ContextMenu.IsEnabled = true;
+            (sender as Button).ContextMenu.PlacementTarget = (sender as Button);
+            (sender as Button).ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+            (sender as Button).ContextMenu.IsOpen = true;
         }
     }
     /*

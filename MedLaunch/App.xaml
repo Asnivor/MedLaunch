@@ -225,6 +225,91 @@
             </Style>
             
             <!-- Menu bar styling -->
+            <Style BasedOn="{StaticResource MetroContextMenu}" TargetType="{x:Type ContextMenu}">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
+                <Setter Property="Background" Value="{DynamicResource ContextMenuBackgroundBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource ContextMenuBorderBrush}" />
+                <Setter Property="BorderThickness" Value="0.5" />
+                <Setter Property="FontFamily" Value="{DynamicResource {x:Static SystemFonts.MenuFontFamilyKey}}" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontStyle" Value="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}" />
+                <Setter Property="FontWeight" Value="{DynamicResource {x:Static SystemFonts.MenuFontWeightKey}}" />
+                <Setter Property="Grid.IsSharedSizeScope" Value="True" />
+                <Setter Property="HasDropShadow" Value="True" />
+                <Setter Property="OverridesDefaultStyle" Value="True" />
+                <Setter Property="SnapsToDevicePixels" Value="True" />
+                <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
+                <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ContextMenu}">
+                            <Grid>
+                                <Rectangle x:Name="LayoutRoot" Fill="{TemplateBinding Background}" />
+                                <Border x:Name="Border"
+                                Padding="{TemplateBinding Padding}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+
+                                    <ScrollViewer x:Name="SubMenuScrollViewer"
+                                          Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}"
+                                          CanContentScroll="True">
+                                        <ItemsPresenter x:Name="ItemsPresenter"
+                                                Margin="1,5,1,5"
+                                                Grid.IsSharedSizeScope="True"
+                                                KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                KeyboardNavigation.TabNavigation="Cycle"
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                    </ScrollViewer>
+                                </Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="HasDropShadow" Value="True">
+                                    <Setter TargetName="Border" Property="Margin" Value="0 0 6 6" />
+                                    <Setter TargetName="LayoutRoot" Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect Opacity="0.3"
+                                                      BlurRadius="4"
+                                                      Direction="315"
+                                                      ShadowDepth="2"
+                                                      Color="{DynamicResource MenuShadowColor}" />
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="LayoutRoot" Property="Margin" Value="0 0 6 6" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style BasedOn="{StaticResource MetroMenuItem}" TargetType="{x:Type MenuItem}">
+                <Setter Property="Background" Value="{DynamicResource MenuItemBackgroundBrush}" />
+                <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+                <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+                <Setter Property="ScrollViewer.PanningMode" Value="Both" />
+                <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+                <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
+                <Setter Property="Template" Value="{DynamicResource {ComponentResourceKey ResourceId=SubmenuItemTemplateKey, TypeInTargetAssembly={x:Type MenuItem}}}" />
+                <Style.Triggers>
+                    <Trigger Property="Role" Value="TopLevelHeader">
+                        <Setter Property="Padding" Value="2 3 2 3" />
+                        <Setter Property="Template" Value="{DynamicResource {ComponentResourceKey ResourceId=TopLevelHeaderTemplateKey, TypeInTargetAssembly={x:Type MenuItem}}}" />
+                    </Trigger>
+                    <Trigger Property="Role" Value="TopLevelItem">
+                        <Setter Property="Padding" Value="2 3 2 3" />
+                        <Setter Property="Template" Value="{DynamicResource {ComponentResourceKey ResourceId=TopLevelItemTemplateKey, TypeInTargetAssembly={x:Type MenuItem}}}" />
+                    </Trigger>
+                    <Trigger Property="Role" Value="SubmenuHeader">
+                        <Setter Property="Padding" Value="2 3 2 3" />
+                        <Setter Property="Template" Value="{DynamicResource {ComponentResourceKey ResourceId=SubmenuHeaderTemplateKey, TypeInTargetAssembly={x:Type MenuItem}}}" />
+                    </Trigger>
+                    <Trigger Property="Role" Value="SubmenuItem">
+                        <Setter Property="Padding" Value="2 3 2 3" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
 
 
             <!-- ScrollBar styling -->

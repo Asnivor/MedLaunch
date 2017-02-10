@@ -20,6 +20,7 @@
                         TitleCaps="False"
                       WindowTransitionsEnabled="False"
                       ShowIconOnTitleBar="True"
+                      Icon="medicon.ico"
                       Closing="MW_Closing"
                       Height="800"
                       Width="1600"
@@ -31,37 +32,97 @@
         <CommandBinding Command="NavigationCommands.GoToPage" CanExecute="GoToPage_CanExecute" Executed="GoToPage_Executed" />
     </Window.CommandBindings>
 
-   
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
+            
+                <TextBlock Name="rightMenuLabel"
+                   TextTrimming="CharacterEllipsis"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   Margin="8 -1 8 0"
+                   FontWeight="Light"
+                   FontSize="13"
+                   FontFamily="{DynamicResource HeaderFontFamily}" />
+            
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
+
+    <Controls:MetroWindow.LeftWindowCommands>
+        <Controls:WindowCommands Margin="0">
             <!--
             <Button x:Name="btnViewMednafenLogFile" Content="Open Mednafen Log" Click="btnViewMednafenLogFile_Click" />
             <Button x:Name="btnChangeColorScheme" Content="Change Colour Scheme" Click="btnChangeColorScheme_Click" />
             -->
 
-            <StackPanel Orientation="Horizontal">
-                <Menu>
-                    <MenuItem Header="File">
-                        <MenuItem Name="menuQuitMedLaunch" Header="Quit MedLaunch" Click="menuQuitMedLaunch_Click"/>
-                    </MenuItem>
-                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
-                    <MenuItem Header="Visual">
+            <Button Content="File" ContextMenuService.IsEnabled="False" Click="TopMenu_Click">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Locate and Launch a Game" ToolTip="Manually browse to a ROM, disc image or M3U file and launch this with Mednafen using the saved MedLaunch config options"/>
+                        <Separator BorderThickness="0.2" Padding="0" Margin="0" />
+                        <MenuItem Header="Quit MedLaunch" Click="menuQuitMedLaunch_Click"/>
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
+
+            <Button Content="Library" ContextMenuService.IsEnabled="False" Click="TopMenu_Click">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Scanner">
+                            <MenuItem Header="Rescan ALL ROM Folders" Click="RescanRoms"  />
+                            <Separator BorderThickness="0.2" Padding="0" Margin="0" />
+                            <MenuItem x:Name="MenuScanRoms11" Header="Rescan NES" Click="ScanRoms_Click" />
+                            <MenuItem x:Name="MenuScanRoms12" Header="Rescan SNES" Click="ScanRoms_Click" />
+                            <MenuItem x:Name="MenuScanRoms10" Header="Rescan SMS" Click="ScanRoms_Click" />
+                            <MenuItem x:Name="MenuScanRoms4" Header="Rescan MD" Click="ScanRoms_Click" />
+                            <MenuItem x:Name="MenuScanRoms7" Header="Rescan PCE" Click="ScanRoms_Click" />
+                            <MenuItem x:Name="MenuScanRoms14" Header="Rescan VB" Click="ScanRoms_Click" />
+                            <MenuItem x:Name="MenuScanRoms6" Header="Rescan NGP" Click="ScanRoms_Click" />
+                            <MenuItem x:Name="MenuScanRoms15" Header="Rescan WSWAN" Click="ScanRoms_Click" />
+                            <MenuItem x:Name="MenuScanRoms1" Header="Rescan GB" Click="ScanRoms_Click" />
+                            <MenuItem x:Name="MenuScanRoms2" Header="Rescan GBA" Click="ScanRoms_Click" />
+                            <MenuItem x:Name="MenuScanRoms5" Header="Rescan GG" Click="ScanRoms_Click" />
+                            <MenuItem x:Name="MenuScanRoms3" Header="Rescan LYNX" Click="ScanRoms_Click" />
+                        </MenuItem>
+                        <MenuItem Header="Scraping" >
+                            <MenuItem Header="Audit Scraped Data Folder" ToolTip="Show a list of game data that has been scraped along with system and game title" />
+                        </MenuItem>
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
+
+            <Button Content="Visual" ContextMenuService.IsEnabled="False" Click="TopMenu_Click">
+                <Button.ContextMenu>
+                    <ContextMenu>
                         <MenuItem Header="Change Colour Scheme" Click="btnChangeColorScheme_Click"/>
-                    </MenuItem>
-                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
-                    <MenuItem Header="Logs">
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
+
+            <Button Content="Logs" ContextMenuService.IsEnabled="False" Click="TopMenu_Click">
+                <Button.ContextMenu>
+                    <ContextMenu>
                         <MenuItem Header="View Mednafen Log (stdout.txt)" Click="btnViewMednafenLogFile_Click" />
                         <MenuItem Header="View MedLaunch Exception Log (Exceptions.log)" Click="btnViewMednafenExFile_Click" />
-                    </MenuItem>
-                </Menu>
-            </StackPanel>
-            
-            
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
 
         </Controls:WindowCommands>
-    </Controls:MetroWindow.RightWindowCommands>
-    
+    </Controls:MetroWindow.LeftWindowCommands>
 
+    <Controls:MetroWindow.TitleTemplate>
+        <DataTemplate>
+            <TextBlock Text="{TemplateBinding Content}"
+                   TextTrimming="CharacterEllipsis"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Margin="8 -1 8 0"
+                   FontWeight="Light"
+                   FontSize="14"
+                   FontFamily="{DynamicResource HeaderFontFamily}" />
+        </DataTemplate>
+    </Controls:MetroWindow.TitleTemplate>
 
     <Grid x:Name="RootGrid">
         <Grid.LayoutTransform>
