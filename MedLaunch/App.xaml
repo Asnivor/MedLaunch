@@ -9,6 +9,7 @@
         
         <ResourceDictionary>
 
+            
             <!-- Basic Button Styling -->
             <Style TargetType="Button" BasedOn="{StaticResource MetroButton}">
                 <Setter Property="Cursor" Value="Hand" />
@@ -222,6 +223,8 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            
+            <!-- Menu bar styling -->
 
 
             <!-- ScrollBar styling -->

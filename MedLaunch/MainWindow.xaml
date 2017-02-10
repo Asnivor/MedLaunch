@@ -31,15 +31,37 @@
         <CommandBinding Command="NavigationCommands.GoToPage" CanExecute="GoToPage_CanExecute" Executed="GoToPage_Executed" />
     </Window.CommandBindings>
 
-
-
    
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
+            <!--
             <Button x:Name="btnViewMednafenLogFile" Content="Open Mednafen Log" Click="btnViewMednafenLogFile_Click" />
             <Button x:Name="btnChangeColorScheme" Content="Change Colour Scheme" Click="btnChangeColorScheme_Click" />
+            -->
+
+            <StackPanel Orientation="Horizontal">
+                <Menu>
+                    <MenuItem Header="File">
+                        <MenuItem Name="menuQuitMedLaunch" Header="Quit MedLaunch" Click="menuQuitMedLaunch_Click"/>
+                    </MenuItem>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
+                    <MenuItem Header="Visual">
+                        <MenuItem Header="Change Colour Scheme" Click="btnChangeColorScheme_Click"/>
+                    </MenuItem>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
+                    <MenuItem Header="Logs">
+                        <MenuItem Header="View Mednafen Log (stdout.txt)" Click="btnViewMednafenLogFile_Click" />
+                        <MenuItem Header="View MedLaunch Exception Log (Exceptions.log)" Click="btnViewMednafenExFile_Click" />
+                    </MenuItem>
+                </Menu>
+            </StackPanel>
+            
+            
+
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
+    
+
 
     <Grid x:Name="RootGrid">
         <Grid.LayoutTransform>

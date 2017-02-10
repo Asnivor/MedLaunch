@@ -4011,6 +4011,23 @@ namespace MedLaunch
 
         }
 
+        private void btnViewMednafenExFile_Click(object sender, RoutedEventArgs e)
+        {            
+            string logPath = AppDomain.CurrentDomain.BaseDirectory + "\\" + "Exceptions.log";
+
+            // test whether log exists
+            if (!File.Exists(logPath))
+                return;
+
+            // open log
+            ProcessStartInfo pi = new ProcessStartInfo();
+            pi.Arguments = logPath;
+            pi.FileName = "notepad.exe";
+
+            Process.Start(pi);
+
+        }
+
         private void comboPsxRecalculate_Click(object sender, RoutedEventArgs e)
         {
             List<CheckBox> chks = new List<CheckBox>
@@ -4126,7 +4143,10 @@ namespace MedLaunch
             ConfigToolTips.SetToolTips(1);
         }
 
-        
+        private void menuQuitMedLaunch_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
     /*
     public class SliderIgnoreDelta : Slider
