@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MedLaunch.Classes
-{
+{  
     public enum ScraperOrder
     {
         Primary,

@@ -51,6 +51,7 @@ using MedLaunch.Classes.Scraper.DAT.TRURIP.Models;
 using MedLaunch.Classes.Scraper.DAT.REDUMP.Models;
 using MedLaunch.Classes.VisualHandlers;
 using Newtonsoft.Json.Linq;
+using MedLaunch.Classes.IO;
 
 namespace MedLaunch
 {
@@ -153,7 +154,7 @@ namespace MedLaunch
             GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar,
                chkAllowBanners, chkAllowBoxart, chkAllowScreenshots, chkAllowFanart, chkPreferGenesis, chkAllowManuals, chkAllowMedia, chkSecondaryScraperBackup,
                rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost, chkAllowUpdateCheck, chkBackupMednafenConfig, chkSaveSysConfigs, comboImageTooltipSize, chkLoadConfigsOnStart, chkEnableConfigToolTips,
-               chkshowGLYear, chkshowGLESRB, chkshowGLCoop, chkshowGLDeveloper, chkshowGLPublisher, chkshowGLPlayers);
+               chkshowGLYear, chkshowGLESRB, chkshowGLCoop, chkshowGLDeveloper, chkshowGLPublisher, chkshowGLPlayers, chkEnableClearCacheOnExit);
             //gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
             GlobalSettings gs = GlobalSettings.GetGlobals();
             mainScaleTransform.ScaleX = Convert.ToDouble(gs.guiZoom);
@@ -1474,6 +1475,16 @@ namespace MedLaunch
             GlobalSettings.UpdateEnableConfigToolTips(chkEnableConfigToolTips);
         }
 
+        private void chkEnableClearCacheOnExit_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateEnableClearCacheOnExit(chkEnableClearCacheOnExit);
+        }
+
+        private void chkEnableClearCacheOnExit_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateEnableClearCacheOnExit(chkEnableClearCacheOnExit);
+        }
+
 
 
 
@@ -2682,6 +2693,13 @@ namespace MedLaunch
 
             // save games library expander states
             GamesLibraryVisualHandler.SaveExpanderStates();
+
+            // clear the rom cache folder if this option has been enabled
+            GlobalSettings gs = GlobalSettings.GetGlobals();
+            if (gs.enableClearCacheOnExit == true)
+            {
+                FileAndFolder.ClearFolder(AppDomain.CurrentDomain.BaseDirectory + "Data\\Cache");
+            }
 
         }
 

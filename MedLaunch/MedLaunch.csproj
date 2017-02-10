@@ -153,6 +153,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>ExternalAssemblies\SDLJoystick.dll</HintPath>
     </Reference>
+    <Reference Include="SharpCompress, Version=0.15.1.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpCompress.0.15.1\lib\net45\SharpCompress.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SharpDX, Version=3.1.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpDX.3.1.1\lib\net45\SharpDX.dll</HintPath>
       <Private>True</Private>
@@ -261,7 +265,9 @@
     <Compile Include="Classes\HtmlToXaml\HtmlTokenType.cs" />
     <Compile Include="Classes\HtmlToXaml\HtmlToXamlConverter.cs" />
     <Compile Include="Classes\Input\Controller.cs" />
+    <Compile Include="Classes\IO\Archiving.cs" />
     <Compile Include="Classes\IO\Crypto.cs" />
+    <Compile Include="Classes\IO\FileAndFolder.cs" />
     <Compile Include="Classes\LogParser.cs" />
     <Compile Include="Classes\Scraper\DAT\Models\DATMerge.cs" />
     <Compile Include="Classes\Scraper\DAT\NOINTRO\ImportNoIntroData.cs" />

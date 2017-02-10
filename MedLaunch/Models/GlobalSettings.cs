@@ -28,6 +28,7 @@ namespace MedLaunch.Models
         public bool? backupMednafenConfig { get; set; }             // auto create a backup on the mednafen config when MedLaunch is first opened
         public bool? saveSystemConfigs { get; set; }                // auto save system.cfg in root of Mednafen directory before game is launched
         public bool? enableConfigToolTips { get; set; }             // enable tooltip popups on Mednafen config controls
+        public bool? enableClearCacheOnExit { get; set; }           // clears the Data\\Cache folder on application exit
 
         // games library expander states
         public bool glGameStats { get; set; }
@@ -115,6 +116,7 @@ namespace MedLaunch.Models
                 imageToolTipPercentage = 0.9,
                 importConfigsOnStart = false,
                 enableConfigToolTips = true,
+                enableClearCacheOnExit = true,
 
                 showGLCoop = true,
                 showGLDeveloper = true,
@@ -210,7 +212,7 @@ namespace MedLaunch.Models
             CheckBox chkAllowBanners, CheckBox chkAllowBoxart, CheckBox chkAllowScreenshots, CheckBox chkAllowFanart, CheckBox chkPreferGenesis, 
             CheckBox chkAllowManuals, CheckBox chkAllowMedia, CheckBox chkSecondaryScraperBackup, RadioButton rbGDB, RadioButton rbMoby, Slider slScreenshotsPerHost, Slider slFanrtsPerHost,
             CheckBox chkAllowUpdateCheck, CheckBox chkBackupMednafenConfig, CheckBox chkSaveSysConfigs, ComboBox comboImageTooltipSize, CheckBox chkLoadConfigsOnStart, CheckBox chkEnableConfigToolTips,
-            CheckBox chkshowGLYear, CheckBox chkshowGLESRB, CheckBox chkshowGLCoop, CheckBox chkshowGLDeveloper, CheckBox chkshowGLPublisher, CheckBox chkshowGLPlayers)
+            CheckBox chkshowGLYear, CheckBox chkshowGLESRB, CheckBox chkshowGLCoop, CheckBox chkshowGLDeveloper, CheckBox chkshowGLPublisher, CheckBox chkshowGLPlayers, CheckBox chkEnableClearCacheOnExit)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
@@ -228,6 +230,8 @@ namespace MedLaunch.Models
             chkSaveSysConfigs.IsChecked = gs.saveSystemConfigs;
             chkLoadConfigsOnStart.IsChecked = gs.importConfigsOnStart;
             chkEnableConfigToolTips.IsChecked = gs.enableConfigToolTips;
+
+            chkEnableClearCacheOnExit.IsChecked = gs.enableClearCacheOnExit;
 
             comboImageTooltipSize.SelectedValue = gs.imageToolTipPercentage;
 
@@ -402,6 +406,13 @@ namespace MedLaunch.Models
         {
             GlobalSettings gs = GetGlobals();
             gs.enableConfigToolTips = chkEnableConfigToolTips.IsChecked;
+            SetGlobals(gs);
+        }
+
+        public static void UpdateEnableClearCacheOnExit(CheckBox chkEnableClearCacheOnExit)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.enableClearCacheOnExit = chkEnableClearCacheOnExit.IsChecked;
             SetGlobals(gs);
         }
 

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Asnitech.Launch.Common;
 using System.IO;
+using MedLaunch.Classes.IO;
 
 namespace MedLaunch.Classes
 {
@@ -490,17 +491,64 @@ namespace MedLaunch.Classes
 
         private string BuildFullGamePath(string GamesFolder, string GamePath)
         {
+            string path = string.Empty;
+
             // check whether relative or absolute path has been set in the database for this game
             if (RomPath.StartsWith("."))
             {
                 // path is relative (rom autoimported from defined path) - build path
-                return GamesFolder + GamePath;
+                path = GamesFolder + GamePath;
             }
             else
             {
                 // rom or disk has been manually added with full path - return just full path
-                return GamePath;
-            }                
+                path = GamePath;
+            }
+
+            // now do 7zip processing if neccesary
+            string extension = System.IO.Path.GetExtension(path).ToLower();
+
+            if (extension == ".7z")
+            {
+                /* 7zip archive detected - extract contents to cache directory and modify path variable accordingly */
+
+                // create cache directory if it does not exist
+                string cacheDir = AppDomain.CurrentDomain.BaseDirectory + "Data\\Cache";
+                Directory.CreateDirectory(cacheDir);
+
+                // inspect the archive
+                Archiving arch = new Archiving(path, SystemId);
+                arch.ProcessArchive();
+
+                // get filename
+                string filename = arch.FileName;
+
+                // get filesize
+                long filesize = arch.FileSize;
+
+                // check whether file already exists in cache
+                string cacheFile = cacheDir + "\\" + filename;
+                if (File.Exists(cacheFile))
+                {
+                    // file exists - check size
+                    long length = new System.IO.FileInfo(cacheFile).Length;
+
+                    if (length != filesize)
+                    {
+                        arch.ExtractArchive(cacheDir);
+                    }
+                }
+                else
+                {
+                    // extract contents of archive to cache folder
+                    arch.ExtractArchive(cacheDir);
+                }
+
+                // return the new path to the rom
+                return cacheFile;
+            }
+
+            return path;
         }
 
         private static string GetRomFolder(int systemId, MyDbContext db)

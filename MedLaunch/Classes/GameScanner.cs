@@ -18,6 +18,8 @@ using MedLaunch.Classes.IO;
 using MedLaunch.Classes.Scraper.DAT.Models;
 using Newtonsoft.Json;
 using System.Security.Cryptography;
+using SharpCompress;
+using SharpCompress.Archives;
 
 namespace MedLaunch.Classes
 {
@@ -424,45 +426,24 @@ namespace MedLaunch.Classes
                 Game newGame = new Game();
                 string hash = String.Empty;
 
-                // inspect ZIP files
-                if (extension == ".zip")
+                // inspect archive files
+                if (extension == ".zip" || extension == ".7z")
                 {
-                    //MessageBoxResult result2 = MessageBox.Show(fileName);
                     bool isAllowed = false;
                     try
                     {
-                        using (ZipArchive zip = ZipFile.OpenRead(file))
+                        Archiving arch = new Archiving(file, systemId);
+                        arch.ProcessArchive();
+                        hash = arch.MD5Hash;
+                        isAllowed = arch.IsAllowed;
+                        if (hash == null)
                         {
-                            foreach (ZipArchiveEntry entry in zip.Entries)
-                            {
-                                if (IsFileAllowed(entry.FullName, systemId) == true)
-                                {
-                                    //MessageBoxResult result3 = MessageBox.Show(entry.FullName);
-                                    // zip file contains at least one recognised filetype for this system
-                                    isAllowed = true;
-
-                                    // calculate md5
-                                    using (var md5 = MD5.Create())
-                                    {
-                                        using (var stream = entry.Open())
-                                        {
-                                            string h = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty);
-                                            hash = h;
-                                        }
-                                    }
-
-                                    break;
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-                            }
+                            continue;
                         }
                     }
                     catch (System.IO.InvalidDataException ex)
                     {
-                        // problem with the zip file
+                        // problem with the archive file
                     }
                     finally { }
                     
@@ -626,7 +607,7 @@ namespace MedLaunch.Classes
                
         }
 
-        public bool IsFileAllowed(string fileName, int systemId)
+        public static bool IsFileAllowed(string fileName, int systemId)
         {
             HashSet<string> exts = GetAllowedFileExtensions(systemId);
             bool isAllowed = false;
@@ -639,9 +620,9 @@ namespace MedLaunch.Classes
             return isAllowed;
         }
 
-        public HashSet<string> GetAllowedFileExtensions(int systemId)
+        public static HashSet<string> GetAllowedFileExtensions(int systemId)
         {
-            var exts = (from g in Systems
+            var exts = (from g in GSystem.GetSystems()
                         where g.systemId == systemId
                         select g).SingleOrDefault();
             string archive = exts.supportedArchiveExtensions;

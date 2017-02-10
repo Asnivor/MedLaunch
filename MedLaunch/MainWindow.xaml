@@ -10046,8 +10046,11 @@
                                                 <CheckBox Grid.Row="12" Grid.ColumnSpan="2" Name="chkEnableConfigToolTips" Checked="chkEnableConfigToolTips_Checked" Unchecked="chkEnableConfigToolTips_Unchecked">
                                                     Enable Config ToolTips (requires launcher restart)
                                                 </CheckBox>
-                                                
 
+                                                <CheckBox Grid.Row="13" Grid.ColumnSpan="2" Name="chkEnableClearCacheOnExit" Checked="chkEnableClearCacheOnExit_Checked" Unchecked="chkEnableClearCacheOnExit_Unchecked"
+                                                          ToolTip="MedLaunch maintains a cache of rom files that have been extracted from *.7z files before they are launched. Enabling this option will delete the contents of this folder when MedLaunch is closed">
+                                                    Clear Rom Cache Folder on Exit
+                                                </CheckBox>
 
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="17">
                                                     
