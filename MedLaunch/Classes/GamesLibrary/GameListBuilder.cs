@@ -30,7 +30,6 @@ namespace MedLaunch.Classes.GamesLibrary
                 {
                     filteredSet = value;
                     OnPropertyChanged("FilteredSet");
-
                 }
             }
         }

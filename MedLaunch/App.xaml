@@ -2,13 +2,21 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MedLaunch"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              Startup="ApplicationStart"
              
              >
     <Application.Resources>
         
         <ResourceDictionary>
-
+            
+           
+            <!-- NumericUpDown Styling -->
+            <Style x:Key="NoArrows" TargetType="{StaticResource MetroNumericUpDown}">
+                <Style.Triggers>
+                    
+                </Style.Triggers>
+            </Style>
             
             <!-- Basic Button Styling -->
             <Style TargetType="Button" BasedOn="{StaticResource MetroButton}">
@@ -130,6 +138,7 @@
                 </Style.Triggers>
             </Style>
             
+           
           
 
             <!-- RadioButton Styling -->

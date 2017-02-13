@@ -26,6 +26,8 @@
                       Width="1600"
                       WindowStartupLocation="CenterScreen" Loaded="MetroWindow_Loaded">
 
+    
+
     <Window.CommandBindings>
         <CommandBinding Command="NavigationCommands.BrowseBack" CanExecute="BrowseBack_CanExecute" Executed="BrowseBack_Executed" />
         <CommandBinding Command="NavigationCommands.BrowseForward" CanExecute="BrowseForward_CanExecute" Executed="BrowseForward_Executed" />
@@ -181,6 +183,9 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Data/Graphics/medicon.png" Opacity="0.1" />
         </Grid.Background>
+        
+        
+        
         <TabControl>
             <TabItem Header="Games">
                 <Grid x:Name="grdGameLibrary">
@@ -1929,6 +1934,8 @@
                             <!--<RowDefinition Height="Auto" /> -->
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
+                        
+                        
 
 
                         <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Width="{Binding ElementName=configGrid, Path=ActualWidth}" Height="{Binding ElementName=configGrid, Path=ActualHeight}">
@@ -1964,22 +1971,22 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label x:Name="cfglbl_ffspeed" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Fast-Forward Speed</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_ffspeed, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="15" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown Interval="0.1" Maximum="15" Minimum="1" HideUpDownButtons="True" HasDecimals="True"  Value="{Binding ElementName=cfg_ffspeed, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="35" />
+                                                    <Slider Maximum="15" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
                                         Name="cfg_ffspeed"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label x:Name="cfglbl_sfspeed" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Slow-Forward Speed</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_sfspeed, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown Interval="0.01" Maximum="1" Minimum="0.25" HideUpDownButtons="True" HasDecimals="True"  Value="{Binding ElementName=cfg_sfspeed, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="35" />
                                                     <Slider Maximum="1" Minimum="0.25" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_sfspeed"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
                                                     <Label x:Name="cfglbl_srwframes" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Frames to Keep States For</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_srwframes, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="99999" Minimum="600" TickPlacement="BottomRight" TickFrequency="50" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown Maximum="99999" Minimum="10" Interval="1" HideUpDownButtons="True" HasDecimals="True"  Value="{Binding ElementName=cfg_srwframes, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="99999" Minimum="10" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_srwframes"/>
 
                                                 </DockPanel>
@@ -2039,23 +2046,23 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
                                                     <Label x:Name="cfglbl_sound__volume" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Sound Volume</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_sound__volume, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="150" Minimum="0" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="150" Minimum="0" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_sound__volume, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="150" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_sound__volume"/>
 
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Center" Margin="3">
                                                     <Label x:Name="cfglbl_sound__buffer_time" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Buffer Time</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_sound__buffer_time, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="1000" Minimum="0" TickPlacement="BottomRight" TickFrequency="100" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="1000" Minimum="0" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_sound__buffer_time, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1000" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_sound__buffer_time"/>
 
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Center" Margin="3">
                                                     <Label x:Name="cfglbl_sound__period_time" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Period Time</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_sound__period_time, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="100000" Minimum="0" Interval="100" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_sound__period_time, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1000" Minimum="0" TickPlacement="BottomRight" TickFrequency="100" IsSnapToTickEnabled="True" 
                                         Name="cfg_sound__period_time"/>
 
@@ -2095,14 +2102,14 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_osd__message_display_time" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Message Display Time</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_osd__message_display_time, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="15000" Minimum="0" Interval="100" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_osd__message_display_time, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="15000" Minimum="0" TickPlacement="BottomRight" TickFrequency="100" IsSnapToTickEnabled="True" 
                                         Name="cfg_osd__message_display_time"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_osd__state_display_time" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">State Display Time</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_osd__state_display_time, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="15000" Minimum="0" Interval="100" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_osd__state_display_time, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="15000" Minimum="0" TickPlacement="BottomRight" TickFrequency="100" IsSnapToTickEnabled="True" 
                                         Name="cfg_osd__state_display_time"/>
                                                 </DockPanel>
@@ -2162,21 +2169,21 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_input__autofirefreq" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Autofire Frequency</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_input__autofirefreq, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1000" Minimum="0" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_input__autofirefreq, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1000" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_input__autofirefreq"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_input__ckdelay" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Dangerous Key Action Delay</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_input__ckdelay, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="99999" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="99999" Minimum="0" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_input__ckdelay, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="99999" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_input__ckdelay"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_input__joystick__axis_threshold" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Joystick Axis Threshold</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_input__joystick__axis_threshold, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_input__joystick__axis_threshold, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_input__joystick__axis_threshold"/>
                                                 </DockPanel>
@@ -2256,7 +2263,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_lynx__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_lynx__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="100" Minimum="-100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_lynx__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_lynx__scanlines"/>
                                                     </DockPanel>
@@ -2273,8 +2280,8 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_lynx__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_lynx__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_lynx__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
                                         Name="cfg_lynx__tblur__accum__amount"/>
                                                 </DockPanel>
                                             </Grid>
@@ -2321,7 +2328,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_lynx__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_lynx__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_lynx__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_lynx__shader__goat__hdiv"/>
                                                     </DockPanel>
@@ -2338,7 +2345,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_lynx__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_lynx__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_lynx__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_lynx__shader__goat__vdiv"/>
                                                 </DockPanel>
@@ -2355,7 +2362,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_lynx__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_lynx__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_lynx__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_lynx__shader__goat__tp"/>
                                                 </DockPanel>
@@ -2541,7 +2548,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_gg__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_gg__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="100" Minimum="-100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_gg__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_gg__scanlines"/>
                                                     </DockPanel>
@@ -2558,8 +2565,8 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_gg__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_gg__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_gg__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
                                         Name="cfg_gg__tblur__accum__amount"/>
                                                 </DockPanel>
                                             </Grid>
@@ -2606,7 +2613,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_gg__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_gg__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_gg__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_gg__shader__goat__hdiv"/>
                                                     </DockPanel>
@@ -2623,7 +2630,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_gg__shader__goat__vdi" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_gg__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_gg__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_gg__shader__goat__vdiv"/>
                                                 </DockPanel>
@@ -2640,7 +2647,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_gg__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_gg__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_gg__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_gg__shader__goat__tp"/>
                                                 </DockPanel>
@@ -2819,7 +2826,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_gb__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_gb__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="100" Minimum="-100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_gb__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_gb__scanlines"/>
                                                     </DockPanel>
@@ -2836,8 +2843,8 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_gb__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_gb__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_gb__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
                                         Name="cfg_gb__tblur__accum__amount"/>
                                                 </DockPanel>
                                             </Grid>
@@ -2884,7 +2891,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_gb__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_gb__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_gb__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_gb__shader__goat__hdiv"/>
                                                     </DockPanel>
@@ -2901,7 +2908,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_gb__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_gb__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_gb__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_gb__shader__goat__vdiv"/>
                                                 </DockPanel>
@@ -2918,7 +2925,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_gb__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_gb__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_gb__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_gb__shader__goat__tp"/>
                                                 </DockPanel>
@@ -3119,7 +3126,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_gba__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_gba__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="100" Minimum="-100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_gba__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_gba__scanlines"/>
                                                     </DockPanel>
@@ -3136,8 +3143,8 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_gba__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_gba__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_gba__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
                                         Name="cfg_gba__tblur__accum__amount"/>
                                                 </DockPanel>
                                             </Grid>
@@ -3184,7 +3191,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_gba__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_gba__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_gba__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_gba__shader__goat__hdiv"/>
                                                     </DockPanel>
@@ -3201,7 +3208,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_gba__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_gba__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_gba__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_gba__shader__goat__vdiv"/>
                                                 </DockPanel>
@@ -3218,7 +3225,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_gba__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_gba__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_gba__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_gba__shader__goat__tp"/>
                                                 </DockPanel>
@@ -3396,7 +3403,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_ngp__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_ngp__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="100" Minimum="-100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_ngp__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_ngp__scanlines"/>
                                                     </DockPanel>
@@ -3413,8 +3420,8 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_ngp__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_ngp__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_ngp__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
                                         Name="cfg_ngp__tblur__accum__amount"/>
                                                 </DockPanel>
                                             </Grid>
@@ -3461,7 +3468,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_ngp__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_ngp__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_ngp__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_ngp__shader__goat__hdiv"/>
                                                     </DockPanel>
@@ -3478,7 +3485,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_ngp__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_ngp__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_ngp__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_ngp__shader__goat__vdiv"/>
                                                 </DockPanel>
@@ -3495,7 +3502,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_ngp__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_ngp__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_ngp__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_ngp__shader__goat__tp"/>
                                                 </DockPanel>
@@ -3693,7 +3700,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_nes__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_nes__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="100" Minimum="-100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__scanlines"/>
                                                     </DockPanel>
@@ -3710,8 +3717,8 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_nes__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_nes__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__tblur__accum__amount"/>
                                                 </DockPanel>
                                             </Grid>
@@ -3758,7 +3765,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_nes__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_nes__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__shader__goat__hdiv"/>
                                                     </DockPanel>
@@ -3775,7 +3782,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_nes__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_nes__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__shader__goat__vdiv"/>
                                                 </DockPanel>
@@ -3792,7 +3799,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_nes__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_nes__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__shader__goat__tp"/>
                                                 </DockPanel>
@@ -3995,7 +4002,7 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_nes__sound_rate_error" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Audio Output Rate Tolerance</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_nes__sound_rate_error, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="0.01" Minimum="0.0000001" Interval="0.00004" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__sound_rate_error, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="0.01" Minimum="0.0000001" TickPlacement="BottomRight" TickFrequency="0.00004" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__sound_rate_error"/>
                                                 </DockPanel>
@@ -4041,42 +4048,42 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_nes__ntsc__matrix__0" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 0</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_nes__ntsc__matrix__0, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.001" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__ntsc__matrix__0, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.001" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__ntsc__matrix__0"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_nes__ntsc__matrix__1" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 1</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_nes__ntsc__matrix__1, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.001" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__ntsc__matrix__1, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.001" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__ntsc__matrix__1"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_nes__ntsc__matrix__2" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 2</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_nes__ntsc__matrix__2, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.001" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__ntsc__matrix__2, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.001" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__ntsc__matrix__2"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_nes__ntsc__matrix__3" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 2</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_nes__ntsc__matrix__3, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.001" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__ntsc__matrix__3, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.001" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__ntsc__matrix__3"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_nes__ntsc__matrix__4" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 2</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_nes__ntsc__matrix__4, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.001" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__ntsc__matrix__4, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.001" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__ntsc__matrix__4"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_nes__ntsc__matrix__5" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Custom Matrix Element 2</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_nes__ntsc__matrix__5, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.001" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__ntsc__matrix__5, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.001" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__ntsc__matrix__5"/>
                                                 </DockPanel>
@@ -4114,28 +4121,28 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_nes__slstartp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">PAL 1st Displayed Scanline</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_nes__slstartp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="239" Minimum="0" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__slstartp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="239" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__slstartp"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_nes__slendp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">PAL Last Displayed Scanline</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_nes__slendp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="239" Minimum="0" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__slendp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="239" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__slendp"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_nes__slstart" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC 1st Displayed Scanline</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_nes__slstart, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="239" Minimum="0" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__slstart, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="239" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__slstart"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_nes__slend" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Last Displayed Scanline</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_nes__slend, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="239" Minimum="0" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__slend, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="239" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__slend"/>
                                                 </DockPanel>
@@ -4188,21 +4195,21 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="9" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_nes__ntsc__hue" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Composite Blitter Contrast</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_nes__ntsc__hue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="-1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__ntsc__hue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="-1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__ntsc__hue"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="10" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_nes__ntsc__saturation" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Composite Blitter Saturation</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_nes__ntsc__saturation, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="-1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__ntsc__saturation, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="-1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__ntsc__saturation"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="11" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_nes__ntsc__sharpness" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Composite Blitter Sharpness</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_nes__ntsc__sharpness, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="-1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_nes__ntsc__sharpness, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="-1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_nes__ntsc__sharpness"/>
                                                 </DockPanel>
@@ -4282,7 +4289,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_pce_fast__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_pce_fast__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="100" Minimum="-100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pce_fast__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce_fast__scanlines"/>
                                                     </DockPanel>
@@ -4299,8 +4306,8 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_pce_fast__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_pce_fast__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pce_fast__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce_fast__tblur__accum__amount"/>
                                                 </DockPanel>
                                             </Grid>
@@ -4347,7 +4354,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_pce_fast__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_pce_fast__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pce_fast__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce_fast__shader__goat__hdiv"/>
                                                     </DockPanel>
@@ -4364,7 +4371,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_pce_fast__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_pce_fast__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pce_fast__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce_fast__shader__goat__vdiv"/>
                                                 </DockPanel>
@@ -4381,7 +4388,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_pce_fast__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_pce_fast__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pce_fast__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce_fast__shader__goat__tp"/>
                                                 </DockPanel>
@@ -4532,22 +4539,22 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_pce_fast__cddavolume" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">CD-DA Volume</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_pce_fast__cddavolume, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="200" Minimum="0" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pce_fast__cddavolume, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="200" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce_fast__cddavolume"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_pce_fast__cdpsgvolume" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">PSG Volume when Playing CD Game</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_pce_fast__cdpsgvolume, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="200" Minimum="0" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pce_fast__cdpsgvolume, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="200" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce_fast__cdpsgvolume"/>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_pce_fast__cdspeed" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">CD-ROM Data Transfer Multiplier</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_pce_fast__cdspeed, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="1" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pce_fast__cdspeed, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce_fast__cdspeed"/>
                                                 </DockPanel>
 
@@ -4584,7 +4591,7 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_pce_fast__mouse_sensitivity" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Mouse Sensitivity</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_pce_fast__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="0.125" Interval="0.005" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pce_fast__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="0.125" TickPlacement="BottomRight" TickFrequency="0.005" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce_fast__mouse_sensitivity"/>
                                                 </DockPanel>
@@ -4717,7 +4724,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_pce__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_pce__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="100" Minimum="-100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pce__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce__scanlines"/>
                                                     </DockPanel>
@@ -4734,8 +4741,8 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_pce__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_pce__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pce__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce__tblur__accum__amount"/>
                                                 </DockPanel>
                                             </Grid>
@@ -4782,7 +4789,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_pce__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_pce__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pce__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce__shader__goat__hdiv"/>
                                                     </DockPanel>
@@ -4799,7 +4806,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_pce__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_pce__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pce__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce__shader__goat__vdiv"/>
                                                 </DockPanel>
@@ -4816,7 +4823,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_pce__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_pce__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pce__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce__shader__goat__tp"/>
                                                 </DockPanel>
@@ -4993,7 +5000,7 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_pce__resamp_rate_error" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Sound Output Rate Tolerance</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_pce__resamp_rate_error, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="0.0000350" Minimum="0.0000001" Interval="0.0000001" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pce__resamp_rate_error, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="0.0000350" Minimum="0.0000001" TickPlacement="BottomRight" TickFrequency="0.0000001" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce__resamp_rate_error"/>
                                                 </DockPanel>
@@ -5043,7 +5050,7 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_pce__mouse_sensitivity" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Mouse Sensitivity</Label>
-                                                    <TextBox  Text="{Binding ElementName=cfg_pce__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="0.125" Interval="0.005" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pce__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="0.125" TickPlacement="BottomRight" TickFrequency="0.005" IsSnapToTickEnabled="True" 
                                         Name="cfg_pce__mouse_sensitivity"/>
                                                 </DockPanel>
@@ -5199,7 +5206,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_pcfx__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_pcfx__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="100" Minimum="-100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pcfx__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_pcfx__scanlines"/>
                                                     </DockPanel>
@@ -5216,8 +5223,8 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_pcfx__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_pcfx__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pcfx__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
                                         Name="cfg_pcfx__tblur__accum__amount"/>
                                                 </DockPanel>
                                             </Grid>
@@ -5264,7 +5271,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_pcfx__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_pcfx__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pcfx__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_pcfx__shader__goat__hdiv"/>
                                                     </DockPanel>
@@ -5281,7 +5288,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_pcfx__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_pcfx__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pcfx__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_pcfx__shader__goat__vdiv"/>
                                                 </DockPanel>
@@ -5298,7 +5305,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_pcfx__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_pcfx__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pcfx__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_pcfx__shader__goat__tp"/>
                                                 </DockPanel>
@@ -5463,7 +5470,7 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_pcfx__resamp_rate_error" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Output Rate Tolerance</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_pcfx__resamp_rate_error, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="0.0000350" Minimum="0.0000001" Interval="0.0000001" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pcfx__resamp_rate_error, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="0.0000350" Minimum="0.0000001" TickPlacement="BottomRight" TickFrequency="0.0000001" IsSnapToTickEnabled="True" 
                                         Name="cfg_pcfx__resamp_rate_error"/>
                                                 </DockPanel>
@@ -5542,7 +5549,7 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_pcfx__mouse_sensitivity" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Mouse Sensitivity</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_pcfx__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="5" Minimum="0.3125" Interval="0.025" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_pcfx__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="5" Minimum="0.3125" TickPlacement="BottomRight" TickFrequency="0.025" IsSnapToTickEnabled="True" 
                                         Name="cfg_pcfx__mouse_sensitivity"/>
                                                 </DockPanel>
@@ -5682,7 +5689,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_sms__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_sms__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="100" Minimum="-100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_sms__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_sms__scanlines"/>
                                                     </DockPanel>
@@ -5699,8 +5706,8 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_sms__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_sms__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_sms__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
                                         Name="cfg_sms__tblur__accum__amount"/>
                                                 </DockPanel>
                                             </Grid>
@@ -5747,7 +5754,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_sms__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_sms__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_sms__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_sms__shader__goat__hdiv"/>
                                                     </DockPanel>
@@ -5764,7 +5771,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_sms__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_sms__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_sms__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_sms__shader__goat__vdiv"/>
                                                 </DockPanel>
@@ -5781,7 +5788,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_sms__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_sms__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_sms__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_sms__shader__goat__tp"/>
                                                 </DockPanel>
@@ -6018,7 +6025,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_md__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_md__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="100" Minimum="-100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_md__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_md__scanlines"/>
                                                     </DockPanel>
@@ -6035,8 +6042,8 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_md__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_md__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_md__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
                                         Name="cfg_md__tblur__accum__amount"/>
                                                 </DockPanel>
                                             </Grid>
@@ -6083,7 +6090,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_md__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_md__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_md__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_md__shader__goat__hdiv"/>
                                                     </DockPanel>
@@ -6100,7 +6107,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_md__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_md__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_md__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_md__shader__goat__vdiv"/>
                                                 </DockPanel>
@@ -6117,7 +6124,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_md__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_md__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_md__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_md__shader__goat__tp"/>
                                                 </DockPanel>
@@ -6283,7 +6290,7 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_md__input__mouse_sensitivity" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Mouse Sensitivity</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_md__input__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="4" Minimum="0.25" Interval="0.05" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_md__input__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="4" Minimum="0.25" TickPlacement="BottomRight" TickFrequency="0.05" IsSnapToTickEnabled="True" 
                                         Name="cfg_md__input__mouse_sensitivity"/>
                                                 </DockPanel>
@@ -6456,7 +6463,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_snes_faust__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_snes_faust__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="100" Minimum="-100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes_faust__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_snes_faust__scanlines"/>
                                                     </DockPanel>
@@ -6473,8 +6480,8 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_snes_faust__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_snes_faust__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes_faust__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
                                         Name="cfg_snes_faust__tblur__accum__amount"/>
                                                 </DockPanel>
                                             </Grid>
@@ -6521,7 +6528,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_snes_faust__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_snes_faust__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes_faust__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_snes_faust__shader__goat__hdiv"/>
                                                     </DockPanel>
@@ -6538,7 +6545,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_snes_faust__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_snes_faust__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes_faust__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_snes_faust__shader__goat__vdiv"/>
                                                 </DockPanel>
@@ -6555,7 +6562,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_snes_faust__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_snes_faust__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes_faust__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_snes_faust__shader__goat__tp"/>
                                                 </DockPanel>
@@ -6721,7 +6728,7 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_snes_faust__resamp_rate_error" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Sound Output Tolerance</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_snes_faust__resamp_rate_error, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="0.0015" Minimum="0.0000001" Interval="0.000035" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes_faust__resamp_rate_error, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="0.0015" Minimum="0.0000001" TickPlacement="BottomRight" TickFrequency="0.000035" IsSnapToTickEnabled="True" 
                                         Name="cfg_snes_faust__resamp_rate_error"/>
                                                 </DockPanel>
@@ -6853,7 +6860,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_snes__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_snes__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="100" Minimum="-100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_snes__scanlines"/>
                                                     </DockPanel>
@@ -6870,8 +6877,8 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_snes__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_snes__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
                                         Name="cfg_snes__tblur__accum__amount"/>
                                                 </DockPanel>
                                             </Grid>
@@ -6918,7 +6925,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_snes__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_snes__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_snes__shader__goat__hdiv"/>
                                                     </DockPanel>
@@ -6935,7 +6942,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_snes__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_snes__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_snes__shader__goat__vdiv"/>
                                                 </DockPanel>
@@ -6952,7 +6959,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_snes__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_snes__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_snes__shader__goat__tp"/>
                                                 </DockPanel>
@@ -7102,8 +7109,8 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_snes__mouse_sensitivity" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Mouse Sensitivity</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_snes__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="0.125" Minimum="2" TickPlacement="BottomRight" TickFrequency="0.025" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="0.125" Interval="0.025" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="0.125" TickPlacement="BottomRight" TickFrequency="0.025" IsSnapToTickEnabled="True" 
                                         Name="cfg_snes__mouse_sensitivity"/>
                                                 </DockPanel>
 
@@ -7201,7 +7208,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_vb__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_vb__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="100" Minimum="-100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_vb__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_vb__scanlines"/>
                                                     </DockPanel>
@@ -7218,8 +7225,8 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_vb__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_vb__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_vb__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
                                         Name="cfg_vb__tblur__accum__amount"/>
                                                 </DockPanel>
                                             </Grid>
@@ -7266,7 +7273,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_vb__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_vb__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_vb__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_vb__shader__goat__hdiv"/>
                                                     </DockPanel>
@@ -7283,7 +7290,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_vb__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_vb__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_vb__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_vb__shader__goat__vdiv"/>
                                                 </DockPanel>
@@ -7300,7 +7307,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_vb__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_vb__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_vb__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_vb__shader__goat__tp"/>
                                                 </DockPanel>
@@ -7597,7 +7604,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_ss__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_ss__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="100" Minimum="-100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_ss__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_ss__scanlines"/>
                                                     </DockPanel>
@@ -7614,8 +7621,8 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_ss__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_ss__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_ss__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
                                         Name="cfg_ss__tblur__accum__amount"/>
                                                 </DockPanel>
                                             </Grid>
@@ -7662,7 +7669,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_ss__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_ss__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_ss__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_ss__shader__goat__hdiv"/>
                                                     </DockPanel>
@@ -7679,7 +7686,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_ss__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_ss__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_ss__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_ss__shader__goat__vdiv"/>
                                                 </DockPanel>
@@ -7696,7 +7703,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_ss__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_ss__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_ss__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_ss__shader__goat__tp"/>
                                                 </DockPanel>
@@ -7962,7 +7969,7 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_ss__input__mouse_sensitivity" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Emulated Mouse Sensitivity</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_ss__input__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="0.125" Interval="0.005" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_ss__input__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="0.125" TickPlacement="BottomRight" TickFrequency="0.005" IsSnapToTickEnabled="True" 
                                         Name="cfg_ss__input__mouse_sensitivity"/>
                                                 </DockPanel>
@@ -8139,7 +8146,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_psx__scanline" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_psx__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="100" Minimum="-100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__scanlines"/>
                                                     </DockPanel>
@@ -8156,8 +8163,8 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__tblur__accum__amount"/>
                                                 </DockPanel>
                                             </Grid>
@@ -8204,7 +8211,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_psx__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_psx__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__shader__goat__hdiv"/>
                                                     </DockPanel>
@@ -8221,7 +8228,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__shader__goat__vdiv"/>
                                                 </DockPanel>
@@ -8238,7 +8245,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__shader__goat__tp"/>
                                                 </DockPanel>
@@ -8528,7 +8535,7 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__mouse_sensitivity" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Emulated Mouse Sensitivity</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="4" Minimum="0.25" Interval="0.05" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="4" Minimum="0.25" TickPlacement="BottomRight" TickFrequency="0.05" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__mouse_sensitivity"/>
                                                 </DockPanel>
@@ -8569,19 +8576,19 @@
                                                 </ComboBox>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port1__analogjoy__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (AnalogJoystick - Port 1)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port1__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port1__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port1__analogjoy__axis_scale"/>
                                                 </DockPanel>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port1__dualanalog__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualAnalog - Port 1)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port1__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port1__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port1__dualanalog__axis_scale"/>
                                                 </DockPanel>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port1__dualshock__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualShock - Port 1)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port1__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port1__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port1__dualshock__axis_scale"/>
                                                 </DockPanel>
@@ -8627,19 +8634,19 @@
                                                 </ComboBox>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port2__analogjoy__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (AnalogJoystick - Port 2)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port2__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port2__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port2__analogjoy__axis_scale"/>
                                                 </DockPanel>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port2__dualanalog__axis_scal" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualAnalog - Port 2)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port2__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port2__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port2__dualanalog__axis_scale"/>
                                                 </DockPanel>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port2__dualshock__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualShock - Port 2)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port2__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port2__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port2__dualshock__axis_scale"/>
                                                 </DockPanel>
@@ -8685,19 +8692,19 @@
                                                 </ComboBox>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port3__analogjoy__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (AnalogJoystick - Port 3)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port3__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port3__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port3__analogjoy__axis_scale"/>
                                                 </DockPanel>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port3__dualanalog__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualAnalog - Port 3)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port3__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port3__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port3__dualanalog__axis_scale"/>
                                                 </DockPanel>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port3__dualshock__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualShock - Port 3)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port3__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port3__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port3__dualshock__axis_scale"/>
                                                 </DockPanel>
@@ -8743,19 +8750,19 @@
                                                 </ComboBox>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port4__analogjoy__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (AnalogJoystick - Port 4)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port4__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port4__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port4__analogjoy__axis_scale"/>
                                                 </DockPanel>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port4__dualanalog__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualAnalog - Port 4)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port4__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port4__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port4__dualanalog__axis_scale"/>
                                                 </DockPanel>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port4__dualshock__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualShock - Port 4)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port4__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port4__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port4__dualshock__axis_scale"/>
                                                 </DockPanel>
@@ -8801,19 +8808,19 @@
                                                 </ComboBox>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port5__analogjoy__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (AnalogJoystick - Port 5)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port5__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port5__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port5__analogjoy__axis_scale"/>
                                                 </DockPanel>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port5__dualanalog__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualAnalog - Port 5)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port5__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port5__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port5__dualanalog__axis_scale"/>
                                                 </DockPanel>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port5__dualshock__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualShock - Port 5)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port5__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port5__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port5__dualshock__axis_scale"/>
                                                 </DockPanel>
@@ -8859,19 +8866,19 @@
                                                 </ComboBox>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port6__analogjoy__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (AnalogJoystick - Port 6)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port6__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port6__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port6__analogjoy__axis_scale"/>
                                                 </DockPanel>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port6__dualanalog__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualAnalog - Port 6)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port6__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port6__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port6__dualanalog__axis_scale"/>
                                                 </DockPanel>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port6__dualshock__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualShock - Port 6)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port6__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port6__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port6__dualshock__axis_scale"/>
                                                 </DockPanel>
@@ -8917,19 +8924,19 @@
                                                 </ComboBox>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port7__analogjoy__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (AnalogJoystick - Port 7)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port7__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port7__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port7__analogjoy__axis_scale"/>
                                                 </DockPanel>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port7__dualanalog__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualAnalog - Port 7)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port7__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port7__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port7__dualanalog__axis_scale"/>
                                                 </DockPanel>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port7__dualshock__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualShock - Port 7)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port7__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port7__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port7__dualshock__axis_scale"/>
                                                 </DockPanel>
@@ -8975,19 +8982,19 @@
                                                 </ComboBox>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port8__analogjoy__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (AnalogJoystick - Port 8)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port8__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port8__analogjoy__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port8__analogjoy__axis_scale"/>
                                                 </DockPanel>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port8__dualanalog__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualAnalog - Port 8)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port8__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port8__dualanalog__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port8__dualanalog__axis_scale"/>
                                                 </DockPanel>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_psx__input__port8__dualshock__axis_scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Analog Axis Scale Coefficient (DualShock - Port 8)</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_psx__input__port8__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1.5" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_psx__input__port8__dualshock__axis_scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1.5" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_psx__input__port8__dualshock__axis_scale"/>
                                                 </DockPanel>
@@ -9074,7 +9081,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_wswan__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_wswan__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="100" Minimum="-100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_wswan__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_wswan__scanlines"/>
                                                     </DockPanel>
@@ -9091,8 +9098,8 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_wswan__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_wswan__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                                                    <Slider Maximum="50" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_wswan__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
                                         Name="cfg_wswan__tblur__accum__amount"/>
                                                 </DockPanel>
                                             </Grid>
@@ -9139,7 +9146,7 @@
 
                                                     <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                         <Label Name="cfglbl_wswan__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
-                                                        <TextBox Text="{Binding ElementName=cfg_wswan__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_wswan__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                         <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_wswan__shader__goat__hdiv"/>
                                                     </DockPanel>
@@ -9156,7 +9163,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_wswan__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_wswan__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_wswan__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_wswan__shader__goat__vdiv"/>
                                                 </DockPanel>
@@ -9173,7 +9180,7 @@
                                                 </Grid.RowDefinitions>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_wswan__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
-                                                    <TextBox Text="{Binding ElementName=cfg_wswan__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_wswan__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
                                         Name="cfg_wswan__shader__goat__tp"/>
                                                 </DockPanel>
