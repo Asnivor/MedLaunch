@@ -38,7 +38,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>medicon.ico</ApplicationIcon>
+    <ApplicationIcon>MedLaunchIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BasicRestClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -594,6 +594,7 @@
     <Resource Include="Data\Graphics\Systems\wswan.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="MedLaunchIcon.ico" />
     <Resource Include="Data\Graphics\Controllers\lynx_controller.png" />
     <Resource Include="Data\Graphics\Controllers\gb_controller.png" />
     <Resource Include="Data\Graphics\Controllers\gba-controller.png" />
@@ -603,6 +604,8 @@
     <Resource Include="Data\Graphics\Controllers\md-controller-megamouse.png" />
     <Resource Include="Data\Graphics\Controllers\nes-controller.png" />
     <Resource Include="Data\Graphics\Controllers\ngp-controller.png" />
+    <Resource Include="Data\Graphics\MedLaunchLogo.png" />
+    <Resource Include="Data\Graphics\mediconsplash-new.png" />
     <Content Include="ExternalAssemblies\Feeble.dll" />
     <Content Include="ExternalAssemblies\SDL.dll" />
     <Content Include="ExternalAssemblies\SDL64.dll" />

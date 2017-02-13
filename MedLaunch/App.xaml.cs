@@ -88,7 +88,7 @@ namespace MedLaunch
 
 
 
-            var splashScreen = new SplashScreen(@"Data\Graphics\mediconsplash.png");
+            var splashScreen = new SplashScreen(@"Data\Graphics\mediconsplash-new.png");
             splashScreen.Show(false);
             Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
             // show the initialisation window and begin checks

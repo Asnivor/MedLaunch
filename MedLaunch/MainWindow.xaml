@@ -20,7 +20,7 @@
                         TitleCaps="False"
                       WindowTransitionsEnabled="False"
                       ShowIconOnTitleBar="True"
-                      Icon="medicon.ico"
+                      Icon="MedLaunchIcon.ico"
                       Closing="MW_Closing"
                       Height="800"
                       Width="1600"
@@ -181,7 +181,7 @@
                 />
         </Grid.LayoutTransform>
         <Grid.Background>
-            <ImageBrush ImageSource="/Data/Graphics/medicon.png" Opacity="0.1" />
+            <ImageBrush ImageSource="/Data/Graphics/MedLaunchLogo.png" Opacity="0.1" />
         </Grid.Background>
         
         
