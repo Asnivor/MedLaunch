@@ -64,7 +64,7 @@
                 </Button.ContextMenu>
             </Button>
 
-            <Button Content="Configs" ContextMenuService.IsEnabled="False" Click="TopMenu_Click">
+            <Button Content="Configs" ContextMenuService.IsEnabled="False" Click="TopMenu_Click" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
                 <Button.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Save All Configs To Disk" ToolTip="Exports all configs from the MedLaunch database to system-specific config files in the Mednafen directory"
