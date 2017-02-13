@@ -12,7 +12,7 @@
         
         mc:Ignorable="d"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="MedLaunch - Windows Front-End for Mednafen (0.0.3.1)" 
+        Title="MedLaunch - Windows Front-End for Mednafen (This string is replaced at runtime)" 
                       
                       BorderThickness="0" 
                       GlowBrush="Black"
@@ -32,54 +32,18 @@
         <CommandBinding Command="NavigationCommands.GoToPage" CanExecute="GoToPage_CanExecute" Executed="GoToPage_Executed" />
     </Window.CommandBindings>
 
-    <Controls:MetroWindow.RightWindowCommands>
-        <Controls:WindowCommands>
-            
-                <TextBlock Name="rightMenuLabel"
+    <Controls:MetroWindow.TitleTemplate>
+        <DataTemplate>
+            <TextBlock Text="{TemplateBinding Content}"
                    TextTrimming="CharacterEllipsis"
                    VerticalAlignment="Center"
-                   HorizontalAlignment="Right"
+                   HorizontalAlignment="Center"
                    Margin="8 -1 8 0"
                    FontWeight="Light"
-                   FontSize="13"
+                   FontSize="14"
                    FontFamily="{DynamicResource HeaderFontFamily}" />
-
-            <Button Content="Debug" ContextMenuService.IsEnabled="False" Click="TopMenu_Click" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
-                <Button.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Scraper Source Operations">
-                            <MenuItem Header="Download list of PlatformGames from thegamesdb.net (Update TheGamesDB.json)" Click="ScrapeGetAllPlatformGames_Click"/>
-                            <MenuItem Header="Download list of PlatformGames from mobygames (Update MobyGames.json)" Click="btnmobyPlatformList_Click"/>
-                            
-                            <Separator BorderThickness="0.2" Padding="0" Margin="0" />
-                            
-                            <MenuItem Header="Combine sets and generate new master json (manual choice on multiple selections using word match counts)" Click="btnCombineManualnonleven_Click"/>
-                            <MenuItem Header="Combine sets and generate new master json (manual choice on multiple selections using Levenshtein)" Click="btnCombineManual_Click"/>
-                            <MenuItem Header="[CAUTION!] Combine sets and generate new master json" Click="btnCombine_Click"/>
-
-                            <Separator BorderThickness="0.2" Padding="0" Margin="0" />
-                            
-                            <MenuItem Header="Parse gamesdatabase.org list of manuals and manually match them" Click="btnCombineGamesDatabaseOrgManuals_Click"/>
-                            <MenuItem Header="Scrape all manual links from replacementdocs.com" Click="btnRDmanuallist_Click"/>
-                            <MenuItem Header="Parse replacement docs list of manuals and manually match them (auto on exact match)" Click="btnParseRDList_Click"/>                            
-                        </MenuItem>
-                        <MenuItem Header="DAT Functions">
-                            <MenuItem Header="Build master information file from DATs (tosec / nointro etc)" Click="btnBuildFromDat_Click"/>
-                            <MenuItem Header="Populate entries in the master DAT that do not have date information" Click="btnmatchDATyears_Click"/>
-                        </MenuItem>
-                        <MenuItem Header="MedLaunch ToolTips">
-                            <MenuItem Header="Generate tooltips JSON" Click="btnGenerateToolTips_Click"/>
-                            <MenuItem Header="Populate ToolTips (kinda works - best to restart launcher)" Click="btnPopToolTips_Click"/>
-                        </MenuItem>
-                        <MenuItem Header="Controls">
-                            <MenuItem Header="Joystick test" Click="btnPJoyTest_Click"/>
-                        </MenuItem>
-                    </ContextMenu>
-                </Button.ContextMenu>
-            </Button>
-
-        </Controls:WindowCommands>
-    </Controls:MetroWindow.RightWindowCommands>
+        </DataTemplate>
+    </Controls:MetroWindow.TitleTemplate>
 
 
     <Controls:MetroWindow.LeftWindowCommands>
@@ -92,10 +56,19 @@
             <Button Content="File" ContextMenuService.IsEnabled="False" Click="TopMenu_Click">
                 <Button.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Name="manualLocateLaunchGame" Header="Locate and Launch a Game" ToolTip="Manually browse to a ROM, disc image or M3U file and launch this with Mednafen using the saved MedLaunch config options. No game stats will be saved and this game will not be added to the games library."
+                        <MenuItem Name="manualLocateLaunchGame" Header="Locate and Launch a Game (using configs on disk)" ToolTip="Manually browse to a ROM, disc image or M3U file and launch this with Mednafen using the saved MedLaunch config options. No game stats will be saved and this game will not be added to the games library."
                              Click="manualLocateLaunchGame_Click"    />
                         <Separator BorderThickness="0.2" Padding="0" Margin="0" />
                         <MenuItem Header="Quit MedLaunch" Click="menuQuitMedLaunch_Click"/>
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
+
+            <Button Content="Configs" ContextMenuService.IsEnabled="False" Click="TopMenu_Click">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Save All Configs To Disk" ToolTip="Exports all configs from the MedLaunch database to system-specific config files in the Mednafen directory"
+                                />
                     </ContextMenu>
                 </Button.ContextMenu>
             </Button>
@@ -146,18 +119,56 @@
         </Controls:WindowCommands>
     </Controls:MetroWindow.LeftWindowCommands>
 
-    <Controls:MetroWindow.TitleTemplate>
-        <DataTemplate>
-            <TextBlock Text="{TemplateBinding Content}"
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+
+            <TextBlock Name="rightMenuLabel"
                    TextTrimming="CharacterEllipsis"
                    VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
+                   HorizontalAlignment="Right"
                    Margin="8 -1 8 0"
                    FontWeight="Light"
-                   FontSize="14"
+                   FontSize="13"
                    FontFamily="{DynamicResource HeaderFontFamily}" />
-        </DataTemplate>
-    </Controls:MetroWindow.TitleTemplate>
+
+            <Button Content="Debug" ContextMenuService.IsEnabled="False" Click="TopMenu_Click" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Scraper Source Operations">
+                            <MenuItem Header="Download list of PlatformGames from thegamesdb.net (Update TheGamesDB.json)" Click="ScrapeGetAllPlatformGames_Click"/>
+                            <MenuItem Header="Download list of PlatformGames from mobygames (Update MobyGames.json)" Click="btnmobyPlatformList_Click"/>
+
+                            <Separator BorderThickness="0.2" Padding="0" Margin="0" />
+
+                            <MenuItem Header="Combine sets and generate new master json (manual choice on multiple selections using word match counts)" Click="btnCombineManualnonleven_Click"/>
+                            <MenuItem Header="Combine sets and generate new master json (manual choice on multiple selections using Levenshtein)" Click="btnCombineManual_Click"/>
+                            <MenuItem Header="[CAUTION!] Combine sets and generate new master json" Click="btnCombine_Click"/>
+
+                            <Separator BorderThickness="0.2" Padding="0" Margin="0" />
+
+                            <MenuItem Header="Parse gamesdatabase.org list of manuals and manually match them" Click="btnCombineGamesDatabaseOrgManuals_Click"/>
+                            <MenuItem Header="Scrape all manual links from replacementdocs.com" Click="btnRDmanuallist_Click"/>
+                            <MenuItem Header="Parse replacement docs list of manuals and manually match them (auto on exact match)" Click="btnParseRDList_Click"/>
+                        </MenuItem>
+                        <MenuItem Header="DAT Functions">
+                            <MenuItem Header="Build master information file from DATs (tosec / nointro etc)" Click="btnBuildFromDat_Click"/>
+                            <MenuItem Header="Populate entries in the master DAT that do not have date information" Click="btnmatchDATyears_Click"/>
+                        </MenuItem>
+                        <MenuItem Header="MedLaunch ToolTips">
+                            <MenuItem Header="Generate tooltips JSON" Click="btnGenerateToolTips_Click"/>
+                            <MenuItem Header="Populate ToolTips (kinda works - best to restart launcher)" Click="btnPopToolTips_Click"/>
+                        </MenuItem>
+                        <MenuItem Header="Controls">
+                            <MenuItem Header="Joystick test" Click="btnPJoyTest_Click"/>
+                        </MenuItem>
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
+
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
+    
 
     <Grid x:Name="RootGrid">
         <Grid.LayoutTransform>
@@ -1900,8 +1911,7 @@
                                 FROM DISK
                             </TextBlock>
                         </Button>
-
-                        <Button Style="{StaticResource MenuButton}"  x:Name="btnConfigSaveChanges"  Content="SAVE CHANGES" Background="{DynamicResource AccentColorBrush}" Click="btnConfigSaveChanges_Click" ></Button>
+                        <Button Style="{StaticResource MenuButton}"  x:Name="btnConfigSaveChanges"  Content="SAVE CHANGES" Background="{DynamicResource AccentColorBrush}" Click="btnConfigSaveChanges_Click" />
                         <!--
                         <Button x:Name="btnConfigCancelChanges"  Content="Revert Changes" Background="Red" Click="btnConfigCancelChanges_Click" ></Button>
 -->
@@ -10961,100 +10971,7 @@
             </TabItem>
 
 
-            <TabItem Header="Debug" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
-                <WrapPanel Orientation="Vertical">
-<!--
-                    <Button x:Name="btnSavePlatformGamesToDisk" Click="btnSavePlatformGamesToDisk_Click" >
-                        [Debug only]Save all platform games from database to disk
-                    </Button>
-                    
-                    <Button x:Name="btnTestGameSearch" Click="btnTestGameSearch_Click" >
-                        [Debug only]Search for game
-                    </Button>
-                    <Button x:Name="btnScrapeAllGameInfo" Click="btnScrapeAllGameInfo_Click">
-                        Iterate through each platformlist game and export the XML to a local zip
-                    </Button>
-                    -->
-                    <Button Margin="5" x:Name="btnGetAllPlatformGames" Click="ScrapeGetAllPlatformGames_Click">
-                        Get all platform games and save them to disk (JSON)
-                    </Button>
-
-                    <Button Margin="5" x:Name="btnmobyPlatformList" Click="btnmobyPlatformList_Click">
-                        Get all platform games from Mobygames and save them to disk (JSON)
-                    </Button>
-
-                    
-
-                    <Button Margin="5" x:Name="btnCombine" Click="btnCombine_Click">
-                        Combine sets and generate new master json
-                    </Button>
-
-                    <Button Margin="5" x:Name="btnCombineManual" Click="btnCombineManual_Click">
-                        Combine sets and generate new master json (manual choice on multiple selections using Levenshtein)
-                    </Button>
-
-                    <Button Margin="5" x:Name="btnCombineManualnonleven" Click="btnCombineManualnonleven_Click">
-                        Combine sets and generate new master json (manual choice on multiple selections using word match counts)
-                    </Button>
-
-                    <Separator />
-
-                    <Button Margin="5" x:Name="btnCombineGamesDatabaseOrgManuals" Click="btnCombineGamesDatabaseOrgManuals_Click">
-                        Parse gamesdatabase.org list of manuals and manually match them
-                    </Button>
-
-                    <Button Margin="5" x:Name="btnRDmanuallist" Click="btnRDmanuallist_Click">
-                        Scrape all manual links from replacementdocs.com
-                    </Button>
-
-                    <Button Margin="5" x:Name="btnParseRDList" Click="btnParseRDList_Click">
-                        Parse replacement docs list of manuals and manually match them (auto on exact match)
-                    </Button>
-
-                    <!--
-                    <Button Margin="5" x:Name="btnCombineManualEverything" Click="btnCombineManualEverything_Click">
-                        DO Exact match and then prompt for everything else
-                    </Button>
--->
-                    <Separator />
-<!--
-                    <Button Margin="5" x:Name="btnGetManuals" Click="btnGetManuals_Click">
-                        Attempt to scrape PDF Manual URLS
-                    </Button>
-                    -->
-                    <!--
-                    <Button x:Name="btnmobyPlatformListDumpToFile" Click="btnmobyPlatformListDumpToFile_Click">
-                        Dump all basic mobygames list from database to local json
-                    </Button>
-                    -->
-
-                    <Button Margin="5" x:Name="btnPJoyTest" Click="btnPJoyTest_Click">
-                        Joystick test
-                    </Button>
-
-                    <Separator />
-                    <Button Margin="5" x:Name="btnBuildFromDat" Click="btnBuildFromDat_Click">
-                        Build master information file from DATs (tosec / nointro etc)
-                    </Button>
-
-                    <Button Margin="5" x:Name="btnmatchDATyears" Click="btnmatchDATyears_Click">
-                        Populate entries in the master DAT that do not have date information
-                    </Button>
-
-
-                    <Button Margin="5" x:Name="btnGenerateToolTips" Click="btnGenerateToolTips_Click">
-                        Generate tooltips JSON
-                    </Button>
-
-                    <Button Margin="5" x:Name="btnPopToolTips" Click="btnPopToolTips_Click">
-                        ToolTip Populate
-                    </Button>
-
-
-
-
-                </WrapPanel>
-            </TabItem>
+           
 
             <TabItem Header="Help">
                 <DockPanel x:Name="brws_Dp">

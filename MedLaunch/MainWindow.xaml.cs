@@ -4169,6 +4169,47 @@ namespace MedLaunch
 
         private void manualLocateLaunchGame_Click(object sender, RoutedEventArgs e)
         {
+            // popup select game file dialog
+            string filePath = GameLauncher.SelectGameFile();
+
+            // check whether path is null
+            if (filePath == null)
+                return;
+
+            // check whether file exists
+            if (!File.Exists(filePath))
+                return;
+
+            // Attempt to launch game using Mednafen config settings that are on disk (not parsing any MedLaunch command line parameters)
+            string medExe = Paths.GetPaths().mednafenExe + "\\mednafen.exe";
+
+            // check whether minimise to taskbar option is checked
+            bool taskbar = this.ShowInTaskbar;
+            if (GlobalSettings.Min2TaskBar() == true)
+            {
+                this.ShowInTaskbar = true;
+                this.WindowState = WindowState.Minimized;
+            }
+
+
+            System.Diagnostics.Process gProcess = new System.Diagnostics.Process();
+            gProcess.StartInfo.UseShellExecute = true;
+            gProcess.StartInfo.RedirectStandardOutput = false;
+            //gProcess.StartInfo.WorkingDirectory = "\"" + Paths.GetPaths().mednafenExe + "\"";
+            gProcess.StartInfo.FileName = medExe;
+            gProcess.StartInfo.CreateNoWindow = false;
+            gProcess.StartInfo.Arguments = "\"" + filePath + "\"";
+            gProcess.Start();
+            gProcess.WaitForExit();
+
+
+            if (GlobalSettings.Min2TaskBar() == true)
+            {
+                this.ShowInTaskbar = taskbar;
+                this.WindowState = WindowState.Normal;
+            }
+
+            
 
         }
     }

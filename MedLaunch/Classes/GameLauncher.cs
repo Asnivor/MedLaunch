@@ -9,6 +9,7 @@ using System.Windows;
 using Asnitech.Launch.Common;
 using System.IO;
 using MedLaunch.Classes.IO;
+using Microsoft.Win32;
 
 namespace MedLaunch.Classes
 {
@@ -648,6 +649,65 @@ namespace MedLaunch.Classes
                 dict.Add(co);
             }
             return dict;
+        }
+
+        public static string SelectGameFile()
+        {
+            // get all game system allowed file extensions  
+            var systems = GSystem.GetSystems();
+            List<string> exts = new List<string>();
+            foreach (var s in systems)
+            {
+                string sup = s.supportedFileExtensions;
+                string[] spl = sup.Split(',');
+                if (spl.Length > 0)
+                {
+                    foreach (string e in spl)
+                    {
+                        exts.Add(e);
+                    }
+                }
+            }
+
+            // remove duplicates
+            exts.Distinct();
+            // add ZIP extension
+            exts.Add(".zip");
+
+            // convert allowed types to filter string
+            string filter = "";
+            string fStart = "Allowed Types (";
+            string fEnd = "";
+            foreach (string i in exts)
+            {
+                if (i == "") { continue; }
+
+                fStart += "*" + i + ",";
+                fEnd += "*" + i + ";";
+            }
+            char comma = ',';
+            char semi = ';';
+            filter = (fStart.TrimEnd(comma)) + ")|" + (fEnd.TrimEnd(semi));
+            //MessageBox.Show(filter);
+
+            // open the file dialog showing only allowed file types - multi-select disabled
+            OpenFileDialog filePath = new OpenFileDialog();
+            filePath.Multiselect = false;
+            filePath.Filter = filter;
+            filePath.Title = "Select a single ROM, Disc or playlist file to run with Mednafen";
+            filePath.ShowDialog();
+
+            if (filePath.FileName.Length > 0)
+            {
+                // file has been selected
+                string file = filePath.FileName;
+                return file;
+            }
+            else
+            {
+                // no files selected - return empty string
+                return null;
+            }
         }
 
 
