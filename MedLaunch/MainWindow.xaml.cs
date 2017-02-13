@@ -2709,7 +2709,11 @@ namespace MedLaunch
             GlobalSettings gs = GlobalSettings.GetGlobals();
             if (gs.enableClearCacheOnExit == true)
             {
-                FileAndFolder.ClearFolder(AppDomain.CurrentDomain.BaseDirectory + "Data\\Cache");
+                if (Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "Data\\Cache"))
+                {
+                    FileAndFolder.ClearFolder(AppDomain.CurrentDomain.BaseDirectory + "Data\\Cache");
+                }
+                
             }
 
         }
