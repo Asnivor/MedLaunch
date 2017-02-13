@@ -322,6 +322,9 @@
     <Compile Include="InitWindow.xaml.cs">
       <DependentUpon>InitWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LibraryColumnChooser.xaml.cs">
+      <DependentUpon>LibraryColumnChooser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ListBoxChildWindow.xaml.cs">
       <DependentUpon>ListBoxChildWindow.xaml</DependentUpon>
     </Compile>
@@ -358,6 +361,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InitWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LibraryColumnChooser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
