@@ -1,3 +1,4 @@
+<img src="http://medlaunch.asnitech.co.uk/MedLaunch_sm.png" height="80" />
 # MedLaunch
 ## A Windows Front-End for Mednafen
 
