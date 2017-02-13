@@ -140,9 +140,7 @@ namespace MedLaunch.Classes.GamesLibrary
                                where a.Coop == null &&
                                a.Developer == null &&
                                a.ESRB == null &&
-                               a.Players == null &&
-                               a.Publisher == null &&
-                               a.Year == null
+                               a.Players == null
                                select a).ToList();
 
 
