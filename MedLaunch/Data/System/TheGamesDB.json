@@ -255,7 +255,7 @@
     "id": 3175,
     "SystemId": 1,
     "GDBPlatformName": "Nintendo Game Boy",
-    "GameTitle": "Donkey Kong Land 3",
+    "GameTitle": "Donkey Kong Land III",
     "ReleaseDate": "10/01/1997"
   },
   {
@@ -318,7 +318,7 @@
     "id": 8381,
     "SystemId": 1,
     "GDBPlatformName": "Nintendo Game Boy",
-    "GameTitle": "Spyvs. Spy",
+    "GameTitle": "Spy vs Spy Operation: Booby Trap",
     "ReleaseDate": "09/01/1992"
   },
   {
@@ -3567,7 +3567,7 @@
     "SystemId": 1,
     "GDBPlatformName": "Nintendo Game Boy",
     "GameTitle": "Game Boy Camera",
-    "ReleaseDate": null
+    "ReleaseDate": "09/17/1998"
   },
   {
     "id": 23335,
@@ -4760,6 +4760,181 @@
     "ReleaseDate": "08/08/1993"
   },
   {
+    "id": 42000,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Super Mario 4",
+    "ReleaseDate": "01/01/1997"
+  },
+  {
+    "id": 42001,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Pokemon Brown Version",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42415,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Rockman World",
+    "ReleaseDate": "07/26/1991"
+  },
+  {
+    "id": 42416,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Donkey Kong 2",
+    "ReleaseDate": "01/20/2015"
+  },
+  {
+    "id": 42417,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Rockman World 2",
+    "ReleaseDate": "12/20/1991"
+  },
+  {
+    "id": 42418,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Rockman World 3",
+    "ReleaseDate": "12/11/1992"
+  },
+  {
+    "id": 42419,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Rockman World 4",
+    "ReleaseDate": "10/29/1993"
+  },
+  {
+    "id": 42420,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Rockman World 5",
+    "ReleaseDate": "07/22/1994"
+  },
+  {
+    "id": 42441,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Wizardry Gaiden I: Joou no Junan",
+    "ReleaseDate": "10/01/1991"
+  },
+  {
+    "id": 42442,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Wizardry Gaiden II: Kodai Koutei no Noroi",
+    "ReleaseDate": "12/26/1992"
+  },
+  {
+    "id": 42445,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Wizardry Gaiden III: Yami no Seiten",
+    "ReleaseDate": "09/25/1993"
+  },
+  {
+    "id": 42454,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Kininkou Maroku Oni",
+    "ReleaseDate": "12/08/1990"
+  },
+  {
+    "id": 42664,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Daisenryaku",
+    "ReleaseDate": "06/12/1991"
+  },
+  {
+    "id": 42671,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Gamera: Daikaijuu Kuuchuu Kessen",
+    "ReleaseDate": "03/03/1995"
+  },
+  {
+    "id": 42676,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Heracles no Eikou: Ugokidashita Kamigami",
+    "ReleaseDate": "12/27/1992"
+  },
+  {
+    "id": 42678,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Ikari no Yousai 2",
+    "ReleaseDate": "02/21/1992"
+  },
+  {
+    "id": 42711,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Penta Dragon",
+    "ReleaseDate": "07/31/1992"
+  },
+  {
+    "id": 42713,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Sanrio Carnival",
+    "ReleaseDate": "05/11/1991"
+  },
+  {
+    "id": 42714,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Super Bikkuriman: Densetsu no Sekiban",
+    "ReleaseDate": "12/11/1992"
+  },
+  {
+    "id": 42716,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Super Robot Taisen",
+    "ReleaseDate": "04/20/1991"
+  },
+  {
+    "id": 42719,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Taiyou no Yuusha Fighbird GB",
+    "ReleaseDate": "12/20/1991"
+  },
+  {
+    "id": 42720,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Tekkaman Blade",
+    "ReleaseDate": "12/18/1992"
+  },
+  {
+    "id": 42722,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Ultraman Chou Toushi Gekiden",
+    "ReleaseDate": "08/26/1994"
+  },
+  {
+    "id": 42723,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Zettai Muteki Raijin-Oh",
+    "ReleaseDate": "12/28/1991"
+  },
+  {
+    "id": 42724,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy",
+    "GameTitle": "Zoids Densetsu",
+    "ReleaseDate": "06/15/1990"
+  },
+  {
     "id": 21934,
     "SystemId": 1,
     "GDBPlatformName": "Nintendo Game Boy Color",
@@ -5057,14 +5232,14 @@
     "id": 8630,
     "SystemId": 1,
     "GDBPlatformName": "Nintendo Game Boy Color",
-    "GameTitle": "Megaman Xtreme",
+    "GameTitle": "Mega Man Xtreme",
     "ReleaseDate": "01/11/2001"
   },
   {
     "id": 8631,
     "SystemId": 1,
     "GDBPlatformName": "Nintendo Game Boy Color",
-    "GameTitle": "Megaman Xtreme 2",
+    "GameTitle": "Mega Man Xtreme 2",
     "ReleaseDate": "10/30/2001"
   },
   {
@@ -5778,7 +5953,7 @@
     "id": 19575,
     "SystemId": 1,
     "GDBPlatformName": "Nintendo Game Boy Color",
-    "GameTitle": "Harvest Moon GBC",
+    "GameTitle": "Harvest Moon",
     "ReleaseDate": "11/01/1999"
   },
   {
@@ -8229,7 +8404,7 @@
     "SystemId": 1,
     "GDBPlatformName": "Nintendo Game Boy Color",
     "GameTitle": "Keitai Denjuu Telefang - Power Version",
-    "ReleaseDate": null
+    "ReleaseDate": "11/03/2000"
   },
   {
     "id": 35613,
@@ -8795,7 +8970,7 @@
     "id": 41422,
     "SystemId": 1,
     "GDBPlatformName": "Nintendo Game Boy Color",
-    "GameTitle": "Pokemon Yellow Version",
+    "GameTitle": "Pokémon Yellow Version",
     "ReleaseDate": "09/12/1998"
   },
   {
@@ -8832,6 +9007,181 @@
     "GDBPlatformName": "Nintendo Game Boy Color",
     "GameTitle": "Megami Tensai Gaiden - Last Bible II",
     "ReleaseDate": "04/16/1999"
+  },
+  {
+    "id": 41930,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Pokémon Prism",
+    "ReleaseDate": "12/19/2016"
+  },
+  {
+    "id": 42436,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Wizardry Empire: Fukkatsu no Tsue",
+    "ReleaseDate": "12/22/2000"
+  },
+  {
+    "id": 42446,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Wizardry Empire",
+    "ReleaseDate": "10/29/1999"
+  },
+  {
+    "id": 42447,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Wizardry: Proving Grounds of the Mad Overlord",
+    "ReleaseDate": "02/23/2001"
+  },
+  {
+    "id": 42448,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Wizardry II: Llygamyn no Isan",
+    "ReleaseDate": "02/23/2001"
+  },
+  {
+    "id": 42449,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Wizardry III: Diamond no Kishi",
+    "ReleaseDate": "02/23/2001"
+  },
+  {
+    "id": 42660,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Daiku no Gen-san: Kachikachi no Tonkachi ga Kachi",
+    "ReleaseDate": "04/28/2000"
+  },
+  {
+    "id": 42668,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Pokémon jade",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42670,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Donkey Kong 5 The Journey Of Over Time And Space",
+    "ReleaseDate": "01/01/2000"
+  },
+  {
+    "id": 42673,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Das Geheimnis der Happy Hippo-Insel",
+    "ReleaseDate": "05/17/2001"
+  },
+  {
+    "id": 42674,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Hello Kitty no Magical Museum",
+    "ReleaseDate": "04/28/1999"
+  },
+  {
+    "id": 42685,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Keitai Denjuu Telefang - Speed Version",
+    "ReleaseDate": "11/03/2000"
+  },
+  {
+    "id": 42688,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Meitantei Conan: Kigantou Hihou Densetsu",
+    "ReleaseDate": "03/31/2000"
+  },
+  {
+    "id": 42706,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Network Boukenki Bugsite: Beta",
+    "ReleaseDate": "11/02/2001"
+  },
+  {
+    "id": 42707,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Network Adventure Bugsite: Alpha",
+    "ReleaseDate": "11/02/2001"
+  },
+  {
+    "id": 42708,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Nobunaga no Yabou Game Boy Han 2",
+    "ReleaseDate": "04/09/1999"
+  },
+  {
+    "id": 42709,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Nushi Tsuri Adventure: Kite no Bouken",
+    "ReleaseDate": "08/04/2000"
+  },
+  {
+    "id": 42710,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Ottifanten: Kommando Stortebeker",
+    "ReleaseDate": "01/01/2001"
+  },
+  {
+    "id": 42712,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Pocket Billiard Funk: The 9 Ball",
+    "ReleaseDate": "02/19/2000"
+  },
+  {
+    "id": 42715,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Super Chinese Fighter EX",
+    "ReleaseDate": "12/24/1999"
+  },
+  {
+    "id": 42717,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Sylvanian Families: Otogi no Kuni no Pendant",
+    "ReleaseDate": "10/15/1999"
+  },
+  {
+    "id": 42718,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Sylvania Melody",
+    "ReleaseDate": "03/17/2000"
+  },
+  {
+    "id": 43053,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Pumuckl´s Abenteuer bei den Piraten",
+    "ReleaseDate": "05/12/1999"
+  },
+  {
+    "id": 43055,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Pumuckl´s Abenteuer im Geisterschloss",
+    "ReleaseDate": "11/15/2000"
+  },
+  {
+    "id": 43056,
+    "SystemId": 1,
+    "GDBPlatformName": "Nintendo Game Boy Color",
+    "GameTitle": "Tabaluga",
+    "ReleaseDate": "05/03/1999"
   },
   {
     "id": 3373,
@@ -8907,7 +9257,7 @@
     "id": 2314,
     "SystemId": 2,
     "GDBPlatformName": "Nintendo Game Boy Advance",
-    "GameTitle": "Pokémon Leaf Green Version",
+    "GameTitle": "Pokémon LeafGreen Version",
     "ReleaseDate": "01/29/2004"
   },
   {
@@ -16811,7 +17161,7 @@
     "SystemId": 2,
     "GDBPlatformName": "Nintendo Game Boy Advance",
     "GameTitle": "Pokemon Flora Sky",
-    "ReleaseDate": null
+    "ReleaseDate": "08/05/2015"
   },
   {
     "id": 37971,
@@ -16919,13 +17269,6 @@
     "ReleaseDate": null
   },
   {
-    "id": 39405,
-    "SystemId": 2,
-    "GDBPlatformName": "Nintendo Game Boy Advance",
-    "GameTitle": "Pokemon Naranja",
-    "ReleaseDate": "10/17/2012"
-  },
-  {
     "id": 39657,
     "SystemId": 2,
     "GDBPlatformName": "Nintendo Game Boy Advance",
@@ -16940,18 +17283,11 @@
     "ReleaseDate": "10/01/2004"
   },
   {
-    "id": 39940,
-    "SystemId": 2,
-    "GDBPlatformName": "Nintendo Game Boy Advance",
-    "GameTitle": "Pokémon Mundo Misterioso: Equipo de rescate Rojo",
-    "ReleaseDate": "11/10/2006"
-  },
-  {
     "id": 40029,
     "SystemId": 2,
     "GDBPlatformName": "Nintendo Game Boy Advance",
-    "GameTitle": "Anguna",
-    "ReleaseDate": null
+    "GameTitle": "Anguna - Warriors of Virtue",
+    "ReleaseDate": "07/09/2008"
   },
   {
     "id": 40030,
@@ -17066,6 +17402,118 @@
     "ReleaseDate": "10/17/2012"
   },
   {
+    "id": 41966,
+    "SystemId": 2,
+    "GDBPlatformName": "Nintendo Game Boy Advance",
+    "GameTitle": "Qwak",
+    "ReleaseDate": "12/15/2006"
+  },
+  {
+    "id": 42002,
+    "SystemId": 2,
+    "GDBPlatformName": "Nintendo Game Boy Advance",
+    "GameTitle": "Pokemon Altair",
+    "ReleaseDate": "06/18/2014"
+  },
+  {
+    "id": 42003,
+    "SystemId": 2,
+    "GDBPlatformName": "Nintendo Game Boy Advance",
+    "GameTitle": "Pokemon Sirius",
+    "ReleaseDate": "06/18/2014"
+  },
+  {
+    "id": 42004,
+    "SystemId": 2,
+    "GDBPlatformName": "Nintendo Game Boy Advance",
+    "GameTitle": "Pokemon Vega",
+    "ReleaseDate": "12/15/2015"
+  },
+  {
+    "id": 42285,
+    "SystemId": 2,
+    "GDBPlatformName": "Nintendo Game Boy Advance",
+    "GameTitle": "Pokémon FireRed",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42334,
+    "SystemId": 2,
+    "GDBPlatformName": "Nintendo Game Boy Advance",
+    "GameTitle": "Barbie Superpack: Secret Agent / Groovy Games",
+    "ReleaseDate": "09/14/2005"
+  },
+  {
+    "id": 42340,
+    "SystemId": 2,
+    "GDBPlatformName": "Nintendo Game Boy Advance",
+    "GameTitle": "Pokémon Shiny Gold Sigma",
+    "ReleaseDate": "05/10/2015"
+  },
+  {
+    "id": 42371,
+    "SystemId": 2,
+    "GDBPlatformName": "Nintendo Game Boy Advance",
+    "GameTitle": "Pokemon Blattgrüne Edition",
+    "ReleaseDate": "09/09/2004"
+  },
+  {
+    "id": 42603,
+    "SystemId": 2,
+    "GDBPlatformName": "Nintendo Game Boy Advance",
+    "GameTitle": "Serious Sam Advance",
+    "ReleaseDate": "04/12/2004"
+  },
+  {
+    "id": 42604,
+    "SystemId": 2,
+    "GDBPlatformName": "Nintendo Game Boy Advance",
+    "GameTitle": "Yu-Gi-Oh! Double Pack 2",
+    "ReleaseDate": "08/29/2006"
+  },
+  {
+    "id": 42609,
+    "SystemId": 2,
+    "GDBPlatformName": "Nintendo Game Boy Advance",
+    "GameTitle": "Teenage Mutant Ninja Turtles Double Pack",
+    "ReleaseDate": "06/06/2006"
+  },
+  {
+    "id": 42611,
+    "SystemId": 2,
+    "GDBPlatformName": "Nintendo Game Boy Advance",
+    "GameTitle": "POWDER",
+    "ReleaseDate": "05/31/2003"
+  },
+  {
+    "id": 42657,
+    "SystemId": 2,
+    "GDBPlatformName": "Nintendo Game Boy Advance",
+    "GameTitle": "Pocket Meat",
+    "ReleaseDate": "02/11/2012"
+  },
+  {
+    "id": 42737,
+    "SystemId": 2,
+    "GDBPlatformName": "Nintendo Game Boy Advance",
+    "GameTitle": "Hagane no Renkinjutsushi: Meisou no Rinbukyoku",
+    "ReleaseDate": "03/26/2004"
+  },
+  {
+    "id": 42850,
+    "SystemId": 2,
+    "GDBPlatformName": "Nintendo Game Boy Advance",
+    "GameTitle": "Crash & Spyro Superpack Volume 1",
+    "ReleaseDate": "01/01/2005"
+  },
+  {
+    "id": 42980,
+    "SystemId": 2,
+    "GDBPlatformName": "Nintendo Game Boy Advance",
+    "GameTitle": "World Reborn",
+    "ReleaseDate": null
+  },
+  {
     "id": 23744,
     "SystemId": 3,
     "GDBPlatformName": "Atari Lynx",
@@ -17126,7 +17574,7 @@
     "SystemId": 3,
     "GDBPlatformName": "Atari Lynx",
     "GameTitle": "Lemmings",
-    "ReleaseDate": null
+    "ReleaseDate": "01/01/1993"
   },
   {
     "id": 19555,
@@ -17154,7 +17602,7 @@
     "SystemId": 3,
     "GDBPlatformName": "Atari Lynx",
     "GameTitle": "Xenophobe",
-    "ReleaseDate": null
+    "ReleaseDate": "01/01/1990"
   },
   {
     "id": 19559,
@@ -18011,13 +18459,6 @@
     "ReleaseDate": "01/01/1994"
   },
   {
-    "id": 6242,
-    "SystemId": 4,
-    "GDBPlatformName": "Sega Mega Drive",
-    "GameTitle": "Contra: Hard Corps",
-    "ReleaseDate": "09/14/1994"
-  },
-  {
     "id": 6243,
     "SystemId": 4,
     "GDBPlatformName": "Sega Mega Drive",
@@ -18415,6 +18856,20 @@
     "GDBPlatformName": "Sega Mega Drive",
     "GameTitle": "Sub Terrania",
     "ReleaseDate": "01/01/1994"
+  },
+  {
+    "id": 41837,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Mega Drive",
+    "GameTitle": "Desert Demolition",
+    "ReleaseDate": null
+  },
+  {
+    "id": 41838,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Mega Drive",
+    "GameTitle": "Syndicate",
+    "ReleaseDate": "06/06/1993"
   },
   {
     "id": 15023,
@@ -19807,7 +20262,7 @@
     "SystemId": 4,
     "GDBPlatformName": "Sega Mega Drive",
     "GameTitle": "Bubsy 2",
-    "ReleaseDate": null
+    "ReleaseDate": "01/01/1994"
   },
   {
     "id": 23717,
@@ -21479,7 +21934,7 @@
     "id": 29126,
     "SystemId": 4,
     "GDBPlatformName": "Sega Mega Drive",
-    "GameTitle": "Klax",
+    "GameTitle": "Klax (Tengen)",
     "ReleaseDate": "09/06/1990"
   },
   {
@@ -22852,7 +23307,7 @@
     "SystemId": 4,
     "GDBPlatformName": "Sega Mega Drive",
     "GameTitle": "Operation Europe: Path to Victory 1939-45",
-    "ReleaseDate": null
+    "ReleaseDate": "06/07/1994"
   },
   {
     "id": 37990,
@@ -23112,6 +23567,69 @@
     "GDBPlatformName": "Sega Mega Drive",
     "GameTitle": "Ayrton Senna's Super Monaco GP II",
     "ReleaseDate": null
+  },
+  {
+    "id": 41929,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Mega Drive",
+    "GameTitle": "Scooby-Doo Mystery",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42132,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Mega Drive",
+    "GameTitle": "NFL '95",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42160,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Mega Drive",
+    "GameTitle": "Klax",
+    "ReleaseDate": "09/06/1990"
+  },
+  {
+    "id": 42172,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Mega Drive",
+    "GameTitle": "After Burner",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42290,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Mega Drive",
+    "GameTitle": "Super Airwolf",
+    "ReleaseDate": "03/29/1991"
+  },
+  {
+    "id": 42341,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Mega Drive",
+    "GameTitle": "Pulseman",
+    "ReleaseDate": "07/22/1994"
+  },
+  {
+    "id": 42342,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Mega Drive",
+    "GameTitle": "Sonic & Knuckles + Sonic the Hedgehog 2",
+    "ReleaseDate": "10/18/1994"
+  },
+  {
+    "id": 42346,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Mega Drive",
+    "GameTitle": "Growl",
+    "ReleaseDate": "01/01/1991"
+  },
+  {
+    "id": 42347,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Mega Drive",
+    "GameTitle": "Wardner",
+    "ReleaseDate": "01/01/1987"
   },
   {
     "id": 36006,
@@ -23810,7 +24328,7 @@
     "id": 661,
     "SystemId": 4,
     "GDBPlatformName": "Sega Genesis",
-    "GameTitle": "NHL 94",
+    "GameTitle": "NHL '94",
     "ReleaseDate": "03/15/1993"
   },
   {
@@ -28199,8 +28717,8 @@
     "id": 16924,
     "SystemId": 4,
     "GDBPlatformName": "Sega Genesis",
-    "GameTitle": "Sonic the Hedgehog & Knuckles",
-    "ReleaseDate": "10/17/1994"
+    "GameTitle": "Sonic Blue Sphere",
+    "ReleaseDate": "10/18/1994"
   },
   {
     "id": 17156,
@@ -28507,7 +29025,7 @@
     "id": 20944,
     "SystemId": 4,
     "GDBPlatformName": "Sega Genesis",
-    "GameTitle": "Sonic & Knuckles + Sonic the Hedgehog 2",
+    "GameTitle": "Knuckles in Sonic 2",
     "ReleaseDate": "10/18/1994"
   },
   {
@@ -30149,6 +30667,13 @@
     "ReleaseDate": "10/22/2004"
   },
   {
+    "id": 42799,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Genesis",
+    "GameTitle": "Yu Yu Hakusho - Sunset Fighters",
+    "ReleaseDate": "02/09/1994"
+  },
+  {
     "id": 38441,
     "SystemId": 4,
     "GDBPlatformName": "Sega Genesis",
@@ -30196,6 +30721,55 @@
     "GDBPlatformName": "Sega Genesis",
     "GameTitle": "Monaco GP II",
     "ReleaseDate": "12/01/1992"
+  },
+  {
+    "id": 41989,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Genesis",
+    "GameTitle": "NHL 2016 Deadline",
+    "ReleaseDate": "06/19/2016"
+  },
+  {
+    "id": 42348,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Genesis",
+    "GameTitle": "Subterranea",
+    "ReleaseDate": "01/01/1993"
+  },
+  {
+    "id": 42852,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Genesis",
+    "GameTitle": "Brave Battle Saga - Legend of the Magic Warrior",
+    "ReleaseDate": "02/13/1996"
+  },
+  {
+    "id": 42869,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Genesis",
+    "GameTitle": "Dragon Ball Z: The Call of Destiny",
+    "ReleaseDate": "02/16/1994"
+  },
+  {
+    "id": 42870,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Genesis",
+    "GameTitle": "Pulseman",
+    "ReleaseDate": "02/16/1994"
+  },
+  {
+    "id": 42872,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Genesis",
+    "GameTitle": "Trouble Shooter Vintage",
+    "ReleaseDate": "02/18/1993"
+  },
+  {
+    "id": 42873,
+    "SystemId": 4,
+    "GDBPlatformName": "Sega Genesis",
+    "GameTitle": "Twinkle Tale",
+    "ReleaseDate": "06/24/1992"
   },
   {
     "id": 5734,
@@ -32798,7 +33372,7 @@
     "id": 35929,
     "SystemId": 6,
     "GDBPlatformName": "Neo Geo Pocket Color",
-    "GameTitle": "Shougi no Tatsujin Color",
+    "GameTitle": "Shogi no Tatsujin Color",
     "ReleaseDate": "03/19/1999"
   },
   {
@@ -32924,7 +33498,7 @@
     "id": 18483,
     "SystemId": 6,
     "GDBPlatformName": "Neo Geo Pocket Color",
-    "GameTitle": "King of Fighters R-2: Pocket Fighting Series",
+    "GameTitle": "King of Fighters R-2",
     "ReleaseDate": "03/19/1999"
   },
   {
@@ -33113,7 +33687,7 @@
     "id": 18513,
     "SystemId": 6,
     "GDBPlatformName": "Neo Geo Pocket Color",
-    "GameTitle": "Neo 21",
+    "GameTitle": "Neo Twenty One",
     "ReleaseDate": "12/29/1999"
   },
   {
@@ -33344,7 +33918,7 @@
     "id": 27871,
     "SystemId": 6,
     "GDBPlatformName": "Neo Geo Pocket",
-    "GameTitle": "NeoGeoCup '98 Plus",
+    "GameTitle": "Neo Geo Cup '98 Plus",
     "ReleaseDate": "01/01/1998"
   },
   {
@@ -33365,7 +33939,7 @@
     "id": 34149,
     "SystemId": 6,
     "GDBPlatformName": "Neo Geo Pocket",
-    "GameTitle": "Melon-chan no Seichou Nikki",
+    "GameTitle": "Melon Chan's Growth Diary",
     "ReleaseDate": "01/01/1998"
   },
   {
@@ -34136,21 +34710,21 @@
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
     "GameTitle": "F1 CIRCUS",
-    "ReleaseDate": null
+    "ReleaseDate": "09/14/1990"
   },
   {
     "id": 18406,
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
-    "GameTitle": "F1 CIRCUS '92",
-    "ReleaseDate": null
+    "GameTitle": "F1 Circus '92",
+    "ReleaseDate": "12/18/1992"
   },
   {
     "id": 18407,
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
-    "GameTitle": "FINAL BLASTER",
-    "ReleaseDate": null
+    "GameTitle": "Final Blaster",
+    "ReleaseDate": "09/28/1990"
   },
   {
     "id": 18408,
@@ -34163,8 +34737,8 @@
     "id": 18409,
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
-    "GameTitle": "GOKURAKU! CHUKA TAISEN",
-    "ReleaseDate": null
+    "GameTitle": "Gokuraku! Chuka Taisen",
+    "ReleaseDate": "03/13/1992"
   },
   {
     "id": 18410,
@@ -34177,8 +34751,8 @@
     "id": 18411,
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
-    "GameTitle": "JIGOKU MEGURI",
-    "ReleaseDate": null
+    "GameTitle": "Jigoku Meguri",
+    "ReleaseDate": "08/03/1990"
   },
   {
     "id": 18412,
@@ -34248,7 +34822,7 @@
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
     "GameTitle": "Bomberman '94",
-    "ReleaseDate": null
+    "ReleaseDate": "12/10/1993"
   },
   {
     "id": 18441,
@@ -34465,7 +35039,7 @@
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
     "GameTitle": "Kyuukyoku Tiger",
-    "ReleaseDate": null
+    "ReleaseDate": "03/31/1989"
   },
   {
     "id": 22394,
@@ -34828,7 +35402,7 @@
     "id": 29485,
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
-    "GameTitle": "Kaiser's Quest",
+    "GameTitle": "Mahjong Haouden: Kaiser's Quest",
     "ReleaseDate": "02/28/1992"
   },
   {
@@ -34885,7 +35459,7 @@
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
     "GameTitle": "Makai Prince Dorabochan",
-    "ReleaseDate": null
+    "ReleaseDate": "12/21/1990"
   },
   {
     "id": 31080,
@@ -35305,14 +35879,14 @@
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
     "GameTitle": "Gai Flame",
-    "ReleaseDate": null
+    "ReleaseDate": "12/16/1987"
   },
   {
     "id": 38166,
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
     "GameTitle": "Fighting Run",
-    "ReleaseDate": null
+    "ReleaseDate": "11/29/1991"
   },
   {
     "id": 38167,
@@ -35347,14 +35921,14 @@
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
     "GameTitle": "Formation Soccer On J. League",
-    "ReleaseDate": null
+    "ReleaseDate": "01/15/1994"
   },
   {
     "id": 38174,
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
-    "GameTitle": "F1 Circus 91'",
-    "ReleaseDate": null
+    "GameTitle": "F1 Circus '91",
+    "ReleaseDate": "07/12/1991"
   },
   {
     "id": 38175,
@@ -35479,7 +36053,7 @@
     "id": 40594,
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
-    "GameTitle": "Kore Gg Pro Yakyuu '89",
+    "GameTitle": "Kore ga Pro Yakyuu '89",
     "ReleaseDate": "12/20/1990"
   },
   {
@@ -35556,7 +36130,7 @@
     "id": 40609,
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
-    "GameTitle": "Kore Ga Pro Yakyuu '90",
+    "GameTitle": "Kore ga Pro Yakyuu '90",
     "ReleaseDate": "06/30/1990"
   },
   {
@@ -35577,7 +36151,7 @@
     "id": 40612,
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
-    "GameTitle": "Jinmu Densho Yaksa",
+    "GameTitle": "Jinmu Denshou Yaksa",
     "ReleaseDate": "06/20/1989"
   },
   {
@@ -35598,14 +36172,14 @@
     "id": 40642,
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
-    "GameTitle": "Kyuukyoku Mahjong Idol Graphics",
+    "GameTitle": "Kyuukyoku Mahjong",
     "ReleaseDate": "10/31/1992"
   },
   {
     "id": 40643,
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
-    "GameTitle": "Kyuukyoku Mahjong Idol Graphics II",
+    "GameTitle": "Kyuukyoku Mahjong II",
     "ReleaseDate": "10/31/1993"
   },
   {
@@ -35633,7 +36207,7 @@
     "id": 40647,
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx 16",
-    "GameTitle": "Mahjong Wars",
+    "GameTitle": "Mahjong Shikaku Retsuden: Mahjong Wars",
     "ReleaseDate": "02/01/1990"
   },
   {
@@ -35950,6 +36524,20 @@
     "GDBPlatformName": "TurboGrafx 16",
     "GameTitle": "Yo' Bro",
     "ReleaseDate": null
+  },
+  {
+    "id": 42789,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "R Type",
+    "ReleaseDate": "01/01/1989"
+  },
+  {
+    "id": 42791,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx 16",
+    "GameTitle": "Moto Roader (USA)",
+    "ReleaseDate": "01/01/1989"
   },
   {
     "id": 16793,
@@ -36824,6 +37412,83 @@
     "SystemId": 7,
     "GDBPlatformName": "TurboGrafx CD",
     "GameTitle": "Bakushou Yoshimoto ShinkiGeki",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42310,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx CD",
+    "GameTitle": "Alshark",
+    "ReleaseDate": "08/26/1994"
+  },
+  {
+    "id": 42311,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx CD",
+    "GameTitle": "Blood Gear",
+    "ReleaseDate": "10/28/1994"
+  },
+  {
+    "id": 42984,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx CD",
+    "GameTitle": "Exile",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42985,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx CD",
+    "GameTitle": "It Came From The Desert",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42986,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx CD",
+    "GameTitle": "Jack Nicklaus Turbo Golf",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42987,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx CD",
+    "GameTitle": "Lords of the Rising Sun",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42988,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx CD",
+    "GameTitle": "Monster Lair",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42989,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx CD",
+    "GameTitle": "Sherlock Holmes Consulting Detective",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42990,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx CD",
+    "GameTitle": "Sherlock Holmes Consulting Detective Volume II",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42991,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx CD",
+    "GameTitle": "Sim Earth - The Living Planet",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42992,
+    "SystemId": 7,
+    "GDBPlatformName": "TurboGrafx CD",
+    "GameTitle": "Vasteel",
     "ReleaseDate": null
   },
   {
@@ -38010,6 +38675,13 @@
     "ReleaseDate": "05/13/1998"
   },
   {
+    "id": 41817,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Pac-Man World",
+    "ReleaseDate": "09/30/1999"
+  },
+  {
     "id": 2937,
     "SystemId": 9,
     "GDBPlatformName": "Sony Playstation",
@@ -38958,7 +39630,7 @@
     "id": 9337,
     "SystemId": 9,
     "GDBPlatformName": "Sony Playstation",
-    "GameTitle": "Spyro 2: Ripto's Rage",
+    "GameTitle": "Spyro 2: Ripto's Rage!",
     "ReleaseDate": "10/31/1999"
   },
   {
@@ -40015,7 +40687,7 @@
     "id": 11541,
     "SystemId": 9,
     "GDBPlatformName": "Sony Playstation",
-    "GameTitle": "Lunar 2: Eternal Blue",
+    "GameTitle": "Lunar 2: Eternal Blue Complete",
     "ReleaseDate": "12/15/2000"
   },
   {
@@ -41349,6 +42021,20 @@
     "ReleaseDate": "11/07/2001"
   },
   {
+    "id": 42905,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "The Hoobs",
+    "ReleaseDate": "06/07/2002"
+  },
+  {
+    "id": 42906,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "The Hoobs Playtime Gift Pack",
+    "ReleaseDate": "06/07/2002"
+  },
+  {
     "id": 11867,
     "SystemId": 9,
     "GDBPlatformName": "Sony Playstation",
@@ -41975,7 +42661,7 @@
     "id": 12216,
     "SystemId": 9,
     "GDBPlatformName": "Sony Playstation",
-    "GameTitle": "Lunar: Silver Star Story Complete",
+    "GameTitle": "Lunar: Silver Star Story Complete: Collector's Edition",
     "ReleaseDate": "05/28/1999"
   },
   {
@@ -45073,6 +45759,20 @@
     "ReleaseDate": "02/28/1997"
   },
   {
+    "id": 42995,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Ao Zora to Nakama Tachi: Yume no Bouken Plus",
+    "ReleaseDate": "11/13/2003"
+  },
+  {
+    "id": 42996,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Kero Kero King",
+    "ReleaseDate": "01/01/2000"
+  },
+  {
     "id": 21472,
     "SystemId": 9,
     "GDBPlatformName": "Sony Playstation",
@@ -45174,7 +45874,7 @@
     "id": 35971,
     "SystemId": 9,
     "GDBPlatformName": "Sony Playstation",
-    "GameTitle": "Disney's Story Studio: Disney's Mulan",
+    "GameTitle": "Disney's Story Studio: Mulan",
     "ReleaseDate": "12/20/1998"
   },
   {
@@ -48489,6 +49189,13 @@
     "ReleaseDate": "01/01/2003"
   },
   {
+    "id": 42907,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Sim Theme Park",
+    "ReleaseDate": "10/24/1999"
+  },
+  {
     "id": 39463,
     "SystemId": 9,
     "GDBPlatformName": "Sony Playstation",
@@ -49119,13 +49826,6 @@
     "ReleaseDate": null
   },
   {
-    "id": 41424,
-    "SystemId": 9,
-    "GDBPlatformName": "Sony Playstation",
-    "GameTitle": "Need for Speed: Underground",
-    "ReleaseDate": null
-  },
-  {
     "id": 41575,
     "SystemId": 9,
     "GDBPlatformName": "Sony Playstation",
@@ -49173,6 +49873,398 @@
     "GDBPlatformName": "Sony Playstation",
     "GameTitle": "Player Manager 2000",
     "ReleaseDate": "06/20/2000"
+  },
+  {
+    "id": 41999,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Penny Racers",
+    "ReleaseDate": "12/18/1996"
+  },
+  {
+    "id": 42021,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "NASCAR Heat",
+    "ReleaseDate": "08/03/2000"
+  },
+  {
+    "id": 42039,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Rockman (Japan)",
+    "ReleaseDate": "08/05/1999"
+  },
+  {
+    "id": 42040,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Rockman 2 - Dr. Willy no Nazo! (Japan)",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42188,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Chris Kamara's Street Soccer",
+    "ReleaseDate": "08/25/2000"
+  },
+  {
+    "id": 42246,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Dancing Stage Euromix",
+    "ReleaseDate": "02/16/2001"
+  },
+  {
+    "id": 42259,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "RockMan 3: Dr. Wily no Saigo!?",
+    "ReleaseDate": "09/14/1999"
+  },
+  {
+    "id": 42260,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "RockMan 4: Aratanaru Yabou!!",
+    "ReleaseDate": "10/28/1999"
+  },
+  {
+    "id": 42261,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "RockMan 5: Blues no Wana!?",
+    "ReleaseDate": "11/25/1999"
+  },
+  {
+    "id": 42262,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "RockMan 6: Shijou Saidai no Tatakai!!",
+    "ReleaseDate": "12/09/1999"
+  },
+  {
+    "id": 42286,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Aironauts",
+    "ReleaseDate": "08/19/1999"
+  },
+  {
+    "id": 42798,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Interactive CD Sampler Pack Volume 3.5",
+    "ReleaseDate": "12/01/1996"
+  },
+  {
+    "id": 42618,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Gunpey",
+    "ReleaseDate": "12/16/1999"
+  },
+  {
+    "id": 42619,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Klaymen Gun-Hockey",
+    "ReleaseDate": "11/25/1999"
+  },
+  {
+    "id": 42620,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Pro Pinball",
+    "ReleaseDate": "09/30/1996"
+  },
+  {
+    "id": 42627,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "PlayStation Underground Volume 1 Issue 1",
+    "ReleaseDate": "03/31/1997"
+  },
+  {
+    "id": 42632,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "PlayStation Underground Volume 1 Issue 2",
+    "ReleaseDate": "06/06/1997"
+  },
+  {
+    "id": 42633,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "PlayStation Underground Volume 1 Issue 3",
+    "ReleaseDate": "10/01/1997"
+  },
+  {
+    "id": 42634,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "PlayStation Underground Volume 1 Issue 4",
+    "ReleaseDate": "01/01/1998"
+  },
+  {
+    "id": 42658,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "PlayStation Underground Volume 2 Issue 1",
+    "ReleaseDate": "02/27/1998"
+  },
+  {
+    "id": 42659,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "PlayStation Underground Volume 2 Issue 2",
+    "ReleaseDate": "06/06/1998"
+  },
+  {
+    "id": 42661,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "PlayStation Underground Volume 2 Issue 3",
+    "ReleaseDate": "09/01/1998"
+  },
+  {
+    "id": 42662,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "PlayStation Underground Volume 2 Issue 4",
+    "ReleaseDate": "11/30/1998"
+  },
+  {
+    "id": 42665,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "PlayStation Underground Volume 3 Issue 1",
+    "ReleaseDate": "03/01/1999"
+  },
+  {
+    "id": 42666,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "PlayStation Underground Volume 3 Issue 2",
+    "ReleaseDate": "05/29/1999"
+  },
+  {
+    "id": 42667,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "PlayStation Underground Volume 3 Issue 3",
+    "ReleaseDate": "09/06/1999"
+  },
+  {
+    "id": 42669,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "PlayStation Underground Volume 3 Issue 4",
+    "ReleaseDate": "12/01/1999"
+  },
+  {
+    "id": 42721,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "NFL Quarterback Club 97",
+    "ReleaseDate": "08/27/1996"
+  },
+  {
+    "id": 42742,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "PlayStation Underground Volume 4 Issue 1",
+    "ReleaseDate": "03/01/2000"
+  },
+  {
+    "id": 42743,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "PlayStation Underground Volume 4 Issue 2",
+    "ReleaseDate": "07/08/2000"
+  },
+  {
+    "id": 42745,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "PlayStation Underground Volume 4 Issue 3",
+    "ReleaseDate": "10/01/2000"
+  },
+  {
+    "id": 42746,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "PlayStation Underground Volume 4 Issue 4",
+    "ReleaseDate": "12/01/2000"
+  },
+  {
+    "id": 42752,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Pizza Hut Disc One",
+    "ReleaseDate": "11/14/1999"
+  },
+  {
+    "id": 42753,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Pizza Hut Disc Two",
+    "ReleaseDate": "11/14/1999"
+  },
+  {
+    "id": 42756,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Pizza Hut Pizza-Powered Playstation Giveaway!!!",
+    "ReleaseDate": "11/22/1998"
+  },
+  {
+    "id": 42780,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Dave Mirra Freestyle BMX - Maximum Remix",
+    "ReleaseDate": "05/01/2001"
+  },
+  {
+    "id": 42781,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Playstation/Pepsi Sampler Disc",
+    "ReleaseDate": "11/01/1997"
+  },
+  {
+    "id": 42786,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "PlayStation Picks (Purple Cover)",
+    "ReleaseDate": "09/09/1995"
+  },
+  {
+    "id": 42787,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "PlayStation Picks (Green Cover)",
+    "ReleaseDate": "11/01/1996"
+  },
+  {
+    "id": 42790,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Interactive CD Sampler Pack Volume 1",
+    "ReleaseDate": "01/01/1996"
+  },
+  {
+    "id": 42792,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Interactive CD Sampler Pack Volume 2",
+    "ReleaseDate": "06/01/1996"
+  },
+  {
+    "id": 42795,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Interactive CD Sampler Pack Volume 3",
+    "ReleaseDate": "10/01/1996"
+  },
+  {
+    "id": 42827,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Interactive CD Sampler Pack Volume 4",
+    "ReleaseDate": "06/01/1997"
+  },
+  {
+    "id": 42828,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Interactive CD Sampler Pack Volume 5",
+    "ReleaseDate": "11/01/1997"
+  },
+  {
+    "id": 42831,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Interactive CD Sampler Pack Volume 6",
+    "ReleaseDate": "06/01/1998"
+  },
+  {
+    "id": 42843,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Interactive CD Sampler Pack Volume 7",
+    "ReleaseDate": "08/01/1998"
+  },
+  {
+    "id": 42844,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Interactive CD Sampler Pack Volume 8",
+    "ReleaseDate": "10/01/1998"
+  },
+  {
+    "id": 42847,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Interactive CD Sampler Pack Volume 9",
+    "ReleaseDate": "01/01/1999"
+  },
+  {
+    "id": 42853,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "MLB Pennant Race",
+    "ReleaseDate": "06/28/1996"
+  },
+  {
+    "id": 42854,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "ESPN MLS GameNight",
+    "ReleaseDate": "09/06/2000"
+  },
+  {
+    "id": 42851,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "VR Soccer '96",
+    "ReleaseDate": "09/01/1996"
+  },
+  {
+    "id": 42921,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Lunar: Silver Star Story Complete",
+    "ReleaseDate": "05/28/1999"
+  },
+  {
+    "id": 42878,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "Interactive CD Sampler Pack Volume 10",
+    "ReleaseDate": "03/01/1999"
+  },
+  {
+    "id": 43000,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "International SuperStar Soccer Deluxe",
+    "ReleaseDate": "02/19/1997"
+  },
+  {
+    "id": 42994,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "B.L.U.E. Legend of Water",
+    "ReleaseDate": "07/09/1998"
+  },
+  {
+    "id": 43088,
+    "SystemId": 9,
+    "GDBPlatformName": "Sony Playstation",
+    "GameTitle": "X2 - No Relief",
+    "ReleaseDate": "08/14/1997"
   },
   {
     "id": 2798,
@@ -51821,6 +52913,13 @@
     "ReleaseDate": "09/02/2015"
   },
   {
+    "id": 42802,
+    "SystemId": 10,
+    "GDBPlatformName": "Sega Master System",
+    "GameTitle": "Alex Kidd 2 - Curse in Miracle World",
+    "ReleaseDate": "11/16/2016"
+  },
+  {
     "id": 39206,
     "SystemId": 10,
     "GDBPlatformName": "Sega Master System",
@@ -51882,6 +52981,13 @@
     "GDBPlatformName": "Sega Master System",
     "GameTitle": "Super Basketball",
     "ReleaseDate": null
+  },
+  {
+    "id": 41965,
+    "SystemId": 10,
+    "GDBPlatformName": "Sega Master System",
+    "GameTitle": "Argos no Senshi",
+    "ReleaseDate": "03/25/1988"
   },
   {
     "id": 5,
@@ -51979,7 +53085,7 @@
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
     "GameTitle": "BurgerTime",
-    "ReleaseDate": "01/01/1982"
+    "ReleaseDate": "01/01/1987"
   },
   {
     "id": 208,
@@ -52196,7 +53302,7 @@
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
     "GameTitle": "Double Dribble",
-    "ReleaseDate": "1986"
+    "ReleaseDate": "09/01/1987"
   },
   {
     "id": 344,
@@ -52440,7 +53546,7 @@
     "id": 378,
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
-    "GameTitle": "SkyKid",
+    "GameTitle": "Sky Kid",
     "ReleaseDate": "01/01/1986"
   },
   {
@@ -52945,7 +54051,7 @@
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
     "GameTitle": "DuckTales",
-    "ReleaseDate": "09/01/1990"
+    "ReleaseDate": "09/14/1989"
   },
   {
     "id": 1277,
@@ -53427,7 +54533,7 @@
     "id": 1405,
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
-    "GameTitle": "R.C. Pro-Am",
+    "GameTitle": "R.C Pro-Am",
     "ReleaseDate": "12/31/1988"
   },
   {
@@ -54918,7 +56024,7 @@
     "id": 1834,
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
-    "GameTitle": "Galaga: Demons of Death",
+    "GameTitle": "Galaga",
     "ReleaseDate": "01/01/1988"
   },
   {
@@ -55303,7 +56409,7 @@
     "id": 1892,
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
-    "GameTitle": "Mad Max",
+    "GameTitle": "MadMax",
     "ReleaseDate": "07/01/1990"
   },
   {
@@ -55870,7 +56976,7 @@
     "id": 2028,
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
-    "GameTitle": "R.C. Pro-Am II",
+    "GameTitle": "R.C Pro-Am II",
     "ReleaseDate": "10/15/1992"
   },
   {
@@ -56983,7 +58089,7 @@
     "id": 2820,
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
-    "GameTitle": "MsPac-Man",
+    "GameTitle": "Ms. Pac-Man",
     "ReleaseDate": "11/01/1993"
   },
   {
@@ -58223,7 +59329,14 @@
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
     "GameTitle": "Sunman",
-    "ReleaseDate": "01/01/1992"
+    "ReleaseDate": "11/15/2003"
+  },
+  {
+    "id": 41826,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Roll-Chan 6",
+    "ReleaseDate": "06/10/2016"
   },
   {
     "id": 22517,
@@ -59510,7 +60623,7 @@
     "id": 26569,
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
-    "GameTitle": "Wai Wai World 2: SOS!! Parsley Jō",
+    "GameTitle": "Wai Wai World 2: SOS!! Parsley Jou",
     "ReleaseDate": "01/05/1991"
   },
   {
@@ -60357,7 +61470,7 @@
     "id": 26970,
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
-    "GameTitle": "Home Run Night '90: The Pennant League",
+    "GameTitle": "Home Run Nighter '90: The Pennant League",
     "ReleaseDate": "07/24/1990"
   },
   {
@@ -61590,7 +62703,7 @@
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
     "GameTitle": "The Portopia Serial Murder Case",
-    "ReleaseDate": null
+    "ReleaseDate": "11/29/1985"
   },
   {
     "id": 30571,
@@ -61768,6 +62881,13 @@
     "ReleaseDate": "01/01/1991"
   },
   {
+    "id": 32061,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Street Fighter IV",
+    "ReleaseDate": "06/01/1993"
+  },
+  {
     "id": 32177,
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
@@ -61939,7 +63059,7 @@
     "id": 33694,
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
-    "GameTitle": "Pac-Man",
+    "GameTitle": "PacMan",
     "ReleaseDate": "11/10/1993"
   },
   {
@@ -61957,25 +63077,11 @@
     "ReleaseDate": "12/01/2013"
   },
   {
-    "id": 33925,
-    "SystemId": 11,
-    "GDBPlatformName": "Nintendo Entertainment System (NES)",
-    "GameTitle": "Steemerz",
-    "ReleaseDate": "12/01/2010"
-  },
-  {
     "id": 33926,
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
     "GameTitle": "Tiger Jenny",
     "ReleaseDate": "12/01/2014"
-  },
-  {
-    "id": 34248,
-    "SystemId": 11,
-    "GDBPlatformName": "Nintendo Entertainment System (NES)",
-    "GameTitle": "D.J. Boy",
-    "ReleaseDate": null
   },
   {
     "id": 34553,
@@ -62244,13 +63350,6 @@
     "ReleaseDate": "06/12/1985"
   },
   {
-    "id": 37308,
-    "SystemId": 11,
-    "GDBPlatformName": "Nintendo Entertainment System (NES)",
-    "GameTitle": "Rod Land Featuring Rit And Tam",
-    "ReleaseDate": null
-  },
-  {
     "id": 37310,
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
@@ -62461,25 +63560,11 @@
     "ReleaseDate": "09/01/1990"
   },
   {
-    "id": 39164,
+    "id": 42908,
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
-    "GameTitle": "Salamander",
-    "ReleaseDate": null
-  },
-  {
-    "id": 39173,
-    "SystemId": 11,
-    "GDBPlatformName": "Nintendo Entertainment System (NES)",
-    "GameTitle": "Gun Smoke",
-    "ReleaseDate": "01/27/1988"
-  },
-  {
-    "id": 39211,
-    "SystemId": 11,
-    "GDBPlatformName": "Nintendo Entertainment System (NES)",
-    "GameTitle": "Spy vs Spy",
-    "ReleaseDate": "10/01/1988"
+    "GameTitle": "Chevaliers du Zodiaque, Les - La Legende d'Or",
+    "ReleaseDate": "02/20/1987"
   },
   {
     "id": 39453,
@@ -62493,7 +63578,7 @@
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
     "GameTitle": "2048",
-    "ReleaseDate": null
+    "ReleaseDate": "06/21/2014"
   },
   {
     "id": 40026,
@@ -62508,6 +63593,27 @@
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
     "GameTitle": "Lawn Mower",
     "ReleaseDate": null
+  },
+  {
+    "id": 41827,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Roll-Chan No Constancy",
+    "ReleaseDate": "09/12/2016"
+  },
+  {
+    "id": 41828,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Mega Man Redux",
+    "ReleaseDate": "02/14/2016"
+  },
+  {
+    "id": 41829,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Mega Man Reloaded",
+    "ReleaseDate": "12/24/2013"
   },
   {
     "id": 40434,
@@ -62879,6 +63985,13 @@
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
     "GameTitle": "HVC Kensa Cassette Controller Test",
     "ReleaseDate": null
+  },
+  {
+    "id": 41825,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Roll-Chan 5",
+    "ReleaseDate": "06/10/2016"
   },
   {
     "id": 40514,
@@ -64015,6 +65128,13 @@
     "ReleaseDate": "11/08/1985"
   },
   {
+    "id": 42912,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "72 in 1",
+    "ReleaseDate": null
+  },
+  {
     "id": 41266,
     "SystemId": 11,
     "GDBPlatformName": "Nintendo Entertainment System (NES)",
@@ -64106,6 +65226,447 @@
     "ReleaseDate": "12/17/1992"
   },
   {
+    "id": 41956,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Dynablaster",
+    "ReleaseDate": "01/01/1991"
+  },
+  {
+    "id": 41987,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Tecmo Super Bowl 2017",
+    "ReleaseDate": "09/08/2016"
+  },
+  {
+    "id": 41990,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Pocahontas",
+    "ReleaseDate": null
+  },
+  {
+    "id": 41996,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "The Goonies",
+    "ReleaseDate": "02/21/1986"
+  },
+  {
+    "id": 42030,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Famicom Study Box",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42035,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Tao",
+    "ReleaseDate": "12/01/1989"
+  },
+  {
+    "id": 42048,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Softball Tengoku",
+    "ReleaseDate": "10/27/1989"
+  },
+  {
+    "id": 42095,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Legend of Zelda: Awakening of Onox",
+    "ReleaseDate": "01/02/2017"
+  },
+  {
+    "id": 42195,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Battle City",
+    "ReleaseDate": "09/09/1985"
+  },
+  {
+    "id": 42303,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Metroid: Rogue Dawn",
+    "ReleaseDate": "01/14/2017"
+  },
+  {
+    "id": 42913,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "64 in 1",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42381,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Locksmith",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42407,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Rockman",
+    "ReleaseDate": "12/17/1987"
+  },
+  {
+    "id": 42408,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Rockman 2: Dr. Wily no Nazo",
+    "ReleaseDate": "12/24/1988"
+  },
+  {
+    "id": 42409,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Rockman 3: Dr. Wily no Saigo!?",
+    "ReleaseDate": "09/28/1990"
+  },
+  {
+    "id": 42410,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Rockman 4 Aratanaru Yabō!!",
+    "ReleaseDate": "12/06/1991"
+  },
+  {
+    "id": 42411,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Rockman 5: Blues no Wana!?",
+    "ReleaseDate": "12/04/1992"
+  },
+  {
+    "id": 42412,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Rockman 6: Shijō Saidai no Tatakai!!",
+    "ReleaseDate": "11/05/1993"
+  },
+  {
+    "id": 42413,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Rocman x",
+    "ReleaseDate": "06/15/1995"
+  },
+  {
+    "id": 42414,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Raf world",
+    "ReleaseDate": "08/10/1990"
+  },
+  {
+    "id": 42433,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Guevara",
+    "ReleaseDate": "06/02/1989"
+  },
+  {
+    "id": 42434,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "The Simpsons: Return of the Space Mutants",
+    "ReleaseDate": "07/27/2009"
+  },
+  {
+    "id": 42435,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Spartan x",
+    "ReleaseDate": "10/18/1985"
+  },
+  {
+    "id": 42437,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Super Chinese",
+    "ReleaseDate": "06/23/1984"
+  },
+  {
+    "id": 42438,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Super chinese 2",
+    "ReleaseDate": "05/28/1989"
+  },
+  {
+    "id": 42440,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Super Mario All Stars",
+    "ReleaseDate": "10/06/2015"
+  },
+  {
+    "id": 42443,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Donkey Kong 2",
+    "ReleaseDate": "01/20/2015"
+  },
+  {
+    "id": 42444,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Super Mario Bros IV Armadillo",
+    "ReleaseDate": "05/01/2009"
+  },
+  {
+    "id": 42450,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "3d Block",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42451,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "1200 Games",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42452,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "1944",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42453,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Cosmo Genesis",
+    "ReleaseDate": "12/23/1983"
+  },
+  {
+    "id": 42455,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "The Adventures of Valecule",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42458,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Altered Beast",
+    "ReleaseDate": "02/25/1990"
+  },
+  {
+    "id": 42460,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Dragon Ninja",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42462,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Mario Lotery",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42463,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Ninja Ryukenden",
+    "ReleaseDate": "12/09/1988"
+  },
+  {
+    "id": 42464,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Ninja Ryukenden II",
+    "ReleaseDate": "04/06/1990"
+  },
+  {
+    "id": 42466,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Ninja Ryukenden III",
+    "ReleaseDate": "06/26/1991"
+  },
+  {
+    "id": 42467,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Shadow Warrior 2",
+    "ReleaseDate": "10/27/1994"
+  },
+  {
+    "id": 42468,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Star Gate",
+    "ReleaseDate": "10/21/1981"
+  },
+  {
+    "id": 42469,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Castle Excelent",
+    "ReleaseDate": "11/28/1985"
+  },
+  {
+    "id": 42470,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Tank 1990",
+    "ReleaseDate": "09/09/1990"
+  },
+  {
+    "id": 42471,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Mario Kun",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42565,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Tecmo Super Bowl Gold",
+    "ReleaseDate": "08/23/2016"
+  },
+  {
+    "id": 42587,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Chô Wakusei Senki Metafight",
+    "ReleaseDate": "06/17/1988"
+  },
+  {
+    "id": 42588,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Journey to Silius (Europe,Pal)",
+    "ReleaseDate": "02/08/1990"
+  },
+  {
+    "id": 42591,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Arabian Dream Sherazaado",
+    "ReleaseDate": "02/06/1987"
+  },
+  {
+    "id": 42592,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Ball Story [Jong Yuk Chuen Suet Fa Jong II",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42593,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Capcom 30 in 1",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42594,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Capcom Barcelona 92",
+    "ReleaseDate": "06/05/1992"
+  },
+  {
+    "id": 42595,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Chiki Chiki Machine Mou Race",
+    "ReleaseDate": "12/25/1991"
+  },
+  {
+    "id": 42596,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Contra Fighter",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42597,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Cross Fire",
+    "ReleaseDate": "11/02/1990"
+  },
+  {
+    "id": 42598,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Demo Boy 2",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42599,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Royal Blood",
+    "ReleaseDate": "08/29/1991"
+  },
+  {
+    "id": 42600,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Taito Basketball",
+    "ReleaseDate": "04/26/1991"
+  },
+  {
+    "id": 42602,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Tecmo Super Bowl 2016",
+    "ReleaseDate": "09/09/2015"
+  },
+  {
+    "id": 42651,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "NY Nyankies",
+    "ReleaseDate": "04/05/1991"
+  },
+  {
+    "id": 42654,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Dee Jay Boy",
+    "ReleaseDate": "02/23/1989"
+  },
+  {
+    "id": 42928,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Puzzle Boys",
+    "ReleaseDate": "11/16/1990"
+  },
+  {
+    "id": 42871,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Super 42 in 1",
+    "ReleaseDate": "05/05/1992"
+  },
+  {
+    "id": 43087,
+    "SystemId": 11,
+    "GDBPlatformName": "Nintendo Entertainment System (NES)",
+    "GameTitle": "Magic Kid Goo Goo",
+    "ReleaseDate": "09/01/1992"
+  },
+  {
     "id": 41,
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
@@ -64117,7 +65678,7 @@
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
     "GameTitle": "Final Fantasy III",
-    "ReleaseDate": "04/27/1990"
+    "ReleaseDate": "04/02/1994"
   },
   {
     "id": 122,
@@ -64313,7 +65874,7 @@
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
     "GameTitle": "Advanced Dungeons & Dragons: Eye of the Beholder",
-    "ReleaseDate": "1994"
+    "ReleaseDate": "03/18/1994"
   },
   {
     "id": 285,
@@ -64398,13 +65959,6 @@
     "GDBPlatformName": "Super Nintendo (SNES)",
     "GameTitle": "J.League Excite Stage '96",
     "ReleaseDate": "04/26/1996"
-  },
-  {
-    "id": 37618,
-    "SystemId": 12,
-    "GDBPlatformName": "Super Nintendo (SNES)",
-    "GameTitle": "Super Mario World Coop",
-    "ReleaseDate": "09/03/2015"
   },
   {
     "id": 3225,
@@ -64608,13 +66162,6 @@
     "GDBPlatformName": "Super Nintendo (SNES)",
     "GameTitle": "ActRaiser",
     "ReleaseDate": "11/01/1991"
-  },
-  {
-    "id": 1047,
-    "SystemId": 12,
-    "GDBPlatformName": "Super Nintendo (SNES)",
-    "GameTitle": "ActRaiser 2",
-    "ReleaseDate": "10/29/1993"
   },
   {
     "id": 1049,
@@ -65604,11 +67151,11 @@
     "ReleaseDate": "11/18/1994"
   },
   {
-    "id": 1920,
+    "id": 43089,
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
     "GameTitle": "Harley's Humongous Adventure",
-    "ReleaseDate": "1993"
+    "ReleaseDate": "02/05/1993"
   },
   {
     "id": 1921,
@@ -66468,7 +68015,7 @@
     "id": 2868,
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
-    "GameTitle": "Aladdin",
+    "GameTitle": "Disney's Aladdin",
     "ReleaseDate": "01/01/1993"
   },
   {
@@ -68379,7 +69926,7 @@
     "id": 5619,
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
-    "GameTitle": "Ms. PacMan",
+    "GameTitle": "Ms. Pac-Man",
     "ReleaseDate": "01/01/1996"
   },
   {
@@ -68548,7 +70095,7 @@
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
     "GameTitle": "No Escape",
-    "ReleaseDate": "01/01/1994"
+    "ReleaseDate": "11/11/1994"
   },
   {
     "id": 5715,
@@ -68996,7 +70543,7 @@
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
     "GameTitle": "The Shadow",
-    "ReleaseDate": "01/01/1994"
+    "ReleaseDate": "07/18/2002"
   },
   {
     "id": 5835,
@@ -70514,7 +72061,7 @@
     "id": 14786,
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
-    "GameTitle": "Super Bomberman 4",
+    "GameTitle": "Super Bomberman IV",
     "ReleaseDate": "04/26/1996"
   },
   {
@@ -71193,8 +72740,8 @@
     "id": 23120,
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
-    "GameTitle": "BS Dragon Slayer - Eiyuu Densetsu",
-    "ReleaseDate": "08/31/1997"
+    "GameTitle": "Ginga Eiyuu Densetsu",
+    "ReleaseDate": "09/25/1992"
   },
   {
     "id": 23122,
@@ -71613,7 +73160,7 @@
     "id": 24870,
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
-    "GameTitle": "Ball Bullet Gun Survival Game Simulation",
+    "GameTitle": "Ball Bullet Gun: Survival Game Simulation",
     "ReleaseDate": "12/01/1995"
   },
   {
@@ -72993,7 +74540,7 @@
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
     "GameTitle": "Chrono Trigger: Flames of Eternity",
-    "ReleaseDate": null
+    "ReleaseDate": "01/19/2011"
   },
   {
     "id": 30784,
@@ -73413,7 +74960,7 @@
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
     "GameTitle": "Supapoon",
-    "ReleaseDate": null
+    "ReleaseDate": "10/06/1995"
   },
   {
     "id": 33284,
@@ -73545,7 +75092,7 @@
     "id": 33600,
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
-    "GameTitle": "The Legend Of Zelda Ancient Stone Tablets",
+    "GameTitle": "The Legend of Zelda: Ancient Stone Tablets",
     "ReleaseDate": "03/30/1997"
   },
   {
@@ -73700,7 +75247,7 @@
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
     "GameTitle": "Bishoujo Janshi Suchie-Pai",
-    "ReleaseDate": null
+    "ReleaseDate": "07/30/1993"
   },
   {
     "id": 34457,
@@ -77728,11 +79275,18 @@
     "ReleaseDate": null
   },
   {
-    "id": 41293,
+    "id": 42959,
     "SystemId": 12,
     "GDBPlatformName": "Super Nintendo (SNES)",
-    "GameTitle": "Super Mario World - Return to Dinosaur Land",
-    "ReleaseDate": null
+    "GameTitle": "Mario and Wario",
+    "ReleaseDate": "08/27/1993"
+  },
+  {
+    "id": 41823,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Kaizo Mario World 2",
+    "ReleaseDate": "01/01/2007"
   },
   {
     "id": 41391,
@@ -77866,6 +79420,160 @@
     "GDBPlatformName": "Super Nintendo (SNES)",
     "GameTitle": "Mario Kart R",
     "ReleaseDate": "03/23/2004"
+  },
+  {
+    "id": 42020,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Super SpongeBob Kart",
+    "ReleaseDate": "04/04/2014"
+  },
+  {
+    "id": 42076,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Dino City",
+    "ReleaseDate": "09/01/1992"
+  },
+  {
+    "id": 42358,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "NBA Jam 2K17",
+    "ReleaseDate": "01/18/2017"
+  },
+  {
+    "id": 42421,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Rockman X",
+    "ReleaseDate": "12/17/1993"
+  },
+  {
+    "id": 42423,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Rockman X 2",
+    "ReleaseDate": "12/16/1994"
+  },
+  {
+    "id": 42424,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Rockman X 3",
+    "ReleaseDate": "12/01/1995"
+  },
+  {
+    "id": 42427,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Rockman Soccer",
+    "ReleaseDate": "04/03/1994"
+  },
+  {
+    "id": 42474,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Wolfenstein 3D",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42478,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Bio Metal",
+    "ReleaseDate": "03/19/1993"
+  },
+  {
+    "id": 42566,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Gekisou Sentai Carranger: Zenkai! Racer Senshi",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42606,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Super Mario World Beta",
+    "ReleaseDate": "06/02/2014"
+  },
+  {
+    "id": 42650,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Super Metroid (J)",
+    "ReleaseDate": "03/19/1994"
+  },
+  {
+    "id": 42739,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Clay Fighter",
+    "ReleaseDate": "11/15/1993"
+  },
+  {
+    "id": 42744,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Black Thorne",
+    "ReleaseDate": "01/01/1994"
+  },
+  {
+    "id": 42856,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Bananas de Pijamas",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42837,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Bakuto Dochers",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42842,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "NBA JAM 2K17 - Tournament Edition",
+    "ReleaseDate": "01/10/2017"
+  },
+  {
+    "id": 42864,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Fighter's History 2: Mizoguchi Kiki Ippatsu!!",
+    "ReleaseDate": "02/15/1995"
+  },
+  {
+    "id": 42865,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Magna Braban: The Wandering Hero",
+    "ReleaseDate": "11/18/1994"
+  },
+  {
+    "id": 42867,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Super Bomberman 4",
+    "ReleaseDate": "04/26/1996"
+  },
+  {
+    "id": 42881,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "Wolf Child",
+    "ReleaseDate": null
+  },
+  {
+    "id": 43086,
+    "SystemId": 12,
+    "GDBPlatformName": "Super Nintendo (SNES)",
+    "GameTitle": "ActRaiser 2",
+    "ReleaseDate": "10/29/1993"
   },
   {
     "id": 48,
@@ -80997,6 +82705,13 @@
     "ReleaseDate": "11/22/1994"
   },
   {
+    "id": 41861,
+    "SystemId": 13,
+    "GDBPlatformName": "Sega Saturn",
+    "GameTitle": "Rabbit",
+    "ReleaseDate": "06/27/1997"
+  },
+  {
     "id": 38470,
     "SystemId": 13,
     "GDBPlatformName": "Sega Saturn",
@@ -81050,6 +82765,27 @@
     "SystemId": 13,
     "GDBPlatformName": "Sega Saturn",
     "GameTitle": "Trash It",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42621,
+    "SystemId": 13,
+    "GDBPlatformName": "Sega Saturn",
+    "GameTitle": "Segata Sanshirou Shinkenyugi",
+    "ReleaseDate": "10/29/1998"
+  },
+  {
+    "id": 42997,
+    "SystemId": 13,
+    "GDBPlatformName": "Sega Saturn",
+    "GameTitle": "OutRun",
+    "ReleaseDate": null
+  },
+  {
+    "id": 42998,
+    "SystemId": 13,
+    "GDBPlatformName": "Sega Saturn",
+    "GameTitle": "Space Harrier",
     "ReleaseDate": null
   },
   {
@@ -81155,42 +82891,42 @@
     "SystemId": 14,
     "GDBPlatformName": "Nintendo Virtual Boy",
     "GameTitle": "Space Squash",
-    "ReleaseDate": null
+    "ReleaseDate": "09/09/1995"
   },
   {
     "id": 19238,
     "SystemId": 14,
     "GDBPlatformName": "Nintendo Virtual Boy",
     "GameTitle": "Insmouse no Yakata",
-    "ReleaseDate": null
+    "ReleaseDate": "10/13/1995"
   },
   {
     "id": 19239,
     "SystemId": 14,
     "GDBPlatformName": "Nintendo Virtual Boy",
     "GameTitle": "SD Gundam Dimension War",
-    "ReleaseDate": null
+    "ReleaseDate": "12/22/1995"
   },
   {
     "id": 19240,
     "SystemId": 14,
     "GDBPlatformName": "Nintendo Virtual Boy",
     "GameTitle": "Space Invaders: Virtual Collection",
-    "ReleaseDate": null
+    "ReleaseDate": "12/05/1995"
   },
   {
     "id": 19241,
     "SystemId": 14,
     "GDBPlatformName": "Nintendo Virtual Boy",
     "GameTitle": "V-Tetris",
-    "ReleaseDate": null
+    "ReleaseDate": "08/25/1995"
   },
   {
     "id": 19242,
     "SystemId": 14,
     "GDBPlatformName": "Nintendo Virtual Boy",
     "GameTitle": "Virtual Bowling",
-    "ReleaseDate": null
+    "ReleaseDate": "12/22/1995"
   },
   {
     "id": 19243,
@@ -81204,7 +82940,7 @@
     "SystemId": 14,
     "GDBPlatformName": "Nintendo Virtual Boy",
     "GameTitle": "Virtual Lab",
-    "ReleaseDate": null
+    "ReleaseDate": "12/08/1995"
   },
   {
     "id": 20556,
@@ -82563,5 +84299,12 @@
     "GDBPlatformName": "WonderSwan Color",
     "GameTitle": "Senkaiden Ni: TV Animation Senkaiden Houshin Engi Yori",
     "ReleaseDate": "12/21/2000"
+  },
+  {
+    "id": 42355,
+    "SystemId": 15,
+    "GDBPlatformName": "WonderSwan Color",
+    "GameTitle": "Tonpuso",
+    "ReleaseDate": null
   }
 ]

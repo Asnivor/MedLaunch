@@ -1,7 +1,7 @@
 [
   {
     "Title": "2nd Space",
-    "UrlName": "-2nd-space",
+    "UrlName": "2nd-space",
     "SystemId": 1,
     "PlatformName": "gameboy"
   },
@@ -337,13 +337,13 @@
   },
   {
     "Title": "Battletoads",
-    "UrlName": "battletoads",
+    "UrlName": "battletoads_",
     "SystemId": 1,
     "PlatformName": "gameboy"
   },
   {
     "Title": "Battletoads",
-    "UrlName": "battletoads_",
+    "UrlName": "battletoads",
     "SystemId": 1,
     "PlatformName": "gameboy"
   },
@@ -1764,8 +1764,8 @@
     "PlatformName": "gameboy"
   },
   {
-    "Title": "Krusty's Fun House",
-    "UrlName": "krustys-fun-house",
+    "Title": "Krusty's Super Fun House",
+    "UrlName": "krustys-super-fun-house",
     "SystemId": 1,
     "PlatformName": "gameboy"
   },
@@ -3079,13 +3079,13 @@
   },
   {
     "Title": "Space Invaders",
-    "UrlName": "space-invaders-",
+    "UrlName": "space-invaders_",
     "SystemId": 1,
     "PlatformName": "gameboy"
   },
   {
     "Title": "Space Invaders",
-    "UrlName": "space-invaders_",
+    "UrlName": "space-invaders________",
     "SystemId": 1,
     "PlatformName": "gameboy"
   },
@@ -5191,13 +5191,13 @@
   },
   {
     "Title": "LEGO Stunt Rally",
-    "UrlName": "lego-stunt-rally_",
+    "UrlName": "lego-stunt-rally",
     "SystemId": 1,
     "PlatformName": "gameboy-color"
   },
   {
     "Title": "LEGO Stunt Rally",
-    "UrlName": "lego-stunt-rally",
+    "UrlName": "lego-stunt-rally_",
     "SystemId": 1,
     "PlatformName": "gameboy-color"
   },
@@ -5852,6 +5852,12 @@
   {
     "Title": "Power Quest",
     "UrlName": "power-quest",
+    "SystemId": 1,
+    "PlatformName": "gameboy-color"
+  },
+  {
+    "Title": "Power Spike: Pro Beach Volleyball",
+    "UrlName": "power-spike-pro-beach-volleyball_",
     "SystemId": 1,
     "PlatformName": "gameboy-color"
   },
@@ -7926,7 +7932,7 @@
     "PlatformName": "gameboy-advance"
   },
   {
-    "Title": "Disney's Donald Duck [email protected]/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */!*#",
+    "Title": "Disney's Donald Duck Adv@nce!*#",
     "UrlName": "disneys-donald-duck-advnce",
     "SystemId": 2,
     "PlatformName": "gameboy-advance"
@@ -10728,6 +10734,12 @@
     "PlatformName": "gameboy-advance"
   },
   {
+    "Title": "Reaxion",
+    "UrlName": "reaxion",
+    "SystemId": 2,
+    "PlatformName": "gameboy-advance"
+  },
+  {
     "Title": "Rebelstar: Tactical Command",
     "UrlName": "rebelstar-tactical-command",
     "SystemId": 2,
@@ -12224,6 +12236,12 @@
   {
     "Title": "Yoshi Topsy-Turvy",
     "UrlName": "yoshi-topsy-turvy",
+    "SystemId": 2,
+    "PlatformName": "gameboy-advance"
+  },
+  {
+    "Title": "Yu-Gi-Oh!: Double Pack",
+    "UrlName": "yu-gi-oh-double-pack",
     "SystemId": 2,
     "PlatformName": "gameboy-advance"
   },
@@ -15246,8 +15264,8 @@
     "PlatformName": "genesis"
   },
   {
-    "Title": "Krusty's Fun House",
-    "UrlName": "krustys-fun-house",
+    "Title": "Krusty's Super Fun House",
+    "UrlName": "krustys-super-fun-house",
     "SystemId": 4,
     "PlatformName": "genesis"
   },
@@ -17269,13 +17287,13 @@
   },
   {
     "Title": "Spider-Man",
-    "UrlName": "spider-man_____",
+    "UrlName": "spider-man___",
     "SystemId": 4,
     "PlatformName": "genesis"
   },
   {
     "Title": "Spider-Man",
-    "UrlName": "spider-man___",
+    "UrlName": "spider-man_____",
     "SystemId": 4,
     "PlatformName": "genesis"
   },
@@ -19284,8 +19302,8 @@
     "PlatformName": "game-gear"
   },
   {
-    "Title": "Krusty's Fun House",
-    "UrlName": "krustys-fun-house",
+    "Title": "Krusty's Super Fun House",
+    "UrlName": "krustys-super-fun-house",
     "SystemId": 5,
     "PlatformName": "game-gear"
   },
@@ -19315,13 +19333,13 @@
   },
   {
     "Title": "The Lion King",
-    "UrlName": "lion-king",
+    "UrlName": "lion-king_",
     "SystemId": 5,
     "PlatformName": "game-gear"
   },
   {
     "Title": "The Lion King",
-    "UrlName": "lion-king_",
+    "UrlName": "lion-king",
     "SystemId": 5,
     "PlatformName": "game-gear"
   },
@@ -20251,13 +20269,13 @@
   },
   {
     "Title": "Terminator 2: Judgment Day",
-    "UrlName": "terminator-2-judgment-day_",
+    "UrlName": "terminator-2-judgment-day___",
     "SystemId": 5,
     "PlatformName": "game-gear"
   },
   {
     "Title": "Terminator 2: Judgment Day",
-    "UrlName": "terminator-2-judgment-day___",
+    "UrlName": "terminator-2-judgment-day_",
     "SystemId": 5,
     "PlatformName": "game-gear"
   },
@@ -20270,6 +20288,12 @@
   {
     "Title": "Tesserae",
     "UrlName": "tesserae",
+    "SystemId": 5,
+    "PlatformName": "game-gear"
+  },
+  {
+    "Title": "The Excellent Dizzy Collection",
+    "UrlName": "excellent-dizzy-collection",
     "SystemId": 5,
     "PlatformName": "game-gear"
   },
@@ -21944,6 +21968,12 @@
   {
     "Title": "Tōdō Ryūnosuke Tantei Nikki: Kohakuiro no Yuigon",
     "UrlName": "td-rynosuke-tantei-nikki-kohakuiro-no-yuigon",
+    "SystemId": 7,
+    "PlatformName": "turbo-grafx"
+  },
+  {
+    "Title": "Toilet Kids",
+    "UrlName": "toilet-kids",
     "SystemId": 7,
     "PlatformName": "turbo-grafx"
   },
@@ -23653,13 +23683,13 @@
   },
   {
     "Title": "beatmania",
-    "UrlName": "beatmania_",
+    "UrlName": "beatmania",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "beatmania",
-    "UrlName": "beatmania",
+    "UrlName": "beatmania_",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -23988,6 +24018,12 @@
     "PlatformName": "playstation"
   },
   {
+    "Title": "Boku no Natsuyasumi",
+    "UrlName": "boku-no-natsuyasumi",
+    "SystemId": 9,
+    "PlatformName": "playstation"
+  },
+  {
     "Title": "Bomberman Fantasy Race",
     "UrlName": "bomberman-fantasy-race",
     "SystemId": 9,
@@ -24002,6 +24038,12 @@
   {
     "Title": "Bomberman: Party Edition",
     "UrlName": "bomberman-party-edition",
+    "SystemId": 9,
+    "PlatformName": "playstation"
+  },
+  {
+    "Title": "Bomberman Wars",
+    "UrlName": "bomberman-wars",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -24733,13 +24775,13 @@
   },
   {
     "Title": "Clock Tower",
-    "UrlName": "clock-tower_",
+    "UrlName": "clock-tower",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "Clock Tower",
-    "UrlName": "clock-tower",
+    "UrlName": "clock-tower_",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -25710,7 +25752,7 @@
     "PlatformName": "playstation"
   },
   {
-    "Title": "Disney's Donald Duck: \"[email protected]/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */ [email protected]/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */\"?!* / Tigger's Honey Hunt",
+    "Title": "Disney's Donald Duck: \"Qu@ck Att@ck\"?!* / Tigger's Honey Hunt",
     "UrlName": "disneys-donald-duck-quck-attck-tiggers-honey-hunt",
     "SystemId": 9,
     "PlatformName": "playstation"
@@ -27564,6 +27606,12 @@
     "PlatformName": "playstation"
   },
   {
+    "Title": "Hugo: Frog Fighter",
+    "UrlName": "hugo-frog-fighter",
+    "SystemId": 9,
+    "PlatformName": "playstation"
+  },
+  {
     "Title": "Hugo: The Evil Mirror",
     "UrlName": "hugo-the-evil-mirror",
     "SystemId": 9,
@@ -28506,6 +28554,12 @@
     "PlatformName": "playstation"
   },
   {
+    "Title": "The Land Before Time: Return to the Great Valley",
+    "UrlName": "land-before-time-return-to-the-great-valley",
+    "SystemId": 9,
+    "PlatformName": "playstation"
+  },
+  {
     "Title": "Langrisser I & II",
     "UrlName": "langrisser-i-ii",
     "SystemId": 9,
@@ -29323,13 +29377,13 @@
   },
   {
     "Title": "Metal Gear Solid",
-    "UrlName": "metal-gear-solid__",
+    "UrlName": "metal-gear-solid",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "Metal Gear Solid",
-    "UrlName": "metal-gear-solid",
+    "UrlName": "metal-gear-solid__",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -29737,13 +29791,13 @@
   },
   {
     "Title": "Motor Toon Grand Prix",
-    "UrlName": "motor-toon-grand-prix",
+    "UrlName": "motor-toon-grand-prix_",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "Motor Toon Grand Prix",
-    "UrlName": "motor-toon-grand-prix_",
+    "UrlName": "motor-toon-grand-prix",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -30656,6 +30710,12 @@
   {
     "Title": "Nuclear Strike",
     "UrlName": "nuclear-strike",
+    "SystemId": 9,
+    "PlatformName": "playstation"
+  },
+  {
+    "Title": "Nukumori no Naka de",
+    "UrlName": "nukumori-no-naka-de",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -31819,13 +31879,13 @@
   },
   {
     "Title": "Resident Evil 2",
-    "UrlName": "resident-evil-2",
+    "UrlName": "resident-evil-2__",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "Resident Evil 2",
-    "UrlName": "resident-evil-2__",
+    "UrlName": "resident-evil-2",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -32413,13 +32473,13 @@
   },
   {
     "Title": "Scrabble",
-    "UrlName": "scrabble",
+    "UrlName": "scrabble________",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "Scrabble",
-    "UrlName": "scrabble________",
+    "UrlName": "scrabble",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -33001,13 +33061,13 @@
   },
   {
     "Title": "Space Invaders",
-    "UrlName": "space-invaders",
+    "UrlName": "space-invaders_",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "Space Invaders",
-    "UrlName": "space-invaders_",
+    "UrlName": "space-invaders",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -33373,13 +33433,13 @@
   },
   {
     "Title": "Strikers 1945",
-    "UrlName": "strikers-1945",
+    "UrlName": "strikers-1945_",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
   {
     "Title": "Strikers 1945",
-    "UrlName": "strikers-1945_",
+    "UrlName": "strikers-1945",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -33866,6 +33926,12 @@
   {
     "Title": "The Three Stooges",
     "UrlName": "three-stooges",
+    "SystemId": 9,
+    "PlatformName": "playstation"
+  },
+  {
+    "Title": "Three Wonders",
+    "UrlName": "three-wonders",
     "SystemId": 9,
     "PlatformName": "playstation"
   },
@@ -35070,12 +35136,6 @@
     "PlatformName": "playstation"
   },
   {
-    "Title": "Wonder 3",
-    "UrlName": "wonder-3",
-    "SystemId": 9,
-    "PlatformName": "playstation"
-  },
-  {
     "Title": "Woody Woodpecker Racing",
     "UrlName": "woody-woodpecker-racing",
     "SystemId": 9,
@@ -36156,6 +36216,12 @@
     "PlatformName": "sega-master-system"
   },
   {
+    "Title": "Galaga",
+    "UrlName": "galaga",
+    "SystemId": 10,
+    "PlatformName": "sega-master-system"
+  },
+  {
     "Title": "Galaxy Force",
     "UrlName": "galaxy-force",
     "SystemId": 10,
@@ -36450,8 +36516,8 @@
     "PlatformName": "sega-master-system"
   },
   {
-    "Title": "Krusty's Fun House",
-    "UrlName": "krustys-fun-house",
+    "Title": "Krusty's Super Fun House",
+    "UrlName": "krustys-super-fun-house",
     "SystemId": 10,
     "PlatformName": "sega-master-system"
   },
@@ -36499,13 +36565,13 @@
   },
   {
     "Title": "The Lion King",
-    "UrlName": "lion-king",
+    "UrlName": "lion-king_",
     "SystemId": 10,
     "PlatformName": "sega-master-system"
   },
   {
     "Title": "The Lion King",
-    "UrlName": "lion-king_",
+    "UrlName": "lion-king",
     "SystemId": 10,
     "PlatformName": "sega-master-system"
   },
@@ -36602,6 +36668,12 @@
   {
     "Title": "Missile Defense 3-D",
     "UrlName": "missile-defense-3-d",
+    "SystemId": 10,
+    "PlatformName": "sega-master-system"
+  },
+  {
+    "Title": "Monaco GP",
+    "UrlName": "monaco-gp",
     "SystemId": 10,
     "PlatformName": "sega-master-system"
   },
@@ -37309,19 +37381,25 @@
   },
   {
     "Title": "Terminator 2: Judgment Day",
-    "UrlName": "terminator-2-judgment-day_",
+    "UrlName": "terminator-2-judgment-day___",
     "SystemId": 10,
     "PlatformName": "sega-master-system"
   },
   {
     "Title": "Terminator 2: Judgment Day",
-    "UrlName": "terminator-2-judgment-day___",
+    "UrlName": "terminator-2-judgment-day_",
     "SystemId": 10,
     "PlatformName": "sega-master-system"
   },
   {
     "Title": "The Terminator",
     "UrlName": "terminator_",
+    "SystemId": 10,
+    "PlatformName": "sega-master-system"
+  },
+  {
+    "Title": "The Excellent Dizzy Collection",
+    "UrlName": "excellent-dizzy-collection",
     "SystemId": 10,
     "PlatformName": "sega-master-system"
   },
@@ -37777,13 +37855,13 @@
   },
   {
     "Title": "Airwolf",
-    "UrlName": "airwolf__",
+    "UrlName": "airwolf",
     "SystemId": 11,
     "PlatformName": "nes"
   },
   {
     "Title": "Airwolf",
-    "UrlName": "airwolf",
+    "UrlName": "airwolf__",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -38443,13 +38521,13 @@
   },
   {
     "Title": "The Black Bass",
-    "UrlName": "black-bass__",
+    "UrlName": "black-bass_",
     "SystemId": 11,
     "PlatformName": "nes"
   },
   {
     "Title": "The Black Bass",
-    "UrlName": "black-bass_",
+    "UrlName": "black-bass__",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -38996,6 +39074,12 @@
   {
     "Title": "Crazy Climber",
     "UrlName": "crazy-climber",
+    "SystemId": 11,
+    "PlatformName": "nes"
+  },
+  {
+    "Title": "Crime Busters",
+    "UrlName": "crime-busters",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -41334,8 +41418,8 @@
     "PlatformName": "nes"
   },
   {
-    "Title": "Krusty's Fun House",
-    "UrlName": "krustys-fun-house",
+    "Title": "Krusty's Super Fun House",
+    "UrlName": "krustys-super-fun-house",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -42648,8 +42732,8 @@
     "PlatformName": "nes"
   },
   {
-    "Title": "Power Blade II",
-    "UrlName": "power-blade-ii",
+    "Title": "Power Blade 2",
+    "UrlName": "power-blade-2",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -42895,13 +42979,13 @@
   },
   {
     "Title": "Rampart",
-    "UrlName": "rampart_",
+    "UrlName": "rampart",
     "SystemId": 11,
     "PlatformName": "nes"
   },
   {
     "Title": "Rampart",
-    "UrlName": "rampart",
+    "UrlName": "rampart_",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -43591,7 +43675,7 @@
   },
   {
     "Title": "Space Invaders",
-    "UrlName": "space-invaders-",
+    "UrlName": "space-invaders________",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -43753,13 +43837,13 @@
   },
   {
     "Title": "Star Wars",
-    "UrlName": "star-wars_",
+    "UrlName": "star-wars__",
     "SystemId": 11,
     "PlatformName": "nes"
   },
   {
     "Title": "Star Wars",
-    "UrlName": "star-wars__",
+    "UrlName": "star-wars_",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -44155,13 +44239,13 @@
   },
   {
     "Title": "Teenage Mutant Ninja Turtles",
-    "UrlName": "teenage-mutant-ninja-turtles",
+    "UrlName": "teenage-mutant-ninja-turtles__",
     "SystemId": 11,
     "PlatformName": "nes"
   },
   {
     "Title": "Teenage Mutant Ninja Turtles",
-    "UrlName": "teenage-mutant-ninja-turtles__",
+    "UrlName": "teenage-mutant-ninja-turtles",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -44227,13 +44311,13 @@
   },
   {
     "Title": "Tetris",
-    "UrlName": "tetris_atari",
+    "UrlName": "tetris_nes",
     "SystemId": 11,
     "PlatformName": "nes"
   },
   {
     "Title": "Tetris",
-    "UrlName": "tetris_nes",
+    "UrlName": "tetris_atari",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -44358,7 +44442,7 @@
     "PlatformName": "nes"
   },
   {
-    "Title": "Tokoro-san no mamoru mo semeru mo",
+    "Title": "Tokoro-san no Mamoru mo Semeru mo",
     "UrlName": "tokoro-san-no-mamoru-mo-semeru-mo",
     "SystemId": 11,
     "PlatformName": "nes"
@@ -44924,6 +45008,12 @@
   {
     "Title": "Wolverine",
     "UrlName": "wolverine",
+    "SystemId": 11,
+    "PlatformName": "nes"
+  },
+  {
+    "Title": "Wonderland Dizzy",
+    "UrlName": "wonderland-dizzy",
     "SystemId": 11,
     "PlatformName": "nes"
   },
@@ -48054,8 +48144,8 @@
     "PlatformName": "snes"
   },
   {
-    "Title": "Krusty's Fun House",
-    "UrlName": "krustys-fun-house",
+    "Title": "Krusty's Super Fun House",
+    "UrlName": "krustys-super-fun-house",
     "SystemId": 12,
     "PlatformName": "snes"
   },
@@ -52170,6 +52260,12 @@
     "PlatformName": "sega-saturn"
   },
   {
+    "Title": "Bomberman Wars",
+    "UrlName": "bomberman-wars",
+    "SystemId": 13,
+    "PlatformName": "sega-saturn"
+  },
+  {
     "Title": "The Book of Lulu",
     "UrlName": "book-of-lulu",
     "SystemId": 13,
@@ -54739,13 +54835,13 @@
   },
   {
     "Title": "Strikers 1945",
-    "UrlName": "strikers-1945",
+    "UrlName": "strikers-1945_",
     "SystemId": 13,
     "PlatformName": "sega-saturn"
   },
   {
     "Title": "Strikers 1945",
-    "UrlName": "strikers-1945_",
+    "UrlName": "strikers-1945",
     "SystemId": 13,
     "PlatformName": "sega-saturn"
   },
@@ -54908,6 +55004,12 @@
   {
     "Title": "Three Dirty Dwarves",
     "UrlName": "three-dirty-dwarves",
+    "SystemId": 13,
+    "PlatformName": "sega-saturn"
+  },
+  {
+    "Title": "Three Wonders",
+    "UrlName": "three-wonders",
     "SystemId": 13,
     "PlatformName": "sega-saturn"
   },
@@ -55298,12 +55400,6 @@
   {
     "Title": "Wizardry VI & VII Complete",
     "UrlName": "wizardry-vi-vii-complete",
-    "SystemId": 13,
-    "PlatformName": "sega-saturn"
-  },
-  {
-    "Title": "Wonder 3",
-    "UrlName": "wonder-3",
     "SystemId": 13,
     "PlatformName": "sega-saturn"
   },

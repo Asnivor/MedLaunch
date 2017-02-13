@@ -43,7 +43,41 @@
                    FontWeight="Light"
                    FontSize="13"
                    FontFamily="{DynamicResource HeaderFontFamily}" />
-            
+
+            <Button Content="Debug" ContextMenuService.IsEnabled="False" Click="TopMenu_Click" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Scraper Source Operations">
+                            <MenuItem Header="Download list of PlatformGames from thegamesdb.net (Update TheGamesDB.json)" Click="ScrapeGetAllPlatformGames_Click"/>
+                            <MenuItem Header="Download list of PlatformGames from mobygames (Update MobyGames.json)" Click="btnmobyPlatformList_Click"/>
+                            
+                            <Separator BorderThickness="0.2" Padding="0" Margin="0" />
+                            
+                            <MenuItem Header="Combine sets and generate new master json (manual choice on multiple selections using word match counts)" Click="btnCombineManualnonleven_Click"/>
+                            <MenuItem Header="Combine sets and generate new master json (manual choice on multiple selections using Levenshtein)" Click="btnCombineManual_Click"/>
+                            <MenuItem Header="[CAUTION!] Combine sets and generate new master json" Click="btnCombine_Click"/>
+
+                            <Separator BorderThickness="0.2" Padding="0" Margin="0" />
+                            
+                            <MenuItem Header="Parse gamesdatabase.org list of manuals and manually match them" Click="btnCombineGamesDatabaseOrgManuals_Click"/>
+                            <MenuItem Header="Scrape all manual links from replacementdocs.com" Click="btnRDmanuallist_Click"/>
+                            <MenuItem Header="Parse replacement docs list of manuals and manually match them (auto on exact match)" Click="btnParseRDList_Click"/>                            
+                        </MenuItem>
+                        <MenuItem Header="DAT Functions">
+                            <MenuItem Header="Build master information file from DATs (tosec / nointro etc)" Click="btnBuildFromDat_Click"/>
+                            <MenuItem Header="Populate entries in the master DAT that do not have date information" Click="btnmatchDATyears_Click"/>
+                        </MenuItem>
+                        <MenuItem Header="MedLaunch ToolTips">
+                            <MenuItem Header="Generate tooltips JSON" Click="btnGenerateToolTips_Click"/>
+                            <MenuItem Header="Populate ToolTips (kinda works - best to restart launcher)" Click="btnPopToolTips_Click"/>
+                        </MenuItem>
+                        <MenuItem Header="Controls">
+                            <MenuItem Header="Joystick test" Click="btnPJoyTest_Click"/>
+                        </MenuItem>
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
+
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
 
@@ -58,7 +92,8 @@
             <Button Content="File" ContextMenuService.IsEnabled="False" Click="TopMenu_Click">
                 <Button.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Locate and Launch a Game" ToolTip="Manually browse to a ROM, disc image or M3U file and launch this with Mednafen using the saved MedLaunch config options"/>
+                        <MenuItem Name="manualLocateLaunchGame" Header="Locate and Launch a Game" ToolTip="Manually browse to a ROM, disc image or M3U file and launch this with Mednafen using the saved MedLaunch config options. No game stats will be saved and this game will not be added to the games library."
+                             Click="manualLocateLaunchGame_Click"    />
                         <Separator BorderThickness="0.2" Padding="0" Margin="0" />
                         <MenuItem Header="Quit MedLaunch" Click="menuQuitMedLaunch_Click"/>
                     </ContextMenu>
@@ -84,7 +119,7 @@
                             <MenuItem x:Name="MenuScanRoms5" Header="Rescan GG" Click="ScanRoms_Click" />
                             <MenuItem x:Name="MenuScanRoms3" Header="Rescan LYNX" Click="ScanRoms_Click" />
                         </MenuItem>
-                        <MenuItem Header="Scraping" >
+                        <MenuItem Header="Scraping" ContextMenuService.IsEnabled="False" Click="TopMenu_Click" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
                             <MenuItem Header="Audit Scraped Data Folder" ToolTip="Show a list of game data that has been scraped along with system and game title" />
                         </MenuItem>
                     </ContextMenu>

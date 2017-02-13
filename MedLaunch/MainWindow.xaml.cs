@@ -4166,6 +4166,11 @@ namespace MedLaunch
             (sender as Button).ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
             (sender as Button).ContextMenu.IsOpen = true;
         }
+
+        private void manualLocateLaunchGame_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
     /*
     public class SliderIgnoreDelta : Slider
