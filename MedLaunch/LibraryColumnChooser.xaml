@@ -33,332 +33,327 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0"
-				   Margin="5"
-				   FontSize="36"
-				   FontWeight="Thin"
-				   Text="Set Games Library Column Visibility" />
+        
+        <UniformGrid Grid.Row="1" Rows="20" Columns="15" HorizontalAlignment="Center">
+            <Label FontSize="7" Content="" />
+            <Label FontSize="7" Content="ID" HorizontalAlignment="Center" />
+            <Label FontSize="7" Content="GAME" HorizontalAlignment="Center" />
+            <Label FontSize="7" Content="SYSTEM" HorizontalAlignment="Center"  />
+            <Label FontSize="7" Content="LASTRUN" HorizontalAlignment="Center" />
+            <Label FontSize="7" Content="FAV" HorizontalAlignment="Center" />
+            <Label FontSize="7" Content="COUNTRY" HorizontalAlignment="Center" />
+            <Label FontSize="7" Content="YEAR" HorizontalAlignment="Center"  />
+            <Label FontSize="7" Content="PUBLISHER" HorizontalAlignment="Center" />
+            <Label FontSize="7" Content="FLAGS" HorizontalAlignment="Center" />
+            <Label FontSize="7" Content="DETECTED ROM" HorizontalAlignment="Center" />
+            <Label FontSize="7" Content="PLAYERS" HorizontalAlignment="Center" />
+            <Label FontSize="7" Content="CO-OP" HorizontalAlignment="Center" />
+            <Label FontSize="7" Content="DEVELOPER" HorizontalAlignment="Center" />
+            <Label FontSize="7" Content="RATING" HorizontalAlignment="Center" />
 
-        <UniformGrid Rows="20" Columns="15">
-            <Label Content="" />
-            <Label Content="ID" />
-            <Label Content="GAME" />
-            <Label Content="SYSTEM" />
-            <Label Content="LASTRUN" />
-            <Label Content="FAV" />
-            <Label Content="COUNTRY" />
-            <Label Content="YEAR" />
-            <Label Content="PUBLISHER" />
-            <Label Content="FLAGS" />
-            <Label Content="DETECTED ROM" />
-            <Label Content="PLAYERS" />
-            <Label Content="CO-OP" />
-            <Label Content="DEVELOPER" />
-            <Label Content="RATING" />
+            <Label FontSize="8" Content="All" />
+             <CheckBox HorizontalAlignment="Center"  Name="c01_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c01_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c01_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c01_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c01_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c01_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c01_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c01_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c01_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c01_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c01_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c01_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c01_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c01_14" />
 
-            <Label Content="All Games" />
-            <CheckBox Name="c01_01" />
-            <CheckBox Name="c01_02" />
-            <CheckBox Name="c01_03" />
-            <CheckBox Name="c01_04" />
-            <CheckBox Name="c01_05" />
-            <CheckBox Name="c01_06" />
-            <CheckBox Name="c01_07" />
-            <CheckBox Name="c01_08" />
-            <CheckBox Name="c01_09" />
-            <CheckBox Name="c01_10" />
-            <CheckBox Name="c01_11" />
-            <CheckBox Name="c01_12" />
-            <CheckBox Name="c01_13" />
-            <CheckBox Name="c01_14" />
+            <Label FontSize="8" Content="Fav" />
+             <CheckBox HorizontalAlignment="Center"  Name="c02_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c02_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c02_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c02_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c02_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c02_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c02_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c02_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c02_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c02_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c02_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c02_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c02_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c02_14" />
 
-            <Label Content="Favorites" />
-            <CheckBox Name="c02_01" />
-            <CheckBox Name="c02_02" />
-            <CheckBox Name="c02_03" />
-            <CheckBox Name="c02_04" />
-            <CheckBox Name="c02_05" />
-            <CheckBox Name="c02_06" />
-            <CheckBox Name="c02_07" />
-            <CheckBox Name="c02_08" />
-            <CheckBox Name="c02_09" />
-            <CheckBox Name="c02_10" />
-            <CheckBox Name="c02_11" />
-            <CheckBox Name="c02_12" />
-            <CheckBox Name="c02_13" />
-            <CheckBox Name="c02_14" />
+            <Label FontSize="8" Content="Unscr" />
+             <CheckBox HorizontalAlignment="Center"  Name="c03_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c03_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c03_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c03_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c03_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c03_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c03_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c03_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c03_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c03_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c03_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c03_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c03_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c03_14" />
 
-            <Label Content="Unscraped" />
-            <CheckBox Name="c03_01" />
-            <CheckBox Name="c03_02" />
-            <CheckBox Name="c03_03" />
-            <CheckBox Name="c03_04" />
-            <CheckBox Name="c03_05" />
-            <CheckBox Name="c03_06" />
-            <CheckBox Name="c03_07" />
-            <CheckBox Name="c03_08" />
-            <CheckBox Name="c03_09" />
-            <CheckBox Name="c03_10" />
-            <CheckBox Name="c03_11" />
-            <CheckBox Name="c03_12" />
-            <CheckBox Name="c03_13" />
-            <CheckBox Name="c03_14" />
+            <Label FontSize="8" Content="NES" />
+             <CheckBox HorizontalAlignment="Center"  Name="c04_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c04_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c04_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c04_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c04_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c04_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c04_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c04_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c04_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c04_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c04_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c04_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c04_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c04_14" />
 
-            <Label Content="NES" />
-            <CheckBox Name="c04_01" />
-            <CheckBox Name="c04_02" />
-            <CheckBox Name="c04_03" />
-            <CheckBox Name="c04_04" />
-            <CheckBox Name="c04_05" />
-            <CheckBox Name="c04_06" />
-            <CheckBox Name="c04_07" />
-            <CheckBox Name="c04_08" />
-            <CheckBox Name="c04_09" />
-            <CheckBox Name="c04_10" />
-            <CheckBox Name="c04_11" />
-            <CheckBox Name="c04_12" />
-            <CheckBox Name="c04_13" />
-            <CheckBox Name="c04_14" />
+            <Label FontSize="8" Content="SNES" />
+             <CheckBox HorizontalAlignment="Center"  Name="c05_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c05_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c05_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c05_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c05_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c05_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c05_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c05_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c05_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c05_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c05_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c05_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c05_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c05_14" />
 
-            <Label Content="SNES" />
-            <CheckBox Name="c05_01" />
-            <CheckBox Name="c05_02" />
-            <CheckBox Name="c05_03" />
-            <CheckBox Name="c05_04" />
-            <CheckBox Name="c05_05" />
-            <CheckBox Name="c05_06" />
-            <CheckBox Name="c05_07" />
-            <CheckBox Name="c05_08" />
-            <CheckBox Name="c05_09" />
-            <CheckBox Name="c05_10" />
-            <CheckBox Name="c05_11" />
-            <CheckBox Name="c05_12" />
-            <CheckBox Name="c05_13" />
-            <CheckBox Name="c05_14" />
+            <Label FontSize="8" Content="SMS" />
+             <CheckBox HorizontalAlignment="Center"  Name="c06_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c06_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c06_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c06_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c06_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c06_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c06_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c06_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c06_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c06_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c06_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c06_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c06_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c06_14" />
 
-            <Label Content="Master System" />
-            <CheckBox Name="c06_01" />
-            <CheckBox Name="c06_02" />
-            <CheckBox Name="c06_03" />
-            <CheckBox Name="c06_04" />
-            <CheckBox Name="c06_05" />
-            <CheckBox Name="c06_06" />
-            <CheckBox Name="c06_07" />
-            <CheckBox Name="c06_08" />
-            <CheckBox Name="c06_09" />
-            <CheckBox Name="c06_10" />
-            <CheckBox Name="c06_11" />
-            <CheckBox Name="c06_12" />
-            <CheckBox Name="c06_13" />
-            <CheckBox Name="c06_14" />
+            <Label FontSize="8" Content="MD" />
+             <CheckBox HorizontalAlignment="Center"  Name="c07_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c07_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c07_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c07_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c07_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c07_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c07_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c07_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c07_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c07_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c07_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c07_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c07_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c07_14" />
 
-            <Label Content="MegaDrive" />
-            <CheckBox Name="c07_01" />
-            <CheckBox Name="c07_02" />
-            <CheckBox Name="c07_03" />
-            <CheckBox Name="c07_04" />
-            <CheckBox Name="c07_05" />
-            <CheckBox Name="c07_06" />
-            <CheckBox Name="c07_07" />
-            <CheckBox Name="c07_08" />
-            <CheckBox Name="c07_09" />
-            <CheckBox Name="c07_10" />
-            <CheckBox Name="c07_11" />
-            <CheckBox Name="c07_12" />
-            <CheckBox Name="c07_13" />
-            <CheckBox Name="c07_14" />
+            <Label FontSize="8" Content="PCE" />
+             <CheckBox HorizontalAlignment="Center"  Name="c08_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c08_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c08_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c08_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c08_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c08_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c08_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c08_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c08_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c08_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c08_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c08_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c08_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c08_14" />
 
-            <Label Content="PC-Engine" />
-            <CheckBox Name="c08_01" />
-            <CheckBox Name="c08_02" />
-            <CheckBox Name="c08_03" />
-            <CheckBox Name="c08_04" />
-            <CheckBox Name="c08_05" />
-            <CheckBox Name="c08_06" />
-            <CheckBox Name="c08_07" />
-            <CheckBox Name="c08_08" />
-            <CheckBox Name="c08_09" />
-            <CheckBox Name="c08_10" />
-            <CheckBox Name="c08_11" />
-            <CheckBox Name="c08_12" />
-            <CheckBox Name="c08_13" />
-            <CheckBox Name="c08_14" />
+            <Label FontSize="8" Content="VB" />
+             <CheckBox HorizontalAlignment="Center"  Name="c09_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c09_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c09_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c09_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c09_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c09_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c09_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c09_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c09_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c09_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c09_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c09_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c09_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c09_14" />
 
-            <Label Content="Virtual Boy" />
-            <CheckBox Name="c09_01" />
-            <CheckBox Name="c09_02" />
-            <CheckBox Name="c09_03" />
-            <CheckBox Name="c09_04" />
-            <CheckBox Name="c09_05" />
-            <CheckBox Name="c09_06" />
-            <CheckBox Name="c09_07" />
-            <CheckBox Name="c09_08" />
-            <CheckBox Name="c09_09" />
-            <CheckBox Name="c09_10" />
-            <CheckBox Name="c09_11" />
-            <CheckBox Name="c09_12" />
-            <CheckBox Name="c09_13" />
-            <CheckBox Name="c09_14" />
+            <Label FontSize="8" Content="NGP" />
+             <CheckBox HorizontalAlignment="Center"  Name="c10_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c10_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c10_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c10_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c10_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c10_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c10_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c10_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c10_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c10_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c10_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c10_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c10_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c10_14" />
 
-            <Label Content="NeoGeo Pocket" />
-            <CheckBox Name="c10_01" />
-            <CheckBox Name="c10_02" />
-            <CheckBox Name="c10_03" />
-            <CheckBox Name="c10_04" />
-            <CheckBox Name="c10_05" />
-            <CheckBox Name="c10_06" />
-            <CheckBox Name="c10_07" />
-            <CheckBox Name="c10_08" />
-            <CheckBox Name="c10_09" />
-            <CheckBox Name="c10_10" />
-            <CheckBox Name="c10_11" />
-            <CheckBox Name="c10_12" />
-            <CheckBox Name="c10_13" />
-            <CheckBox Name="c10_14" />
+            <Label FontSize="8" Content="WSWAN" />
+             <CheckBox HorizontalAlignment="Center"  Name="c11_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c11_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c11_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c11_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c11_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c11_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c11_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c11_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c11_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c11_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c11_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c11_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c11_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c11_14" />
 
-            <Label Content="WonderSwan" />
-            <CheckBox Name="c11_01" />
-            <CheckBox Name="c11_02" />
-            <CheckBox Name="c11_03" />
-            <CheckBox Name="c11_04" />
-            <CheckBox Name="c11_05" />
-            <CheckBox Name="c11_06" />
-            <CheckBox Name="c11_07" />
-            <CheckBox Name="c11_08" />
-            <CheckBox Name="c11_09" />
-            <CheckBox Name="c11_10" />
-            <CheckBox Name="c11_11" />
-            <CheckBox Name="c11_12" />
-            <CheckBox Name="c11_13" />
-            <CheckBox Name="c11_14" />
+            <Label FontSize="8" Content="GB" />
+             <CheckBox HorizontalAlignment="Center"  Name="c12_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c12_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c12_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c12_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c12_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c12_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c12_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c12_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c12_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c12_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c12_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c12_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c12_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c12_14" />
 
-            <Label Content="GameBoy" />
-            <CheckBox Name="c12_01" />
-            <CheckBox Name="c12_02" />
-            <CheckBox Name="c12_03" />
-            <CheckBox Name="c12_04" />
-            <CheckBox Name="c12_05" />
-            <CheckBox Name="c12_06" />
-            <CheckBox Name="c12_07" />
-            <CheckBox Name="c12_08" />
-            <CheckBox Name="c12_09" />
-            <CheckBox Name="c12_10" />
-            <CheckBox Name="c12_11" />
-            <CheckBox Name="c12_12" />
-            <CheckBox Name="c12_13" />
-            <CheckBox Name="c12_14" />
+            <Label FontSize="8" Content="GBA" />
+             <CheckBox HorizontalAlignment="Center"  Name="c13_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c13_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c13_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c13_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c13_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c13_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c13_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c13_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c13_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c13_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c13_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c13_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c13_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c13_14" />
 
-            <Label Content="GameBoy Adv." />
-            <CheckBox Name="c13_01" />
-            <CheckBox Name="c13_02" />
-            <CheckBox Name="c13_03" />
-            <CheckBox Name="c13_04" />
-            <CheckBox Name="c13_05" />
-            <CheckBox Name="c13_06" />
-            <CheckBox Name="c13_07" />
-            <CheckBox Name="c13_08" />
-            <CheckBox Name="c13_09" />
-            <CheckBox Name="c13_10" />
-            <CheckBox Name="c13_11" />
-            <CheckBox Name="c13_12" />
-            <CheckBox Name="c13_13" />
-            <CheckBox Name="c13_14" />
+            <Label FontSize="8" Content="GG" />
+             <CheckBox HorizontalAlignment="Center"  Name="c14_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c14_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c14_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c14_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c14_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c14_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c14_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c14_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c14_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c14_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c14_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c14_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c14_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c14_14" />
 
-            <Label Content="Game Gear" />
-            <CheckBox Name="c14_01" />
-            <CheckBox Name="c14_02" />
-            <CheckBox Name="c14_03" />
-            <CheckBox Name="c14_04" />
-            <CheckBox Name="c14_05" />
-            <CheckBox Name="c14_06" />
-            <CheckBox Name="c14_07" />
-            <CheckBox Name="c14_08" />
-            <CheckBox Name="c14_09" />
-            <CheckBox Name="c14_10" />
-            <CheckBox Name="c14_11" />
-            <CheckBox Name="c14_12" />
-            <CheckBox Name="c14_13" />
-            <CheckBox Name="c14_14" />
+            <Label FontSize="8" Content="LYNX" />
+             <CheckBox HorizontalAlignment="Center"  Name="c15_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c15_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c15_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c15_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c15_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c15_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c15_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c15_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c15_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c15_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c15_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c15_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c15_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c15_14" />
 
-            <Label Content="Atari Lynx" />
-            <CheckBox Name="c15_01" />
-            <CheckBox Name="c15_02" />
-            <CheckBox Name="c15_03" />
-            <CheckBox Name="c15_04" />
-            <CheckBox Name="c15_05" />
-            <CheckBox Name="c15_06" />
-            <CheckBox Name="c15_07" />
-            <CheckBox Name="c15_08" />
-            <CheckBox Name="c15_09" />
-            <CheckBox Name="c15_10" />
-            <CheckBox Name="c15_11" />
-            <CheckBox Name="c15_12" />
-            <CheckBox Name="c15_13" />
-            <CheckBox Name="c15_14" />
+            <Label FontSize="8" Content="SS" />
+             <CheckBox HorizontalAlignment="Center"  Name="c16_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c16_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c16_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c16_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c16_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c16_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c16_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c16_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c16_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c16_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c16_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c16_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c16_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c16_14" />
 
-            <Label Content="Saturn" />
-            <CheckBox Name="c16_01" />
-            <CheckBox Name="c16_02" />
-            <CheckBox Name="c16_03" />
-            <CheckBox Name="c16_04" />
-            <CheckBox Name="c16_05" />
-            <CheckBox Name="c16_06" />
-            <CheckBox Name="c16_07" />
-            <CheckBox Name="c16_08" />
-            <CheckBox Name="c16_09" />
-            <CheckBox Name="c16_10" />
-            <CheckBox Name="c16_11" />
-            <CheckBox Name="c16_12" />
-            <CheckBox Name="c16_13" />
-            <CheckBox Name="c16_14" />
+            <Label FontSize="8" Content="PSX" />
+             <CheckBox HorizontalAlignment="Center"  Name="c17_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c17_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c17_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c17_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c17_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c17_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c17_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c17_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c17_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c17_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c17_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c17_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c17_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c17_14" />
 
-            <Label Content="Playstation" />
-            <CheckBox Name="c17_01" />
-            <CheckBox Name="c17_02" />
-            <CheckBox Name="c17_03" />
-            <CheckBox Name="c17_04" />
-            <CheckBox Name="c17_05" />
-            <CheckBox Name="c17_06" />
-            <CheckBox Name="c17_07" />
-            <CheckBox Name="c17_08" />
-            <CheckBox Name="c17_09" />
-            <CheckBox Name="c17_10" />
-            <CheckBox Name="c17_11" />
-            <CheckBox Name="c17_12" />
-            <CheckBox Name="c17_13" />
-            <CheckBox Name="c17_14" />
+            <Label FontSize="8" Content="PCECD" />
+             <CheckBox HorizontalAlignment="Center"  Name="c18_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c18_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c18_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c18_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c18_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c18_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c18_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c18_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c18_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c18_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c18_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c18_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c18_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c18_14" />
 
-            <Label Content="PCE CD" />
-            <CheckBox Name="c18_01" />
-            <CheckBox Name="c18_02" />
-            <CheckBox Name="c18_03" />
-            <CheckBox Name="c18_04" />
-            <CheckBox Name="c18_05" />
-            <CheckBox Name="c18_06" />
-            <CheckBox Name="c18_07" />
-            <CheckBox Name="c18_08" />
-            <CheckBox Name="c18_09" />
-            <CheckBox Name="c18_10" />
-            <CheckBox Name="c18_11" />
-            <CheckBox Name="c18_12" />
-            <CheckBox Name="c18_13" />
-            <CheckBox Name="c18_14" />
-
-            <Label Content="PC-FX" />
-            <CheckBox Name="c19_01" />
-            <CheckBox Name="c19_02" />
-            <CheckBox Name="c19_03" />
-            <CheckBox Name="c19_04" />
-            <CheckBox Name="c19_05" />
-            <CheckBox Name="c19_06" />
-            <CheckBox Name="c19_07" />
-            <CheckBox Name="c19_08" />
-            <CheckBox Name="c19_09" />
-            <CheckBox Name="c19_10" />
-            <CheckBox Name="c19_11" />
-            <CheckBox Name="c19_12" />
-            <CheckBox Name="c19_13" />
-            <CheckBox Name="c19_14" />
+            <Label FontSize="8" Content="PCFX" />
+             <CheckBox HorizontalAlignment="Center"  Name="c19_01" />
+             <CheckBox HorizontalAlignment="Center"  Name="c19_02" />
+             <CheckBox HorizontalAlignment="Center"  Name="c19_03" />
+             <CheckBox HorizontalAlignment="Center"  Name="c19_04" />
+             <CheckBox HorizontalAlignment="Center"  Name="c19_05" />
+             <CheckBox HorizontalAlignment="Center"  Name="c19_06" />
+             <CheckBox HorizontalAlignment="Center"  Name="c19_07" />
+             <CheckBox HorizontalAlignment="Center"  Name="c19_08" />
+             <CheckBox HorizontalAlignment="Center"  Name="c19_09" />
+             <CheckBox HorizontalAlignment="Center"  Name="c19_10" />
+             <CheckBox HorizontalAlignment="Center"  Name="c19_11" />
+             <CheckBox HorizontalAlignment="Center"  Name="c19_12" />
+             <CheckBox HorizontalAlignment="Center"  Name="c19_13" />
+             <CheckBox HorizontalAlignment="Center"  Name="c19_14" />
 
 
         </UniformGrid>

@@ -52,6 +52,7 @@ using MedLaunch.Classes.Scraper.DAT.REDUMP.Models;
 using MedLaunch.Classes.VisualHandlers;
 using Newtonsoft.Json.Linq;
 using MedLaunch.Classes.IO;
+using MahApps.Metro.SimpleChildWindow;
 
 namespace MedLaunch
 {
@@ -4215,6 +4216,19 @@ namespace MedLaunch
 
             
 
+        }
+
+        private async void MenuItemColumn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            await mw.ShowChildWindowAsync(new LibraryColumnChooser()
+            {
+                IsModal = true,
+                AllowMove = false,
+                Title = "Games Library Column Visibility Settings",
+                CloseOnOverlay = false,
+                ShowCloseButton = false
+            }, RootGrid);
         }
     }
     /*

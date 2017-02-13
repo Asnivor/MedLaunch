@@ -97,6 +97,7 @@
                         <MenuItem Header="Scraping" ContextMenuService.IsEnabled="False" Click="TopMenu_Click" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
                             <MenuItem Header="Audit Scraped Data Folder" ToolTip="Show a list of game data that has been scraped along with system and game title" />
                         </MenuItem>
+                        <MenuItem Header="Library Column Visibility" Click="MenuItemColumn_Click" />
                     </ContextMenu>
                 </Button.ContextMenu>
             </Button>
