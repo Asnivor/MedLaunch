@@ -937,10 +937,10 @@ namespace MedLaunch.Models
                 lynx__tblur__accum__amount = 50,                        // control placed
                 lynx__videoip = "0",                                    // control placed
                 lynx__xres = 0,                                         // control placed
-                lynx__xscale = 1,                                       // control placed
+                lynx__xscale = 6,                                       // control placed
                 lynx__xscalefs = 1,                                     // control placed
                 lynx__yres = 0,                                         // control placed
-                lynx__yscale = 1,                                       // control placed
+                lynx__yscale = 6,                                       // control placed
                 lynx__yscalefs = 1,                                     // control placed
 
                 lynx__shader__goat__fprog = false,                      
@@ -964,10 +964,10 @@ namespace MedLaunch.Models
                 gb__tblur__accum__amount = 50,                        // control placed
                 gb__videoip = "0",                                    // control placed
                 gb__xres = 0,                                         // control placed
-                gb__xscale = 1,                                       // control placed
+                gb__xscale = 6,                                       // control placed
                 gb__xscalefs = 1,                                     // control placed
                 gb__yres = 0,                                         // control placed
-                gb__yscale = 1,                                       // control placed
+                gb__yscale = 6,                                       // control placed
                 gb__yscalefs = 1,                                     // control placed
 
                 gb__shader__goat__fprog = false,
@@ -991,10 +991,10 @@ namespace MedLaunch.Models
                 gba__tblur__accum__amount = 50,                        // control placed
                 gba__videoip = "0",                                    // control placed
                 gba__xres = 0,                                         // control placed
-                gba__xscale = 1,                                       // control placed
+                gba__xscale = 4,                                       // control placed
                 gba__xscalefs = 1,                                     // control placed
                 gba__yres = 0,                                         // control placed
-                gba__yscale = 1,                                       // control placed
+                gba__yscale = 4,                                       // control placed
                 gba__yscalefs = 1,                                     // control placed
 
                 gba__shader__goat__fprog = false,
@@ -1018,10 +1018,10 @@ namespace MedLaunch.Models
                 ngp__tblur__accum__amount = 50,                        // control placed
                 ngp__videoip = "0",                                    // control placed
                 ngp__xres = 0,                                         // control placed
-                ngp__xscale = 1,                                       // control placed
+                ngp__xscale = 6,                                       // control placed
                 ngp__xscalefs = 1,                                     // control placed
                 ngp__yres = 0,                                         // control placed
-                ngp__yscale = 1,                                       // control placed
+                ngp__yscale = 6,                                       // control placed
                 ngp__yscalefs = 1,                                     // control placed
 
                 ngp__shader__goat__fprog = false,
@@ -1080,10 +1080,10 @@ namespace MedLaunch.Models
                 nes__tblur__accum__amount = 50,                        // control placed
                 nes__videoip = "0",                                    // control placed
                 nes__xres = 0,                                         // control placed
-                nes__xscale = 1,                                       // control placed
+                nes__xscale = 4,                                       // control placed
                 nes__xscalefs = 1,                                     // control placed
                 nes__yres = 0,                                         // control placed
-                nes__yscale = 1,                                       // control placed
+                nes__yscale = 4,                                       // control placed
                 nes__yscalefs = 1,                                     // control placed
 
                 nes__shader__goat__fprog = false,
@@ -1126,12 +1126,12 @@ namespace MedLaunch.Models
                 pce_fast__tblur = false,                                    // control placed
                 pce_fast__tblur__accum = false,                             // control placed
                 pce_fast__tblur__accum__amount = 50,                        // control placed
-                pce_fast__videoip = "0",                                    // control placed
+                pce_fast__videoip = "1",                                    // control placed
                 pce_fast__xres = 0,                                         // control placed
-                pce_fast__xscale = 1,                                       // control placed
+                pce_fast__xscale = 3,                                       // control placed
                 pce_fast__xscalefs = 1,                                     // control placed
                 pce_fast__yres = 0,                                         // control placed
-                pce_fast__yscale = 1,                                       // control placed
+                pce_fast__yscale = 3,                                       // control placed
                 pce_fast__yscalefs = 1,                                     // control placed
 
                 pce_fast__shader__goat__fprog = false,
@@ -1184,12 +1184,12 @@ namespace MedLaunch.Models
                 pce__tblur = false,                                    // control placed
                 pce__tblur__accum = false,                             // control placed
                 pce__tblur__accum__amount = 50,                        // control placed
-                pce__videoip = "0",                                    // control placed
+                pce__videoip = "1",                                    // control placed
                 pce__xres = 0,                                         // control placed
-                pce__xscale = 1,                                       // control placed
+                pce__xscale = 3,                                       // control placed
                 pce__xscalefs = 1,                                     // control placed
                 pce__yres = 0,                                         // control placed
-                pce__yscale = 1,                                       // control placed
+                pce__yscale = 3,                                       // control placed
                 pce__yscalefs = 1,                                     // control placed
 
                 // PC-FX
@@ -1231,12 +1231,12 @@ namespace MedLaunch.Models
                 pcfx__tblur = false,                                    // control placed
                 pcfx__tblur__accum = false,                             // control placed
                 pcfx__tblur__accum__amount = 50,                        // control placed
-                pcfx__videoip = "0",                                    // control placed
+                pcfx__videoip = "1",                                    // control placed
                 pcfx__xres = 0,                                         // control placed
-                pcfx__xscale = 1,                                       // control placed
+                pcfx__xscale = 3,                                       // control placed
                 pcfx__xscalefs = 1,                                     // control placed
                 pcfx__yres = 0,                                         // control placed
-                pcfx__yscale = 1,                                       // control placed
+                pcfx__yscale = 3,                                       // control placed
                 pcfx__yscalefs = 1,                                     // control placed
 
                 pcfx__shader__goat__fprog = false,
@@ -1259,10 +1259,10 @@ namespace MedLaunch.Models
                 gg__tblur__accum__amount = 50,                        // control placed
                 gg__videoip = "0",                                    // control placed
                 gg__xres = 0,                                         // control placed
-                gg__xscale = 1,                                       // control placed
+                gg__xscale = 6,                                       // control placed
                 gg__xscalefs = 1,                                     // control placed
                 gg__yres = 0,                                         // control placed
-                gg__yscale = 1,                                       // control placed
+                gg__yscale = 6,                                       // control placed
                 gg__yscalefs = 1,                                     // control placed
 
                 gg__shader__goat__fprog = false,
@@ -1287,10 +1287,10 @@ namespace MedLaunch.Models
                 sms__tblur__accum__amount = 50,                        // control placed
                 sms__videoip = "0",                                    // control placed
                 sms__xres = 0,                                         // control placed
-                sms__xscale = 1,                                       // control placed
+                sms__xscale = 4,                                       // control placed
                 sms__xscalefs = 1,                                     // control placed
                 sms__yres = 0,                                         // control placed
-                sms__yscale = 1,                                       // control placed
+                sms__yscale = 4,                                       // control placed
                 sms__yscalefs = 1,                                     // control placed
 
                 sms__slend = 239,                                        // control placed
@@ -1333,12 +1333,12 @@ namespace MedLaunch.Models
                 md__tblur = false,                                    // control placed
                 md__tblur__accum = false,                             // control placed
                 md__tblur__accum__amount = 50,                        // control placed
-                md__videoip = "0",                                    // control placed
+                md__videoip = "1",                                    // control placed
                 md__xres = 0,                                         // control placed
-                md__xscale = 1,                                       // control placed
+                md__xscale = 3,                                       // control placed
                 md__xscalefs = 1,                                     // control placed
                 md__yres = 0,                                         // control placed
-                md__yscale = 1,                                       // control placed
+                md__yscale = 3,                                       // control placed
                 md__yscalefs = 1,                                     // control placed
 
                 md__shader__goat__fprog = false,
@@ -1391,12 +1391,12 @@ namespace MedLaunch.Models
                 ss__tblur = false,                                    // control placed
                 ss__tblur__accum = false,                             // control placed
                 ss__tblur__accum__amount = 50,                        // control placed
-                ss__videoip = "0",                                    // control placed
+                ss__videoip = "1",                                    // control placed
                 ss__xres = 0,                                         // control placed
-                ss__xscale = 1,                                       // control placed
+                ss__xscale = 3,                                       // control placed
                 ss__xscalefs = 1,                                     // control placed
                 ss__yres = 0,                                         // control placed
-                ss__yscale = 1,                                       // control placed
+                ss__yscale = 3,                                       // control placed
                 ss__yscalefs = 1,                                     // control placed
 
                 ss__correct_aspect = true,                              // control placed
@@ -1491,12 +1491,12 @@ namespace MedLaunch.Models
                 psx__tblur = false,                                    // control placed
                 psx__tblur__accum = false,                             // control placed
                 psx__tblur__accum__amount = 50,                        // control placed
-                psx__videoip = "0",                                    // control placed
+                psx__videoip = "1",                                    // control placed
                 psx__xres = 0,                                         // control placed
-                psx__xscale = 1,                                       // control placed
+                psx__xscale = 3,                                       // control placed
                 psx__xscalefs = 1,                                     // control placed
                 psx__yres = 0,                                         // control placed
-                psx__yscale = 1,                                       // control placed
+                psx__yscale = 3,                                       // control placed
                 psx__yscalefs = 1,                                     // control placed
 
                 psx__input__analog_mode_ct__compare = "0x0F09",
@@ -1533,12 +1533,12 @@ namespace MedLaunch.Models
                 snes_faust__tblur = false,                                    // control placed
                 snes_faust__tblur__accum = false,                             // control placed
                 snes_faust__tblur__accum__amount = 50,                        // control placed
-                snes_faust__videoip = "0",                                    // control placed
+                snes_faust__videoip = "1",                                    // control placed
                 snes_faust__xres = 0,                                         // control placed
-                snes_faust__xscale = 1,                                       // control placed
+                snes_faust__xscale = 3,                                       // control placed
                 snes_faust__xscalefs = 1,                                     // control placed
                 snes_faust__yres = 0,                                         // control placed
-                snes_faust__yscale = 1,                                       // control placed
+                snes_faust__yscale = 3,                                       // control placed
                 snes_faust__yscalefs = 1,                                     // control placed
 
                 snes_faust__shader__goat__fprog = false,
@@ -1568,10 +1568,10 @@ namespace MedLaunch.Models
                 snes__tblur__accum__amount = 50,                        // control placed
                 snes__videoip = "0",                                    // control placed
                 snes__xres = 0,                                         // control placed
-                snes__xscale = 1,                                       // control placed
+                snes__xscale = 4,                                       // control placed
                 snes__xscalefs = 1,                                     // control placed
                 snes__yres = 0,                                         // control placed
-                snes__yscale = 1,                                       // control placed
+                snes__yscale = 4,                                       // control placed
                 snes__yscalefs = 1,                                     // control placed
 
                 snes__shader__goat__fprog = false,
@@ -1613,10 +1613,10 @@ namespace MedLaunch.Models
                 vb__tblur__accum__amount = 50,                        // control placed
                 vb__videoip = "0",                                    // control placed
                 vb__xres = 0,                                         // control placed
-                vb__xscale = 1,                                       // control placed
+                vb__xscale = 2,                                       // control placed
                 vb__xscalefs = 1,                                     // control placed
                 vb__yres = 0,                                         // control placed
-                vb__yscale = 1,                                       // control placed
+                vb__yscale = 2,                                       // control placed
                 vb__yscalefs = 1,                                     // control placed
 
                 vb__shader__goat__fprog = false,
@@ -1650,10 +1650,10 @@ namespace MedLaunch.Models
                 wswan__tblur__accum__amount = 50,                        // control placed
                 wswan__videoip = "0",                                    // control placed
                 wswan__xres = 0,                                         // control placed
-                wswan__xscale = 1,                                       // control placed
+                wswan__xscale = 4,                                       // control placed
                 wswan__xscalefs = 1,                                     // control placed
                 wswan__yres = 0,                                         // control placed
-                wswan__yscale = 1,                                       // control placed
+                wswan__yscale = 4,                                       // control placed
                 wswan__yscalefs = 1,                                     // control placed
 
                 wswan__shader__goat__fprog = false,

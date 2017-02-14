@@ -182,7 +182,7 @@
                 />
         </Grid.LayoutTransform>
         <Grid.Background>
-            <ImageBrush ImageSource="/Data/Graphics/MedLaunchLogo.png" Opacity="0.1" />
+            <ImageBrush ImageSource="/Data/Graphics/medicon.png" Opacity="0.1" />
         </Grid.Background>
         
         
@@ -10228,6 +10228,8 @@
                                                 <CheckBox x:Name="chkHideSidebar" Grid.ColumnSpan="2" Grid.Row="0" Checked="chkHideSidebar_Checked" Unchecked="chkHideSidebar_Unchecked">
                                                     Never show the Games Library Sidebar
                                                 </CheckBox>
+
+                                                <Button Content="Modify Library Column Visibility" Click="MenuItemColumn_Click" Grid.Row="1" Grid.ColumnSpan="2" />
 
                                                 <CheckBox x:Name="chkshowGLYear" Grid.ColumnSpan="2" Grid.Row="1" Checked="chkshowGLYear_Checked" Unchecked="chkshowGLYear_Unchecked">
                                                     Show grid YEAR column
