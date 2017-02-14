@@ -1004,5 +1004,84 @@ namespace MedLaunch.Classes
             
         }
 
+        public static void SetColumnVisibility(int FilterNumber)
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            // return filter array
+            string[] fArr = GlobalSettings.ReturnFilterArray();
+            // get the hex string for the filter we are interested in
+            string hex = fArr[FilterNumber - 1];
+
+            // Translate hex and set column visibility
+            int value = int.Parse(hex, System.Globalization.NumberStyles.HexNumber);
+            for (int i = 14; i > 0; i--)
+            {
+                int testValue = 1 * Convert.ToInt32(Math.Pow(2, Convert.ToDouble(i - 1)));
+                if (i != 5)
+                {
+                    int val = value / testValue;
+                    DataGridTextColumn tc = (DataGridTextColumn)mw.FindName("glCol" + i.ToString());
+                    if (value / testValue == 1)
+                    {
+                        // column should be visible
+                        tc.Visibility = Visibility.Visible;
+                        // set remainder
+                        value = value % testValue;
+                    }
+                    else
+                    {
+                        // column should not be visible
+                        tc.Visibility = Visibility.Collapsed;
+                    }
+                }
+                else
+                {
+                    DataGridCheckBoxColumn cc = (DataGridCheckBoxColumn)mw.FindName("glCol" + i.ToString());
+                    if (value / testValue == 1)
+                    {
+                        // column should be visible
+                        cc.Visibility = Visibility.Visible;
+                        // set remainder
+                        value = value % testValue;
+                    }
+                    else
+                    {
+                        // column should not be visible
+                        cc.Visibility = Visibility.Collapsed;
+                    }
+                }
+            }
+        }
+
+        public static RadioButton[] ReturnFilterButtons()
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            RadioButton[] buttons = new RadioButton[]
+            {
+                (RadioButton)mw.FindName("btnShowAll"),
+                (RadioButton)mw.FindName("btnFavorites"),
+                (RadioButton)mw.FindName("btnUnscraped"),
+                (RadioButton)mw.FindName("btnNes"),
+                (RadioButton)mw.FindName("btnSnes"),
+                (RadioButton)mw.FindName("btnSms"),
+                (RadioButton)mw.FindName("btnMd"),
+                (RadioButton)mw.FindName("btnPce"),
+                (RadioButton)mw.FindName("btnVb"),
+                (RadioButton)mw.FindName("btnNgp"),
+                (RadioButton)mw.FindName("btnWswan"),
+                (RadioButton)mw.FindName("btnGb"),
+                (RadioButton)mw.FindName("btnGba"),
+                (RadioButton)mw.FindName("btnGg"),
+                (RadioButton)mw.FindName("btnLynx"),
+                (RadioButton)mw.FindName("btnSs"),
+                (RadioButton)mw.FindName("btnPsx"),
+                (RadioButton)mw.FindName("btnPcecd"),
+                (RadioButton)mw.FindName("btnPcfx"),
+            };
+
+            return buttons;
+        }
+
     }
 }

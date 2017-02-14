@@ -939,113 +939,170 @@ namespace MedLaunch
         // Game filter buttons
         private void btnShowAll_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(1);
+            // load datagrid
             DbEF.GetGames(dgGameList, 0, tbFilterDatagrid.Text);
            // dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnFavorites_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(2);
+            // load datagrid
             DbEF.GetGames(dgGameList, -1, tbFilterDatagrid.Text);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnUnscraped_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(3);
+            // load datagrid
             DbEF.GetGames(dgGameList, -100, tbFilterDatagrid.Text);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnNes_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(4);
+            // load datagrid
             DbEF.GetGames(dgGameList, 11, tbFilterDatagrid.Text);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnSnes_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(5);
+            // load datagrid
             DbEF.GetGames(dgGameList, 12, tbFilterDatagrid.Text);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnSms_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(6);
+            // load datagrid
             DbEF.GetGames(dgGameList, 10, tbFilterDatagrid.Text);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnMd_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(7);
+            // load datagrid
             DbEF.GetGames(dgGameList, 4, tbFilterDatagrid.Text);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnSs_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(16);
+            // load datagrid
             DbEF.GetGames(dgGameList, 13, tbFilterDatagrid.Text);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnPsx_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(17);
+            // load datagrid
             DbEF.GetGames(dgGameList, 9, tbFilterDatagrid.Text);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnPce_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(8);
+            // load datagrid
             DbEF.GetGames(dgGameList, 7, tbFilterDatagrid.Text);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
         private void btnPcecd_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(18);
+            // load datagrid
             DbEF.GetGames(dgGameList, 18, tbFilterDatagrid.Text);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnPcfx_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(19);
+            // load datagrid
             DbEF.GetGames(dgGameList, 8, tbFilterDatagrid.Text);
            // dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnVb_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(9);
+            // load datagrid
             DbEF.GetGames(dgGameList, 14, tbFilterDatagrid.Text);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnNgp_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(10);
+            // load datagrid
             DbEF.GetGames(dgGameList, 6, tbFilterDatagrid.Text);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnWswan_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(11);
+            // load datagrid
             DbEF.GetGames(dgGameList, 15, tbFilterDatagrid.Text);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnGb_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(12);
+            // load datagrid
             DbEF.GetGames(dgGameList, 1, tbFilterDatagrid.Text);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnGba_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(13);
+            // load datagrid
             DbEF.GetGames(dgGameList, 2, tbFilterDatagrid.Text);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnGg_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(14);
+            // load datagrid
             DbEF.GetGames(dgGameList, 5, tbFilterDatagrid.Text);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnLynx_Checked(object sender, RoutedEventArgs e)
         {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(15);
+            // load datagrid
             DbEF.GetGames(dgGameList, 3, tbFilterDatagrid.Text);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }

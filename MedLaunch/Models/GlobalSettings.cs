@@ -40,13 +40,34 @@ namespace MedLaunch.Models
         public bool glSystemInfo { get; set; }
         public bool glManuals { get; set; }
 
-        // games library columns
+        // games library columns (no longer used)
         public bool showGLPublisher { get; set; }
         public bool showGLDeveloper { get; set; }
         public bool showGLYear { get; set; }
         public bool showGLPlayers { get; set; }
         public bool showGLCoop { get; set; }
         public bool showGLESRB { get; set; }
+
+        // games library column visibility (based on filter)
+        public string glFil01 { get; set; }             // Show All Games
+        public string glFil02 { get; set; }             // Favorites
+        public string glFil03 { get; set; }             // Unscraped Games
+        public string glFil04 { get; set; }             // NES
+        public string glFil05 { get; set; }             // SNES
+        public string glFil06 { get; set; }             // SMS
+        public string glFil07 { get; set; }             // MD
+        public string glFil08 { get; set; }             // PCE
+        public string glFil09 { get; set; }             // VB
+        public string glFil10 { get; set; }             // NGP
+        public string glFil11 { get; set; }             // WSWAN
+        public string glFil12 { get; set; }             // GB
+        public string glFil13 { get; set; }             // GBA
+        public string glFil14 { get; set; }             // GG
+        public string glFil15 { get; set; }             // LYNX
+        public string glFil16 { get; set; }             // SS
+        public string glFil17 { get; set; }             // PSX
+        public string glFil18 { get; set; }             // PCECD
+        public string glFil19 { get; set; }             // PCFX
 
         // Game scraping options
         public bool scrapeBanners { get; set; }
@@ -123,8 +144,27 @@ namespace MedLaunch.Models
                 showGLESRB = true,
                 showGLPlayers = true,
                 showGLPublisher = true,
-                showGLYear = true
-               
+                showGLYear = true,
+
+                glFil01 = "3FFF",
+                glFil02 = "3FFC",
+                glFil03 = "3FFC",
+                glFil04 = "3FFF",
+                glFil05 = "3FFF",
+                glFil06 = "3FFF",
+                glFil07 = "3FFF",
+                glFil08 = "3FFF",
+                glFil09 = "3FFF",
+                glFil10 = "3FFF",
+                glFil11 = "3FFF",
+                glFil12 = "3FFF",
+                glFil13 = "3FFF",
+                glFil14 = "3FFF",
+                glFil15 = "3FFF",
+                glFil16 = "3FFF",
+                glFil17 = "3FFF",
+                glFil18 = "3FFF",
+                glFil19 = "3FFF"
             };
             return gs;
         }
@@ -488,7 +528,60 @@ namespace MedLaunch.Models
             SetGlobals(gs);
         }
 
+        public static string[] ReturnFilterArray()
+        {
+            GlobalSettings gs = GetGlobals();
+            string[] arr = new string[]
+            {
+                gs.glFil01,
+                gs.glFil02,
+                gs.glFil03,
+                gs.glFil04,
+                gs.glFil05,
+                gs.glFil06,
+                gs.glFil07,
+                gs.glFil08,
+                gs.glFil09,
+                gs.glFil10,
+                gs.glFil11,
+                gs.glFil12,
+                gs.glFil13,
+                gs.glFil14,
+                gs.glFil15,
+                gs.glFil16,
+                gs.glFil17,
+                gs.glFil18,
+                gs.glFil19
+            };
 
+            return arr;
+        }
+
+        public static void WriteFilterAray(string[] filterResults)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.glFil01 = filterResults[0];
+            gs.glFil02 = filterResults[1];
+            gs.glFil03 = filterResults[2];
+            gs.glFil04 = filterResults[3];
+            gs.glFil05 = filterResults[4];
+            gs.glFil06 = filterResults[5];
+            gs.glFil07 = filterResults[6];
+            gs.glFil08 = filterResults[7];
+            gs.glFil09 = filterResults[8];
+            gs.glFil10 = filterResults[9];
+            gs.glFil11 = filterResults[10];
+            gs.glFil12 = filterResults[11];
+            gs.glFil13 = filterResults[12];
+            gs.glFil14 = filterResults[13];
+            gs.glFil15 = filterResults[14];
+            gs.glFil16 = filterResults[15];
+            gs.glFil17 = filterResults[16];
+            gs.glFil18 = filterResults[17];
+            gs.glFil19 = filterResults[18];
+
+            GlobalSettings.SetGlobals(gs);
+        }
 
     }
 }
