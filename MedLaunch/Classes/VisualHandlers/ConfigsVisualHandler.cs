@@ -256,6 +256,86 @@ namespace MedLaunch.Classes
             }            
         }
 
+        /// <summary>
+        /// Save settings based on settings group
+        /// </summary>
+        /// <param name="settingGroup"></param>
+        public static void SaveSettings(SettingGroup settingGroup)
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            switch (settingGroup)
+            {
+                case SettingGroup.BiosPaths:
+                    ConfigBaseSettings.SaveBiosPaths();
+                    break;
+
+                case SettingGroup.GamePaths:
+                    TextBox tbPathMednafen = (TextBox)mw.FindName("tbPathMednafen");
+                    TextBox tbPathGb = (TextBox)mw.FindName("tbPathGb");
+                    TextBox tbPathGba = (TextBox)mw.FindName("tbPathGba");
+                    TextBox tbPathGg = (TextBox)mw.FindName("tbPathGg");
+                    TextBox tbPathLynx = (TextBox)mw.FindName("tbPathLynx");
+                    TextBox tbPathMd = (TextBox)mw.FindName("tbPathMd");
+                    TextBox tbPathNes = (TextBox)mw.FindName("tbPathNes");
+                    TextBox tbPathSnes = (TextBox)mw.FindName("tbPathSnes");
+                    TextBox tbPathNgp = (TextBox)mw.FindName("tbPathNgp");
+                    TextBox tbPathPce = (TextBox)mw.FindName("tbPathPce");
+                    TextBox tbPathPcfx = (TextBox)mw.FindName("tbPathPcfx");
+                    TextBox tbPathMs = (TextBox)mw.FindName("tbPathMs");
+                    TextBox tbPathVb = (TextBox)mw.FindName("tbPathVb");
+                    TextBox tbPathWswan = (TextBox)mw.FindName("tbPathWswan");
+
+                    Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathMs, tbPathVb, tbPathWswan);
+                    break;
+
+                case SettingGroup.GlobalSettings:
+                    GlobalSettings gs = GlobalSettings.GetGlobals();
+
+                    Slider slFanrtsPerHost = (Slider)mw.FindName("slFanrtsPerHost");
+                    Slider slScreenshotsPerHost = (Slider)mw.FindName("slScreenshotsPerHost");
+                    ComboBox comboImageTooltipSize = (ComboBox)mw.FindName("comboImageTooltipSize");
+
+                    gs.maxFanarts = slFanrtsPerHost.Value;
+                    gs.maxScreenshots = slScreenshotsPerHost.Value;
+                    gs.imageToolTipPercentage = Convert.ToDouble(comboImageTooltipSize.SelectedValue);
+
+                    GlobalSettings.SetGlobals(gs);
+                    break;
+
+                case SettingGroup.MednafenPaths:
+                    ConfigBaseSettings.SaveMednafenPaths();
+                    break;
+
+                case SettingGroup.NetplaySettings:
+                    TextBox tbNetplayNick = (TextBox)mw.FindName("tbNetplayNick");
+                    Slider slLocalPlayersValue = (Slider)mw.FindName("slLocalPlayersValue");
+                    Slider slConsoleLinesValue = (Slider)mw.FindName("slConsoleLinesValue");
+                    Slider slConsoleScaleValue = (Slider)mw.FindName("slConsoleScaleValue");
+                    RadioButton resOne = (RadioButton)mw.FindName("resOne");
+                    RadioButton resTwo = (RadioButton)mw.FindName("resTwo");
+                    RadioButton resThree = (RadioButton)mw.FindName("resThree");
+                    RadioButton resFour = (RadioButton)mw.FindName("resFour");
+                    RadioButton resFive = (RadioButton)mw.FindName("resFive");
+
+                    ConfigNetplaySettings.SaveNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
+                    break;
+
+                case SettingGroup.ServerSettings:
+                    TextBox tbServerDesc = (TextBox)mw.FindName("tbServerDesc");
+                    TextBox tbHostname = (TextBox)mw.FindName("tbHostname");
+                    Slider slServerPort = (Slider)mw.FindName("slServerPort");
+                    TextBox tbPassword = (TextBox)mw.FindName("tbPassword");
+                    TextBox tbGameKey = (TextBox)mw.FindName("tbGameKey");
+
+                    ConfigServerSettings.SaveCustomServerSettings(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
        
 
         // Properties
@@ -264,5 +344,15 @@ namespace MedLaunch.Classes
         public List<Border> AllDynamicConfigPanels { get; set; }
         public WrapPanel ConfigWrapPanel { get; set; }
         public GlobalSettings GS { get; set; }
+    }
+
+    public enum SettingGroup
+    {
+        GamePaths,
+        NetplaySettings,
+        ServerSettings,
+        MednafenPaths,
+        BiosPaths,
+        GlobalSettings
     }
 }

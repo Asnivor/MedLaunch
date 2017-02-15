@@ -62,6 +62,7 @@ namespace MedLaunch
     public partial class MainWindow
     {
         public ObservableCollection<DataGridGamesView> dg { get; set; }
+        public bool SettingsDirtyFlag { get; set; }
 
         public MainWindow()
         {
@@ -90,6 +91,9 @@ namespace MedLaunch
 
             MainWindow mw = this;
             //this.WindowState = WindowState.Normal;
+
+            // set settings dirty flag
+            SettingsDirtyFlag = false; // not dirty - do not save any settings
 
             // instantiate ScrapedContent Object
             GamesLibraryScrapedContent ScrapedData = new GamesLibraryScrapedContent();
@@ -336,6 +340,8 @@ namespace MedLaunch
             {
                 ConfigToolTips.SetToolTips(1);
             }
+
+            //SettingsDirtyFlag = true; // now its safe to save settings as all content is loaded
 
         }
 
@@ -1334,7 +1340,7 @@ namespace MedLaunch
             // Load data by setting the CollectionViewSource.Source property:
             // globalSettingsViewModelViewSource.Source = [generic data source]
 
-
+            SettingsDirtyFlag = true; // now safe to save settings
         }
 
         // Netplay Settings - netplay page
@@ -4286,6 +4292,72 @@ namespace MedLaunch
                 CloseOnOverlay = false,
                 ShowCloseButton = false
             }, RootGrid);
+        }
+
+        private void tbSettings_Paths_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (SettingsDirtyFlag == true)
+                ConfigsVisualHandler.SaveSettings(SettingGroup.GamePaths);
+        }
+
+        private void tbSettings_Global_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (SettingsDirtyFlag == true)
+                ConfigsVisualHandler.SaveSettings(SettingGroup.GlobalSettings);
+        }
+
+        private void tbSettings_BiosPaths_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (SettingsDirtyFlag == true)
+                ConfigsVisualHandler.SaveSettings(SettingGroup.BiosPaths);
+        }
+
+        private void comboSettings_Global_DropDownClosed(object sender, EventArgs e)
+        {
+            if (SettingsDirtyFlag == true)
+                ConfigsVisualHandler.SaveSettings(SettingGroup.GlobalSettings);
+        }
+
+        private void slSettings_Global_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (SettingsDirtyFlag == true)
+                ConfigsVisualHandler.SaveSettings(SettingGroup.GlobalSettings);
+        }
+
+        private void tbSettings_MednafenPaths_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (SettingsDirtyFlag == true)
+                ConfigsVisualHandler.SaveSettings(SettingGroup.MednafenPaths);
+        }
+
+        private void tbSettings_Netplay_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (SettingsDirtyFlag == true)
+                ConfigsVisualHandler.SaveSettings(SettingGroup.NetplaySettings);
+        }
+
+        private void tbSettings_Server_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (SettingsDirtyFlag == true)
+                ConfigsVisualHandler.SaveSettings(SettingGroup.ServerSettings);
+        }
+
+        private void slSettings_Server_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (SettingsDirtyFlag == true)
+                ConfigsVisualHandler.SaveSettings(SettingGroup.ServerSettings);
+        }
+
+        private void slSettings_Netplay_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (SettingsDirtyFlag == true)
+                ConfigsVisualHandler.SaveSettings(SettingGroup.NetplaySettings);
+        }
+
+        private void rbSettings_Netplay_Checked(object sender, RoutedEventArgs e)
+        {
+            if (SettingsDirtyFlag == true)
+                ConfigsVisualHandler.SaveSettings(SettingGroup.NetplaySettings);
         }
     }
     /*

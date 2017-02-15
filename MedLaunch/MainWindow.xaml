@@ -10034,9 +10034,9 @@
                                 </WrapPanel>
                             </Expander>
                         </Border>
-
-                        <Button Style="{StaticResource MenuButton}"  x:Name="btnSettingsSaveAllChanges"  Content="SAVE ALL CHANGES" Background="{DynamicResource AccentColorBrush}" Click="btnSettingsSaveAllChanges_Click" ></Button>
                         <!--
+                        <Button Style="{StaticResource MenuButton}"  x:Name="btnSettingsSaveAllChanges"  Content="SAVE ALL CHANGES" Background="{DynamicResource AccentColorBrush}" Click="btnSettingsSaveAllChanges_Click" ></Button>
+                        
                         <Button x:Name="btnSettingsCancelAllChanges" Content="Cancel Changes" Background="Red" Click="btnSettingsCancelAllChanges_Click" ></Button>
                         -->
                         <Label x:Name="lblSettingsLabel" HorizontalContentAlignment="Center"></Label>
@@ -10091,7 +10091,7 @@
                                                 </Grid.RowDefinitions>
 
                                                 <Button  HorizontalContentAlignment="Left" x:Name="btnPathMednafen" Grid.Column="0" Grid.Row="1" Click="btnPathMednafen_Click">Mednafen Folder</Button>
-                                                <TextBox x:Name="tbPathMednafen" Grid.Column="1" Grid.Row="1"></TextBox>
+                                                <TextBox x:Name="tbPathMednafen" Grid.Column="1" Grid.Row="1" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3" x:Name="dpZoomSlider">
                                                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">GUI Zoom</Label>
@@ -10161,7 +10161,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <Label Grid.Row="10" HorizontalContentAlignment="Left" Grid.Column="0">Image ToolTip size (% of current window size)</Label>
-                                                    <ComboBox SelectedValuePath="Tag" Name="comboImageTooltipSize" Grid.Row="10" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBox SelectedValuePath="Tag" Name="comboImageTooltipSize" Grid.Row="10" Grid.Column="1" Margin="0,0,0,10" DropDownClosed="comboSettings_Global_DropDownClosed">
                                                         <ComboBoxItem Tag="0.3">30%</ComboBoxItem>
                                                         <ComboBoxItem Tag="0.4">40%</ComboBoxItem>
                                                         <ComboBoxItem Tag="0.5">50%</ComboBoxItem>
@@ -10332,16 +10332,16 @@
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="12" VerticalAlignment="Center" Margin="5">
                                                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Maximum Number of Screenshots to Download (per website)</Label>
-                                                    <TextBox Text="{Binding ElementName=slScreenshotsPerHost, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <TextBox Text="{Binding ElementName=slScreenshotsPerHost, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" TextChanged="tbSettings_Global_TextChanged" />
                                                     <Slider Maximum="36" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
-                                        Name="slScreenshotsPerHost"/>
+                                        Name="slScreenshotsPerHost" />
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="13" VerticalAlignment="Center" Margin="5">
                                                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Maximum Number of Fanart Images to Download (total)</Label>
-                                                    <TextBox Text="{Binding ElementName=slFanrtsPerHost, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <TextBox Text="{Binding ElementName=slFanrtsPerHost, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" TextChanged="tbSettings_Global_TextChanged"  />
                                                     <Slider Maximum="36" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
-                                        Name="slFanrtsPerHost" />
+                                        Name="slFanrtsPerHost"/>
                                                 </DockPanel>
 
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="17">
@@ -10384,31 +10384,31 @@
                                                 </Grid.RowDefinitions>
 
                                                 <Button HorizontalContentAlignment="Left" x:Name="btnPathCheat" Grid.Column="0" Grid.Row="1" Click="btnMednafenPaths_Click">Cheats</Button>
-                                                <TextBox x:Name="cfg_filesys__path_cheat" Grid.Column="1" Grid.Row="1"></TextBox>
+                                                <TextBox x:Name="cfg_filesys__path_cheat" Grid.Column="1" Grid.Row="1" TextChanged="tbSettings_MednafenPaths_TextChanged"></TextBox>
 
                                                 <Button HorizontalContentAlignment="Left" x:Name="btnPathFirmware" Grid.Column="0" Grid.Row="2" Click="btnMednafenPaths_Click">Firmware</Button>
-                                                <TextBox x:Name="cfg_filesys__path_firmware" Grid.Column="1" Grid.Row="2"></TextBox>
+                                                <TextBox x:Name="cfg_filesys__path_firmware" Grid.Column="1" Grid.Row="2" TextChanged="tbSettings_MednafenPaths_TextChanged"></TextBox>
 
                                                 <Button HorizontalContentAlignment="Left" x:Name="btnPathMovie" Grid.Column="0" Grid.Row="3" Click="btnMednafenPaths_Click">Movies</Button>
-                                                <TextBox x:Name="cfg_filesys__path_movie" Grid.Column="1" Grid.Row="3"></TextBox>
+                                                <TextBox x:Name="cfg_filesys__path_movie" Grid.Column="1" Grid.Row="3" TextChanged="tbSettings_MednafenPaths_TextChanged"></TextBox>
 
                                                 <Button HorizontalContentAlignment="Left" x:Name="btnPathPalette" Grid.Column="0" Grid.Row="4" Click="btnMednafenPaths_Click">Palettes</Button>
-                                                <TextBox x:Name="cfg_filesys__path_palette" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                <TextBox x:Name="cfg_filesys__path_palette" Grid.Column="1" Grid.Row="4" TextChanged="tbSettings_MednafenPaths_TextChanged"></TextBox>
 
                                                 <Button HorizontalContentAlignment="Left" x:Name="btnPathPgconfig" Grid.Column="0" Grid.Row="5" Click="btnMednafenPaths_Click">Per-Game Configs</Button>
-                                                <TextBox x:Name="cfg_filesys__path_pgconfig" Grid.Column="1" Grid.Row="5"></TextBox>
+                                                <TextBox x:Name="cfg_filesys__path_pgconfig" Grid.Column="1" Grid.Row="5" TextChanged="tbSettings_MednafenPaths_TextChanged"></TextBox>
 
                                                 <Button HorizontalContentAlignment="Left" x:Name="btnPathSav" Grid.Column="0" Grid.Row="6" Click="btnMednafenPaths_Click">Saves</Button>
-                                                <TextBox x:Name="cfg_filesys__path_sav" Grid.Column="1" Grid.Row="6"></TextBox>
+                                                <TextBox x:Name="cfg_filesys__path_sav" Grid.Column="1" Grid.Row="6" TextChanged="tbSettings_MednafenPaths_TextChanged"></TextBox>
 
                                                 <Button HorizontalContentAlignment="Left" x:Name="btnPathSavbackup" Grid.Column="0" Grid.Row="7" Click="btnMednafenPaths_Click">Save Backup</Button>
-                                                <TextBox x:Name="cfg_filesys__path_savbackup" Grid.Column="1" Grid.Row="7"></TextBox>
+                                                <TextBox x:Name="cfg_filesys__path_savbackup" Grid.Column="1" Grid.Row="7" TextChanged="tbSettings_MednafenPaths_TextChanged"></TextBox>
 
                                                 <Button HorizontalContentAlignment="Left" x:Name="btnPathSnap" Grid.Column="0" Grid.Row="8" Click="btnMednafenPaths_Click">Snapshots</Button>
-                                                <TextBox x:Name="cfg_filesys__path_snap" Grid.Column="1" Grid.Row="8"></TextBox>
+                                                <TextBox x:Name="cfg_filesys__path_snap" Grid.Column="1" Grid.Row="8" TextChanged="tbSettings_MednafenPaths_TextChanged"></TextBox>
 
                                                 <Button HorizontalContentAlignment="Left" x:Name="btnPathState" Grid.Column="0" Grid.Row="9" Click="btnMednafenPaths_Click">Save States</Button>
-                                                <TextBox x:Name="cfg_filesys__path_state" Grid.Column="1" Grid.Row="9"></TextBox>
+                                                <TextBox x:Name="cfg_filesys__path_state" Grid.Column="1" Grid.Row="9" TextChanged="tbSettings_MednafenPaths_TextChanged"></TextBox>
 
 
 
@@ -10449,49 +10449,49 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
 
-                                                <TextBox x:Name="tbPathGb" Grid.Column="1" Grid.Row="0"></TextBox>
-                                                <Button x:Name="btnPathGb" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="0" Click="btnPathGb_Click">GameBoy</Button>
+                                                <TextBox x:Name="tbPathGb" Grid.Column="1" Grid.Row="0" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
+                                                <Button x:Name="btnPathGb" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="0" Click="btnPathGb_Click" >GameBoy</Button>
 
-                                                <TextBox x:Name="tbPathGba" Grid.Column="1" Grid.Row="1"></TextBox>
+                                                <TextBox x:Name="tbPathGba" Grid.Column="1" Grid.Row="1" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
                                                 <Button x:Name="btnPathGba" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="1" Click="btnPathGba_Click">GB Advance</Button>
 
-                                                <TextBox x:Name="tbPathGg" Grid.Column="1" Grid.Row="2"></TextBox>
+                                                <TextBox x:Name="tbPathGg" Grid.Column="1" Grid.Row="2" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
                                                 <Button x:Name="btnPathGg" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="2" Click="btnPathGg_Click">GameGear</Button>
 
-                                                <TextBox x:Name="tbPathLynx" Grid.Column="1" Grid.Row="3"></TextBox>
+                                                <TextBox x:Name="tbPathLynx" Grid.Column="1" Grid.Row="3" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
                                                 <Button x:Name="btnPathLynx" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="3" Click="btnPathLynx_Click">Lynx</Button>
 
-                                                <TextBox x:Name="tbPathMd" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                <TextBox x:Name="tbPathMd" Grid.Column="1" Grid.Row="4" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
                                                 <Button x:Name="btnPathMd" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="4" Click="btnPathMd_Click">MegaDrive</Button>
 
-                                                <TextBox x:Name="tbPathNes" Grid.Column="1" Grid.Row="5"></TextBox>
+                                                <TextBox x:Name="tbPathNes" Grid.Column="1" Grid.Row="5" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
                                                 <Button x:Name="btnPathNes" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="5" Click="btnPathNes_Click">NES</Button>
 
-                                                <TextBox x:Name="tbPathSnes" Grid.Column="1" Grid.Row="6"></TextBox>
+                                                <TextBox x:Name="tbPathSnes" Grid.Column="1" Grid.Row="6" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
                                                 <Button x:Name="btnPathSnes" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="6" Click="btnPathSnes_Click">SNES</Button>
 
-                                                <TextBox x:Name="tbPathNgp" Grid.Column="1" Grid.Row="7"></TextBox>
+                                                <TextBox x:Name="tbPathNgp" Grid.Column="1" Grid.Row="7" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
                                                 <Button x:Name="btnPathNgp" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="7" Click="btnPathNgp_Click">NeoGeo PC</Button>
 
-                                                <TextBox x:Name="tbPathPce" Grid.Column="1" Grid.Row="8"></TextBox>
+                                                <TextBox x:Name="tbPathPce" Grid.Column="1" Grid.Row="8" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
                                                 <Button x:Name="btnPathPce" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="8" Click="btnPathPce_Click">PC-Engine</Button>
 
-                                                <TextBox x:Name="tbPathPcfx" Grid.Column="1" Grid.Row="9"></TextBox>
+                                                <TextBox x:Name="tbPathPcfx" Grid.Column="1" Grid.Row="9" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
                                                 <Button x:Name="btnPathPcfx" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="9" Click="btnPathPcfx_Click">PC-FX</Button>
 
-                                                <TextBox x:Name="tbPathPsx" Grid.Column="1" Grid.Row="10"></TextBox>
+                                                <TextBox x:Name="tbPathPsx" Grid.Column="1" Grid.Row="10" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
                                                 <Button x:Name="btnPathPsx" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="10" Click="btnPathPsx_Click">PSX</Button>
 
-                                                <TextBox x:Name="tbPathSs" Grid.Column="1" Grid.Row="11"></TextBox>
+                                                <TextBox x:Name="tbPathSs" Grid.Column="1" Grid.Row="11" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
                                                 <Button x:Name="btnPathSs" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="11" Click="btnPathSs_Click">Saturn</Button>
 
-                                                <TextBox x:Name="tbPathMs" Grid.Column="1" Grid.Row="12"></TextBox>
+                                                <TextBox x:Name="tbPathMs" Grid.Column="1" Grid.Row="12" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
                                                 <Button x:Name="btnPathMs" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="12" Click="btnPathMs_Click">MasterSystem</Button>
 
-                                                <TextBox x:Name="tbPathVb" Grid.Column="1" Grid.Row="13"></TextBox>
+                                                <TextBox x:Name="tbPathVb" Grid.Column="1" Grid.Row="13" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
                                                 <Button x:Name="btnPathVb" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="13" Click="btnPathVb_Click">VirtualBoy</Button>
 
-                                                <TextBox x:Name="tbPathWswan" Grid.Column="1" Grid.Row="14"></TextBox>
+                                                <TextBox x:Name="tbPathWswan" Grid.Column="1" Grid.Row="14" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
                                                 <Button x:Name="btnPathWswan" Grid.Column="0" Grid.Row="14" Click="btnPathWswan_Click">WonderSwan</Button>
 
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="17">
@@ -10535,40 +10535,40 @@
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
 
-                                                <TextBox x:Name="cfg_gba__bios" Grid.Column="1" Grid.Row="0"></TextBox>
+                                                <TextBox x:Name="cfg_gba__bios" Grid.Column="1" Grid.Row="0" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
                                                 <Button x:Name="tbBiosGba" Grid.Column="0" Grid.Row="0" Click="btnMednafenBiosPaths_Click">GBA Bios</Button>
 
-                                                <TextBox x:Name="cfg_pce__gecdbios" Grid.Column="1" Grid.Row="1"></TextBox>
+                                                <TextBox x:Name="cfg_pce__gecdbios" Grid.Column="1" Grid.Row="1" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
                                                 <Button x:Name="tbBiosPceGe" Grid.Column="0" Grid.Row="1" Click="btnMednafenBiosPaths_Click">PCE GE Bios</Button>
 
-                                                <TextBox x:Name="cfg_pce__cdbios" Grid.Column="1" Grid.Row="2"></TextBox>
+                                                <TextBox x:Name="cfg_pce__cdbios" Grid.Column="1" Grid.Row="2" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
                                                 <Button x:Name="tbBiosPceCd" Grid.Column="0" Grid.Row="2" Click="btnMednafenBiosPaths_Click">PCE CD Bios</Button>
 
-                                                <TextBox x:Name="cfg_pce_fast__cdbios" Grid.Column="1" Grid.Row="3"></TextBox>
+                                                <TextBox x:Name="cfg_pce_fast__cdbios" Grid.Column="1" Grid.Row="3" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
                                                 <Button x:Name="tbBiosPceFastCd" Grid.Column="0" Grid.Row="3" Click="btnMednafenBiosPaths_Click">PCE_Fast CD Bios</Button>
 
-                                                <TextBox x:Name="cfg_pcfx__bios" Grid.Column="1" Grid.Row="4"></TextBox>
+                                                <TextBox x:Name="cfg_pcfx__bios" Grid.Column="1" Grid.Row="4" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
                                                 <Button x:Name="tbBiosPcfx" Grid.Column="0" Grid.Row="4" Click="btnMednafenBiosPaths_Click">PC-FX Bios</Button>
 
-                                                <TextBox x:Name="cfg_md__cdbios" Grid.Column="1" Grid.Row="5"></TextBox>
+                                                <TextBox x:Name="cfg_md__cdbios" Grid.Column="1" Grid.Row="5" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
                                                 <Button x:Name="tbBiosMdCd" Grid.Column="0" Grid.Row="5" Click="btnMednafenBiosPaths_Click">MD CD Bios</Button>
 
-                                                <TextBox x:Name="cfg_nes__ggrom" Grid.Column="1" Grid.Row="6"></TextBox>
+                                                <TextBox x:Name="cfg_nes__ggrom" Grid.Column="1" Grid.Row="6" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
                                                 <Button x:Name="tbBiosNesGg" Grid.Column="0" Grid.Row="6" Click="btnMednafenBiosPaths_Click">NES GG Rom</Button>
 
-                                                <TextBox x:Name="cfg_ss__bios_jp" Grid.Column="1" Grid.Row="7"></TextBox>
+                                                <TextBox x:Name="cfg_ss__bios_jp" Grid.Column="1" Grid.Row="7" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
                                                 <Button x:Name="tbBiosSsJp" Grid.Column="0" Grid.Row="7" Click="btnMednafenBiosPaths_Click">SS Japanese Bios</Button>
 
-                                                <TextBox x:Name="cfg_ss__bios_na_eu" Grid.Column="1" Grid.Row="8"></TextBox>
+                                                <TextBox x:Name="cfg_ss__bios_na_eu" Grid.Column="1" Grid.Row="8" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
                                                 <Button x:Name="tbBiosSsNaEu" Grid.Column="0" Grid.Row="8" Click="btnMednafenBiosPaths_Click">SS NA/EU Bios</Button>
 
-                                                <TextBox x:Name="cfg_psx__bios_eu" Grid.Column="1" Grid.Row="9"></TextBox>
+                                                <TextBox x:Name="cfg_psx__bios_eu" Grid.Column="1" Grid.Row="9" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
                                                 <Button x:Name="tbBiosPsxEu" Grid.Column="0" Grid.Row="9" Click="btnMednafenBiosPaths_Click">PSX EU Bios</Button>
 
-                                                <TextBox x:Name="cfg_psx__bios_jp" Grid.Column="1" Grid.Row="10"></TextBox>
+                                                <TextBox x:Name="cfg_psx__bios_jp" Grid.Column="1" Grid.Row="10" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
                                                 <Button x:Name="tbBiosPsxJp" Grid.Column="0" Grid.Row="10" Click="btnMednafenBiosPaths_Click">PSX JP Bios</Button>
 
-                                                <TextBox x:Name="cfg_psx__bios_na" Grid.Column="1" Grid.Row="11"></TextBox>
+                                                <TextBox x:Name="cfg_psx__bios_na" Grid.Column="1" Grid.Row="11" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
                                                 <Button x:Name="tbBiosPsxNa" Grid.Column="0" Grid.Row="11" Click="btnMednafenBiosPaths_Click">PSX NA Bios</Button>
 
                                             </Grid>
@@ -10602,38 +10602,38 @@
                                                 
 
                                                 <Label Grid.Row="2">Nickname</Label>
-                                                <TextBox x:Name="tbNetplayNick" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" />
+                                                <TextBox x:Name="tbNetplayNick" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" TextChanged="tbSettings_Netplay_TextChanged" />
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="20">
                                                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Console Font</Label>
                                                     <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
 
-                                                        <RadioButton x:Name="resOne" GroupName="ConsoleFont" Content="5x7" Margin="4"/>
-                                                        <RadioButton x:Name="resTwo" GroupName="ConsoleFont" Content="6x9" Margin="4"/>
-                                                        <RadioButton x:Name="resThree" GroupName="ConsoleFont" Content="6x12" Margin="4"/>
-                                                        <RadioButton x:Name="resFour" GroupName="ConsoleFont" Content="6x13" Margin="4"/>
-                                                        <RadioButton x:Name="resFive" GroupName="ConsoleFont" Content="9x18" Margin="4" />
+                                                        <RadioButton x:Name="resOne" GroupName="ConsoleFont" Content="5x7" Margin="4" Checked="rbSettings_Netplay_Checked"/>
+                                                        <RadioButton x:Name="resTwo" GroupName="ConsoleFont" Content="6x9" Margin="4" Checked="rbSettings_Netplay_Checked"/>
+                                                        <RadioButton x:Name="resThree" GroupName="ConsoleFont" Content="6x12" Margin="4" Checked="rbSettings_Netplay_Checked"/>
+                                                        <RadioButton x:Name="resFour" GroupName="ConsoleFont" Content="6x13" Margin="4" Checked="rbSettings_Netplay_Checked"/>
+                                                        <RadioButton x:Name="resFive" GroupName="ConsoleFont" Content="9x18" Margin="4" Checked="rbSettings_Netplay_Checked"/>
 
                                                     </StackPanel>
                                                 </DockPanel>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Center" Margin="20">
                                                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Number of Local Players</Label>
-                                                    <TextBox Text="{Binding ElementName=slLocalPlayersValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <TextBox Text="{Binding ElementName=slLocalPlayersValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" TextChanged="tbSettings_Netplay_TextChanged" />
                                                     <Slider Maximum="16" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="slLocalPlayersValue"/>
                                                 </DockPanel>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Center" Margin="20">
                                                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Number of Console Lines</Label>
-                                                    <TextBox Text="{Binding ElementName=slConsoleLinesValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <TextBox Text="{Binding ElementName=slConsoleLinesValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" TextChanged="tbSettings_Netplay_TextChanged" />
                                                     <Slider Maximum="64" Minimum="5" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
-                                        Name="slConsoleLinesValue"  />
+                                        Name="slConsoleLinesValue" />
                                                 </DockPanel>
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Center" Margin="20">
                                                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Console Scale</Label>
-                                                    <TextBox Text="{Binding ElementName=slConsoleScaleValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <TextBox Text="{Binding ElementName=slConsoleScaleValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" TextChanged="tbSettings_Netplay_TextChanged" />
                                                     <Slider Maximum="16" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
-                                        Name="slConsoleScaleValue" />
+                                        Name="slConsoleScaleValue"  />
                                                 </DockPanel>
 
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="7">
@@ -10692,23 +10692,23 @@
 
 
                                                 <Label Name="lblServerDesc" Grid.Row="6" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">Server Description</Label>
-                                                <TextBox x:Name="tbServerDesc" Grid.Row="6" Grid.Column="1" Margin="10" />
+                                                <TextBox x:Name="tbServerDesc" Grid.Row="6" Grid.Column="1" Margin="10" TextChanged="tbSettings_Server_TextChanged" />
 
                                                 <Label Name="lblHostname" Grid.Row="7" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">Host/IP</Label>
-                                                <TextBox x:Name="tbHostname" Grid.Row="7" Grid.Column="1" Margin="10" />
+                                                <TextBox x:Name="tbHostname" Grid.Row="7" Grid.Column="1" Margin="10" TextChanged="tbSettings_Server_TextChanged" />
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="8" VerticalAlignment="Center" Margin="10">
                                                     <Label Name="lblServerPort" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Port</Label>
-                                                    <TextBox Name="lblServerPortTxt" Text="{Binding ElementName=slServerPort, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <TextBox Name="lblServerPortTxt" Text="{Binding ElementName=slServerPort, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" TextChanged="tbSettings_Server_TextChanged" />
                                                     <Slider Maximum="65535" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
-                                        Name="slServerPort"/>
+                                        Name="slServerPort" />
                                                 </DockPanel>
 
                                                 <Label Name="lblPassword" Grid.Row="9" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">Password</Label>
-                                                <TextBox x:Name="tbPassword" Grid.Row="9" Grid.Column="1" Margin="10" />
+                                                <TextBox x:Name="tbPassword" Grid.Row="9" Grid.Column="1" Margin="10" TextChanged="tbSettings_Server_TextChanged" />
 
                                                 <Label Name="lblGamekey" Grid.Row="10" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">GameKey</Label>
-                                                <TextBox x:Name="tbGameKey" Grid.Row="10" Grid.Column="1" Margin="10" />
+                                                <TextBox x:Name="tbGameKey" Grid.Row="10" Grid.Column="1" Margin="10" TextChanged="tbSettings_Server_TextChanged" />
 
 
 
