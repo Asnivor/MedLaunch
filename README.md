@@ -34,14 +34,15 @@ Compatible with Mednafen: 0.9.42.x
 * Local (SQLite) auto-generated database where all settings are saved
 * Built-in games library (with system filters and dynamic search)
 * ROM scanner (for games library import)
+* Supports the usual Mednafen rom and disk formats along with 7z archive handling for ROMs (one ROM per archive)
 * Combined NoIntro/ToSec MD5 hash auto-lookup (for populating some of the games library data on ROM import).
-* Scraping of game data and media from thegamesdb.net
+* Scraping of game data and media from thegamesdb.net and mobygames
 * Games library sidebar for game info, stats and media
 * Manual import of disk-based games (both single and multiple disk games with auto-m3u playlist generation)
-* All Mednafen command line parameters available and configurable
+* Nearly all Mednafen command line parameters available and configurable
 * Built-in browser control with links to Mednafen help pages
-* Built-in static netplay server selection along with the ability to specify a custom Mednafen netplay server to connect to
-* Customizable launcher color scheme
+* Built-in netplay server selection
+* Customizable color scheme
 
 This upcoming changes (and many others) can be found in the current roadmap [here](http://medlaunch.asnitech.co.uk/roadmap).
 
