@@ -28,8 +28,6 @@
 Latest Version: 0.4.3.0
 Compatible with Mednafen: 0.9.42.x
 
-! Please Note: You should consider this software beta.
-
 ### Features
 * Responsive GUI that allows for a wide range of monitor resolutions
 * No installation required
