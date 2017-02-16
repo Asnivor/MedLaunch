@@ -2,6 +2,7 @@
 # MedLaunch
 ## A Windows Front-End for Mednafen
 
+
 <a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/games01.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/games01.png" width="150" /></a>
 <a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/games02.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/games02.png" width="150" /></a>
 <a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/romscanner01.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/romscanner01.png" width="150" /></a>
@@ -22,7 +23,10 @@
 
 [http://medlaunch.asnitech.co.uk/](http://medlaunch.asnitech.co.uk/)
 
-**MedLaunch** is a .NET (Windows only) front-end for the excellent [Mednafen](http://mednafen.fobby.net/) multi-system emulator. 
+**MedLaunch** is a .NET (Windows only) front-end for the excellent [Mednafen](http://mednafen.fobby.net/) multi-system emulator.
+
+Latest Version: 0.4.3.0
+Compatible with Mednafen: 0.9.42.x
 
 ! Please Note: You should consider this software beta.
 
@@ -50,22 +54,22 @@ This upcoming changes (and many others) can be found in the current roadmap [her
 * x64 (has not been tested on x86 but should still work on it)
 
 ### Download
-You can always get the latest release build of MedLaunch on the [GitHub Releases](https://github.com/Asnivor/MedLaunch/releases) page. I am actively working on code in the [Master Branch](https://github.com/Asnivor/MedLaunch/tree/master) and you can see the active changes for the next release on the [ChangeLog](http://medlaunch.asnitech.co.uk/changelog). These pre-release changes will be released when I am happy with them, so please do not ask for builds ahead of the official releases. You can of course get yourself a copy of Visual Studio Community installed and build it yourself from the Master branch. 
+You can always get the latest release build of MedLaunch on the [GitHub Releases](https://github.com/Asnivor/MedLaunch/releases) page. I am actively working on code in the [Master Branch](https://github.com/Asnivor/MedLaunch/tree/master) and you can see the active changes for the next release on the [ChangeLog](http://medlaunch.asnitech.co.uk/changelog). These pre-release changes will be released when I am happy with them, so please do not ask for builds ahead of the official releases. You can of course get yourself a copy of Visual Studio Community installed and build it yourself from the Master branch.
 
 ! You can download the latest version of Mednafen from the [**Mednafen website**](http://mednafen.fobby.net/releases/).
 
 #### New Install
-* Extract this release to a folder, run the 'MedLaunch.exe' executable and choose your Mednafen directory (must be the Mednafen 0.9.42.x branch and 64-bit version if you want to emulate Saturn games). 
+* Extract this release to a folder, run the 'MedLaunch.exe' executable and choose your Mednafen directory (must be the Mednafen 0.9.42.x branch and 64-bit version if you want to emulate Saturn games).
 * You are then prompted to choose whether to import all config settings from your Mednafen folder into the MedLaunch database (this is recommended).
 * If you currently use system-specific config files with Mednafen the settings from these will be imported with the above process. However MedLaunch will write to these files when you launch a game - so back them up somewhere if you are not happy with this.
 
 #### Upgrade
-##### Preferred Method: 
+##### Preferred Method:
 * Automatically download and upgrade using the 'Updates' tab within MedLaunch itself.
 * Once MedLaunch has upgraded, go to the 'Configs' tab and click the 'IMPORT ALL CONFIGS FROM DISK' button
 
-##### Manual Method: 
-* You can safely extract this new release over an existing MedLaunch folder (providing you do not have MedLaunch running at the time) 
+##### Manual Method:
+* You can safely extract this new release over an existing MedLaunch folder (providing you do not have MedLaunch running at the time)
 * Once extracted run the MedLaunch.exe executable and your current database will be upgraded before the application starts proper.
 * Once MedLaunch has upgraded, go to the 'Configs' tab and click the 'IMPORT ALL CONFIGS FROM DISK' button
 
