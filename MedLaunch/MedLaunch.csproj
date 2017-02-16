@@ -358,6 +358,9 @@
     <Compile Include="Models\ScraperMaster.cs" />
     <Compile Include="Models\SearchOrdering.cs" />
     <Compile Include="Models\Versions.cs" />
+    <Compile Include="ScrapedDataAudit.xaml.cs">
+      <DependentUpon>ScrapedDataAudit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ThemeManagerHelper.cs" />
     <Page Include="AccentStyleWindow.xaml">
       <SubType>Designer</SubType>
@@ -402,6 +405,10 @@
     <Page Include="Resources\IconsNonShared.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ScrapedDataAudit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

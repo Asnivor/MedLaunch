@@ -94,9 +94,7 @@
                             <MenuItem x:Name="MenuScanRoms5" Header="Rescan GG" Click="ScanRoms_Click" />
                             <MenuItem x:Name="MenuScanRoms3" Header="Rescan LYNX" Click="ScanRoms_Click" />
                         </MenuItem>
-                        <MenuItem Header="Scraping" ContextMenuService.IsEnabled="False" Click="TopMenu_Click" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
-                            <MenuItem Header="Audit Scraped Data Folder" ToolTip="Show a list of game data that has been scraped along with system and game title" />
-                        </MenuItem>
+                        <MenuItem Name="AuditScrapedData" Header="Audit Scraped Data Folder" ToolTip="Show a list of game data that has been scraped along with system and game title" Click="AuditScrapedData_Click"/>
                         <MenuItem Header="Library Column Visibility" Click="MenuItemColumn_Click" />
                     </ContextMenu>
                 </Button.ContextMenu>

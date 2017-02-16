@@ -4426,6 +4426,19 @@ namespace MedLaunch
             if (SettingsDirtyFlag == true)
                 ConfigsVisualHandler.SaveSettings(SettingGroup.NetplaySettings);
         }
+
+        private async void AuditScrapedData_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            await mw.ShowChildWindowAsync(new ScrapedDataAudit()
+            {
+                IsModal = true,
+                AllowMove = false,
+                Title = "Scraped Data Folder Audit",
+                CloseOnOverlay = false,
+                ShowCloseButton = false
+            }, RootGrid);
+        }
     }
     /*
     public class SliderIgnoreDelta : Slider

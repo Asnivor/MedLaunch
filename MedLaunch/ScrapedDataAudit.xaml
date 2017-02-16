@@ -1,0 +1,81 @@
+﻿<simpleChildWindow:ChildWindow x:Class="MedLaunch.ScrapedDataAudit"
+							   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+							   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+							   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+							   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+							   xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
+							   mc:Ignorable="d"
+							   d:DesignHeight="800"
+							   d:DesignWidth="600"
+							   CloseOnOverlay="True"
+							   GlowBrush="{DynamicResource AccentColorBrush}"
+							   BorderBrush="{DynamicResource AccentColorBrush}"
+							   BorderThickness="1"
+							   ShowCloseButton="True"
+                               IsModal="True">
+
+    <simpleChildWindow:ChildWindow.Icon>
+        <Rectangle Width="22"
+				   Height="22"
+				   Fill="{DynamicResource IdealForegroundColorBrush}">
+            <Rectangle.OpacityMask>
+                <VisualBrush Stretch="Uniform"
+							 Visual="{DynamicResource appbar_cog}" />
+            </Rectangle.OpacityMask>
+        </Rectangle>
+    </simpleChildWindow:ChildWindow.Icon>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+				   Margin="5"
+				   FontSize="36"
+				   FontWeight="Thin"
+				   Text="Matches Found" />
+
+        <DataGrid Height="500" x:Name="dgAudit" AutoGenerateColumns="False" ItemsSource="{Binding}" IsReadOnly="True" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Folder" Binding="{Binding FolderName}" />
+                <DataGridTextColumn Header="Game" Binding="{Binding GameName}" />
+                <DataGridTextColumn Header="Platform" Binding="{Binding System}" />
+                <DataGridCheckBoxColumn Header="In Use" Binding="{Binding IsLinked}" />
+                <DataGridTemplateColumn Header="Local">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnLocal" Click="btnLocal_Click">
+                                Open Folder
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Online">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnOnline" Click="btnOnline_Click">
+                                View on thegamesdb.net
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        
+
+        <Button Grid.Row="3"
+                
+				Margin="5"
+				IsDefault="True"
+				VerticalAlignment="Bottom"
+				FontSize="20"
+				FontWeight="Thin"
+				Content="Close"
+				Click="CloseSec_OnClick" />
+    </Grid>
+</simpleChildWindow:ChildWindow>
