@@ -528,6 +528,7 @@
                                 <DataGrid.ContextMenu>
                                     <ContextMenu x:Name="dgContext">
                                         <MenuItem x:Name="LaunchRom" Header="Play Game" Click="LaunchRom_Click" />
+                                        <MenuItem x:Name="LaunchRomShowConfig" Header="Play Game (View/Edit Launch String First)" Click="LaunchRomShowConfig_Click" />
                                         <MenuItem Header="Favorites" Click="MenuItemFavorite_Click" />
                                         <MenuItem Header="Copy Launch String to Clipboard" Click="CopyLaunchStringToClipboard_Click" />
                                         <MenuItem Header="Identify and Scrape Game" Click="btnScrapingPickGame_Click" />
@@ -10187,6 +10188,12 @@
                                                           ToolTip="MedLaunch maintains a cache of rom files that have been extracted from *.7z files before they are launched. Enabling this option will delete the contents of this folder when MedLaunch is closed">
                                                     Clear Rom Cache Folder on Exit
                                                 </CheckBox>
+
+                                                <!--
+                                                <CheckBox Grid.Row="14" Grid.ColumnSpan="2" Name="chkShowLaunchStringPreLaunch">
+                                                    Show the (editable) Launch String Every Time a Game is Launched
+                                                </CheckBox>
+                                                -->
 
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="17">
                                                     

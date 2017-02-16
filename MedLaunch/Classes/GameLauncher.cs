@@ -710,6 +710,74 @@ namespace MedLaunch.Classes
             }
         }
 
+        /// <summary>
+        /// Rename all [system].cfg files in the mednafen directory
+        /// </summary>
+        public static void SystemConfigsOff()
+        {
+            // get a list of systems
+            var systems = from s in GSystem.GetSystems()
+                          select s.systemCode.ToLower();
+
+            // check the mednafen directory exists before proceeding
+            if (Paths.isMednafenPathValid() == false)
+                return;
+
+            string medpath = Paths.GetPaths().mednafenExe;
+
+            // iterate through each system name
+            foreach (string sys in systems)
+            {
+                // check for system.cfg
+                if (File.Exists(medpath + "\\" + sys + ".cfg"))
+                {
+                    // does a backup already exist? if so delete it
+                    if (File.Exists(medpath + "\\" + sys + ".cfgBackup"))
+                    {
+                        File.Delete(medpath + "\\" + sys + ".cfgBackup");
+                    }
+
+                    // rename system.cfg
+                    File.Move(medpath + "\\" + sys + ".cfg", medpath + "\\" + sys + ".cfgBackup");
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Name back all [system].cfg files in the mednafen directory
+        /// </summary>
+        public static void SystemConfigsOn()
+        {
+            // get a list of systems
+            var systems = from s in GSystem.GetSystems()
+                          select s.systemCode.ToLower();
+
+            // check the mednafen directory exists before proceeding
+            if (Paths.isMednafenPathValid() == false)
+                return;
+
+            string medpath = Paths.GetPaths().mednafenExe;
+
+            // iterate through each system name
+            foreach (string sys in systems)
+            {
+                // check for system.cfgBackup
+                if (File.Exists(medpath + "\\" + sys + ".cfgBackup"))
+                {
+                    // does an original file already exist?
+                    if (File.Exists(medpath + "\\" + sys + ".cfg"))
+                    {
+                        // do nothing
+                        return;
+                    }
+
+                    // rename system.cfg
+                    File.Move(medpath + "\\" + sys + ".cfgBackup", medpath + "\\" + sys + ".cfg");
+                }
+            }
+        }
+
 
         // Properties
 

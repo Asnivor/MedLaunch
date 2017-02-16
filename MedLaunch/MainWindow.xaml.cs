@@ -63,6 +63,7 @@ namespace MedLaunch
     {
         public ObservableCollection<DataGridGamesView> dg { get; set; }
         public bool SettingsDirtyFlag { get; set; }
+        public string LaunchString { get; set; }
 
         public MainWindow()
         {
@@ -2057,7 +2058,7 @@ namespace MedLaunch
             GameLauncher.CopyLaunchStringToClipboard(romId);
         }
 
-        private async void LaunchRom_Click(object sender, RoutedEventArgs e)
+        private async void LaunchRomShowConfig_Click(object sender, RoutedEventArgs e)
         {
             DataGridGamesView drv = (DataGridGamesView)dgGameList.SelectedItem;
             if (drv == null)
@@ -2071,9 +2072,63 @@ namespace MedLaunch
                 return;
             }
 
+            // create new GameLauncher instance
+            GameLauncher gl = new GameLauncher(romId);
+
+            // get base config params
+            string configCmdString = gl.GetCommandLineArguments();
+
+            // set to launchstring variable
+            LaunchString = configCmdString;
+
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            await mw.ShowChildWindowAsync(new LaunchStringWindow()
+            {
+                IsModal = true,
+                AllowMove = false,
+                Title = "View / Modify Launch String",
+                CloseOnOverlay = false,
+                ShowCloseButton = false
+            }, RootGrid);
+        }
+
+        private void LaunchRom_Click(object sender, RoutedEventArgs e)
+        {
+            DataGridGamesView drv = (DataGridGamesView)dgGameList.SelectedItem;
+            if (drv == null)
+                return;
+            int romId = drv.ID;
+
+            bool b = Versions.MednafenVersionCheck();
+
+            if (b == false)
+            {
+                return;
+            }
 
             // create new GameLauncher instance
             GameLauncher gl = new GameLauncher(romId);
+            LaunchString = gl.GetCommandLineArguments();
+            LaunchRomHandler(LaunchString, false);
+        }
+
+        public async void LaunchRomHandler(string cmdlineargs, bool bypassSystemConfigs)
+        {
+            DataGridGamesView drv = (DataGridGamesView)dgGameList.SelectedItem;
+            if (drv == null)
+                return;
+            int romId = drv.ID;
+
+            bool b = Versions.MednafenVersionCheck();
+
+            if (b == false)
+            {
+                return;
+            }
+
+            // create new GameLauncher instance
+            GameLauncher gl = new GameLauncher(romId);
+
 
             // popup launch dialog
             var mySettings = new MetroDialogSettings()
@@ -2130,60 +2185,72 @@ namespace MedLaunch
                 controller.SetMessage(status);
                 await Task.Delay(50);
 
-                // get base config params
-                string configCmdString = gl.GetCommandLineArguments();
+                    string launchGame = "...Launching Game...";
+                    status += launchGame + "\n";
+                    controller.SetMessage(status);
+                    await Task.Delay(50);
 
-                string launchGame = "...Launching Game...";
-                status += launchGame + "\n";
-                controller.SetMessage(status);
-                await Task.Delay(50);
+                    // check whether minimise to taskbar option is checked
+                    bool taskbar = this.ShowInTaskbar;
+                    if (GlobalSettings.Min2TaskBar() == true)
+                    {
+                        this.ShowInTaskbar = true;
+                        this.WindowState = WindowState.Minimized;
+                    }
 
-                // check whether minimise to taskbar option is checked
-                bool taskbar = this.ShowInTaskbar;
-                if (GlobalSettings.Min2TaskBar() == true)
-                {
-                    this.ShowInTaskbar = true;
-                    this.WindowState = WindowState.Minimized;
-                }
-
-
-                // launch game
-                await Task.Run(() =>
-                {
-                    // update lastplayed time
-                    Game.SetStartedPlaying(gl.GameId);
 
                     // launch game
-                    gl.RunGame(configCmdString);
-                });
+                    await Task.Run(() =>
+                    {
+                        // update lastplayed time
+                        Game.SetStartedPlaying(gl.GameId);
+
+                        // rename system configs if neccesary (this can be removed if/when Ryphecha implements a custom config cmdline option)
+                        if (bypassSystemConfigs == true)
+                        {
+                            GameLauncher.SystemConfigsOff();
+                        }
+
+                        // launch game                        
+                        gl.RunGame(cmdlineargs);
+
+                        // name back system configs if neccesary (this can be removed if/when Ryphecha implements a custom config cmdline option)
+                        if (bypassSystemConfigs == true)
+                        {
+                            GameLauncher.SystemConfigsOn();
+                        }
 
 
-                if (GlobalSettings.Min2TaskBar() == true)
-                {
-                    this.ShowInTaskbar = taskbar;
-                    this.WindowState = WindowState.Normal;
-                }
+                    });
+
+
+                    if (GlobalSettings.Min2TaskBar() == true)
+                    {
+                        this.ShowInTaskbar = taskbar;
+                        this.WindowState = WindowState.Normal;
+                    }
 
 
 
-                await this.Dispatcher.Invoke(async () =>
-                {
-                    controller.SetTitle("Cleaning Up");
-                    controller.SetMessage("Please Wait....");
-                    await Task.Delay(100);
+                    await this.Dispatcher.Invoke(async () =>
+                    {
+                        controller.SetTitle("Cleaning Up");
+                        controller.SetMessage("Please Wait....");
+                        await Task.Delay(100);
 
-                    // update lastfinished time
-                    Game.SetFinishedPlaying(gl.GameId);
+                        // update lastfinished time
+                        Game.SetFinishedPlaying(gl.GameId);
 
-                    // update gameslibrary data as change has been made
-                    GamesLibData.ForceUpdate();
+                        // update gameslibrary data as change has been made
+                        GamesLibData.ForceUpdate();
 
-                    // refresh library view
-                    GamesLibraryVisualHandler.RefreshGamesLibrary();
-                });
+                        // refresh library view
+                        GamesLibraryVisualHandler.RefreshGamesLibrary();
+                    });
+                }                
 
                 await controller.CloseAsync();
-            }
+
             GameListBuilder.UpdateFlag();
             GamesLibraryVisualHandler.UpdateSidebar(gl.GameId);
 

@@ -322,6 +322,9 @@
     <Compile Include="InitWindow.xaml.cs">
       <DependentUpon>InitWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LaunchStringWindow.xaml.cs">
+      <DependentUpon>LaunchStringWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LibraryColumnChooser.xaml.cs">
       <DependentUpon>LibraryColumnChooser.xaml</DependentUpon>
     </Compile>
@@ -361,6 +364,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InitWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LaunchStringWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
