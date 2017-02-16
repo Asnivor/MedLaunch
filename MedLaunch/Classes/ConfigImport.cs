@@ -41,7 +41,7 @@ namespace MedLaunch.Classes
             // populate config info from database
             _Paths = Paths.GetPaths();
             _ConfigNetplaySettings = ConfigNetplaySettings.GetNetplay();
-            _ConfigServerSettings = ConfigServerSettings.GetServer(100);
+            _ConfigServerSettings = new ConfigServerSettings(); // ConfigServerSettings.GetServer(100);
 
             _ConfigBaseSettings = ConfigBaseSettings.GetConfig(2000000000);
 

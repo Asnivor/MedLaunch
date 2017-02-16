@@ -10659,9 +10659,8 @@
 
 
                                         <StackPanel x:Name="spServerSettings" Grid.Column="2">
+
                                             <Grid Margin="0">
-
-
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
                                                     <ColumnDefinition Width="*" />
@@ -10682,49 +10681,62 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
-                                                <!-- 
-                            <ComboBox x:Name="cbServers" Grid.ColumnSpan="2" Margin="20" DataContext="ServersDataObject" ItemsSource="{Binding ListOfServers}"></ComboBox>
--->
 
-                                                <RadioButton Name="rbSrv01" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Checked="rbSrv01_Checked" />
-                                                <RadioButton Name="rbSrv02" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Checked="rbSrv02_Checked" />
-                                                <RadioButton Name="rbSrv03" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Checked="rbSrv03_Checked" />
-                                                <RadioButton Name="rbSrv04" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Checked="rbSrv04_Checked" />
-                                                <RadioButton Name="rbSrvCustom" Margin="10" GroupName="Servers" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Checked="rbSrvCustom_Checked" Unchecked="rbSrvCustom_UnChecked" Content="Custom:" />
+                                                <DataGrid Grid.ColumnSpan="2" Grid.Row="0" Margin="5" Name="lvServers" MaxHeight="275" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False"
+                                                          SelectionChanged="lvServers_SelectionChanged">
+                                                    <DataGrid.Columns>
+                                                        <DataGridCheckBoxColumn Header="Selected" Binding="{Binding Selected}" />
+                                                        <DataGridTextColumn Header="ID" Binding="{Binding ID}" />
+                                                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                                                        <DataGridTextColumn Header="Host" Binding="{Binding Host}" />
+                                                        <DataGridTextColumn Header="Port" Binding="{Binding Port}" />
+                                                        <DataGridTextColumn Header="Password" Binding="{Binding Password}" />
+                                                        <DataGridTextColumn Header="Gamekey" Binding="{Binding Gamekey}" />
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
 
+                                                <UniformGrid Columns="4" Grid.ColumnSpan="2" Grid.Row="1">
+                                                    <Button Name="btnServersSelect" Padding="5" Margin="5" Click="btnServersSelect_Click">
+                                                        Use Selected Server
+                                                    </Button>
 
+                                                    <Button Name="btnServersAdd" Padding="5" Margin="5" Click="btnServersAdd_Click">
+                                                        Add Server
+                                                    </Button>
+
+                                                    <Button Name="btnServersSaveEdit" Padding="5" Margin="5" Click="btnServersSaveEdit_Click">
+                                                        Save Edit
+                                                    </Button>
+
+                                                    <Button Name="btnServersDelete" Padding="5" Margin="5" Click="btnServersDelete_Click">
+                                                        Delete Selected Server
+                                                    </Button>
+                                                </UniformGrid>
 
                                                 <Label Name="lblServerDesc" Grid.Row="6" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">Server Description</Label>
-                                                <TextBox x:Name="tbServerDesc" Grid.Row="6" Grid.Column="1" Margin="10" TextChanged="tbSettings_Server_TextChanged" />
+                                                <TextBox x:Name="tbServerDesc" Grid.Row="6" Grid.Column="1" Margin="10"/>
 
                                                 <Label Name="lblHostname" Grid.Row="7" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">Host/IP</Label>
-                                                <TextBox x:Name="tbHostname" Grid.Row="7" Grid.Column="1" Margin="10" TextChanged="tbSettings_Server_TextChanged" />
+                                                <TextBox x:Name="tbHostname" Grid.Row="7" Grid.Column="1" Margin="10" />
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="8" VerticalAlignment="Center" Margin="10">
                                                     <Label Name="lblServerPort" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Port</Label>
-                                                    <TextBox Name="lblServerPortTxt" Text="{Binding ElementName=slServerPort, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" TextChanged="tbSettings_Server_TextChanged" />
+                                                    <TextBox Name="lblServerPortTxt" Text="{Binding ElementName=slServerPort, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"  />
                                                     <Slider Maximum="65535" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="slServerPort" />
                                                 </DockPanel>
 
                                                 <Label Name="lblPassword" Grid.Row="9" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">Password</Label>
-                                                <TextBox x:Name="tbPassword" Grid.Row="9" Grid.Column="1" Margin="10" TextChanged="tbSettings_Server_TextChanged" />
+                                                <TextBox x:Name="tbPassword" Grid.Row="9" Grid.Column="1" Margin="10"  />
 
                                                 <Label Name="lblGamekey" Grid.Row="10" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center">GameKey</Label>
-                                                <TextBox x:Name="tbGameKey" Grid.Row="10" Grid.Column="1" Margin="10" TextChanged="tbSettings_Server_TextChanged" />
+                                                <TextBox x:Name="tbGameKey" Grid.Row="10" Grid.Column="1" Margin="10" />
 
 
-
-
-
-
-                                                <StackPanel Grid.ColumnSpan="2" Grid.Row="11">
-                                                    <Button x:Name="btnServerSaveChanges" Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnServerSaveChanges_Click" ></Button>
-                                                    <Button x:Name="btnServerCancelChanges" Content="Cancel Changes" Background="Red" Click="btnServerCancelChanges_Click" ></Button>
-                                                    <Label x:Name="lblServerSettingsSave" HorizontalContentAlignment="Center"></Label>
-                                                </StackPanel>
 
                                             </Grid>
                                         </StackPanel>

@@ -184,12 +184,17 @@ namespace MedLaunch
             // initialise servers area
 
             // DbEF.PopulateServersCombo(cbServers);
+            /*
             ConfigServerSettings.PopulateServersRadio(rbSrv01);
             ConfigServerSettings.PopulateServersRadio(rbSrv02);
             ConfigServerSettings.PopulateServersRadio(rbSrv03);
             ConfigServerSettings.PopulateServersRadio(rbSrv04);
             ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
             ConfigServerSettings.GetSelectedServerCheckbox(rbSrv01, rbSrv02, rbSrv03, rbSrv04, rbSrvCustom);
+            */
+
+            SettingsVisualHandler.PopulateServers(lvServers);
+            SettingsVisualHandler.ServerSettingsInitialButtonHide();
 
 
             // Config Tab
@@ -2295,95 +2300,11 @@ namespace MedLaunch
         // servers
 
 
-        private void rbSrv01_Checked(object sender, RoutedEventArgs e)
-        {
-            var rb = sender as RadioButton;
-            ConfigServerSettings.SetSelectedServer(rb);
-        }
-
-        private void rbSrv02_Checked(object sender, RoutedEventArgs e)
-        {
-            var rb = sender as RadioButton;
-            ConfigServerSettings.SetSelectedServer(rb);
-        }
-
-        private void rbSrv03_Checked(object sender, RoutedEventArgs e)
-        {
-            var rb = sender as RadioButton;
-            ConfigServerSettings.SetSelectedServer(rb);
-        }
-
-        private void rbSrv04_Checked(object sender, RoutedEventArgs e)
-        {
-            var rb = sender as RadioButton;
-            ConfigServerSettings.SetSelectedServer(rb);
-        }
-
-        private void rbSrvCustom_Checked(object sender, RoutedEventArgs e)
-        {
-            var rb = sender as RadioButton;
-            ConfigServerSettings.SetSelectedServer(rb);
-
-            // unhidden
-            tbServerDesc.IsEnabled = true;
-            tbServerDesc.Visibility = Visibility.Visible;
-            tbHostname.IsEnabled = true;
-            tbHostname.Visibility = Visibility.Visible;
-            slServerPort.IsEnabled = true;
-            slServerPort.Visibility = Visibility.Visible;
-            tbPassword.IsEnabled = true;
-            tbPassword.Visibility = Visibility.Visible;
-            tbGameKey.IsEnabled = true;
-            tbGameKey.Visibility = Visibility.Visible;
-
-            lblServerDesc.Visibility = Visibility.Visible;
-            lblHostname.Visibility = Visibility.Visible;
-            lblServerPort.Visibility = Visibility.Visible;
-            lblServerPortTxt.Visibility = Visibility.Visible;
-            lblPassword.Visibility = Visibility.Visible;
-            //lblGamekey.Visibility = Visibility.Visible;
-
-            //btnServerSaveChanges.Visibility = Visibility.Visible;
-            //btnServerCancelChanges.Visibility = Visibility.Visible;
-            btnServerSaveChanges.Visibility = Visibility.Collapsed;
-            btnServerCancelChanges.Visibility = Visibility.Collapsed;
-        }
-        private void rbSrvCustom_UnChecked(object sender, RoutedEventArgs e)
-        {
-            var rb = sender as RadioButton;
-            ConfigServerSettings.SetSelectedServer(rb);
-
-            // hidden
-            tbServerDesc.IsEnabled = false;
-            tbServerDesc.Visibility = Visibility.Collapsed;
-            tbHostname.IsEnabled = false;
-            tbHostname.Visibility = Visibility.Collapsed;
-            slServerPort.IsEnabled = false;
-            slServerPort.Visibility = Visibility.Collapsed;
-            //tbPassword.IsEnabled = false;
-            //tbPassword.Visibility = Visibility.Collapsed;
-            //tbGameKey.IsEnabled = false;
-            //tbGameKey.Visibility = Visibility.Collapsed;
-
-            lblServerDesc.Visibility = Visibility.Collapsed;
-            lblHostname.Visibility = Visibility.Collapsed;
-            lblServerPort.Visibility = Visibility.Collapsed;
-            lblServerPortTxt.Visibility = Visibility.Collapsed;
-            //lblPassword.Visibility = Visibility.Collapsed;
-            //lblGamekey.Visibility = Visibility.Collapsed;
-
-            btnServerSaveChanges.Visibility = Visibility.Collapsed;
-            btnServerCancelChanges.Visibility = Visibility.Collapsed;
-        }
+       
 
         private void btnServerSaveChanges_Click(object sender, RoutedEventArgs e)
         {
             ConfigServerSettings.SaveCustomServerSettings(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
-        }
-
-        private void btnServerCancelChanges_Click(object sender, RoutedEventArgs e)
-        {
-            ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
         }
 
         // controls tab
@@ -2596,7 +2517,7 @@ namespace MedLaunch
 
             Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathMs, tbPathVb, tbPathWswan);
             ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
-            ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
+            //ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
             ConfigBaseSettings.LoadMednafenPathValues(spMedPathSettings);
             ConfigBaseSettings.LoadBiosPathValues(spSysBiosSettings);
 
@@ -3270,8 +3191,10 @@ namespace MedLaunch
                 // update UI
                 ConfigBaseSettings.LoadControlValues(ConfigWrapPanel, ConfigId);
                 ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
-                ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
-                ConfigServerSettings.SetCustomDefault();
+                //ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
+                //ConfigServerSettings.SetCustomDefault();
+
+                SettingsVisualHandler.PopulateServers(lvServers);
 
                 Task.Delay(500);
 
@@ -4438,6 +4361,150 @@ namespace MedLaunch
                 CloseOnOverlay = false,
                 ShowCloseButton = false
             }, RootGrid);
+        }
+
+        private void lvServers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var row = (ServersListView)lvServers.SelectedItem;
+
+            if (row == null)
+            {
+                btnServersSelect.Visibility = Visibility.Collapsed;
+                btnServersDelete.Visibility = Visibility.Collapsed;
+                btnServersSaveEdit.Visibility = Visibility.Collapsed;
+
+                tbServerDesc.Text = null;
+                tbHostname.Text = null;
+                slServerPort.Value = 4046;
+                tbPassword.Text = null;
+                tbGameKey.Text = null;
+            }
+            else
+            {
+                btnServersSelect.Visibility = Visibility.Visible;
+                btnServersDelete.Visibility = Visibility.Visible;
+                btnServersSaveEdit.Visibility = Visibility.Visible;
+
+                tbServerDesc.Text = row.Name;
+                tbHostname.Text = row.Host;
+                tbPassword.Text = row.Password;
+                tbGameKey.Text = row.Gamekey;
+                if (row.Port > 0)
+                {
+                    slServerPort.Value = Convert.ToDouble(row.Port);
+                }
+                
+            }
+        }
+
+        private void btnServersSelect_Click(object sender, RoutedEventArgs e)
+        {
+            var row = (ServersListView)lvServers.SelectedItem;
+
+            if (row == null)
+            {
+                MessageBox.Show("No Server Selected!");
+            }
+            else
+            {
+                GlobalSettings gs = GlobalSettings.GetGlobals();
+                gs.serverSelected = row.ID;
+                GlobalSettings.SetGlobals(gs);
+
+                SettingsVisualHandler.PopulateServers(lvServers);
+            }
+        }
+
+        private void btnServersAdd_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbHostname.Text == null || tbHostname.Text == "" || tbHostname.Text.Trim() == "")
+            {
+                // hostname has not been entered
+                MessageBox.Show("You must provide a Hostname or IP Address");
+                return;
+            }
+
+            // get the server list
+            var dbServers = ConfigServerSettings.GetServers();
+
+            // build a server object
+            ConfigServerSettings s = new ConfigServerSettings();
+
+            // check for full match
+            var chk = from a in dbServers
+                                       where
+                                       a.ConfigServerDesc == tbServerDesc.Text &&
+                                       a.netplay__gamekey == tbGameKey.Text &&
+                                       a.netplay__host == tbHostname.Text &&
+                                       a.netplay__password == tbPassword.Text &&
+                                       a.netplay__port == Convert.ToInt32(slServerPort.Value)
+                                       select a;
+            if (chk.Count() > 1)
+            {
+                MessageBox.Show("This server and associated settings already exists!");
+                return;
+            }
+
+            // save the server
+            s.ConfigServerDesc = tbServerDesc.Text;
+            s.netplay__gamekey = tbGameKey.Text;
+            s.netplay__host = tbHostname.Text;
+            s.netplay__password = tbPassword.Text;
+            s.netplay__port = Convert.ToInt32(slServerPort.Value);
+
+            ConfigServerSettings.SaveToDatabase(s);
+
+            SettingsVisualHandler.PopulateServers(lvServers);
+        }
+
+        private void btnServersDelete_Click(object sender, RoutedEventArgs e)
+        {
+            var row = (ServersListView)lvServers.SelectedItem;
+
+            if (row == null)
+            {
+                MessageBox.Show("No Server Selected!");
+                return;
+            }
+            
+            if (row.Selected == true)
+            {
+                MessageBox.Show("Unable to delete because this is the current default server.\nSet another server to default (the 'use selected server button') and then try again");
+                return;
+            }
+
+            // obtain ID and delete selected server from the database
+            ConfigServerSettings.DeleteServer(row.ID);
+            SettingsVisualHandler.PopulateServers(lvServers);
+        }
+
+        private void btnServersSaveEdit_Click(object sender, RoutedEventArgs e)
+        {
+            // get the selected ID
+            var row = (ServersListView)lvServers.SelectedItem;
+
+            if (row == null)
+            {
+                MessageBox.Show("No Server Selected!");
+                return;
+            }
+
+            int id = row.ID;
+
+            // create a new object
+            ConfigServerSettings s = new ConfigServerSettings();
+
+            s.ConfigServerId = id;
+            s.ConfigServerDesc = tbServerDesc.Text;
+            s.netplay__gamekey = tbGameKey.Text;
+            s.netplay__host = tbHostname.Text;
+            s.netplay__password = tbPassword.Text;
+            s.netplay__port = Convert.ToInt32(slServerPort.Value);
+
+            // update the record in the database
+            ConfigServerSettings.SaveToDatabase(s);
+
+            SettingsVisualHandler.PopulateServers(lvServers);
         }
     }
     /*

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedLaunch.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -148,6 +149,54 @@ namespace MedLaunch.Classes
             }
         }
 
+        public static void PopulateServers(DataGrid lvServers)
+        {
+            // get all servers
+            var servers = ConfigServerSettings.GetServers();
+
+            // get selected server id
+            GlobalSettings gs = GlobalSettings.GetGlobals();
+            int sid = gs.serverSelected.Value;
+
+            List<ServersListView> list = new List<ServersListView>();
+
+            // populate list
+            foreach (var s in servers)
+            {
+                ServersListView srv = new ServersListView();
+                srv.ID = s.ConfigServerId;
+                srv.Name = s.ConfigServerDesc;
+                srv.Host = s.netplay__host;
+                srv.Port = s.netplay__port.Value;
+                srv.Password = s.netplay__password;
+                srv.Gamekey = s.netplay__gamekey;
+
+                if (sid == srv.ID)
+                {
+                    srv.Selected = true;
+                }
+                else
+                {
+                    srv.Selected = false;
+                }
+
+                list.Add(srv);
+            }
+
+            lvServers.ItemsSource = list;
+        }
+
+        public static void ServerSettingsInitialButtonHide()
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            Button btnServersSelect = (Button)mw.FindName("btnServersSelect");
+            Button btnServersDelete = (Button)mw.FindName("btnServersDelete");
+            Button btnServersSaveEdit = (Button)mw.FindName("btnServersSaveEdit");
+            btnServersSelect.Visibility = Visibility.Collapsed;
+            btnServersDelete.Visibility = Visibility.Collapsed;
+            btnServersSaveEdit.Visibility = Visibility.Collapsed;
+        }
+
 
         // Properties
         public MainWindow MWindow { get; set; }
@@ -161,5 +210,16 @@ namespace MedLaunch.Classes
         public List<Border> MedLaunch { get; set; }
         public List<Border> Library { get; set; }
         public List<Border> ScrapingSettings { get; set; }
+    }
+
+    public class ServersListView
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Host { get; set; }
+        public int Port { get; set; }
+        public string Password { get; set; }
+        public string Gamekey { get; set; }
+        public bool Selected { get; set; }
     }
 }
