@@ -147,8 +147,8 @@ namespace MedLaunch.Models
                 showGLYear = true,
 
                 glFil01 = "3FFF",
-                glFil02 = "3FFC",
-                glFil03 = "3FFC",
+                glFil02 = "3FFF",
+                glFil03 = "3FFF",
                 glFil04 = "3FFF",
                 glFil05 = "3FFF",
                 glFil06 = "3FFF",
