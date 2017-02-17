@@ -2029,7 +2029,7 @@
 
                                                 <Label x:Name="cfglbl_sound__driver" Grid.Row="1">Sound Driver</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_sound__driver" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
-                                                    <ComboBoxItem Tag="default">Default Sount Driver</ComboBoxItem>
+                                                    <ComboBoxItem Tag="default">Default Sound Driver</ComboBoxItem>
                                                     <ComboBoxItem Tag="wasapish">WASAPI(Shared Mode)</ComboBoxItem>
                                                     <ComboBoxItem Tag="dsound">DirectSound</ComboBoxItem>
                                                     <ComboBoxItem Tag="wasapi">WASAPI(Exclusive Mode)</ComboBoxItem>
