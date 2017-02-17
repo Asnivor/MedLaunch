@@ -32,7 +32,7 @@ namespace MedLaunch.Models
                         netplay__password = "", netplay__gamekey = "" },
                     new ConfigServerSettings { ConfigServerDesc = "Official Mednafen Server", netplay__host = "netplay.fobby.net", netplay__port = 4046,
                         netplay__password = "", netplay__gamekey = "" },                    
-                    new ConfigServerSettings { ConfigServerDesc = "Speedvicio's Server (EU)", netplay__host = "speedvicio.dtdns.net", netplay__port = 4046,
+                    new ConfigServerSettings { ConfigServerDesc = "Speedvicio's EU Server", netplay__host = "speedvicio.dtdns.net", netplay__port = 4046,
                         netplay__password = "", netplay__gamekey = "", ConfigServerId = 101 }
                     // new custom user-defined servers should now automatically start at ID 102
                 };
