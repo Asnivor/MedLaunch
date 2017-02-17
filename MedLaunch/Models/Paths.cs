@@ -165,7 +165,27 @@ namespace MedLaunch.Models
             return pathWorking;
         }
 
-        
+        /// <summary>
+        /// Cause mednafen to run with an incorrect rom string in order that it generates all of its files
+        /// </summary>
+        public static void InitMednafen()
+        {
+            // get mednafen path from database
+            string medFolderPath = Paths.GetPaths().mednafenExe;
+            string medConfigFile = medFolderPath + @"\mednafen-09x.cfg";
+            // check for existence of config file (if it is not there, mednafen needs initialising)
+            if (!File.Exists(medConfigFile))
+            {
+                System.Diagnostics.Process mProc = new System.Diagnostics.Process();
+                mProc.StartInfo.UseShellExecute = true;
+                mProc.StartInfo.RedirectStandardOutput = false;
+                mProc.StartInfo.FileName = medFolderPath + @"\mednafen.exe";
+                mProc.StartInfo.CreateNoWindow = true;
+                mProc.StartInfo.Arguments = "init";
+                mProc.Start();
+                mProc.WaitForExit();
+            }
+        }
 
         public static void SetMednafenPath(Button btnPathMednafen)
         {
@@ -198,7 +218,10 @@ namespace MedLaunch.Models
                 }
                 else
                 {
-                    // path is valid - ask to import configs
+                    // path is valid - make sure the mednafen directory is initialised
+                    InitMednafen();
+
+                    //ask to import configs
                     MessageBoxResult result = MessageBox.Show("Do you want to import data from any Mednafen config files in this directory?\n(This will overwrite any config data stored in MedLaunch)", "Config Import", MessageBoxButton.YesNo);
                     if (result == MessageBoxResult.Yes)
                     {
