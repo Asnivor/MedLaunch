@@ -36,12 +36,17 @@ namespace MedLaunch.Classes
         public static string GetMednafenVersion()
         {
             string versionLine = (from a in ReadLog()
-                                  where a.Contains("Starting Mednafen ")
+                                  where a.Contains(" Mednafen ")
                                   select a).FirstOrDefault();
             if (versionLine == null || versionLine.Trim() == "")
                 return null;
 
-            return versionLine.Replace("Starting Mednafen ", "").Trim();
+            // split line
+            string[] spl = versionLine.Split(new string[] { "Mednafen " }, StringSplitOptions.None);
+            // get the last item in the array (the version number)
+            string vNum = spl.Last().Trim();
+
+            return vNum;
         }
 
         /// <summary>
