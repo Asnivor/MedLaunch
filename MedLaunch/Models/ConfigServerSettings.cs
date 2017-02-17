@@ -31,9 +31,10 @@ namespace MedLaunch.Models
                     new ConfigServerSettings { ConfigServerDesc = "EmuParadise US Server", netplay__host = "mednafen-us.emuparadise.org", netplay__port = 4046,
                         netplay__password = "", netplay__gamekey = "" },
                     new ConfigServerSettings { ConfigServerDesc = "Official Mednafen Server", netplay__host = "netplay.fobby.net", netplay__port = 4046,
-                        netplay__password = "", netplay__gamekey = "" }/*,
-                    new ConfigServerSettings { ConfigServerDesc = "", netplay__host = "", netplay__port = 4046,
-                        netplay__password = "", netplay__gamekey = "", ConfigServerId = 100 }*/
+                        netplay__password = "", netplay__gamekey = "" },                    
+                    new ConfigServerSettings { ConfigServerDesc = "Speedvicio's Server (EU)", netplay__host = "speedvicio.dtdns.net", netplay__port = 4046,
+                        netplay__password = "", netplay__gamekey = "", ConfigServerId = 100 }
+                    // new custom user-defined servers should now automatically start at ID 101
                 };
             return servers;
         }
