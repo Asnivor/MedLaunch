@@ -66,6 +66,15 @@
                 </Button.ContextMenu>
             </Button>
 
+            <Button Content="General" ContextMenuService.IsEnabled="False" Click="TopMenu_Click">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Name="medCoreVisibility"  Header="Mednafen Core Visibility" ToolTip="Show/Hide certain emulated systems"
+                             Click="medCoreVisibility_Click"    />
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
+
             <Button Content="Configs" ContextMenuService.IsEnabled="False" Click="TopMenu_Click" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
                 <Button.ContextMenu>
                     <ContextMenu>

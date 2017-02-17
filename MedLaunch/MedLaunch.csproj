@@ -325,6 +325,7 @@
     <Compile Include="Classes\Scraper\MobyGames\MobyScraper.cs" />
     <Compile Include="Classes\Releases.cs" />
     <Compile Include="Classes\SettingsHandler.cs" />
+    <Compile Include="Classes\VisualHandlers\MiscVisualHandler.cs" />
     <Compile Include="Classes\VisualHandlers\SettingsVisualHandler.cs" />
     <Compile Include="Classes\Initialisation.cs" />
     <Compile Include="Classes\Scraper\TheGamesDB\GDBNETGame.cs" />
@@ -350,6 +351,9 @@
     </Compile>
     <Compile Include="ListBoxChildWindow.xaml.cs">
       <DependentUpon>ListBoxChildWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MednafenCoreVisibility.xaml.cs">
+      <DependentUpon>MednafenCoreVisibility.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DiskGameFile.cs" />
     <Compile Include="Classes\GameLauncher.cs" />
@@ -418,6 +422,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MednafenCoreVisibility.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

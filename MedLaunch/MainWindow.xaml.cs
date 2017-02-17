@@ -1347,6 +1347,8 @@ namespace MedLaunch
             // globalSettingsViewModelViewSource.Source = [generic data source]
 
             SettingsDirtyFlag = true; // now safe to save settings
+
+            MiscVisualHandler.RefreshCoreVisibilities();
         }
 
         // Netplay Settings - netplay page
@@ -4505,6 +4507,19 @@ namespace MedLaunch
             ConfigServerSettings.SaveToDatabase(s);
 
             SettingsVisualHandler.PopulateServers(lvServers);
+        }
+
+        private async void medCoreVisibility_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            await mw.ShowChildWindowAsync(new MednafenCoreVisibility()
+            {
+                IsModal = true,
+                AllowMove = false,
+                Title = "Manage Emulated System Visibility",
+                CloseOnOverlay = false,
+                ShowCloseButton = false
+            }, RootGrid);
         }
     }
     /*

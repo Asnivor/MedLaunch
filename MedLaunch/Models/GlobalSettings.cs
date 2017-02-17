@@ -69,6 +69,26 @@ namespace MedLaunch.Models
         public string glFil18 { get; set; }             // PCECD
         public string glFil19 { get; set; }             // PCFX
 
+        // Mednafen Cores Visability (uses medlaunch systemId)
+        public bool coreVis1 { get; set; }
+        public bool coreVis2 { get; set; }
+        public bool coreVis3 { get; set; }
+        public bool coreVis4 { get; set; }
+        public bool coreVis5 { get; set; }
+        public bool coreVis6 { get; set; }
+        public bool coreVis7 { get; set; }
+        public bool coreVis8 { get; set; }
+        public bool coreVis9 { get; set; }
+        public bool coreVis10 { get; set; }
+        public bool coreVis11 { get; set; }
+        public bool coreVis12 { get; set; }
+        public bool coreVis13 { get; set; }
+        public bool coreVis14 { get; set; }
+        public bool coreVis15 { get; set; }
+        public bool coreVis16 { get; set; }
+        public bool coreVis17 { get; set; }
+        public bool coreVis18 { get; set; }
+
         // Game scraping options
         public bool scrapeBanners { get; set; }
         public bool scrapeBoxart { get; set; }
@@ -164,7 +184,26 @@ namespace MedLaunch.Models
                 glFil16 = "3FFF",
                 glFil17 = "3FFF",
                 glFil18 = "3FFF",
-                glFil19 = "3FFF"
+                glFil19 = "3FFF",
+
+                coreVis1 = true,
+                coreVis2 = true,
+                coreVis3 = true,
+                coreVis4 = true,
+                coreVis5 = true,
+                coreVis6 = true,
+                coreVis7 = true,
+                coreVis8 = true,
+                coreVis9 = true,
+                coreVis10 = true,
+                coreVis11 = true,
+                coreVis12 = true,
+                coreVis13 = true,
+                coreVis14 = true,
+                coreVis15 = true,
+                coreVis16 = true,
+                coreVis17 = true,
+                coreVis18 = true
             };
             return gs;
         }
@@ -181,6 +220,32 @@ namespace MedLaunch.Models
             var gs = GlobalSettings.GetGlobalDefaults();
             string[] colors = { gs.colorBackground, gs.colorAccent };
             return colors;
+        }
+
+        public static void SaveCoreVisibilities(bool[] b)
+        {
+            GlobalSettings gs = GlobalSettings.GetGlobals();
+
+            gs.coreVis1 = b[0];
+            gs.coreVis2 = b[1];
+            gs.coreVis3 = b[2];
+            gs.coreVis4 = b[3];
+            gs.coreVis5 = b[4];
+            gs.coreVis6 = b[5];
+            gs.coreVis7 = b[6];
+            gs.coreVis8 = b[7];
+            gs.coreVis9 = b[8];
+            gs.coreVis10 = b[9];
+            gs.coreVis11 = b[10];
+            gs.coreVis12 = b[11];
+            gs.coreVis13 = b[12];
+            gs.coreVis14 = b[13];
+            gs.coreVis15 = b[14];
+            gs.coreVis16 = b[15];
+            gs.coreVis17 = b[16];
+            gs.coreVis18 = b[17];
+
+            GlobalSettings.SetGlobals(gs);
         }
 
         public static void SaveToDatabase(List<GlobalSettings> Configs)
