@@ -165,6 +165,8 @@ namespace MedLaunch.Models
             return pathWorking;
         }
 
+        
+
         public static void SetMednafenPath(Button btnPathMednafen)
         {
             MessageBox.Show("Click OK to browse to your Mednafen directory", "Invalid Mednafen.exe path!");

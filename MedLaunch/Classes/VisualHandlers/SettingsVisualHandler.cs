@@ -154,6 +154,9 @@ namespace MedLaunch.Classes
             // get all servers
             var servers = ConfigServerSettings.GetServers();
 
+            if (servers == null || servers.Count == 0)
+                return;
+
             // get selected server id
             GlobalSettings gs = GlobalSettings.GetGlobals();
             int sid = gs.serverSelected.Value;
