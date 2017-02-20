@@ -66,15 +66,6 @@
                 </Button.ContextMenu>
             </Button>
 
-            <Button Content="General" ContextMenuService.IsEnabled="False" Click="TopMenu_Click">
-                <Button.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Name="medCoreVisibility"  Header="Mednafen Core Visibility" ToolTip="Show/Hide certain emulated systems"
-                             Click="medCoreVisibility_Click"    />
-                    </ContextMenu>
-                </Button.ContextMenu>
-            </Button>
-
             <Button Content="Configs" ContextMenuService.IsEnabled="False" Click="TopMenu_Click" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
                 <Button.ContextMenu>
                     <ContextMenu>
@@ -84,9 +75,10 @@
                 </Button.ContextMenu>
             </Button>
 
-            <Button Content="Library" ContextMenuService.IsEnabled="False" Click="TopMenu_Click">
+            <Button Content="Tools" ContextMenuService.IsEnabled="False" Click="TopMenu_Click">
                 <Button.ContextMenu>
                     <ContextMenu>
+                        <!--
                         <MenuItem Header="Scanner">
                             <MenuItem Header="Rescan ALL ROM Folders" Click="RescanRoms"  />
                             <Separator BorderThickness="0.2" Padding="0" Margin="0" />
@@ -103,8 +95,9 @@
                             <MenuItem x:Name="MenuScanRoms5" Header="Rescan GG" Click="ScanRoms_Click" />
                             <MenuItem x:Name="MenuScanRoms3" Header="Rescan LYNX" Click="ScanRoms_Click" />
                         </MenuItem>
+                        -->
                         <MenuItem Name="AuditScrapedData" Header="Audit Scraped Data Folder" ToolTip="Show a list of game data that has been scraped along with system and game title" Click="AuditScrapedData_Click"/>
-                        <MenuItem Header="Library Column Visibility" Click="MenuItemColumn_Click" />
+                        
                     </ContextMenu>
                 </Button.ContextMenu>
             </Button>
@@ -113,6 +106,9 @@
                 <Button.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Change Colour Scheme" Click="btnChangeColorScheme_Click"/>
+                        <MenuItem Name="medCoreVisibility"  Header="Mednafen Core Visibility" ToolTip="Show/Hide certain emulated systems"
+                             Click="medCoreVisibility_Click"    />
+                        <MenuItem Header="Games Library Column Visibility" Click="MenuItemColumn_Click" />
                     </ContextMenu>
                 </Button.ContextMenu>
             </Button>
@@ -10499,8 +10495,8 @@
                                                 <TextBox x:Name="tbPathSs" Grid.Column="1" Grid.Row="11" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
                                                 <Button x:Name="btnPathSs" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="11" Click="btnPathSs_Click">Saturn</Button>
 
-                                                <TextBox x:Name="tbPathMs" Grid.Column="1" Grid.Row="12" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
-                                                <Button x:Name="btnPathMs" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="12" Click="btnPathMs_Click">MasterSystem</Button>
+                                                <TextBox x:Name="tbPathSms" Grid.Column="1" Grid.Row="12" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
+                                                <Button x:Name="btnPathSms" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="12" Click="btnPathMs_Click">MasterSystem</Button>
 
                                                 <TextBox x:Name="tbPathVb" Grid.Column="1" Grid.Row="13" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
                                                 <Button x:Name="btnPathVb" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="13" Click="btnPathVb_Click">VirtualBoy</Button>

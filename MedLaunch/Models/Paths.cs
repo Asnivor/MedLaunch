@@ -89,7 +89,7 @@ namespace MedLaunch.Models
 
         // Populate path forms with DB data
         public static void LoadPathSettings(TextBox tbPathMednafen, TextBox tbPathGb, TextBox tbPathGba, TextBox tbPathGg, TextBox tbPathLynx, TextBox tbPathMd,
-            TextBox tbPathNes, TextBox tbPathSnes, TextBox tbPathNgp, TextBox tbPathPce, TextBox tbPathPcfx, TextBox tbPathMs,
+            TextBox tbPathNes, TextBox tbPathSnes, TextBox tbPathNgp, TextBox tbPathPce, TextBox tbPathPcfx, TextBox tbPathSms,
             TextBox tbPathVb, TextBox tbPathWswan) // TextBox tbPathPsx, TextBox tbPathSs)
         {
             Paths paths = GetPaths();
@@ -100,7 +100,7 @@ namespace MedLaunch.Models
             tbPathGg.Text = paths.systemGg;
             tbPathLynx.Text = paths.systemLynx;
             tbPathMd.Text = paths.systemMd;
-            tbPathMs.Text = paths.systemSms;
+            tbPathSms.Text = paths.systemSms;
             tbPathNes.Text = paths.systemNes;
             tbPathNgp.Text = paths.systemNgp;
             tbPathPce.Text = paths.systemPce;
@@ -114,7 +114,7 @@ namespace MedLaunch.Models
 
         // save path settings from form
         public static void SavePathSettings(TextBox tbPathMednafen, TextBox tbPathGb, TextBox tbPathGba, TextBox tbPathGg, TextBox tbPathLynx, TextBox tbPathMd,
-            TextBox tbPathNes, TextBox tbPathSnes, TextBox tbPathNgp, TextBox tbPathPce, TextBox tbPathPcfx, TextBox tbPathMs,
+            TextBox tbPathNes, TextBox tbPathSnes, TextBox tbPathNgp, TextBox tbPathPce, TextBox tbPathPcfx, TextBox tbPathSms,
             TextBox tbPathVb, TextBox tbPathWswan) // TextBox tbPathPsx, TextBox tbPathSs)
         {
             Paths paths = GetPaths();
@@ -124,7 +124,7 @@ namespace MedLaunch.Models
             paths.systemGg = tbPathGg.Text;
             paths.systemLynx = tbPathLynx.Text;
             paths.systemMd = tbPathMd.Text;
-            paths.systemSms = tbPathMs.Text;
+            paths.systemSms = tbPathSms.Text;
             paths.systemNes = tbPathNes.Text;
             paths.systemNgp = tbPathNgp.Text;
             paths.systemPce = tbPathPce.Text;

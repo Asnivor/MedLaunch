@@ -176,7 +176,7 @@ namespace MedLaunch
             //ConfigNetplaySettings.LoadNetplaySettings();
 
             // load path settings for paths page
-            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathMs, tbPathVb, tbPathWswan); // tbPathPsx, tbPathSs);
+            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan); // tbPathPsx, tbPathSs);
 
             // force location of Mednafen directory
             //var controller = this.ShowProgressAsync("Please wait...", "Progress Message");
@@ -210,43 +210,24 @@ namespace MedLaunch
                 }
             }
 
-            // ensure nes config is selected at startup
+            // ensure a visable config filter button is selected
+            /*
+            List<RadioButton> _filterButtons = UIHandler.GetLogicalChildCollection<RadioButton>(wpConfigLeftPane);
+            foreach (RadioButton rb in _filterButtons)
+            {
+                if (rb.Visibility == Visibility.Visible)
+                {
+                    rb.IsChecked = true;
+                    rb.IsChecked = false;
+                    rb.IsChecked = true;
+                }
+            }
+            */
+
+            /*
             btnConfigNes.IsChecked = true;
             btnConfigNes.IsChecked = false;
             btnConfigNes.IsChecked = true;
-
-            // hide all system specific config options
-            /*
-            brdSpecificLynx.Visibility = Visibility.Collapsed;
-            brdSpecificGb.Visibility = Visibility.Collapsed;
-            brdSpecificNgp.Visibility = Visibility.Collapsed;
-            brdSpecificNes1.Visibility = Visibility.Collapsed;
-            brdSpecificNes2.Visibility = Visibility.Collapsed;
-            brdSpecificNes3.Visibility = Visibility.Collapsed;
-            brdSpecificPce_fast1.Visibility = Visibility.Collapsed;
-            brdSpecificPce_fast2.Visibility = Visibility.Collapsed;
-            brdSpecificPce1.Visibility = Visibility.Collapsed;
-            brdSpecificPce2.Visibility = Visibility.Collapsed;
-            brdSpecificPcfx1.Visibility = Visibility.Collapsed;
-            brdSpecificPcfx2.Visibility = Visibility.Collapsed;
-            brdSpecificSms.Visibility = Visibility.Collapsed;
-            brdSpecificMd.Visibility = Visibility.Collapsed;
-            brdSpecificSnes_faust.Visibility = Visibility.Collapsed;
-            brdSpecificSnes.Visibility = Visibility.Collapsed;
-            brdSpecificVb.Visibility = Visibility.Collapsed;
-            brdSpecificSs1.Visibility = Visibility.Collapsed;
-            brdSpecificSs2.Visibility = Visibility.Collapsed;
-            brdSpecificPsx1.Visibility = Visibility.Collapsed;
-            brdSpecificPsx2.Visibility = Visibility.Collapsed;
-            brdSpecificPsxController1.Visibility = Visibility.Collapsed;
-            brdSpecificPsxController2.Visibility = Visibility.Collapsed;
-            brdSpecificPsxController3.Visibility = Visibility.Collapsed;
-            brdSpecificPsxController4.Visibility = Visibility.Collapsed;
-            brdSpecificPsxController5.Visibility = Visibility.Collapsed;
-            brdSpecificPsxController6.Visibility = Visibility.Collapsed;
-            brdSpecificPsxController7.Visibility = Visibility.Collapsed;
-            brdSpecificPsxController8.Visibility = Visibility.Collapsed;
-            brdSpecificWswan.Visibility = Visibility.Collapsed;
             */
 
             // controls tab
@@ -1902,7 +1883,7 @@ namespace MedLaunch
             if (path.SelectedPath != "")
             {
                 string strPath = path.SelectedPath;
-                tbPathMs.Text = strPath;
+                tbPathSms.Text = strPath;
             }
         }
 
@@ -1962,13 +1943,13 @@ namespace MedLaunch
 
         private void btnPathsSaveChanges_Click(object sender, RoutedEventArgs e)
         {
-            Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathMs, tbPathVb, tbPathWswan); // tbPathPsx, tbPathSs);
+            Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan); // tbPathPsx, tbPathSs);
             //lblPathsSettingsSave.Content = "***Path Settings Saved***";
         }
 
         private void btnPathsCancelChanges_Click(object sender, RoutedEventArgs e)
         {
-            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathMs, tbPathVb, tbPathWswan); // tbPathPsx, tbPathSs);
+            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan); // tbPathPsx, tbPathSs);
             //lblPathsSettingsSave.Content = "***Path Settings Reverted***";
         }
 
@@ -2491,7 +2472,7 @@ namespace MedLaunch
 
             this.Dispatcher.Invoke(() =>
             {
-                Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathMs, tbPathVb, tbPathWswan);
+                Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan);
                 ConfigNetplaySettings.SaveNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
                 ConfigServerSettings.SaveCustomServerSettings(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
                 //ConfigBaseSettings.SaveMednafenPathValues(spMedPathSettings);
@@ -2517,7 +2498,7 @@ namespace MedLaunch
             //SettingsHandler sh = new SettingsHandler();
             //sh.LoadAllSettings();
 
-            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathMs, tbPathVb, tbPathWswan);
+            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan);
             ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
             //ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
             ConfigBaseSettings.LoadMednafenPathValues(spMedPathSettings);

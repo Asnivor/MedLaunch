@@ -114,6 +114,54 @@ namespace MedLaunch.Classes.GamesLibrary
             */
         }
 
+        /// <summary>
+        /// remove hidden systems from results set
+        /// </summary>
+        /// <param name="results"></param>
+        /// <returns></returns>
+        public static List<DataGridGamesView> RemoveHidden(List<DataGridGamesView> results)
+        {
+            bool[] visibilities = GlobalSettings.GetVisArray();
+
+            // check whether there are actually any hidden systems
+            bool systemsHidden = false;
+            for (int i = 1; i <= visibilities.Length; i++)
+            {
+                if (i == 16 || i == 17)
+                    continue;
+
+                if (visibilities[i - 1] == false)
+                {
+                    systemsHidden = true;
+                    break;
+                }
+            }
+
+            if (systemsHidden == false)
+            {
+                // there are no hidden systems - just return the results as-is
+                return results;
+            }                
+            else
+            {
+                // there are hidden systems - remove them from results
+                for (int i = 1; i <= visibilities.Length; i++)
+                {
+                    if (i == 16 || i == 17) // skip fast and faust
+                        continue;
+
+                    if (visibilities[i - 1] == false)
+                    {
+                        results = (from a in results
+                                  where a.System != GSystem.GetSystemName(i)
+                                  select a).ToList();
+                    }
+                }
+
+                return results;
+            }
+        }
+
         public static List<DataGridGamesView> Filter(int systemId, string search)
         {
             List<DataGridGamesView> results = new List<DataGridGamesView>();
@@ -129,9 +177,15 @@ namespace MedLaunch.Classes.GamesLibrary
                     results = (from g in _App.GamesList.AllGames
                                where g.Favorite == true
                              select g).ToList();
+
+                    results = RemoveHidden(results);
+
                     break;
                 case 0:         // all games
                     results = _App.GamesList.AllGames;
+                    results = RemoveHidden(results);
+
+
                     break;
                 case -100:      // unscraped games
 
@@ -141,6 +195,8 @@ namespace MedLaunch.Classes.GamesLibrary
                                a.ESRB == null &&
                                a.Players == null
                                select a).ToList();
+
+                    results = RemoveHidden(results);
 
 
                     /*

@@ -47,8 +47,8 @@ namespace MedLaunch
             coreVis13.IsChecked = gs.coreVis13;
             coreVis14.IsChecked = gs.coreVis14;
             coreVis15.IsChecked = gs.coreVis15;
-            coreVis16.IsChecked = gs.coreVis16;
-            coreVis17.IsChecked = gs.coreVis17;
+            coreVis16.IsChecked = false;// gs.coreVis16;
+            coreVis17.IsChecked = false;// gs.coreVis17;
             coreVis18.IsChecked = gs.coreVis18;
 
             // hide faust and fast
@@ -92,6 +92,8 @@ namespace MedLaunch
 
             // update
             MiscVisualHandler.RefreshCoreVisibilities();
+
+            Classes.GamesLibrary.GamesLibraryDataGridRefresh.Update();
 
             this.Close();
         }

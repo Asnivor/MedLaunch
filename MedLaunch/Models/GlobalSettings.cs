@@ -248,6 +248,35 @@ namespace MedLaunch.Models
             GlobalSettings.SetGlobals(gs);
         }
 
+        public static bool[] GetVisArray()
+        {
+            GlobalSettings gs = GlobalSettings.GetGlobals();
+
+            bool[] b = new bool[]
+            {
+                gs.coreVis1,
+                gs.coreVis2,
+                gs.coreVis3,
+                gs.coreVis4,
+                gs.coreVis5,
+                gs.coreVis6,
+                gs.coreVis7,
+                gs.coreVis8,
+                gs.coreVis9,
+                gs.coreVis10,
+                gs.coreVis11,
+                gs.coreVis12,
+                gs.coreVis13,
+                gs.coreVis14,
+                gs.coreVis15,
+                gs.coreVis16,
+                gs.coreVis17,
+                gs.coreVis18
+        };
+
+            return b;
+        }
+
         public static void SaveToDatabase(List<GlobalSettings> Configs)
         {
             using (var db = new MyDbContext())
