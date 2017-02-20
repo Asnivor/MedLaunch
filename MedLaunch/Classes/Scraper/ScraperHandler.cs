@@ -53,7 +53,7 @@ namespace MedLaunch.Classes.Scraper
 
         /* Methods */
 
-        public async static void ScrapeGames(int systemId, bool rescrapeAll)
+        public async static void ScrapeGames(int systemId, ScrapeType scrapeType)
         {
             // instantiate instance of this class
             ScraperMainSearch gs = new ScraperMainSearch();
@@ -74,19 +74,31 @@ namespace MedLaunch.Classes.Scraper
 
             await Task.Run(() =>
             {
-                if (rescrapeAll == false)
+                if (scrapeType == ScrapeType.System)
                 {
                     controller.SetMessage("Getting Local Games that require Scraping");
                     // get all local games for this system where GdbId is not set or is 0
                     gs.LocalGames = MedLaunch.Models.Game.GetGames(systemId).Where(a => a.gdbId == null || a.gdbId == 0).ToList();
                 }
-                else
+                if (scrapeType == ScrapeType.RescrapeAll)
                 {
                     controller.SetMessage("Getting ALL Local Games for Scraping");
                     // get all local games for this system regardless of whether they have been scraped or not
                     gs.LocalGames = MedLaunch.Models.Game.GetGames(systemId).ToList();
                 }
-                
+                if (scrapeType == ScrapeType.Favorites)
+                {
+                    controller.SetMessage("Getting Favorites That Require Scraping");
+                    // get all local games that are favorites where gdbid is not set or is 0
+                    gs.LocalGames = MedLaunch.Models.Game.GetGames().Where(a => (a.gdbId == null || a.gdbId == 0 || Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"Data\Games\" + a.gdbId.ToString()) == false) && a.isFavorite == true).ToList();
+                }
+                if (scrapeType == ScrapeType.RescrapeFavorites)
+                {
+                    controller.SetMessage("Getting ALL Favorites for Scraping");
+                    // get all local games that are favorites where gdbid is not set or is 0
+                    gs.LocalGames = MedLaunch.Models.Game.GetGames().Where(a => a.isFavorite == true).ToList();
+                }
+
                 // count number of games to scan for
                 int numGames = gs.LocalGames.Count;
                 controller.Minimum = 0;
@@ -103,7 +115,7 @@ namespace MedLaunch.Classes.Scraper
                     i++;
                     controller.SetProgress(i);
                     controller.SetMessage("Attempting local search match for:\n" + g.gameName + "\n(" + i + " of " + numGames + ")");
-                    List<ScraperMaster> results = gs.SearchGameLocal(g.gameName, systemId, g.gameId).ToList();
+                    List<ScraperMaster> results = gs.SearchGameLocal(g.gameName, g.systemId, g.gameId).ToList();
 
                     if (results.Count == 0)
                     {
@@ -118,20 +130,17 @@ namespace MedLaunch.Classes.Scraper
 
                 /* Begin actual scraping */
 
-                // Get all games that have a GdbId set and determine if they need scraping (is json file present for them)
+                // Get all games that have a GdbId set and determine if they need scraping (is json file present for them)                
                 var gamesTmp = MedLaunch.Models.Game.GetGames(systemId).Where(a => a.gdbId != null && a.gdbId > 0).ToList();
-
-                /*
-                if (rescrapeAll == true)
+                if (systemId == 0)
                 {
-                    gamesTmp = MedLaunch.Models.Game.GetGames(systemId);
+                    gamesTmp = gs.LocalGames.Where(a => a.gdbId != null && a.gdbId > 0).ToList();
                 }
-                */
 
                 gs.LocalGames = new List<Game>();
                 foreach (var g in gamesTmp)
                 {
-                    if (rescrapeAll == true)
+                    if (scrapeType == ScrapeType.RescrapeAll || scrapeType == ScrapeType.RescrapeFavorites)
                     {
                         gs.LocalGames.Add(g);
                         continue;
@@ -553,5 +562,14 @@ namespace MedLaunch.Classes.Scraper
                 return lWebRequest;
             }
         }
+    }
+
+    public enum ScrapeType
+    {
+        RescrapeAll,
+        System,
+        Favorites,
+        RescrapeFavorites
+
     }
 }

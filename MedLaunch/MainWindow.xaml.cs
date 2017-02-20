@@ -1158,14 +1158,22 @@ namespace MedLaunch
             GameScanner.RemoveAllGames();
         }
 
+        private void ScrapeFavorites_Click(object sender, RoutedEventArgs e)
+        {            
+            ScraperHandler.ScrapeGames(0, ScrapeType.Favorites);
+        }
+
+        private void ReScrapeFavorites_Click(object sender, RoutedEventArgs e)
+        {
+            ScraperHandler.ScrapeGames(0, ScrapeType.RescrapeFavorites);
+        }
+
         private void ScrapeGames_Click(object sender, RoutedEventArgs e)
         {
             // get systemId from menu name
             string menuName = (sender as MenuItem).Name;
             int sysId = Convert.ToInt32(menuName.Replace("ScrapeGames", ""));
-
-            ScraperHandler.ScrapeGames(sysId, false);
-            //GameScraper.ScrapeGames(sysId);
+            ScraperHandler.ScrapeGames(sysId, ScrapeType.System);
         }
 
         private void RescrapeGames_Click(object sender, RoutedEventArgs e)
@@ -1174,8 +1182,7 @@ namespace MedLaunch
             string menuName = (sender as MenuItem).Name;
             int sysId = Convert.ToInt32(menuName.Replace("RescrapeGames", ""));
 
-            ScraperHandler.ScrapeGames(sysId, true);
-            //GameScraper.ScrapeGames(sysId);
+            ScraperHandler.ScrapeGames(sysId, ScrapeType.RescrapeAll);
         }
 
         // Games grid filter text box event
