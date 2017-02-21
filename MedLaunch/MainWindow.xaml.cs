@@ -86,6 +86,7 @@ namespace MedLaunch
                 context.SaveChanges();
             }
             */
+            
 
             InitializeComponent();
 
@@ -1168,6 +1169,60 @@ namespace MedLaunch
             ScraperHandler.ScrapeGames(0, ScrapeType.RescrapeFavorites);
         }
 
+        private void ScrapeGamesMultiple_Click(object sender, RoutedEventArgs e)
+        {
+            // get number of selected rows
+            int numOfRows = dgGameList.SelectedItems.Count;
+            List<DataGridGamesView> games = new List<DataGridGamesView>();
+
+            if (numOfRows == 0)
+                return;
+            else if (numOfRows == 1)
+            {
+                // single row selected
+                games.Add((DataGridGamesView)dgGameList.SelectedItem);
+            }
+            else
+            {
+                // multiple rows selected
+                var rows = dgGameList.SelectedItems;
+                foreach (DataGridGamesView r in rows)
+                {
+                    games.Add(r);
+                }
+            }
+
+            // parse list of games to the method to be auto-scraped
+            ScraperHandler.ScrapeGamesMultiple(games, ScrapeType.Selected);            
+        }
+
+        private void ReScrapeGamesMultiple_Click(object sender, RoutedEventArgs e)
+        {
+            // get number of selected rows
+            int numOfRows = dgGameList.SelectedItems.Count;
+            List<DataGridGamesView> games = new List<DataGridGamesView>();
+
+            if (numOfRows == 0)
+                return;
+            else if (numOfRows == 1)
+            {
+                // single row selected
+                games.Add((DataGridGamesView)dgGameList.SelectedItem);
+            }
+            else
+            {
+                // multiple rows selected
+                var rows = dgGameList.SelectedItems;
+                foreach (DataGridGamesView r in rows)
+                {
+                    games.Add(r);
+                }
+            }
+
+            // parse list of games to the method to be auto-scraped
+            ScraperHandler.ScrapeGamesMultiple(games, ScrapeType.SelectedRescrape);
+        }
+
         private void ScrapeGames_Click(object sender, RoutedEventArgs e)
         {
             // get systemId from menu name
@@ -1279,17 +1334,41 @@ namespace MedLaunch
         // Games Datagrid selection changed
         private void dgGameList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // update right hand info
-            var row = (DataGridGamesView)dgGameList.SelectedItem;
-            if (dgGameList.SelectedItem != null)
+            // choose context menu to show based on single or multiple selection
+            var dg = sender as DataGrid;
+            ContextMenu menuToUse;
+            int numRowsSelected = dgGameList.SelectedItems.Count;
+            var rs = dgGameList.SelectedItems;
+            List<DataGridGamesView> rows = new List<DataGridGamesView>();
+
+            if (numRowsSelected != 0)
             {
-                //DbEF.GetInfo(row.ID, lblSystemName, taSystemDescription, imgSystem);
-                //GamesLibraryVisualHandler.UpdateSidebar();
-                GamesLibraryVisualHandler.UpdateSidebar(row.ID);
+                foreach (DataGridGamesView r in rs)
+                {
+                    rows.Add(r);
+                }
+            }            
+
+            if (numRowsSelected == 0)
+            {
+                // nothing select - refresh sidebar
+                GamesLibraryVisualHandler.UpdateSidebar();
+            }
+            else if (numRowsSelected == 1)
+            {
+                // update right hand pane with game details
+                GamesLibraryVisualHandler.UpdateSidebar(rows.First().ID);
+                // set single context menu
+                menuToUse = (ContextMenu)this.Resources["cmGamesListSingle"];
+                dg.ContextMenu = menuToUse;
             }
             else
             {
-                GamesLibraryVisualHandler.UpdateSidebar();
+                // multiple rows are selected - just take the first one to update sidebar
+                GamesLibraryVisualHandler.UpdateSidebar(rows.First().ID);
+                // set multiple context menu
+                menuToUse = (ContextMenu)this.Resources["cmGamesListMultiple"];
+                dg.ContextMenu = menuToUse;
             }
         }
 
@@ -2089,6 +2168,10 @@ namespace MedLaunch
 
         private void LaunchRom_Click(object sender, RoutedEventArgs e)
         {
+            int numRowsCount = dgGameList.SelectedItems.Count;
+            if (numRowsCount != 1)
+                return;
+
             DataGridGamesView drv = (DataGridGamesView)dgGameList.SelectedItem;
             if (drv == null)
                 return;
@@ -2537,6 +2620,13 @@ namespace MedLaunch
                 return FindVisualParent<T>(parentObject);
         }
 
+        private void DataGrid_PreviewMouseRightButtonDownBlock(object sender, MouseButtonEventArgs e)
+        {
+            Trace.WriteLine("Preview MouseRightButtonDown");
+
+            e.Handled = true;
+        }
+
 
         private void DataGrid_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -2637,14 +2727,14 @@ namespace MedLaunch
             //List<GDBPlatformGame> result = gs.SearchGameLocal(game.gameName, game.systemId, game.gameId).ToList();
         }
 
+        private void btnScrapingPickGames_Click(object sender, RoutedEventArgs e)
+        {
+            ScraperMainSearch.PickGames(dgGameList);
+        }
+
         private void btnScrapingPickGame_Click(object sender, RoutedEventArgs e)
         {
-
             ScraperMainSearch.PickGame(dgGameList);
-
-
-            //GamesLibraryVisualHandler.RefreshGamesLibrary();
-            //GamesLibraryVisualHandler.RefreshSideBar(dgGameList);
         }
 
         private void btnBrowseDataFolder_Click(object sender, RoutedEventArgs e)

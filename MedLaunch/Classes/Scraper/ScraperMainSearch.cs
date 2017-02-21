@@ -67,6 +67,39 @@ namespace MedLaunch.Classes.MasterScraper
             PickLocalGame(GameId);
             return "success";
         }
+
+        public static string PickGames(DataGrid dgGameList)
+        {
+            // get number of selected rows
+            int numRowsCount = dgGameList.SelectedItems.Count;
+
+            if (numRowsCount == 0)
+                return null;
+            else if (numRowsCount == 1)
+            {
+                PickGame(dgGameList);
+                return "single";
+            }
+            else
+            {
+                // multiples selected
+                var rs = dgGameList.SelectedItems;
+                List<DataGridGamesView> rows = new List<DataGridGamesView>();
+                foreach (DataGridGamesView row in rs)
+                {
+                    rows.Add(row);
+                }
+
+                // process each row
+                foreach (DataGridGamesView row in rows)
+                {
+                    int GameId = row.ID;
+                    PickLocalGame(GameId);
+                }
+                return "multiple";
+            }
+        }
+
         /// <summary>
         /// Choose a game from the local master list to link to an imported medlaunch game
         /// based on medlaunch GameId

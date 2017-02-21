@@ -26,7 +26,22 @@
                       Width="1600"
                       WindowStartupLocation="CenterScreen" Loaded="MetroWindow_Loaded">
 
-    
+    <Window.Resources>
+        <ContextMenu x:Key="cmGamesListSingle" x:Name="cmGamesListSingle">
+            <MenuItem Header="Play Game" Click="LaunchRom_Click" />
+            <MenuItem Header="Play Game (View/Edit Launch String First)" Click="LaunchRomShowConfig_Click" />
+            <MenuItem Header="Favorites" Click="MenuItemFavorite_Click" />
+            <MenuItem Header="Copy Launch String to Clipboard" Click="CopyLaunchStringToClipboard_Click" />
+            <MenuItem Header="Identify and Scrape Game" Click="btnScrapingPickGame_Click" />
+            <MenuItem Header="Delete From Games Library" Click="DeleteRom_Click" />
+        </ContextMenu>
+        <ContextMenu x:Key="cmGamesListMultiple" x:Name="cmGamesListMultiple">
+            <MenuItem Header="Favorites" Click="MenuItemFavorite_Click" />
+            <MenuItem Header="Auto-Scrape Selected Games" Click="ScrapeGamesMultiple_Click" />
+            <MenuItem Header="Re-Scrape Selected Games" Click="ReScrapeGamesMultiple_Click" />
+            <MenuItem Header="Delete From Games Library" Click="DeleteRom_Click" />
+        </ContextMenu>
+    </Window.Resources>
 
     <Window.CommandBindings>
         <CommandBinding Command="NavigationCommands.BrowseBack" CanExecute="BrowseBack_CanExecute" Executed="BrowseBack_Executed" />
@@ -480,11 +495,11 @@
                             <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
 
 
-                            <DataGrid PreviewMouseRightButtonDown="DataGrid_PreviewMouseRightButtonDown" PreviewMouseRightButtonUp="DataGrid_PreviewMouseRightButtonDown" 
+                            <DataGrid PreviewMouseRightButtonDown="DataGrid_PreviewMouseRightButtonDown" PreviewMouseRightButtonUp="DataGrid_PreviewMouseRightButtonDown"
                                       RowBackground="Transparent" Background="Transparent"  Grid.Row="2" Name="dgGameList" IsReadOnly="True" 
-                                      SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Single" ContextMenuOpening="dgGameList_ContextMenuOpening" AutoGenerateColumns="False"
+                                      SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Extended" ContextMenuOpening="dgGameList_ContextMenuOpening" AutoGenerateColumns="False"
                                       ItemsSource="{Binding FilteredSet, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DataContext="{Binding Source={x:Static Application.Current}, Path=GamesList}" 
-                                      IsSynchronizedWithCurrentItem="True"
+                                      
                                       
                                       >
                                 <DataGrid.ColumnHeaderStyle>
@@ -531,11 +546,17 @@
                                 </DataGrid.CellStyle>
                                 <DataGrid.RowStyle>
                                     <Style TargetType="{x:Type DataGridRow}">
-                                        <EventSetter Event="MouseDoubleClick" Handler="LaunchRom_Click"/>
+                                        <EventSetter Event="MouseDoubleClick" Handler="LaunchRom_Click"/>                                        
                                         <Setter Property="VerticalContentAlignment" Value="Center" />
                                         <Setter Property="VerticalAlignment" Value="Center" />
                                     </Style>
                                 </DataGrid.RowStyle>
+                                <DataGrid.ItemContainerStyle>
+                                    <Style TargetType="{x:Type DataGridRow}">
+                                        <EventSetter Event="PreviewMouseRightButtonDown" Handler="DataGrid_PreviewMouseRightButtonDownBlock" />
+                                    </Style>
+                                </DataGrid.ItemContainerStyle>
+                                <!--
                                 <DataGrid.ContextMenu>
                                     <ContextMenu x:Name="dgContext">
                                         <MenuItem x:Name="LaunchRom" Header="Play Game" Click="LaunchRom_Click" />
@@ -546,6 +567,7 @@
                                         <MenuItem x:Name="DeleteRom" Header="Delete From Games Library" Click="DeleteRom_Click" />
                                     </ContextMenu>
                                 </DataGrid.ContextMenu>
+                                -->
 
                                 
                                 

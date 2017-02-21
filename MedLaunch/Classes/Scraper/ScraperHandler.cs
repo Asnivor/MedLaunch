@@ -53,6 +53,151 @@ namespace MedLaunch.Classes.Scraper
 
         /* Methods */
 
+        public async static void ScrapeGamesMultiple(List<DataGridGamesView> list, ScrapeType scrapeType)
+        {
+            // instantiate instance of this class
+            ScraperMainSearch gs = new ScraperMainSearch();
+
+            // get mainwindow 
+            MainWindow MWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            // popup progress dialog
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel Scraping",
+                AnimateShow = false,
+                AnimateHide = false
+            };
+            var controller = await MWindow.ShowProgressAsync("Scraping Data", "Initialising...", true, settings: mySettings);
+            controller.SetCancelable(true);
+            await Task.Delay(100);
+
+            await Task.Run(() =>
+            {
+                gs.LocalGames = new List<Game>();
+
+                // iterate through each game, look it up and pass it to gs.LocalGames
+                foreach (var game in list)
+                {
+                    Game g = Game.GetGame(game.ID);
+
+                    if (scrapeType == ScrapeType.Selected)
+                    {
+                        if (g.gdbId == null || g.gdbId == 0 || Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"Data\Games\" + g.gdbId.ToString()) == false)
+                        {
+                            // scraping can happen
+                            gs.LocalGames.Add(g);
+                        }
+                    }
+
+                    if (scrapeType == ScrapeType.SelectedRescrape)
+                    {
+                        gs.LocalGames.Add(g);
+                    }                    
+                }
+
+                // count number of games to scan for
+                int numGames = gs.LocalGames.Count;
+                controller.Minimum = 0;
+                controller.Maximum = numGames;
+                int i = 0;
+                // iterate through each local game and attempt to match it with the master list
+                foreach (var g in gs.LocalGames)
+                {
+                    if (controller.IsCanceled)
+                    {
+                        controller.CloseAsync();
+                        return;
+                    }
+                    i++;
+                    controller.SetProgress(i);
+                    controller.SetMessage("Attempting local search match for:\n" + g.gameName + " (" + GSystem.GetSystemCode(g.systemId) + ")" + "\n(" + i + " of " + numGames + ")");
+                    List<ScraperMaster> results = gs.SearchGameLocal(g.gameName, g.systemId, g.gameId).ToList();
+
+                    if (results.Count == 0)
+                    {
+                        // no results returned
+                    }
+                    if (results.Count == 1)
+                    {
+                        // one result returned - add GdbId to the Game table
+                        Game.SetGdbId(g.gameId, results.Single().GamesDbId);
+                    }
+                }
+
+                /* Begin actual scraping */
+
+                // Get all games that have a GdbId set and determine if they need scraping (is json file present for them)  
+                var gamesTmp = gs.LocalGames;
+                gs.LocalGames = new List<Game>();
+                foreach (var g in gamesTmp)
+                {
+                    if (g.gdbId == null || g.gdbId == 0)
+                        continue;
+
+                    if (scrapeType == ScrapeType.SelectedRescrape)
+                    {
+                        gs.LocalGames.Add(g);
+                        continue;
+                    }
+
+                    // check each game directory
+                    if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"Data\Games\" + g.gdbId.ToString()))
+                    {
+                        // directory does not exist - scraping needed
+                        gs.LocalGames.Add(g);
+                    }
+                    else
+                    {
+                        // directory does exist - check whether json file is present
+                        if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"Data\Games\" + g.gdbId.ToString() + @"\" + g.gdbId.ToString() + ".json"))
+                        {
+                            // json file is not present - scraping needed
+                            gs.LocalGames.Add(g);
+                        }
+
+                    }
+                }
+
+                int gamesCount = gs.LocalGames.Count;
+                i = 0;
+                controller.Minimum = 0;
+                controller.Maximum = gamesCount;
+                foreach (var g in gs.LocalGames)
+                {
+                    if (controller.IsCanceled)
+                    {
+                        controller.CloseAsync();
+                        return;
+                    }
+
+                    // iterate through each game that requires scraping and attempt to download the data and import to database
+                    i++;
+                    controller.SetProgress(i);
+                    string message = "Scraping Started....\nGetting data for: " + g.gameName + " (" + GSystem.GetSystemCode(g.systemId) + ")" + "\n(" + i + " of " + gamesCount + ")\n\n";
+                    controller.SetMessage(message);
+
+                    // do actual scraping                    
+                    ScraperHandler sh = new ScraperHandler(g.gdbId.Value, g.gameId, false);
+                    sh.ScrapeGame(controller);
+                    GameListBuilder.UpdateFlag();
+                }
+            });
+
+            await controller.CloseAsync();
+
+            if (controller.IsCanceled)
+            {
+                await MWindow.ShowMessageAsync("MedLaunch Scraper", "Scraping Cancelled");
+                GamesLibraryVisualHandler.RefreshGamesLibrary();
+            }
+            else
+            {
+                await MWindow.ShowMessageAsync("MedLaunch Scraper", "Scraping Completed");
+                GamesLibraryVisualHandler.RefreshGamesLibrary();
+            }
+        }
+
         public async static void ScrapeGames(int systemId, ScrapeType scrapeType)
         {
             // instantiate instance of this class
@@ -569,7 +714,8 @@ namespace MedLaunch.Classes.Scraper
         RescrapeAll,
         System,
         Favorites,
-        RescrapeFavorites
-
+        RescrapeFavorites,
+        Selected,
+        SelectedRescrape
     }
 }
