@@ -569,6 +569,9 @@ namespace MedLaunch.Models
         public double? ss__yscale { get; set; }                       // 0.01 through 256
         public double? ss__yscalefs { get; set; }                     // 0.01 through 256
 
+        public bool? ss__input__sport1__multitap { get; set; }
+        public bool? ss__input__sport2__multitap { get; set; }
+
         // added controls mednafen 0.9.41
         public bool? ss__correct_aspect { get; set; }
         public bool? ss__h_blend { get; set; }
@@ -943,13 +946,13 @@ namespace MedLaunch.Models
                 lynx__yscale = 6,                                       // control placed
                 lynx__yscalefs = 1,                                     // control placed
 
-                lynx__shader__goat__fprog = false,                      
+                lynx__shader__goat__fprog = false,
                 lynx__shader__goat__hdiv = 0.50,
                 lynx__shader__goat__pat = "goatron",
                 lynx__shader__goat__slen = true,
                 lynx__shader__goat__tp = 0.50,
                 lynx__shader__goat__vdiv = 0.50,
-                
+
                 // gameboy
                 gb__system_type = "auto",                               // placed
 
@@ -1410,6 +1413,8 @@ namespace MedLaunch.Models
                 ss__shader__goat__tp = 0.50,
                 ss__shader__goat__vdiv = 0.50,
 
+                ss__input__sport1__multitap = false,
+                ss__input__sport2__multitap = false,
 
 
                 // playstation

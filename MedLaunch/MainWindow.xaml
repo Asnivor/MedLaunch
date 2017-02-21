@@ -7975,6 +7975,10 @@
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSs2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Saturn Controller Settings">
                                         <StackPanel Margin="10">
+
+                                            <CheckBox x:Name="cfg_ss__input__sport1__multitap">Enable Multitap Emulation on Port 1</CheckBox>
+                                            <CheckBox x:Name="cfg_ss__input__sport2__multitap">Enable Multitap Emulation on Port 2</CheckBox>
+
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
@@ -8015,6 +8019,10 @@
                                                     <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
                                                     <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
                                                     <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
                                                 <Label Name="cfglbl_ss__input__port2" Grid.Column="0" Grid.Row="2">Input Device (Virtual) Port 2</Label>
@@ -8023,6 +8031,10 @@
                                                     <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
                                                     <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
                                                     <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
                                                 <Label Name="cfglbl_ss__input__port3" Grid.Column="0" Grid.Row="3">Input Device (Virtual) Port 3</Label>
@@ -8031,6 +8043,10 @@
                                                     <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
                                                     <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
                                                     <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
                                                 <Label Name="cfglbl_ss__input__port4" Grid.Column="0" Grid.Row="4">Input Device (Virtual) Port 4</Label>
@@ -8039,6 +8055,10 @@
                                                     <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
                                                     <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
                                                     <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
                                                 <Label Name="cfglbl_ss__input__port5" Grid.Column="0" Grid.Row="5">Input Device (Virtual) Port 5</Label>
@@ -8047,6 +8067,10 @@
                                                     <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
                                                     <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
                                                     <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
                                                 <Label Name="cfglbl_ss__input__port6" Grid.Column="0" Grid.Row="6">Input Device (Virtual) Port 6</Label>
@@ -8055,6 +8079,10 @@
                                                     <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
                                                     <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
                                                     <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
                                                 <Label Name="cfglbl_ss__input__port7" Grid.Column="0" Grid.Row="7">Input Device (Virtual) Port 7</Label>
@@ -8063,6 +8091,10 @@
                                                     <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
                                                     <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
                                                     <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
                                                 <Label Name="cfglbl_ss__input__port8" Grid.Column="0" Grid.Row="8">Input Device (Virtual) Port 8</Label>
@@ -8071,6 +8103,10 @@
                                                     <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
                                                     <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
                                                     <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
                                                 <Label Name="cfglbl_ss__input__port9" Grid.Column="0" Grid.Row="9">Input Device (Virtual) Port 9</Label>
@@ -8079,6 +8115,10 @@
                                                     <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
                                                     <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
                                                     <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
                                                 <Label Name="cfglbl_ss__input__port10" Grid.Column="0" Grid.Row="10">Input Device (Virtual) Port 10</Label>
@@ -8087,6 +8127,10 @@
                                                     <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
                                                     <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
                                                     <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
                                                 <Label Name="cfglbl_ss__input__port11" Grid.Column="0" Grid.Row="11">Input Device (Virtual) Port 11</Label>
@@ -8095,6 +8139,10 @@
                                                     <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
                                                     <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
                                                     <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
                                                 <Label Name="cfglbl_ss__input__port12" Grid.Column="0" Grid.Row="12">Input Device (Virtual) Port 12</Label>
@@ -8103,6 +8151,10 @@
                                                     <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
                                                     <ComboBoxItem Tag="3dpad">3D Control Pad</ComboBoxItem>
                                                     <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                    <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
 
