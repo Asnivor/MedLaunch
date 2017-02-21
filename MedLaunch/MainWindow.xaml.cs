@@ -163,7 +163,7 @@ namespace MedLaunch
             GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar,
                chkAllowBanners, chkAllowBoxart, chkAllowScreenshots, chkAllowFanart, chkPreferGenesis, chkAllowManuals, chkAllowMedia, chkSecondaryScraperBackup,
                rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost, chkAllowUpdateCheck, chkBackupMednafenConfig, chkSaveSysConfigs, comboImageTooltipSize, chkLoadConfigsOnStart, chkEnableConfigToolTips,
-               chkshowGLYear, chkshowGLESRB, chkshowGLCoop, chkshowGLDeveloper, chkshowGLPublisher, chkshowGLPlayers, chkEnableClearCacheOnExit);
+               chkshowGLYear, chkshowGLESRB, chkshowGLCoop, chkshowGLDeveloper, chkshowGLPublisher, chkshowGLPlayers, chkEnableClearCacheOnExit, chkrememberSysWinPositions);
             //gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
             GlobalSettings gs = GlobalSettings.GetGlobals();
             mainScaleTransform.ScaleX = Convert.ToDouble(gs.guiZoom);
@@ -1462,6 +1462,16 @@ namespace MedLaunch
             GlobalSettings.UpdateEnableSnes_faust(chkEnableSnes_faust);
         }
 
+        private void chkrememberSysWinPositions_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateRememberSysWinPositions(chkrememberSysWinPositions);
+        }
+
+        private void chkrememberSysWinPositions_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateRememberSysWinPositions(chkrememberSysWinPositions);
+        }
+
         /*
         private void chkAllBaseSettings_Checked(object sender, RoutedEventArgs e)
         {
@@ -2266,6 +2276,7 @@ namespace MedLaunch
             if (drv == null)
                 return;
             int romId = drv.ID;
+            int systemId = Game.GetGame(romId).systemId;
 
             bool b = Versions.MednafenVersionCheck();
 
@@ -2360,7 +2371,7 @@ namespace MedLaunch
                         }
 
                         // launch game                        
-                        gl.RunGame(cmdlineargs);
+                        gl.RunGame(cmdlineargs, systemId);
 
                         // name back system configs if neccesary (this can be removed if/when Ryphecha implements a custom config cmdline option)
                         if (bypassSystemConfigs == true)
@@ -4668,6 +4679,11 @@ namespace MedLaunch
                 CloseOnOverlay = false,
                 ShowCloseButton = false
             }, RootGrid);
+        }
+
+        private void btnForgetSystemPosition_Click(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.ResetAllSysWindowPositions();
         }
     }
     /*

@@ -10838,6 +10838,9 @@
                                             <CheckBox x:Name="chkEnableSnes_faust" Checked="chkEnableSnes_faust_Checked" Unchecked="chkEnableSnes_faust_Unchecked">Use SNES Faust</CheckBox>
                                             <CheckBox x:Name="chkEnablePce_fast" Checked="chkEnablePce_fast_Checked" Unchecked="chkEnablePce_fast_Unchecked">Use PCE Fast</CheckBox>
 
+                                            <CheckBox x:Name="chkrememberSysWinPositions" Checked="chkrememberSysWinPositions_Checked" Unchecked="chkrememberSysWinPositions_Unchecked">Remember Mednafen Window Positions (per system)</CheckBox>
+                                            <Button x:Name="btnForgetSystemPosition" Click="btnForgetSystemPosition_Click">Forget All Mednafen Window Positions</Button>
+                                                
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="90" />

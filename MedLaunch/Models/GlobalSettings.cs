@@ -111,6 +111,27 @@ namespace MedLaunch.Models
         public bool? checkUpdatesOnStart { get; set; }
         public double imageToolTipPercentage { get; set; }           // what percentage of the current windows size can the image tooltips be
         public bool? importConfigsOnStart { get; set; }
+        public bool? rememberSysWinPositions { get; set; }          // gets the saved windows position for each system at game launch and saves it at game end
+
+        // system window positions
+        public string sysWinPos1 { get; set; }                      // string format "x,y"
+        public string sysWinPos2 { get; set; }
+        public string sysWinPos3 { get; set; }
+        public string sysWinPos4 { get; set; }
+        public string sysWinPos5 { get; set; }
+        public string sysWinPos6 { get; set; }
+        public string sysWinPos7 { get; set; }
+        public string sysWinPos8 { get; set; }
+        public string sysWinPos9 { get; set; }
+        public string sysWinPos10 { get; set; }
+        public string sysWinPos11 { get; set; }
+        public string sysWinPos12 { get; set; }
+        public string sysWinPos13 { get; set; }
+        public string sysWinPos14 { get; set; }
+        public string sysWinPos15 { get; set; }
+        public string sysWinPos16 { get; set; }
+        public string sysWinPos17 { get; set; }
+        public string sysWinPos18 { get; set; }
 
         public static GlobalSettings GetGlobalDefaults()
         {
@@ -203,7 +224,9 @@ namespace MedLaunch.Models
                 coreVis15 = true,
                 coreVis16 = true,
                 coreVis17 = true,
-                coreVis18 = true
+                coreVis18 = true,
+
+                rememberSysWinPositions = false
             };
             return gs;
         }
@@ -346,13 +369,16 @@ namespace MedLaunch.Models
             CheckBox chkAllowBanners, CheckBox chkAllowBoxart, CheckBox chkAllowScreenshots, CheckBox chkAllowFanart, CheckBox chkPreferGenesis, 
             CheckBox chkAllowManuals, CheckBox chkAllowMedia, CheckBox chkSecondaryScraperBackup, RadioButton rbGDB, RadioButton rbMoby, Slider slScreenshotsPerHost, Slider slFanrtsPerHost,
             CheckBox chkAllowUpdateCheck, CheckBox chkBackupMednafenConfig, CheckBox chkSaveSysConfigs, ComboBox comboImageTooltipSize, CheckBox chkLoadConfigsOnStart, CheckBox chkEnableConfigToolTips,
-            CheckBox chkshowGLYear, CheckBox chkshowGLESRB, CheckBox chkshowGLCoop, CheckBox chkshowGLDeveloper, CheckBox chkshowGLPublisher, CheckBox chkshowGLPlayers, CheckBox chkEnableClearCacheOnExit)
+            CheckBox chkshowGLYear, CheckBox chkshowGLESRB, CheckBox chkshowGLCoop, CheckBox chkshowGLDeveloper, CheckBox chkshowGLPublisher, CheckBox chkshowGLPlayers, CheckBox chkEnableClearCacheOnExit, CheckBox chkrememberSysWinPositions)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
             EnableNetplay.IsChecked = gs.enableNetplay;
             EnablePce_Fast.IsChecked = gs.enablePce_fast;
             EnableSnes_Faust.IsChecked = gs.enableSnes_faust;
+
+            chkrememberSysWinPositions.IsChecked = gs.rememberSysWinPositions;
+
             //FullScreen.IsChecked = gs.fullScreen;
             //BypassConfig.IsChecked = gs.bypassConfig;
 
@@ -619,6 +645,165 @@ namespace MedLaunch.Models
         {
             GlobalSettings gs = GetGlobals();
             gs.importConfigsOnStart = chkLoadConfigsOnStart.IsChecked.Value;
+            SetGlobals(gs);
+        }
+
+        public static void UpdateRememberSysWinPositions(CheckBox chkrememberSysWinPositions)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.rememberSysWinPositions = chkrememberSysWinPositions.IsChecked.Value;
+            SetGlobals(gs);
+        }
+
+        public static string ConvertPointToString(System.Drawing.Point point)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(point.X);
+            sb.Append(",");
+            sb.Append(point.Y);
+
+            return sb.ToString();
+        }
+
+        public static System.Drawing.Point ConvertStringToPoint(string coords)
+        {
+            System.Drawing.Point point = new System.Drawing.Point();
+            if (coords == null || !coords.Contains(","))
+            {
+                point.X = 0;
+                point.Y = 0;
+                return point;
+            }
+
+            string[] pArr = coords.Split(',');
+            point.X = Convert.ToInt32(pArr[0]);
+            point.Y = Convert.ToInt32(pArr[1]);
+            return point;
+        }
+
+        public static System.Drawing.Point GetWindowPosBySystem(int systemId)
+        {
+            GlobalSettings gs = GlobalSettings.GetGlobals();
+
+            string[] s = new string[]
+            {
+                gs.sysWinPos1,
+                gs.sysWinPos2,
+                gs.sysWinPos3,
+                gs.sysWinPos4,
+                gs.sysWinPos5,
+                gs.sysWinPos6,
+                gs.sysWinPos7,
+                gs.sysWinPos8,
+                gs.sysWinPos9,
+                gs.sysWinPos10,
+                gs.sysWinPos11,
+                gs.sysWinPos12,
+                gs.sysWinPos13,
+                gs.sysWinPos14,
+                gs.sysWinPos15,
+                gs.sysWinPos16,
+                gs.sysWinPos17,
+                gs.sysWinPos18,
+            };
+
+            string result = s[systemId - 1];
+            return ConvertStringToPoint(result);
+        }
+
+        public static void SaveWindowPosBySystem(int systemId, System.Drawing.Point point)
+        {
+            GlobalSettings gs = GlobalSettings.GetGlobals();
+
+            string coords = ConvertPointToString(point);
+
+            switch (systemId)
+            {
+                case 1:
+                    gs.sysWinPos1 = coords;
+                    break;
+                case 2:
+                    gs.sysWinPos2 = coords;
+                    break;
+                case 3:
+                    gs.sysWinPos3 = coords;
+                    break;
+                case 4:
+                    gs.sysWinPos4 = coords;
+                    break;
+                case 5:
+                    gs.sysWinPos5 = coords;
+                    break;
+                case 6:
+                    gs.sysWinPos6 = coords;
+                    break;
+                case 7:
+                    gs.sysWinPos7 = coords;
+                    break;
+                case 8:
+                    gs.sysWinPos8 = coords;
+                    break;
+                case 9:
+                    gs.sysWinPos9 = coords;
+                    break;
+                case 10:
+                    gs.sysWinPos10 = coords;
+                    break;
+                case 11:
+                    gs.sysWinPos11 = coords;
+                    break;
+                case 12:
+                    gs.sysWinPos12 = coords;
+                    break;
+                case 13:
+                    gs.sysWinPos13 = coords;
+                    break;
+                case 14:
+                    gs.sysWinPos14 = coords;
+                    break;
+                case 15:
+                    gs.sysWinPos15 = coords;
+                    break;
+                case 16:
+                    gs.sysWinPos16 = coords;
+                    break;
+                case 17:
+                    gs.sysWinPos17 = coords;
+                    break;
+                case 18:
+                    gs.sysWinPos18 = coords;
+                    break;
+            }
+
+            SetGlobals(gs);
+
+        }
+
+        public static void ResetAllSysWindowPositions()
+        {
+            GlobalSettings gs = GlobalSettings.GetGlobals();
+
+            string coords = "0,0";
+            
+            gs.sysWinPos1 = coords;
+            gs.sysWinPos2 = coords;
+            gs.sysWinPos3 = coords;
+            gs.sysWinPos4 = coords;
+            gs.sysWinPos5 = coords;
+            gs.sysWinPos6 = coords;
+            gs.sysWinPos7 = coords;
+            gs.sysWinPos8 = coords;
+            gs.sysWinPos9 = coords;
+            gs.sysWinPos10 = coords;
+            gs.sysWinPos11 = coords;
+            gs.sysWinPos12 = coords;
+            gs.sysWinPos13 = coords;
+            gs.sysWinPos14 = coords;
+            gs.sysWinPos15 = coords;
+            gs.sysWinPos16 = coords;
+            gs.sysWinPos17 = coords;
+            gs.sysWinPos18 = coords;
+
             SetGlobals(gs);
         }
 

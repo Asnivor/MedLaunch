@@ -10,6 +10,13 @@ using Asnitech.Launch.Common;
 using System.IO;
 using MedLaunch.Classes.IO;
 using Microsoft.Win32;
+using System.Threading;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using WindowScrape;
+using WindowScrape.Constants;
+using WindowScrape.Static;
+using WindowScrape.Types;
 
 namespace MedLaunch.Classes
 {
@@ -229,21 +236,70 @@ namespace MedLaunch.Classes
             Clipboard.SetText(fullString);
         }
 
-        public void RunGame(string cmdArguments)
+        public void RunGame(string cmdArguments, int systemId)
         {
-            System.Diagnostics.Process gProcess = new System.Diagnostics.Process();
-            gProcess.StartInfo.UseShellExecute = true;
-            gProcess.StartInfo.RedirectStandardOutput = false;
-            gProcess.StartInfo.WorkingDirectory = "\"" + MednafenFolder + "\"";
-            gProcess.StartInfo.FileName = "\"" + BuildMednafenPath(MednafenFolder) + "\"";
-            gProcess.StartInfo.CreateNoWindow = false;
+            int procId;
 
-            // Build command line config arguments
-            gProcess.StartInfo.Arguments = cmdArguments;
-            //MessageBoxResult result = MessageBox.Show(BuildMednafenPath(MednafenFolder) + " " + BuildFullGamePath(RomFolder, RomPath));
+            bool rememberWinPos = GlobalSettings.GetGlobals().rememberSysWinPositions.Value;
 
-            gProcess.Start();
-            gProcess.WaitForExit();
+            using (System.Diagnostics.Process gProcess = new System.Diagnostics.Process())
+            {
+                gProcess.StartInfo.UseShellExecute = true;
+                gProcess.StartInfo.RedirectStandardOutput = false;
+                gProcess.StartInfo.WorkingDirectory = "\"" + MednafenFolder + "\"";
+                gProcess.StartInfo.FileName = "\"" + BuildMednafenPath(MednafenFolder) + "\"";
+                gProcess.StartInfo.CreateNoWindow = false;
+                // Build command line config arguments
+                gProcess.StartInfo.Arguments = cmdArguments;
+                gProcess.Start();
+                gProcess.WaitForInputIdle();
+
+                procId = gProcess.Id;
+
+                // get process window handle
+                IntPtr hwnd = gProcess.MainWindowHandle;
+
+                // set windows position
+                System.Drawing.Point pnt = new System.Drawing.Point();
+
+                if (rememberWinPos == true)
+                {
+                    // get windows position from database
+                    pnt = GlobalSettings.GetWindowPosBySystem(systemId);
+                    // set windows position
+                    HwndInterface.SetHwndPos(hwnd, pnt.X, pnt.Y);
+                }               
+
+                bool isClosed = false;
+                while (isClosed == false)
+                {
+                    try
+                    {
+                        // get process id
+                        Process p = Process.GetProcessById(procId);
+
+                        if (rememberWinPos == true)
+                        {
+                            // get window top left x y coords
+                            pnt = HwndInterface.GetHwndPos(hwnd);
+                        }
+                        
+                        
+                    }
+                    catch
+                    {
+                        isClosed = true;
+                    }
+
+                    Thread.Sleep(1000);
+                }
+
+                if (rememberWinPos == true)
+                {
+                    // save coords to database
+                    GlobalSettings.SaveWindowPosBySystem(systemId, pnt);
+                }
+            }
         }
 
         public string GetCommandLineArguments()

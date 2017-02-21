@@ -213,6 +213,7 @@
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.0.0-beta-23516\lib\dotnet5.2\System.Diagnostics.DiagnosticSource.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Interactive.Async, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Ix-Async.1.2.5\lib\net45\System.Interactive.Async.dll</HintPath>
       <Private>True</Private>
@@ -236,6 +237,10 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowScrape, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ExternalAssemblies\WindowScrape.dll</HintPath>
+    </Reference>
     <Reference Include="Xceed.Wpf.AvalonDock, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
       <Private>True</Private>
@@ -340,6 +345,7 @@
     <Compile Include="Extensions\ImageExtension.cs" />
     <Compile Include="Extensions\LabelExtension.cs" />
     <Compile Include="Extensions\UIElementExtension.cs" />
+    <Compile Include="Extensions\ZipArchiveExtensions.cs" />
     <Compile Include="InitWindow.xaml.cs">
       <DependentUpon>InitWindow.xaml</DependentUpon>
     </Compile>
@@ -645,6 +651,7 @@
     <Resource Include="Data\Graphics\Systems\wswan.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ExternalAssemblies\WindowScrape.dll" />
     <Resource Include="MedLaunchIcon.ico" />
     <Resource Include="Data\Graphics\Controllers\lynx_controller.png" />
     <Resource Include="Data\Graphics\Controllers\gb_controller.png" />
@@ -664,6 +671,9 @@
     <Resource Include="LatestVersion.txt" />
     <Resource Include="Data\Graphics\mediconsplash.png" />
     <Content Include="ExternalAssemblies\FuzzyString.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
