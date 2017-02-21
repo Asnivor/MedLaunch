@@ -2107,8 +2107,38 @@ namespace MedLaunch
             // refresh library view
             GameListBuilder.UpdateFlag();
             GamesLibraryVisualHandler.RefreshGamesLibrary();
+        }
 
+        private void MenuItemFavorites_Click(object sender, RoutedEventArgs e)
+        {
+            int numRows = dgGameList.SelectedItems.Count;
 
+            if (numRows == 0)
+                return;
+            else if (numRows == 1)
+            {
+                DataGridGamesView drv = (DataGridGamesView)dgGameList.SelectedItem;
+                int romId = drv.ID;
+                GameScanner.FavoriteToggle(romId);
+            }
+            else
+            {
+                var rs = dgGameList.SelectedItems;
+                List<DataGridGamesView> games = new List<DataGridGamesView>();
+                foreach (DataGridGamesView row in rs)
+                {
+                    games.Add(row);
+                }
+
+                foreach (var game in games)
+                {
+                    GameScanner.FavoriteToggle(game.ID);
+                }
+            }
+
+            // refresh library view
+            GameListBuilder.UpdateFlag();
+            GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 
         private void DeleteRom_Click(object sender, RoutedEventArgs e)

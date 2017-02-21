@@ -36,7 +36,7 @@
             <MenuItem Header="Delete From Games Library" Click="DeleteRom_Click" />
         </ContextMenu>
         <ContextMenu x:Key="cmGamesListMultiple" x:Name="cmGamesListMultiple">
-            <MenuItem Header="Favorites" Click="MenuItemFavorite_Click" />
+            <MenuItem Header="Favorites" Click="MenuItemFavorites_Click" />
             <MenuItem Header="Auto-Scrape Selected Games" Click="ScrapeGamesMultiple_Click" />
             <MenuItem Header="Re-Scrape Selected Games" Click="ReScrapeGamesMultiple_Click" />
             <MenuItem Header="Delete From Games Library" Click="DeleteRoms_Click" />
