@@ -2125,6 +2125,46 @@ namespace MedLaunch
            GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 
+        private void DeleteRoms_Click(object sender, RoutedEventArgs e)
+        {
+            int numRows = dgGameList.SelectedItems.Count;
+
+            if (numRows == 0)
+                return;
+            else if (numRows == 1)
+            {
+                DataGridGamesView drv = (DataGridGamesView)dgGameList.SelectedItem;
+                int romId = drv.ID;
+                Game game = Game.GetGame(romId);
+                // delete from library
+                Game.DeleteGame(game);
+            }
+            else
+            {
+                var rs = dgGameList.SelectedItems;
+                List<DataGridGamesView> rows = new List<DataGridGamesView>();
+                foreach (DataGridGamesView row in rs)
+                {
+                    rows.Add(row);
+                }
+
+                List<Game> games = new List<Game>();
+
+                foreach (DataGridGamesView row in rows)
+                {
+                    int id = row.ID;
+                    Game game = Game.GetGame(id);
+                    games.Add(game);
+                }
+
+                Game.DeleteGames(games);
+            }
+
+            // refresh library view
+            GameListBuilder.UpdateFlag();
+            GamesLibraryVisualHandler.RefreshGamesLibrary();
+        }
+
         private void CopyLaunchStringToClipboard_Click(object sender, RoutedEventArgs e)
         {
             DataGridGamesView drv = (DataGridGamesView)dgGameList.SelectedItem;
