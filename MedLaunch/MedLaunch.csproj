@@ -354,6 +354,9 @@
     <Compile Include="Classes\Scraper\TheGamesDB\GDBScraper.cs" />
     <Compile Include="Classes\UserAgent.cs" />
     <Compile Include="Classes\WebOps.cs" />
+    <Compile Include="ConfigureController.xaml.cs">
+      <DependentUpon>ConfigureController.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CustomTextBox.cs" />
     <Compile Include="Extensions\ImageExtension.cs" />
     <Compile Include="Extensions\LabelExtension.cs" />
@@ -406,6 +409,10 @@
     </Compile>
     <Compile Include="ThemeManagerHelper.cs" />
     <Page Include="AccentStyleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfigureController.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

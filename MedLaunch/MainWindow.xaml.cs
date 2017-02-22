@@ -53,6 +53,7 @@ using MedLaunch.Classes.VisualHandlers;
 using Newtonsoft.Json.Linq;
 using MedLaunch.Classes.IO;
 using MahApps.Metro.SimpleChildWindow;
+using MedLaunch.Classes.Controls.VirtualDevices;
 
 namespace MedLaunch
 {
@@ -64,6 +65,8 @@ namespace MedLaunch
         public ObservableCollection<DataGridGamesView> dg { get; set; }
         public bool SettingsDirtyFlag { get; set; }
         public string LaunchString { get; set; }
+
+        public DeviceDefinition ControllerDefinition { get; set; }
 
         public MainWindow()
         {
@@ -2491,6 +2494,38 @@ namespace MedLaunch
             }
         }
 
+        private async void btnControlsConfigure_Click(object sender, RoutedEventArgs e)
+        {
+            // get button name
+            Button button = (Button)sender;
+            string name = button.Name;
+
+            // remove beginning and end
+            name = name.Replace("btn", "").Replace("Configure", "");
+
+            // get the relevant combox
+            ComboBox cb = (ComboBox)this.FindName("cmb" + name);
+
+            // get the virtual port number
+            //ComboBoxItem typeItem = (ComboBoxItem)cb.SelectedItem;
+            string selectedString = cb.SelectionBoxItem.ToString();
+            int portNum = Convert.ToInt32(selectedString.Replace("Virtual Port ", ""));
+
+            // Get device definition for this controller
+            DeviceDefinition dev = Nes.GamePad(portNum);
+            ControllerDefinition = dev;
+
+            // launch controller configuration window
+            await this.ShowChildWindowAsync(new ConfigureController()
+            {
+                IsModal = true,
+                AllowMove = false,
+                Title = "Controller Configuration",
+                CloseOnOverlay = false,
+                ShowCloseButton = false
+            }, RootGrid);
+        }
+
 
         // Config Tab               
 
@@ -4685,6 +4720,8 @@ namespace MedLaunch
         {
             GlobalSettings.ResetAllSysWindowPositions();
         }
+
+        
     }
     /*
     public class SliderIgnoreDelta : Slider

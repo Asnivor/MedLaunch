@@ -9975,12 +9975,31 @@
                                             <Image x:Name="imageNes" Height="150" Source="Data/Graphics/Controllers/nes-controller.png" />
 
                                             <WrapPanel HorizontalAlignment="Center" Margin="5" Orientation="Vertical">
-                                                <ComboBox Name="cmbNes1" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" SelectionChanged="Controller_SelectionChanged">
-                                                    <ComboBoxItem>Virtual Port 1</ComboBoxItem>
-                                                    <ComboBoxItem>Virtual Port 2</ComboBoxItem>
-                                                    <ComboBoxItem>Virtual Port 3</ComboBoxItem>
-                                                    <ComboBoxItem>Virtual Port 4</ComboBoxItem>
-                                                </ComboBox>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="Auto" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="40" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <ComboBox Name="cmbNesGamepad" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="0" Height="25">
+                                                        <ComboBoxItem>Virtual Port 1</ComboBoxItem>
+                                                        <ComboBoxItem>Virtual Port 2</ComboBoxItem>
+                                                        <ComboBoxItem>Virtual Port 3</ComboBoxItem>
+                                                        <ComboBoxItem>Virtual Port 4</ComboBoxItem>
+                                                    </ComboBox>
+
+                                                    <Button Name="btnNesGamepadConfigure" Grid.Column="1" Click="btnControlsConfigure_Click" Height="25">Configure</Button>
+
+                                                </Grid>
+                                                
+<!--
+                                                <UniformGrid Name="ugNesP1Gamepad" Columns="2" HorizontalAlignment="Center">
+                                                    <Label Grid.ColumnSpan="2" Name="ugNesP1GamepadTitle"></Label>
+                                                    
+                                                </UniformGrid>
 
                                                 <Border Style="{StaticResource Borders1}" Margin="10" Name="ctrlBrdNes1">
                                                     <Expander IsExpanded="True" BorderThickness="0" Header="Port 1">
@@ -10010,7 +10029,7 @@
                                                         </StackPanel>
                                                     </Expander>
                                                 </Border>
-
+-->
                                             </WrapPanel>
 
                                         </StackPanel>
