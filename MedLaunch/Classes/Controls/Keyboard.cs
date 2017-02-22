@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SlimDX;
+using SlimDX.DirectInput;
 
 namespace MedLaunch.Classes.Controls
 {
-    public class Keyboard
+    public class KeyboardTranslation
     {
         public Dictionary<string, int> KeyList { get; set; }
 
-        public Keyboard()
+        public KeyboardTranslation()
         {
             // KeyList taken from spaulding's post on the Mednafen forums: http://forum.fobby.net/index.php?t=tree&th=7&#page_top
             KeyList = new Dictionary<string, int>()
@@ -270,7 +272,7 @@ namespace MedLaunch.Classes.Controls
 
         public static string ReturnKeyName(int asciiNum)
         {
-            Keyboard k = new Keyboard();
+            KeyboardTranslation k = new KeyboardTranslation();
             var lookup = (from a in k.KeyList
                          where a.Value == asciiNum
                          select a).ToList();
@@ -297,7 +299,7 @@ namespace MedLaunch.Classes.Controls
 
         public static string ReturnKeyNum(string sdlName)
         {
-            Keyboard k = new Keyboard();
+            KeyboardTranslation k = new KeyboardTranslation();
             var lookup = (from a in k.KeyList
                           where a.Key == sdlName
                           select a).ToList();
@@ -312,5 +314,61 @@ namespace MedLaunch.Classes.Controls
                 return lookup.First().Value.ToString();
             }
         }
+    }
+
+    public static class KeyInput
+    {
+        private static DirectInput dinput;
+        private static Keyboard keyboard;
+        private static KeyboardState state = new KeyboardState();
+
+        public static void Initialize()
+        {
+            if (dinput == null)
+                dinput = new DirectInput();
+
+            if (keyboard == null || keyboard.Disposed)
+                keyboard = new Keyboard(dinput);
+            //keyboard.SetCooperativeLevel(GlobalWin.MainForm.Handle, CooperativeLevel.Background | CooperativeLevel.Nonexclusive);
+            keyboard.Properties.BufferSize = 8;
+        }
+
+        static List<KeyEvent> EmptyList = new List<KeyEvent>();
+        static List<KeyEvent> EventList = new List<KeyEvent>();
+
+        public static IEnumerable<KeyEvent> Update()
+        {
+            EventList.Clear();
+
+            if (keyboard.Acquire().IsFailure)
+                return EmptyList;
+            if (keyboard.Poll().IsFailure)
+                return EmptyList;
+
+            for (;;)
+            {
+                var events = keyboard.GetBufferedData();
+                if (Result.Last.IsFailure)
+                    return EventList;
+                if (events.Count == 0)
+                    break;
+                foreach (var e in events)
+                {
+                    foreach (var k in e.PressedKeys)
+                        EventList.Add(new KeyEvent { Key = k, Pressed = true });
+                    foreach (var k in e.ReleasedKeys)
+                        EventList.Add(new KeyEvent { Key = k, Pressed = false });
+                }
+            }
+
+            return EventList;
+        }
+
+        public struct KeyEvent
+        {
+            public Key Key;
+            public bool Pressed;
+        }
+
     }
 }
