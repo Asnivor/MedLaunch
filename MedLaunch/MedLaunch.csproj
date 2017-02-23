@@ -306,6 +306,7 @@
     <Compile Include="Classes\IO\Archiving.cs" />
     <Compile Include="Classes\IO\Crypto.cs" />
     <Compile Include="Classes\IO\FileAndFolder.cs" />
+    <Compile Include="Classes\IO\FileAssociation.cs" />
     <Compile Include="Classes\LogParser.cs" />
     <Compile Include="Classes\Scraper\DAT\Models\DATMerge.cs" />
     <Compile Include="Classes\Scraper\DAT\NOINTRO\ImportNoIntroData.cs" />

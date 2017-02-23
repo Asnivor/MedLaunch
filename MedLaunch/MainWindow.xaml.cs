@@ -4379,12 +4379,10 @@ namespace MedLaunch
             if (!File.Exists(logPath))
                 return;
 
-            // open log
-            ProcessStartInfo pi = new ProcessStartInfo();
-            pi.Arguments = logPath;
-            pi.FileName = "notepad.exe";
+            // open log in default editor
+            FileAssociation.OpenTxtFileInDefaultViewer(logPath);
 
-            Process.Start(pi);
+            
 
         }
 
@@ -4396,12 +4394,8 @@ namespace MedLaunch
             if (!File.Exists(logPath))
                 return;
 
-            // open log
-            ProcessStartInfo pi = new ProcessStartInfo();
-            pi.Arguments = logPath;
-            pi.FileName = "notepad.exe";
-
-            Process.Start(pi);
+            // open log in default editor
+            FileAssociation.OpenTxtFileInDefaultViewer(logPath);
 
         }
 
