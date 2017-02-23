@@ -305,6 +305,7 @@
     <Compile Include="Classes\Input\Controller.cs" />
     <Compile Include="Classes\IO\Archiving.cs" />
     <Compile Include="Classes\IO\Crypto.cs" />
+    <Compile Include="Classes\IO\DiscUtils.cs" />
     <Compile Include="Classes\IO\FileAndFolder.cs" />
     <Compile Include="Classes\IO\FileAssociation.cs" />
     <Compile Include="Classes\LogParser.cs" />
