@@ -7150,15 +7150,14 @@
                                                 </DockPanel>
 
                                                 <CheckBox x:Name="cfg_snes__input__port1__multitap" Grid.ColumnSpan="2" Grid.Row="2">Enable MultiTap (Port 1)</CheckBox>
+                                                <CheckBox x:Name="cfg_snes__input__port2__multitap" Grid.ColumnSpan="2" Grid.Row="3">Enable MultiTap (Port 2)</CheckBox>
 
-                                                <Label Name="cfglbl_snes__input__port1" Grid.Column="0" Grid.Row="3">Port 1 Input Device</Label>
-                                                <ComboBox x:Name="cfg_snes__input__port1" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="3">
+                                                <Label Name="cfglbl_snes__input__port1" Grid.Column="0" Grid.Row="4">Port 1 Input Device</Label>
+                                                <ComboBox x:Name="cfg_snes__input__port1" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="4">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
                                                     <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
                                                     <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
-                                                </ComboBox>
-
-                                                <CheckBox x:Name="cfg_snes__input__port2__multitap" Grid.ColumnSpan="2" Grid.Row="4">Enable MultiTap (Port 2)</CheckBox>
+                                                </ComboBox>                                                
 
                                                 <Label Name="cfglbl_snes__input__port2" Grid.Column="0" Grid.Row="5">Port 2 Input Device</Label>
                                                 <ComboBox x:Name="cfg_snes__input__port2" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="5">
@@ -7166,6 +7165,48 @@
                                                     <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
                                                     <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
                                                     <ComboBoxItem Tag="superscope">Super Scope</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Name="cfglbl_snes__input__port3" Grid.Column="0" Grid.Row="6">Port 3 Input Device</Label>
+                                                <ComboBox x:Name="cfg_snes__input__port3" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="6">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Name="cfglbl_snes__input__port4" Grid.Column="0" Grid.Row="7">Port 4 Input Device</Label>
+                                                <ComboBox x:Name="cfg_snes__input__port4" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="7">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Name="cfglbl_snes__input__port5" Grid.Column="0" Grid.Row="8">Port 5 Input Device</Label>
+                                                <ComboBox x:Name="cfg_snes__input__port5" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="8">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Name="cfglbl_snes__input__port6" Grid.Column="0" Grid.Row="9">Port 6 Input Device</Label>
+                                                <ComboBox x:Name="cfg_snes__input__port6" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="9">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Name="cfglbl_snes__input__port7" Grid.Column="0" Grid.Row="10">Port 7 Input Device</Label>
+                                                <ComboBox x:Name="cfg_snes__input__port7" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="10">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Name="cfglbl_snes__input__port8" Grid.Column="0" Grid.Row="11">Port 8 Input Device</Label>
+                                                <ComboBox x:Name="cfg_snes__input__port8" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="11">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
                                                 </ComboBox>
 
                                             </Grid>
