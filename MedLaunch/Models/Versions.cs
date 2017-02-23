@@ -18,7 +18,7 @@ namespace MedLaunch.Models
         // return compatible mednafen version branch
         public static string CompatibleMednafenBranch()
         {
-            string branch = "0.9.42.x";
+            string branch = "0.9.43.x";
             return branch;
         }
 
