@@ -41,8 +41,13 @@ namespace MedLaunch
 
             ControllerDefinition = mw.ControllerDefinition;
 
+            string vPortStr = "";
+            if (ControllerDefinition.VirtualPort > 0)
+                vPortStr = " - Virtual Port: " + ControllerDefinition.VirtualPort;
+
+
             // set the title
-            titleTextBlock.Text = "Configure " + ControllerDefinition.DeviceName + " - Virtual Port: " + ControllerDefinition.VirtualPort;
+            titleTextBlock.Text = "Configure " + ControllerDefinition.DeviceName + vPortStr;
 
             // loop through maplist and populate the dynamic data grid row by row
             for (int i = 0; i < ControllerDefinition.MapList.Count; i++)
@@ -112,6 +117,27 @@ namespace MedLaunch
             {
                 case "NES GamePad":
                     imgName = "nes-controller.png";
+                    break;
+                case "GB GamePad":
+                    imgName = "gb_controller.png";
+                    break;
+                case "GBA GamePad":
+                    imgName = "gba-controller.png";
+                    break;
+                case "LYNX GamePad":
+                    imgName = "lynx_controller.png";
+                    break;
+                case "NGP GamePad":
+                    imgName = "ngp-controller.png";
+                    break;
+                case "GG GamePad":
+                    imgName = "gg-controller.png";
+                    break;
+                case "MD GamePad (3-Button)":
+                    imgName = "md-controller-3button.png";
+                    break;
+                case "MD GamePad (6-Button)":
+                    imgName = "md-controller-6button.png";
                     break;
 
                 default:

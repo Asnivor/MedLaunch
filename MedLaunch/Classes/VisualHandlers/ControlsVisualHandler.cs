@@ -51,6 +51,7 @@ namespace MedLaunch.Classes.VisualHandlers
         }
 
         // methods
+               
         public void SetFilter()
         {
             // Activate default settings (system wide)
@@ -62,11 +63,12 @@ namespace MedLaunch.Classes.VisualHandlers
             string name = _activeRadio.Name.Replace("btnControl", "").ToLower();
 
 
+
             // set system specific config panels as visible
             foreach (Border border in AllDynamicControlPanels)
             {
                 string brdName = StripTrailingNumerals(border.Name.ToLower().Replace("controlbrd", ""));
-                if (brdName == name || (name == "base")) // && GS.showAllBaseSettings == true))
+                if (brdName == name || (name == "base"))
                 {
                     border.Visibility = Visibility.Visible;
                 }
@@ -89,11 +91,15 @@ namespace MedLaunch.Classes.VisualHandlers
 
         public static void ButtonClick()
         {
-
+            
             ControlsVisualHandler cvh = new ControlsVisualHandler();
 
             // Show/Hide system-specific panels
             cvh.SetFilter();
+            
+
+
+
         }
     }
 }

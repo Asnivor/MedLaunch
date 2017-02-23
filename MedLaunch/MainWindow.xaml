@@ -9498,259 +9498,97 @@
                     <WrapPanel Orientation="Vertical" Grid.Column="0" Margin="0" x:FieldModifier="public" x:Name="wpControlLeftPane">
                         <Border Style="{StaticResource Borders1}" Margin="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Controls" >
-                                <WrapPanel Orientation="Vertical" x:Name="ControlSelectorWrapPanel">
-                                    <!--
-                                    <RadioButton x:Name="btnConfigBase" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True" 
+                                <WrapPanel Orientation="Vertical" x:Name="ControlSelectorWrapPanel">                                    
+                                    <RadioButton x:Name="btnAllControls" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnControl_Checked" Unchecked="btnControl_UnChecked" ContextMenuService.ShowOnDisabled="True" 
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
-                                        BASE CONFIGURATION
-                                        <RadioButton.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem x:Name="MenuItemDefaultBase" Header="Reset to Defaults" Click="MenuItemDefault_Click" />
-                                                <MenuItem Header="Load the base configuration from disk (mednafen-09x.cfg)" Click="LoadConfigFromDisk_Click" />
-                                              
-                                                </ContextMenu>
-                                        </RadioButton.ContextMenu>
+                                        Show All Systems
                                     </RadioButton>
-                                    -->
                                     <RadioButton x:Name="btnControlNes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                       ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
-                                        NES/Famicon
-                                        <RadioButton.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                                <MenuItem Header="Load the NES configuration from disk (nes.cfg)" Click="LoadConfigFromDisk_Click" />
-                                                <!--
-                                                <MenuItem Header="Save the NES configuration to disk (nes.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            -->
-                                            </ContextMenu>
-                                        </RadioButton.ContextMenu>
+                                        NES/Famicon                                        
                                     </RadioButton>
                                     <RadioButton x:Name="btnControlSnes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                       ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
                                         SNES/Super Famicon
-                                        <RadioButton.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                                <MenuItem Header="Load the SNES configuration from disk (snes.cfg)" Click="LoadConfigFromDisk_Click" />
-                                                <!--
-                                                <MenuItem Header="Save the SNES configuration to disk (snes.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            -->
-                                            </ContextMenu>
-                                        </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton  x:Name="btnControlSnes_Faust" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                       ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
                                         SNES/Super Famicon (Faust)
-                                        <RadioButton.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                                <MenuItem Header="Load the SNES-FAUST configuration from disk (snes_faust.cfg)" Click="LoadConfigFromDisk_Click" />
-                                                <!--
-                                                <MenuItem Header="Save the SNES-FAUST configuration to disk (snes_faust.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            -->
-                                            </ContextMenu>
-                                        </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton  x:Name="btnControlSms" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                       ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
                                         Sega Master System
-                                        <RadioButton.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                                <MenuItem Header="Load the SMS configuration from disk (sms.cfg)" Click="LoadConfigFromDisk_Click" />
-                                                <!--
-                                                <MenuItem Header="Save the SMS configuration to disk (sms.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                           -->
-                                            </ContextMenu>
-                                        </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnControlMd" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
                                         Sega MegaDrive/Genesis
-                                        <RadioButton.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                                <MenuItem Header="Load the MD configuration from disk (md.cfg)" Click="LoadConfigFromDisk_Click" />
-                                                <!--
-                                                <MenuItem Header="Save the MD configuration to disk (md.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            -->
-                                            </ContextMenu>
-                                        </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnControlPce" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
                                         NEC PC-Engine
-                                        <RadioButton.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                                <MenuItem Header="Load the PCE configuration from disk (pce.cfg)" Click="LoadConfigFromDisk_Click" />
-                                                <!--
-                                                <MenuItem Header="Save the PCE configuration to disk (pce.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            -->
-                                            </ContextMenu>
-                                        </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnControlPce_Fast" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                       ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
                                         NEC PC-Engine (fast)
-                                        <RadioButton.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                                <MenuItem Header="Load the PCE-FAST configuration from disk (pce_fast.cfg)" Click="LoadConfigFromDisk_Click" />
-                                                <!--
-                                                <MenuItem Header="Save the PCE-FAST configuration to disk (pce_fast.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            -->
-                                            </ContextMenu>
-                                        </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnControlVb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                       ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
                                         Nintendo Virtual Boy
-                                        <RadioButton.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                                <MenuItem Header="Load the VB configuration from disk (vb.cfg)" Click="LoadConfigFromDisk_Click" />
-                                                <!--
-                                                <MenuItem Header="Save the VB configuration to disk (vb.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            -->
-                                            </ContextMenu>
-                                        </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnControlNgp" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                       ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
                                         NeoGeo Pocket Color
-                                        <RadioButton.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                                <MenuItem Header="Load the NGP configuration from disk (ngp.cfg)" Click="LoadConfigFromDisk_Click" />
-                                                <!--
-                                                <MenuItem Header="Save the NGP configuration to disk (ngp.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                           -->
-                                            </ContextMenu>
-                                        </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnControlWswan" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                       ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
                                         Bandai WonderSwan
-                                        <RadioButton.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                                <MenuItem Header="Load the WSWAN configuration from disk (wswan.cfg)" Click="LoadConfigFromDisk_Click" />
-                                                <!--
-                                                <MenuItem Header="Save the WSWAN configuration to disk (wswan.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            -->
-                                            </ContextMenu>
-                                        </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnControlGb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                       ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
                                         GameBoy Color
-                                        <RadioButton.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                                <MenuItem Header="Load the GB configuration from disk (gb.cfg)" Click="LoadConfigFromDisk_Click" />
-                                                <!--
-                                                <MenuItem Header="Save the GB configuration to disk (gb.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            -->
-                                            </ContextMenu>
-                                        </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnControlGba" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                       ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
                                         Nintendo GBA
-                                        <RadioButton.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                                <MenuItem Header="Load the GBA configuration from disk (gba.cfg)" Click="LoadConfigFromDisk_Click" />
-                                                <!--
-                                                <MenuItem Header="Save the GBA configuration to disk (gba.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            -->
-                                            </ContextMenu>
-                                        </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnControlGg" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                       ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
                                         Sega Game Gear
-                                        <RadioButton.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                                <MenuItem Header="Load the GG configuration from disk (gg.cfg)" Click="LoadConfigFromDisk_Click" />
-                                                <!--
-                                                <MenuItem Header="Save the GG configuration to disk (gg.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            -->
-                                            </ContextMenu>
-                                        </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnControlLynx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                       ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
                                         Atari Lynx
-                                        <RadioButton.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                                <MenuItem Header="Load the LYNX configuration from disk (lynx.cfg)" Click="LoadConfigFromDisk_Click" />
-                                                <!--
-                                                <MenuItem Header="Save the LYNX configuration to disk (lynx.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            -->
-                                            </ContextMenu>
-                                        </RadioButton.ContextMenu>
                                     </RadioButton>
 
                                     <RadioButton x:Name="btnControlSs" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                     ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
                                         Sega Saturn
-                                        <RadioButton.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                                <MenuItem Header="Load the SS configuration from disk (ss.cfg)" Click="LoadConfigFromDisk_Click" />
-                                                <!--
-                                                <MenuItem Header="Save the SS configuration to disk (ss.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            -->
-                                            </ContextMenu>
-                                        </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnControlPsx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                       ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
                                         Sony PSX
-                                        <RadioButton.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                                <MenuItem Header="Load the PSX configuration from disk (psx.cfg)" Click="LoadConfigFromDisk_Click" />
-                                                <!--
-                                                <MenuItem Header="Save the PSX configuration to disk (psx.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            -->
-                                            </ContextMenu>
-                                        </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnControlPcfx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                       ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
                                         NEC PC-FX
-                                        <RadioButton.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
-                                                <MenuItem Header="Load the PC-FX configuration from disk (pcfx.cfg)" Click="LoadConfigFromDisk_Click" />
-                                                <!--
-                                                <MenuItem Header="Save the PC-FX configuration to disk (pcfx.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
-                                            -->
-                                            </ContextMenu>
-                                        </RadioButton.ContextMenu>
                                     </RadioButton>
 
 
@@ -9791,289 +9629,29 @@
                         <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Width="{Binding ElementName=configGrid, Path=ActualWidth}" Height="{Binding ElementName=configGrid, Path=ActualHeight}">
                             <WrapPanel HorizontalAlignment="Left" Orientation="Vertical" x:Name="ControlWrapPanel">
 
-                                <!-- Gb Image -->
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrdGb1">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Gameboy / GB">
-                                        <StackPanel Margin="10">
-                                            <Image x:Name="imageGb" Height="150" Source="Data/Graphics/Controllers/gb_controller.png"/>
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
-
-                                <!-- Gb Controls -->
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrdGb2">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Gameboy / GB Color Config">
-                                        <StackPanel Margin="10">
-
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
-
-                                <!-- Gba Image -->
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrdGba1">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Gameboy Advance">
-                                        <StackPanel Margin="10">
-                                            <Image x:Name="imageGba" Height="150" Source="Data/Graphics/Controllers/gba-controller.png" />
-
-                                            <WrapPanel>
-                                                
-                                            </WrapPanel>
-                                            
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
-
+                                <!-- dynamically inserted control stuff goes below -->
+                                <Controls:TransitioningContentControl x:Name="tccControls" Transition="LeftReplace"/>
                                 
-                                <!-- Gba Controls -->
-                                <!--
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrdGba2">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Gameboy Advance Config">
-                                        <StackPanel Margin="10">
-
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
-                                -->
-
-                                <!-- Gg Image -->
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrdGg1">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Game Gear">
-                                        <StackPanel Margin="10">
-                                            <Image x:Name="imageGg" Height="150" Source="Data/Graphics/Controllers/gg-controller.png"  />
-
-                                            <WrapPanel>
-                                                
-                                            </WrapPanel>
-                                            
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
-
-                                <!-- Gg Controls -->
-                                <!--
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrdGg2">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Game Gear Config">
-                                        <StackPanel Margin="10">
-
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
-                                -->
-
-                                <!-- Lynx Image -->
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrdLynx1">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Atari Lynx">
-                                        <StackPanel Margin="10">
-                                            <Image x:Name="imageLynx" Height="150" Source="Data/Graphics/Controllers/lynx_controller.png"/>
-
-                                            <WrapPanel>
-                                                
-                                            </WrapPanel>
-                                            
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
-
-                                <!-- Lynx Controls -->
-                                <!--
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrdLynx2">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Lynx Config">
-                                        <StackPanel Margin="10">
-                                            
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
-                                -->
-                                
-                                <!-- Megadrive -->
-
-                                <!-- 6 Button Image -->
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrdMd1">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="MD - 6 Button">
-                                        <StackPanel Margin="10">
-                                            <Image x:Name="imageMd6" Height="150" Source="Data/Graphics/Controllers/md-controller-6button.png" />
-
-                                            <WrapPanel>
-                                                <ComboBox>
-                                                    
-                                                </ComboBox>
-                                            </WrapPanel>
-                                            
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
-
-                                <!-- 6 Button Controls -->
-                                <!--
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrdMd2">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="MD - 6 Button Config">
-                                        <StackPanel Margin="10">
-
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
-                                -->
-
-                                <!-- 3 Button Image -->
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrdMd3">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="MD - 3 Button">
-                                        <StackPanel Margin="10">
-                                            <Image x:Name="imageMd3" Height="150" Source="Data/Graphics/Controllers/md-controller-3button.png" />
-
-                                            <WrapPanel>
-                                                <ComboBox>
-
-                                                </ComboBox>
-                                            </WrapPanel>
-
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
-
-                                <!-- 3 Button Controls -->
-                                <!--
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrdMd4">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="MD - 3 Button Config">
-                                        <StackPanel Margin="10">
-
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
-                                -->
-
-                                <!-- MegaMouse Image -->
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrdMd5">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="MD - Mega Mouse">
-                                        <StackPanel Margin="10">
-                                            <Image x:Name="imageMdm" Height="150" Source="Data/Graphics/Controllers/md-controller-megamouse.png" />
-
-                                            <WrapPanel>
-                                                <ComboBox>
-
-                                                </ComboBox>
-                                            </WrapPanel>
-
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
-
-                                <!-- MegaMouse Controls -->
-                                <!--
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrdMd6">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="MD - Mega Mouse Config">
-                                        <StackPanel Margin="10">
-
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
-                                -->
-
-                                <!-- Nes Image -->
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrdNes1">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="NES Controller">
-                                        <StackPanel Margin="10">
-                                            <Image x:Name="imageNes" Height="150" Source="Data/Graphics/Controllers/nes-controller.png" />
-
-                                            <WrapPanel HorizontalAlignment="Center" Margin="5" Orientation="Vertical">
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto" />
-                                                        <ColumnDefinition Width="Auto" />
-                                                    </Grid.ColumnDefinitions>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="40" />
-                                                    </Grid.RowDefinitions>
-
-                                                    <ComboBox Name="cmbNesGamepad" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="0" Height="25">
-                                                        <ComboBoxItem>Virtual Port 1</ComboBoxItem>
-                                                        <ComboBoxItem>Virtual Port 2</ComboBoxItem>
-                                                        <ComboBoxItem>Virtual Port 3</ComboBoxItem>
-                                                        <ComboBoxItem>Virtual Port 4</ComboBoxItem>
-                                                    </ComboBox>
-
-                                                    <Button Name="btnNesGamepadConfigure" Grid.Column="1" Click="btnControlsConfigure_Click" Height="25">Configure</Button>
-
-                                                </Grid>
-                                                
-<!--
-                                                <UniformGrid Name="ugNesP1Gamepad" Columns="2" HorizontalAlignment="Center">
-                                                    <Label Grid.ColumnSpan="2" Name="ugNesP1GamepadTitle"></Label>
-                                                    
-                                                </UniformGrid>
-
-                                                <Border Style="{StaticResource Borders1}" Margin="10" Name="ctrlBrdNes1">
-                                                    <Expander IsExpanded="True" BorderThickness="0" Header="Port 1">
-                                                        <StackPanel Margin="10">
-
-                                                        </StackPanel>
-                                                    </Expander>
-                                                </Border>
-                                                <Border Style="{StaticResource Borders1}" Margin="10" Name="ctrlBrdNes2">
-                                                    <Expander IsExpanded="True" BorderThickness="0" Header="Port 2">
-                                                        <StackPanel Margin="10">
-
-                                                        </StackPanel>
-                                                    </Expander>
-                                                </Border>
-                                                <Border Style="{StaticResource Borders1}" Margin="10" Name="ctrlBrdNes3">
-                                                    <Expander IsExpanded="True" BorderThickness="0" Header="Port 3">
-                                                        <StackPanel Margin="10">
-
-                                                        </StackPanel>
-                                                    </Expander>
-                                                </Border>
-                                                <Border Style="{StaticResource Borders1}" Margin="10" Name="ctrlBrdNes4">
-                                                    <Expander IsExpanded="True" BorderThickness="0" Header="Port 4">
-                                                        <StackPanel Margin="10">
-
-                                                        </StackPanel>
-                                                    </Expander>
-                                                </Border>
--->
-                                            </WrapPanel>
-
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
-
-                                <!-- Nes Controls -->
-                                <!--
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrdNes2">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="NES Controller Config">
-                                        <StackPanel Margin="10">
-
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
-                                -->
-
-                                <!-- Ngp Image -->
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrdNgp1">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="NGP Controller">
-                                        <StackPanel Margin="10">
-                                            <Image x:Name="imageNgp" Height="150" Source="Data/Graphics/Controllers/ngp-controller.png" />
-
-                                            <WrapPanel>
-                                                <ComboBox>
-
-                                                </ComboBox>
-                                            </WrapPanel>
-
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
-
-                                <!-- Ngp Controls -->
-                                <!--
-                                <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrdNgp2">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="NGP Controller Config">
-                                        <StackPanel Margin="10">
-
-                                        </StackPanel>
-                                    </Expander>
-                                </Border>
-                                -->
-
+                                <!-- controls for showing all -->
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn1" Transition="LeftReplace"/>
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn2" Transition="LeftReplace"/>
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn3" Transition="LeftReplace"/>
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn4" Transition="LeftReplace"/>
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn5" Transition="LeftReplace"/>
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn6" Transition="LeftReplace"/>
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn7" Transition="LeftReplace"/>
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn8" Transition="LeftReplace"/>
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn9" Transition="LeftReplace"/>
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn10" Transition="LeftReplace"/>
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn11" Transition="LeftReplace"/>
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn12" Transition="LeftReplace"/>
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn13" Transition="LeftReplace"/>
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn14" Transition="LeftReplace"/>
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn15" Transition="LeftReplace"/>
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn16" Transition="LeftReplace"/>
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn17" Transition="LeftReplace"/>
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn18" Transition="LeftReplace"/>
+                               
                             </WrapPanel>
                         </ScrollViewer>
                     </Grid>

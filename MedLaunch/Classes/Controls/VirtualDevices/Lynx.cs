@@ -20,7 +20,6 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "LEFT ←", MednafenCommand = "lynx.input.builtin.gamepad.left" },
                 new Mapping { Description = "RIGHT →", MednafenCommand = "lynx.input.builtin.gamepad.right" },
                 new Mapping { Description = "PAUSE", MednafenCommand = "lynx.input.builtin.gamepad.pause" },
-                new Mapping { Description = "SELECT", MednafenCommand = "lynx.input.builtin.gamepad.select" },
                 new Mapping { Description = "A (outer)", MednafenCommand = "lynx.input.builtin.gamepad.a" },
                 new Mapping { Description = "B (inner)", MednafenCommand = "lynx.input.builtin.gamepad.b" },
                 new Mapping { Description = "Option 1 (upper)", MednafenCommand = "lynx.input.builtin.gamepad.option_1" },

@@ -407,6 +407,27 @@
     <Compile Include="ScrapedDataAudit.xaml.cs">
       <DependentUpon>ScrapedDataAudit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Control\MdCtrl.xaml.cs">
+      <DependentUpon>MdCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Control\NgpCtrl.xaml.cs">
+      <DependentUpon>NgpCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Control\LynxCtrl.xaml.cs">
+      <DependentUpon>LynxCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Control\GgCtrl.xaml.cs">
+      <DependentUpon>GgCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Control\GbaCtrl.xaml.cs">
+      <DependentUpon>GbaCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Control\GbCtrl.xaml.cs">
+      <DependentUpon>GbCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Control\NesCtrl.xaml.cs">
+      <DependentUpon>NesCtrl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ThemeManagerHelper.cs" />
     <Page Include="AccentStyleWindow.xaml">
       <SubType>Designer</SubType>
@@ -461,6 +482,34 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ScrapedDataAudit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Control\MdCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Control\NgpCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Control\LynxCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Control\GgCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Control\GbaCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Control\GbCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Control\NesCtrl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

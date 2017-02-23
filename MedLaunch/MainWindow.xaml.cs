@@ -235,7 +235,8 @@ namespace MedLaunch
             */
 
             // controls tab
-            btnControlNes.IsChecked = true;
+            btnAllControls.IsChecked = true;
+            //btnControlNes.IsChecked = true;
 
             // settings tab
             btnAllSettings.IsChecked = true;
@@ -2469,7 +2470,118 @@ namespace MedLaunch
         // generic controls selections buttons
         private void btnControl_Checked(object sender, RoutedEventArgs e)
         {
-            ControlsVisualHandler.ButtonClick();
+            //ControlsVisualHandler.ButtonClick();
+
+            RadioButton rb = sender as RadioButton;
+            string rbName = rb.Name.Replace("btnControl", "").ToLower();
+
+            // get all the filter buttons
+            List<RadioButton> _filterButtons = UIHandler.GetLogicalChildCollection<RadioButton>(wpControlLeftPane);
+            RadioButton[] arr = (from a in _filterButtons
+                                 where a.Name != "tccControls"
+                                 select a).ToArray();
+
+            // hide all
+            for (int i = 0; i < arr.Length; i++)
+            {
+                TransitioningContentControl t = (TransitioningContentControl)this.FindName("tccControlsDyn" + (i + 1).ToString());
+                t.Content = null;
+            }
+
+
+            switch (rbName)
+            {
+                case "nes":
+                    tccControls.Content = new NesCtrl();
+                    break;
+                case "gb":
+                    tccControls.Content = new GbCtrl();
+                    break;
+                case "gba":
+                    tccControls.Content = new GbaCtrl();
+                    break;
+                case "gg":
+                    tccControls.Content = new GgCtrl();
+                    break;
+                case "lynx":
+                    tccControls.Content = new LynxCtrl();
+                    break;
+                case "ngp":
+                    tccControls.Content = new NgpCtrl();
+                    break;
+                case "md":
+                    tccControls.Content = new MdCtrl();
+                    break;
+                default:
+                    // show all usercontrols
+
+                    // null the static one
+                    tccControls.Content = null;
+
+                    
+                    // loop through and display each one
+                    for (int i = 0; i < arr.Length; i++)
+                    {
+                        TransitioningContentControl t = (TransitioningContentControl)this.FindName("tccControlsDyn" + (i + 1).ToString());
+                        switch (i + 1)
+                        {
+                            case 1:         // nes
+                                t.Content = new NesCtrl();
+                                break;
+                            case 2:         // snes
+                                //t.Content = new SnesCtrl();
+                                break;
+                            case 3:         // snesfaust
+                                //t.Content = new Snes_FaustCtrl();
+                                break;
+                            case 4:         // sms
+                                //t.Content = new SmsCtrl();
+                                break;
+                            case 5:         // md
+                                t.Content = new MdCtrl();
+                                break;
+                            case 6:         // pce
+                                //t.Content = new PceCtrl();
+                                break;
+                            case 7:         // pcefast
+                                //t.Content = new Pce_FastCtrl();
+                                break;
+                            case 8:         // vb
+                                //t.Content = new VbCtrl();
+                                break;
+                            case 9:         // npg
+                                t.Content = new NgpCtrl();
+                                break;
+                            case 10:         // wswan
+                                //t.Content = new WswanCtrl();
+                                break;
+                            case 11:         // gb
+                                t.Content = new GbCtrl();
+                                break;
+                            case 12:         // gba
+                                t.Content = new GbaCtrl();
+                                break;
+                            case 13:         // gg
+                                t.Content = new GgCtrl();
+                                break;
+                            case 14:         // lynx
+                                t.Content = new LynxCtrl();
+                                break;
+                            case 15:         // ss
+                                //t.Content = new SsCtrl();
+                                break;
+                            case 16:         // psx
+                                //t.Content = new PsxCtrl();
+                                break;
+                            case 17:         // pcfx
+                                //t.Content = new PcfxCtrl();
+                                break;
+                                
+                        }
+                    }
+
+                    break;
+            }
         }
 
         private void btnControl_UnChecked(object sender, RoutedEventArgs e)
