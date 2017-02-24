@@ -64,7 +64,8 @@ namespace MedLaunch.Classes.Controls
         public static Input Instance { get; private set; }
         readonly Thread UpdateThread;
 
-        private Input()
+
+        public Input()
         {
 
 			UpdateThread = new Thread(UpdateThreadProc)

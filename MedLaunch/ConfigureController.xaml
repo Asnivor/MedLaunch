@@ -4,6 +4,7 @@
 							   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 							   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 							   xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
+                               xmlns:diag="clr-namespace:System.Diagnostics;assembly=mscorlib"
 							   mc:Ignorable="d"
 							   d:DesignHeight="800"
 							   d:DesignWidth="600"
@@ -50,8 +51,10 @@
             </Image.ToolTip>
         </Image>
 
+        <ScrollViewer MaxHeight="500" VerticalAlignment="Top" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Grid.Row="2">          
+        
 
-        <Grid Name="DynamicDataGrid" Grid.Row="2" Margin="100,0,100,0">
+        <Grid Name="DynamicDataGrid"  Margin="100,0,100,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -112,13 +115,14 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
             
             <!-- dynamically generated content goes here -->
             
         </Grid>
 
-
+        </ScrollViewer>
 
         <UniformGrid Columns="2" Grid.Row="3">
             <Button
@@ -141,7 +145,16 @@
 				Click="btnReset_Click" 
                 x:Name="btnReset"/>
         </UniformGrid>
-        
+
+        <TextBox Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}"
+                 
+                 PreviewGotKeyboardFocus="TextBox_PreviewGotKeyboardFocus"
+                 GotFocus="TextBox_GotFocus"
+                 LostFocus="TextBox_LostFocus"
+                 
+                 >
+            
+        </TextBox>
         
     </Grid>
 </simpleChildWindow:ChildWindow>

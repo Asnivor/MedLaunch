@@ -274,6 +274,8 @@
     <Compile Include="Classes\Controls\GamePad.cs" />
     <Compile Include="Classes\Controls\GamePad360.cs" />
     <Compile Include="Classes\Controls\Input.cs" />
+    <Compile Include="Classes\Controls\InputManager\Input.cs" />
+    <Compile Include="Classes\Controls\InputWidget.cs" />
     <Compile Include="Classes\Controls\Keyboard.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\DeviceDefinition.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\Gb.cs" />
@@ -409,8 +411,38 @@
     <Compile Include="ScrapedDataAudit.xaml.cs">
       <DependentUpon>ScrapedDataAudit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Control\PsxCtrl.xaml.cs">
+      <DependentUpon>PsxCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Control\SsCtrl.xaml.cs">
+      <DependentUpon>SsCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Control\PcfxCtrl.xaml.cs">
+      <DependentUpon>PcfxCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Control\WswanCtrl.xaml.cs">
+      <DependentUpon>WswanCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Control\VbCtrl.xaml.cs">
+      <DependentUpon>VbCtrl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Control\MdCtrl.xaml.cs">
       <DependentUpon>MdCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Control\Pce_FastCtrl.xaml.cs">
+      <DependentUpon>Pce_FastCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Control\PceCtrl.xaml.cs">
+      <DependentUpon>PceCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Control\SmsCtrl.xaml.cs">
+      <DependentUpon>SmsCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Control\Snes_FaustCtrl.xaml.cs">
+      <DependentUpon>Snes_FaustCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Control\SnesCtrl.xaml.cs">
+      <DependentUpon>SnesCtrl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Control\NgpCtrl.xaml.cs">
       <DependentUpon>NgpCtrl.xaml</DependentUpon>
@@ -487,7 +519,47 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Control\PsxCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Control\SsCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Control\PcfxCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Control\WswanCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Control\VbCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UserControls\Control\MdCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Control\Pce_FastCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Control\PceCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Control\SmsCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Control\Snes_FaustCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Control\SnesCtrl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -722,6 +794,17 @@
     <Resource Include="Data\Graphics\Systems\wswan.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Data\Graphics\Controllers\snes-controller.png" />
+    <Resource Include="Data\Graphics\Controllers\sms-controller.png" />
+    <Resource Include="Data\Graphics\Controllers\pce-controller.png" />
+    <Resource Include="Data\Graphics\Controllers\vb-controller.png" />
+    <Resource Include="Data\Graphics\Controllers\wswan-controller.png" />
+    <Resource Include="Data\Graphics\Controllers\ss-controller.png" />
+    <Resource Include="Data\Graphics\Controllers\ss3d-controller.png" />
+    <Resource Include="Data\Graphics\Controllers\psx-controller.png" />
+    <Resource Include="Data\Graphics\Controllers\psx-dancepad.png" />
+    <Resource Include="Data\Graphics\Controllers\psx-dualanalogcontroller.png" />
+    <Resource Include="Data\Graphics\Controllers\psx-negcon.png" />
     <Content Include="ExternalAssemblies\WindowScrape.dll" />
     <Resource Include="MedLaunchIcon.ico" />
     <Resource Include="Data\Graphics\Controllers\lynx_controller.png" />

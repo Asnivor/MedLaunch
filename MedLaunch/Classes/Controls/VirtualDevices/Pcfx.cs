@@ -30,8 +30,10 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "IV", MednafenCommand = device.CommandStart +".gamepad.iv" },
                 new Mapping { Description = "V", MednafenCommand = device.CommandStart +".gamepad.v" },
                 new Mapping { Description = "VI", MednafenCommand = device.CommandStart +".gamepad.vi" },
+                /*
                 new Mapping { Description = "Rapid I", MednafenCommand = device.CommandStart +".gamepad.rapid_i" },
                 new Mapping { Description = "Rapid II", MednafenCommand = device.CommandStart +".gamepad.rapid_ii" }
+                */
             };
             return device;
         }

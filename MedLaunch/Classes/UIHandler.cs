@@ -11,6 +11,7 @@ using MedLaunch.Models;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using Xceed.Wpf.Toolkit;
+using MedLaunch.Classes.Controls;
 
 namespace MedLaunch.Classes
 {
@@ -27,6 +28,7 @@ namespace MedLaunch.Classes
         public List<NumericUpDown> NumericUpDowns { get; set; }
         public List<ToggleButton> ToggleButtons { get; set; }
         public List<ColorPicker> Colorpickers { get; set; }
+        public List<InputWidget> InputWidgets { get; set; }
 
 
 
@@ -46,6 +48,7 @@ namespace MedLaunch.Classes
             ui.ComboBoxes = GetLogicalChildCollection<ComboBox>(wp);
             ui.NumericUpDowns = GetLogicalChildCollection<NumericUpDown>(wp);
             ui.Colorpickers = GetLogicalChildCollection<ColorPicker>(wp);
+            ui.InputWidgets = GetLogicalChildCollection<InputWidget>(wp);
 
             return ui;
         }
@@ -64,6 +67,7 @@ namespace MedLaunch.Classes
             ui.ComboBoxes = GetLogicalChildCollection<ComboBox>(wp);
             ui.NumericUpDowns = GetLogicalChildCollection<NumericUpDown>(wp);
             ui.Colorpickers = GetLogicalChildCollection<ColorPicker>(wp);
+            ui.InputWidgets = GetLogicalChildCollection<InputWidget>(wp);
 
             return ui;
         }
@@ -82,6 +86,7 @@ namespace MedLaunch.Classes
             ui.ComboBoxes = GetLogicalChildCollection<ComboBox>(wp);
             ui.NumericUpDowns = GetLogicalChildCollection<NumericUpDown>(wp);
             ui.Colorpickers = GetLogicalChildCollection<ColorPicker>(wp);
+            ui.InputWidgets = GetLogicalChildCollection<InputWidget>(wp);
 
             return ui;
         }
@@ -100,6 +105,7 @@ namespace MedLaunch.Classes
             ui.ComboBoxes = GetLogicalChildCollection<ComboBox>(wp);
             ui.NumericUpDowns = GetLogicalChildCollection<NumericUpDown>(wp);
             ui.Colorpickers = GetLogicalChildCollection<ColorPicker>(wp);
+            ui.InputWidgets = GetLogicalChildCollection<InputWidget>(wp);
 
             return ui;
         }
@@ -118,6 +124,7 @@ namespace MedLaunch.Classes
             ui.ComboBoxes = GetLogicalChildCollection<ComboBox>(wp);
             ui.NumericUpDowns = GetLogicalChildCollection<NumericUpDown>(wp);
             ui.Colorpickers = GetLogicalChildCollection<ColorPicker>(wp);
+            ui.InputWidgets = GetLogicalChildCollection<InputWidget>(wp);
 
             return ui;
         }
@@ -137,6 +144,7 @@ namespace MedLaunch.Classes
             ui.ComboBoxes = GetLogicalChildCollection<ComboBox>(wp);
             ui.NumericUpDowns = GetLogicalChildCollection<NumericUpDown>(wp);
             ui.Colorpickers = GetLogicalChildCollection<ColorPicker>(wp);
+            ui.InputWidgets = GetLogicalChildCollection<InputWidget>(wp);
 
             return ui;
         }

@@ -2512,6 +2512,36 @@ namespace MedLaunch
                 case "md":
                     tccControls.Content = new MdCtrl();
                     break;
+                case "snes":
+                    tccControls.Content = new SnesCtrl();
+                    break;
+                case "snes_faust":
+                    tccControls.Content = new Snes_FaustCtrl();
+                    break;
+                case "sms":
+                    tccControls.Content = new SmsCtrl();
+                    break;
+                case "pce":
+                    tccControls.Content = new PceCtrl();
+                    break;
+                case "pce_fast":
+                    tccControls.Content = new Pce_FastCtrl();
+                    break;
+                case "vb":
+                    tccControls.Content = new VbCtrl();
+                    break;
+                case "wswan":
+                    tccControls.Content = new WswanCtrl();
+                    break;
+                case "pcfx":
+                    tccControls.Content = new PcfxCtrl();
+                    break;
+                case "ss":
+                    tccControls.Content = new SsCtrl();
+                    break;
+                case "psx":
+                    tccControls.Content = new PsxCtrl();
+                    break;
                 default:
                     // show all usercontrols
 
@@ -2529,31 +2559,31 @@ namespace MedLaunch
                                 t.Content = new NesCtrl();
                                 break;
                             case 2:         // snes
-                                //t.Content = new SnesCtrl();
+                                t.Content = new SnesCtrl();
                                 break;
                             case 3:         // snesfaust
-                                //t.Content = new Snes_FaustCtrl();
+                                t.Content = new Snes_FaustCtrl();
                                 break;
                             case 4:         // sms
-                                //t.Content = new SmsCtrl();
+                                t.Content = new SmsCtrl();
                                 break;
                             case 5:         // md
                                 t.Content = new MdCtrl();
                                 break;
                             case 6:         // pce
-                                //t.Content = new PceCtrl();
+                                t.Content = new PceCtrl();
                                 break;
                             case 7:         // pcefast
-                                //t.Content = new Pce_FastCtrl();
+                                t.Content = new Pce_FastCtrl();
                                 break;
                             case 8:         // vb
-                                //t.Content = new VbCtrl();
+                                t.Content = new VbCtrl();
                                 break;
                             case 9:         // npg
                                 t.Content = new NgpCtrl();
                                 break;
                             case 10:         // wswan
-                                //t.Content = new WswanCtrl();
+                                t.Content = new WswanCtrl();
                                 break;
                             case 11:         // gb
                                 t.Content = new GbCtrl();
@@ -2568,13 +2598,13 @@ namespace MedLaunch
                                 t.Content = new LynxCtrl();
                                 break;
                             case 15:         // ss
-                                //t.Content = new SsCtrl();
+                                t.Content = new SsCtrl();
                                 break;
                             case 16:         // psx
-                                //t.Content = new PsxCtrl();
+                                t.Content = new PsxCtrl();
                                 break;
                             case 17:         // pcfx
-                                //t.Content = new PcfxCtrl();
+                                t.Content = new PcfxCtrl();
                                 break;
                                 
                         }

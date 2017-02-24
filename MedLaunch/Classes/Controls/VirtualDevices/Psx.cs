@@ -20,11 +20,8 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "DOWN ↓", MednafenCommand = device.CommandStart +".gamepad.down" },
                 new Mapping { Description = "LEFT ←", MednafenCommand = device.CommandStart +".gamepad.left" },
                 new Mapping { Description = "RIGHT →", MednafenCommand = device.CommandStart +".gamepad.right" },
-                new Mapping { Description = "RUN", MednafenCommand = device.CommandStart +".gamepad.run" },
                 new Mapping { Description = "START", MednafenCommand = device.CommandStart +".gamepad.start" },
                 new Mapping { Description = "SELECT", MednafenCommand = device.CommandStart +".gamepad.select" },
-                new Mapping { Description = "MODE 1", MednafenCommand = device.CommandStart +".gamepad.mode1" },
-                new Mapping { Description = "MODE 2", MednafenCommand = device.CommandStart +".gamepad.mode2" },
                 new Mapping { Description = "△ (upper)", MednafenCommand = device.CommandStart +".gamepad.triangle" },
                 new Mapping { Description = "○ (right)", MednafenCommand = device.CommandStart +".gamepad.circle" },
                 new Mapping { Description = "x (lower)", MednafenCommand = device.CommandStart +".gamepad.cross" },
@@ -161,8 +158,8 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "B", MednafenCommand = device.CommandStart +".negcon.b" },
                 new Mapping { Description = "I (Analog)", MednafenCommand = device.CommandStart +".negcon.i" },
                 new Mapping { Description = "II (Analog)", MednafenCommand = device.CommandStart +".negcon.ii" },
-                new Mapping { Description = "Twist ↑|↓ (Analog, Turn Left)", MednafenCommand = device.CommandStart +".negcon.ccwise" },
-                new Mapping { Description = "Twist ↓|↑ (Analog, Turn Right)", MednafenCommand = device.CommandStart +".negcon.cwise" },
+                new Mapping { Description = "Twist ↑|↓ (Analog, Turn Left)", MednafenCommand = device.CommandStart +".negcon.twist_ccwise" },
+                new Mapping { Description = "Twist ↓|↑ (Analog, Turn Right)", MednafenCommand = device.CommandStart +".negcon.twist_cwise" },
             };
             return device;
         }

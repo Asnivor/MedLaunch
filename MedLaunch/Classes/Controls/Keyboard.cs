@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SlimDX;
 using SlimDX.DirectInput;
+using System.Windows.Interop;
 
 namespace MedLaunch.Classes.Controls
 {
@@ -329,7 +330,7 @@ namespace MedLaunch.Classes.Controls
 
             if (keyboard == null || keyboard.Disposed)
                 keyboard = new Keyboard(dinput);
-            //keyboard.SetCooperativeLevel(GlobalWin.MainForm.Handle, CooperativeLevel.Background | CooperativeLevel.Nonexclusive);
+            //keyboard.SetCooperativeLevel(new WindowInteropHelper(ConfigureController).Handle, CooperativeLevel.Background | CooperativeLevel.Nonexclusive);
             keyboard.Properties.BufferSize = 8;
         }
 

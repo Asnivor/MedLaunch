@@ -12,7 +12,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
         {
             DeviceDefinition device = new DeviceDefinition();
             device.DeviceName = "SNES (faust) GamePad";
-            device.CommandStart = "snes.input.port" + VirtualPort;
+            device.CommandStart = "snes_faust.input.port" + VirtualPort;
             device.VirtualPort = VirtualPort;
             device.MapList = new List<Mapping>
             {
