@@ -2060,8 +2060,13 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
+
+                                                <Label x:Name="cfglbl_sound__device" Grid.Row="0">Sound Device</Label>
+                                                <TextBox Name="cfg_sound__device" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10">
+                                                </TextBox>
 
                                                 <Label x:Name="cfglbl_sound__driver" Grid.Row="1">Sound Driver</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_sound__driver" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
