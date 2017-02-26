@@ -25,8 +25,8 @@
 
 **MedLaunch** is a .NET (Windows only) front-end for the excellent [Mednafen](http://mednafen.fobby.net/) multi-system emulator.
 
-Latest Version: 0.4.3.1
-Compatible with Mednafen: 0.9.42.x
+Latest Version: 0.4.4.0
+Compatible with Mednafen: 0.9.43.x
 
 ### Features
 * Responsive GUI that allows for a wide range of monitor resolutions
@@ -48,7 +48,7 @@ This upcoming changes (and many others) can be found in the current roadmap [her
 
 ### Requirements
 * [Microsoft .NET Framework 4.5.2](https://www.microsoft.com/en-gb/download/details.aspx?id=42643)
-* At least [Mednafen version 0.9.42.x](http://mednafen.fobby.net/releases/) - 64-bit version required for Saturn games
+* At least [Mednafen version 0.9.43.x](http://mednafen.fobby.net/releases/) - 64-bit version required for Saturn games
 * Windows 7 and above (may work on Vista but has not been tested)
 * x64 (has not been tested on x86 but should still work on it)
 
@@ -58,7 +58,7 @@ You can always get the latest release build of MedLaunch on the [GitHub Releases
 ! You can download the latest version of Mednafen from the [**Mednafen website**](http://mednafen.fobby.net/releases/).
 
 #### New Install
-* Extract this release to a folder, run the 'MedLaunch.exe' executable and choose your Mednafen directory (must be the Mednafen 0.9.42.x branch and 64-bit version if you want to emulate Saturn games).
+* Extract this release to a folder, run the 'MedLaunch.exe' executable and choose your Mednafen directory (must be the Mednafen 0.9.43.x branch and 64-bit version if you want to emulate Saturn games).
 * You are then prompted to choose whether to import all config settings from your Mednafen folder into the MedLaunch database (this is recommended).
 * If you currently use system-specific config files with Mednafen the settings from these will be imported with the above process. However MedLaunch will write to these files when you launch a game - so back them up somewhere if you are not happy with this.
 
