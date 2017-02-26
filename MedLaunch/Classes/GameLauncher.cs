@@ -233,7 +233,7 @@ namespace MedLaunch.Classes
             GameLauncher gl = new GameLauncher(gId);
             string configCmdString = gl.GetCommandLineArguments();
             string fullString = "\"" + gl.BuildMednafenPath(gl.MednafenFolder) + "\"" + configCmdString;
-            Clipboard.SetText(fullString);
+            Clipboard.SetDataObject(fullString);
         }
 
         public void RunGame(string cmdArguments, int systemId)
