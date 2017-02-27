@@ -13,6 +13,8 @@ using MedLaunch.Models;
 using System.IO;
 using MedLaunch.Classes.GamesLibrary;
 using System.ComponentModel;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace MedLaunch
 {
@@ -137,7 +139,8 @@ namespace MedLaunch
                                     ThemeManager.GetAccent("Emerald"),
                                     ThemeManager.GetAppTheme("BaseDark"));
             }
-                                    
+            
+
         }
 
         private void ShowInitWindow()

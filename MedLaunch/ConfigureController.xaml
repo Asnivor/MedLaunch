@@ -12,8 +12,9 @@
 							   GlowBrush="{DynamicResource AccentColorBrush}"
 							   BorderBrush="{DynamicResource AccentColorBrush}"
 							   BorderThickness="1"
-							   ShowCloseButton="True"
-                               IsModal="True">
+							   ShowCloseButton="False"
+                               IsModal="True"
+                               Closing="ChildWindow_Closing">
 
     <simpleChildWindow:ChildWindow.Icon>
         <Rectangle Width="22"
@@ -116,6 +117,8 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
             
             <!-- dynamically generated content goes here -->
@@ -124,7 +127,7 @@
 
         </ScrollViewer>
 
-        <UniformGrid Columns="2" Grid.Row="3">
+        <UniformGrid Columns="3" Grid.Row="3">
             <Button
 				Margin="5"
 				IsDefault="True"
@@ -141,14 +144,23 @@
 				VerticalAlignment="Bottom"
 				FontSize="20"
 				FontWeight="Thin"
-				Content="Reset to Defaults"
+				Content="Undo All Changes"
 				Click="btnReset_Click" 
                 x:Name="btnReset"/>
+
+            <Button
+				Margin="5"
+				IsDefault="True"
+				VerticalAlignment="Bottom"
+				FontSize="20"
+				FontWeight="Thin"
+				Content="Cancel"
+				Click="btnCancel_Click" 
+                x:Name="btnCancel"/>
         </UniformGrid>
 
         <TextBox Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}"
                  
-                 PreviewGotKeyboardFocus="TextBox_PreviewGotKeyboardFocus"
                  GotFocus="TextBox_GotFocus"
                  LostFocus="TextBox_LostFocus"
                  

@@ -59,7 +59,8 @@ namespace MedLaunch
                 AllowMove = false,
                 Title = "Controller Configuration",
                 CloseOnOverlay = false,
-                ShowCloseButton = false
+                ShowCloseButton = false,
+                CloseByEscape = false
             }, RootGrid);
         }
     }

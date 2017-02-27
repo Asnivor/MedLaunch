@@ -25,7 +25,11 @@
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="36" />
-                                    <RowDefinition Height="36" />  
+                                    <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
+
                         </Grid.RowDefinitions>
 
                                 <Image Source="/MedLaunch;component/Data/Graphics/Controllers/ss-controller.png" Margin="5">
@@ -96,8 +100,106 @@
 
 
 
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/ss-mission.png" Margin="5" Grid.Row="2">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
 
-                        
+                        <Label Margin="5" Grid.Column="1" VerticalAlignment="Center" Height="25" Grid.Row="2">
+                            Mission Stick 
+                        </Label>
+
+                        <ComboBox Name="cmbSsMission" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Height="25" VerticalAlignment="Center" Grid.Row="2">
+                            <ComboBoxItem>Virtual Port 1</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 2</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 3</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 4</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 5</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 6</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 7</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 8</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 9</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 10</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 11</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 12</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnSsMissionConfigure" Margin="5" Grid.Column="3" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center" Grid.Row="2">Configure</Button>
+
+
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/ss-dualmission.png" Margin="5" Grid.Row="3">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+                        <Label Margin="5" Grid.Column="1" VerticalAlignment="Center" Height="25" Grid.Row="3">
+                            Dual Mission Stick
+                        </Label>
+
+                        <ComboBox Name="cmbSsDualMission" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Height="25" VerticalAlignment="Center" Grid.Row="3">
+                            <ComboBoxItem>Virtual Port 1</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 2</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 3</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 4</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 5</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 6</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 7</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 8</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 9</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 10</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 11</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 12</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnSsDualMissionConfigure" Margin="5" Grid.Column="3" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center" Grid.Row="3">Configure</Button>
+
+
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/ss-wheel.png" Margin="5" Grid.Row="4">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+                        <Label Margin="5" Grid.Column="1" VerticalAlignment="Center" Height="25" Grid.Row="4">
+                            Steering Wheel
+                        </Label>
+
+                        <ComboBox Name="cmbSsWheel" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Height="25" VerticalAlignment="Center" Grid.Row="4">
+                            <ComboBoxItem>Virtual Port 1</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 2</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 3</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 4</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 5</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 6</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 7</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 8</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 9</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 10</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 11</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 12</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnSsWheelConfigure" Margin="5" Grid.Column="3" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center" Grid.Row="4">Configure</Button>
+
 
                     </Grid>                            
                         </WrapPanel>

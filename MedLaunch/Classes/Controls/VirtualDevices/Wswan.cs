@@ -12,6 +12,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
         {
             DeviceDefinition device = new DeviceDefinition();
             device.DeviceName = "WSWAN GamePad";
+            device.CommandStart = "wswan.input.builtin";
             device.VirtualPort = 0;
             device.MapList = new List<Mapping>
             {
@@ -27,6 +28,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "A", MednafenCommand = "wswan.input.builtin.gamepad.a" },
                 new Mapping { Description = "B", MednafenCommand = "wswan.input.builtin.gamepad.b" }
             };
+            DeviceDefinition.PopulateConfig(device);
             return device;
         }
     }

@@ -35,6 +35,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "Rapid x (lower)", MednafenCommand = device.CommandStart +".gamepad.rapid_cross" },
                 new Mapping { Description = "Rapid □ (left)", MednafenCommand = device.CommandStart +".gamepad.rapid_square" },
             };
+            DeviceDefinition.PopulateConfig(device);
             return device;
         }
 
@@ -75,6 +76,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "Rapid x (lower)", MednafenCommand = device.CommandStart +".dualanalog.rapid_cross" },
                 new Mapping { Description = "Rapid □ (left)", MednafenCommand = device.CommandStart +".dualanalog.rapid_square" },
             };
+            DeviceDefinition.PopulateConfig(device);
             return device;
         }
 
@@ -116,6 +118,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "Rapid □ (left)", MednafenCommand = device.CommandStart +".dualshock.rapid_square" },
                 new Mapping { Description = "Analog(mode toggle)", MednafenCommand = device.CommandStart +".dualshock.analog" }
             };
+            DeviceDefinition.PopulateConfig(device);
             return device;
         }
 
@@ -138,6 +141,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "x (lower)", MednafenCommand = device.CommandStart +".dancepad.cross" },
                 new Mapping { Description = "□ (left)", MednafenCommand = device.CommandStart +".dancepad.square" }
             };
+            DeviceDefinition.PopulateConfig(device);
             return device;
         }
 
@@ -161,6 +165,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "Twist ↑|↓ (Analog, Turn Left)", MednafenCommand = device.CommandStart +".negcon.twist_ccwise" },
                 new Mapping { Description = "Twist ↓|↑ (Analog, Turn Right)", MednafenCommand = device.CommandStart +".negcon.twist_cwise" },
             };
+            DeviceDefinition.PopulateConfig(device);
             return device;
         }
     }

@@ -33,6 +33,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "Rapid Y (left)", MednafenCommand = device.CommandStart +".gamepad.rapid_y" },
                 new Mapping { Description = "Rapid X (center, upper)", MednafenCommand = device.CommandStart +".gamepad.rapid_x" },
             };
+            DeviceDefinition.PopulateConfig(device);
             return device;
         }
     }

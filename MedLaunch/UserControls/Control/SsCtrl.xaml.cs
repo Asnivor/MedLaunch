@@ -56,6 +56,15 @@ namespace MedLaunch
                 case "Ss3DGamepad":
                     dev = Ss.ThreeD(portNum);
                     break;
+                case "SsMission":
+                    dev = Ss.Mission(portNum);
+                    break;
+                case "SsDualMission":
+                    dev = Ss.DMission(portNum);
+                    break;
+                case "SsWheel":
+                    dev = Ss.Wheel(portNum);
+                    break;
                 default:
                     return;
             }
@@ -70,6 +79,7 @@ namespace MedLaunch
                 AllowMove = false,
                 Title = "Controller Configuration",
                 CloseOnOverlay = false,
+                CloseByEscape = false,
                 ShowCloseButton = false
             }, RootGrid);
         }

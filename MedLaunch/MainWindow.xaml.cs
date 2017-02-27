@@ -54,6 +54,7 @@ using Newtonsoft.Json.Linq;
 using MedLaunch.Classes.IO;
 using MahApps.Metro.SimpleChildWindow;
 using MedLaunch.Classes.Controls.VirtualDevices;
+using MedLaunch.Classes.Controls.InputManager;
 
 namespace MedLaunch
 {
@@ -334,6 +335,10 @@ namespace MedLaunch
             }
 
             //SettingsDirtyFlag = true; // now its safe to save settings as all content is loaded
+
+
+            // initialise input class
+            Input.Initialize(this);
 
         }
 

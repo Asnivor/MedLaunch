@@ -213,6 +213,7 @@
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -271,12 +272,11 @@
     <Compile Include="Classes\ConfigImport.cs" />
     <Compile Include="Classes\ConfigReflection.cs" />
     <Compile Include="Classes\ConfigToolTips.cs" />
-    <Compile Include="Classes\Controls\GamePad.cs" />
-    <Compile Include="Classes\Controls\GamePad360.cs" />
-    <Compile Include="Classes\Controls\Input.cs" />
+    <Compile Include="Classes\Controls\InputManager\GamePad.cs" />
+    <Compile Include="Classes\Controls\InputManager\GamePad360.cs" />
     <Compile Include="Classes\Controls\InputManager\Input.cs" />
-    <Compile Include="Classes\Controls\InputWidget.cs" />
-    <Compile Include="Classes\Controls\Keyboard.cs" />
+    <Compile Include="Classes\Controls\InputManager\KeyboardTrans.cs" />
+    <Compile Include="Classes\Controls\InputManager\KeyInput.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\DeviceDefinition.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\Gb.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\Gba.cs" />
@@ -805,6 +805,9 @@
     <Resource Include="Data\Graphics\Controllers\psx-dancepad.png" />
     <Resource Include="Data\Graphics\Controllers\psx-dualanalogcontroller.png" />
     <Resource Include="Data\Graphics\Controllers\psx-negcon.png" />
+    <Resource Include="Data\Graphics\Controllers\ss-dualmission.png" />
+    <Resource Include="Data\Graphics\Controllers\ss-mission.png" />
+    <Resource Include="Data\Graphics\Controllers\ss-wheel.png" />
     <Content Include="ExternalAssemblies\WindowScrape.dll" />
     <Resource Include="MedLaunchIcon.ico" />
     <Resource Include="Data\Graphics\Controllers\lynx_controller.png" />

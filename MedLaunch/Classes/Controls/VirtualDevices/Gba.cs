@@ -12,6 +12,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
         {
             DeviceDefinition device = new DeviceDefinition();
             device.DeviceName = "GBA GamePad";
+            device.CommandStart = "gba.input.builtin";
             device.VirtualPort = 0;
             device.MapList = new List<Mapping>
             {
@@ -28,6 +29,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "Rapid A", MednafenCommand = "gba.input.builtin.gamepad.rapid_a" },
                 new Mapping { Description = "Rapid B", MednafenCommand = "gba.input.builtin.gamepad.rapid_b" }                
             };
+            DeviceDefinition.PopulateConfig(device);
             return device;
         }
     }

@@ -28,6 +28,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "Rapid B", MednafenCommand = device.CommandStart +".gamepad.rapid_b" },
                 new Mapping { Description = "Rapid C", MednafenCommand = device.CommandStart +".gamepad.rapid_c" }
             };
+            DeviceDefinition.PopulateConfig(device);
             return device;
         }
 
@@ -49,6 +50,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "Rapid A", MednafenCommand = device.CommandStart +".gamepad2.rapid_a" },
                 new Mapping { Description = "Rapid B", MednafenCommand = device.CommandStart +".gamepad2.rapid_b" }
             };
+            DeviceDefinition.PopulateConfig(device);
             return device;
         }
 
@@ -78,6 +80,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "Rapid Y", MednafenCommand = device.CommandStart +".gamepad6.rapid_y" },
                 new Mapping { Description = "Rapid Z", MednafenCommand = device.CommandStart +".gamepad6.rapid_z" }
             };
+            DeviceDefinition.PopulateConfig(device);
             return device;
         }
     }

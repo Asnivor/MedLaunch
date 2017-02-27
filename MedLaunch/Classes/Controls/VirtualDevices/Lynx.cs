@@ -12,6 +12,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
         {
             DeviceDefinition device = new DeviceDefinition();
             device.DeviceName = "LYNX GamePad";
+            device.CommandStart = "lynx.input.builtin";
             device.VirtualPort = 0;
             device.MapList = new List<Mapping>
             {
@@ -29,6 +30,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "Rapid Option 1 (upper)", MednafenCommand = "lynx.input.builtin.gamepad.rapid_option_1" },
                 new Mapping { Description = "Rapid Option 2 (lower)", MednafenCommand = "lynx.input.builtin.gamepad.rapid_option_2" }
             };
+            DeviceDefinition.PopulateConfig(device);
             return device;
         }
     }

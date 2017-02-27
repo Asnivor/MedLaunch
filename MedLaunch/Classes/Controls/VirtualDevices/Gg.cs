@@ -12,6 +12,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
         {
             DeviceDefinition device = new DeviceDefinition();
             device.DeviceName = "GG GamePad";
+            device.CommandStart = "gg.input.builtin";
             device.VirtualPort = 0;
             device.MapList = new List<Mapping>
             {
@@ -25,6 +26,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "Rapid Button 1", MednafenCommand = "gg.input.builtin.gamepad.rapid_button1" },
                 new Mapping { Description = "Rapid Button 2", MednafenCommand = "gg.input.builtin.gamepad.rapid_button2" }
             };
+            DeviceDefinition.PopulateConfig(device);
             return device;
         }
     }

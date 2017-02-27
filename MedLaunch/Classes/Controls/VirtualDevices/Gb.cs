@@ -12,6 +12,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
         {
             DeviceDefinition device = new DeviceDefinition();
             device.DeviceName = "GB GamePad";
+            device.CommandStart = "gb.input.builtin";
             device.VirtualPort = 0;
             device.MapList = new List<Mapping>
             {
@@ -30,6 +31,8 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "Tilt: LEFT ←", MednafenCommand = "gb.input.tilt.tilt.left" },
                 new Mapping { Description = "Tilt: RIGHT →", MednafenCommand = "gb.input.tilt.tilt.right" },
             };
+
+            DeviceDefinition.PopulateConfig(device);
             return device;
         }
     }

@@ -9535,7 +9535,7 @@
             </TabItem>
 
 
-            <TabItem Header="Controls" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
+            <TabItem Header="Controls">
                 <Grid x:Name="grdMednafenControls">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
