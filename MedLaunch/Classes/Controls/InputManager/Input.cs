@@ -294,7 +294,8 @@ namespace MedLaunch.Classes.Controls.InputManager
                             var pad = GamePad360.Devices[i];
                             string xname = "X" + (pad.PlayerNumber) + " ";
                             for (int b = 0; b < pad.NumButtons; b++)
-                                HandleButton(xname + pad.ButtonName(b), pad.Pressed(b));
+                                //HandleButton(xname + pad.ButtonName(b), pad.Pressed(b));
+                                HandleButton(pad.ButtonName(b), pad.Pressed(b));
                             foreach (var sv in pad.GetFloats())
                             {
                                 string n = xname + sv.Item1;
@@ -312,10 +313,16 @@ namespace MedLaunch.Classes.Controls.InputManager
                             string jname = "J" + (i + 1) + " ";
 
                             for (int b = 0; b < pad.NumButtons; b++)
-                                HandleButton(jname + pad.ButtonName(b), pad.Pressed(b));
+                            {
+                                //HandleButton(jname + pad.ButtonName(b), pad.Pressed(b));
+                                HandleButton(pad.ButtonName(b), pad.Pressed(b));
+                                string na = pad.ButtonName(b);
+                            }
+                                
                             foreach (var sv in pad.GetFloats())
                             {
-                                string n = jname + sv.Item1;
+                                //string n = jname + sv.Item1;
+                                string n = sv.Item1;
                                 float f = sv.Item2;
                                 //if (n == "J5 RotationZ")
                                 //	System.Diagnostics.Debugger.Break();

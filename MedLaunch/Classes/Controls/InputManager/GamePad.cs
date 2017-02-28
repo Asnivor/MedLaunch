@@ -5,15 +5,37 @@ using System.Text;
 using System.Threading.Tasks;
 using SlimDX;
 using SlimDX.DirectInput;
+using MedLaunch.Classes.Controls.InputManager;
 
 namespace MedLaunch.Classes.Controls
 {
+
+    public struct di_axis_info
+    {
+        public int minimum;
+        public int maximum;
+        public int jd_logical_offset;
+    }
+
+    public struct ButtConfig
+    {
+        public byte ButtType;
+        public byte DeviceNum;
+        public UInt32 ButtonNum;
+        public UInt64 DeviceId;
+    }
+
     public class GamePad
     {
         // ********************************** Static interface **********************************
 
         static DirectInput dinput;
         public static List<GamePad> Devices;
+        public static List<di_axis_info> DIAxisInfo;
+        public static List<ButtConfig> BConfig;
+        
+
+        //public static Capabilities DevCaps;
 
         public static void Initialize()
         {
@@ -21,6 +43,8 @@ namespace MedLaunch.Classes.Controls
                 dinput = new DirectInput();
 
             Devices = new List<GamePad>();
+
+            DIAxisInfo = new List<di_axis_info>();
 
             foreach (DeviceInstance device in dinput.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly))
             {
@@ -31,16 +55,41 @@ namespace MedLaunch.Classes.Controls
 
                 var joystick = new Joystick(dinput, device.InstanceGuid);
                 //joystick.SetCooperativeLevel(GlobalWin.MainForm.Handle, CooperativeLevel.Background | CooperativeLevel.Nonexclusive);
+
+                
+                int count = 0;
                 foreach (DeviceObjectInstance deviceObject in joystick.GetObjects())
-                {
+                {                                        
                     if ((deviceObject.ObjectType & ObjectDeviceType.Axis) != 0)
-                        joystick.GetObjectPropertiesById((int)deviceObject.ObjectType).SetRange(-1000, 1000);
+                    {
+                        joystick.GetObjectPropertiesById((int)deviceObject.ObjectType).SetRange(-1000, 1000);                        
+                    }
+
+                    InputRange diprg = joystick.GetObjectPropertiesById((int)deviceObject.ObjectType).LogicalRange;
+                    int min = diprg.Minimum;
+                    int max = diprg.Maximum;
+
+                    if (min < max)
+                    {
+                        di_axis_info dai = new di_axis_info();
+                        dai.jd_logical_offset = count;
+                        dai.maximum = max;
+                        dai.minimum = min;
+                        DIAxisInfo.Add(dai);
+                    }
+                    count++;   
                 }
                 joystick.Acquire();
+                
 
-                GamePad p = new GamePad(device.InstanceName, device.InstanceGuid, joystick);
+                GamePad p = new GamePad(device.InstanceName, device.InstanceGuid, joystick, DIAxisInfo);
                 Devices.Add(p);
             }
+        }
+
+        public static int HatToAxisCompat(int hat)
+        {
+            return (DIAxisInfo.Count() + (hat * 2));
         }
 
         public static void UpdateAll()
@@ -59,19 +108,57 @@ namespace MedLaunch.Classes.Controls
             }
         }
 
+        
+
         // ********************************** Instance Members **********************************
 
         readonly string name;
         readonly Guid guid;
         readonly Joystick joystick;
+
+        public int num_rel_axes;
+        public int num_axes;
+        public int num_buttons;
+        
         JoystickState state = new JoystickState();
 
-        GamePad(string name, Guid guid, Joystick joystick)
+        GamePad(string name, Guid guid, Joystick joystick, List<di_axis_info> DIAxisInfo)
         {
             this.name = name;
             this.guid = guid;
             this.joystick = joystick;
+
+            num_rel_axes = 0;
+            num_axes = DIAxisInfo.Count() + joystick.Capabilities.PovCount * 2;
+            num_buttons = joystick.Capabilities.ButtonCount;
+
             Update();
+
+            
+
+            // buttons
+            /*
+            for (int button = 0; button < joystick.Capabilities.ButtonCount; button++)
+            {
+                bool button_state = state.GetButtons()[button];
+                UInt32 butnameint = Convert.ToUInt32(button);
+                string na = butnameint.ToString("X8");
+                names.Add(butnameint.ToString("X8"));
+            }
+            */
+
+            // axis
+            for (int axis = 0; axis < num_axes; axis++)
+            {
+                
+            }
+
+            // hats
+            for (int hat = 0; hat < joystick.Capabilities.PovCount; hat++)
+            {
+
+            }
+
             InitializeCallbacks();
         }
 
@@ -90,6 +177,7 @@ namespace MedLaunch.Classes.Controls
                 return;
 
             state = joystick.GetCurrentState();
+            
             if (Result.Last.IsFailure)
                 // do something?
                 return;
@@ -141,6 +229,45 @@ namespace MedLaunch.Classes.Controls
             actions.Clear();
             NumButtons = 0;
 
+            // buttons first
+            for (int i = 0; i < state.GetButtons().Length; i++)
+            {
+                int j = i;
+                bool button_state = state.GetButtons()[i];
+                UInt32 butnameint = Convert.ToUInt32(i);
+                string na = butnameint.ToString("X8");
+                ulong iD = IdGenerator.CalcOldStyleID(DIAxisInfo.Count, 0, joystick.Capabilities.PovCount, joystick.Capabilities.ButtonCount);
+
+                AddItem(iD.ToString("X16") + " " + butnameint.ToString("X8"), () => state.IsPressed(j));
+            }
+
+            // axis
+            int c = 0;
+            foreach (DeviceObjectInstance deviceObject in joystick.GetObjects())
+            {
+                c++;
+                if ((deviceObject.ObjectType & ObjectDeviceType.Axis) != 0)
+                {
+
+                }
+                if (deviceObject.ObjectType == ObjectDeviceType.Axis)
+                {
+
+                }
+
+                    string aName = deviceObject.Name;
+                //joystick.GetObjectPropertiesById((int)deviceObject.ObjectType)
+            }
+
+            
+            int numa = num_axes;
+            int numa2 = DIAxisInfo.Count();
+            for (int axis = 0; axis < num_axes; axis++)
+            {
+                
+            }
+
+
             AddItem("AccelerationX+", () => state.AccelerationX >= dzp);
             AddItem("AccelerationX-", () => state.AccelerationX <= dzn);
             AddItem("AccelerationY+", () => state.AccelerationY >= dzp);
@@ -169,8 +296,8 @@ namespace MedLaunch.Classes.Controls
             AddItem("RotationX-", () => state.RotationX <= dzn);
             AddItem("RotationY+", () => state.RotationY >= dzp);
             AddItem("RotationY-", () => state.RotationY <= dzn);
-            AddItem("RotationZ+", () => state.RotationZ >= dzp);
-            AddItem("RotationZ-", () => state.RotationZ <= dzn);
+            AddItem("00008003", () => state.RotationZ >= dzp); //AddItem("RotationZ+", () => state.RotationZ >= dzp);
+            AddItem("0000c003", () => state.RotationZ <= dzn); //AddItem("RotationZ-", () => state.RotationZ <= dzn);
             AddItem("TorqueX+", () => state.TorqueX >= dzp);
             AddItem("TorqueX-", () => state.TorqueX <= dzn);
             AddItem("TorqueY+", () => state.TorqueY >= dzp);
@@ -183,20 +310,20 @@ namespace MedLaunch.Classes.Controls
             AddItem("VelocityY-", () => state.VelocityY <= dzn);
             AddItem("VelocityZ+", () => state.VelocityZ >= dzp);
             AddItem("VelocityZ-", () => state.VelocityZ <= dzn);
-            AddItem("X+", () => state.X >= dzp);
-            AddItem("X-", () => state.X <= dzn);
-            AddItem("Y+", () => state.Y >= dzp);
-            AddItem("Y-", () => state.Y <= dzn);
-            AddItem("Z+", () => state.Z >= dzp);
-            AddItem("Z-", () => state.Z <= dzn);
+            AddItem("00008000", () => state.X >= dzp); //AddItem("X+", () => state.X >= dzp);
+            AddItem("0000c000", () => state.X <= dzn); //AddItem("X-", () => state.X <= dzn);
+            AddItem("00008001", () => state.Y >= dzp); //AddItem("Y+", () => state.Y >= dzp);
+            AddItem("0000c001", () => state.Y <= dzn); //AddItem("Y-", () => state.Y <= dzn);
+            AddItem("00008002", () => state.Z >= dzp); //AddItem("Z+", () => state.Z >= dzp);
+            AddItem("0000c002", () => state.Z <= dzn); //AddItem("Z-", () => state.Z <= dzn);
 
             // i don't know what the "Slider"s do, so they're omitted for the moment
 
             for (int i = 0; i < state.GetButtons().Length; i++)
             {
-                int j = i;
-                AddItem(string.Format("B{0}", i + 1), () => state.IsPressed(j));
-            }
+                //int j = i;
+                //AddItem(string.Format("B{0}", i + 1), () => state.IsPressed(j));
+            } 
 
             for (int i = 0; i < state.GetPointOfViewControllers().Length; i++)
             {
