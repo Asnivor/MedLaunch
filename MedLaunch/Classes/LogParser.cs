@@ -9,6 +9,12 @@ using System.Threading.Tasks;
 
 namespace MedLaunch.Classes
 {
+    public class ControllerInfo
+    {
+        public string Name { get; set; }
+        public string ID { get; set; }
+    }
+
     /// <summary>
     /// Parse the Mednafen stdout.txt log file
     /// </summary>
@@ -28,6 +34,35 @@ namespace MedLaunch.Classes
         }
 
         // methods
+
+
+        public static ControllerInfo[] GetDirectInputControllerIds()
+        {
+            EmptyLoad();
+            var lines = ReadLog().Where(a => a.TrimStart().StartsWith("Joystick "));
+            List<string> onlyDi = new List<string>();
+
+            List<ControllerInfo> list = new List<ControllerInfo>();
+
+            foreach (string l in lines)
+            {
+                if (l.Contains("XInput Unknown Controller") || l.Contains("XBOX 360"))
+                    continue;
+
+                string trimmed = l.Trim();
+
+                // get unique ID
+                ControllerInfo ci = new ControllerInfo();
+                string[] arr = trimmed.Split(new string[] { " - " }, StringSplitOptions.None);
+                ci.Name = arr[1];
+                ci.ID = arr[2].Replace("Unique ID: ", "");
+
+                list.Add(ci);
+            }
+
+            return list.ToArray();
+        }
+
 
         /// <summary>
         /// Return the current Mednafen version

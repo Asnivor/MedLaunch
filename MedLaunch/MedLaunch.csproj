@@ -27,6 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -366,6 +367,7 @@
     <Compile Include="Controls\CustomTextBox.cs" />
     <Compile Include="Extensions\ImageExtension.cs" />
     <Compile Include="Extensions\LabelExtension.cs" />
+    <Compile Include="Extensions\ListResizeExtension.cs" />
     <Compile Include="Extensions\UIElementExtension.cs" />
     <Compile Include="Extensions\ZipArchiveExtensions.cs" />
     <Compile Include="InitWindow.xaml.cs">
