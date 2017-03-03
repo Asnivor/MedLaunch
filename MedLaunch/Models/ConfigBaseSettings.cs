@@ -739,12 +739,14 @@ namespace MedLaunch.Models
         public bool? snes__input__port2__multitap { get; set; }
         public string snes__input__port1 { get; set; }
         public string snes__input__port2 { get; set; }
+        /*
         public string snes__input__port3 { get; set; }
         public string snes__input__port4 { get; set; }
         public string snes__input__port5 { get; set; }
         public string snes__input__port6 { get; set; }
         public string snes__input__port7 { get; set; }
-        public string snes__input__port8 { get; set; }        
+        public string snes__input__port8 { get; set; }  
+        */      
 
         public double? snes__mouse_sensitivity { get; set; }                    // 0.125 through 2
 
@@ -1562,7 +1564,8 @@ namespace MedLaunch.Models
 
                 // snes
                 snes__apu__resamp_quality = 5,                      // placed
-                snes__correct_aspect = false,                       // placed                
+                snes__correct_aspect = false,                       // placed     
+                /*           
                 snes__input__port1__multitap = false,               // placed
                 snes__input__port2__multitap = false,               // placed
                 snes__input__port1 = "gamepad",                     // placed
@@ -1573,6 +1576,7 @@ namespace MedLaunch.Models
                 snes__input__port6 = "gamepad",                     // placed
                 snes__input__port7 = "gamepad",                     // placed
                 snes__input__port8 = "gamepad",
+                */
                 snes__mouse_sensitivity = 0.5,                      // placed
 
                 snes__enable = true,

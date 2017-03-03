@@ -7173,6 +7173,7 @@
                                                     <ComboBoxItem Tag="superscope">Super Scope</ComboBoxItem>
                                                 </ComboBox>
 
+                                                <!--
                                                 <Label Name="cfglbl_snes__input__port3" Grid.Column="0" Grid.Row="6">Port 3 Input Device</Label>
                                                 <ComboBox x:Name="cfg_snes__input__port3" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="6">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
@@ -7214,7 +7215,7 @@
                                                     <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
                                                     <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
                                                 </ComboBox>
-
+-->
                                             </Grid>
                                         </StackPanel>
                                     </Expander>
