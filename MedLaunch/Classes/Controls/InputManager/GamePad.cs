@@ -89,7 +89,7 @@ namespace MedLaunch.Classes.Controls
                 xids.Add(x);
             }
 
-            xids.Distinct();
+            xids = xids.Distinct().ToList();
 
             int count = 0;
             foreach (DeviceInstance device in dinput.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly))
