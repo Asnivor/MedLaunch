@@ -72,7 +72,7 @@ namespace MedLaunch.Classes.Controls.InputManager
 
             KeyInput.Initialize(mw);
             //IPCKeyInput.Initialize();
-            GamePad.Initialize();
+            GamePad.Initialize(mw);
             GamePad360.Initialize();
 
             Instance = new Input();

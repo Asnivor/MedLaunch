@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 namespace MedLaunch.Classes.Controls.InputManager
 {
@@ -15,35 +16,91 @@ namespace MedLaunch.Classes.Controls.InputManager
         public static ulong CalcOldStyleID(int num_axes, int num_balls, int num_hats, int num_buttons)
         {
             byte[] digest = new byte[16];
-            int[] tohash = new int[4];
+            byte[] tohash = new byte[4];
 
             ulong ret = 0;
 
-            tohash[0] = num_axes;
-            tohash[1] = num_balls;
-            tohash[2] = num_hats;
-            tohash[3] = num_buttons;
+            tohash[0] = Convert.ToByte(num_axes);
+            tohash[1] = Convert.ToByte(num_balls);
+            tohash[2] = Convert.ToByte(num_hats);
+            tohash[3] = Convert.ToByte(num_buttons);
 
-            byte[] result = new byte[tohash.Length * sizeof(int)];
-            Buffer.BlockCopy(tohash, 0, result, 0, result.Length);
+            //byte[] result = new byte[tohash.Length * sizeof(int)];
+            //Buffer.BlockCopy(tohash, 0, result, 0, result.Length);            
 
-            /*
-
-            var str = System.Text.Encoding.Default.GetString(result);
-
+            var str = System.Text.Encoding.Default.GetString(tohash);
+            
             using (MD5 md5Hash = MD5.Create())
             {
                 string hash = GetMd5Hash(md5Hash, str);
                 digest = StringToByteArray(hash);
             }
-            */
+           
 
             for (int i = 0; i < 16; i++)
             {
-                ret ^= (ulong)result[i] << ((i & 7) * 8);
+                ret ^= (ulong)digest[i] << ((i & 7) * 8);
             }
             return ret;
         }
+
+
+
+
+
+        public class md5_context
+        {
+            private UInt32[] total = new UInt32[2];
+            private UInt32[] state = new UInt32[4];
+            private byte[] buffer = new byte[64];
+
+            //constructor
+            public md5_context()
+            {
+                total[0] = 0;
+                total[1] = 0;
+                state[0] = 0x67452301;
+                state[1] = 0xEFCDAB89;
+                state[2] = 0x98BADCFE;
+                state[3] = 0x10325476;
+            }
+
+            public void update(byte[] input, UInt32 length)
+            {
+                UInt32 left;
+                UInt32 fill;
+
+                if (length == 0) return;
+
+                left = (total[0] >> 3) & 0x3F;
+                fill = 64 - left;
+
+                total[0] += length << 3;
+                total[1] += length >> 29;
+
+                
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public static byte[] StringToByteArray(string hex)
         {

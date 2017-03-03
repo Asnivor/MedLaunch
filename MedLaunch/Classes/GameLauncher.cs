@@ -252,12 +252,13 @@ namespace MedLaunch.Classes
                 // Build command line config arguments
                 gProcess.StartInfo.Arguments = cmdArguments;
                 gProcess.Start();
+                // get process window handle
+                IntPtr hwnd = gProcess.MainWindowHandle;
                 gProcess.WaitForInputIdle();
 
                 procId = gProcess.Id;
 
-                // get process window handle
-                IntPtr hwnd = gProcess.MainWindowHandle;
+                
 
                 // set windows position
                 System.Drawing.Point pnt = new System.Drawing.Point();

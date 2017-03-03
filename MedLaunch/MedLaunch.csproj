@@ -280,6 +280,8 @@
     <Compile Include="Classes\Controls\InputManager\KeyboardTrans.cs" />
     <Compile Include="Classes\Controls\InputManager\KeyInput.cs" />
     <Compile Include="Classes\Controls\InputManager\md5_context.cs" />
+    <Compile Include="Classes\Controls\Input\Input.cs" />
+    <Compile Include="Classes\Controls\Input\Joystick.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\DeviceDefinition.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\Gb.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\Gba.cs" />
@@ -812,6 +814,7 @@
     <Resource Include="Data\Graphics\Controllers\ss-dualmission.png" />
     <Resource Include="Data\Graphics\Controllers\ss-mission.png" />
     <Resource Include="Data\Graphics\Controllers\ss-wheel.png" />
+    <Content Include="ExternalAssemblies\md5.dll" />
     <Content Include="ExternalAssemblies\WindowScrape.dll" />
     <Resource Include="MedLaunchIcon.ico" />
     <Resource Include="Data\Graphics\Controllers\lynx_controller.png" />
