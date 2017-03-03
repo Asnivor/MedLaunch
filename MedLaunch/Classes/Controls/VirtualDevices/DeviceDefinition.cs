@@ -20,6 +20,34 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
             MapList = new List<Mapping>();
         }
 
+        public static bool WriteDefinitionToConfigFile(List<Mapping> maps)
+        {
+            try
+            {
+                // load the whole mednafen config into an array
+                string[] lines = File.ReadAllLines(Paths.GetPaths().mednafenExe + @"\mednafen-09x.cfg").ToArray();
+
+                // iterate through maps
+                for (int i = 0; i < maps.Count; i++)
+                {
+                    // check whether this matches something in lines
+                    for (int line = 0; line < lines.Length; line++)
+                    {
+                        if (lines[line].Contains(maps[i].MednafenCommand + " "))
+                        {
+                            // match is found - rewrite this line
+                            lines[line] = maps[i].MednafenCommand + " " + maps[i].Config;
+                        }
+                    }                
+                }
+
+                // now write the updated config back to disk            
+                File.WriteAllLines(Paths.GetPaths().mednafenExe + @"\mednafen-09x.cfg", lines);
+                return true;
+            }
+            catch { return false; }
+        }
+
         /// <summary>
         /// populate DeviceDefinition object with config strings from mednafen config
         /// </summary>

@@ -234,7 +234,11 @@ namespace MedLaunch.Classes.Controls
             NumButtons = 0;
 
             // populate DIAXISINFO
-            devObList = (joystick.GetObjects().Where(a => a.UsagePage == 1 && a.Usage > 0 && a.Usage != 4).OrderBy(o => o.Usage).ThenBy(o2 => o2.Offset)).ToArray();
+            devObList = (joystick.GetObjects()
+                .Where(a => a.UsagePage == 1 && a.Usage > 0 && a.Usage != 4)
+                .GroupBy(x => x.Name).Select(x => x.First())
+                .OrderBy(o => o.Usage)
+                .ThenBy(o2 => o2.Offset)).ToArray();
 
             for (int axis = 0; axis < devObList.Count(); axis++)
             {
@@ -373,11 +377,8 @@ namespace MedLaunch.Classes.Controls
             {
                 Int16 a_state = axis_state[axis];
                 DeviceObjectInstance di = devObList[axis];
-
-               
-
-                // dynamically create callback
                 
+                // dynamically create callback               
 
                 switch (di.Usage)
                 {

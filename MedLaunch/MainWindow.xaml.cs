@@ -338,6 +338,7 @@ namespace MedLaunch
 
 
             // initialise input class
+            
             Input.Initialize(this);
 
         }

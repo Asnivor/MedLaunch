@@ -276,12 +276,8 @@
     <Compile Include="Classes\Controls\InputManager\GamePad.cs" />
     <Compile Include="Classes\Controls\InputManager\GamePad360.cs" />
     <Compile Include="Classes\Controls\InputManager\Input.cs" />
-    <Compile Include="Classes\Controls\InputManager\IdGenerator.cs" />
     <Compile Include="Classes\Controls\InputManager\KeyboardTrans.cs" />
     <Compile Include="Classes\Controls\InputManager\KeyInput.cs" />
-    <Compile Include="Classes\Controls\InputManager\md5_context.cs" />
-    <Compile Include="Classes\Controls\Input\Input.cs" />
-    <Compile Include="Classes\Controls\Input\Joystick.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\DeviceDefinition.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\Gb.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\Gba.cs" />

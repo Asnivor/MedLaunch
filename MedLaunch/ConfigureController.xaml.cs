@@ -46,6 +46,10 @@ namespace MedLaunch
         public ConfigureController()
         {
             InitializeComponent();
+
+            // clear all queued presses
+            Input.Instance.ClearEvents();
+
             this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
 
 
@@ -120,7 +124,8 @@ namespace MedLaunch
                 // Config Primary               
                 TextBox configInfo = new TextBox();
                 configInfo.Name = "Primary_" + TranslateConfigName(ControllerDefinition.MapList[i].MednafenCommand);
-                configInfo.Text = KeyboardTranslation.SDLCodetoDx(GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Primary), KeyboardType.UK);  //ControllerDefinition.MapList[i].Config;
+                //configInfo.Text = KeyboardTranslation.SDLCodetoDx(GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Primary), KeyboardType.UK);  //ControllerDefinition.MapList[i].Config;
+                configInfo.Text = GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Primary);  //ControllerDefinition.MapList[i].Config;
                 configInfo.GotFocus += TextBox_GotFocus;
                 configInfo.LostFocus += TextBox_LostFocus;
                 configInfo.KeyDown += TextBox_KeyDownHandler;
@@ -134,7 +139,8 @@ namespace MedLaunch
                 // Config Secondary               
                 TextBox configInfo2 = new TextBox();
                 configInfo2.Name = "Secondary_" + TranslateConfigName(ControllerDefinition.MapList[i].MednafenCommand);
-                configInfo2.Text = KeyboardTranslation.SDLCodetoDx(GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Secondary), KeyboardType.UK); //ControllerDefinition.MapList[i].Config;
+                //configInfo2.Text = /*KeyboardTranslation.SDLCodetoDx(GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Secondary), KeyboardType.UK); //*/ControllerDefinition.MapList[i].Config;
+                configInfo2.Text = GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Secondary);
                 configInfo2.GotFocus += TextBox_GotFocus;
                 configInfo2.LostFocus += TextBox_LostFocus;
                 configInfo2.KeyDown += TextBox_KeyDownHandler;
@@ -148,7 +154,8 @@ namespace MedLaunch
                 // Config Tertiary              
                 TextBox configInfo3 = new TextBox();
                 configInfo3.Name = "Tertiary_" + TranslateConfigName(ControllerDefinition.MapList[i].MednafenCommand);
-                configInfo3.Text = KeyboardTranslation.SDLCodetoDx(GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Tertiary), KeyboardType.UK); //ControllerDefinition.MapList[i].Config;
+                //configInfo3.Text = /*KeyboardTranslation.SDLCodetoDx(GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Tertiary), KeyboardType.UK); //*/ControllerDefinition.MapList[i].Config;
+                configInfo3.Text = GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Tertiary);
                 configInfo3.GotFocus += TextBox_GotFocus;
                 configInfo3.LostFocus += TextBox_LostFocus;
                 configInfo3.KeyDown += TextBox_KeyDownHandler;
@@ -436,18 +443,68 @@ namespace MedLaunch
         {
             // get all the textboxes on the page
             UIHandler ui = UIHandler.GetChildren(DynamicDataGrid);
+
+            // all textboxes
             List<TextBox> tbs = ui.TextBoxes;
 
-            // iterate through each textbox
-            foreach (TextBox tb in tbs)
+            // just the primaries
+            List<TextBox> prims = tbs.Where(a => a.Name.Contains("Primary_Control")).ToList();
+
+            List<Mapping> maps = new List<Mapping>();
+
+            // iterate through each primary textbox
+            foreach (TextBox tb in prims)
             {
                 string content = tb.Text;
                 string name = tb.Name;
-                string configName = TranslateControlName(name);
+                string configName = name.Replace("Primary_Control", "");
+
+                // check whether secondary and teritary also exist
+                string sec = "";
+                string ter = "";
+
+                TextBox tSec = tbs.Where(a => a.Name.Contains("Secondary_Control" + configName)).First();
+                TextBox tTer = tbs.Where(a => a.Name.Contains("Tertiary_Control" + configName)).First();
+
+                sec = tSec.Text;
+                ter = tTer.Text;
+
+                // build config string
+                string configData = ConfigLineBuilder(content, sec, ter);
+
+                // populate controller definition with new value
+                ControllerDefinitionWorking = ControllerDefinition;
+                
+                Mapping map = new Mapping();
+
+                map = ControllerDefinition.MapList.Where(a => a.MednafenCommand == TranslateControlName(configName.Replace("Cfg_", "").Replace("cfg_", ""))).First();
+                map.Config = configData;
+                maps.Add(map);                
             }
-            
+
+            // now write all data to mednafen config
+            bool write = DeviceDefinition.WriteDefinitionToConfigFile(maps);
+
+            if (!write)
+                MessageBox.Show("There was a problem reading from/writing to the mednafen config file", "Possible IO Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
             this.Close();
+        }
+
+        public static string ConfigLineBuilder(string pri, string sec, string ter)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(pri);
+            sb.Append("~");
+            sb.Append(sec);
+            sb.Append("~");
+            sb.Append(ter);
+
+            return sb.ToString().ToLower()
+                .Replace("~~~", "~")
+                .Replace("~~", "")
+                .TrimStart('~')
+                .TrimEnd('~');
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -540,7 +597,7 @@ namespace MedLaunch
 
 
                 //UpdateLabel();
-                _activeTB.Text = bindingStr;
+                _activeTB.Text = KeyboardTranslation.DXtoSDLCode(bindingStr, KeyboardType.UK); // bindingStr;
                 Increment();
                
 

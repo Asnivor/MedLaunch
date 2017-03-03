@@ -273,6 +273,8 @@ namespace MedLaunch.Classes.Controls
             dxKeys.Add(new DxKeys { SDLK = 322, DxUK = "SDLK_UNDO" });
         }
 
+
+
         public static string DXtoSDLCode(string dxString, KeyboardType keyboardType)
         {
             KeyboardTranslation kbt = new KeyboardTranslation();
