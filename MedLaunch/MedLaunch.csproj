@@ -213,6 +213,7 @@
     </Reference>
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -278,6 +279,7 @@
     <Compile Include="Classes\Controls\InputManager\Input.cs" />
     <Compile Include="Classes\Controls\InputManager\KeyboardTrans.cs" />
     <Compile Include="Classes\Controls\InputManager\KeyInput.cs" />
+    <Compile Include="Classes\Controls\InputManager\pnp.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\DeviceDefinition.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\Gb.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\Gba.cs" />

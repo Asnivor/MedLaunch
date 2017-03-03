@@ -41,6 +41,13 @@ namespace MedLaunch.Classes.Controls
         ANABUTTON_NEGPRESS
     }
 
+    public class xinput_id
+    {
+        public string PID { get; set; }
+        public string VID { get; set; }
+        public string PIDVID { get; set; }
+    }
+
     public class GamePad
     {
         // ********************************** Static interface **********************************
@@ -51,6 +58,7 @@ namespace MedLaunch.Classes.Controls
         public List<ButtConfig> ButtonList;
         public List<Int16> axis_config_type;
         
+
 
         public static void Initialize(MainWindow window)
         {
@@ -63,14 +71,43 @@ namespace MedLaunch.Classes.Controls
 
             ContInfoFromLog = LogParser.GetDirectInputControllerIds();
 
+
+            List<xinput_id> xids = new List<xinput_id>();
+
+            // get all directinput pnp devices from WMI
+            List<USBDeviceInfo> pnpDevs = pnp.GetUSBDevices().Where(a => a.DeviceID.Contains("IG_")).ToList();
+
+            foreach (USBDeviceInfo pD in pnpDevs)
+            {
+                xinput_id x = new xinput_id();
+                string deviceId = pD.DeviceID;
+                // get VID and PID
+                string[] arr = deviceId.Split('&');
+                x.VID = arr[0].Replace("HID\\VID_", "");
+                x.PID = arr[1].Replace("PID_", "");
+                x.PIDVID = (x.PID + x.VID).ToLower();
+                xids.Add(x);
+            }
+
+            xids.Distinct();
+
             int count = 0;
             foreach (DeviceInstance device in dinput.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly))
             {
                 Console.WriteLine("joydevice: {0} `{1}`", device.InstanceGuid, device.ProductName);
-                
+                string prodName = device.ProductName;
+                string devId = device.ProductGuid.ToString();
+                string devPidVid = (devId.Split('-'))[0];
 
-                if (device.ProductName.Contains("XBOX 360"))
-                    continue; // Don't input XBOX 360 controllers into here; we'll process them via XInput (there are limitations in some trigger axes when xbox pads go over xinput)
+                // compare PIDVID from WMI from the first part of the ProductGuid. If they match, this is an xinput controller and can be skipped (and left for GamePad360)
+                var check = (from a in xids
+                            where a.PIDVID == devPidVid
+                            select a).ToList();
+                if (check.Count > 0)
+                    continue;
+
+                //if (device.ProductName.Contains("XBOX 360"))
+                //  continue; // Don't input XBOX 360 controllers into here; we'll process them via XInput (there are limitations in some trigger axes when xbox pads go over xinput)
 
                 var joystick = new Joystick(dinput, device.InstanceGuid);
                 joystick.SetCooperativeLevel(handle, CooperativeLevel.Background | CooperativeLevel.Nonexclusive);
@@ -85,8 +122,10 @@ namespace MedLaunch.Classes.Controls
                 }
                 joystick.Acquire();
 
+                string nId = "";
                 // get mednafen unique id for this controller from stdout.txt
-                string nId = ContInfoFromLog[count].ID;
+                if (ContInfoFromLog.Count() > 0)
+                    nId = ContInfoFromLog[count].ID;
                 
                 // instantiate new gamepad instance and add it to the collection
                 GamePad p = new GamePad(device.InstanceName, nId, joystick, device.InstanceGuid);
@@ -97,8 +136,9 @@ namespace MedLaunch.Classes.Controls
 
         public static void UpdateAll()
         {
-            foreach (var device in Devices.ToList())
-                device.Update();
+            if (Devices.Count > 0)
+                foreach (var device in Devices.ToList())
+                    device.Update();
         }
 
         public static void CloseAll()

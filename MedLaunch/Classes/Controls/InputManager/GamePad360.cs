@@ -3,6 +3,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using SlimDX.XInput;
+using System.Windows.Interop;
 
 #pragma warning disable 169
 #pragma warning disable 414
@@ -43,12 +44,14 @@ namespace MedLaunch.Classes.Controls
             public XINPUT_GAMEPAD Gamepad;
         }
 
-        public static void Initialize()
+        public static void Initialize(MainWindow window)
         {
+            IntPtr handle = new WindowInteropHelper(window).Handle;
             IsAvailable = true;// false;
-            /*
+            
             try
             {
+                /*
                 //some users wont even have xinput installed. in order to avoid spurious exceptions and possible instability, check for the library first
                 HasGetInputStateEx = true;
                 LibraryHandle = Win32.LoadLibrary("xinput1_3.dll");
@@ -73,11 +76,11 @@ namespace MedLaunch.Classes.Controls
                     var test = new SlimDX.XInput.Controller(UserIndex.One).IsConnected;
                     IsAvailable = true;
                 }
-
+                */
             }
             catch { }
 
-    */
+  
 
             if (!IsAvailable) return;
 
@@ -90,6 +93,8 @@ namespace MedLaunch.Classes.Controls
             var c2 = new Controller(UserIndex.Two);
             var c3 = new Controller(UserIndex.Three);
             var c4 = new Controller(UserIndex.Four);
+
+            
 
             if (c1.IsConnected) Devices.Add(new GamePad360(0, c1));
             if (c2.IsConnected) Devices.Add(new GamePad360(1, c2));
