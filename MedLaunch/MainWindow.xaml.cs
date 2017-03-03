@@ -2416,8 +2416,8 @@ namespace MedLaunch
                         GamesLibraryVisualHandler.RefreshGamesLibrary();
                     });
                 }                
-
-                await controller.CloseAsync();
+                if (controller.IsOpen == true)
+                    await controller.CloseAsync();
 
             GameListBuilder.UpdateFlag();
             GamesLibraryVisualHandler.UpdateSidebar(gl.GameId);

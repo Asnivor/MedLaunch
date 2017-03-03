@@ -355,7 +355,7 @@ namespace MedLaunch.Classes.Controls
 
                 BConfig.Add(butnameint);
 
-                AddItem(id + " " + butnameint.ToString("X8").ToLower(), () => state.IsPressed(j));
+                AddItem("joystick " + id + " " + butnameint.ToString("X8").ToLower(), () => state.IsPressed(j));
             }
 
            
@@ -386,8 +386,8 @@ namespace MedLaunch.Classes.Controls
                         cbNeg = () => state.X <= dzn;
                         buttNamePos = 0x8000 + axis;
                         buttNameNeg = 0xc000 + axis;
-                        AddItem(id + " " + buttNamePos.ToString("X8").ToLower(), cbPos);
-                        AddItem(id + " " + buttNameNeg.ToString("X8").ToLower(), cbNeg);
+                        AddItem("joystick " + id + " " + buttNamePos.ToString("X8").ToLower(), cbPos);
+                        AddItem("joystick " + id + " " + buttNameNeg.ToString("X8").ToLower(), cbNeg);
                         BConfig.Add(Convert.ToUInt32(buttNamePos));
                         BConfig.Add(Convert.ToUInt32(buttNameNeg));
                         break;
@@ -396,8 +396,8 @@ namespace MedLaunch.Classes.Controls
                         cbNeg = () => state.Y <= dzn;
                         buttNamePos = 0x8000 + axis;
                         buttNameNeg = 0xc000 + axis;
-                        AddItem(id + " " + buttNamePos.ToString("X8").ToLower(), cbPos);
-                        AddItem(id + " " + buttNameNeg.ToString("X8").ToLower(), cbNeg);
+                        AddItem("joystick " + id + " " + buttNamePos.ToString("X8").ToLower(), cbPos);
+                        AddItem("joystick " + id + " " + buttNameNeg.ToString("X8").ToLower(), cbNeg);
                         BConfig.Add(Convert.ToUInt32(buttNamePos));
                         BConfig.Add(Convert.ToUInt32(buttNameNeg));
                         break;
@@ -406,8 +406,8 @@ namespace MedLaunch.Classes.Controls
                         cbNeg = () => state.Z <= dzn;
                         buttNamePos = 0x8000 + axis;
                         buttNameNeg = 0xc000 + axis;
-                        AddItem(id + " " + buttNamePos.ToString("X8").ToLower(), cbPos);
-                        AddItem(id + " " + buttNameNeg.ToString("X8").ToLower(), cbNeg);
+                        AddItem("joystick " + id + " " + buttNamePos.ToString("X8").ToLower(), cbPos);
+                        AddItem("joystick " + id + " " + buttNameNeg.ToString("X8").ToLower(), cbNeg);
                         BConfig.Add(Convert.ToUInt32(buttNamePos));
                         BConfig.Add(Convert.ToUInt32(buttNameNeg));
                         break;
@@ -416,8 +416,8 @@ namespace MedLaunch.Classes.Controls
                         cbNeg = () => state.RotationX <= dzn;
                         buttNamePos = 0x8000 + axis;
                         buttNameNeg = 0xc000 + axis;
-                        AddItem(id + " " + buttNamePos.ToString("X8").ToLower(), cbPos);
-                        AddItem(id + " " + buttNameNeg.ToString("X8").ToLower(), cbNeg);
+                        AddItem("joystick " + id + " " + buttNamePos.ToString("X8").ToLower(), cbPos);
+                        AddItem("joystick " + id + " " + buttNameNeg.ToString("X8").ToLower(), cbNeg);
                         BConfig.Add(Convert.ToUInt32(buttNamePos));
                         BConfig.Add(Convert.ToUInt32(buttNameNeg));
                         break;
@@ -426,8 +426,8 @@ namespace MedLaunch.Classes.Controls
                         cbNeg = () => state.RotationY <= dzn;
                         buttNamePos = 0x8000 + axis;
                         buttNameNeg = 0xc000 + axis;
-                        AddItem(id + " " + buttNamePos.ToString("X8").ToLower(), cbPos);
-                        AddItem(id + " " + buttNameNeg.ToString("X8").ToLower(), cbNeg);
+                        AddItem("joystick " + id + " " + buttNamePos.ToString("X8").ToLower(), cbPos);
+                        AddItem("joystick " + id + " " + buttNameNeg.ToString("X8").ToLower(), cbNeg);
                         BConfig.Add(Convert.ToUInt32(buttNamePos));
                         BConfig.Add(Convert.ToUInt32(buttNameNeg));
                         break;
@@ -436,8 +436,8 @@ namespace MedLaunch.Classes.Controls
                         cbNeg = () => state.RotationZ <= dzn;
                         buttNamePos = 0x8000 + axis;
                         buttNameNeg = 0xc000 + axis;
-                        AddItem(id + " " + buttNamePos.ToString("X8").ToLower(), cbPos);
-                        AddItem(id + " " + buttNameNeg.ToString("X8").ToLower(), cbNeg);
+                        AddItem("joystick " + id + " " + buttNamePos.ToString("X8").ToLower(), cbPos);
+                        AddItem("joystick " + id + " " + buttNameNeg.ToString("X8").ToLower(), cbNeg);
                         BConfig.Add(Convert.ToUInt32(buttNamePos));
                         BConfig.Add(Convert.ToUInt32(buttNameNeg));
                         break;
@@ -446,8 +446,8 @@ namespace MedLaunch.Classes.Controls
                         cbNeg = () => state.RotationZ <= dzn;
                         buttNamePos = 0x8000 + axis;
                         buttNameNeg = 0xc000 + axis;
-                        AddItem(id + " " + buttNamePos.ToString("X8").ToLower(), cbPos);
-                        AddItem(id + " " + buttNameNeg.ToString("X8").ToLower(), cbNeg);
+                        AddItem("joystick " + id + " " + buttNamePos.ToString("X8").ToLower(), cbPos);
+                        AddItem("joystick " + id + " " + buttNameNeg.ToString("X8").ToLower(), cbNeg);
                         BConfig.Add(Convert.ToUInt32(buttNamePos));
                         BConfig.Add(Convert.ToUInt32(buttNameNeg));
                         break;
@@ -456,8 +456,8 @@ namespace MedLaunch.Classes.Controls
                         cbNeg = () => state.RotationZ <= dzn;
                         buttNamePos = 0x8000 + axis;
                         buttNameNeg = 0xc000 + axis;
-                        AddItem(id + " " + buttNamePos.ToString("X8").ToLower(), cbPos);
-                        AddItem(id + " " + buttNameNeg.ToString("X8").ToLower(), cbNeg);
+                        AddItem("joystick " + id + " " + buttNamePos.ToString("X8").ToLower(), cbPos);
+                        AddItem("joystick " + id + " " + buttNameNeg.ToString("X8").ToLower(), cbNeg);
                         BConfig.Add(Convert.ToUInt32(buttNamePos));
                         BConfig.Add(Convert.ToUInt32(buttNameNeg));
                         break;
@@ -466,8 +466,8 @@ namespace MedLaunch.Classes.Controls
                         cbNeg = () => state.RotationZ <= dzn;
                         buttNamePos = 0x8000 + axis;
                         buttNameNeg = 0xc000 + axis;
-                        AddItem(id + " " + buttNamePos.ToString("X8").ToLower(), cbPos);
-                        AddItem(id + " " + buttNameNeg.ToString("X8").ToLower(), cbNeg);
+                        AddItem("joystick " + id + " " + buttNamePos.ToString("X8").ToLower(), cbPos);
+                        AddItem("joystick " + id + " " + buttNameNeg.ToString("X8").ToLower(), cbNeg);
                         BConfig.Add(Convert.ToUInt32(buttNamePos));
                         BConfig.Add(Convert.ToUInt32(buttNameNeg));
                         break;
@@ -480,16 +480,16 @@ namespace MedLaunch.Classes.Controls
                         // L - R
                         buttNamePos = 0x8000 + axis;
                         buttNameNeg = 0xc000 + axis;
-                        AddItem(id + " " + buttNamePos.ToString("X8").ToLower(), () => { int t = state.GetPointOfViewControllers()[povTmpCount]; return t >= 22500 && t <= 31500; });
-                        AddItem(id + " " + buttNameNeg.ToString("X8").ToLower(), () => { int t = state.GetPointOfViewControllers()[povTmpCount]; return t >= 4500 && t <= 13500; });
+                        AddItem("joystick " + id + " " + buttNamePos.ToString("X8").ToLower(), () => { int t = state.GetPointOfViewControllers()[povTmpCount]; return t >= 22500 && t <= 31500; });
+                        AddItem("joystick " + id + " " + buttNameNeg.ToString("X8").ToLower(), () => { int t = state.GetPointOfViewControllers()[povTmpCount]; return t >= 4500 && t <= 13500; });
                         BConfig.Add(Convert.ToUInt32(buttNamePos));
                         BConfig.Add(Convert.ToUInt32(buttNameNeg));
 
                         // U - D
                         buttNamePos = 0x8000 + axis;
                         buttNameNeg = 0xc000 + axis;
-                        AddItem(id + " " + buttNamePos.ToString("X8").ToLower(), () => { int t = state.GetPointOfViewControllers()[povTmpCount]; return (t >= 0 && t <= 4500) || (t >= 31500 && t < 36000); });
-                        AddItem(id + " " + buttNameNeg.ToString("X8").ToLower(), () => { int t = state.GetPointOfViewControllers()[povTmpCount]; return t >= 13500 && t <= 22500; });
+                        AddItem("joystick " + id + " " + buttNamePos.ToString("X8").ToLower(), () => { int t = state.GetPointOfViewControllers()[povTmpCount]; return (t >= 0 && t <= 4500) || (t >= 31500 && t < 36000); });
+                        AddItem("joystick " + id + " " + buttNameNeg.ToString("X8").ToLower(), () => { int t = state.GetPointOfViewControllers()[povTmpCount]; return t >= 13500 && t <= 22500; });
                         BConfig.Add(Convert.ToUInt32(buttNamePos));
                         BConfig.Add(Convert.ToUInt32(buttNameNeg));
                         */
@@ -577,11 +577,11 @@ namespace MedLaunch.Classes.Controls
                 // L - R
                 buttNamePos = 0x8000 + axis;
                 buttNameNeg = 0xc000 + axis;
-                //AddItem(id + " " + buttNamePos.ToString("X8").ToLower(), () => { int t = state.GetPointOfViewControllers()[povTmpCount]; return t >= 22500 && t <= 31500; });
-                AddItem(id + " " + buttNamePos.ToString("X8").ToLower(),  //string.Format(id + " " + "POV{0}L", i + 1),
+                //AddItem("joystick " + id + " " + buttNamePos.ToString("X8").ToLower(), () => { int t = state.GetPointOfViewControllers()[povTmpCount]; return t >= 22500 && t <= 31500; });
+                AddItem("joystick " + id + " " + buttNamePos.ToString("X8").ToLower(),  //string.Format("joystick " + id + " " + "POV{0}L", i + 1),
                     () => { int t = state.GetPointOfViewControllers()[j]; return t >= 22500 && t <= 31500; });
-                //AddItem(id + " " + buttNameNeg.ToString("X8").ToLower(), () => { int t = state.GetPointOfViewControllers()[povTmpCount]; return t >= 4500 && t <= 13500; });
-                AddItem(id + " " + buttNameNeg.ToString("X8").ToLower(),  //string.Format(id + " " + "POV{0}R", i + 1),
+                //AddItem("joystick " + id + " " + buttNameNeg.ToString("X8").ToLower(), () => { int t = state.GetPointOfViewControllers()[povTmpCount]; return t >= 4500 && t <= 13500; });
+                AddItem("joystick " + id + " " + buttNameNeg.ToString("X8").ToLower(),  //string.Format("joystick " + id + " " + "POV{0}R", i + 1),
                     () => { int t = state.GetPointOfViewControllers()[j]; return t >= 4500 && t <= 13500; });
                 BConfig.Add(Convert.ToUInt32(buttNamePos));
                 BConfig.Add(Convert.ToUInt32(buttNameNeg));
@@ -589,11 +589,11 @@ namespace MedLaunch.Classes.Controls
                 // U - D
                 buttNamePos = 0x8000 + (axis + 1);
                 buttNameNeg = 0xc000 + (axis + 1);
-                //AddItem(id + " " + buttNamePos.ToString("X8").ToLower(), () => { int t = state.GetPointOfViewControllers()[povTmpCount]; return (t >= 0 && t <= 4500) || (t >= 31500 && t < 36000); });
-                AddItem(id + " " + buttNamePos.ToString("X8").ToLower(),   //string.Format(id + " " + "POV{0}U", i + 1),
+                //AddItem("joystick " + id + " " + buttNamePos.ToString("X8").ToLower(), () => { int t = state.GetPointOfViewControllers()[povTmpCount]; return (t >= 0 && t <= 4500) || (t >= 31500 && t < 36000); });
+                AddItem("joystick " + id + " " + buttNamePos.ToString("X8").ToLower(),   //string.Format("joystick " + id + " " + "POV{0}U", i + 1),
                     () => { int t = state.GetPointOfViewControllers()[j]; return (t >= 0 && t <= 4500) || (t >= 31500 && t < 36000); });
-                //AddItem(id + " " + buttNameNeg.ToString("X8").ToLower(), () => { int t = state.GetPointOfViewControllers()[povTmpCount]; return t >= 13500 && t <= 22500; });
-                AddItem(id + " " + buttNameNeg.ToString("X8").ToLower(),   //string.Format(id + " " + "POV{0}D", i + 1),
+                //AddItem("joystick " + id + " " + buttNameNeg.ToString("X8").ToLower(), () => { int t = state.GetPointOfViewControllers()[povTmpCount]; return t >= 13500 && t <= 22500; });
+                AddItem("joystick " + id + " " + buttNameNeg.ToString("X8").ToLower(),   //string.Format("joystick " + id + " " + "POV{0}D", i + 1),
                     () => { int t = state.GetPointOfViewControllers()[j]; return t >= 13500 && t <= 22500; });
                 BConfig.Add(Convert.ToUInt32(buttNamePos));
                 BConfig.Add(Convert.ToUInt32(buttNameNeg));

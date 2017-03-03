@@ -252,53 +252,58 @@ namespace MedLaunch.Classes
                 // Build command line config arguments
                 gProcess.StartInfo.Arguments = cmdArguments;
                 gProcess.Start();
-                // get process window handle
-                IntPtr hwnd = gProcess.MainWindowHandle;
+                
                 gProcess.WaitForInputIdle();
 
                 procId = gProcess.Id;
-
-                
-
+                IntPtr hwnd = new IntPtr();
                 // set windows position
                 System.Drawing.Point pnt = new System.Drawing.Point();
 
-                if (rememberWinPos == true)
+                // get process window handle
+                try
                 {
-                    // get windows position from database
-                    pnt = GlobalSettings.GetWindowPosBySystem(systemId);
-                    // set windows position
-                    HwndInterface.SetHwndPos(hwnd, pnt.X, pnt.Y);
-                }               
-
-                bool isClosed = false;
-                while (isClosed == false)
-                {
-                    try
+                    hwnd = gProcess.MainWindowHandle;
+                    if (rememberWinPos == true)
                     {
-                        // get process id
-                        Process p = Process.GetProcessById(procId);
+                        // get windows position from database
+                        pnt = GlobalSettings.GetWindowPosBySystem(systemId);
+                        // set windows position
+                        HwndInterface.SetHwndPos(hwnd, pnt.X, pnt.Y);
+
+                        bool isClosed = false;
+                        while (isClosed == false)
+                        {
+                            try
+                            {
+                                // get process id
+                                Process p = Process.GetProcessById(procId);
+
+                                if (rememberWinPos == true)
+                                {
+                                    // get window top left x y coords
+                                    pnt = HwndInterface.GetHwndPos(hwnd);
+                                }
+                            }
+                            catch
+                            {
+                                isClosed = true;
+                            }
+
+                            Thread.Sleep(1000);
+                        }
 
                         if (rememberWinPos == true)
                         {
-                            // get window top left x y coords
-                            pnt = HwndInterface.GetHwndPos(hwnd);
+                            // save coords to database
+                            GlobalSettings.SaveWindowPosBySystem(systemId, pnt);
                         }
-                        
-                        
                     }
-                    catch
-                    {
-                        isClosed = true;
-                    }
-
-                    Thread.Sleep(1000);
                 }
-
-                if (rememberWinPos == true)
+                catch
                 {
-                    // save coords to database
-                    GlobalSettings.SaveWindowPosBySystem(systemId, pnt);
+                    // catch exception if mednafen doesnt launch correctly
+                    return; 
                 }
             }
         }
