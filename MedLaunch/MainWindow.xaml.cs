@@ -181,7 +181,7 @@ namespace MedLaunch
             //ConfigNetplaySettings.LoadNetplaySettings();
 
             // load path settings for paths page
-            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan); // tbPathPsx, tbPathSs);
+            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs, tbPathPceCd);
 
             // force location of Mednafen directory
             //var controller = this.ShowProgressAsync("Please wait...", "Progress Message");
@@ -265,10 +265,12 @@ namespace MedLaunch
             btnRescanDisks.Visibility = Visibility.Collapsed;
 
             // Rescan specific disk system menu item
+            /*
             ScanDisks13.Visibility = Visibility.Collapsed;
             ScanDisks9.Visibility = Visibility.Collapsed;
             ScanDisks18.Visibility = Visibility.Collapsed;
             ScanDisks8.Visibility = Visibility.Collapsed;
+            */
 
             // settings buttons and borders
             //btnMednafenPaths.Visibility = Visibility.Collapsed;
@@ -481,33 +483,11 @@ namespace MedLaunch
         private void btnWbMednafenHome_Click(object sender, RoutedEventArgs e)
         {
             wb.Navigate(new Uri("http://mednafen.fobby.net/", UriKind.RelativeOrAbsolute));
-        }
-
-        private async void RescanSystemDisks(int sysId)
-        {
-            var mySettings = new MetroDialogSettings()
-            {
-                NegativeButtonText = "Cancel Scanning",
-                AnimateShow = true,
-                AnimateHide = true
-
-            };
-
-            var controller = await this.ShowProgressAsync("Scanning Disk Directories", "Determining Paths and Counting Files...", settings: mySettings);
-            controller.SetCancelable(false);
-            controller.SetIndeterminate();
-
-            await Task.Delay(100);
-
-            btnFavorites.IsChecked = true;
-            btnShowAll.IsChecked = true;
-
-            await controller.CloseAsync();
-        }
+        }        
 
         private void RescanDisks(object sender, RoutedEventArgs e)
         {
-            RescanSystemDisks(0);
+            RescanSystemRoms(0, MediaType.DISC);
         }
 
         private async void ScrapeGetAllPlatformGames_Click(object sender, RoutedEventArgs e)
@@ -603,8 +583,12 @@ namespace MedLaunch
             }
         }
 
-
-        private async void RescanSystemRoms(int sysId)
+        /// <summary>
+        /// Scan ROMs and Disks
+        /// </summary>
+        /// <param name="sysId"></param>
+        /// <param name="mediaType"></param>
+        private async void RescanSystemRoms(int sysId, MediaType mediaType)
         {
 
             var mySettings = new MetroDialogSettings()
@@ -614,7 +598,15 @@ namespace MedLaunch
                 AnimateHide = true
             };
 
-            var controller = await this.ShowProgressAsync("Scanning ROM Directories", "Determining Paths and Counting Files...", settings: mySettings);
+            string initial = "";
+            switch (mediaType)
+            {
+                case MediaType.ROM: initial = "Scanning ROM Directories"; break;
+                case MediaType.DISC: initial = "Scanning Disc Directories"; break;
+                default: initial = "Scanning Game Directories"; break;
+            }
+
+            var controller = await this.ShowProgressAsync(initial, "Determining Paths and Counting Files...", settings: mySettings);
             controller.SetCancelable(true);
             //controller.SetIndeterminate();
 
@@ -627,14 +619,9 @@ namespace MedLaunch
             int hiddenStats = 0;
 
             GameScanner rs = new GameScanner();
-
-
             await Task.Delay(100);
-
-
-
-            List<GSystem> scanRoms = new List<GSystem>();
-            if (sysId == 0)
+            List<GSystem> scanList = new List<GSystem>();
+            if (sysId == 0 || mediaType == MediaType.ALL)
             {
                 /* scan of all roms has been selected */
 
@@ -644,7 +631,6 @@ namespace MedLaunch
                     string path = rs.GetPath(hs.systemId);
                     if (path == "" || path == null || !Directory.Exists(path))
                     {
-
                         // No path returned or path is not valid - Mark existing games in Db as hidden
                         rs.MarkAllRomsAsHidden(hs.systemId);
                         hiddenStats += rs.HiddenStats;
@@ -652,7 +638,10 @@ namespace MedLaunch
                     }
                 }
 
-                scanRoms = rs.RomSystemsWithPaths;
+                if (mediaType == MediaType.ROM)
+                    scanList = rs.RomSystemsWithPaths;
+                if (mediaType == MediaType.DISC)
+                    scanList = rs.DiskSystemsWithPaths;
             }
             else
             {
@@ -668,14 +657,17 @@ namespace MedLaunch
                     rs.HiddenStats = 0;
                 }
 
-
-                scanRoms = (from s in rs.RomSystemsWithPaths
-                            where s.systemId == sysId
-                            select s).ToList();
+                if (mediaType == MediaType.ROM)
+                    scanList = (from s in rs.RomSystemsWithPaths
+                                where s.systemId == sysId
+                                select s).ToList();
+                if (mediaType == MediaType.DISC)
+                    scanList = (from s in rs.DiskSystemsWithPaths
+                                where s.systemId == sysId
+                                select s).ToList();
             }
-
-            // check whether scanroms is null
-            if (scanRoms.Count > 0)
+                        
+            if (scanList.Count > 0)
             {
                 // start the operations on a different thread
                 await Task.Run(() =>
@@ -683,13 +675,13 @@ namespace MedLaunch
                     // data has been returned
 
                     // how many systems returned
-                    int sysCount = scanRoms.Count;
+                    int sysCount = scanList.Count;
                     controller.Minimum = 0;
                     controller.Maximum = sysCount;
                     int progress = 0;
 
                     // iterate through each system that has a system ROM path set
-                    foreach (var s in scanRoms)
+                    foreach (var s in scanList)
                     {
                         if (controller.IsCanceled)
                         {
@@ -706,8 +698,16 @@ namespace MedLaunch
                         progress++;
                         controller.SetProgress(progress);
 
-                        // Start ROM scan for this system
-                        rs.BeginRomImport(s.systemId, controller);
+                        if (mediaType == MediaType.ROM)
+                        {
+                            // Start ROM scan for this system
+                            rs.BeginRomImport(s.systemId, controller);
+                        }
+                        if (mediaType == MediaType.DISC)
+                        {
+                            // Start ROM scan for this system
+                            rs.BeginDiscImport(s.systemId, controller);
+                        }
 
                         //output += ".....Completed\n\n";
 
@@ -918,7 +918,7 @@ namespace MedLaunch
 
         private void RescanRoms(object sender, RoutedEventArgs e)
         {
-            RescanSystemRoms(0);
+            RescanSystemRoms(0, MediaType.ROM);
         }
 
 
@@ -1126,7 +1126,7 @@ namespace MedLaunch
                 sysId = Convert.ToInt32(menuName.Replace("MenuScanRoms", ""));
             }
 
-            RescanSystemRoms(sysId);
+            RescanSystemRoms(sysId, MediaType.ROM);
         }
 
         private void RemoveRoms_Click(object sender, RoutedEventArgs e)
@@ -1143,6 +1143,12 @@ namespace MedLaunch
             // get systemId from menu name
             string menuName = (sender as MenuItem).Name;
             int sysId = Convert.ToInt32(menuName.Replace("ScanDisks", ""));
+            GameScanner gs = new GameScanner();
+
+            RescanSystemRoms(sysId, MediaType.DISC);
+
+            // refresh library view
+            GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 
         private void RemoveDisks_Click(object sender, RoutedEventArgs e)
@@ -2045,17 +2051,30 @@ namespace MedLaunch
             }
         }
 
+        private void btnPathPceCd_Click(object sender, RoutedEventArgs e)
+        {
+            VistaFolderBrowserDialog path = new VistaFolderBrowserDialog();
+            path.ShowNewFolderButton = true;
+            path.Description = "Select PC Engine (CD) Directory";
+            path.ShowDialog();
+            if (path.SelectedPath != "")
+            {
+                string strPath = path.SelectedPath;
+                tbPathPceCd.Text = strPath;
+            }
+        }
+
         // Path page save & restore
 
         private void btnPathsSaveChanges_Click(object sender, RoutedEventArgs e)
         {
-            Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan); // tbPathPsx, tbPathSs);
+            Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs, tbPathPceCd);
             //lblPathsSettingsSave.Content = "***Path Settings Saved***";
         }
 
         private void btnPathsCancelChanges_Click(object sender, RoutedEventArgs e)
         {
-            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan); // tbPathPsx, tbPathSs);
+            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs, tbPathPceCd);
             //lblPathsSettingsSave.Content = "***Path Settings Reverted***";
         }
 
@@ -2826,7 +2845,7 @@ namespace MedLaunch
 
             this.Dispatcher.Invoke(() =>
             {
-                Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan);
+                Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs, tbPathPceCd);
                 ConfigNetplaySettings.SaveNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
                 ConfigServerSettings.SaveCustomServerSettings(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
                 //ConfigBaseSettings.SaveMednafenPathValues(spMedPathSettings);
@@ -2852,7 +2871,7 @@ namespace MedLaunch
             //SettingsHandler sh = new SettingsHandler();
             //sh.LoadAllSettings();
 
-            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan);
+            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs, tbPathPceCd);
             ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
             //ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
             ConfigBaseSettings.LoadMednafenPathValues(spMedPathSettings);
@@ -4871,6 +4890,8 @@ namespace MedLaunch
             string serial4 = DiscUtils.GetPSXSerial(@"G:\_Emulation\PSX\iso\Final Fantasy 1 (Origins)(E) [SLES-04034]\Final Fantasy Origins - Final Fantasy (E) [SLES-04034].bin");
             string serial5 = DiscUtils.GetPSXSerial(@"G:\_Emulation\PSX\iso\Alien Trilogy (E) [SLES-00101]\Alien Trilogy (E) [SLES-00101].iso");
         }
+
+        
     }
     /*
     public class SliderIgnoreDelta : Slider
@@ -4881,6 +4902,13 @@ namespace MedLaunch
         }
     }
     */
+
+    public enum MediaType
+    {
+        ROM,
+        DISC,
+        ALL
+    }
 
     
 

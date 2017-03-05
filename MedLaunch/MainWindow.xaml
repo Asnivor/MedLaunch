@@ -10231,6 +10231,9 @@
                                                 <TextBox x:Name="tbPathWswan" Grid.Column="1" Grid.Row="14" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
                                                 <Button x:Name="btnPathWswan" Grid.Column="0" Grid.Row="14" Click="btnPathWswan_Click">WonderSwan</Button>
 
+                                                <TextBox x:Name="tbPathPceCd" Grid.Column="1" Grid.Row="15" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
+                                                <Button x:Name="btnPathPceCd" Grid.Column="0" Grid.Row="15" Click="btnPathPceCd_Click">PC Engine (CD)</Button>
+
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="17">
                                                     <!-- 
                                                     <Button x:Name="btnPathsSaveChanges" Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnPathsSaveChanges_Click" ></Button>

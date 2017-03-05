@@ -282,11 +282,14 @@ namespace MedLaunch.Classes
                     TextBox tbPathNgp = (TextBox)mw.FindName("tbPathNgp");
                     TextBox tbPathPce = (TextBox)mw.FindName("tbPathPce");
                     TextBox tbPathPcfx = (TextBox)mw.FindName("tbPathPcfx");
+                    TextBox tbPathPsx = (TextBox)mw.FindName("tbPathPsx");
+                    TextBox tbPathSs = (TextBox)mw.FindName("tbPathSs");
                     TextBox tbPathSms = (TextBox)mw.FindName("tbPathSms");
                     TextBox tbPathVb = (TextBox)mw.FindName("tbPathVb");
                     TextBox tbPathWswan = (TextBox)mw.FindName("tbPathWswan");
+                    TextBox tbPathPceCd = (TextBox)mw.FindName("tbPathPceCd");
 
-                    Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan);
+                    Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs,tbPathPceCd);
                     break;
 
                 case SettingGroup.GlobalSettings:

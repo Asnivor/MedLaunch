@@ -24,7 +24,8 @@ namespace MedLaunch.Models
         public string systemMd { get; set; }                        // Sega Genesis/MegaDrive
         public string systemGg { get; set; }                        // Sega Game Gear
         public string systemNgp { get; set; }                       // NeoGeo Pocket Color
-        public string systemPce { get; set; }                       // PC Engine (CD)/TurboGrafx 16 (CD)/SuperGrafx
+        public string systemPce { get; set; }                       // PC Engine /TurboGrafx 16 /SuperGrafx
+        public string systemPceCd { get; set; }                     // PC Engine (CD)/TurboGrafx 16 (CD)
         public string systemPcfx { get; set; }                      // PC-FX
         public string systemPsx { get; set; }                       // Sony PlayStation 
         public string systemSms { get; set; }                       // Sega Master System
@@ -90,7 +91,7 @@ namespace MedLaunch.Models
         // Populate path forms with DB data
         public static void LoadPathSettings(TextBox tbPathMednafen, TextBox tbPathGb, TextBox tbPathGba, TextBox tbPathGg, TextBox tbPathLynx, TextBox tbPathMd,
             TextBox tbPathNes, TextBox tbPathSnes, TextBox tbPathNgp, TextBox tbPathPce, TextBox tbPathPcfx, TextBox tbPathSms,
-            TextBox tbPathVb, TextBox tbPathWswan) // TextBox tbPathPsx, TextBox tbPathSs)
+            TextBox tbPathVb, TextBox tbPathWswan, TextBox tbPathPsx, TextBox tbPathSs, TextBox tbPathPceCd)
         {
             Paths paths = GetPaths();
 
@@ -105,17 +106,18 @@ namespace MedLaunch.Models
             tbPathNgp.Text = paths.systemNgp;
             tbPathPce.Text = paths.systemPce;
             tbPathPcfx.Text = paths.systemPcfx;
-            //tbPathPsx.Text = paths.systemPsx;
+            tbPathPsx.Text = paths.systemPsx;
             tbPathSnes.Text = paths.systemSnes;
-            //tbPathSs.Text = paths.systemSs;
+            tbPathSs.Text = paths.systemSs;
             tbPathVb.Text = paths.systemVb;
             tbPathWswan.Text = paths.systemWswan;
+            tbPathPceCd.Text = paths.systemPceCd;
         }
 
         // save path settings from form
         public static void SavePathSettings(TextBox tbPathMednafen, TextBox tbPathGb, TextBox tbPathGba, TextBox tbPathGg, TextBox tbPathLynx, TextBox tbPathMd,
             TextBox tbPathNes, TextBox tbPathSnes, TextBox tbPathNgp, TextBox tbPathPce, TextBox tbPathPcfx, TextBox tbPathSms,
-            TextBox tbPathVb, TextBox tbPathWswan) // TextBox tbPathPsx, TextBox tbPathSs)
+            TextBox tbPathVb, TextBox tbPathWswan, TextBox tbPathPsx, TextBox tbPathSs, TextBox tbPathPceCd)
         {
             Paths paths = GetPaths();
             paths.mednafenExe = tbPathMednafen.Text;
@@ -129,11 +131,12 @@ namespace MedLaunch.Models
             paths.systemNgp = tbPathNgp.Text;
             paths.systemPce = tbPathPce.Text;
             paths.systemPcfx = tbPathPcfx.Text;
-            //paths.systemPsx = tbPathPsx.Text;
+            paths.systemPsx = tbPathPsx.Text;
             paths.systemSnes = tbPathSnes.Text;
-            //paths.systemSs = tbPathSs.Text;
+            paths.systemSs = tbPathSs.Text;
             paths.systemVb = tbPathVb.Text;
             paths.systemWswan = tbPathWswan.Text;
+            paths.systemPceCd = tbPathPceCd.Text;
 
             SetPaths(paths);
         }
