@@ -1565,11 +1565,12 @@ namespace MedLaunch.Models
                 // snes
                 snes__apu__resamp_quality = 5,                      // placed
                 snes__correct_aspect = false,                       // placed     
-                /*           
+                      
                 snes__input__port1__multitap = false,               // placed
                 snes__input__port2__multitap = false,               // placed
                 snes__input__port1 = "gamepad",                     // placed
                 snes__input__port2 = "gamepad",                     // placed
+                /*     
                 snes__input__port3 = "gamepad",                     // placed
                 snes__input__port4 = "gamepad",                     // placed
                 snes__input__port5 = "gamepad",                     // placed

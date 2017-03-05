@@ -603,6 +603,7 @@ namespace MedLaunch.Classes
                                        where g.systemId == systemId
                                        select g).ToList();
 
+            // disc games at the moment MUST reside in 1st level subfolders within the system folder
 
             // get all files from romfolderpath and sub directories that have an allowed extension
             IEnumerable<string> romFiles = GetFiles(romFolderPath, true);

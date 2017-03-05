@@ -44,11 +44,15 @@ namespace MedLaunch.Classes.Controls
             public XINPUT_GAMEPAD Gamepad;
         }
 
+        public static ControllerInfo[] ContInfoFromLog;
+
         public static void Initialize(MainWindow window)
         {
             IntPtr handle = new WindowInteropHelper(window).Handle;
             IsAvailable = true;// false;
-            
+
+            ContInfoFromLog = LogParser.GetXInputControllerIds();
+
             try
             {
                 /*
@@ -94,12 +98,24 @@ namespace MedLaunch.Classes.Controls
             var c3 = new Controller(UserIndex.Three);
             var c4 = new Controller(UserIndex.Four);
 
-            
 
-            if (c1.IsConnected) Devices.Add(new GamePad360(0, c1));
-            if (c2.IsConnected) Devices.Add(new GamePad360(1, c2));
-            if (c3.IsConnected) Devices.Add(new GamePad360(2, c3));
-            if (c4.IsConnected) Devices.Add(new GamePad360(3, c4));
+
+            if (c1.IsConnected)
+            {
+                Devices.Add(new GamePad360(0, c1, ContInfoFromLog[0]));
+            }
+            if (c2.IsConnected)
+            {
+                Devices.Add(new GamePad360(1, c2, ContInfoFromLog[1]));
+            }
+            if (c3.IsConnected)
+            {
+                Devices.Add(new GamePad360(2, c3, ContInfoFromLog[2]));
+            }
+            if (c4.IsConnected)
+            {
+                Devices.Add(new GamePad360(3, c4, ContInfoFromLog[3]));
+            }
         }
 
         public static void UpdateAll()
@@ -116,10 +132,12 @@ namespace MedLaunch.Classes.Controls
         XINPUT_STATE state;
 
         public int PlayerNumber { get { return (int)index0 + 1; } }
+        public string ID { get; set; }
 
-        GamePad360(uint index0, Controller c)
+        GamePad360(uint index0, Controller c, ControllerInfo id)
         {
             this.index0 = index0;
+            this.ID = id.ID;
             controller = c;
             InitializeButtons();
             Update();
@@ -171,36 +189,36 @@ namespace MedLaunch.Classes.Controls
             const int dzn = -9000;
             const int dzt = 40;
 
-            AddItem("A", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.A) != 0);
-            AddItem("B", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.B) != 0);
-            AddItem("X", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.X) != 0);
-            AddItem("Y", () => (state.Gamepad.wButtons & unchecked((ushort)GamepadButtonFlags.Y)) != 0);
-            AddItem("Guide", () => (state.Gamepad.wButtons & 1024) != 0);
+            AddItem("joystick " + ID + " " + "0000000c", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.A) != 0);                   // A
+            AddItem("joystick " + ID + " " + "0000000d", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.B) != 0);                   // B
+            AddItem("joystick " + ID + " " + "0000000e", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.X) != 0);                   // X
+            AddItem("joystick " + ID + " " + "0000000f", () => (state.Gamepad.wButtons & unchecked((ushort)GamepadButtonFlags.Y)) != 0);        // Y
+            AddItem("joystick " + ID + " " + "Guide", () => (state.Gamepad.wButtons & 1024) != 0);
 
-            AddItem("Start", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.Start) != 0);
-            AddItem("Back", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.Back) != 0);
-            AddItem("LeftThumb", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.LeftThumb) != 0);
-            AddItem("RightThumb", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.RightThumb) != 0);
-            AddItem("LeftShoulder", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.LeftShoulder) != 0);
-            AddItem("RightShoulder", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.RightShoulder) != 0);
+            AddItem("joystick " + ID + " " + "00000004", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.Start) != 0);                       // Start
+            AddItem("joystick " + ID + " " + "00000005", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.Back) != 0);                         // Back
+            AddItem("joystick " + ID + " " + "00000006", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.LeftThumb) != 0);
+            AddItem("joystick " + ID + " " + "00000007", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.RightThumb) != 0);
+            AddItem("joystick " + ID + " " + "00000008", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.LeftShoulder) != 0);         // LeftShoulder
+            AddItem("joystick " + ID + " " + "00000009", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.RightShoulder) != 0);       // RightShoulder
 
-            AddItem("DpadUp", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.DPadUp) != 0);
-            AddItem("DpadDown", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.DPadDown) != 0);
-            AddItem("DpadLeft", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.DPadLeft) != 0);
-            AddItem("DpadRight", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.DPadRight) != 0);
+            AddItem("joystick " + ID + " " + "00000000", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.DPadUp) != 0);                     // DpadUp
+            AddItem("joystick " + ID + " " + "00000001", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.DPadDown) != 0);                 // DpadDown
+            AddItem("joystick " + ID + " " + "00000002", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.DPadLeft) != 0);                 // DpadLeft
+            AddItem("joystick " + ID + " " + "00000003", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.DPadRight) != 0);               // DpadRight
 
-            AddItem("LStickUp", () => state.Gamepad.sThumbLY >= dzp);
-            AddItem("LStickDown", () => state.Gamepad.sThumbLY <= dzn);
-            AddItem("LStickLeft", () => state.Gamepad.sThumbLX <= dzn);
-            AddItem("LStickRight", () => state.Gamepad.sThumbLX >= dzp);
+            AddItem("joystick " + ID + " " + "00008001", () => state.Gamepad.sThumbLY >= dzp);       // LStickUp
+            AddItem("joystick " + ID + " " + "0000c001", () => state.Gamepad.sThumbLY <= dzn);       // LStickDown
+            AddItem("joystick " + ID + " " + "0000c000", () => state.Gamepad.sThumbLX <= dzn);       // LStickLeft
+            AddItem("joystick " + ID + " " + "00008000", () => state.Gamepad.sThumbLX >= dzp);       // LStickRight
 
-            AddItem("RStickUp", () => state.Gamepad.sThumbRY >= dzp);
-            AddItem("RStickDown", () => state.Gamepad.sThumbRY <= dzn);
-            AddItem("RStickLeft", () => state.Gamepad.sThumbRX <= dzn);
-            AddItem("RStickRight", () => state.Gamepad.sThumbRX >= dzp);
+            AddItem("joystick " + ID + " " + "00008003", () => state.Gamepad.sThumbRY >= dzp);       // RStickUp
+            AddItem("joystick " + ID + " " + "0000c003", () => state.Gamepad.sThumbRY <= dzn);       // RStickDown
+            AddItem("joystick " + ID + " " + "0000c002", () => state.Gamepad.sThumbRX <= dzn);       // RStickLeft
+            AddItem("joystick " + ID + " " + "00008002", () => state.Gamepad.sThumbRX >= dzp);       // RStickRight
 
-            AddItem("LeftTrigger", () => state.Gamepad.bLeftTrigger > dzt);
-            AddItem("RightTrigger", () => state.Gamepad.bRightTrigger > dzt);
+            AddItem("joystick " + ID + " " + "00008004", () => state.Gamepad.bLeftTrigger > dzt);    // LeftTrigger
+            AddItem("joystick " + ID + " " + "00008005", () => state.Gamepad.bRightTrigger > dzt);   // RightTrigger
         }
 
         void AddItem(string name, Func<bool> pressed)

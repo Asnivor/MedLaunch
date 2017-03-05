@@ -34,7 +34,32 @@ namespace MedLaunch.Classes
         }
 
         // methods
+        public static ControllerInfo[] GetXInputControllerIds()
+        {
+            EmptyLoad();
+            var lines = ReadLog().Where(a => a.TrimStart().StartsWith("Joystick "));
+            List<string> onlyDi = new List<string>();
 
+            List<ControllerInfo> list = new List<ControllerInfo>();
+
+            foreach (string l in lines)
+            {
+                if (!l.Contains("XInput Unknown Controller"))
+                    continue;
+
+                string trimmed = l.Trim();
+
+                // get unique ID
+                ControllerInfo ci = new ControllerInfo();
+                string[] arr = trimmed.Split(new string[] { " - " }, StringSplitOptions.None);
+                ci.Name = arr[1];
+                ci.ID = arr[2].Replace("Unique ID: ", "");
+
+                list.Add(ci);
+            }
+
+            return list.ToArray();
+        }
 
         public static ControllerInfo[] GetDirectInputControllerIds()
         {

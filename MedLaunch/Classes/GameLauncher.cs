@@ -270,34 +270,34 @@ namespace MedLaunch.Classes
                         pnt = GlobalSettings.GetWindowPosBySystem(systemId);
                         // set windows position
                         HwndInterface.SetHwndPos(hwnd, pnt.X, pnt.Y);
+                    }
 
-                        bool isClosed = false;
-                        while (isClosed == false)
+                    bool isClosed = false;
+                    while (isClosed == false)
+                    {
+                        try
                         {
-                            try
-                            {
-                                // get process id
-                                Process p = Process.GetProcessById(procId);
+                            // get process id
+                            Process p = Process.GetProcessById(procId);
 
-                                if (rememberWinPos == true)
-                                {
-                                    // get window top left x y coords
-                                    pnt = HwndInterface.GetHwndPos(hwnd);
-                                }
-                            }
-                            catch
+                            if (rememberWinPos == true)
                             {
-                                isClosed = true;
+                                // get window top left x y coords
+                                pnt = HwndInterface.GetHwndPos(hwnd);
                             }
-
-                            Thread.Sleep(1000);
+                        }
+                        catch
+                        {
+                            isClosed = true;
                         }
 
-                        if (rememberWinPos == true)
-                        {
-                            // save coords to database
-                            GlobalSettings.SaveWindowPosBySystem(systemId, pnt);
-                        }
+                        Thread.Sleep(1000);
+                    }
+
+                    if (rememberWinPos == true)
+                    {
+                        // save coords to database
+                        GlobalSettings.SaveWindowPosBySystem(systemId, pnt);
                     }
                 }
                 catch
