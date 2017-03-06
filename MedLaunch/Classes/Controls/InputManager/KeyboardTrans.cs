@@ -251,8 +251,9 @@ namespace MedLaunch.Classes.Controls
             dxKeys.Add(new DxKeys { SDLK = 302, DxUK = "ScrollLock" });
             dxKeys.Add(new DxKeys { SDLK = 303, DxUK = "RightShift" });
             dxKeys.Add(new DxKeys { SDLK = 304, DxUK = "LeftShift" });
-            dxKeys.Add(new DxKeys { SDLK = 305, DxUK = "RightControl" });
-            dxKeys.Add(new DxKeys { SDLK = 306, DxUK = "RightAlt" });       //alt-gr
+            dxKeys.Add(new DxKeys { SDLK = 305, DxUK = "RightAlt" });     //alt-gr
+            dxKeys.Add(new DxKeys { SDLK = 306, DxUK = "RightControl" });
+            dxKeys.Add(new DxKeys { SDLK = 306, DxUK = "LeftControl" });    // mednafen appears to map left and right control to the same value (at least on my keyboard)
             dxKeys.Add(new DxKeys { SDLK = 307, DxUK = "SDLK_RALT" });
             dxKeys.Add(new DxKeys { SDLK = 308, DxUK = "LeftAlt" });
             dxKeys.Add(new DxKeys { SDLK = 309, DxUK = "SDLK_RMETA" });

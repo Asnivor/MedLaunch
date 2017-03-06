@@ -266,7 +266,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AccentStyleWindow.xaml.cs">
+    <Compile Include="Windows\AccentStyleWindow.xaml.cs">
       <DependentUpon>AccentStyleWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\BackupConfig.cs" />
@@ -361,7 +361,7 @@
     <Compile Include="Classes\Scraper\TheGamesDB\GDBScraper.cs" />
     <Compile Include="Classes\UserAgent.cs" />
     <Compile Include="Classes\WebOps.cs" />
-    <Compile Include="ConfigureController.xaml.cs">
+    <Compile Include="Windows\ConfigureController.xaml.cs">
       <DependentUpon>ConfigureController.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CustomTextBox.cs" />
@@ -370,19 +370,19 @@
     <Compile Include="Extensions\ListResizeExtension.cs" />
     <Compile Include="Extensions\UIElementExtension.cs" />
     <Compile Include="Extensions\ZipArchiveExtensions.cs" />
-    <Compile Include="InitWindow.xaml.cs">
+    <Compile Include="Windows\InitWindow.xaml.cs">
       <DependentUpon>InitWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LaunchStringWindow.xaml.cs">
+    <Compile Include="Windows\LaunchStringWindow.xaml.cs">
       <DependentUpon>LaunchStringWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LibraryColumnChooser.xaml.cs">
+    <Compile Include="Windows\LibraryColumnChooser.xaml.cs">
       <DependentUpon>LibraryColumnChooser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ListBoxChildWindow.xaml.cs">
+    <Compile Include="Windows\ListBoxChildWindow.xaml.cs">
       <DependentUpon>ListBoxChildWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MednafenCoreVisibility.xaml.cs">
+    <Compile Include="Windows\MednafenCoreVisibility.xaml.cs">
       <DependentUpon>MednafenCoreVisibility.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DiskGameFile.cs" />
@@ -412,7 +412,7 @@
     <Compile Include="Models\ScraperMaster.cs" />
     <Compile Include="Models\SearchOrdering.cs" />
     <Compile Include="Models\Versions.cs" />
-    <Compile Include="ScrapedDataAudit.xaml.cs">
+    <Compile Include="Windows\ScrapedDataAudit.xaml.cs">
       <DependentUpon>ScrapedDataAudit.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Control\PsxCtrl.xaml.cs">
@@ -467,27 +467,27 @@
       <DependentUpon>NesCtrl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ThemeManagerHelper.cs" />
-    <Page Include="AccentStyleWindow.xaml">
+    <Page Include="Windows\AccentStyleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ConfigureController.xaml">
+    <Page Include="Windows\ConfigureController.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InitWindow.xaml">
+    <Page Include="Windows\InitWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LaunchStringWindow.xaml">
+    <Page Include="Windows\LaunchStringWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LibraryColumnChooser.xaml">
+    <Page Include="Windows\LibraryColumnChooser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListBoxChildWindow.xaml">
+    <Page Include="Windows\ListBoxChildWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -507,7 +507,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MednafenCoreVisibility.xaml">
+    <Page Include="Windows\MednafenCoreVisibility.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -519,7 +519,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ScrapedDataAudit.xaml">
+    <Page Include="Windows\ScrapedDataAudit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

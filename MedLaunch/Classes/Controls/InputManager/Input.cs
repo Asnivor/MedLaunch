@@ -106,15 +106,20 @@ namespace MedLaunch.Classes.Controls.InputManager
             public bool Control { get { return ((Modifiers & ModifierKey.Control) != 0); } }
             public bool Shift { get { return ((Modifiers & ModifierKey.Shift) != 0); } }
 
+            
             public override string ToString()
-            {
+            {                
                 string ret = "";
+                /*
                 if (Control) ret += "Ctrl+";
                 if (Alt) ret += "Alt+";
                 if (Shift) ret += "Shift+";
+                */
                 ret += Button;
                 return ret;
             }
+            
+
             public override bool Equals(object obj)
             {
                 var other = (LogicalButton)obj;
