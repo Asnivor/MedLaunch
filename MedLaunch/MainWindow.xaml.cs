@@ -55,6 +55,7 @@ using MedLaunch.Classes.IO;
 using MahApps.Metro.SimpleChildWindow;
 using MedLaunch.Classes.Controls.VirtualDevices;
 using MedLaunch.Classes.Controls.InputManager;
+using MedLaunch.Classes.Scanning;
 
 namespace MedLaunch
 {
@@ -522,10 +523,13 @@ namespace MedLaunch
             int untouchedStats = 0;
             int hiddenStats = 0;
 
-            GameScanner rs = new GameScanner();
+            //GameScanner rs = new GameScanner();
+            RomScan rs = new RomScan();
+            DiscScan ds = new DiscScan();
+            
             await Task.Delay(100);
             List<GSystem> scanList = new List<GSystem>();
-            if (sysId == 0 || mediaType == MediaType.ALL)
+            if (sysId == 0)
             {
                 /* scan of all roms has been selected */
 
@@ -610,7 +614,7 @@ namespace MedLaunch
                         if (mediaType == MediaType.DISC)
                         {
                             // Start ROM scan for this system
-                            rs.BeginDiscImport(s.systemId, controller);
+                            ds.BeginDiscImport(s.systemId, controller);
                         }
 
                         //output += ".....Completed\n\n";
@@ -1038,7 +1042,7 @@ namespace MedLaunch
             // get systemId from menu name
             string menuName = (sender as MenuItem).Name;
             int sysId = Convert.ToInt32(menuName.Replace("RemoveRoms", ""));
-            GameScanner.RemoveRoms(sysId);
+            Game.RemoveRoms(sysId);
             GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 
@@ -1060,7 +1064,7 @@ namespace MedLaunch
             // get systemId from menu name
             string menuName = (sender as MenuItem).Name;
             int sysId = Convert.ToInt32(menuName.Replace("RemoveDisks", ""));
-            GameScanner.RemoveDisks(sysId);
+            Game.RemoveDisks(sysId);
             GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 
@@ -1068,7 +1072,7 @@ namespace MedLaunch
         {
             string menuName = (sender as MenuItem).Name;
             int sysId = Convert.ToInt32(menuName.Replace("ManualAddGame", ""));
-            GameScanner gs = new GameScanner();
+            DiscScan gs = new DiscScan();
             gs.BeginManualImport(sysId);
             // refresh library view
             GamesLibraryVisualHandler.RefreshGamesLibrary();
@@ -1076,7 +1080,7 @@ namespace MedLaunch
 
         private void RemoveAllGames_Click(object sender, RoutedEventArgs e)
         {
-            GameScanner.RemoveAllGames();
+            Game.RemoveAllGames();
         }
 
         private void ScrapeFavorites_Click(object sender, RoutedEventArgs e)
@@ -2023,7 +2027,7 @@ namespace MedLaunch
                 if ((String)mi.Header == "Favorites")
                 {
                     // check the favorite status
-                    if (GameScanner.GetFavoriteStatus(romId) == 1)
+                    if (Game.GetFavoriteStatus(romId) == 1)
                         mi.Header = "Add/Remove From Favorites";
                     else
                         mi.Header = "Add/Remove From Favorites";
@@ -2046,7 +2050,7 @@ namespace MedLaunch
         {
             DataGridGamesView drv = (DataGridGamesView)dgGameList.SelectedItem;
             int romId = drv.ID;
-            GameScanner.FavoriteToggle(romId);
+            Game.FavoriteToggle(romId);
             // refresh library view
             GameListBuilder.UpdateFlag();
             GamesLibraryVisualHandler.RefreshGamesLibrary();
@@ -2062,7 +2066,7 @@ namespace MedLaunch
             {
                 DataGridGamesView drv = (DataGridGamesView)dgGameList.SelectedItem;
                 int romId = drv.ID;
-                GameScanner.FavoriteToggle(romId);
+                Game.FavoriteToggle(romId);
             }
             else
             {
@@ -2075,7 +2079,7 @@ namespace MedLaunch
 
                 foreach (var game in games)
                 {
-                    GameScanner.FavoriteToggle(game.ID);
+                    Game.FavoriteToggle(game.ID);
                 }
             }
 

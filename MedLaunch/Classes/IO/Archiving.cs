@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MedLaunch.Classes;
 using System.Security.Cryptography;
+using MedLaunch.Models;
 
 namespace MedLaunch.Classes.IO
 {
@@ -46,7 +47,7 @@ namespace MedLaunch.Classes.IO
                 {
                     foreach (ZipArchiveEntry entry in zip.Entries)
                     {
-                        if (GameScanner.IsFileAllowed(entry.FullName, SystemId) == true)
+                        if (GSystem.IsFileAllowed(entry.FullName, SystemId) == true)
                         {
                             IsAllowed = true;
 
@@ -77,7 +78,7 @@ namespace MedLaunch.Classes.IO
                     if (entry.IsDirectory)
                         continue;
 
-                    if (GameScanner.IsFileAllowed(entry.Key, SystemId) == true && !entry.IsDirectory)
+                    if (GSystem.IsFileAllowed(entry.Key, SystemId) == true && !entry.IsDirectory)
                     {
                         IsAllowed = true;
 

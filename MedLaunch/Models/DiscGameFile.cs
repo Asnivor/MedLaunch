@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace MedLaunch.Models
 {
-    public class DiskGameFile
+    public class DiscGameFile
     {
         // contructors
-        public DiskGameFile() { }
+        public DiscGameFile() { }
 
-        public DiskGameFile(string fullFilePath, int systemId)
+        public DiscGameFile(string fullFilePath, int systemId)
         {
             // Set FullPath
             FullPath = fullFilePath;
@@ -32,7 +32,7 @@ namespace MedLaunch.Models
             SystemId = systemId;
         }
 
-        public DiskGameFile(string fullFilePath, int systemId, bool isSingleDisk)
+        public DiscGameFile(string fullFilePath, int systemId, bool isSingleDisk)
         {
             // Set FullPath
             FullPath = fullFilePath;
@@ -63,5 +63,8 @@ namespace MedLaunch.Models
         public string GameName { get; set; }
         public int GameId { get; set; }
         public int SystemId { get; set; }
+        // unset props
+        public string ExtraInfo { get; set; }       // PSX serial number etc
+
     }
 }

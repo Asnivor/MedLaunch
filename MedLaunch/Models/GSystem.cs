@@ -250,6 +250,37 @@ namespace MedLaunch.Models
             return gSystems;
         }
 
+        public static bool IsFileAllowed(string fileName, int systemId)
+        {
+            HashSet<string> exts = GetAllowedFileExtensions(systemId);
+            bool isAllowed = false;
+            foreach (string ext in exts)
+            {
+                //MessageBoxResult result3 = MessageBox.Show("Allowed extensions for systemid " + systemId + " extention: " + ext);
+                if (fileName.EndsWith(ext))
+                    isAllowed = true;
+            }
+            return isAllowed;
+        }
+
+        public static HashSet<string> GetAllowedFileExtensions(int systemId)
+        {
+            var exts = (from g in GSystem.GetSystems()
+                        where g.systemId == systemId
+                        select g).SingleOrDefault();
+            string archive = exts.supportedArchiveExtensions;
+            string nonArchive = exts.supportedFileExtensions;
+
+            HashSet<string> supported = new HashSet<string>();
+            char c = ',';
+            string[] aSplit = archive.Split(c);
+            string[] nSplit = nonArchive.Split(c);
+            foreach (string s in aSplit) { supported.Add(s); }
+            foreach (string s in nSplit) { supported.Add(s); }
+
+            return supported;
+        }
+
         // Properties
         public int systemId { get; set; }
         public string systemCode { get; set; }

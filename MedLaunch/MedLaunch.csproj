@@ -266,6 +266,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Scanning\DiscScan.cs" />
+    <Compile Include="Classes\Scanning\RomScan.cs" />
     <Compile Include="Models\VersionCompatibility.cs" />
     <Compile Include="Windows\AccentStyleWindow.xaml.cs">
       <DependentUpon>AccentStyleWindow.xaml</DependentUpon>
@@ -386,10 +388,10 @@
     <Compile Include="Windows\MednafenCoreVisibility.xaml.cs">
       <DependentUpon>MednafenCoreVisibility.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\DiskGameFile.cs" />
+    <Compile Include="Models\DiscGameFile.cs" />
     <Compile Include="Classes\GameLauncher.cs" />
     <Compile Include="Classes\Rom.cs" />
-    <Compile Include="Classes\GameScanner.cs" />
+    <Compile Include="Classes\Scanning\GameScanner.cs" />
     <Compile Include="Classes\ServersDataObject.cs" />
     <Compile Include="Classes\UIHandler.cs" />
     <Compile Include="Models\ConfigBaseSettings.cs" />

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MedLaunch.Models
 {
@@ -69,6 +70,192 @@ namespace MedLaunch.Models
                 return cData.ToList();
             }
         }
+
+        // remove ALL GAMES from db for all systems
+        public static void RemoveAllGames()
+        {
+            MessageBoxResult result = MessageBox.Show("This operation will wipe out ALL the games in your games library database (but they will not be deleted from disk)\n\nAre you sure you wish to continue?", "WARNING", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.OK)
+            {
+                // get all roms for specific system
+                using (var context = new MyDbContext())
+                {
+                    List<Game> roms = (from a in context.Game
+                                       select a).ToList();
+                    Game.DeleteGames(roms);
+                    GameListBuilder.UpdateFlag();
+                }
+            }
+        }
+
+        // remove all roms from db for a certain system
+        public static void RemoveRoms(int sysId)
+        {
+            MessageBoxResult result = MessageBox.Show("This operation will wipe out ALL the " + GSystem.GetSystemName(sysId) + " games in your library database (but they will not be deleted from disk)\n\nAre you sure you wish to continue?", "WARNING", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.OK)
+            {
+                // get all roms for specific system
+                using (var context = new MyDbContext())
+                {
+                    List<Game> roms = (from a in context.Game
+                                       where a.systemId == sysId
+                                       select a).ToList();
+                    Game.DeleteGames(roms);
+                    GameListBuilder.UpdateFlag();
+                }
+            }
+        }
+
+        // remove all disk-based games from db for a certain system
+        public static void RemoveDisks(int sysId)
+        {
+            MessageBoxResult result = MessageBox.Show("This operation will wipe out ALL the " + GSystem.GetSystemName(sysId) + " games in your library database (but they will not be deleted from disk)\n\nAre you sure you wish to continue?", "WARNING", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.OK)
+            {
+                // get all disks for specific system
+                using (var context = new MyDbContext())
+                {
+                    List<Game> disks = (from a in context.Game
+                                        where a.systemId == sysId
+                                        select a).ToList();
+                    Game.DeleteGames(disks);
+                    GameListBuilder.UpdateFlag();
+                }
+            }
+        }
+
+        // update favorites toggle
+        public static void FavoriteToggle(int Id)
+        {
+            using (var romaContext = new MyDbContext())
+            {
+                Game rom = (from r in romaContext.Game
+                            where r.gameId == Id
+                            select r).SingleOrDefault();
+
+                if (rom != null)
+                {
+                    if (GetFavoriteStatus(Id) == 1)
+                    {
+                        // Rom is marked as a favorite - make isFavorite as false
+                        rom.isFavorite = false;
+                    }
+                    else
+                    {
+                        // rom is not marked as favorite - make isFavorite true
+                        rom.isFavorite = true;
+                    }
+                }
+
+                // update ROM
+                UpdateRom(rom);
+                GameListBuilder.UpdateFlag();
+                romaContext.Dispose();
+            }
+        }
+
+        // get favorite status
+        public static int GetFavoriteStatus(int Id)
+        {
+            using (var romContext = new MyDbContext())
+            {
+                var rom = (from r in romContext.Game
+                           where r.gameId == Id
+                           select r).SingleOrDefault();
+
+                if (rom != null)
+                {
+                    if (rom.isFavorite == true)
+                    {
+                        romContext.Dispose();
+                        //Debug.WriteLine("FAVOTIE!");
+                        return 1;
+                    }
+                    else
+                    {
+                        romContext.Dispose();
+                        return 0;
+                    }
+                }
+                else
+                {
+                    romContext.Dispose();
+                    return 0;
+                }
+
+            }
+        }
+
+
+        // attempt to add game to Game database
+        public static int AddGame(Rom systemRom, string fullPath, string relPath, string fileName, string extension, string romName)
+        {
+            // check whether ROM already exists in database
+            using (var romContext = new MyDbContext())
+            {
+                var rom = (from r in romContext.Game
+                           where (r.gameName == romName) && (r.systemId == systemRom.gameSystem.systemId)
+                           select r).SingleOrDefault();
+
+                if (rom != null)
+                {
+                    // Rom already exists in database. Check whether it needs updating
+                    if (rom.gamePath == relPath)
+                    {
+                        // path is correct in database - skip updating
+                        return 0;
+                    }
+                    else
+                    {
+                        // path is incorrect in database - update record
+                        Game g = rom;
+                        g.gamePath = relPath;
+
+                        UpdateRom(g);
+                        GameListBuilder.UpdateFlag();
+                        return 2;
+                    }
+                }
+                else
+                {
+                    // Rom does not exist. Add to database.
+                    Game g = new Game();
+                    g.gameName = romName;
+                    g.gamePath = relPath;
+                    g.systemId = systemRom.gameSystem.systemId;
+                    //g.GameSystem.systemId = systemRom.gameSystem.systemId;
+                    g.isFavorite = false;
+                    g.configId = 1;
+                    g.hidden = false;
+
+                    InsertRom(g);
+                    GameListBuilder.UpdateFlag();
+                    return 1;
+                }
+            }
+
+
+        }
+
+        private static void InsertRom(Game rom)
+        {
+            using (var iR = new MyDbContext())
+            {
+                iR.Game.Add(rom);
+                iR.SaveChanges();
+                iR.Dispose();
+            }
+        }
+        private static void UpdateRom(Game rom)
+        {
+            using (var uR = new MyDbContext())
+            {
+                uR.Game.Update(rom);
+                uR.SaveChanges();
+                uR.Dispose();
+            }
+        }
+
 
         public static void SaveToDatabase(List<Game> games)
         {
