@@ -62,7 +62,7 @@ namespace MedLaunch.Classes.VisualHandlers
 
             string name = _activeRadio.Name.Replace("btnControl", "").ToLower();
 
-
+            /*
 
             // set system specific config panels as visible
             foreach (Border border in AllDynamicControlPanels)
@@ -77,6 +77,7 @@ namespace MedLaunch.Classes.VisualHandlers
                     border.Visibility = Visibility.Collapsed;
                 }
             }
+            */
         }
 
         private static string StripTrailingNumerals(string input)

@@ -21,6 +21,11 @@ namespace MedLaunch.Classes.Controls.InputManager
         private static Keyboard keyboard;
         private static KeyboardState state = new KeyboardState();
 
+        public static void Dispose()
+        {
+            //dinput.Dispose();
+        }
+
         public static void Initialize(MainWindow window)
         {
             IntPtr handle = new WindowInteropHelper(window).Handle;

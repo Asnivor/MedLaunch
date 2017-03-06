@@ -47,6 +47,11 @@ namespace MedLaunch
         {
             InitializeComponent();
 
+            // get the mainwindow
+            mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            
+            //Input.Initialize(mw);
+
             // clear all queued presses
             Input.Instance.ClearEvents();
 
@@ -57,8 +62,7 @@ namespace MedLaunch
 
             
 
-            // get the mainwindow
-            mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            
             //Input.Initialize(mw);
 
             // set the controller definition from mainwindow

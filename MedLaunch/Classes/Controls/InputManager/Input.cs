@@ -73,18 +73,15 @@ namespace MedLaunch.Classes.Controls.InputManager
             KeyInput.Initialize(mw);
             //IPCKeyInput.Initialize();
             GamePad.Initialize(mw);
-            GamePad360.Initialize(mw);
-            
-            
+            GamePad360.Initialize(mw);     
 
             Instance = new Input();
         }
 
         public void Dispose()
         {
-            //KeyInput.Dispose();
-            //GamePad.CloseAll();
-            
+            KeyInput.Dispose();
+            GamePad.Dispose();                        
         }
 
         public enum InputEventType

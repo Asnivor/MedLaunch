@@ -9645,21 +9645,6 @@
                             </Expander>
                         </Border>
 
-                        <Button Style="{StaticResource MenuButton}"  x:Name="btnControlImportAll"  Background="DarkOrange"
-                                ToolTip="Import all settings from mednafen-09x.cfg into 'Base Configuration' and all system.cfg files from the root of the Mednafen directory into the relevant system configurations in MedLaunch">
-                            <TextBlock HorizontalAlignment="Center" TextAlignment="Center">
-                                IMPORT ALL CONFIGS
-                                <LineBreak />
-                                FROM DISK
-                            </TextBlock>
-                        </Button>
-
-                        <Button Style="{StaticResource MenuButton}"  x:Name="btnControlSaveChanges"  Content="SAVE CHANGES" Background="{DynamicResource AccentColorBrush}" ></Button>
-                        <!--
-                        <Button x:Name="btnConfigCancelChanges"  Content="Revert Changes" Background="Red" Click="btnConfigCancelChanges_Click" ></Button>
--->
-                        <Label x:Name="lblControlStatus" />
-
                     </WrapPanel>
 
                     <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
@@ -9674,7 +9659,7 @@
                         </Grid.RowDefinitions>
 
 
-                        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Width="{Binding ElementName=configGrid, Path=ActualWidth}" Height="{Binding ElementName=configGrid, Path=ActualHeight}">
+                        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Width="{Binding ElementName=controlGrid, Path=ActualWidth}" Height="{Binding ElementName=controlGrid, Path=ActualHeight}">
                             <WrapPanel HorizontalAlignment="Left" Orientation="Vertical" x:Name="ControlWrapPanel">
 
                                 <!-- dynamically inserted control stuff goes below -->

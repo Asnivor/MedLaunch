@@ -127,16 +127,6 @@ namespace MedLaunch
 
             // get application version
             string appVersion = Versions.ReturnApplicationVersion();
-            /*
-            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
-            string versionMajor = fvi.ProductMajorPart.ToString();
-            string versionMinor = fvi.ProductMinorPart.ToString();
-            string versionBuild = fvi.ProductBuildPart.ToString();
-            string versionPrivate = fvi.ProductPrivatePart.ToString();
-            
-            string fVersion = fvi.FileVersion;
-            */
 
             // set title
             string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
@@ -144,25 +134,14 @@ namespace MedLaunch
 
             VersionCompatibility vc = new VersionCompatibility();
             rightMenuLabel.Text = "(Compatible Mednafen v" + VersionCompatibility.ChangeHistory.Last().Version + " - v" + VersionCompatibility.ChangeHistory.First().Version + ")";
-            //this.Title = "MedLaunch - Windows Front-End for Mednafen (v" + versionMajor + "." + versionMinor + "." + versionBuild + "." + versionPrivate + ")"; // - Built: "+ linkTimeLocal;
-            //this.Title = "MedLaunch - Windows Front-End for Mednafen (" + fVersion + ")";
 
             // Startup checks
 
             // is DB path to Mednafen set and working? If not force user to select it
-            Paths.MedPathRoutine(btnPathMednafen, tbPathMednafen);
-
-            // instatiate GamesList
-            //App _App = ((App)Application.Current);
-            //_App.GamesList = new Classes.GamesLibrary.GameListBuilder();
-
-            
+            Paths.MedPathRoutine(btnPathMednafen, tbPathMednafen);            
 
             // ensure 'show all' filter is checked on startup
             btnShowAll.IsChecked = true;
-
-            //App _App = ((App)Application.Current);
-            //dg = _App.GamesList.FilteredSet;
 
             // load globalsettings for front page
             GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar,
@@ -174,34 +153,15 @@ namespace MedLaunch
             mainScaleTransform.ScaleX = Convert.ToDouble(gs.guiZoom);
             mainScaleTransform.ScaleY = Convert.ToDouble(gs.guiZoom);
 
-
-
-
             // load netplay settings for netplay page
             ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
             //ConfigNetplaySettings.LoadNetplaySettings();
 
             // load path settings for paths page
             Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs, tbPathPceCd);
-
-            // force location of Mednafen directory
-            //var controller = this.ShowProgressAsync("Please wait...", "Progress Message");
-
-            // initialise servers area
-
-            // DbEF.PopulateServersCombo(cbServers);
-            /*
-            ConfigServerSettings.PopulateServersRadio(rbSrv01);
-            ConfigServerSettings.PopulateServersRadio(rbSrv02);
-            ConfigServerSettings.PopulateServersRadio(rbSrv03);
-            ConfigServerSettings.PopulateServersRadio(rbSrv04);
-            ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
-            ConfigServerSettings.GetSelectedServerCheckbox(rbSrv01, rbSrv02, rbSrv03, rbSrv04, rbSrvCustom);
-            */
-
+            
             SettingsVisualHandler.PopulateServers(lvServers);
             SettingsVisualHandler.ServerSettingsInitialButtonHide();
-
 
             // Config Tab
 
@@ -215,27 +175,7 @@ namespace MedLaunch
                     ConfigBaseSettings.SetButtonState(element as RadioButton);
                 }
             }
-
-            // ensure a visable config filter button is selected
-            /*
-            List<RadioButton> _filterButtons = UIHandler.GetLogicalChildCollection<RadioButton>(wpConfigLeftPane);
-            foreach (RadioButton rb in _filterButtons)
-            {
-                if (rb.Visibility == Visibility.Visible)
-                {
-                    rb.IsChecked = true;
-                    rb.IsChecked = false;
-                    rb.IsChecked = true;
-                }
-            }
-            */
-
-            /*
-            btnConfigNes.IsChecked = true;
-            btnConfigNes.IsChecked = false;
-            btnConfigNes.IsChecked = true;
-            */
-
+            
             // controls tab
             btnAllControls.IsChecked = true;
             //btnControlNes.IsChecked = true;
@@ -263,23 +203,9 @@ namespace MedLaunch
             /* hide certain controls (whilst they are being developed) */
 
             // rescan all disk systems button
-            btnRescanDisks.Visibility = Visibility.Collapsed;
+            //btnRescanDisks.Visibility = Visibility.Collapsed;
 
-            // Rescan specific disk system menu item
-            /*
-            ScanDisks13.Visibility = Visibility.Collapsed;
-            ScanDisks9.Visibility = Visibility.Collapsed;
-            ScanDisks18.Visibility = Visibility.Collapsed;
-            ScanDisks8.Visibility = Visibility.Collapsed;
-            */
-
-            // settings buttons and borders
-            //btnMednafenPaths.Visibility = Visibility.Collapsed;
-            //btnSystemBios.Visibility = Visibility.Collapsed;
-            //btnEmulator.Visibility = Visibility.Collapsed;
-            //brdMednafenPaths.Visibility = Visibility.Collapsed;
-            /// brdSystemBios.Visibility = Visibility.Collapsed;
-            //brdEmulator.Visibility = Visibility.Collapsed;
+            
 
             wb.Navigated += new NavigatedEventHandler(wb_Navigated);
 
@@ -298,8 +224,6 @@ namespace MedLaunch
             }
             */
 
-            // GameScraper.GetPlatformGames(4924);
-
             // about tab
             lblVersion.Visibility = Visibility.Collapsed;
             lblDate.Visibility = Visibility.Collapsed;
@@ -311,24 +235,6 @@ namespace MedLaunch
             lbl4.Visibility = Visibility.Collapsed;
             lblNoUpdate.Visibility = Visibility.Collapsed;
 
-            /*
-            // change mouse-over cursor on buttons to hand
-            foreach (Button btn in FindVisualChildren<Button>(this))
-            {
-                btn.Cursor = Cursors.Hand;
-            }
-            // change mouse-over cursor on checkboxes to hand
-            foreach (CheckBox cb in FindVisualChildren<CheckBox>(this))
-            {
-                cb.Cursor = Cursors.Hand;
-            }
-            // change mouse-over cursor on togglebutton to hand
-            foreach (ToggleButton btn in FindVisualChildren<ToggleButton>(this))
-            {
-                btn.Cursor = Cursors.Hand;
-            }
-            */
-
             btnReLink.Visibility = Visibility.Collapsed;
 
             // enable tooltips if neccesary
@@ -337,12 +243,9 @@ namespace MedLaunch
                 ConfigToolTips.SetToolTips(1);
             }
 
-            //SettingsDirtyFlag = true; // now its safe to save settings as all content is loaded
-
-
-            // initialise input class
-            
+            // initialise input class            
             Input.Initialize(this);
+            
 
         }
 

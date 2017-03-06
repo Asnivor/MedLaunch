@@ -46,6 +46,11 @@ namespace MedLaunch.Classes.Controls
 
         public static ControllerInfo[] ContInfoFromLog;
 
+        public static void Dispose()
+        {
+
+        }
+
         public static void Initialize(MainWindow window)
         {
             IntPtr handle = new WindowInteropHelper(window).Handle;

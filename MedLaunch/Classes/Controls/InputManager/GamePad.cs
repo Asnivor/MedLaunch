@@ -58,7 +58,10 @@ namespace MedLaunch.Classes.Controls
         public List<ButtConfig> ButtonList;
         public List<Int16> axis_config_type;
         
-
+        public static void Dispose()
+        {
+            //dinput.Dispose();
+        }
 
         public static void Initialize(MainWindow window)
         {
