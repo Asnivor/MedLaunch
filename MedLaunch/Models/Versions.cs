@@ -87,12 +87,11 @@ namespace MedLaunch.Models
                 v = query.FirstOrDefault();
             }
             return v;
-        }
+        }        
 
-        public static bool MednafenVersionCheck()
+        public static bool MednafenVersionCheck(bool showDialog)
         {
-            // define current compatible version branch
-            string compVersion = CompatibleMednafenBranch();
+            VersionCompatibility vc = new VersionCompatibility();
 
             // mednafen version check     
             Paths pa = Paths.GetPaths();
@@ -101,7 +100,8 @@ namespace MedLaunch.Models
 
             if (!File.Exists(medPath))
             {
-                MessageBox.Show("Path to Mednafen is NOT valid\nPlease set this on the Settings tab", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (showDialog)
+                    MessageBox.Show("Path to Mednafen is NOT valid\nPlease set this on the Settings tab", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
@@ -109,51 +109,52 @@ namespace MedLaunch.Models
 
             if (version == null || version == "")
             {
-                MessageBox.Show("There was a problem retreiving the Mednafen version.\nPlease check your paths", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (showDialog)
+                    MessageBox.Show("There was a problem retreiving the Mednafen version.\nPlease check your paths", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
-            string[] compArr = compVersion.Split('.');
+            string[] compArrMax = VersionCompatibility.ChangeHistory.First().Version.Split('.');
+            string[] compArrMin = VersionCompatibility.ChangeHistory.Last().Version.Split('.');
             string[] versionArr = version.Split('.');
 
-            for (int i = 0; i < 4; i++)
+            // mednafen version we are targeting MUST be within the MIN and MAX mednafen versions supported
+            for (int i = 0; i < 3; i++)
             {
-                if (i == 3 && compArr[3] == "x")
+                // convert to ints
+                int compMin = Convert.ToInt32(compArrMin[i]);
+                int compMax = Convert.ToInt32(compArrMax[i]);
+                int medVer = Convert.ToInt32(versionArr[i]);
+
+                if (medVer < compMin || medVer > compMax)
                 {
-                    // the 4th digital is 'x' - therefore we skip this check
-                    break;
-                }
-
-                if (compArr[i] != versionArr[i])
-                {
-                    // versions do not match - run mednafen once to update the stdout file incase we are looking at the most up to date log file
-                    LogParser.EmptyLoad();
-                    version = LogParser.GetMednafenVersion();
-                    if (version == null || version == "")
+                    if (showDialog)
                     {
-                        MessageBox.Show("There was a problem retreiving the Mednafen version.\nPlease check your paths", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return false;
-                    }
+                        // version doesnt match
+                        StringBuilder sb = new StringBuilder();
+                        sb.Append("The version of Mednafen you are trying to launch is potentially NOT compatible with this version of MedLaunch\n\nMednafen version installed: ");
+                        sb.Append(version);
+                        sb.Append("\nMednafen version required: ");
+                        sb.Append(VersionCompatibility.ChangeHistory.Last().Version + " - " + VersionCompatibility.ChangeHistory.First().Version);
+                        sb.Append("\n\nPlease ensure you are targeting a MedLaunch supported version of Mednafen.");
+                        sb.Append("\n\nPress OK to return to the Games Library");
+                        sb.Append("\nPress CANCEL to ignore these very important messages and try to launch the game (which probably will NOT work anyway)");
 
-                    versionArr = version.Split('.');
-                    if (compArr[i] == versionArr[i])
-                    {
-                        i--;
-                        continue;
-                    }                      
-                    
-
-
-                    // version doesnt match
-                    MessageBoxResult result = MessageBox.Show("The version of Mednafen you are trying to launch is potentially NOT compatible with this version of MedLaunch\n\nMednafen version installed: " + version + "\nMednafen version required: " + compVersion + "\n\nPlease ensure you have the correct version of MedLaunch installed for the version of Mednafen you are trying to run.\n\nThe latest MedLaunch releases will always try to stay compatible with the newest Mednafen release. There is NO backwards compatibility in place.\n\nPress OK to return to the Games Library\nPress CANCEL to ignore these very important messages and try to launch the game (which probably will NOT work anyway)", "Mednafen Version Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
-                    if (result == MessageBoxResult.OK)
-                    {
-                        return false;
+                        MessageBoxResult result = MessageBox.Show(sb.ToString(), "Mednafen Version Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                        if (result == MessageBoxResult.OK)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
                     }
                     else
                     {
-                        return true;
+                        return false;
                     }
+                        
                 }
             }
 

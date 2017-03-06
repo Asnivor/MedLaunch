@@ -142,7 +142,8 @@ namespace MedLaunch
             string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
             this.Title = "MedLaunch (v" + appVersion + ") - Windows Front-End for Mednafen"; // (v" + Versions.CompatibleMednafenBranch() + " only)";
 
-            rightMenuLabel.Text = "(Compatible Mednafen v" + Versions.CompatibleMednafenBranch() + " only)";
+            VersionCompatibility vc = new VersionCompatibility();
+            rightMenuLabel.Text = "(Compatible Mednafen v" + VersionCompatibility.ChangeHistory.Last().Version + " - v" + VersionCompatibility.ChangeHistory.First().Version + ")";
             //this.Title = "MedLaunch - Windows Front-End for Mednafen (v" + versionMajor + "." + versionMinor + "." + versionBuild + "." + versionPrivate + ")"; // - Built: "+ linkTimeLocal;
             //this.Title = "MedLaunch - Windows Front-End for Mednafen (" + fVersion + ")";
 
@@ -2248,12 +2249,14 @@ namespace MedLaunch
                 return;
             int romId = drv.ID;
 
-            bool b = Versions.MednafenVersionCheck();
+            
+            bool b = Versions.MednafenVersionCheck(true);
 
             if (b == false)
             {
                 return;
             }
+            
 
             // create new GameLauncher instance
             GameLauncher gl = new GameLauncher(romId);
@@ -2286,7 +2289,7 @@ namespace MedLaunch
                 return;
             int romId = drv.ID;
 
-            bool b = Versions.MednafenVersionCheck();
+            bool b = Versions.MednafenVersionCheck(true);
 
             if (b == false)
             {
@@ -2307,12 +2310,14 @@ namespace MedLaunch
             int romId = drv.ID;
             int systemId = Game.GetGame(romId).systemId;
 
-            bool b = Versions.MednafenVersionCheck();
+            /*
+            bool b = Versions.MednafenVersionCheck(true);
 
             if (b == false)
             {
                 return;
             }
+            */
 
             // create new GameLauncher instance
             GameLauncher gl = new GameLauncher(romId);

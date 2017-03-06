@@ -20,7 +20,7 @@ namespace MedLaunch.Classes.Controls
     {
         public List<DxKeys> dxKeys { get; set; }
 
-        public KeyboardTranslation()
+        public KeyboardTranslation(KeyboardType keyboardType)
         {
             dxKeys = new List<DxKeys>();
             dxKeys.Add(new DxKeys { SDLK = 0, DxUK = "SDLK_UNKNOWN" });
@@ -278,7 +278,7 @@ namespace MedLaunch.Classes.Controls
 
         public static string DXtoSDLCode(string dxString, KeyboardType keyboardType)
         {
-            KeyboardTranslation kbt = new KeyboardTranslation();
+            KeyboardTranslation kbt = new KeyboardTranslation(keyboardType);
 
             if (keyboardType == KeyboardType.UK)
             {
@@ -295,7 +295,7 @@ namespace MedLaunch.Classes.Controls
 
         public static string SDLCodetoDx(string sdlCode, KeyboardType keyboardType)
         {
-            KeyboardTranslation kbt = new KeyboardTranslation();
+            KeyboardTranslation kbt = new KeyboardTranslation(keyboardType);
 
             if (sdlCode == null || sdlCode == "")
                 return "";

@@ -319,7 +319,6 @@ namespace MedLaunch.Classes
             //Dictionary<string, object> cmds = DictionaryFromType(Config);
 
             // Create a new List object to hold actual parameters that will be passed to Mednafen
-            //Dictionary<String, String> activeCmds = new Dictionary<string, string>();
             List<ConfigKeyValue> activeCmds = new List<ConfigKeyValue>();
             foreach (var thing in SysConfigObject)
             {
@@ -460,9 +459,16 @@ namespace MedLaunch.Classes
                 baseStr += "-force_module pce_fast" + sep;
             }
 
+            // perform mednafen version check and replace/remove config options that are not viable
+            baseStr = VersionCompatibility.GetCompatLaunchString(baseStr);
+
             // add gamepath to command line
             baseStr += "\"" + BuildFullGamePath(RomFolder, RomPath) + "\"";
             //MessageBox.Show(baseStr);
+
+
+            
+
             return baseStr;
         }
 
