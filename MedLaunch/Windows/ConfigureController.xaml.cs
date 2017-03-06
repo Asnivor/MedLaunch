@@ -23,6 +23,7 @@ using MedLaunch.Classes.Controls.InputManager;
 using System.Threading;
 using System.Windows.Threading;
 using MedLaunch.Classes.Controls;
+using MahApps.Metro.Controls;
 
 namespace MedLaunch
 {
@@ -35,6 +36,9 @@ namespace MedLaunch
         public DeviceDefinition ControllerDefinitionWorking { get; set; }
         public MainWindow mw { get; set; }
         public IntPtr hWnd { get; set; }
+        public ContextMenu TBCM { get; set; }
+
+        public List<CustomInsert> CustomInsertList { get; set; }
 
         private TextBox _activeTB { get; set; }
 
@@ -46,6 +50,45 @@ namespace MedLaunch
         public ConfigureController()
         {
             InitializeComponent();
+
+            // textbox context menu
+            TBCM = new ContextMenu();
+
+            // Mouse Buttons
+            MenuItem LMB = new MenuItem { Header = "Insert LeftMouseButton", Name = "menuLMB" };
+            LMB.Click += new RoutedEventHandler(Macro_Click);
+            TBCM.Items.Add(LMB);
+            MenuItem RMB = new MenuItem { Header = "Insert RightMouseButton", Name = "menuRMB" };
+            RMB.Click += new RoutedEventHandler(Macro_Click);
+            TBCM.Items.Add(RMB);
+            MenuItem MMB = new MenuItem { Header = "Insert MiddleMouseButton", Name = "menuMMB" };
+            MMB.Click += new RoutedEventHandler(Macro_Click);
+            TBCM.Items.Add(MMB);
+            MenuItem MSU = new MenuItem { Header = "Insert MouseScrollUp", Name = "menuMSU" };
+            MSU.Click += new RoutedEventHandler(Macro_Click);
+            TBCM.Items.Add(MSU);
+            MenuItem MSD = new MenuItem { Header = "Insert MouseScrollDown", Name = "menuMSD" };
+            MSD.Click += new RoutedEventHandler(Macro_Click);
+            TBCM.Items.Add(MSD);
+            MenuItem MSB3 = new MenuItem { Header = "Insert MouseButton3", Name = "menuMSB3" };
+            MSB3.Click += new RoutedEventHandler(Macro_Click);
+            TBCM.Items.Add(MSB3);
+            MenuItem MSB4 = new MenuItem { Header = "Insert MouseButton4", Name = "menuMSB4" };
+            MSB4.Click += new RoutedEventHandler(Macro_Click);
+            TBCM.Items.Add(MSB4);
+            MenuItem MSB5 = new MenuItem { Header = "Insert MouseButton5", Name = "menuMSB5" };
+            MSB5.Click += new RoutedEventHandler(Macro_Click);
+            TBCM.Items.Add(MSB5);
+
+            TBCM.Items.Add(new Separator());
+
+            // Mouse Axis
+            MenuItem MSXAXIS = new MenuItem { Header = "Insert Mouse X-Axis", Name = "menuMSXAXIS" };
+            MSXAXIS.Click += new RoutedEventHandler(Macro_Click);
+            TBCM.Items.Add(MSXAXIS);
+            MenuItem MSYAXIS = new MenuItem { Header = "Insert Mouse Y-Axis", Name = "menuMSYAXIS" };
+            MSYAXIS.Click += new RoutedEventHandler(Macro_Click);
+            TBCM.Items.Add(MSYAXIS);
 
             // get the mainwindow
             mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
@@ -59,11 +102,6 @@ namespace MedLaunch
 
 
             _timer.Tick += Timer_Tick;
-
-            
-
-            
-            //Input.Initialize(mw);
 
             // set the controller definition from mainwindow
             if (mw.ControllerDefinition == null)
@@ -94,21 +132,23 @@ namespace MedLaunch
 
             Label headConfig2 = new Label();
             headConfig2.Content = "Secondary";
-            headConfig2.SetValue(Grid.ColumnProperty, 2);
+            headConfig2.SetValue(Grid.ColumnProperty, 3);
             headConfig2.SetValue(Grid.RowProperty, 0);
             DynamicDataGrid.Children.Add(headConfig2);
 
             Label headConfig3 = new Label();
             headConfig3.Content = "Tertiary";
-            headConfig3.SetValue(Grid.ColumnProperty, 3);
+            headConfig3.SetValue(Grid.ColumnProperty, 5);
             headConfig3.SetValue(Grid.RowProperty, 0);
             DynamicDataGrid.Children.Add(headConfig3);
 
+            /*
             Label headCustom = new Label();
             headCustom.Content = "Custom Insert";
             headCustom.SetValue(Grid.ColumnProperty, 4);
             headCustom.SetValue(Grid.RowProperty, 0);
             DynamicDataGrid.Children.Add(headCustom);
+            */
 
             // loop through maplist and populate the dynamic data grid row by row
             for (int i = 0; i < ControllerDefinition.MapList.Count; i++)
@@ -138,7 +178,9 @@ namespace MedLaunch
                 configInfo.SetValue(Grid.ColumnProperty, 1);
                 configInfo.SetValue(Grid.RowProperty, i + 1);
                 KeyboardNavigation.SetTabIndex(configInfo, i + 1);
+                configInfo.ContextMenu = TBCM;
                 DynamicDataGrid.Children.Add(configInfo);
+
 
                 // Config Secondary               
                 TextBox configInfo2 = new TextBox();
@@ -150,11 +192,13 @@ namespace MedLaunch
                 configInfo2.KeyDown += TextBox_KeyDownHandler;
                 configInfo2.IsReadOnly = true;
                 configInfo2.MinWidth = 100;
-                configInfo2.SetValue(Grid.ColumnProperty, 2);
+                configInfo2.SetValue(Grid.ColumnProperty, 3);
                 configInfo2.SetValue(Grid.RowProperty, i + 1);
                 KeyboardNavigation.SetTabIndex(configInfo2, i + 1 + ControllerDefinition.MapList.Count);
+                configInfo2.ContextMenu = TBCM;
                 DynamicDataGrid.Children.Add(configInfo2);
 
+            
                 // Config Tertiary              
                 TextBox configInfo3 = new TextBox();
                 configInfo3.Name = "Tertiary_" + TranslateConfigName(ControllerDefinition.MapList[i].MednafenCommand);
@@ -165,12 +209,15 @@ namespace MedLaunch
                 configInfo3.KeyDown += TextBox_KeyDownHandler;
                 configInfo3.IsReadOnly = true;
                 configInfo3.MinWidth = 100;
-                configInfo3.SetValue(Grid.ColumnProperty, 3);
+                configInfo3.SetValue(Grid.ColumnProperty, 5);
                 configInfo3.SetValue(Grid.RowProperty, i + 1);
                 KeyboardNavigation.SetTabIndex(configInfo3, i + 1 + (ControllerDefinition.MapList.Count * 2));
+                configInfo3.ContextMenu = TBCM;
                 DynamicDataGrid.Children.Add(configInfo3);
 
+          
                 // configure button
+                /*
                 Button btn = new Button();
                 btn.Content = "Configure";
                 btn.Name = "btn" + TranslateConfigName(ControllerDefinition.MapList[i].MednafenCommand);
@@ -178,10 +225,11 @@ namespace MedLaunch
 
                 btn.SetValue(Grid.ColumnProperty, 4);
                 btn.SetValue(Grid.RowProperty, i + 1);
+                */
 
-                KeyboardNavigation.SetIsTabStop(btn, false);
+                //KeyboardNavigation.SetIsTabStop(btn, false);
 
-                DynamicDataGrid.Children.Add(btn);
+                //DynamicDataGrid.Children.Add(btn);
 
             }
 
@@ -633,6 +681,67 @@ namespace MedLaunch
             }
         }
 
+        public void Macro_Click(Object sender, RoutedEventArgs e)
+        {
+            // get menuitem
+            MenuItem mnu = sender as MenuItem;
+            string menuName = mnu.Name;
+
+            // get parent textbox
+            TextBox tb = null;
+
+            if (mnu == null)
+                return;
+
+            tb = ((ContextMenu)mnu.Parent).PlacementTarget as TextBox;
+            string tbName = tb.Name;
+
+            // set the textbox .text
+            switch (menuName)
+            {
+                case "menuLMB":
+                    tb.Text = "mouse 0000000000000000 00000000";
+                    break;
+
+                case "menuMMB":
+                    tb.Text = "mouse 0000000000000000 00000001";
+                    break;
+
+                case "menuRMB":
+                    tb.Text = "mouse 0000000000000000 00000002";
+                    break;                
+
+                case "menuMSU":
+                    tb.Text = "mouse 0000000000000000 00000003";
+                    break;
+
+                case "menuMSD":
+                    tb.Text = "mouse 0000000000000000 00000004";
+                    break;
+
+                case "menuMSB3":
+                    tb.Text = "mouse 0000000000000000 00000005";
+                    break;
+
+                case "menuMSB4":
+                    tb.Text = "mouse 0000000000000000 00000006";
+                    break;
+
+                case "menuMSB5":
+                    tb.Text = "mouse 0000000000000000 00000007";
+                    break;
+
+                case "menuMSXAXIS":
+                    tb.Text = "mouse 0000000000000000 00008000";
+                    break;
+
+                case "menuMSYAXIS":
+                    tb.Text = "mouse 0000000000000000 00008001";
+                    break;
+            }
+        }
+
+
     }
 
     public enum ConfigOrder
@@ -640,6 +749,12 @@ namespace MedLaunch
         Primary,
         Secondary,
         Tertiary
+    }
+
+    public class CustomInsert
+    {
+        public string Title { get; set; }
+        public string Command { get; set; }
     }
     
 }

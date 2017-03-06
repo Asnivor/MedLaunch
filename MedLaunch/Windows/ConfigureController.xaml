@@ -5,6 +5,7 @@
 							   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 							   xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
                                xmlns:diag="clr-namespace:System.Diagnostics;assembly=mscorlib"
+                               xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
 							   mc:Ignorable="d"
 							   d:DesignHeight="800"
 							   d:DesignWidth="600"
@@ -34,6 +35,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Name="titleTextBlock" Grid.Row="1" Grid.ColumnSpan="2"
 				   Margin="5"
@@ -52,7 +54,11 @@
             </Image.ToolTip>
         </Image>
 
-        <ScrollViewer MaxHeight="500" VerticalAlignment="Top" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Grid.Row="2">          
+        <Label HorizontalAlignment="Center" Grid.Row="2">
+            (Right-click in the textboxes below to insert pre-defined mouse controls)
+        </Label>
+
+        <ScrollViewer MaxHeight="500" VerticalAlignment="Top" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Grid.Row="3">          
         
 
         <Grid Name="DynamicDataGrid"  Margin="100,0,100,0">
@@ -119,6 +125,9 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
             
             <!-- dynamically generated content goes here -->
@@ -127,7 +136,7 @@
 
         </ScrollViewer>
 
-        <UniformGrid Columns="3" Grid.Row="3">
+        <UniformGrid Columns="3" Grid.Row="4">
             <Button
 				Margin="5"
 				IsDefault="True"
@@ -158,15 +167,6 @@
 				Click="btnCancel_Click" 
                 x:Name="btnCancel"/>
         </UniformGrid>
-
-        <TextBox Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}"
-                 
-                 GotFocus="TextBox_GotFocus"
-                 LostFocus="TextBox_LostFocus"
-                 
-                 >
-            
-        </TextBox>
         
     </Grid>
 </simpleChildWindow:ChildWindow>
