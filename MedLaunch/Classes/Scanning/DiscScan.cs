@@ -64,9 +64,10 @@ namespace MedLaunch.Classes.Scanning
                 // if multiple, create m3u file
                 if (game.Count > 0)
                 {
+                    string t = game.First().FolderPath + "\\" + game.First().GameName;
                     CreateM3uPlaylist(game.OrderBy(a => a.FileName).ToList(), game.First().FolderPath + "\\" + game.First().GameName + ".m3u", true);
                     // create a new discgamefile for the m3u and add it to library
-                    InsertOrUpdateDisk(new DiscGameFile(game.First().FolderPath + "\\" + game.First().GameName, systemId), systemId);
+                    InsertOrUpdateDisk(new DiscGameFile(game.First().FolderPath + "\\" + game.First().GameName + ".m3u", systemId), systemId);
                     continue;
                 }
 
@@ -340,14 +341,14 @@ namespace MedLaunch.Classes.Scanning
         {
             List<DiscGameFile> list = new List<DiscGameFile>();
             DiscGameFile gdf = new DiscGameFile();
-            
+
             // get all files in the folder (that have extensions we are interested in)
-            List<string> cueFiles = ( from a in FileAndFolder.GetFiles(folderPath, false)
-                                             where a.ToLower().Contains(".m3u") ||
-                                             a.ToLower().Contains(".cue") ||
-                                             a.ToLower().Contains(".ccd") ||
-                                             a.ToLower().Contains(".toc")
-                                             select a).ToList();
+            List<string> cueFiles = (from a in FileAndFolder.GetFiles(folderPath, false)
+                                     where a.ToLower().Contains(".m3u") ||
+                                     a.ToLower().Contains(".cue") ||
+                                     a.ToLower().Contains(".ccd") ||
+                                     a.ToLower().Contains(".toc")
+                                     select a).ToList();
 
             // count file types
             int m3uCount = cueFiles.Where(a => a.ToLower().Contains(".m3u")).ToList().Count();
@@ -405,24 +406,30 @@ namespace MedLaunch.Classes.Scanning
             List<string> disc3 = new List<string>();
             List<string> disc4 = new List<string>();
             List<string> disc5 = new List<string>();
-            List<string> disc6 = new List<string>();                      
+            List<string> disc6 = new List<string>();
 
             // lookup based on disc number
-            for (int sheet = 0; sheet < sheets.Count; sheet++)
+            for (int i = 0; i < sheets.Count; i++)
             {
-                if (sheets[sheet].ToLower().Contains("disc " + (sheet + 1)) ||
-                    sheets[sheet].ToLower().Contains("cd " + (sheet + 1)))
+                for (int disc = 1; disc < 7; disc++)
                 {
-                    switch (sheet + 1)
+                    if (sheets[i].ToLower().Contains("disc " + disc) ||
+                    sheets[i].ToLower().Contains("cd " + disc) ||
+                    sheets[i].ToLower().Contains("d" + disc) ||
+                    sheets[i].ToLower().Contains("c" + disc) ||
+                    sheets[i].ToLower().Contains("cd" + disc) ||
+                    sheets[i].ToLower().Contains("disc" + disc))
                     {
-                        case 1: disc1.Add(sheets[sheet]); break;
-                        case 2: disc2.Add(sheets[sheet]); break;
-                        case 3: disc3.Add(sheets[sheet]); break;
-                        case 4: disc4.Add(sheets[sheet]); break;
-                        case 5: disc5.Add(sheets[sheet]); break;
-                        case 6: disc6.Add(sheets[sheet]); break;
+                        if (disc == 1) { disc1.Add(sheets[i]); }
+                        if (disc == 2) { disc2.Add(sheets[i]); }
+                        if (disc == 3) { disc3.Add(sheets[i]); }
+                        if (disc == 4) { disc4.Add(sheets[i]); }
+                        if (disc == 5) { disc5.Add(sheets[i]); }
+                        if (disc == 6) { disc6.Add(sheets[i]); }
+
                     }
                 }
+
             }
             List<List<string>> combined = new List<List<string>>
             {
@@ -446,39 +453,30 @@ namespace MedLaunch.Classes.Scanning
                     foreach (string s in combined[disc])
                     {
                         string test = null;
-                        switch (Path.GetExtension(s).ToLower())
-                        {
-                            case ".cue":
-                                test = ParseNonM3UTrackSheetString(s, CueType.cue, sysId);
-                                break;
 
-                            case ".ccd":
-                                test = ParseNonM3UTrackSheetString(s, CueType.ccd, sysId);
-                                break;
-
-                            case ".toc":
-                                test = ParseNonM3UTrackSheetString(s, CueType.toc, sysId);
-                                break;
-                        }
+                        if (Path.GetExtension(s).ToLower() == ".cue") { test = ParseNonM3UTrackSheetString(s, CueType.cue, sysId); }
+                        if (Path.GetExtension(s).ToLower() == ".ccd") { test = ParseNonM3UTrackSheetString(s, CueType.ccd, sysId); }
+                        if (Path.GetExtension(s).ToLower() == ".toc") { test = ParseNonM3UTrackSheetString(s, CueType.toc, sysId); }
+                        
 
                         // continue if nothing returned
                         if (test == null || test == "")
                             continue;
 
                         // prefer cue
-                        if (Path.GetExtension(test).ToLower() == ".cue")
+                        if (Path.GetExtension(s).ToLower() == ".cue")
                         {
                             working.Add(new DiscGameFile(s, sysId));
                             break;
                         }
                         // then ccd
-                        if (Path.GetExtension(test).ToLower() == ".ccd")
+                        if (Path.GetExtension(s).ToLower() == ".ccd")
                         {
                             working.Add(new DiscGameFile(s, sysId));
                             break;
                         }
                         // then toc
-                        if (Path.GetExtension(test).ToLower() == ".toc")
+                        if (Path.GetExtension(s).ToLower() == ".toc")
                         {
                             working.Add(new DiscGameFile(s, sysId));
                             break;
@@ -599,6 +597,88 @@ namespace MedLaunch.Classes.Scanning
                         // add it to working list
                         working.Add(dgf);
                         break;
+                    }
+                    break;
+            }
+
+            return working;
+        }
+
+        public static List<DiscGameFile> ParseTrackSheetForImageFiles(DiscGameFile trackSheet, int systemId)
+        {
+            CueType cueType = new CueType();
+            if (trackSheet.FullPath.ToLower().Contains(".m3u"))
+                cueType = CueType.m3u;
+            if (trackSheet.FullPath.ToLower().Contains(".cue"))
+                cueType = CueType.cue;
+            if (trackSheet.FullPath.ToLower().Contains(".ccd"))
+                cueType = CueType.ccd;
+            if (trackSheet.FullPath.ToLower().Contains(".toc"))
+                cueType = CueType.toc;
+
+            List<DiscGameFile> working = new List<DiscGameFile>();
+
+            switch (cueType)
+            {
+                case CueType.cue:
+                    // get referenced image from cue file
+                    string[] cFile = File.ReadAllLines(trackSheet.FullPath);
+                    foreach (string l in cFile)
+                    {
+                        if (l == "" || l == " ")
+                            continue;
+
+                        if (l.Contains("FILE") || l.ToLower().Contains("file"))
+                        {
+                            // this is the line we are interested in
+                            string filename = l.Replace("File ", "")
+                                .Replace("FILE ", "")
+                                .Replace("file ", "")
+                                .Replace("BINARY", "")
+                                .Replace("Binary", "")
+                                .Replace("binary", "")
+                                .Trim()
+                                .Trim('"');
+
+                            if (File.Exists(trackSheet.FolderPath + "\\" + filename))
+                            {
+                                DiscGameFile dgfc = new DiscGameFile(trackSheet.FolderPath + "\\" + filename, systemId);
+                                working.Add(dgfc);
+                            }
+                            break;
+                        }
+                    }
+                    break;
+
+                case CueType.ccd:
+                    // ccd files dont appear to have any reference to the image filename - im going to assume they just have to be named the same
+                    string ccdFilePath = trackSheet.FullPath;
+                    string imgFilePath = ccdFilePath.ToLower().Replace(".ccd", ".img");
+
+                    // check whether this file actuall exists
+                    if (File.Exists(imgFilePath))
+                    {
+                        DiscGameFile dgfi = new DiscGameFile(imgFilePath, systemId);
+                        working.Add(dgfi);
+                    }
+                    break;
+
+                case CueType.toc:
+                    // not implemented at the moment
+                    break;
+
+                case CueType.m3u:
+                    // get all referenced cue files from m3u
+                    string[] mFiles = File.ReadAllLines(trackSheet.FullPath);
+                    foreach (string l in mFiles)
+                    {
+                        if (l == "" || l == " ")
+                            continue;
+
+                        // we actually want to return referenced image files, so recursively pass these back
+                        List<DiscGameFile> rec = ParseTrackSheetForImageFiles(new DiscGameFile(trackSheet.FolderPath + "\\" + l, systemId), systemId);
+                        if (rec.Count > 0)
+                            working.AddRange(rec);
                     }
                     break;
             }

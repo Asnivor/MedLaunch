@@ -17,6 +17,7 @@ using WindowScrape;
 using WindowScrape.Constants;
 using WindowScrape.Static;
 using WindowScrape.Types;
+using MedLaunch.Classes.Scanning;
 
 namespace MedLaunch.Classes
 {
@@ -49,6 +50,80 @@ namespace MedLaunch.Classes
                       select g).SingleOrDefault();
 
             SystemId = game.systemId;
+
+            // do PSX sbi check
+            if (SystemId == 9)
+            {
+                // get all implied files from othe cue/m3u that is in the database
+                string cuePath = game.gamePath;     // this is never relative with disc-based games
+                DiscGameFile originalCue = new DiscGameFile(cuePath, 9);
+
+                List<DiscGameFile> imageFiles = DiscScan.ParseTrackSheetForImageFiles(new DiscGameFile(cuePath, 9), 9);
+
+                // iterate through each image and check for serial number
+                for (int i = 0; i < imageFiles.Count; i++)
+                {
+                    string serial = DiscUtils.GetPSXSerial(imageFiles[i].FullPath);
+
+                    if (serial == null || serial == "")
+                        continue;
+
+                    // add serial to imageFiles
+                    imageFiles[i].ExtraInfo = serial;
+                }
+
+                // if imageFile has only one entry, then this matches originalCue
+                if (imageFiles.Count == 1)
+                { 
+                    if (PsxSBI.IsSbiAvailable(imageFiles.First().ExtraInfo) == true)
+                    {
+                        // sbi is available - prompt user
+                        if (!File.Exists(imageFiles.First().FolderPath + "\\" + imageFiles.First().FileName.Replace(imageFiles.First().Extension, "") + ".sbi"))
+                        {
+                            MessageBoxResult result =  MessageBox.Show("MedLaunch has determined that you need an available SBI patch file to play this game properly.\n\nDo you wish to copy this file to your disc directory?\n", 
+                                "SBI Patch Needed - " + imageFiles.First().FileName + imageFiles.First().Extension, MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                            if (result == MessageBoxResult.Yes)
+                            {
+                                // copy sbi file to folder (named the same as the cue file)
+                                originalCue.ExtraInfo = imageFiles.First().ExtraInfo;
+
+                                PsxSBI.InstallSBIFile(originalCue);
+                            }                           
+                        }                        
+                    }
+                }
+
+                // if imageFiles has multiple entries - it will have come from an m3u file
+                if (imageFiles.Count > 1)
+                {
+                    // create an array of m3u cue files
+                    string[] cues = File.ReadAllLines(originalCue.FullPath);
+
+                    // loop through
+                    for (int image = 0; image < imageFiles.Count; image++)
+                    {
+                        if (PsxSBI.IsSbiAvailable(imageFiles[image].ExtraInfo) == true)
+                        {
+                            // sbi is available - prompt user
+                            if (!File.Exists(imageFiles[image].FolderPath + "\\" + imageFiles[image].FileName.Replace(imageFiles[image].Extension, "") + ".sbi"))
+                            {
+                                MessageBoxResult result = MessageBox.Show("MedLaunch has determined that you need an available SBI patch file to play this game properly.\n\nDo you wish to copy this file to your disc directory?\n",
+                                    "SBI Patch Needed - " + imageFiles[image].FileName + imageFiles[image].Extension, MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                                if (result == MessageBoxResult.Yes)
+                                {
+                                    // copy sbi file to folder (named the same as the cue file)
+                                    DiscGameFile d = new DiscGameFile(cues[image], 9);
+                                    d.ExtraInfo = imageFiles[image].ExtraInfo;
+
+                                    PsxSBI.InstallSBIFile(d);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
             // logic for faust & fast
             if (game.systemId == 12)

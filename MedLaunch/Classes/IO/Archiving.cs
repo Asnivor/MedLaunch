@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using MedLaunch.Classes;
 using System.Security.Cryptography;
 using MedLaunch.Models;
+using System.IO;
 
 namespace MedLaunch.Classes.IO
 {
@@ -33,6 +34,28 @@ namespace MedLaunch.Classes.IO
         }
 
         /* methods */
+        public static List<string> GetSbiListFrom7z(string path)
+        {
+            List<string> tmp = new List<string>();
+
+            if (Path.GetExtension(path) == ".7z")
+            {                
+                var archive = ArchiveFactory.Open(path);
+                foreach (SevenZipArchiveEntry entry in archive.Entries)
+                {
+                    if (entry.IsDirectory)
+                        continue;
+
+                    if (!entry.Key.ToLower().Contains(".7z"))
+                        continue;
+
+                    tmp.Add(entry.Key);                    
+                }
+            }
+            return tmp;
+        }
+
+        
 
         /// <summary>
         /// Process the selected archive

@@ -245,7 +245,11 @@ namespace MedLaunch
 
             // initialise input class            
             Input.Initialize(this);
-            
+
+            // initialise SBI class
+            PsxSBI psxsbi = new PsxSBI();
+
+
 
         }
 
