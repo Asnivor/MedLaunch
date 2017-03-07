@@ -15,6 +15,7 @@ namespace MedLaunch.Models
         public int gameId { get; set; }
         public string gamePath { get; set; }
         public string gameName { get; set; }
+        public string archiveGame { get; set; }
         public string gameNameFromDAT { get; set; }
         public string romNameFromDAT { get; set; }
         public string Country { get; set; }

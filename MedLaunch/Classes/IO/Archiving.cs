@@ -17,6 +17,7 @@ namespace MedLaunch.Classes.IO
     {
         // properties
         public string ArchivePath { get; set; }
+        public string InternalGamePath { get; set; }
         public int SystemId { get; set; }
         public bool IsAllowed { get; set; }
         public string ArchiveExtension { get; set; }
@@ -24,9 +25,14 @@ namespace MedLaunch.Classes.IO
         public string FileName { get; set; }
         public long FileSize { get; set; }
 
+        public static List<Archiving> ArchiveMultiple { get; set; }
+
         // constructors
         public Archiving(string archivePath, int systemId)
         {
+            if (ArchiveMultiple == null)
+                ArchiveMultiple = new List<Archiving>();
+
             IsAllowed = false;
             ArchivePath = archivePath;
             SystemId = systemId;
@@ -34,26 +40,7 @@ namespace MedLaunch.Classes.IO
         }
 
         /* methods */
-        public static List<string> GetSbiListFrom7z(string path)
-        {
-            List<string> tmp = new List<string>();
-
-            if (Path.GetExtension(path) == ".7z")
-            {                
-                var archive = ArchiveFactory.Open(path);
-                foreach (SevenZipArchiveEntry entry in archive.Entries)
-                {
-                    if (entry.IsDirectory)
-                        continue;
-
-                    if (!entry.Key.ToLower().Contains(".7z"))
-                        continue;
-
-                    tmp.Add(entry.Key);                    
-                }
-            }
-            return tmp;
-        }
+        
 
         
 
@@ -147,6 +134,28 @@ namespace MedLaunch.Classes.IO
                     entry.WriteToDirectory(destinationDirectory, new SharpCompress.Readers.ExtractionOptions() { Overwrite = true });
                 }
             }
+        }
+
+
+        public static List<string> GetSbiListFrom7z(string path)
+        {
+            List<string> tmp = new List<string>();
+
+            if (Path.GetExtension(path) == ".7z")
+            {
+                var archive = ArchiveFactory.Open(path);
+                foreach (SevenZipArchiveEntry entry in archive.Entries)
+                {
+                    if (entry.IsDirectory)
+                        continue;
+
+                    if (!entry.Key.ToLower().Contains(".7z"))
+                        continue;
+
+                    tmp.Add(entry.Key);
+                }
+            }
+            return tmp;
         }
     }
 }

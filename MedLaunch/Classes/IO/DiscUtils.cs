@@ -160,4 +160,93 @@ namespace MedLaunch.Classes.IO
             return false;
         }
     }
+
+    public class SaturnLookup
+    {
+        public static List<SaturnGames> SaturnGamesList { get; set; }
+        public static string ListPath { get; set; }
+
+        public SaturnLookup()
+        {
+            if (SaturnGamesList == null)
+                SaturnGamesList = new List<SaturnGames>();
+
+            ListPath = AppDomain.CurrentDomain.BaseDirectory + @"Data\System\SaturnList.txt";
+
+            // parse the txt file
+            string[] lines = File.ReadAllLines(ListPath);
+
+            // lose the first two lines
+            string all = "";
+            for (int i = 2; i < lines.Length; i++)
+                all += lines[i] + "\n";
+
+            // split by double line breaks
+            string[] games = all.Split(new string[] { "\n\n" }, StringSplitOptions.None);
+
+            // iterate through each game block
+            foreach (string block in games)
+            {
+                List<string> eachline = new List<string>();
+
+                // iterate through each line
+                using (StringReader sr = new StringReader(block))
+                {
+                    string li;
+                    while ((li = sr.ReadLine()) != null)
+                    {
+                        eachline.Add(li);
+                        // split by :
+                        /*
+                        string[] lr = li.Split(':');
+                        string left = lr[0].Trim();
+                        string right = lr[1].Trim();
+                        */
+                    }
+                }
+
+                // populate object
+                SaturnGames sg = new SaturnGames();
+                sg.Title = eachline[0].Split(':')[1].Trim();
+                sg.Country = eachline[1].Split(':')[1].Trim();
+                sg.JPNTitle = eachline[2].Split(':')[1].Trim();
+                sg.Serial = eachline[3].Split(':')[1].Trim();
+                sg.Version = eachline[4].Split(':')[1].Trim();
+                sg.InternalDate = eachline[5].Split(':')[1].Trim();
+                sg.TotalTracks = eachline[6].Split(':')[1].Trim();
+                sg.DataTracks = eachline[7].Split(':')[1].Trim();
+                sg.AudioTracks = eachline[8].Split(':')[1].Trim();
+                sg.CountryCode = eachline[9].Split(':')[1].Trim(); ;
+                sg.PeriphCode = eachline[10].Split(':')[1].Trim();
+                sg.CreationDate = eachline[11].Split(':')[1].Trim();
+                sg.CreationTime = eachline[12].Split(':')[1].Trim();
+                sg.ModifiedDate = eachline[13].Split(':')[1].Trim();
+                sg.ModifiedTime = eachline[14].Split(':')[1].Trim();
+                sg.Comments = eachline[15].Split(':')[1].Trim();
+
+                SaturnGamesList.Add(sg);
+            }
+
+        }
+    }
+
+    public class SaturnGames
+    {
+        public string Title { get; set; }
+        public string Country { get; set; }
+        public string JPNTitle { get; set; }
+        public string Serial { get; set; }
+        public string Version { get; set; }
+        public string InternalDate { get; set; }
+        public string TotalTracks { get; set; }
+        public string DataTracks { get; set; }
+        public string AudioTracks { get; set; }
+        public string CountryCode { get; set; }
+        public string PeriphCode { get; set; }
+        public string CreationDate { get; set; }
+        public string CreationTime { get; set; }
+        public string ModifiedDate { get; set; }
+        public string ModifiedTime { get; set; }
+        public string Comments { get; set; }
+    }
 }

@@ -124,7 +124,7 @@ namespace MedLaunch.Classes.Scanning
 
                 // check whether game already exists (by gameName and systemId)
                 Game chkGame = (from g in Games
-                                where g.systemId == systemId && g.gameName == romName
+                                where g.systemId == systemId && g.gameName == romName //&& g.archiveGame == archiveGame
                                 select g).FirstOrDefault();
 
                 // lookup game in master dat
