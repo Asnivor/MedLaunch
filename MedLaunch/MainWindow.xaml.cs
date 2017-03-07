@@ -131,10 +131,9 @@ namespace MedLaunch
 
             // set title
             string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
-            this.Title = "MedLaunch (v" + appVersion + ") - Windows Front-End for Mednafen"; // (v" + Versions.CompatibleMednafenBranch() + " only)";
-
-            VersionCompatibility vc = new VersionCompatibility();
-            rightMenuLabel.Text = "(Compatible Mednafen v" + VersionCompatibility.ChangeHistory.Last().Version + " - v" + VersionCompatibility.ChangeHistory.First().Version + ")";
+            this.Title = "MedLaunch (v" + appVersion + ") - Windows Front-End for Mednafen"; 
+            
+            rightMenuLabel.Text = "(Compatible Mednafen v" + Versions.GetMednafenCompatibilityMatrix().Last().Version + " - v" + Versions.GetMednafenCompatibilityMatrix().First().Version + ")";
 
             // Startup checks
 
@@ -534,22 +533,22 @@ namespace MedLaunch
                 /* scan of all roms has been selected */
 
                 // mark all roms in database as hidden where the system path is not set or if path no longer exists
-                foreach (var hs in rs.Systems)
+                foreach (var hs in GameScanner.Systems)
                 {
                     string path = rs.GetPath(hs.systemId);
                     if (path == "" || path == null || !Directory.Exists(path))
                     {
                         // No path returned or path is not valid - Mark existing games in Db as hidden
                         rs.MarkAllRomsAsHidden(hs.systemId);
-                        hiddenStats += rs.HiddenStats;
-                        rs.HiddenStats = 0;
+                        hiddenStats += GameScanner.HiddenStats;
+                        GameScanner.HiddenStats = 0;
                     }
                 }
 
                 if (mediaType == MediaType.ROM)
-                    scanList = rs.RomSystemsWithPaths;
+                    scanList = GameScanner.RomSystemsWithPaths;
                 if (mediaType == MediaType.DISC)
-                    scanList = rs.DiskSystemsWithPaths;
+                    scanList = GameScanner.DiskSystemsWithPaths;
             }
             else
             {
@@ -561,16 +560,16 @@ namespace MedLaunch
                 {
                     // No path returned or path is not valid - Mark existing games in Db as hidden
                     rs.MarkAllRomsAsHidden(sysId);
-                    hiddenStats += rs.HiddenStats;
-                    rs.HiddenStats = 0;
+                    hiddenStats += GameScanner.HiddenStats;
+                    GameScanner.HiddenStats = 0;
                 }
 
                 if (mediaType == MediaType.ROM)
-                    scanList = (from s in rs.RomSystemsWithPaths
+                    scanList = (from s in GameScanner.RomSystemsWithPaths
                                 where s.systemId == sysId
                                 select s).ToList();
                 if (mediaType == MediaType.DISC)
-                    scanList = (from s in rs.DiskSystemsWithPaths
+                    scanList = (from s in GameScanner.DiskSystemsWithPaths
                                 where s.systemId == sysId
                                 select s).ToList();
             }
@@ -595,7 +594,6 @@ namespace MedLaunch
                         {
                             break;
                         }
-                        //MessageBoxResult result2 = MessageBox.Show(s.systemId.ToString());
 
                         // start scanning
                         controller.SetTitle("Starting " + s.systemName + " (" + s.systemCode + ") Scan");
@@ -620,19 +618,19 @@ namespace MedLaunch
                         //output += ".....Completed\n\n";
 
                         // update totals
-                        addedStats += rs.AddedStats;
-                        updatedStats += rs.UpdatedStats;
-                        untouchedStats += rs.UntouchedStats;
-                        hiddenStats += rs.HiddenStats;
+                        addedStats += GameScanner.AddedStats;
+                        updatedStats += GameScanner.UpdatedStats;
+                        untouchedStats += GameScanner.UntouchedStats;
+                        hiddenStats += GameScanner.HiddenStats;
 
                         //output += rs.AddedStats + " ROMs Added\n" + rs.UpdatedStats + " ROMs Updated\n" + rs.UntouchedStats + " ROMs Skipped\n" + rs.HiddenStats + " ROMs Missing (marked as hidden)\n";
                         //controller.SetMessage(output);
 
                         // reset class totals
-                        rs.AddedStats = 0;
-                        rs.UpdatedStats = 0;
-                        rs.UntouchedStats = 0;
-                        rs.HiddenStats = 0;
+                        GameScanner.AddedStats = 0;
+                        GameScanner.UpdatedStats = 0;
+                        GameScanner.UntouchedStats = 0;
+                        GameScanner.HiddenStats = 0;
 
                          Task.Delay(200);
                     }
@@ -652,7 +650,10 @@ namespace MedLaunch
                 if (!controller.IsCanceled)
                 {
                     controller.SetMessage(output + "\nUpdating Database");
-                    rs.SaveToDatabase();
+                    if (mediaType == MediaType.ROM)
+                        rs.SaveToDatabase();
+                    if (mediaType == MediaType.DISC)
+                        ds.SaveToDatabase();
                 }
 
             });

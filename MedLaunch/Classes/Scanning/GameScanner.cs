@@ -175,46 +175,46 @@ namespace MedLaunch.Classes
         }
 
         // properties
-        public List<Game> Games { get; private set; }
-        public Paths Paths { get; private set; }
-        public List<GSystem> Systems { get; private set; }
-        public List<GSystem> RomSystems { get; private set; }
-        public List<GSystem> DiskSystems { get; private set; }
-        public List<GSystem> RomSystemsWithPaths { get; private set; }
-        public List<GSystem> DiskSystemsWithPaths { get; private set; }
-        public List<Game> GamesGB { get; private set; }
-        public List<Game> GamesGBA { get; private set; }
-        public List<Game> GamesLYNX { get; private set; }
-        public List<Game> GamesMD { get; private set; }
-        public List<Game> GamesGG { get; private set; }
-        public List<Game> GamesNGP { get; private set; }
-        public List<Game> GamesPCE { get; private set; }
-        public List<Game> GamesPCFX { get; private set; }
-        public List<Game> GamesPSX { get; private set; }
-        public List<Game> GamesSMS { get; private set; }
-        public List<Game> GamesNES { get; private set; }
-        public List<Game> GamesSNES { get; private set; }
-        public List<Game> GamesSS { get; private set; }
-        public List<Game> GamesVB { get; private set; }
-        public List<Game> GamesWSWAN { get; private set; }
-        public List<Game> GamesPCECD { get; private set; }
+        public static List<Game> Games { get; private set; }
+        public static Paths Paths { get; private set; }
+        public static List<GSystem> Systems { get; private set; }
+        public static List<GSystem> RomSystems { get; private set; }
+        public static List<GSystem> DiskSystems { get; private set; }
+        public static List<GSystem> RomSystemsWithPaths { get; private set; }
+        public static List<GSystem> DiskSystemsWithPaths { get; private set; }
+        public static List<Game> GamesGB { get; private set; }
+        public static List<Game> GamesGBA { get; private set; }
+        public static List<Game> GamesLYNX { get; private set; }
+        public static List<Game> GamesMD { get; private set; }
+        public static List<Game> GamesGG { get; private set; }
+        public static List<Game> GamesNGP { get; private set; }
+        public static List<Game> GamesPCE { get; private set; }
+        public static List<Game> GamesPCFX { get; private set; }
+        public static List<Game> GamesPSX { get; private set; }
+        public static List<Game> GamesSMS { get; private set; }
+        public static List<Game> GamesNES { get; private set; }
+        public static List<Game> GamesSNES { get; private set; }
+        public static List<Game> GamesSS { get; private set; }
+        public static List<Game> GamesVB { get; private set; }
+        public static List<Game> GamesWSWAN { get; private set; }
+        public static List<Game> GamesPCECD { get; private set; }
 
-        public List<Paths> NonNullPaths { get; private set; }
+        public static List<Paths> NonNullPaths { get; private set; }
 
-        public List<Game> RomsToUpdate { get; set; }
-        public List<Game> RomsToAdd { get; set; }
+        public static List<Game> RomsToUpdate { get; set; }
+        public static List<Game> RomsToAdd { get; set; }
 
-        public List<Game> DisksToUpdate { get; set; }
-        public List<Game> DisksToAdd { get; set; }
+        public static List<Game> DisksToUpdate { get; set; }
+        public static List<Game> DisksToAdd { get; set; }
 
         public List<Game> MarkedAsHidden { get; set; }
 
-        public int AddedStats { get; set; }
-        public int HiddenStats { get; set; }
-        public int UpdatedStats { get; set; }
-        public int UntouchedStats { get; set; }
+        public static int AddedStats { get; set; }
+        public static int HiddenStats { get; set; }
+        public static int UpdatedStats { get; set; }
+        public static int UntouchedStats { get; set; }
 
-        public IEnumerable<DATMerge> DAT { get; set; }
+        public static IEnumerable<DATMerge> DAT { get; set; }
 
         // methods
         public string GetPath(int systemId)
@@ -268,7 +268,7 @@ namespace MedLaunch.Classes
                     path = Paths.systemWswan;
                     break;
                 case 18:
-                    path = Paths.systemPce;
+                    path = Paths.systemPceCd;
                     break;
                 default:
                     path = "";

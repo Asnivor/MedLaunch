@@ -460,7 +460,7 @@ namespace MedLaunch.Classes
             }
 
             // perform mednafen version check and replace/remove config options that are not viable
-            baseStr = VersionCompatibility.GetCompatLaunchString(baseStr);
+            baseStr = Versions.GetCompatLaunchString(baseStr);
 
             // add gamepath to command line
             baseStr += "\"" + BuildFullGamePath(RomFolder, RomPath) + "\"";

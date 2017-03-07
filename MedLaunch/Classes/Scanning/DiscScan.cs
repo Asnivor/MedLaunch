@@ -30,335 +30,59 @@ namespace MedLaunch.Classes.Scanning
                                        where g.systemId == systemId
                                        select g).ToList();
 
-            // disc games at the moment MUST reside in 1st level subfolders within the system folder
+            /* disc games at the moment MUST reside in 1st level subfolders within the system folder */
 
             // get all subfolders within the system folder
             List<string> subs = Directory.GetDirectories(discFolderPath).ToList();
             if (subs.Count == 0)
                 return;
 
+            int foldersFound = subs.Count;
+            int foldersEmpty = 0;
+            int gamesFound = 0;
+            string strBase = "Scanning: ";
+
             // iterate through each sub-directory (should be one game in each)
             for (int i = 0; i < subs.Count; i++)
             {
-                DiscGameFile dgf = new DiscGameFile();
+                //string uiUpdate = strBase + "\nGames Found: " + gamesFound;
+                //dialog.SetMessage(uiUpdate);
 
-                // get all allowed files from this directory
-                IEnumerable<string> discFiles = FileAndFolder.GetFiles(subs[i], false);
+                List<DiscGameFile> game = DetermineDiscFileFromSubFolder(subs[i], systemId);
 
-                if (discFiles.ToList().Count == 0 || discFiles == null)
+                // if none found skip
+                if (game.Count == 0)
                     continue;
 
-                // first, check for M3U files
-                var m3us = (from a in discFiles
-                            where Path.GetExtension(a).Contains("m3u")
-                            select a).ToList();
-
-                string firstCue = "";
-
-                if (m3us.Count > 0)
+                // if a single sheet file in the List, add this to library
+                if (game.Count == 1)
                 {
-                    // m3u(s) have been found. Just take the first one for now
-                    string m3uPath = m3us.First();
-                    // get the first referenced cue/ccd/toc from the m3u file
-                    string[] m = File.ReadAllLines(m3uPath);
-                    foreach (string l in m)
-                    {
-                        if (l == "" || l == " ")
-                            continue;
-                        firstCue = l.Trim();
-                        break;
-                    }
-
-                    dgf = new DiscGameFile(firstCue, systemId);
+                    InsertOrUpdateDisk(game.First(), systemId);
+                    continue;
                 }
 
-                if (firstCue == "")
+                // if multiple, create m3u file
+                if (game.Count > 0)
                 {
-                    // m3u not found - now look for cue
-                    var cues = (from a in discFiles
-                                where Path.GetExtension(a).Contains("cue")
-                                select a).ToList();
-                    if (cues.Count > 0)
-                    {
-                        // cues have been found - order them alphabetically
-                        cues = cues.OrderBy(a => a).ToList();
-
-                        /* create an m3u file */
-                        // Create a list of GameFile Objects to process
-                        List<DiscGameFile> games = new List<DiscGameFile>();
-
-                        // iterate through each game
-                        foreach (string game in cues)
-                        {
-                            // Create a new DiskGameFile instance with all path details
-                            DiscGameFile g = new DiscGameFile(game, systemId);
-                            // add to list
-                            games.Add(g);
-                        }
-
-                        // process the list and create an m3u playlist file - all selected files have to be in the same directory
-                        List<DiscGameFile> ordered = (from a in games
-                                                      select a).OrderBy(a => a.FileName).ToList();
-
-                        // check whether an m3u playlist file already exists
-                        var firstEntry = (from a in ordered
-                                          select a).First();
-
-                        // create string for the new m3u path
-                        string m3uPath = firstEntry.FolderPath + "\\" + firstEntry.GameName + ".m3u";
-                        //MessageBox.Show(m3uPath);
-
-                        // create GameFIle object for the m3u playlist
-                        DiscGameFile mf = new DiscGameFile(m3uPath, systemId);
-
-                        // Attempt M3U creation
-                        bool create = CreateM3uPlaylist(ordered, m3uPath, true);
-                    }
-                }
-            }
-
-            List<string> allowedFiles = new List<string>();
-            foreach (string s in exts)
-            {
-                /*
-                foreach (string p in discFiles)
-                {
-                    if (p.EndsWith(s))
-                    {
-                        //MessageBoxResult result5 = MessageBox.Show(p);
-                        allowedFiles.Add(p);
-                    }
-
-                }
-                */
-                /*
-                List<string> fi = (from a in romFiles
-                         where a.EndsWith(s)
-                         select a).ToList();
-                if (fi == null || fi.Count < 1) { continue; }
-                allowedFiles.AddRange(fi);       
-                */
-            }
-
-            // calculate the number of files to be processed
-            int numFiles = allowedFiles.Count;
-            // set the progress bar limits
-            //dialog.Minimum = 0;
-            //dialog.Maximum = numFiles;
-            int progress = 0;
-            // set base dialog message
-            string strBase = "Scanning: ";
-
-
-            // create new final list to be populated with approved files
-            List<Game> finalGames = new List<Game>();
-
-
-
-            // now we have a list of allowed files, loop through them
-            foreach (string file in allowedFiles)
-            {
-                // get the relative path
-                string relPath = ""; // PathUtil.GetRelativePath(romFolderPath, file);
-                // get just the filename
-                string fileName = System.IO.Path.GetFileName(file);
-                // get just the extension
-                string extension = System.IO.Path.GetExtension(file).ToLower();
-                // get rom name wihout extension
-                string romName = fileName.Replace(extension, "");
-
-                // update UI
-                progress++;
-                string uiUpdate = strBase + fileName + "\n(" + progress + " of " + numFiles + ")";
-                dialog.SetMessage(uiUpdate);
-                //dialog.SetProgress(progress);
-
-                Game newGame = new Game();
-                string hash = String.Empty;
-
-                // inspect archive files
-                if (extension == ".zip" || extension == ".7z")
-                {
-                    bool isAllowed = false;
-                    try
-                    {
-                        Archiving arch = new Archiving(file, systemId);
-                        arch.ProcessArchive();
-                        hash = arch.MD5Hash;
-                        isAllowed = arch.IsAllowed;
-                        if (hash == null)
-                        {
-                            continue;
-                        }
-                    }
-                    catch (System.IO.InvalidDataException ex)
-                    {
-                        // problem with the archive file
-                    }
-                    finally { }
-
-                    if (isAllowed == false) { continue; }
-                }
-                else
-                {
-                    // file is not an archive - calculate md5
-                    //hash = Crypto.Crc32.ComputeFileHash(file);
-                    hash = Crypto.checkMD5(file);
+                    CreateM3uPlaylist(game.OrderBy(a => a.FileName).ToList(), game.First().FolderPath + "\\" + game.First().GameName + ".m3u", true);
+                    // create a new discgamefile for the m3u and add it to library
+                    InsertOrUpdateDisk(new DiscGameFile(game.First().FolderPath + "\\" + game.First().GameName, systemId), systemId);
+                    continue;
                 }
 
+                
 
-                // check whether game already exists (by gameName and systemId)
-                Game chkGame = (from g in Games
-                                where g.systemId == systemId && g.gameName == romName
-                                select g).FirstOrDefault();
-
-                // lookup game in master dat
-                //var sysFilter = DAT.Where(p => p.SystemId == systemId);
-                // var lookup = DAT.Where(p => p.Roms.Any(x => x.MD5.ToUpper().Trim() == hash.ToUpper().Trim())).ToList();
-
-                //var lookup = DAT.Where(p => p.Roms.Any(x => x.MD5.ToUpper() == hash)).ToList();
-                string nHash = hash.ToUpper().Trim().ToString();
-                List<DATMerge> lookup = (from i in DAT
-                                         where i.SystemId == systemId && i.Roms.Any(l => l.MD5.ToUpper().Trim() == hash)
-                                         select i).ToList();
-
-                if (chkGame == null)
-                {
-                    // does not already exist - create new game
-                    newGame.configId = 1;
-
-                    if (lookup != null && lookup.Count > 0)
-                    {
-                        newGame.gameNameFromDAT = lookup.First().GameName;
-                        newGame.Publisher = lookup.First().Publisher;
-                        newGame.Year = lookup.First().Year;
-
-                        // get rom we are interested in
-                        var rom = (from ro in lookup.First().Roms
-                                   where ro.MD5.ToUpper().Trim() == hash.ToUpper().Trim()
-                                   select ro).First();
-                        newGame.romNameFromDAT = rom.RomName;
-                        newGame.Copyright = rom.Copyright;
-                        newGame.Country = rom.Country;
-                        newGame.DevelopmentStatus = rom.DevelopmentStatus;
-                        newGame.Language = rom.Language;
-                        newGame.OtherFlags = rom.OtherFlags;
-
-                        if (rom.Year != null && rom.Year != "")
-                        {
-                            newGame.Year = rom.Year;
-                        }
-                        if (rom.Publisher != null && rom.Publisher != "")
-                        {
-                            newGame.Publisher = rom.Publisher;
-                        }
-
-                    }
-
-                    newGame.gameName = romName;
-                    newGame.gamePath = relPath;
-                    newGame.hidden = false;
-                    newGame.isDiskBased = false;
-                    newGame.isFavorite = false;
-                    newGame.systemId = systemId;
-                    newGame.CRC32 = hash;
-
-                    // add to finaGames list
-                    RomsToAdd.Add(newGame);
-                    // increment the added counter
-                    AddedStats++;
-                }
-                else
-                {
-                    // matching game found - update it
-                    if (chkGame.gamePath == relPath && chkGame.hidden == false && chkGame.CRC32 == hash)
-                    {
-                        //nothing to update - increment untouched counter
-                        UntouchedStats++;
-                    }
-                    else
-                    {
-                        newGame = chkGame;
-                        // update path in case it has changed location
-                        newGame.gamePath = relPath;
-                        // mark as not hidden
-                        newGame.hidden = false;
-
-                        newGame.CRC32 = hash;
-                        if (lookup != null && lookup.Count > 0)
-                        {
-                            newGame.gameNameFromDAT = lookup.First().GameName;
-                            newGame.Publisher = lookup.First().Publisher;
-                            newGame.Year = lookup.First().Year;
-
-                            // get rom we are interested in
-                            var rom = (from ro in lookup.First().Roms
-                                       where ro.MD5.ToUpper().Trim() == hash.ToUpper().Trim()
-                                       select ro).First();
-                            newGame.romNameFromDAT = rom.RomName;
-                            newGame.Copyright = rom.Copyright;
-                            newGame.Country = rom.Country;
-                            newGame.DevelopmentStatus = rom.DevelopmentStatus;
-                            newGame.Language = rom.Language;
-                            newGame.OtherFlags = rom.OtherFlags;
-
-                            if (rom.Year != null && rom.Year != "")
-                            {
-                                newGame.Year = rom.Year;
-                            }
-                            if (rom.Publisher != null && rom.Publisher != "")
-                            {
-                                newGame.Publisher = rom.Publisher;
-                            }
-                        }
-
-                        // add to finalGames list
-                        RomsToUpdate.Add(newGame);
-                        // increment updated counter
-                        UpdatedStats++;
-                    }
-
-                    // remove game from presentGames list - remaining games in this list will be marked as hidden at the end
-                    presentGames.Remove(chkGame);
-
-                }
-            }
-
-            // whatever games are left in the presentGames list should be marked as hidden as they have not been found
-            if (presentGames.Count > 0)
-            {
-                foreach (Game g in presentGames)
-                {
-                    g.hidden = true;
-                    RomsToUpdate.Add(g);
-
-                }
             }
 
             GameListBuilder.UpdateFlag();
 
         }
 
-        public void BeginManualImport(int sysId)
-        {
-            // Start manual import process for a game based on sysId
-            DiscGameFile gameFile = SelectGameFile(sysId);
-            if (gameFile == null)
-            {
-                MessageBox.Show("No valid file was selected", "MedLaunch: Error");
-                return;
-            }
-            else
-            {
-                // Add or update the returned GameFile to the database
-                InsertOrUpdateDisk(gameFile, sysId);
-                SaveToDatabase();
-                MessageBox.Show("Game: " + gameFile.FileName + " has added to (or updated in) the library", "MedLaunch: Import or Update Completed");
-                GameListBuilder.UpdateFlag();
-            }
-
-        }
-
+        /// <summary>
+        /// Manually choose a disc game and import into database/library
+        /// </summary>
+        /// <param name="sysId"></param>
+        /// <returns></returns>
         public DiscGameFile SelectGameFile(int sysId)
         {
             // get allowed file types for this system
@@ -449,6 +173,26 @@ namespace MedLaunch.Classes.Scanning
                 // no files selected - return empty string
                 return null;
             }
+        }
+
+        public void BeginManualImport(int sysId)
+        {
+            // Start manual import process for a game based on sysId
+            DiscGameFile gameFile = SelectGameFile(sysId);
+            if (gameFile == null)
+            {
+                MessageBox.Show("No valid file was selected", "MedLaunch: Error");
+                return;
+            }
+            else
+            {
+                // Add or update the returned GameFile to the database
+                InsertOrUpdateDisk(gameFile, sysId);
+                SaveToDatabase();
+                MessageBox.Show("Game: " + gameFile.FileName + " has added to (or updated in) the library", "MedLaunch: Import or Update Completed");
+                GameListBuilder.UpdateFlag();
+            }
+
         }
 
         public void InsertOrUpdateDisk(DiscGameFile f, int sysId)
@@ -588,18 +332,20 @@ namespace MedLaunch.Classes.Scanning
         }
 
         /// <summary>
-        /// Examine a disc game folder and return a *SINGLE* DiscGameFile
+        /// Examine a disc game folder and return a DiscGameFile List ( may contain singles or multiples depending on logic)
         /// </summary>
         /// <param name="folderPath"></param>
         /// <returns></returns>
-        public static DiscGameFile DetermineDiscFileFromSubFolder(string folderPath, int sysId)
+        public static List<DiscGameFile> DetermineDiscFileFromSubFolder(string folderPath, int sysId)
         {
+            List<DiscGameFile> list = new List<DiscGameFile>();
             DiscGameFile gdf = new DiscGameFile();
-
+            
             // get all files in the folder (that have extensions we are interested in)
             List<string> cueFiles = ( from a in FileAndFolder.GetFiles(folderPath, false)
                                              where a.ToLower().Contains(".m3u") ||
                                              a.ToLower().Contains(".cue") ||
+                                             a.ToLower().Contains(".ccd") ||
                                              a.ToLower().Contains(".toc")
                                              select a).ToList();
 
@@ -609,39 +355,141 @@ namespace MedLaunch.Classes.Scanning
             int ccdCount = cueFiles.Where(a => a.ToLower().Contains(".ccd")).ToList().Count();
             int tocCount = cueFiles.Where(a => a.ToLower().Contains(".toc")).ToList().Count();
 
-            // check for m3u first and return this
+            // check for m3u first and return this (first one) if found
             if (m3uCount > 0)
             {
                 string m3uFile = cueFiles.Where(a => a.ToLower().Contains(".m3u")).ToList().First();
                 gdf = new DiscGameFile(m3uFile, sysId);
-                return gdf;
+                list.Add(gdf);
+                return list;
             }
 
             // if we have got this far then no m3u was detected - now check for SINGLE cue files (denoting one game)
-            if (cueCount == 1)
+            if (cueCount == 1 && ccdCount == 0 && tocCount == 0)
             {
                 string cueFile = cueFiles.Where(a => a.ToLower().Contains(".cue")).ToList().First();
                 gdf = new DiscGameFile(cueFile, sysId);
-                return gdf;
+                list.Add(gdf);
+                return list;
             }
 
             // now check for single ccd
-            if (ccdCount == 1)
+            if (ccdCount == 1 && cueCount == 0 && tocCount == 0)
             {
                 string ccdFile = cueFiles.Where(a => a.ToLower().Contains(".ccd")).ToList().First();
                 gdf = new DiscGameFile(ccdFile, sysId);
-                return gdf;
+                list.Add(gdf);
+                return list;
             }
 
             // now check for single toc
-            if (tocCount == 1)
+            if (tocCount == 1 && cueCount == 0 && ccdCount == 0)
             {
                 string tocFile = cueFiles.Where(a => a.ToLower().Contains(".toc")).ToList().First();
-                gdf = new DiscGameFile(tocFile, sysId);
-                return gdf;
+                list.Add(gdf);
+                return list;
             }
 
-            // done with m3us and single sheet files - now comes multiples
+            /* done with m3us and single sheet files - now comes multiples logic */
+
+            // get ALL sheet files (not including m3us)
+            List<string> sheets = (from a in cueFiles
+                                   where !a.ToLower().Contains(".m3u")
+                                   select a).ToList();
+
+            // instantiate working set
+            List<DiscGameFile> working = new List<DiscGameFile>();
+
+            List<string> disc1 = new List<string>();
+            List<string> disc2 = new List<string>();
+            List<string> disc3 = new List<string>();
+            List<string> disc4 = new List<string>();
+            List<string> disc5 = new List<string>();
+            List<string> disc6 = new List<string>();                      
+
+            // lookup based on disc number
+            for (int sheet = 0; sheet < sheets.Count; sheet++)
+            {
+                if (sheets[sheet].ToLower().Contains("disc " + (sheet + 1)) ||
+                    sheets[sheet].ToLower().Contains("cd " + (sheet + 1)))
+                {
+                    switch (sheet + 1)
+                    {
+                        case 1: disc1.Add(sheets[sheet]); break;
+                        case 2: disc2.Add(sheets[sheet]); break;
+                        case 3: disc3.Add(sheets[sheet]); break;
+                        case 4: disc4.Add(sheets[sheet]); break;
+                        case 5: disc5.Add(sheets[sheet]); break;
+                        case 6: disc6.Add(sheets[sheet]); break;
+                    }
+                }
+            }
+            List<List<string>> combined = new List<List<string>>
+            {
+                disc1, disc2, disc3, disc4, disc5, disc6
+            };
+
+            // now loop through the combined object
+            for (int disc = 0; disc < 6; disc++)
+            {
+                // if disc 1 is not present, then dont go any further
+                if (combined[0].Count == 0)
+                    break;
+
+                // if there is a single disc only per disc list then add it to working
+                if (combined[disc].Count == 1)
+                    working.Add(new DiscGameFile(combined[disc].First(), sysId));
+
+                // if there are multiple discs per disc list then we have to loop through each of them and check whether they are valid
+                if (combined[disc].Count > 1)
+                {
+                    foreach (string s in combined[disc])
+                    {
+                        string test = null;
+                        switch (Path.GetExtension(s).ToLower())
+                        {
+                            case ".cue":
+                                test = ParseNonM3UTrackSheetString(s, CueType.cue, sysId);
+                                break;
+
+                            case ".ccd":
+                                test = ParseNonM3UTrackSheetString(s, CueType.ccd, sysId);
+                                break;
+
+                            case ".toc":
+                                test = ParseNonM3UTrackSheetString(s, CueType.toc, sysId);
+                                break;
+                        }
+
+                        // continue if nothing returned
+                        if (test == null || test == "")
+                            continue;
+
+                        // prefer cue
+                        if (Path.GetExtension(test).ToLower() == ".cue")
+                        {
+                            working.Add(new DiscGameFile(s, sysId));
+                            break;
+                        }
+                        // then ccd
+                        if (Path.GetExtension(test).ToLower() == ".ccd")
+                        {
+                            working.Add(new DiscGameFile(s, sysId));
+                            break;
+                        }
+                        // then toc
+                        if (Path.GetExtension(test).ToLower() == ".toc")
+                        {
+                            working.Add(new DiscGameFile(s, sysId));
+                            break;
+                        }
+                    }
+                }
+            }
+
+            // now - working should contain all disc(s) for this particular game
+            return working;
+
         }
 
         /// <summary>
@@ -667,6 +515,24 @@ namespace MedLaunch.Classes.Scanning
             return false;
         }
 
+        public static string ParseNonM3UTrackSheetString(string trackSheet, CueType sheetType, int systemId)
+        {
+            List<DiscGameFile> r = ParseTrackSheet(new DiscGameFile(trackSheet, systemId), sheetType, systemId);
+            if (r.Count == 0)
+                return null;
+            else
+            {
+                return r.First().FullPath;
+            }
+        }
+
+        /// <summary>
+        /// Takes a cue, m3u, ccd or toc and returns a List<DiscGameFile> object containing all the referenced (or implied) files
+        /// </summary>
+        /// <param name="trackSheet"></param>
+        /// <param name="sheetType"></param>
+        /// <param name="systemId"></param>
+        /// <returns></returns>
         public static List<DiscGameFile> ParseTrackSheet(DiscGameFile trackSheet, CueType sheetType, int systemId)
         {
             List<DiscGameFile> working = new List<DiscGameFile>();

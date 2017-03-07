@@ -37,6 +37,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>MedLaunchIcon.ico</ApplicationIcon>
@@ -339,7 +340,6 @@
     <Compile Include="Classes\VisualHandlers\ConfigsVisualHandler.cs" />
     <Compile Include="Classes\DbMigration.cs" />
     <Compile Include="Classes\EventArgs.cs" />
-    <Compile Include="Classes\GameScraper.cs" />
     <Compile Include="Classes\GamesLibData.cs" />
     <Compile Include="Classes\GamesLibrary\GamesLibraryScrapedContent.cs" />
     <Compile Include="Classes\VisualHandlers\ControlsVisualHandler.cs" />

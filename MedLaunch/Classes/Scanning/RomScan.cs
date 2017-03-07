@@ -67,11 +67,8 @@ namespace MedLaunch.Classes.Scanning
             // set base dialog message
             string strBase = "Scanning: ";
 
-
             // create new final list to be populated with approved files
             List<Game> finalGames = new List<Game>();
-
-
 
             // now we have a list of allowed files, loop through them
             foreach (string file in allowedFiles)
