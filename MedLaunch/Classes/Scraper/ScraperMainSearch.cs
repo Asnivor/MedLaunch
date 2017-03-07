@@ -209,7 +209,7 @@ namespace MedLaunch.Classes.MasterScraper
             // add this to the class
             SearchString = s;
             // remove all - : _ '
-            s = s.Replace(" - ", " ").Replace("_", "").Replace(": ", " ").Replace(" : ", " ").Replace(":", "").Replace("'", "").Replace("-", " ").Trim();
+            s = s.Replace(" - ", " ").Replace("_", " ").Replace(": ", " ").Replace(" : ", " ").Replace(":", "").Replace("'", "").Replace("-", " ").Trim();
             // remove all roman numerals
             /*
             s.Replace(" I", " ");
