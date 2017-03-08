@@ -658,9 +658,9 @@ namespace MedLaunch
                 {
                     controller.SetMessage(output + "\nUpdating Database");
                     if (mediaType == MediaType.ROM)
-                        rs.SaveToDatabase();
+                        GameScanner.SaveToDatabase();
                     if (mediaType == MediaType.DISC)
-                        ds.SaveToDatabase();
+                        GameScanner.SaveToDatabase();
                 }
 
             });

@@ -25,6 +25,7 @@ namespace MedLaunch.Classes.Scanning
         public string romFolderPath { get; set; }
         public int systemId { get; set; }
         public List<Archiving> ArchiveFiles { get; set; }
+        public bool IsSingleRomInArchive { get; set; }
 
         public RomScan()
         {
@@ -70,7 +71,7 @@ namespace MedLaunch.Classes.Scanning
             }
 
             // calculate the number of files to be processed
-            int numFiles = allowedFiles.Count;
+            numFiles = allowedFiles.Count;
             progress = 0;
             // set base dialog message
             strBase = "Scanning: ";
@@ -88,6 +89,7 @@ namespace MedLaunch.Classes.Scanning
                 {
                     g.hidden = true;
                     RomsToUpdate.Add(g);
+                    HiddenStats++;
                 }
             }
 
@@ -123,24 +125,43 @@ namespace MedLaunch.Classes.Scanning
                     arch.ProcessArchive();
 
                     // retrieve the list of archive objects retrieved
-
-                    if (arch.IsSingleFileInArchive == true)
+                    if (Archiving.ArchiveMultiple.Count == 1)
                     {
+                        IsSingleRomInArchive = true;
                         // single allowed rom file in archive detected - parse the archive as a normal game
-                        hash = arch.MD5Hash;
-                        isAllowed = arch.IsAllowed;
+                        hash = Archiving.ArchiveMultiple[0].MD5Hash;
+                        isAllowed = Archiving.ArchiveMultiple[0].IsAllowed;
                         if (hash == null)
                         {
                             // hash could not be calculated - skip on general principle
                             return;
                         }
+
+                        if (isAllowed == false)
+                            return;
+
+                        ProcessGame(romName, hash, relPath, fileName, extension);
+                    }
+                    else if (Archiving.ArchiveMultiple.Count == 0)
+                    {
+                        // no files returned
+                        return;
                     }
                     else
                     {
+                        IsSingleRomInArchive = false;
                         // multiple allowed rom files in archive detected - add to list to process later
                         foreach (var a in Archiving.ArchiveMultiple.Where(i => i.IsAllowed == true))
                         {
-                            ArchiveFiles.Add(a);
+                            //ArchiveFiles.Add(a);
+                            // actual rom extension - not archive extension
+                            string romExtension = "." + (a.FileName.Split('.').Last());
+                            // generate relative path (normal archive path + "*/")
+                            string romRelPath = relPath + "*/" + a.FileName;
+                            // get romname without extension
+                            string name = a.FileName.Replace(romExtension, "");
+
+                            ProcessGame(name, a.MD5Hash, romRelPath, a.FileName, romExtension);
                         }
                     }
                 }
@@ -150,30 +171,26 @@ namespace MedLaunch.Classes.Scanning
                 }
                 finally { }
 
-                if (isAllowed == false) { return; }
+                //if (isAllowed == false) { return; }
             }
             else
             {
                 // file is not an archive - calculate md5
                 //hash = Crypto.Crc32.ComputeFileHash(file);
                 hash = Crypto.checkMD5(file);
+
+                /* process single game (no archive) */
+
+                if (extension.ToLower().Contains("7z") || extension.ToLower().Contains("zip"))
+                    return;
+
+                ProcessGame(romName, hash, relPath, fileName, extension);
             }
 
-            /* process single game */
-            ProcessGame(romName, hash, relPath, fileName, extension);
+            
 
-            /* process multi-archive games */
-            foreach (var aGame in ArchiveFiles)
-            {
-                // actual rom extension - not archive extension
-                string romExtension = "." + (aGame.FileName.Split('.').Last());
-                // generate relative path (normal archive path + "*/")
-                string romRelPath = relPath + "*/" + aGame.FileName;
-                // get romname without extension
-                string name = aGame.FileName.Replace(romExtension, "");
-
-                ProcessGame(name, aGame.MD5Hash, romRelPath, aGame.FileName, romExtension);
-            }
+            
+                
         }
 
         public void ProcessGame(string romName, string hash, string relPath, string fileName, string extension)

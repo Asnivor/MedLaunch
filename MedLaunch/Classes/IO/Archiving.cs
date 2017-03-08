@@ -41,9 +41,15 @@ namespace MedLaunch.Classes.IO
             IsSingleFileInArchive = false;
         }
 
-        public Archiving()
+        public Archiving(string _hash, string filename, string archivePath, int systemId)
         {
-
+            IsAllowed = true;
+            ArchivePath = archivePath;
+            SystemId = systemId;
+            ArchiveExtension = System.IO.Path.GetExtension(ArchivePath).ToLower();
+            IsSingleFileInArchive = false;
+            FileName = filename;
+            MD5Hash = _hash;
         }
 
         /* methods */
@@ -63,16 +69,18 @@ namespace MedLaunch.Classes.IO
                 using (ZipArchive zip = ZipFile.OpenRead(ArchivePath))
                 {
                     // count the number of allowed files
-                    int allowedCount = zip.Entries.Count();
+                    int allowedCount = 0;
                     foreach (var t in zip.Entries)
                     {
                         if (GSystem.IsFileAllowed(t.FullName, SystemId) == true)
                         {
-                            if (!t.FullName.ToLower().Contains(".zip") &&
-                                !t.FullName.ToLower().Contains(".7z"))
-                            {
-                                allowedCount++;
-                            }                                
+                            if (t.FullName.ToLower().Contains(".zip"))
+                                continue;
+
+                            if (!t.FullName.ToLower().Contains(".7z"))
+                                continue;
+
+                            allowedCount++;
                         }
                     }
                     if (allowedCount == 1)
@@ -103,7 +111,7 @@ namespace MedLaunch.Classes.IO
                                     this.MD5Hash = h;
                                     this.FileName = entry.FullName;
 
-                                    ArchiveMultiple.Add(this);
+                                    ArchiveMultiple.Add(new Archiving(h, entry.FullName, ArchivePath, SystemId));
                                 }
                             }
                         }
@@ -120,24 +128,25 @@ namespace MedLaunch.Classes.IO
             {
                 var archive = ArchiveFactory.Open(ArchivePath);
 
-                // count the number of allowed files
-                int allowedCount = archive.Entries.Count();
-                foreach (var entry in archive.Entries.Where(a => a.IsDirectory))
+                int allowedCount = 0;
+                foreach (var t in archive.Entries)
                 {
-                    if (GSystem.IsFileAllowed(entry.Key, SystemId) == true)
+                    if (GSystem.IsFileAllowed(t.Key, SystemId) == true)
                     {
-                        if (!entry.Key.ToLower().Contains(".zip") &&
-                            !entry.Key.ToLower().Contains(".7z"))
-                        {
-                            allowedCount++;
-                        }                            
+                        if (t.Key.ToLower().Contains(".zip"))
+                            continue;
+
+                        if (!t.Key.ToLower().Contains(".7z"))
+                            continue;
+
+                        allowedCount++;
                     }
                 }
 
                 if (allowedCount == 1)
                 {
                     // if only one allowed file is detected in the archive - set the flag
-                    IsSingleFileInArchive = true;
+                    //IsSingleFileInArchive = true; // dont do this for 7z as they need to be extracted anyways
                 }
 
                 foreach (SevenZipArchiveEntry entry in archive.Entries)
@@ -165,7 +174,7 @@ namespace MedLaunch.Classes.IO
                                 FileName = entry.Key;
                                 FileSize = entry.Size;
 
-                                ArchiveMultiple.Add(this);
+                                ArchiveMultiple.Add(new Archiving(h, entry.Key, ArchivePath, SystemId));
                             }
                         }
                     }
@@ -222,6 +231,53 @@ namespace MedLaunch.Classes.IO
                 }
             }
             return tmp;
+        }
+
+        public static string SetupArchiveChild(string archivePath, string archiveFile, string outputDir)
+        {
+            string romPath = string.Empty;
+
+            IArchive archive = ArchiveFactory.Open(archivePath);
+
+            if (archive.Type == SharpCompress.Common.ArchiveType.SevenZip)
+            {
+                SevenZipArchive sev = (SevenZipArchive) archive;
+                SevenZipArchiveEntry rom = (from a in sev.Entries
+                                            where a.Key == archiveFile
+                                            select a).FirstOrDefault();
+                if (rom != null)
+                {
+                    try
+                    {
+                        rom.WriteToDirectory(outputDir, new SharpCompress.Readers.ExtractionOptions() { Overwrite = true });
+                    }
+                    catch { System.IO.IOException ex; }
+
+                    return outputDir + "\\" + rom.Key;
+                }
+                          
+            }
+            if (archive.Type == SharpCompress.Common.ArchiveType.Zip)
+            {
+                SharpCompress.Archives.Zip.ZipArchive zip = (SharpCompress.Archives.Zip.ZipArchive) archive;
+                SharpCompress.Archives.Zip.ZipArchiveEntry rom2 = (from a in zip.Entries
+                                                                   where a.Key == archiveFile
+                                                                   select a).FirstOrDefault();
+
+                if (rom2 != null)
+                {
+                    try
+                    {
+                        rom2.WriteToDirectory(outputDir, new SharpCompress.Readers.ExtractionOptions() { Overwrite = true });
+                    }
+
+                    catch { System.IO.IOException ex; }
+                    
+                    return outputDir + "\\" + rom2.Key;
+                }
+            }
+
+            return romPath;
         }
     }
 }

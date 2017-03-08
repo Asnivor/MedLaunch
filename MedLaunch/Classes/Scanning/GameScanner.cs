@@ -25,7 +25,7 @@ namespace MedLaunch.Classes
 {
     public class GameScanner
     {
-        private MyDbContext db;
+        public static MyDbContext db;
 
         // constructor
         public GameScanner()
@@ -278,9 +278,9 @@ namespace MedLaunch.Classes
         }  
 
 
-        public void SaveToDatabase()
+        public static void SaveToDatabase()
         {
-            using (var ndb = new MyDbContext())
+            using (db)
             {
                 db.AddRange(RomsToAdd);
                 db.UpdateRange(RomsToUpdate);

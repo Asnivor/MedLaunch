@@ -636,6 +636,7 @@ namespace MedLaunch.Classes
         private string BuildFullGamePath(string GamesFolder, string GamePath)
         {
             string path = string.Empty;
+            string extension = string.Empty;
 
             // check whether relative or absolute path has been set in the database for this game
             if (RomPath.StartsWith("."))
@@ -649,48 +650,77 @@ namespace MedLaunch.Classes
                 path = GamePath;
             }
 
-            // now do 7zip processing if neccesary
-            string extension = System.IO.Path.GetExtension(path).ToLower();
+            // create cache directory if it does not exist
+            string cacheDir = AppDomain.CurrentDomain.BaseDirectory + "Data\\Cache";
+            Directory.CreateDirectory(cacheDir);
 
-            if (extension == ".7z")
+            /* now do archive processing */
+            if (path.Contains("*/"))
             {
-                /* 7zip archive detected - extract contents to cache directory and modify path variable accordingly */
+                // this is an archive file with a direct reference to a ROM inside
+                string[] arr = path.Split(new string[] { "*/" }, StringSplitOptions.None);
+                string archivePath = arr[0];
+                string archiveFile = arr[1];
 
-                // create cache directory if it does not exist
-                string cacheDir = AppDomain.CurrentDomain.BaseDirectory + "Data\\Cache";
-                Directory.CreateDirectory(cacheDir);
+                // copy specific rom from archive to cache folder and get cache rom path
+                string cacheRom = Archiving.SetupArchiveChild(archivePath, archiveFile, cacheDir);
 
-                // inspect the archive
-                Archiving arch = new Archiving(path, SystemId);
-                arch.ProcessArchive();
-
-                // get filename
-                string filename = arch.FileName;
-
-                // get filesize
-                long filesize = arch.FileSize;
-
-                // check whether file already exists in cache
-                string cacheFile = cacheDir + "\\" + filename;
-                if (File.Exists(cacheFile))
+                if (cacheRom != string.Empty)
                 {
-                    // file exists - check size
-                    long length = new System.IO.FileInfo(cacheFile).Length;
+                    return cacheRom;
+                }
 
-                    if (length != filesize)
+            }
+            else if (path.ToLower().Contains(".7z") || path.ToLower().Contains(".zip"))
+            {
+                // This is a standard archive with no defined link
+                extension = System.IO.Path.GetExtension(path).ToLower();
+
+                if (extension == ".7z")
+                {
+                    /* archive detected - extract contents to cache directory and modify path variable accordingly
+                     * this is a legacy option really - in case people have a single rom in a .7z file in their library that 
+                     * has not been directly referenced in the gamepath */
+
+                    // inspect the archive
+                    Archiving arch = new Archiving(path, SystemId);
+                    arch.ProcessArchive();
+
+                    // get filename
+                    string filename = arch.FileName;
+
+                    // get filesize
+                    long filesize = arch.FileSize;
+
+                    // check whether file already exists in cache
+                    string cacheFile = cacheDir + "\\" + filename;
+                    if (File.Exists(cacheFile))
                     {
+                        // file exists - check size
+                        long length = new System.IO.FileInfo(cacheFile).Length;
+
+                        if (length != filesize)
+                        {
+                            arch.ExtractArchive(cacheDir);
+                        }
+                    }
+                    else
+                    {
+                        // extract contents of archive to cache folder
                         arch.ExtractArchive(cacheDir);
                     }
-                }
-                else
-                {
-                    // extract contents of archive to cache folder
-                    arch.ExtractArchive(cacheDir);
+
+                    // return the new path to the rom
+                    return cacheFile;
                 }
 
-                // return the new path to the rom
-                return cacheFile;
+                else //zip
+                {
+                    // this should be a zip file with a single rom inside - pass directly to mednafen as is
+                    return path;
+                }
             }
+            
 
             return path;
         }
