@@ -153,7 +153,10 @@ namespace MedLaunch.Classes
         {
             // get all servers
             var servers = ConfigServerSettings.GetServers()
-                .Where(a => a.netplay__host != null).ToList();
+                .Where(a => a.netplay__host != null &&
+                a.netplay__gamekey != null &&
+                a.netplay__password != null &&
+                a.netplay__port != null).ToList();
 
             if (servers == null || servers.Count == 0)
                 return;
