@@ -152,7 +152,8 @@ namespace MedLaunch.Classes
         public static void PopulateServers(DataGrid lvServers)
         {
             // get all servers
-            var servers = ConfigServerSettings.GetServers();
+            var servers = ConfigServerSettings.GetServers()
+                .Where(a => a.netplay__host != null).ToList();
 
             if (servers == null || servers.Count == 0)
                 return;
