@@ -4280,6 +4280,87 @@ namespace MedLaunch
             }
         }
 
+        private async void buildSaturnJson_Click(object sender, RoutedEventArgs e)
+        {
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel",
+                AnimateShow = false,
+                AnimateHide = false
+            };
+            var controller = await this.ShowProgressAsync("JSON Builder", "Building Saturn JSON", true, settings: mySettings);
+            controller.SetCancelable(true);
+            controller.SetIndeterminate();
+            await Task.Delay(1);
+
+
+            string filepath = AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\SaturnList.txt";
+            string[] all = File.ReadAllLines(filepath);
+
+            // process text file
+            // lose the first two lines
+            string allstr = "";
+            for (int i = 2; i < all.Length; i++)
+                allstr += all[i] + "\n";
+
+            // split into blocks
+            string[] blocks = allstr.Split(new string[] { "\n\n\n" }, StringSplitOptions.None);
+
+            foreach (string block in blocks)
+            {
+                string[] arr = block.Split('\n');
+
+                // some blocks helpfully have line breaks in - repair these first
+                int correctionCount = 0;
+                if (arr.Length >= 17)
+                {
+                    int newLength = arr.Length;
+                    for (int i = 0; i < newLength; i++)
+                    {
+                        if (arr[i].Trim() == "")
+                        {
+                            var foos = new List<string>(arr);
+                            foos.RemoveAt(i);
+                            arr = foos.ToArray();
+                            i--;
+                            newLength--;
+                            continue;
+                        }
+                        if (!arr[i].Contains(":"))
+                        {
+                            // this line has spilled over
+                            arr[i - 1] = arr[i - 1] + arr[i];
+                            correctionCount++;
+                            newLength--;
+                        }
+                        else
+                        {
+                            arr[i - correctionCount] = arr[i];
+                        }
+                    }
+                    arr = arr.Distinct().ToArray();
+                }
+
+            }
+
+
+
+            await controller.CloseAsync();
+
+            if (controller.IsCanceled)
+            {
+                await this.ShowMessageAsync("DAT Builder", "Linking Cancelled");
+                GameListBuilder.UpdateFlag();
+                GamesLibraryVisualHandler.RefreshGamesLibrary();
+            }
+            else
+            {
+                await this.ShowMessageAsync("DAT Builder", "Linking Completed");
+                GameListBuilder.UpdateFlag();
+                GamesLibraryVisualHandler.RefreshGamesLibrary();
+            }
+        }
+
 
 
 

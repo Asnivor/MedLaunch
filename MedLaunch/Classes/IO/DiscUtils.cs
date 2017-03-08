@@ -176,14 +176,8 @@ namespace MedLaunch.Classes.IO
             // parse the txt file
             string[] lines = File.ReadAllLines(ListPath);
 
-            // lose the first two lines
-            string all = "";
-            for (int i = 2; i < lines.Length; i++)
-                all += lines[i] + "\n";
-
-            // split by double line breaks
-            string[] games = all.Split(new string[] { "\n\n" }, StringSplitOptions.None);
-
+            
+            /*
             // iterate through each game block
             foreach (string block in games)
             {
@@ -198,11 +192,6 @@ namespace MedLaunch.Classes.IO
                         if (li != "")
                          eachline.Add(li);
                         // split by :
-                        /*
-                        string[] lr = li.Split(':');
-                        string left = lr[0].Trim();
-                        string right = lr[1].Trim();
-                        */
                     }
                 }
 
@@ -227,6 +216,8 @@ namespace MedLaunch.Classes.IO
 
                 SaturnGamesList.Add(sg);
             }
+            */
+
 
         }
     }
