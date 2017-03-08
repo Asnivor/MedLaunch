@@ -454,7 +454,7 @@
                             <Expander IsExpanded="True" BorderThickness="0" Header="Scanning" >
                                 <StackPanel x:Name="spScanning">
                                     <Button Style="{StaticResource MenuButton}"  x:Name="btnRescanRoms" HorizontalContentAlignment="Left" Background="{DynamicResource AccentColorBrush}" Click="RescanRoms">Rescan All Roms</Button>
-                                    <Button Style="{StaticResource MenuButton}"  x:Name="btnRescanDisks" HorizontalContentAlignment="Left" Background="{DynamicResource AccentColorBrush}" Click="RescanDisks">Rescan All Disks</Button>
+                                    <Button Style="{StaticResource MenuButton}"  x:Name="btnRescanDisks" HorizontalContentAlignment="Left" Background="{DynamicResource AccentColorBrush}" Click="RescanDisks">Rescan All Discs</Button>
                                 </StackPanel>
                             </Expander>
                         </Border>

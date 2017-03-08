@@ -250,7 +250,7 @@ namespace MedLaunch
             PsxSBI psxsbi = new PsxSBI();
 
             // initilisse saturn lookup class
-            SaturnLookup satlook = new SaturnLookup();
+            //SaturnLookup satlook = new SaturnLookup();
 
 
 

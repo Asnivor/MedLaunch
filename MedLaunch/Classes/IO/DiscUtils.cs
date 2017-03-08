@@ -195,7 +195,8 @@ namespace MedLaunch.Classes.IO
                     string li;
                     while ((li = sr.ReadLine()) != null)
                     {
-                        eachline.Add(li);
+                        if (li != "")
+                         eachline.Add(li);
                         // split by :
                         /*
                         string[] lr = li.Split(':');

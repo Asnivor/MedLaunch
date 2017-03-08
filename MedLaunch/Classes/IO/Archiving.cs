@@ -24,19 +24,26 @@ namespace MedLaunch.Classes.IO
         public string MD5Hash { get; set; }
         public string FileName { get; set; }
         public long FileSize { get; set; }
+        public bool IsSingleFileInArchive { get; set; }
 
         public static List<Archiving> ArchiveMultiple { get; set; }
 
         // constructors
         public Archiving(string archivePath, int systemId)
         {
-            if (ArchiveMultiple == null)
-                ArchiveMultiple = new List<Archiving>();
+            //if (ArchiveMultiple == null)
+            ArchiveMultiple = new List<Archiving>();
 
             IsAllowed = false;
             ArchivePath = archivePath;
             SystemId = systemId;
             ArchiveExtension = System.IO.Path.GetExtension(ArchivePath).ToLower();
+            IsSingleFileInArchive = false;
+        }
+
+        public Archiving()
+        {
+
         }
 
         /* methods */
@@ -55,8 +62,35 @@ namespace MedLaunch.Classes.IO
             {
                 using (ZipArchive zip = ZipFile.OpenRead(ArchivePath))
                 {
+                    // count the number of allowed files
+                    int allowedCount = zip.Entries.Count();
+                    foreach (var t in zip.Entries)
+                    {
+                        if (GSystem.IsFileAllowed(t.FullName, SystemId) == true)
+                        {
+                            if (!t.FullName.ToLower().Contains(".zip") &&
+                                !t.FullName.ToLower().Contains(".7z"))
+                            {
+                                allowedCount++;
+                            }                                
+                        }
+                    }
+                    if (allowedCount == 1)
+                    {
+                        // if only one allowed file is detected in the archive - set the flag
+                        IsSingleFileInArchive = true;
+                    }                    
+
+                    // iterate through each entry
                     foreach (ZipArchiveEntry entry in zip.Entries)
                     {
+                        // if this file is actually an archive then skip it
+                        if (entry.FullName.ToLower().Contains(".zip") ||
+                            entry.FullName.ToLower().Contains(".7z"))
+                        {
+                            continue;
+                        }
+
                         if (GSystem.IsFileAllowed(entry.FullName, SystemId) == true)
                         {
                             IsAllowed = true;
@@ -66,8 +100,10 @@ namespace MedLaunch.Classes.IO
                                 using (var stream = entry.Open())
                                 {
                                     string h = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty);
-                                    MD5Hash = h;
-                                    FileName = entry.FullName;
+                                    this.MD5Hash = h;
+                                    this.FileName = entry.FullName;
+
+                                    ArchiveMultiple.Add(this);
                                 }
                             }
                         }
@@ -83,10 +119,38 @@ namespace MedLaunch.Classes.IO
             if (ArchiveExtension == ".7z")
             {
                 var archive = ArchiveFactory.Open(ArchivePath);
+
+                // count the number of allowed files
+                int allowedCount = archive.Entries.Count();
+                foreach (var entry in archive.Entries.Where(a => a.IsDirectory))
+                {
+                    if (GSystem.IsFileAllowed(entry.Key, SystemId) == true)
+                    {
+                        if (!entry.Key.ToLower().Contains(".zip") &&
+                            !entry.Key.ToLower().Contains(".7z"))
+                        {
+                            allowedCount++;
+                        }                            
+                    }
+                }
+
+                if (allowedCount == 1)
+                {
+                    // if only one allowed file is detected in the archive - set the flag
+                    IsSingleFileInArchive = true;
+                }
+
                 foreach (SevenZipArchiveEntry entry in archive.Entries)
                 {
                     if (entry.IsDirectory)
                         continue;
+
+                    // if this file is actually an archive then skip it
+                    if (entry.Key.ToLower().Contains(".zip") ||
+                        entry.Key.ToLower().Contains(".7z"))
+                    {
+                        continue;
+                    }
 
                     if (GSystem.IsFileAllowed(entry.Key, SystemId) == true && !entry.IsDirectory)
                     {
@@ -100,6 +164,8 @@ namespace MedLaunch.Classes.IO
                                 MD5Hash = h;
                                 FileName = entry.Key;
                                 FileSize = entry.Size;
+
+                                ArchiveMultiple.Add(this);
                             }
                         }
                     }
