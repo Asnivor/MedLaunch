@@ -4,6 +4,7 @@ using MedLaunch.Classes.IO;
 using MedLaunch.Classes.Scraper.DAT.Models;
 using MedLaunch.Models;
 using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,6 +17,15 @@ namespace MedLaunch.Classes.Scanning
 {
     public class DiscScan : GameScanner
     {
+        public List<SaturnGame> SatGamesList { get; set; }
+
+        public DiscScan()
+        {
+            // populate SatGamesList
+            string json = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\SaturnGames.json");
+            SatGamesList = JsonConvert.DeserializeObject<List<SaturnGame>>(json);
+        }
+
         // Start Disc scan and import process for specific system
         public void BeginDiscImport(int systemId, ProgressDialogController dialog)
         {            
@@ -70,9 +80,6 @@ namespace MedLaunch.Classes.Scanning
                     InsertOrUpdateDisk(new DiscGameFile(game.First().FolderPath + "\\" + game.First().GameName + ".m3u", systemId), systemId);
                     continue;
                 }
-
-                
-
             }
 
             GameListBuilder.UpdateFlag();
@@ -196,44 +203,71 @@ namespace MedLaunch.Classes.Scanning
 
         }
 
-        public void InsertOrUpdateDisk(DiscGameFile f, int sysId)
+        public Game ReturnMatchingGame(DiscGameFile f, int sysId)
         {
-            // check whether game already exists (by gameName and systemId)
-            Game chkGame = (from g in Games
-                            where g.systemId == sysId && g.gameName == f.GameName
-                            select g).SingleOrDefault();
+            Game lookupGame = new Game();
 
-            // create new Game object for import
-            Game newGame = new Game();
-
-            string hash = string.Empty;
-
-            // calculate MD5 checksum hashes            
-            if (f.Extension.Contains("m3u"))
+            // different kinds of lookup queries depending on system
+            switch (sysId)
             {
-                // this is an m3u playlist - inspect and get relevant cue files
-                string[] lines = File.ReadAllLines(f.FullPath);
+                case 9:             // psx
+                case 13:            // ss
+                    // lookup with serial number
+                    if (f.ExtraInfo != null && f.ExtraInfo != "")
+                    {                        
+                        lookupGame = (from g in Games
+                                      where (g.systemId == sysId && g.gameName == f.GameName) || g.disks == f.ExtraInfo
+                                      select g).SingleOrDefault();
+                    }
+                    else
+                    {
 
-                if (lines.Length > 0)
-                {
-                    // get hash for first cue/toc/ccd
-                    hash = Crypto.checkMD5(f.FolderPath + "\\" + lines[0]);
-                }
+                        lookupGame = (from g in Games
+                                      where (g.systemId == sysId && g.gameName == f.GameName)
+                                      select g).SingleOrDefault();
+                    }  
+                    break;
+
+                default:            // everything else
+                    lookupGame = (from g in Games
+                                  where (g.systemId == sysId && g.gameName == f.GameName)
+                                  select g).SingleOrDefault();
+                    break;
+            }
+
+            if (lookupGame == null)
+                return null;
+
+            return lookupGame;
+        }
+
+        public Game PopulateGameFile(DiscGameFile f, int sysId, Game lookupGame, string firstDiscImage)
+        {
+            Game newGame = new Game();
+            string md5Hash = string.Empty;
+            string serialNumber = string.Empty;
+            string versionNumber = string.Empty;
+            bool isNewGame = false;
+
+            // get md5 hash of first disc cuefile
+            if (f.Extension.ToLower() == ".m3u")
+            {
+                // playlist file - get first referenced cue
+                md5Hash = Crypto.checkMD5(File.ReadAllLines(f.FullPath)[0]);
             }
             else
-            {
-                hash = Crypto.checkMD5(f.FullPath);
-            }
+                md5Hash = Crypto.checkMD5(f.FullPath);
 
-
-
-            // lookup md5 in master DAT
+            // lookup hash from various sources
             List<DATMerge> lookup = (from i in DAT
-                                     where i.SystemId == sysId && i.Roms.Any(l => l.MD5.ToUpper().Trim() == hash)
+                                     where i.SystemId == sysId && i.Roms.Any(l => l.MD5.ToUpper().Trim() == md5Hash)
                                      select i).ToList();
 
-            if (chkGame == null)
+            // populate GAME object
+            if (lookupGame == null)
             {
+                isNewGame = true;
+
                 // does not already exist - create new game
                 newGame.configId = 1;
                 newGame.gameName = f.GameName;
@@ -242,6 +276,7 @@ namespace MedLaunch.Classes.Scanning
                 newGame.isDiskBased = true;
                 newGame.isFavorite = false;
                 newGame.systemId = sysId;
+                newGame.disks = f.ExtraInfo;
 
                 if (lookup != null && lookup.Count > 0)
                 {
@@ -251,7 +286,7 @@ namespace MedLaunch.Classes.Scanning
 
                     // get rom we are interested in
                     var rom = (from ro in lookup.First().Roms
-                               where ro.MD5.ToUpper().Trim() == hash.ToUpper().Trim()
+                               where ro.MD5.ToUpper().Trim() == md5Hash.ToUpper().Trim()
                                select ro).First();
                     newGame.romNameFromDAT = rom.RomName;
                     newGame.Copyright = rom.Copyright;
@@ -269,30 +304,30 @@ namespace MedLaunch.Classes.Scanning
                         newGame.Publisher = rom.Publisher;
                     }
 
+                    // increment added counter
+                    AddedStats++;
+                    GameListBuilder.UpdateFlag();
                 }
-
-                // add to finaGames list
-                DisksToAdd.Add(newGame);
-                // increment the added counter
-                AddedStats++;
-                GameListBuilder.UpdateFlag();
             }
             else
             {
+                isNewGame = false;
+
                 // matching game found - update it
-                if ((chkGame.gamePath == f.FullPath || chkGame.gamePath == f.FullPath) && chkGame.hidden == false)
+                if ((lookupGame.gamePath == f.FullPath || lookupGame.gamePath == f.FullPath) && lookupGame.hidden == false)
                 {
                     //nothing to update - Path is either identical either absoultely or relatively (against the systemPath set in the database)
                     UntouchedStats++;
                 }
                 else
                 {
-                    newGame = chkGame;
+                    newGame = lookupGame;
                     // update path in case it has changed location
                     newGame.gamePath = f.FullPath;
                     // mark as not hidden
                     newGame.hidden = false;
                     newGame.isDiskBased = true;
+                    newGame.disks = f.ExtraInfo;
 
                     if (lookup != null && lookup.Count > 0)
                     {
@@ -302,7 +337,7 @@ namespace MedLaunch.Classes.Scanning
 
                         // get rom we are interested in
                         var rom = (from ro in lookup.First().Roms
-                                   where ro.MD5.ToUpper().Trim() == hash.ToUpper().Trim()
+                                   where ro.MD5.ToUpper().Trim() == md5Hash.ToUpper().Trim()
                                    select ro).First();
                         newGame.romNameFromDAT = rom.RomName;
                         newGame.Copyright = rom.Copyright;
@@ -321,15 +356,108 @@ namespace MedLaunch.Classes.Scanning
                         }
 
                     }
-
-                    // add to finalGames list
-                    DisksToUpdate.Add(newGame);
-                    // increment updated counter
-                    UpdatedStats++;
-                    GameListBuilder.UpdateFlag();
+                    
                 }
 
             }
+
+            // Now newGame is populated - do lookup based on serial number for certain systems (for better clarity of data)
+            if (sysId == 13)  // saturn
+            {
+                if (newGame.disks != null && newGame.disks != "")
+                {
+                    if (newGame.disks.Contains("*/"))
+                    {
+                        string[] arr = newGame.disks.Split(new string[] { "*/" }, StringSplitOptions.None);
+                        serialNumber = arr[0];
+                        versionNumber = arr[1];
+                    }
+                    else
+                        serialNumber = newGame.disks;
+                }
+
+                List<SaturnGame> satlook = new List<SaturnGame>();
+
+                // lookup game in SaturnGamesList
+                satlook = (from s in SatGamesList
+                                            where s.SerialNumber == serialNumber
+                                            select s).ToList();
+                if (satlook.Count > 1)
+                {
+                    // multiple records found - narrow by version number
+                    var satl = (from s in satlook
+                                where s.Version == versionNumber
+                                select s).ToList();
+                    if (satl.Count >= 1)
+                        satlook = satl;
+                }  
+
+                if (satlook.Count == 1)
+                {
+                    // add data to newGame
+                    newGame.Country = satlook.First().Country;
+                    newGame.gameNameFromDAT = satlook.First().Title;
+                    newGame.Language = satlook.First().CountryCode;
+                    if (satlook.First().Date.Contains("/"))
+                    {
+                        string[] dArr = satlook.First().Date.Split('/');
+                        newGame.Year = dArr.Last();
+                    }                    
+                }             
+            }
+
+            if (sysId == 9)     //psx
+            {
+                // yet to come
+            }
+
+            // now add to added or update list
+            if (isNewGame == true)
+            {
+                DisksToAdd.Add(newGame);
+                AddedStats++;
+                GameListBuilder.UpdateFlag();
+            }
+                
+            if (isNewGame == false)
+            {
+                DisksToUpdate.Add(newGame);
+                UpdatedStats++;
+                GameListBuilder.UpdateFlag();
+            }
+
+            return newGame;
+                
+        }
+
+        public void InsertOrUpdateDisk(DiscGameFile f, int sysId)
+        {
+            // get first image filepath from the cue/ccd/m3u
+            string firstImage = ParseTrackSheetForImageFiles(f, sysId)[0].FullPath;
+
+            // lookup serial number from disc image
+            string serial = string.Empty;
+
+            if (sysId == 9) //psx
+            {
+                serial = DiscUtils.GetPSXSerial(firstImage);
+                f.ExtraInfo = serial;
+            }
+            if (sysId == 13) //ss
+            {
+                var ssInfo = DiscUtils.GetSSData(firstImage);
+                if (ssInfo.SerialNumber != null && ssInfo.SerialNumber != "")
+                    f.ExtraInfo = ssInfo.SerialNumber + "*/";
+                if (ssInfo.Version != null && ssInfo.Version != "")
+                    f.ExtraInfo += ssInfo.Version;
+            }
+
+            // check whether game already exists in the database
+            Game chkGame = ReturnMatchingGame(f, sysId);
+
+            // create a game file and process all details
+            Game newGame = PopulateGameFile(f, sysId, chkGame, firstImage);
+            
         }
 
         /// <summary>

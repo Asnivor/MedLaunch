@@ -8,6 +8,7 @@ using MedLaunch.Models;
 using SharpCompress.Archives;
 using SharpCompress.Archives.SevenZip;
 using SharpCompress.Readers;
+using MedLaunch.Classes.Scanning;
 
 namespace MedLaunch.Classes.IO
 {
@@ -15,6 +16,9 @@ namespace MedLaunch.Classes.IO
     {
         public static string GetPSXSerial(string path)
         {
+            if (!File.Exists(path))
+                return null;
+
             // set start position
             int pos = 54112;
             // set read length
@@ -57,24 +61,58 @@ namespace MedLaunch.Classes.IO
             string[] arr2 = arr[1].Split(new string[] { ";1" }, StringSplitOptions.None);
             string serial = arr2[0].Replace("_", "-").Replace(".", "").TrimStart('\\');
 
-            // split the string
-            /*
-            string[] arr = str.Split(new string[] { "BOOT = cdrom:" }, StringSplitOptions.None);
-            if (arr.Length == 1)
-            {
-                // string wasnt found
-                arr = str.Split(new string[] { "BOOT=cdrom:" }, StringSplitOptions.None);
-                if (arr.Length == 1)
-                {
-                    // still not found - return empty
-                    return "";
-                }
-            }
-            string[] arr2 = arr[1].Split(new string[] { ";1" }, StringSplitOptions.None);
-            string serial = arr2[0].Replace("_", "-").Replace(".", "").Replace("\\", "");
-            */
-
             return serial;            
+        }
+
+        public static SaturnGame GetSSData(string path)
+        {
+            SaturnGame sg = new SaturnGame();
+
+            if (!File.Exists(path))
+                return null;
+
+            // set start position
+            int pos = 16;
+            // set read length
+            int required = 16;
+
+            List<string> str = new List<string>();
+
+            while (pos < required * 13)
+            {
+                byte[] by = new byte[required];
+
+                using (BinaryReader b = new BinaryReader(File.Open(path, FileMode.Open, FileAccess.Read, FileShare.Read)))
+                {
+                    try
+                    {
+                        // seek to required position
+                        b.BaseStream.Seek(pos, SeekOrigin.Begin);
+
+                        // Read the required bytes into a bytearray
+                        by = b.ReadBytes(required);
+                    }
+                    catch
+                    {
+
+                    }
+                    pos += required;
+                }
+                // convert byte array to string
+                str.Add(System.Text.Encoding.Default.GetString(by));
+            }
+            string[] spline = str[2].Split(' ');
+            if (spline.Length > 1)
+            {
+                sg.SerialNumber = spline[0].Trim();
+                sg.Version = spline.Last().Trim().Replace("V", "").Replace("v", "");
+            }
+            
+            sg.Country = str[4].Trim();
+            sg.PeriphCode = str[5].Trim();
+            sg.Title = str[6].Trim();
+
+            return sg;
         }
     }
 

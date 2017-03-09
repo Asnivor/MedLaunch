@@ -4297,6 +4297,8 @@ namespace MedLaunch
             string filepath = AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\SaturnList.txt";
             string[] all = File.ReadAllLines(filepath);
 
+            List<SaturnGame> SatGameList = new List<SaturnGame>();
+
             // process text file
             // lose the first two lines
             string allstr = "";
@@ -4306,6 +4308,7 @@ namespace MedLaunch
             // split into blocks
             string[] blocks = allstr.Split(new string[] { "\n\n\n" }, StringSplitOptions.None);
 
+            int blockcount = 0;
             foreach (string block in blocks)
             {
                 string[] arr = block.Split('\n');
@@ -4340,10 +4343,34 @@ namespace MedLaunch
                     }
                     arr = arr.Distinct().ToArray();
                 }
+                
+                string title = arr[0].Split(':')[1].Trim().Replace("  ", "");
+                string country = arr[1].Split(':')[1].Trim().Replace("  ", "");
+                string jpntitle = arr[2].Split(':')[1].Trim().Replace("  ", "");
+                string serial = arr[3].Split(':')[1].Trim().Replace("  ", "");
+                string version = arr[4].Split(':')[1].Trim().Replace("  ", "");
+                string date = arr[5].Split(':')[1].Trim().Replace("  ", "");
+                string countrycode = arr[9].Split(':')[1].Trim().Replace("  ", "");
+                string periphcode = arr[10].Split(':')[1].Trim().Replace("  ", "");
+
+                SaturnGame sg = new SaturnGame();
+                sg.Title = title;
+                sg.Country = country;
+                sg.JpnTitle = jpntitle;
+                sg.SerialNumber = serial;
+                sg.Version = version;
+                sg.Date = date;
+                sg.CountryCode = countrycode;
+                sg.PeriphCode = periphcode;
+
+                SatGameList.Add(sg);
 
             }
 
-
+            // convert to json string
+            string json = JsonConvert.SerializeObject(SatGameList, Formatting.Indented);
+            // write to disk
+            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\SaturnGames.json", json);
 
             await controller.CloseAsync();
 
