@@ -1,4 +1,5 @@
-﻿using MedLaunch.Models;
+﻿using MedLaunch.Classes.IO;
+using MedLaunch.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -125,7 +126,7 @@ namespace MedLaunch.Classes
                 return new List<string>();
             }
 
-            string[] arr = File.ReadAllLines(lp.LogPath);
+            string[] arr = FileAndFolder.StreamAllLines(lp.LogPath); // File.ReadAllLines(lp.LogPath);
             return arr.ToList();
         }
 

@@ -25,6 +25,56 @@ namespace MedLaunch.Classes.IO
             }
         }
 
+        public static string[] StreamAllLines(string filePath)
+        {
+            if (!File.Exists(filePath))
+                return null;
+
+            List<string> list = new List<string>();
+
+            using (FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        string line = reader.ReadLine();
+                        list.Add(line);
+                    }
+                }
+            }
+
+            return list.ToArray();
+        }
+
+        public static string StreamAllText(string filePath)
+        {
+            if (!File.Exists(filePath))
+                return null;
+
+            List<string> list = new List<string>();
+
+            using (FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        string line = reader.ReadLine();
+                        list.Add(line);
+                    }
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            foreach (string l in list)
+            {
+                sb.Append(l).Append("\n");
+            }
+
+            return sb.ToString();
+        }
+
         // return number of files found in a directory and sub-directory (based on usingRecursion bool)
         public static int CountFiles(string path, bool usingRecursion)
         {
