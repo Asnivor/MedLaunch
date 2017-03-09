@@ -342,10 +342,12 @@ namespace MedLaunch.Classes.GamesLibrary
         {
             // check whether we need to search the gdb columns
             GlobalSettings gs = GlobalSettings.GetGlobals();
+            if (sStr == null || sStr == "")
+                return list;
 
             List<DataGridGamesView> search = new List<DataGridGamesView>();
 
-            search = (from g in list
+            search = (from g in list.Where(a => a.Game != null)
                      where g.Game.ToLower().Contains(sStr.ToLower())
                      select g).ToList();
 

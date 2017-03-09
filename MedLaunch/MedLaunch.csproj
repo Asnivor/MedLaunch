@@ -267,6 +267,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\IO\Hex.cs" />
     <Compile Include="Classes\Scanning\DiscScan.cs" />
     <Compile Include="Classes\Scanning\RomScan.cs" />
     <Compile Include="Classes\Scanning\SaturnGame.cs" />

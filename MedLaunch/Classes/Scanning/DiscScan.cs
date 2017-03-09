@@ -248,12 +248,14 @@ namespace MedLaunch.Classes.Scanning
             string serialNumber = string.Empty;
             string versionNumber = string.Empty;
             bool isNewGame = false;
+            bool shouldAddUpdate = true;
 
             // get md5 hash of first disc cuefile
             if (f.Extension.ToLower() == ".m3u")
             {
                 // playlist file - get first referenced cue
-                md5Hash = Crypto.checkMD5(File.ReadAllLines(f.FullPath)[0]);
+                string cuPath = ParseTrackSheet(f, CueType.m3u, sysId)[0].FullPath;
+                md5Hash = Crypto.checkMD5(cuPath);
             }
             else
                 md5Hash = Crypto.checkMD5(f.FullPath);
@@ -317,6 +319,7 @@ namespace MedLaunch.Classes.Scanning
                 if ((lookupGame.gamePath == f.FullPath || lookupGame.gamePath == f.FullPath) && lookupGame.hidden == false)
                 {
                     //nothing to update - Path is either identical either absoultely or relatively (against the systemPath set in the database)
+                    shouldAddUpdate = false;
                     UntouchedStats++;
                 }
                 else
@@ -412,14 +415,14 @@ namespace MedLaunch.Classes.Scanning
             }
 
             // now add to added or update list
-            if (isNewGame == true)
+            if (isNewGame == true && shouldAddUpdate == true)
             {
                 DisksToAdd.Add(newGame);
                 AddedStats++;
                 GameListBuilder.UpdateFlag();
             }
                 
-            if (isNewGame == false)
+            if (isNewGame == false && shouldAddUpdate == true)
             {
                 DisksToUpdate.Add(newGame);
                 UpdatedStats++;
@@ -432,8 +435,19 @@ namespace MedLaunch.Classes.Scanning
 
         public void InsertOrUpdateDisk(DiscGameFile f, int sysId)
         {
+            string firstImage = string.Empty;
             // get first image filepath from the cue/ccd/m3u
-            string firstImage = ParseTrackSheetForImageFiles(f, sysId)[0].FullPath;
+            try
+            {
+                firstImage = ParseTrackSheetForImageFiles(f, sysId)[0].FullPath;
+            }
+            catch
+            {
+                // some problem obtaining the image file from the cue
+                MessageBox.Show("There was an issue determining the disc image from the cue/ccd/toc file you are using (" + f.FileName + ").\nPlease check that the cuefile is pointing to a valid (case sensitive) location.\n\n Press OK to skip the import of this game and proceed...", "Disc Image Lookup Issue", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            
 
             // lookup serial number from disc image
             string serial = string.Empty;

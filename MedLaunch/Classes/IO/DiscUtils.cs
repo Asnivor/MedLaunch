@@ -20,18 +20,24 @@ namespace MedLaunch.Classes.IO
                 return null;
 
             // set start position
-            int pos = 54112;
+            long pos = 0x000;
             // set read length
-            int required = 2000;
+            int required = 2048; //2048000; //2048;
 
             bool found = false;
-
             string str = null;
+            int count = 0;
+            //byte[] pattern = new byte[] { 0x63, 0x64, 0x72, 0x6f, 0x6d, 0x3a }; // "cdrom:"
+            byte[] pattern = new byte[] { 0x89, 0x00, 0x00, 0x00, 0x89, 0x00, 0x42, 0x4f, 0x4f, 0x54 }; // ".boot"
+
 
             while (!found)
             {
-                byte[] by = new byte[required];
+                count++;
+                if (count > 50000)
+                    break;
 
+                byte[] by = new byte[required];
                 using (BinaryReader b = new BinaryReader(File.Open(path, FileMode.Open, FileAccess.Read, FileShare.Read)))
                 {
                     try
@@ -41,25 +47,67 @@ namespace MedLaunch.Classes.IO
 
                         // Read the required bytes into a bytearray
                         by = b.ReadBytes(required);
+
+                        // look for our pattern
+                        int result = Hex.IndexOf(by, pattern);
+
+                        if (result < 0)
+                        {
+                            // pattern not found
+                            pos += required;
+                            continue;
+                        }
+
+                        if (result > 0)
+                        {
+                            // pattern found - narrow the search
+                            int lowerBound = result - 20;
+                            int upperBound = result + 20;
+
+                            str = System.Text.Encoding.Default.GetString(by);
+                            found = true;
+
+                            /*
+                            // create new byte array
+                            List<byte> narList = new List<byte>();
+                            for (int byt = lowerBound; byt <= upperBound; byt++)
+                            {
+                                narList.Add(by[byt]);
+                            }
+
+                            byte[] narrow = narList.ToArray();
+
+                            // check again this time for "BOOT"
+                            int result2 = Hex.IndexOf(narrow, pattern2);
+                            if (result2 > 0)
+                            {
+                                str = System.Text.Encoding.Default.GetString(by);
+                                found = true;
+                            }
+                            else
+                                pos += required;
+
+                        */
+                        }
                     }
                     catch
                     {
 
                     }
                 }
-                // convert byte array to string
-                str = System.Text.Encoding.Default.GetString(by);
+            }
 
-                if (str.Contains("cdrom:"))
-                    found = true;
-                else
-                    pos += (required + 1);
-            }            
+            if (found == false)
+                return null;
 
             // split
             string[] arr = str.Split(new string[] { "cdrom:" }, StringSplitOptions.None);
             string[] arr2 = arr[1].Split(new string[] { ";1" }, StringSplitOptions.None);
-            string serial = arr2[0].Replace("_", "-").Replace(".", "").TrimStart('\\');
+            string serial = arr2[0].Replace("_", "-").Replace(".", "");//.TrimStart('\\');
+            if (serial.Contains("\\"))
+                serial = serial.Split('\\').Last();
+            else
+                serial = serial.TrimStart('\\').TrimStart('\\');
 
             return serial;            
         }
