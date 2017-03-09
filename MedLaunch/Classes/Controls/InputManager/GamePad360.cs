@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using SlimDX.XInput;
 using System.Windows.Interop;
+using Microsoft;
 
 #pragma warning disable 169
 #pragma warning disable 414
@@ -51,6 +52,12 @@ namespace MedLaunch.Classes.Controls
 
         }
 
+        static class NativeMethods
+        {
+            [DllImport("kernel32.dll")]
+            public static extern IntPtr LoadLibrary(string dllToLoad);
+        }
+
         public static void Initialize(MainWindow window)
         {
             IntPtr handle = new WindowInteropHelper(window).Handle;
@@ -60,15 +67,14 @@ namespace MedLaunch.Classes.Controls
 
             try
             {
-                /*
                 //some users wont even have xinput installed. in order to avoid spurious exceptions and possible instability, check for the library first
                 HasGetInputStateEx = true;
-                LibraryHandle = Win32.LoadLibrary("xinput1_3.dll");
+                LibraryHandle = NativeMethods.LoadLibrary("xinput1_3.dll"); // Win32.LoadLibrary("xinput1_3.dll");
                 if (LibraryHandle == IntPtr.Zero)
-                    LibraryHandle = Win32.LoadLibrary("xinput1_4.dll");
+                    LibraryHandle = NativeMethods.LoadLibrary("xinput1_4.dll");
                 if (LibraryHandle == IntPtr.Zero)
                 {
-                    LibraryHandle = Win32.LoadLibrary("xinput9_1_0.dll");
+                    LibraryHandle = NativeMethods.LoadLibrary("xinput9_1_0.dll");
                     HasGetInputStateEx = false;
                 }
 
@@ -85,7 +91,7 @@ namespace MedLaunch.Classes.Controls
                     var test = new SlimDX.XInput.Controller(UserIndex.One).IsConnected;
                     IsAvailable = true;
                 }
-                */
+                
             }
             catch { }
 
@@ -198,7 +204,7 @@ namespace MedLaunch.Classes.Controls
             AddItem("joystick " + ID + " " + "0000000d", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.B) != 0);                   // B
             AddItem("joystick " + ID + " " + "0000000e", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.X) != 0);                   // X
             AddItem("joystick " + ID + " " + "0000000f", () => (state.Gamepad.wButtons & unchecked((ushort)GamepadButtonFlags.Y)) != 0);        // Y
-            AddItem("joystick " + ID + " " + "Guide", () => (state.Gamepad.wButtons & 1024) != 0);
+            AddItem("joystick " + ID + " " + "0000000a", () => (state.Gamepad.wButtons & 1024) != 0);
 
             AddItem("joystick " + ID + " " + "00000004", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.Start) != 0);                       // Start
             AddItem("joystick " + ID + " " + "00000005", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.Back) != 0);                         // Back
