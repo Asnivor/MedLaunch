@@ -4892,7 +4892,11 @@ namespace MedLaunch
             string serial5 = DiscUtils.GetPSXSerial(@"G:\_Emulation\PSX\iso\Alien Trilogy (E) [SLES-00101]\Alien Trilogy (E) [SLES-00101].iso");
         }
 
-        
+        private void btnControlRePoll_Click(object sender, RoutedEventArgs e)
+        {
+            Input.Instance.Dispose();
+            Input.Initialize(this);
+        }
     }
     /*
     public class SliderIgnoreDelta : Slider

@@ -562,11 +562,48 @@ namespace MedLaunch
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox tb = sender as TextBox;
+            string name = tb.Name;
             _activeTB = tb;
-            tb.Background = Brushes.Red;
 
-            _timer.Start();
+            // get all the textboxes on the page
+            UIHandler ui = UIHandler.GetChildren(DynamicDataGrid);
 
+            // all textboxes
+            List<TextBox> tbs = ui.TextBoxes;
+
+            // check whether previous tbs have been populated - if not then accept no input
+            if (tb.Name.Contains("Primary_Control"))
+            {
+                tb.Background = Brushes.Red;
+                _timer.Start();
+            }
+            if (tb.Name.Contains("Secondary_Control"))
+            {
+                // check whether primary is populated
+                string primName = name.Replace("Secondary_", "Primary_");
+                TextBox tbPrim = tbs.Where(a => a.Name == name.Replace("Secondary_", "Primary_")).FirstOrDefault();
+                if (tbPrim.Text == "")
+                {
+                    tb.Text = "<-- Primary box cannot be empty";
+                    tb.Background = Brushes.Orange;
+                    return;
+                }
+                tb.Background = Brushes.Red;
+                _timer.Start();
+            }
+            if (tb.Name.Contains("Tertiary_Control"))
+            {
+                // check whether secondary is populated
+                TextBox tbSec = tbs.Where(a => a.Name == name.Replace("Tertiary_", "Secondary_")).FirstOrDefault(); 
+                if (tb.Text == "")
+                {
+                    tb.Text = "<-- Secondary box cannot be empty";
+                    tb.Background = Brushes.Orange;
+                    return;
+                }
+                tb.Background = Brushes.Red;
+                _timer.Start();
+            }
         }
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -574,6 +611,12 @@ namespace MedLaunch
             TextBox tb = sender as TextBox;
             _activeTB = null;
             tb.Background = Brushes.Transparent;
+
+            if (tb.Text == "<-- Primary box cannot be empty" || tb.Text == "<-- Secondary box cannot be empty")
+            {
+                tb.Text = "";
+                return;
+            }
 
             _timer.Stop();
         }
@@ -659,7 +702,7 @@ namespace MedLaunch
 
         private void ChildWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Input.Instance.Dispose();
+            //Input.Instance.Dispose();
         }
 
         void MoveToNextUIElement(KeyEventArgs e)

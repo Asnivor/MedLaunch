@@ -54,9 +54,11 @@ namespace MedLaunch.Classes.Controls.InputManager
 
         public static Input Instance { get; private set; }
         readonly Thread UpdateThread;
+        public static bool AbortThread { private get; set; }
 
         public Input()
         {
+            AbortThread = false;
 
             UpdateThread = new Thread(UpdateThreadProc)
             {
@@ -80,8 +82,10 @@ namespace MedLaunch.Classes.Controls.InputManager
 
         public void Dispose()
         {
-            KeyInput.Dispose();
-            GamePad.Dispose();                        
+            //KeyInput.Dispose();
+            //GamePad.Dispose();      
+
+            AbortThread = true;                 
         }
 
         public enum InputEventType
@@ -275,6 +279,12 @@ namespace MedLaunch.Classes.Controls.InputManager
         {
             for (;;)
             {
+                if (AbortThread == true)
+                {
+                    break;
+                }
+                    
+
                 var keyEvents = KeyInput.Update(); //.Concat(IPCKeyInput.Update());
                 GamePad.UpdateAll();
                 GamePad360.UpdateAll();

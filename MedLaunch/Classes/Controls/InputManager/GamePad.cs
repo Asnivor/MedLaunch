@@ -216,8 +216,25 @@ namespace MedLaunch.Classes.Controls
                 if (joystick.Acquire().IsFailure)
                     return;
             }
-            catch
+            catch (SlimDX.DirectInput.DirectInputException ex)
             {
+                // maybe gamepad has been unplugged
+                
+                // remove from devices
+                int joyNum = 100;
+                for (int i = 0; i < Devices.Count; i++)
+                {
+                    if (Devices[i].joystick == joystick)
+                    {
+                        joyNum = i;
+                    }  
+                }
+                if (joyNum != 100)
+                {
+                    Devices.RemoveAt(joyNum);
+                    joystick.Dispose();
+                }
+
                 return;
             }
             if (joystick.Poll().IsFailure)

@@ -9640,7 +9640,12 @@
                                         NEC PC-FX
                                     </RadioButton>
 
-
+                                    <Button Style="{StaticResource MenuButton}"  x:Name="btnControlRePoll"  Background="DarkOrange" Click="btnControlRePoll_Click"
+                                ToolTip="Attempt to detect GamePads/Joysticks that have been plugged in/remoted since MedLaunch was started">
+                                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center">
+                                POLL DEVICES
+                                        </TextBlock>
+                                    </Button>
 
                                 </WrapPanel>
                             </Expander>
