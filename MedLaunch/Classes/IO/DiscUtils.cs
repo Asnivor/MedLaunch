@@ -9,101 +9,48 @@ using SharpCompress.Archives;
 using SharpCompress.Archives.SevenZip;
 using SharpCompress.Readers;
 using MedLaunch.Classes.Scanning;
+using BizHawk.Emulation.DiscSystem;
+
 
 namespace MedLaunch.Classes.IO
 {
-    public class DiscUtils
+    public class MedDiscUtils
     {
+        /// <summary>
+        /// returns the PSX serial - Bizhawk DiscSystem requires either cue, ccd or iso (not bin or img)
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public static string GetPSXSerial(string path)
         {
-            if (!File.Exists(path))
-                return null;
-
-            // set start position
-            long pos = 0x000;
-            // set read length
-            int required = 2048; //2048000; //2048;
-
-            bool found = false;
-            string str = null;
-            int count = 0;
-            //byte[] pattern = new byte[] { 0x63, 0x64, 0x72, 0x6f, 0x6d, 0x3a }; // "cdrom:"
-            byte[] pattern = new byte[] { 0x89, 0x00, 0x00, 0x00, 0x89, 0x00, 0x42, 0x4f, 0x4f, 0x54 }; // ".boot"
-
-
-            while (!found)
+            //path = @"G:\_Emulation\PSX\iso\Metal Gear Solid - Integral (J) [SLPM-86247]\Metal Gear Solid - Integral (J) (Disc 1) [SLPM-86247].cue";
+            
+            Disc disc = Disc.LoadAutomagic(path);   
+            
+            if (disc == null)
             {
-                count++;
-                if (count > 50000)
-                    break;
-
-                byte[] by = new byte[required];
-                using (BinaryReader b = new BinaryReader(File.Open(path, FileMode.Open, FileAccess.Read, FileShare.Read)))
-                {
-                    try
-                    {
-                        // seek to required position
-                        b.BaseStream.Seek(pos, SeekOrigin.Begin);
-
-                        // Read the required bytes into a bytearray
-                        by = b.ReadBytes(required);
-
-                        // look for our pattern
-                        int result = Hex.IndexOf(by, pattern);
-
-                        if (result < 0)
-                        {
-                            // pattern not found
-                            pos += required;
-                            continue;
-                        }
-
-                        if (result > 0)
-                        {
-                            // pattern found - narrow the search
-                            int lowerBound = result - 20;
-                            int upperBound = result + 20;
-
-                            str = System.Text.Encoding.Default.GetString(by);
-                            found = true;
-
-                            /*
-                            // create new byte array
-                            List<byte> narList = new List<byte>();
-                            for (int byt = lowerBound; byt <= upperBound; byt++)
-                            {
-                                narList.Add(by[byt]);
-                            }
-
-                            byte[] narrow = narList.ToArray();
-
-                            // check again this time for "BOOT"
-                            int result2 = Hex.IndexOf(narrow, pattern2);
-                            if (result2 > 0)
-                            {
-                                str = System.Text.Encoding.Default.GetString(by);
-                                found = true;
-                            }
-                            else
-                                pos += required;
-
-                        */
-                        }
-                    }
-                    catch
-                    {
-
-                    }
-                }
-            }
-
-            if (found == false)
+                // unable to mount disc - return null
                 return null;
+            }
+              
+            DiscIdentifier di = new DiscIdentifier(disc);
 
-            // split
-            string[] arr = str.Split(new string[] { "cdrom:" }, StringSplitOptions.None);
+            // start by checking sector 23 (as most discs seem to have system.cfg there
+            byte[] data =  di.GetPSXSerialNumber(23);
+            // take first 32 bytes
+            byte[] data32 = data.ToList().Take(32).ToArray();
+
+            string sS = System.Text.Encoding.Default.GetString(data32);
+
+            if (!sS.Contains("cdrom:"))
+            {
+                return null;
+            }
+            
+            // get the actual serial number from the returned string
+            string[] arr = sS.Split(new string[] { "cdrom:" }, StringSplitOptions.None);
             string[] arr2 = arr[1].Split(new string[] { ";1" }, StringSplitOptions.None);
-            string serial = arr2[0].Replace("_", "-").Replace(".", "");//.TrimStart('\\');
+            string serial = arr2[0].Replace("_", "-").Replace(".", "");
             if (serial.Contains("\\"))
                 serial = serial.Split('\\').Last();
             else

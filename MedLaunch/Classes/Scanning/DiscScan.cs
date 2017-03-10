@@ -241,7 +241,7 @@ namespace MedLaunch.Classes.Scanning
             return lookupGame;
         }
 
-        public Game PopulateGameFile(DiscGameFile f, int sysId, Game lookupGame, string firstDiscImage)
+        public Game PopulateGameFile(DiscGameFile f, int sysId, Game lookupGame)
         {
             Game newGame = new Game();
             string md5Hash = string.Empty;
@@ -436,6 +436,7 @@ namespace MedLaunch.Classes.Scanning
         public void InsertOrUpdateDisk(DiscGameFile f, int sysId)
         {
             string firstImage = string.Empty;
+            string firstCue = string.Empty;
             // get first image filepath from the cue/ccd/m3u
             try
             {
@@ -447,6 +448,14 @@ namespace MedLaunch.Classes.Scanning
                 MessageBox.Show("There was an issue determining the disc image from the cue/ccd/toc file you are using (" + f.FileName + ").\nPlease check that the cuefile is pointing to a valid (case sensitive) location.\n\n Press OK to skip the import of this game and proceed...", "Disc Image Lookup Issue", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+
+            firstCue = f.FullPath;
+
+            // if m3u get the first cue
+            if (f.Extension.ToLower() == ".m3u")
+            {
+                firstCue = ParseTrackSheet(f, CueType.m3u, sysId)[0].FullPath;
+            }
             
 
             // lookup serial number from disc image
@@ -454,12 +463,12 @@ namespace MedLaunch.Classes.Scanning
 
             if (sysId == 9) //psx
             {
-                serial = DiscUtils.GetPSXSerial(firstImage);
+                serial = MedDiscUtils.GetPSXSerial(firstCue);
                 f.ExtraInfo = serial;
             }
             if (sysId == 13) //ss
             {
-                var ssInfo = DiscUtils.GetSSData(firstImage);
+                var ssInfo = MedDiscUtils.GetSSData(firstImage);
                 if (ssInfo.SerialNumber != null && ssInfo.SerialNumber != "")
                     f.ExtraInfo = ssInfo.SerialNumber + "*/";
                 if (ssInfo.Version != null && ssInfo.Version != "")
@@ -470,7 +479,7 @@ namespace MedLaunch.Classes.Scanning
             Game chkGame = ReturnMatchingGame(f, sysId);
 
             // create a game file and process all details
-            Game newGame = PopulateGameFile(f, sysId, chkGame, firstImage);
+            Game newGame = PopulateGameFile(f, sysId, chkGame);
             
         }
 

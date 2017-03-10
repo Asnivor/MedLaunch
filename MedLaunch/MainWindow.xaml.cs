@@ -4912,11 +4912,11 @@ namespace MedLaunch
 
         private void disctest_Click(object sender, RoutedEventArgs e)
         {
-            string serial1 = DiscUtils.GetPSXSerial(@"G:\_Emulation\PSX\iso\Final Fantasy 9 [PSX][PAL]\Final Fantasy 9 CD1.img");
-            string serial2 = DiscUtils.GetPSXSerial(@"G:\_Emulation\PSX\iso\Final Fantasy 9 [PSX][PAL]\Final Fantasy 9 CD2.img");
-            string serial3 = DiscUtils.GetPSXSerial(@"G:\_Emulation\PSX\iso\Final Fantasy 9 [PSX][PAL]\Final Fantasy 9 CD3.img");
-            string serial4 = DiscUtils.GetPSXSerial(@"G:\_Emulation\PSX\iso\Final Fantasy 1 (Origins)(E) [SLES-04034]\Final Fantasy Origins - Final Fantasy (E) [SLES-04034].bin");
-            string serial5 = DiscUtils.GetPSXSerial(@"G:\_Emulation\PSX\iso\Alien Trilogy (E) [SLES-00101]\Alien Trilogy (E) [SLES-00101].iso");
+            string serial1 = MedDiscUtils.GetPSXSerial(@"G:\_Emulation\PSX\iso\Final Fantasy 9 [PSX][PAL]\Final Fantasy 9 CD1.img");
+            string serial2 = MedDiscUtils.GetPSXSerial(@"G:\_Emulation\PSX\iso\Final Fantasy 9 [PSX][PAL]\Final Fantasy 9 CD2.img");
+            string serial3 = MedDiscUtils.GetPSXSerial(@"G:\_Emulation\PSX\iso\Final Fantasy 9 [PSX][PAL]\Final Fantasy 9 CD3.img");
+            string serial4 = MedDiscUtils.GetPSXSerial(@"G:\_Emulation\PSX\iso\Final Fantasy 1 (Origins)(E) [SLES-04034]\Final Fantasy Origins - Final Fantasy (E) [SLES-04034].bin");
+            string serial5 = MedDiscUtils.GetPSXSerial(@"G:\_Emulation\PSX\iso\Alien Trilogy (E) [SLES-00101]\Alien Trilogy (E) [SLES-00101].iso");
         }
 
         private void btnControlRePoll_Click(object sender, RoutedEventArgs e)

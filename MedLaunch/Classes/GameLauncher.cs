@@ -58,12 +58,28 @@ namespace MedLaunch.Classes
                 string cuePath = game.gamePath;     // this is never relative with disc-based games
                 DiscGameFile originalCue = new DiscGameFile(cuePath, 9);
 
-                List<DiscGameFile> imageFiles = DiscScan.ParseTrackSheetForImageFiles(new DiscGameFile(cuePath, 9), 9);
+                List<DiscGameFile> imageFiles = new List<DiscGameFile>(); // DiscScan.ParseTrackSheetForImageFiles(new DiscGameFile(cuePath, 9), 9);
+
+                // check whether m3u
+                if (originalCue.Extension.ToLower() == ".m3u")
+                {
+                    // get all cue files
+                    var allc = DiscScan.ParseTrackSheet(originalCue, CueType.m3u, SystemId);
+                    foreach (var g in allc)
+                    {
+                        imageFiles.Add(g);
+                    }
+                }
+                else
+                {
+                    // standard cue file
+                    imageFiles.Add(originalCue);
+                }
 
                 // iterate through each image and check for serial number
                 for (int i = 0; i < imageFiles.Count; i++)
                 {
-                    string serial = DiscUtils.GetPSXSerial(imageFiles[i].FullPath);
+                    string serial = MedDiscUtils.GetPSXSerial(imageFiles[i].FullPath);
 
                     if (serial == null || serial == "")
                         continue;

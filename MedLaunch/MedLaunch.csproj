@@ -175,8 +175,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>ExternalAssemblies\SDLJoystick.dll</HintPath>
     </Reference>
-    <Reference Include="SharpCompress, Version=0.15.1.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpCompress.0.15.1\lib\net45\SharpCompress.dll</HintPath>
+    <Reference Include="SharpCompress, Version=0.15.2.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpCompress.0.15.2\lib\net45\SharpCompress.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86">
@@ -769,6 +769,10 @@
     <ProjectReference Include="..\Asnitech.SQLite\Asnitech.SQLite.csproj">
       <Project>{21b251c5-8c12-43cd-b256-ad55cb5d4b57}</Project>
       <Name>Asnitech.SQLite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BizHawk.Emulation.DiscSystem\BizHawk.Emulation.DiscSystem.csproj">
+      <Project>{f51946ea-827f-4d82-b841-1f2f6d060312}</Project>
+      <Name>BizHawk.Emulation.DiscSystem</Name>
     </ProjectReference>
     <ProjectReference Include="..\Updater\Updater.csproj">
       <Project>{554a0a91-f3cd-4800-8a19-1575fb1ca8d1}</Project>
