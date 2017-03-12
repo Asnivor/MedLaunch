@@ -164,11 +164,11 @@ namespace BizHawk.Emulation.DiscSystem
         public byte[] GetPSXSerialNumber(int lba)
         {
             byte[] data;
-            if (!sectorCache.TryGetValue(23, out data))
+            if (!sectorCache.TryGetValue(lba, out data))
             {
                 data = new byte[2048];
-                dsr.ReadLBA_2048(23, data, 0);
-                sectorCache[23] = data;
+                dsr.ReadLBA_2048(lba, data, 0);
+                sectorCache[lba] = data;
             }
 
             //string resStr = System.Text.Encoding.ASCII.GetString(data);

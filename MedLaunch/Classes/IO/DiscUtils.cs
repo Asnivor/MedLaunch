@@ -24,19 +24,46 @@ namespace MedLaunch.Classes.IO
         public static string GetPSXSerial(string path)
         {
             //path = @"G:\_Emulation\PSX\iso\Metal Gear Solid - Integral (J) [SLPM-86247]\Metal Gear Solid - Integral (J) (Disc 1) [SLPM-86247].cue";
-            
-            Disc disc = Disc.LoadAutomagic(path);   
-            
+
+            int lba = 23;
+            Disc disc = Disc.LoadAutomagic(path);
+
             if (disc == null)
             {
                 // unable to mount disc - return null
                 return null;
             }
+
+            var discView = EDiscStreamView.DiscStreamView_Mode1_2048;
+            if (disc.TOC.Session1Format == SessionFormat.Type20_CDXA)
+                discView = EDiscStreamView.DiscStreamView_Mode2_Form1_2048;
+
+            var iso = new ISOFile();
+            bool isIso = iso.Parse(new DiscStream(disc, discView, 0));
+
+            if (isIso)
+            {
+                var appId = System.Text.Encoding.ASCII.GetString(iso.VolumeDescriptors[0].ApplicationIdentifier).TrimEnd('\0', ' ');
+
+                var desc = iso.Root.Children;
+
+                long ir = 0;
+                ISONode ifn = null;
+
+                foreach (var i in desc)
+                {
+                    if (i.Key.Contains("SYSTEM.CNF"))
+                        ifn = i.Value;                        
+                }
+
+                lba = Convert.ToInt32(ifn.Offset);
+            }
+            
               
             DiscIdentifier di = new DiscIdentifier(disc);
 
             // start by checking sector 23 (as most discs seem to have system.cfg there
-            byte[] data =  di.GetPSXSerialNumber(23);
+            byte[] data =  di.GetPSXSerialNumber(lba);
             // take first 32 bytes
             byte[] data32 = data.ToList().Take(32).ToArray();
 

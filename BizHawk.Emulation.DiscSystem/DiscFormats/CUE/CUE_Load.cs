@@ -107,7 +107,8 @@ namespace BizHawk.Emulation.DiscSystem.CUE
 							FFMpeg ffmpeg = new FFMpeg();
 							if (!ffmpeg.QueryServiceAvailable())
 							{
-								throw new DiscReferenceException(ccf.FullPath, "No decoding service was available (make sure ffmpeg.exe is available. even though this may be a wav, ffmpeg is used to load oddly formatted wave files. If you object to this, please send us a note and we'll see what we can do. It shouldn't be too hard.)");
+                                return;
+								//throw new DiscReferenceException(ccf.FullPath, "No decoding service was available (make sure ffmpeg.exe is available. even though this may be a wav, ffmpeg is used to load oddly formatted wave files. If you object to this, please send us a note and we'll see what we can do. It shouldn't be too hard.)");
 							}
 							AudioDecoder dec = new AudioDecoder();
 							byte[] buf = dec.AcquireWaveData(ccf.FullPath);
@@ -204,11 +205,13 @@ namespace BizHawk.Emulation.DiscSystem.CUE
 				//from now on we'll track relative timestamp and increment it continually
 				int relMSF = -totalPregapLength;
 
-				//read more at policies declaration
-				//if (!context.DiscMountPolicy.CUE_PauseContradictionModeA)
-				//  relMSF += 1;
-				//---------------------------------
+                //read more at policies declaration
+                //if (!context.DiscMountPolicy.CUE_PauseContradictionModeA)
+                //  relMSF += 1;
+                //---------------------------------
 
+                if (BlobInfos.Count <= curr_blobIndex)
+                    return;
 
 				//---------------------------------
 				//generate sectors for this track.

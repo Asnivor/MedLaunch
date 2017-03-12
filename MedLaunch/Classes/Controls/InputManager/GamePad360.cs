@@ -61,7 +61,7 @@ namespace MedLaunch.Classes.Controls
         public static void Initialize(MainWindow window)
         {
             IntPtr handle = new WindowInteropHelper(window).Handle;
-            IsAvailable = true;// false;
+            IsAvailable = false;
 
             ContInfoFromLog = LogParser.GetXInputControllerIds();
 

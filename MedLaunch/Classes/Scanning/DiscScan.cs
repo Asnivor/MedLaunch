@@ -43,6 +43,21 @@ namespace MedLaunch.Classes.Scanning
             /* disc games at the moment MUST reside in 1st level subfolders within the system folder */
 
             // get all subfolders within the system folder
+            if (!Directory.Exists(discFolderPath))
+            {
+                var ga = Game.GetGames(systemId);
+
+                // iterate through each game in this system and mark as hidden if path does not exist
+                foreach (var g in ga)
+                {
+                    if (!File.Exists(g.gamePath))
+                    {
+                        MarkedAsHidden.Add(g);
+                    }
+                }
+                return;                
+            }
+                
             List<string> subs = Directory.GetDirectories(discFolderPath).ToList();
             if (subs.Count == 0)
                 return;
