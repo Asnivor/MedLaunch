@@ -56,6 +56,7 @@ using MahApps.Metro.SimpleChildWindow;
 using MedLaunch.Classes.Controls.VirtualDevices;
 using MedLaunch.Classes.Controls.InputManager;
 using MedLaunch.Classes.Scanning;
+using MedLaunch.Classes.Scraper.PSXDATACENTER;
 
 namespace MedLaunch
 {
@@ -4263,6 +4264,119 @@ namespace MedLaunch
             controller.SetMessage("Saving master DAT");
             string output = JsonConvert.SerializeObject(dm, Formatting.Indented);
             File.WriteAllText(filepath, output);
+
+            await controller.CloseAsync();
+
+            if (controller.IsCanceled)
+            {
+                await this.ShowMessageAsync("DAT Builder", "Linking Cancelled");
+                GameListBuilder.UpdateFlag();
+                GamesLibraryVisualHandler.RefreshGamesLibrary();
+            }
+            else
+            {
+                await this.ShowMessageAsync("DAT Builder", "Linking Completed");
+                GameListBuilder.UpdateFlag();
+                GamesLibraryVisualHandler.RefreshGamesLibrary();
+            }
+        }
+
+        private async void buildPsxJson_Click(object sender, RoutedEventArgs e)
+        {
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel",
+                AnimateShow = false,
+                AnimateHide = false
+            };
+            var controller = await this.ShowProgressAsync("JSON Builder", "Building PSX JSON", true, settings: mySettings);
+            controller.SetCancelable(true);
+            controller.SetIndeterminate();
+            await Task.Delay(1);
+
+            await Task.Run(() =>
+            {
+                List<PsxDc> games = PsxDc.ScrapeInitialList();
+
+                // convert to json string
+                string json = JsonConvert.SerializeObject(games, Formatting.Indented);
+                // save to disk
+                File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\DAT\PSXDATACENTER\PSXDC.json", json);
+            });
+
+            await controller.CloseAsync();
+
+            if (controller.IsCanceled)
+            {
+                await this.ShowMessageAsync("DAT Builder", "Linking Cancelled");
+                GameListBuilder.UpdateFlag();
+                GamesLibraryVisualHandler.RefreshGamesLibrary();
+            }
+            else
+            {
+                await this.ShowMessageAsync("DAT Builder", "Linking Completed");
+                GameListBuilder.UpdateFlag();
+                GamesLibraryVisualHandler.RefreshGamesLibrary();
+            }
+        }
+
+        private async void popPsxJson_Click(object sender, RoutedEventArgs e)
+        {
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel",
+                AnimateShow = false,
+                AnimateHide = false
+            };
+            string output = "Populating PSX JSON\n\n";
+            var controller = await this.ShowProgressAsync("JSON Builder", output, true, settings: mySettings);
+            controller.SetCancelable(true);
+            controller.SetIndeterminate();
+            await Task.Delay(1);
+
+            
+
+            await Task.Run(() =>
+            {
+                // load from json into object
+                List<PsxDc> games = new List<PsxDc>();
+                string json = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\DAT\PSXDATACENTER\PSXDC.json");
+                games = JsonConvert.DeserializeObject<List<PsxDc>>(json);
+
+                int total = games.Where(a => (a.InfoUrl != null && a.InfoUrl != "") &&
+                (a.Year == null || a.Year == "")).ToList().Count;
+                int current = 0;
+
+                // iterate through each entry
+                for (int i = 0; i < games.Count(); i++)
+                {                    
+                    // skip if no external url available
+                    if (games[i].InfoUrl == null || games[i].InfoUrl == "")
+                        continue;
+
+                    // skip if year is already populated
+                    if (games[i].Year != null)
+                        continue;
+
+                    current++;
+
+                    controller.SetMessage(output + "Scraping game " + current + " of " + total);
+
+                    // step through and load each info page from psxdatacenter.com
+                    var g = PsxDc.ScrapeIndividualInfo(games[i]);
+
+                    // set the data (maybe not needed)
+                    games[i] = g;
+
+                    // save file
+                    string jsonToSave = JsonConvert.SerializeObject(games, Formatting.Indented);
+                    File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\DAT\PSXDATACENTER\PSXDC.json", jsonToSave);
+
+                    // arbitary wait to avoid countermeasures (may or may not work or be needed)
+                    Thread.Sleep(1000);
+                }
+
+            });
 
             await controller.CloseAsync();
 

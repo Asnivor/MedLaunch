@@ -40,21 +40,22 @@ namespace MedLaunch.Classes.Scanning
                                        where g.systemId == systemId
                                        select g).ToList();
 
+            // check whether presentGames paths are valid - mark as hidden if not
+            foreach (var g in presentGames.Where(a => a.hidden == false))
+            {
+                if (!File.Exists(g.gamePath))
+                {
+                    g.hidden = true;
+                    DisksToUpdate.Add(g);
+                    HiddenStats++;
+                }
+            }
+
             /* disc games at the moment MUST reside in 1st level subfolders within the system folder */
 
             // get all subfolders within the system folder
             if (!Directory.Exists(discFolderPath))
             {
-                var ga = Game.GetGames(systemId);
-
-                // iterate through each game in this system and mark as hidden if path does not exist
-                foreach (var g in ga)
-                {
-                    if (!File.Exists(g.gamePath))
-                    {
-                        MarkedAsHidden.Add(g);
-                    }
-                }
                 return;                
             }
                 
@@ -294,6 +295,7 @@ namespace MedLaunch.Classes.Scanning
                 newGame.isFavorite = false;
                 newGame.systemId = sysId;
                 newGame.disks = f.ExtraInfo;
+                newGame.OtherFlags = f.ExtraInfo; // serial number to otherflags field for now as well
 
                 if (lookup != null && lookup.Count > 0)
                 {
@@ -310,7 +312,8 @@ namespace MedLaunch.Classes.Scanning
                     newGame.Country = rom.Country;
                     newGame.DevelopmentStatus = rom.DevelopmentStatus;
                     newGame.Language = rom.Language;
-                    newGame.OtherFlags = rom.OtherFlags;
+                    //newGame.OtherFlags = rom.OtherFlags;
+                    newGame.OtherFlags = f.ExtraInfo; // serial number to otherflags field for now as well
 
                     if (rom.Year != null && rom.Year != "")
                     {
@@ -331,7 +334,9 @@ namespace MedLaunch.Classes.Scanning
                 isNewGame = false;
 
                 // matching game found - update it
-                if ((lookupGame.gamePath == f.FullPath || lookupGame.gamePath == f.FullPath) && lookupGame.hidden == false)
+                if ((lookupGame.gamePath == f.FullPath &&
+                    lookupGame.OtherFlags == f.ExtraInfo
+                    ) && lookupGame.hidden == false)
                 {
                     //nothing to update - Path is either identical either absoultely or relatively (against the systemPath set in the database)
                     shouldAddUpdate = false;
@@ -362,7 +367,8 @@ namespace MedLaunch.Classes.Scanning
                         newGame.Country = rom.Country;
                         newGame.DevelopmentStatus = rom.DevelopmentStatus;
                         newGame.Language = rom.Language;
-                        newGame.OtherFlags = rom.OtherFlags;
+                        //newGame.OtherFlags = rom.OtherFlags;
+                        newGame.OtherFlags = f.ExtraInfo; // serial number to otherflags field for now as well
 
                         if (rom.Year != null && rom.Year != "")
                         {

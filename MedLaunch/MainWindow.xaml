@@ -175,6 +175,8 @@
                             <MenuItem Header="Build master information file from DATs (tosec / nointro etc)" Click="btnBuildFromDat_Click"/>
                             <MenuItem Header="Populate entries in the master DAT that do not have date information" Click="btnmatchDATyears_Click"/>
                             <MenuItem Header="Build Saturn Games List JSON" Click="buildSaturnJson_Click"/>
+                            <MenuItem Header="Scrape PSX Games from PSXDATACENTER into json (initial list) - destructive" Click="buildPsxJson_Click"/>
+                            <MenuItem Header="Populate PSXDATACENTER json with more advanced details (non-destructive)" Click="popPsxJson_Click"/>
                         </MenuItem>
                         <MenuItem Header="MedLaunch ToolTips">
                             <MenuItem Header="Generate tooltips JSON" Click="btnGenerateToolTips_Click"/>
