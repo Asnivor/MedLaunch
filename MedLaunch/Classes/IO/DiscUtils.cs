@@ -83,6 +83,11 @@ namespace MedLaunch.Classes.IO
             else
                 serial = serial.TrimStart('\\').TrimStart('\\');
 
+            // try and remove any nonsense after the serial
+            string[] sarr2 = serial.Split('\r');
+            if (sarr2.Length > 1)
+                serial = sarr2.First();
+
             return serial;            
         }
 

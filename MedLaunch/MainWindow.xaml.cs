@@ -520,7 +520,7 @@ namespace MedLaunch
 
             var controller = await this.ShowProgressAsync(initial, "Determining Paths and Counting Files...", settings: mySettings);
             controller.SetCancelable(true);
-            //controller.SetIndeterminate();
+            controller.SetIndeterminate();
 
             await Task.Delay(100);
 

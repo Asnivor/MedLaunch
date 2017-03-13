@@ -2,6 +2,7 @@
 using MedLaunch.Classes.GamesLibrary;
 using MedLaunch.Classes.IO;
 using MedLaunch.Classes.Scraper.DAT.Models;
+using MedLaunch.Classes.Scraper.PSXDATACENTER;
 using MedLaunch.Models;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -18,12 +19,41 @@ namespace MedLaunch.Classes.Scanning
     public class DiscScan : GameScanner
     {
         public List<SaturnGame> SatGamesList { get; set; }
+        public List<PsxDc> PsxGamesList { get; set; }
+        public List<PsxName> PsxNames { get; set; }
 
         public DiscScan()
         {
             // populate SatGamesList
-            string json = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\SaturnGames.json");
-            SatGamesList = JsonConvert.DeserializeObject<List<SaturnGame>>(json);
+            string satJson = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\SaturnGames.json");
+            SatGamesList = JsonConvert.DeserializeObject<List<SaturnGame>>(satJson);
+
+            // populate PsxGamesList
+            string psxJson = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\DAT\PSXDATACENTER\PSXDC.json");
+            PsxGamesList = JsonConvert.DeserializeObject<List<PsxDc>>(psxJson);
+
+            // get psxnames
+            string[] names = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\ps1titles_us_eu_jp.txt");
+            PsxNames = new List<PsxName>();
+            foreach (string n in names)
+            {
+                if (n.StartsWith("//") || n == "" || n == " ")
+                    continue;
+
+                string[] arr = n.Split(' ');
+                string ser = arr[0];
+                StringBuilder sb = new StringBuilder();
+                for (int i = 1; i < arr.Length; i++)
+                {
+                    sb.Append(arr[i]);
+                    sb.Append(" ");
+                }
+                string nam = sb.ToString().Trim();
+                PsxName na = new PsxName();
+                na.serial = ser;
+                na.name = nam;
+                PsxNames.Add(na);
+            }
         }
 
         // Start Disc scan and import process for specific system
@@ -40,6 +70,7 @@ namespace MedLaunch.Classes.Scanning
                                        where g.systemId == systemId
                                        select g).ToList();
 
+            /*
             // check whether presentGames paths are valid - mark as hidden if not
             foreach (var g in presentGames.Where(a => a.hidden == false))
             {
@@ -50,6 +81,7 @@ namespace MedLaunch.Classes.Scanning
                     HiddenStats++;
                 }
             }
+            */
 
             /* disc games at the moment MUST reside in 1st level subfolders within the system folder */
 
@@ -266,6 +298,11 @@ namespace MedLaunch.Classes.Scanning
             bool isNewGame = false;
             bool shouldAddUpdate = true;
 
+            // lookup hash in MasterDAT
+            List<DATMerge> lookup = (from i in DAT
+                                     where i.SystemId == sysId && i.Roms.Any(l => l.MD5.ToUpper().Trim() == md5Hash)
+                                     select i).ToList();
+
             // get md5 hash of first disc cuefile
             if (f.Extension.ToLower() == ".m3u")
             {
@@ -276,82 +313,136 @@ namespace MedLaunch.Classes.Scanning
             else
                 md5Hash = Crypto.checkMD5(f.FullPath);
 
-            // lookup hash from various sources
-            List<DATMerge> lookup = (from i in DAT
-                                     where i.SystemId == sysId && i.Roms.Any(l => l.MD5.ToUpper().Trim() == md5Hash)
-                                     select i).ToList();
-
-            // populate GAME object
-            if (lookupGame == null)
+            // per system data population
+            if (sysId == 9)     // psx
             {
-                isNewGame = true;
-
-                // does not already exist - create new game
-                newGame.configId = 1;
-                newGame.gameName = f.GameName;
-                newGame.gamePath = f.FullPath;
-                newGame.hidden = false;
-                newGame.isDiskBased = true;
-                newGame.isFavorite = false;
-                newGame.systemId = sysId;
-                newGame.disks = f.ExtraInfo;
-                newGame.OtherFlags = f.ExtraInfo; // serial number to otherflags field for now as well
-
-                if (lookup != null && lookup.Count > 0)
+                if (lookupGame == null)
                 {
-                    newGame.gameNameFromDAT = lookup.First().GameName;
-                    newGame.Publisher = lookup.First().Publisher;
-                    newGame.Year = lookup.First().Year;
-
-                    // get rom we are interested in
-                    var rom = (from ro in lookup.First().Roms
-                               where ro.MD5.ToUpper().Trim() == md5Hash.ToUpper().Trim()
-                               select ro).First();
-                    newGame.romNameFromDAT = rom.RomName;
-                    newGame.Copyright = rom.Copyright;
-                    newGame.Country = rom.Country;
-                    newGame.DevelopmentStatus = rom.DevelopmentStatus;
-                    newGame.Language = rom.Language;
-                    //newGame.OtherFlags = rom.OtherFlags;
-                    newGame.OtherFlags = f.ExtraInfo; // serial number to otherflags field for now as well
-
-                    if (rom.Year != null && rom.Year != "")
-                    {
-                        newGame.Year = rom.Year;
-                    }
-                    if (rom.Publisher != null && rom.Publisher != "")
-                    {
-                        newGame.Publisher = rom.Publisher;
-                    }
-
-                    // increment added counter
-                    AddedStats++;
-                    GameListBuilder.UpdateFlag();
-                }
-            }
-            else
-            {
-                isNewGame = false;
-
-                // matching game found - update it
-                if ((lookupGame.gamePath == f.FullPath &&
-                    lookupGame.OtherFlags == f.ExtraInfo
-                    ) && lookupGame.hidden == false)
-                {
-                    //nothing to update - Path is either identical either absoultely or relatively (against the systemPath set in the database)
-                    shouldAddUpdate = false;
-                    UntouchedStats++;
+                    // no matching game found in database - create new
+                    isNewGame = true;
+                    newGame.configId = 1;
+                    newGame.gameName = f.GameName;
+                    newGame.gamePath = f.FullPath;
+                    newGame.hidden = false;
+                    newGame.isDiskBased = true;
+                    newGame.isFavorite = false;
+                    newGame.systemId = sysId;
+                    newGame.disks = f.ExtraInfo;
+                    newGame.OtherFlags = f.ExtraInfo.ToUpper(); // serial number to otherflags field for now as well
                 }
                 else
                 {
+                    // modify existing game
+                    isNewGame = false;
                     newGame = lookupGame;
-                    // update path in case it has changed location
+                }
+                // populate PSX settings from DAT
+                PsxDc psxDc = PsxGamesList.Where(a => a.Serial.Contains(f.ExtraInfo.ToUpper())).FirstOrDefault();
+                if (psxDc != null)
+                {
+                    newGame.Country = psxDc.Region;
+                    newGame.Language = psxDc.Languages;
+                    newGame.Year = psxDc.Year;
+                    newGame.Publisher = psxDc.Publisher;
+                    newGame.Developer = psxDc.Developer;
+                    newGame.gameNameFromDAT = psxDc.Name;
+
+                    // now try and get the prettier name
+                    PsxName pretty = PsxNames.Where(a => a.serial.Trim().ToUpper() == newGame.disks.Trim().ToUpper()).FirstOrDefault();
+                    if (pretty != null)
+                        newGame.gameNameFromDAT = pretty.name;
+                }  
+                else
+                {
+                    // no entry found in psxdat - lookup in masterDAT
+                    if (lookup != null && lookup.Count > 0)
+                    {
+                        newGame.gameNameFromDAT = lookup.First().GameName;
+                        newGame.Publisher = lookup.First().Publisher;
+                        newGame.Year = lookup.First().Year;
+
+                        // get rom we are interested in
+                        var rom = (from ro in lookup.First().Roms
+                                   where ro.MD5.ToUpper().Trim() == md5Hash.ToUpper().Trim()
+                                   select ro).First();
+                        newGame.romNameFromDAT = rom.RomName;
+                        newGame.Copyright = rom.Copyright;
+                        newGame.Country = rom.Country;
+                        newGame.DevelopmentStatus = rom.DevelopmentStatus;
+                        newGame.Language = rom.Language;
+                        //newGame.OtherFlags = rom.OtherFlags;
+                        newGame.OtherFlags = f.ExtraInfo; // serial number to otherflags field for now as well
+
+                        if (rom.Year != null && rom.Year != "")
+                        {
+                            newGame.Year = rom.Year;
+                        }
+                        if (rom.Publisher != null && rom.Publisher != "")
+                        {
+                            newGame.Publisher = rom.Publisher;
+                        }                        
+                    }
+                }                
+            }
+            else if (sysId == 13)    // saturn
+            {
+                if (lookupGame == null)
+                {
+                    // no matching game found in database - create new
+                    isNewGame = true;
+                    newGame.configId = 1;
+                    newGame.gameName = f.GameName;
                     newGame.gamePath = f.FullPath;
-                    // mark as not hidden
                     newGame.hidden = false;
                     newGame.isDiskBased = true;
+                    newGame.isFavorite = false;
+                    newGame.systemId = sysId;
                     newGame.disks = f.ExtraInfo;
+                    newGame.OtherFlags = f.ExtraInfo; // serial number to otherflags field for now as well
+                }
+                else
+                {
+                    // modify existing game
+                    isNewGame = false;
+                    newGame = lookupGame;
+                }
+                // populate Saturn vsettings from DAT
+                if (newGame.disks != null && newGame.disks != "")
+                {
+                    if (newGame.disks.Contains("*/"))
+                    {
+                        string[] arr = newGame.disks.Split(new string[] { "*/" }, StringSplitOptions.None);
+                        serialNumber = arr[0];
+                        versionNumber = arr[1];
+                    }
+                    else
+                        serialNumber = newGame.disks;
+                }
 
+                List<SaturnGame> satGames = SatGamesList.Where(a => a.SerialNumber.Contains(serialNumber)).ToList();
+                SaturnGame satGame = new SaturnGame();
+                if (satGames.Count == 1)
+                    satGame = satGames.First();
+                if (satGames.Count > 1)
+                {
+                    var sGames = satGames.Where(a => a.Version.Trim() == versionNumber.Trim()).ToList();
+                    if (sGames.Count >= 1)
+                        satGame = sGames.First();
+                }
+
+                if (satGame.SerialNumber != null && satGame.SerialNumber != "")
+                {
+                    newGame.Country = satGame.Country;                    
+                    newGame.gameNameFromDAT = satGame.Title;
+                    string[] yearArr = satGame.Date.Split('/');
+                    if (yearArr.Length > 1)
+                    {
+                        newGame.Year = yearArr.Last().Trim();
+                    }
+                }
+                else
+                {
+                    // no entry found in satdat - lookup in masterDAT
                     if (lookup != null && lookup.Count > 0)
                     {
                         newGame.gameNameFromDAT = lookup.First().GameName;
@@ -378,61 +469,59 @@ namespace MedLaunch.Classes.Scanning
                         {
                             newGame.Publisher = rom.Publisher;
                         }
-
                     }
-                    
-                }
-
+                }                  
             }
-
-            // Now newGame is populated - do lookup based on serial number for certain systems (for better clarity of data)
-            if (sysId == 13)  // saturn
+            else // all other disc systems
             {
-                if (newGame.disks != null && newGame.disks != "")
+                if (lookupGame == null)
                 {
-                    if (newGame.disks.Contains("*/"))
+                    // no matching game found in database - create new
+                    isNewGame = true;
+                    newGame.configId = 1;
+                    newGame.gameName = f.GameName;
+                    newGame.gamePath = f.FullPath;
+                    newGame.hidden = false;
+                    newGame.isDiskBased = true;
+                    newGame.isFavorite = false;
+                    newGame.systemId = sysId;
+                    newGame.disks = f.ExtraInfo;
+                    newGame.OtherFlags = f.ExtraInfo; // serial number to otherflags field for now as well
+                }
+                else
+                {
+                    // modify existing game
+                    isNewGame = false;
+                    newGame = lookupGame;
+                }
+                // populate settings from masterDAT
+                if (lookup != null && lookup.Count > 0)
+                {
+                    newGame.gameNameFromDAT = lookup.First().GameName;
+                    newGame.Publisher = lookup.First().Publisher;
+                    newGame.Year = lookup.First().Year;
+
+                    // get rom we are interested in
+                    var rom = (from ro in lookup.First().Roms
+                               where ro.MD5.ToUpper().Trim() == md5Hash.ToUpper().Trim()
+                               select ro).First();
+                    newGame.romNameFromDAT = rom.RomName;
+                    newGame.Copyright = rom.Copyright;
+                    newGame.Country = rom.Country;
+                    newGame.DevelopmentStatus = rom.DevelopmentStatus;
+                    newGame.Language = rom.Language;
+                    //newGame.OtherFlags = rom.OtherFlags;
+                    newGame.OtherFlags = f.ExtraInfo; // serial number to otherflags field for now as well
+
+                    if (rom.Year != null && rom.Year != "")
                     {
-                        string[] arr = newGame.disks.Split(new string[] { "*/" }, StringSplitOptions.None);
-                        serialNumber = arr[0];
-                        versionNumber = arr[1];
+                        newGame.Year = rom.Year;
                     }
-                    else
-                        serialNumber = newGame.disks;
-                }
-
-                List<SaturnGame> satlook = new List<SaturnGame>();
-
-                // lookup game in SaturnGamesList
-                satlook = (from s in SatGamesList
-                                            where s.SerialNumber == serialNumber
-                                            select s).ToList();
-                if (satlook.Count > 1)
-                {
-                    // multiple records found - narrow by version number
-                    var satl = (from s in satlook
-                                where s.Version == versionNumber
-                                select s).ToList();
-                    if (satl.Count >= 1)
-                        satlook = satl;
-                }  
-
-                if (satlook.Count == 1)
-                {
-                    // add data to newGame
-                    newGame.Country = satlook.First().Country;
-                    newGame.gameNameFromDAT = satlook.First().Title;
-                    newGame.Language = satlook.First().CountryCode;
-                    if (satlook.First().Date.Contains("/"))
+                    if (rom.Publisher != null && rom.Publisher != "")
                     {
-                        string[] dArr = satlook.First().Date.Split('/');
-                        newGame.Year = dArr.Last();
-                    }                    
-                }             
-            }
-
-            if (sysId == 9)     //psx
-            {
-                // yet to come
+                        newGame.Publisher = rom.Publisher;
+                    }
+                }
             }
 
             // now add to added or update list
@@ -442,7 +531,7 @@ namespace MedLaunch.Classes.Scanning
                 AddedStats++;
                 GameListBuilder.UpdateFlag();
             }
-                
+
             if (isNewGame == false && shouldAddUpdate == true)
             {
                 DisksToUpdate.Add(newGame);
@@ -451,7 +540,6 @@ namespace MedLaunch.Classes.Scanning
             }
 
             return newGame;
-                
         }
 
         public void InsertOrUpdateDisk(DiscGameFile f, int sysId)
@@ -935,5 +1023,11 @@ namespace MedLaunch.Classes.Scanning
         ccd,
         toc,
         m3u
+    }
+
+    public class PsxName
+    {
+        public string serial { get; set; }
+        public string name { get; set; }
     }
 }

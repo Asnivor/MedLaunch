@@ -42,6 +42,7 @@ namespace MedLaunch.Classes.GamesLibrary
                     d.Flags = game.OtherFlags;
                     d.Language = game.Language;
                     d.Publisher = game.Publisher;
+                    d.Developer = game.Developer;
                     d.Year = game.Year;
 
                     if (game.gameNameFromDAT != null && game.gameNameFromDAT != "")

@@ -24,6 +24,7 @@ namespace MedLaunch.Models
         public string Copyright { get; set; }
         public string OtherFlags { get; set; }
         public string Publisher { get; set; }
+        public string Developer { get; set; }
         public string Year { get; set; }
         public DateTime gameLastPlayed { get; set; }
         public DateTime gameLastFinished { get; set; }

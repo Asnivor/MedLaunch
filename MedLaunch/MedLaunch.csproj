@@ -637,6 +637,9 @@
     <None Include="Data\System\DAT\NOINTRO\Sega - Mega Drive - Genesis Parent-Clone %2820161023-001129%29.dat" />
     <None Include="Data\System\DAT\NOINTRO\SNK - Neo Geo Pocket Color Parent-Clone %2820151122-095540%29.dat" />
     <None Include="Data\System\DAT\NOINTRO\SNK - Neo Geo Pocket Parent-Clone %2820120228-094313%29.dat" />
+    <None Include="Data\System\DAT\PSXDATACENTER\PSXDC.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Data\System\DAT\TOSEC\Atari Lynx - Applications %28TOSEC-v2013-12-13_CM%29.dat" />
     <None Include="Data\System\DAT\TOSEC\Atari Lynx - Demos %28TOSEC-v2013-12-13_CM%29.dat" />
     <None Include="Data\System\DAT\TOSEC\Atari Lynx - Firmware %28TOSEC-v2013-12-13_CM%29.dat" />
@@ -825,7 +828,9 @@
     <Resource Include="Data\Graphics\Controllers\ss-dualmission.png" />
     <Resource Include="Data\Graphics\Controllers\ss-mission.png" />
     <Resource Include="Data\Graphics\Controllers\ss-wheel.png" />
-    <None Include="Data\System\ps1titles_us_eu_jp.txt" />
+    <None Include="Data\System\ps1titles_us_eu_jp.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\System\SaturnList.txt" />
     <Content Include="ExternalAssemblies\md5.dll" />
     <Content Include="ExternalAssemblies\WindowScrape.dll" />
