@@ -293,5 +293,37 @@ namespace MedLaunch.Classes
                 GamesLibData.ForceUpdate();
             }
         }
+
+        public static void CheckGamesExist(int systemId)
+        {
+            var games = Game.GetGames(systemId);
+        }
+
+        public static void CheckGamesExist(MediaType mediaType)
+        {
+            List<GSystem> sys = new List<GSystem>();
+            
+            if (mediaType == MediaType.DISC)
+            {
+                sys = GSystem.GetSystems().Where(a => a.systemId == 8 ||
+                                                        a.systemId == 9 ||
+                                                        a.systemId == 13 ||
+                                                        a.systemId == 18).ToList();
+
+            }
+            else if (mediaType == MediaType.ROM)
+            {
+                sys = GSystem.GetSystems().Where(a => a.systemId != 8 &&
+                                                        a.systemId != 9 &&
+                                                        a.systemId != 13 &&
+                                                        a.systemId != 18).ToList();
+            }
+
+            foreach (var s in sys)
+            {
+
+            }
+        }
     }
 }
+

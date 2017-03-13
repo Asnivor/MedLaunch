@@ -495,7 +495,7 @@ namespace MedLaunch
         }
 
         /// <summary>
-        /// Scan ROMs and Disks
+        /// Scan ROMs and Discs
         /// </summary>
         /// <param name="sysId"></param>
         /// <param name="mediaType"></param>
