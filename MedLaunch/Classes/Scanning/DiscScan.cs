@@ -25,15 +25,15 @@ namespace MedLaunch.Classes.Scanning
         public DiscScan()
         {
             // populate SatGamesList
-            string satJson = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\SaturnGames.json");
+            string satJson = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"Data\System\SaturnGames.json");
             SatGamesList = JsonConvert.DeserializeObject<List<SaturnGame>>(satJson);
 
             // populate PsxGamesList
-            string psxJson = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\DAT\PSXDATACENTER\PSXDC.json");
+            string psxJson = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"Data\System\DAT\PSXDATACENTER\PSXDC.json");
             PsxGamesList = JsonConvert.DeserializeObject<List<PsxDc>>(psxJson);
 
             // get psxnames
-            string[] names = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\ps1titles_us_eu_jp.txt");
+            string[] names = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"Data\System\ps1titles_us_eu_jp.txt");
             PsxNames = new List<PsxName>();
             foreach (string n in names)
             {

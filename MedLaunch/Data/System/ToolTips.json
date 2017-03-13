@@ -393,7 +393,7 @@
   },
   {
     "Command": "nes.input.fcexp",
-    "Description": "Input device for Famicom Expansion Port\n\nnone - none\n\n\narkanoid - Arkanoid Paddle\n\n\nshadow - Space Shadow Gun\n\n\n4player - 4-player Adapter\n\n\nfkb - Family Keyboard\n\n\nhypershot - Hypershot Paddles\n\n\nmahjong - Mahjong Controller\n\n\npartytap - Party Tap\n\n\nftrainera - Family Trainer Side A\n\n\nftrainerb - Family Trainer Side B\n\n\noekakids - Oeka Kids Tablet\n\n\nbworld - Barcode World Scanner\n"
+    "Description": "Input device for Famicom Expansion Port\n\nnone - none\n\n\narkanoid - Arkanoid Paddle\n\n\nshadow - Space Shadow Gun\n\n\n4player - 4-player Adapter\n\n\nfkb - Family Keyboard\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details.\n\nhypershot - Hypershot Paddles\n\n\nmahjong - Mahjong Controller\n\n\npartytap - Party Tap\n\n\nftrainera - Family Trainer Side A\n\n\nftrainerb - Family Trainer Side B\n\n\noekakids - Oeka Kids Tablet\n\n\nbworld - Barcode World Scanner\n"
   },
   {
     "Command": "nes.input.port1",
@@ -825,7 +825,7 @@
   },
   {
     "Command": "pce.input.port1",
-    "Description": "Input device for Port 1\n\nnone - none\n\n\ngamepad - Gamepad\n\n\nmouse - Mouse\n\n\ntsushinkb - Tsushin Keyboard\n"
+    "Description": "Input device for Port 1\n\nnone - none\n\n\ngamepad - Gamepad\n\n\nmouse - Mouse\n\n\ntsushinkb - Tsushin Keyboard\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
   },
   {
     "Command": "pce.input.port2",
@@ -1369,51 +1369,59 @@
   },
   {
     "Command": "ss.input.port1",
-    "Description": "Input device for Virtual Port 1\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse"
+    "Description": "Input device for Virtual Port 1\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
   },
   {
     "Command": "ss.input.port10",
-    "Description": "Input device for Virtual Port 10\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse"
+    "Description": "Input device for Virtual Port 10\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
   },
   {
     "Command": "ss.input.port11",
-    "Description": "Input device for Virtual Port 11\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse"
+    "Description": "Input device for Virtual Port 11\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
   },
   {
     "Command": "ss.input.port12",
-    "Description": "Input device for Virtual Port 12\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse"
+    "Description": "Input device for Virtual Port 12\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
   },
   {
     "Command": "ss.input.port2",
-    "Description": "Input device for Virtual Port 2\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse"
+    "Description": "Input device for Virtual Port 2\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
   },
   {
     "Command": "ss.input.port3",
-    "Description": "Input device for Virtual Port 3\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse"
+    "Description": "Input device for Virtual Port 3\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
   },
   {
     "Command": "ss.input.port4",
-    "Description": "Input device for Virtual Port 4\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse"
+    "Description": "Input device for Virtual Port 4\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
   },
   {
     "Command": "ss.input.port5",
-    "Description": "Input device for Virtual Port 5\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse"
+    "Description": "Input device for Virtual Port 5\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
   },
   {
     "Command": "ss.input.port6",
-    "Description": "Input device for Virtual Port 6\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse"
+    "Description": "Input device for Virtual Port 6\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
   },
   {
     "Command": "ss.input.port7",
-    "Description": "Input device for Virtual Port 7\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse"
+    "Description": "Input device for Virtual Port 7\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
   },
   {
     "Command": "ss.input.port8",
-    "Description": "Input device for Virtual Port 8\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse"
+    "Description": "Input device for Virtual Port 8\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
   },
   {
     "Command": "ss.input.port9",
-    "Description": "Input device for Virtual Port 9\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse"
+    "Description": "Input device for Virtual Port 9\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.sport1.multitap",
+    "Description": "Enable multitap on Saturn port 1."
+  },
+  {
+    "Command": "ss.input.sport2.multitap",
+    "Description": "Enable multitap on Saturn port 2."
   },
   {
     "Command": "ss.midsync",

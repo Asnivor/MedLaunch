@@ -76,6 +76,33 @@ Author(s):          Felix Perreault
 Project Site:       https://fuzzystring.codeplex.com/
 License:            https://fuzzystring.codeplex.com/license
 
+Assembly:			BizHawk.Common.dll / BizHawk.Emulation.DiscSystem.dll
+Authors(s):			BizHawk Development Team
+Project Site:		https://github.com/TASVideos/BizHawk
+License:			https://opensource.org/licenses/MIT
+
+Assembly:			SharpCompress.dll
+Author(s):			Adam Hathcock
+Project Site:		https://github.com/adamhathcock/sharpcompress
+License:			https://github.com/adamhathcock/sharpcompress/blob/master/LICENSE.txt
+
+Assembly:			SlimDX.dll
+Author(s):			SlimDX Group
+Project Site:		https://slimdx.org/
+License:			https://slimdx.org/license.php
+
+Assembly:			WindowScrape.dll
+Author(s):			Mark Greenwald
+Project Site:		https://github.com/DataDink/WindowScrape
+License:			Unknown
+
+Assembly:			Xceed.Wpf.Toolkit.dll, Xceed.Wpf.DataGrid.dll, Xceed.Wpf.AvalonDock.Themes.VS2010.dll, Xceed.Wpf.AvalonDock.Themes.Metro.dll, Xceed.Wpf.AvalonDock.Themes.Aero.dll, Xceed.Wpf.AvalonDock.dll
+Author(s):			Xceed
+Project Site:		http://wpftoolkit.codeplex.com/
+License:			http://wpftoolkit.codeplex.com/license
+
+
+
 The binary releases of MedLaunch also ship with the following Microsoft .NET assemblies that
 fall under their own licensing terms 
 (typically https://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm / https://www.microsoft.com/net/dotnet_library_license.htm):
