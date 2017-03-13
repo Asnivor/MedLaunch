@@ -65,7 +65,7 @@ namespace MedLaunch.Classes.IO
             // start by checking sector 23 (as most discs seem to have system.cfg there
             byte[] data =  di.GetPSXSerialNumber(lba);
             // take first 32 bytes
-            byte[] data32 = data.ToList().Take(32).ToArray();
+            byte[] data32 = data.ToList().Take(46).ToArray();
 
             string sS = System.Text.Encoding.Default.GetString(data32);
 

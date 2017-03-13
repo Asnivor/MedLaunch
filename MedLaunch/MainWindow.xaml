@@ -494,8 +494,36 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-                            <TextBox Grid.Row="0" x:Name="tbFilterDatagrid" Text="" TextChanged="tbFilterDatagrid_TextChanged" Controls:TextBoxHelper.ClearTextButton="True" 
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBox Grid.Row="0" Grid.Column="0" x:Name="tbFilterDatagrid" Text="" TextChanged="tbFilterDatagrid_TextChanged" Controls:TextBoxHelper.ClearTextButton="True" 
                                      Controls:TextBoxHelper.Watermark="Dynamic Search" />
+                                <Border Grid.Row="0" Grid.Column="1" Name="CountryFilterBrd">
+                                    <UniformGrid Columns="4" Background="{DynamicResource ControlBackgroundBrush}">
+                                        <Viewbox Height="12">
+                                            <RadioButton Name="srcFilterALL" Margin="5,0,5,0" GroupName="filters" Checked="srcFilter_Checked">ALL</RadioButton>
+                                        </Viewbox>
+                                        <Viewbox Height="12">
+                                            <RadioButton Name="srcFilterUSA" Margin="5,0,5,0" GroupName="filters" Checked="srcFilter_Checked">USA</RadioButton>
+                                        </Viewbox>
+                                        <Viewbox Height="12">
+                                            <RadioButton Name="srcFilterEUR" Margin="5,0,5,0" GroupName="filters" Checked="srcFilter_Checked">EUR</RadioButton>
+                                        </Viewbox>
+                                        <Viewbox Height="12">
+                                            <RadioButton Name="srcFilterJPN" Margin="5,0,5,0" GroupName="filters" Checked="srcFilter_Checked">JPN</RadioButton>
+                                        </Viewbox>
+
+                                    </UniformGrid>
+                                </Border>
+
+                            </Grid>
+
+                           
+                            
                             <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
 
 
@@ -9960,6 +9988,8 @@
                                                 </CheckBox>
 
                                                 <Button Content="Modify Library Column Visibility" Click="MenuItemColumn_Click" Grid.Row="1" Grid.ColumnSpan="2" />
+
+                                                <CheckBox  Grid.Row="2" Grid.ColumnSpan="2" Content="Hide Country Filter" x:Name="chkHideCountryFilter" Checked="chkHideCountryFilter_Checked" Unchecked="chkHideCountryFilter_Unchecked" />
 
                                                 <CheckBox x:Name="chkshowGLYear" Grid.ColumnSpan="2" Grid.Row="1" Checked="chkshowGLYear_Checked" Unchecked="chkshowGLYear_Unchecked">
                                                     Show grid YEAR column

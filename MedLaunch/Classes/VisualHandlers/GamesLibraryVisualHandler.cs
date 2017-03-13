@@ -815,7 +815,7 @@ namespace MedLaunch.Classes
             string tbText = tbFilterDatagrid.Text;
 
             // get all grouped radio buttons
-            List<RadioButton> buttons = UIHandler.GetLogicalChildCollection<RadioButton>(grdGameLibrary);
+            List<RadioButton> buttons = UIHandler.GetLogicalChildCollection<RadioButton>(grdGameLibrary).Where(a => !a.Name.StartsWith("srcFilter")).ToList();
 
             foreach (RadioButton but in buttons)
             {

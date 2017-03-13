@@ -162,7 +162,7 @@ namespace MedLaunch.Classes.GamesLibrary
             }
         }
 
-        public static List<DataGridGamesView> Filter(int systemId, string search)
+        public static List<DataGridGamesView> Filter(int systemId, string search, CountryFilter countryFilter)
         {
             List<DataGridGamesView> results = new List<DataGridGamesView>();
             App _App = ((App)Application.Current);
@@ -221,6 +221,25 @@ namespace MedLaunch.Classes.GamesLibrary
                     results = (from g in _App.GamesList.AllGames
                                where GSystem.GetSystemId(g.System) == systemId
                              select g).ToList();
+                    break;
+            }
+
+            // narrow search based on country/region filter
+            switch (countryFilter)
+            {
+                case CountryFilter.EUR:
+                    results = results.Where(a => a.Country != null && a.Country.ToUpper().Contains("EU")).ToList();
+                    break;
+
+                case CountryFilter.JPN:
+                    results = results.Where(a => a.Country != null && a.Country.ToUpper().Contains("J")).ToList();
+                    break;
+
+                case CountryFilter.USA:
+                    results = results.Where(a => a.Country != null && a.Country.ToUpper().Contains("US")).ToList();
+                    break;
+
+                default:
                     break;
             }
 
@@ -449,5 +468,13 @@ namespace MedLaunch.Classes.GamesLibrary
 
         }
         */
+    }
+
+    public enum CountryFilter
+    {
+        ALL,
+        USA,
+        EUR,
+        JPN
     }
 }

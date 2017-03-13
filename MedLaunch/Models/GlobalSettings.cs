@@ -69,6 +69,9 @@ namespace MedLaunch.Models
         public string glFil18 { get; set; }             // PCECD
         public string glFil19 { get; set; }             // PCFX
 
+        // games library search filters visibility
+        public bool hideCountryFilters { get; set; }
+
         // Mednafen Cores Visability (uses medlaunch systemId)
         public bool coreVis1 { get; set; }
         public bool coreVis2 { get; set; }
@@ -206,6 +209,8 @@ namespace MedLaunch.Models
                 glFil17 = "3FFF",
                 glFil18 = "3FFF",
                 glFil19 = "3FFF",
+
+                hideCountryFilters = false,
 
                 coreVis1 = true,
                 coreVis2 = true,
@@ -369,7 +374,8 @@ namespace MedLaunch.Models
             CheckBox chkAllowBanners, CheckBox chkAllowBoxart, CheckBox chkAllowScreenshots, CheckBox chkAllowFanart, CheckBox chkPreferGenesis, 
             CheckBox chkAllowManuals, CheckBox chkAllowMedia, CheckBox chkSecondaryScraperBackup, RadioButton rbGDB, RadioButton rbMoby, Slider slScreenshotsPerHost, Slider slFanrtsPerHost,
             CheckBox chkAllowUpdateCheck, CheckBox chkBackupMednafenConfig, CheckBox chkSaveSysConfigs, ComboBox comboImageTooltipSize, CheckBox chkLoadConfigsOnStart, CheckBox chkEnableConfigToolTips,
-            CheckBox chkshowGLYear, CheckBox chkshowGLESRB, CheckBox chkshowGLCoop, CheckBox chkshowGLDeveloper, CheckBox chkshowGLPublisher, CheckBox chkshowGLPlayers, CheckBox chkEnableClearCacheOnExit, CheckBox chkrememberSysWinPositions)
+            CheckBox chkshowGLYear, CheckBox chkshowGLESRB, CheckBox chkshowGLCoop, CheckBox chkshowGLDeveloper, CheckBox chkshowGLPublisher, CheckBox chkshowGLPlayers, CheckBox chkEnableClearCacheOnExit, 
+            CheckBox chkrememberSysWinPositions, CheckBox chkHideCountryFilter)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
@@ -390,6 +396,8 @@ namespace MedLaunch.Models
             chkSaveSysConfigs.IsChecked = gs.saveSystemConfigs;
             chkLoadConfigsOnStart.IsChecked = gs.importConfigsOnStart;
             chkEnableConfigToolTips.IsChecked = gs.enableConfigToolTips;
+
+            chkHideCountryFilter.IsChecked = gs.hideCountryFilters;
 
             chkEnableClearCacheOnExit.IsChecked = gs.enableClearCacheOnExit;
 
@@ -638,6 +646,13 @@ namespace MedLaunch.Models
         {
             GlobalSettings gs = GetGlobals();
             gs.saveSystemConfigs = chkSaveSysConfigs.IsChecked.Value;
+            SetGlobals(gs);
+        }
+
+        public static void UpdateHideCountryFilters(CheckBox chkHideCountryFilter)
+        {
+            GlobalSettings gs = GetGlobals();
+            gs.hideCountryFilters = chkHideCountryFilter.IsChecked.Value;
             SetGlobals(gs);
         }
 

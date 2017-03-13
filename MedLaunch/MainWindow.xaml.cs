@@ -71,6 +71,9 @@ namespace MedLaunch
 
         public DeviceDefinition ControllerDefinition { get; set; }
 
+        public CountryFilter _countryFilter { get; set; }
+        public int _filterId { get; set; }
+
         public MainWindow()
         {
             // make sure class libraries are built
@@ -144,11 +147,14 @@ namespace MedLaunch
             // ensure 'show all' filter is checked on startup
             btnShowAll.IsChecked = true;
 
+            // ensure ALL country filter is checked
+            srcFilterALL.IsChecked = true;
+
             // load globalsettings for front page
             GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar,
                chkAllowBanners, chkAllowBoxart, chkAllowScreenshots, chkAllowFanart, chkPreferGenesis, chkAllowManuals, chkAllowMedia, chkSecondaryScraperBackup,
                rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost, chkAllowUpdateCheck, chkBackupMednafenConfig, chkSaveSysConfigs, comboImageTooltipSize, chkLoadConfigsOnStart, chkEnableConfigToolTips,
-               chkshowGLYear, chkshowGLESRB, chkshowGLCoop, chkshowGLDeveloper, chkshowGLPublisher, chkshowGLPlayers, chkEnableClearCacheOnExit, chkrememberSysWinPositions);
+               chkshowGLYear, chkshowGLESRB, chkshowGLCoop, chkshowGLDeveloper, chkshowGLPublisher, chkshowGLPlayers, chkEnableClearCacheOnExit, chkrememberSysWinPositions, chkHideCountryFilter);
             //gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
             GlobalSettings gs = GlobalSettings.GetGlobals();
             mainScaleTransform.ScaleX = Convert.ToDouble(gs.guiZoom);
@@ -885,7 +891,8 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(1);
             // load datagrid
-            DbEF.GetGames(dgGameList, 0, tbFilterDatagrid.Text);
+            _filterId = 0;
+            DbEF.GetGames(dgGameList, 0, tbFilterDatagrid.Text, _countryFilter);
            // dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -894,7 +901,8 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(2);
             // load datagrid
-            DbEF.GetGames(dgGameList, -1, tbFilterDatagrid.Text);
+            _filterId = -1;
+            DbEF.GetGames(dgGameList, -1, tbFilterDatagrid.Text, _countryFilter);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -903,7 +911,7 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(3);
             // load datagrid
-            DbEF.GetGames(dgGameList, -100, tbFilterDatagrid.Text);
+            DbEF.GetGames(dgGameList, -100, tbFilterDatagrid.Text, _countryFilter);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -912,7 +920,8 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(4);
             // load datagrid
-            DbEF.GetGames(dgGameList, 11, tbFilterDatagrid.Text);
+            _filterId = 11;
+            DbEF.GetGames(dgGameList, 11, tbFilterDatagrid.Text, _countryFilter);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -921,7 +930,7 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(5);
             // load datagrid
-            DbEF.GetGames(dgGameList, 12, tbFilterDatagrid.Text);
+            DbEF.GetGames(dgGameList, 12, tbFilterDatagrid.Text, _countryFilter);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -930,7 +939,8 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(6);
             // load datagrid
-            DbEF.GetGames(dgGameList, 10, tbFilterDatagrid.Text);
+            _filterId = 10;
+            DbEF.GetGames(dgGameList, 10, tbFilterDatagrid.Text, _countryFilter);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -939,7 +949,7 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(7);
             // load datagrid
-            DbEF.GetGames(dgGameList, 4, tbFilterDatagrid.Text);
+            DbEF.GetGames(dgGameList, 4, tbFilterDatagrid.Text, _countryFilter);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -948,7 +958,8 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(16);
             // load datagrid
-            DbEF.GetGames(dgGameList, 13, tbFilterDatagrid.Text);
+            _filterId = 13;
+            DbEF.GetGames(dgGameList, 13, tbFilterDatagrid.Text, _countryFilter);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -957,7 +968,7 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(17);
             // load datagrid
-            DbEF.GetGames(dgGameList, 9, tbFilterDatagrid.Text);
+            DbEF.GetGames(dgGameList, 9, tbFilterDatagrid.Text, _countryFilter);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -966,7 +977,8 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(8);
             // load datagrid
-            DbEF.GetGames(dgGameList, 7, tbFilterDatagrid.Text);
+            _filterId = 7;
+            DbEF.GetGames(dgGameList, 7, tbFilterDatagrid.Text, _countryFilter);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
         private void btnPcecd_Checked(object sender, RoutedEventArgs e)
@@ -974,7 +986,7 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(18);
             // load datagrid
-            DbEF.GetGames(dgGameList, 18, tbFilterDatagrid.Text);
+            DbEF.GetGames(dgGameList, 18, tbFilterDatagrid.Text, _countryFilter);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -983,7 +995,8 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(19);
             // load datagrid
-            DbEF.GetGames(dgGameList, 8, tbFilterDatagrid.Text);
+            _filterId = 8;
+            DbEF.GetGames(dgGameList, 8, tbFilterDatagrid.Text, _countryFilter);
            // dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -992,7 +1005,7 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(9);
             // load datagrid
-            DbEF.GetGames(dgGameList, 14, tbFilterDatagrid.Text);
+            DbEF.GetGames(dgGameList, 14, tbFilterDatagrid.Text, _countryFilter);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1001,7 +1014,8 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(10);
             // load datagrid
-            DbEF.GetGames(dgGameList, 6, tbFilterDatagrid.Text);
+            _filterId = 6;
+            DbEF.GetGames(dgGameList, 6, tbFilterDatagrid.Text, _countryFilter);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1010,7 +1024,7 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(11);
             // load datagrid
-            DbEF.GetGames(dgGameList, 15, tbFilterDatagrid.Text);
+            DbEF.GetGames(dgGameList, 15, tbFilterDatagrid.Text, _countryFilter);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1019,7 +1033,9 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(12);
             // load datagrid
-            DbEF.GetGames(dgGameList, 1, tbFilterDatagrid.Text);
+            _filterId = 1;
+                
+            DbEF.GetGames(dgGameList, 1, tbFilterDatagrid.Text, _countryFilter);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1028,7 +1044,7 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(13);
             // load datagrid
-            DbEF.GetGames(dgGameList, 2, tbFilterDatagrid.Text);
+            DbEF.GetGames(dgGameList, 2, tbFilterDatagrid.Text, _countryFilter);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1037,7 +1053,8 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(14);
             // load datagrid
-            DbEF.GetGames(dgGameList, 5, tbFilterDatagrid.Text);
+            _filterId = 5;
+            DbEF.GetGames(dgGameList, 5, tbFilterDatagrid.Text, _countryFilter);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1046,7 +1063,8 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(15);
             // load datagrid
-            DbEF.GetGames(dgGameList, 3, tbFilterDatagrid.Text);
+            _filterId = 3;
+            DbEF.GetGames(dgGameList, 3, tbFilterDatagrid.Text, _countryFilter);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1275,12 +1293,13 @@ namespace MedLaunch
                 system = 18;
             }
 
-            DbEF.GetGames(dgGameList, system, textbox.Text);
+            DbEF.GetGames(dgGameList, system, textbox.Text, _countryFilter);
         }
 
         // Clear all filters button click
         public void btnClearFilters_Click(object sender, RoutedEventArgs e)
         {
+            srcFilterALL.IsChecked = true;
             btnShowAll.IsChecked = true;
             tbFilterDatagrid.Clear();
         }
@@ -1466,6 +1485,18 @@ namespace MedLaunch
         private void chkHideSidebar_Unchecked(object sender, RoutedEventArgs e)
         {
             GlobalSettings.UpdateHideSidebar(chkHideSidebar);
+        }
+
+        private void chkHideCountryFilter_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateHideCountryFilters(chkHideCountryFilter);
+            CountryFilterBrd.Visibility = Visibility.Collapsed;
+        }
+
+        private void chkHideCountryFilter_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.UpdateHideCountryFilters(chkHideCountryFilter);
+            CountryFilterBrd.Visibility = Visibility.Visible;
         }
 
         private void chkshowGLCoop_Checked(object sender, RoutedEventArgs e)
@@ -5059,6 +5090,38 @@ namespace MedLaunch
             Input.Instance.Dispose();
             Input.Initialize(this);
         }
+
+        /// <summary>
+        /// Country filter buttons to the right of the games library dynamic search
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void srcFilter_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+            string name = rb.Name.Replace("srcFilter", "");
+
+            switch (name)
+            {
+                case "ALL":
+                    _countryFilter = CountryFilter.ALL;
+                    break;
+                case "USA":
+                    _countryFilter = CountryFilter.USA;
+                    break;
+                case "EUR":
+                    _countryFilter = CountryFilter.EUR;
+                    break;
+                case "JPN":
+                    _countryFilter = CountryFilter.JPN;
+                    break;
+            }
+
+            DbEF.GetGames(dgGameList, _filterId, tbFilterDatagrid.Text, _countryFilter);
+
+        }
+
+        
     }
     /*
     public class SliderIgnoreDelta : Slider
