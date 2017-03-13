@@ -399,7 +399,7 @@ namespace MedLaunch
 
         private void RescanDisks(object sender, RoutedEventArgs e)
         {
-            RescanSystemRoms(0, MediaType.DISC);
+            RescanSystemDiscs(0);
         }
 
         private async void ScrapeGetAllPlatformGames_Click(object sender, RoutedEventArgs e)
@@ -496,11 +496,10 @@ namespace MedLaunch
         }
 
         /// <summary>
-        /// Scan ROMs and Discs
+        /// Scan ROMs
         /// </summary>
         /// <param name="sysId"></param>
-        /// <param name="mediaType"></param>
-        private async void RescanSystemRoms(int sysId, MediaType mediaType)
+        private async void RescanSystemRoms(int sysId)
         {
 
             var mySettings = new MetroDialogSettings()
@@ -511,12 +510,7 @@ namespace MedLaunch
             };
 
             string initial = "";
-            switch (mediaType)
-            {
-                case MediaType.ROM: initial = "Scanning ROM Directories"; break;
-                case MediaType.DISC: initial = "Scanning Disc Directories"; break;
-                default: initial = "Scanning Game Directories"; break;
-            }
+            initial = "Scanning ROM Directories";                 
 
             var controller = await this.ShowProgressAsync(initial, "Determining Paths and Counting Files...", settings: mySettings);
             controller.SetCancelable(true);
@@ -529,10 +523,8 @@ namespace MedLaunch
             int updatedStats = 0;
             int untouchedStats = 0;
             int hiddenStats = 0;
-
-            //GameScanner rs = new GameScanner();
+            
             RomScan rs = new RomScan();
-            DiscScan ds = new DiscScan();
             
             await Task.Delay(100);
             List<GSystem> scanList = new List<GSystem>();
@@ -543,6 +535,7 @@ namespace MedLaunch
                 // mark all roms in database as hidden where the system path is not set or if path no longer exists
                 foreach (var hs in GameScanner.Systems)
                 {
+                   
                     string path = rs.GetPath(hs.systemId);
                     if (path == "" || path == null || !Directory.Exists(path))
                     {
@@ -551,12 +544,10 @@ namespace MedLaunch
                         hiddenStats += GameScanner.HiddenStats;
                         GameScanner.HiddenStats = 0;
                     }
+                    
                 }
-
-                if (mediaType == MediaType.ROM)
-                    scanList = GameScanner.RomSystemsWithPaths;
-                if (mediaType == MediaType.DISC)
-                    scanList = GameScanner.DiskSystemsWithPaths;
+                scanList = GameScanner.RomSystemsWithPaths;
+           
             }
             else
             {
@@ -571,15 +562,10 @@ namespace MedLaunch
                     hiddenStats += GameScanner.HiddenStats;
                     GameScanner.HiddenStats = 0;
                 }
-
-                if (mediaType == MediaType.ROM)
-                    scanList = (from s in GameScanner.RomSystemsWithPaths
+                
+                scanList = (from s in GameScanner.RomSystemsWithPaths
                                 where s.systemId == sysId
-                                select s).ToList();
-                if (mediaType == MediaType.DISC)
-                    scanList = (from s in GameScanner.DiskSystemsWithPaths
-                                where s.systemId == sysId
-                                select s).ToList();
+                                select s).ToList();       
             }
                         
             if (scanList.Count > 0)
@@ -612,16 +598,10 @@ namespace MedLaunch
                         progress++;
                         controller.SetProgress(progress);
 
-                        if (mediaType == MediaType.ROM)
-                        {
-                            // Start ROM scan for this system
-                            rs.BeginRomImport(s.systemId, controller);
-                        }
-                        if (mediaType == MediaType.DISC)
-                        {
-                            // Start ROM scan for this system
-                            ds.BeginDiscImport(s.systemId, controller);
-                        }
+                       
+                        // Start ROM scan for this system
+                        rs.BeginRomImport(s.systemId, controller);
+                     
 
                         //output += ".....Completed\n\n";
 
@@ -658,10 +638,7 @@ namespace MedLaunch
                 if (!controller.IsCanceled)
                 {
                     controller.SetMessage(output + "\nUpdating Database");
-                    if (mediaType == MediaType.ROM)
-                        GameScanner.SaveToDatabase();
-                    if (mediaType == MediaType.DISC)
-                        GameScanner.SaveToDatabase();
+                    GameScanner.SaveToDatabase();
                 }
 
             });
@@ -694,140 +671,185 @@ namespace MedLaunch
 
             // refresh library view
             GamesLibraryVisualHandler.RefreshGamesLibrary();
+        }
 
+        /// <summary>
+        /// Scan Discs
+        /// </summary>
+        /// <param name="sysId"></param>
+        private async void RescanSystemDiscs(int sysId)
+        {
 
-            /*
-
-            // get systems
-            List<GameSystem> systems = RomScanner.GetSystems();
-            List<Rom> romSystem = new List<Rom>();
-            
-
-            // iterate through each system and check if ROM path exists
-            foreach (var s in systems)
+            var mySettings = new MetroDialogSettings()
             {
-                string path = RomScanner.GetPath(s.systemId);
-                if (path == "" || path == null)
-                {
-                    //do nothing
-                }
-                else
-                {
-                    //MessageBoxResult result = MessageBox.Show("System: " + s.systemName + " - Path: " + path, "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    Rom r = new Rom();
-                    r.gameSystem = s;
-                    r.path = path;
-                    romSystem.Add(r);
-                }
-            }
+                NegativeButtonText = "Cancel Scanning",
+                AnimateShow = true,
+                AnimateHide = true
+            };
 
-            // we now have a List<Rom> that contains all systems that have a filesystem directory path set
-            // iterate through each path and count the number of files
+            string initial = "";            
+            initial = "Scanning Disc Directories"; 
+               
 
-            int totalFiles = 0;
-            int romsInserted = 0;
-            int romsUpdated = 0;
-            int romsSkipped = 0;
-            foreach (var p in romSystem)
+            var controller = await this.ShowProgressAsync(initial, "Determining Paths and Counting Files...", settings: mySettings);
+            controller.SetCancelable(true);
+            controller.SetIndeterminate();
+
+            await Task.Delay(100);
+
+            string output = "";
+            int addedStats = 0;
+            int updatedStats = 0;
+            int untouchedStats = 0;
+            int hiddenStats = 0;
+
+            DiscScan ds = new DiscScan();
+
+            await Task.Delay(100);
+            List<GSystem> scanList = new List<GSystem>();
+            if (sysId == 0)
             {
-                int systemFiles = RomScanner.CountFiles(p.path);
-                totalFiles += systemFiles;
-            }
+                /* scan of all discs has been selected */
 
-            controller.SetMessage(totalFiles + " files found across all ROM directories");
-
-            await Task.Delay(500);
-
-            foreach (var item in romSystem)
-            {
-                // actually scan through ROMS
-                string SystemName = item.gameSystem.systemName;
-                controller.SetTitle("Importing " + SystemName + " Roms");
-
-                // get a collection of files from each ROM directory
-                var files = RomScanner.GetFiles(item.path);
-
-                // iterate through each file
-                foreach (var file in files)
+                // mark all roms in database as hidden where the system path is not set or if path no longer exists
+                /*
+                foreach (var hs in GameScanner.Systems)
                 {
-                    // get the relative path
-                    string relPath = PathUtil.GetRelativePath(item.path, file);
-
-                    // get just the filename
-                    string fileName = System.IO.Path.GetFileName(file);
-
-                    // get just the extension
-                    string extension = System.IO.Path.GetExtension(file);
-
-                    // get rom name wihout extension
-                    string romName = fileName.Replace(extension, "");
-
-                    //MessageBoxResult result = MessageBox.Show(romName, "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-                    // attempt to add Rom to database
-                    int addRom = RomScanner.AddGame(item, file, relPath, fileName, extension, romName);
-
-                    string romProcess = "";
-
-                    switch (addRom)
+                    string path = rs.GetPath(hs.systemId);
+                    if (path == "" || path == null || !Directory.Exists(path))
                     {
-                        case 1:
-                            // Rom inserted
-                            romsInserted++;
-                            romProcess = "Added to Database";
-                            break;
-                        case 2:
-                            // Rom updated
-                            romsUpdated++;
-                            romProcess = "Updated in Database";
-                            break;
-                        default:
-                            // Rom skipped
-                            romsSkipped++;
-                            romProcess = "Has Been Skipped";
-                            break;               
+                        // No path returned or path is not valid - Mark existing games in Db as hidden
+                        rs.MarkAllRomsAsHidden(hs.systemId);
+                        hiddenStats += GameScanner.HiddenStats;
+                        GameScanner.HiddenStats = 0;
                     }
-
-                    controller.SetMessage("ROM: " + romName + " " + romProcess);
-
                 }
-                await Task.Delay(100);
-            }
+                */
 
-            /*
-            double i = 0.0;
-            while (i < Convert.ToDouble(totalFiles + 1))
+                scanList = GameScanner.DiskSystemsWithPaths;
+            }
+            else
             {
-                //double val = (i / 100.0) * totalFiles;
-                double val = (100 / totalFiles) * i / 100;
-                controller.SetProgress(val);
-                
-                controller.SetMessage("Scanning " +  + i + "...");
+                /* only one system has been selected for scanning */
 
-                if (controller.IsCanceled)
-                    break; //canceled progressdialog auto closes.
+                // mark all roms in database as hidden for this system path is not set or if path no longer exists                
+                string path = ds.GetPath(sysId);
+                /*
+                if (path == "" || path == null || !Directory.Exists(path))
+                {
+                    // No path returned or path is not valid - Mark existing games in Db as hidden
+                    rs.MarkAllRomsAsHidden(sysId);
+                    hiddenStats += GameScanner.HiddenStats;
+                    GameScanner.HiddenStats = 0;
+                }
+                */
 
-                i += 1.0;
-
-                await Task.Delay(2000);
+                scanList = (from s in GameScanner.DiskSystemsWithPaths
+                                where s.systemId == sysId
+                                select s).ToList();
             }
-            
+
+            if (scanList.Count > 0)
+            {
+                // start the operations on a different thread
+                await Task.Run(() =>
+                {
+                    // data has been returned
+
+                    // how many systems returned
+                    int sysCount = scanList.Count;
+                    controller.Minimum = 0;
+                    controller.Maximum = sysCount;
+                    int progress = 0;
+
+                    // iterate through each system that has a system ROM path set
+                    foreach (var s in scanList)
+                    {
+                        if (controller.IsCanceled)
+                        {
+                            break;
+                        }
+
+                        // start scanning
+                        controller.SetTitle("Starting " + s.systemName + " (" + s.systemCode + ") Scan");
+                        Task.Delay(100);
+                        //output += "Scanning....";
+                        controller.SetMessage(output);
+
+                        progress++;
+                        controller.SetProgress(progress);
+
+                       
+                        // Start ROM scan for this system
+                        ds.BeginDiscImport(s.systemId, controller);
+                       
+
+                        //output += ".....Completed\n\n";
+
+                        // update totals
+                        addedStats += GameScanner.AddedStats;
+                        updatedStats += GameScanner.UpdatedStats;
+                        untouchedStats += GameScanner.UntouchedStats;
+                        hiddenStats += GameScanner.HiddenStats;
+
+                        //output += rs.AddedStats + " ROMs Added\n" + rs.UpdatedStats + " ROMs Updated\n" + rs.UntouchedStats + " ROMs Skipped\n" + rs.HiddenStats + " ROMs Missing (marked as hidden)\n";
+                        //controller.SetMessage(output);
+
+                        // reset class totals
+                        GameScanner.AddedStats = 0;
+                        GameScanner.UpdatedStats = 0;
+                        GameScanner.UntouchedStats = 0;
+                        GameScanner.HiddenStats = 0;
+
+                        Task.Delay(200);
+                    }
+                });
+
+            }
+            else
+            {
+                // No systems returned
+                controller.SetTitle("No ROM systems with valid paths found");
+                controller.SetMessage("No GameSystem with valid path was found\n Please make sure there is a valid path set for this system");
+
+            }
+
+            await Task.Run(() =>
+            {
+                if (!controller.IsCanceled)
+                {
+                    controller.SetMessage(output + "\nUpdating Database");
+                    
+                    GameScanner.SaveToDatabase();
+                }
+
+            });
+
+
+
+            await Task.Delay(100);
+
+
 
             await controller.CloseAsync();
 
             if (controller.IsCanceled)
             {
-                await this.ShowMessageAsync("The operation was cancelled!", romsInserted +  " ROMS have been added \n" + romsUpdated + " ROMS have been updated \n" + romsSkipped + " ROMS have been skipped");
+                await this.ShowMessageAsync("RomScanner", "Operation Cancelled");
             }
             else
             {
-                await this.ShowMessageAsync("Operation completed", romsInserted + " ROMS have been added \n" + romsUpdated + " ROMS have been updated \n" + romsSkipped + " ROMS have been skipped");
+                await this.ShowMessageAsync("Scanning Completed", "Totals:\n\nROMs Added: " + addedStats + "\nROMs Updated: " + updatedStats + "\nROMs Skipped: " + untouchedStats + "\nROMs Marked as Hidden: " + hiddenStats);
             }
-            */
+
             //Update list
             // ensure 'show all' filter is checked on startup
             //btnFavorites.IsChecked = true;
             //btnShowAll.IsChecked = true;
+
+            // update data is changes have been made
+            if (addedStats > 0 || updatedStats > 0 || hiddenStats > 0)
+                GameListBuilder.UpdateFlag();
 
             // refresh library view
             GamesLibraryVisualHandler.RefreshGamesLibrary();
@@ -835,7 +857,7 @@ namespace MedLaunch
 
         private void RescanRoms(object sender, RoutedEventArgs e)
         {
-            RescanSystemRoms(0, MediaType.ROM);
+            RescanSystemRoms(0);
         }
 
 
@@ -1043,7 +1065,7 @@ namespace MedLaunch
                 sysId = Convert.ToInt32(menuName.Replace("MenuScanRoms", ""));
             }
 
-            RescanSystemRoms(sysId, MediaType.ROM);
+            RescanSystemRoms(sysId);
         }
 
         private void RemoveRoms_Click(object sender, RoutedEventArgs e)
@@ -1060,9 +1082,8 @@ namespace MedLaunch
             // get systemId from menu name
             string menuName = (sender as MenuItem).Name;
             int sysId = Convert.ToInt32(menuName.Replace("ScanDisks", ""));
-            GameScanner gs = new GameScanner();
 
-            RescanSystemRoms(sysId, MediaType.DISC);
+            RescanSystemDiscs(sysId);
 
             // refresh library view
             GamesLibraryVisualHandler.RefreshGamesLibrary();

@@ -40,6 +40,7 @@ namespace MedLaunch.Classes.Scanning
         // Start ROM scan and import process for specific system
         public void BeginRomImport(int _systemId, ProgressDialogController _dialog)
         {
+            allowedFiles = new List<string>();
             dialog = _dialog;
             systemId = _systemId;
 
