@@ -155,6 +155,14 @@
             <Button Content="Debug" ContextMenuService.IsEnabled="False" Click="TopMenu_Click" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
                 <Button.ContextMenu>
                     <ContextMenu>
+
+                        <MenuItem Header="ScrapeDB (Admin)">
+                            <MenuItem Name="dbgImportPlatGames" Header="Update DB with list of gdb platform games" Click="dbgImportPlatGames_Click"/>
+                            <MenuItem Name="dbgImportMobyPlatGames" Header="Update DB with list of moby platform games" Click="dbgImportMobyPlatGames_Click"/>
+                            <MenuItem Name="dbgtest1" Header="SQLite View Test" Click="dbgtest1_Click"/>
+                            <MenuItem Name="dbgExactMatch" Header="Match moby with dgb exact on name" Click="dbgExactMatch_Click"/>
+                        </MenuItem>
+                        
                         <MenuItem Header="Scraper Source Operations">
                             <MenuItem Header="Download list of PlatformGames from thegamesdb.net (Update TheGamesDB.json)" Click="ScrapeGetAllPlatformGames_Click"/>
                             <MenuItem Header="Download list of PlatformGames from mobygames (Update MobyGames.json)" Click="btnmobyPlatformList_Click"/>

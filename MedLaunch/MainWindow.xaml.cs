@@ -5121,7 +5121,28 @@ namespace MedLaunch
 
         }
 
-        
+        private void dbgImportPlatGames_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.ScrapeDB.AdminScrapeDb adb = new _Debug.ScrapeDB.AdminScrapeDb();
+            adb.ScrapePlatformGames();
+        }
+
+        private void dbgImportMobyPlatGames_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.ScrapeDB.AdminScrapeDb adb = new _Debug.ScrapeDB.AdminScrapeDb();
+            adb.ScrapeMobyPlatformGames();
+        }
+
+        private void dbgtest1_Click(object sender, RoutedEventArgs e)
+        {
+            List<_Debug.ScrapeDB.MasterView> mv = _Debug.ScrapeDB.MasterView.GetMasterView();
+        }
+
+        private void dbgExactMatch_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.ScrapeDB.AdminScrapeDb adb = new _Debug.ScrapeDB.AdminScrapeDb();
+            adb.MobyExactMatch();
+        }
     }
     /*
     public class SliderIgnoreDelta : Slider

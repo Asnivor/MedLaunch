@@ -240,7 +240,6 @@ namespace MedLaunch.Classes.TheGamesDB
                     //controller.SetIndeterminate();
                 }
 
-
                 // perform lookups
                 foreach (int gid in sys.theGamesDBPlatformId)
                 {

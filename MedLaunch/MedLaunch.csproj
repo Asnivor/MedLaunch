@@ -473,6 +473,14 @@
       <DependentUpon>NesCtrl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ThemeManagerHelper.cs" />
+    <Compile Include="_Debug\ScrapeDB\AdminScrapeDb.cs" />
+    <Compile Include="_Debug\ScrapeDB\AsniScrapeAdminDbContext.cs" />
+    <Compile Include="_Debug\ScrapeDB\GDB_Game.cs" />
+    <Compile Include="_Debug\ScrapeDB\GDB_Platform.cs" />
+    <Compile Include="_Debug\ScrapeDB\Junction.cs" />
+    <Compile Include="_Debug\ScrapeDB\MasterView.cs" />
+    <Compile Include="_Debug\ScrapeDB\MOBY_Game.cs" />
+    <Compile Include="_Debug\ScrapeDB\MOBY_Platform.cs" />
     <Page Include="Windows\AccentStyleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -618,6 +626,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Data\System\AsniScrape.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Data\System\DATMaster.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
