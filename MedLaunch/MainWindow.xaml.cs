@@ -5143,6 +5143,18 @@ namespace MedLaunch
             _Debug.ScrapeDB.AdminScrapeDb adb = new _Debug.ScrapeDB.AdminScrapeDb();
             adb.MobyExactMatch();
         }
+
+        private void dbgManualMatch_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.ScrapeDB.AdminScrapeDb adb = new _Debug.ScrapeDB.AdminScrapeDb();
+            adb.MobyManualMatch(false);
+        }
+
+        private void dbgAutoWordMatch_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.ScrapeDB.AdminScrapeDb adb = new _Debug.ScrapeDB.AdminScrapeDb();
+            adb.MobyManualMatch(true);
+        }
     }
     /*
     public class SliderIgnoreDelta : Slider

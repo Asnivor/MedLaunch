@@ -47,12 +47,15 @@
     <Compile Include="Converters\NullableInt2Int.cs" />
     <Compile Include="Converters\NullableBool2Bool.cs" />
     <Compile Include="Converters\RomanNumerals.cs" />
+    <Compile Include="Converters\ObjConverter.cs" />
     <Compile Include="RegexOps.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="PathUtil.cs" />
     <Compile Include="PropertySupport.cs" />
     <Compile Include="RelayCommand.cs" />
+    <Compile Include="Search\SearchFunctions.cs" />
+    <Compile Include="Search\SearchObjects.cs" />
     <Compile Include="start.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

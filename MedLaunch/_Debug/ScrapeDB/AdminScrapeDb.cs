@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using Asnitech.Launch.Common.Search;
 
 namespace MedLaunch._Debug.ScrapeDB
 {
@@ -332,6 +333,164 @@ namespace MedLaunch._Debug.ScrapeDB
 
                 Junction.SaveToDatabase(jList);
                 
+            });
+
+            await controller.CloseAsync();
+            if (controller.IsCanceled)
+            {
+                await mw.ShowMessageAsync("ExactMatch Matching", "Operation Cancelled");
+            }
+            else
+            {
+                await mw.ShowMessageAsync("ExactMatch Matching", "Scanning and Import Completed");
+            }
+        }
+
+        public async void MobyManualMatch(bool AutoMatchOnSingle100Score)
+        {
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel Scraping",
+                AnimateShow = false,
+                AnimateHide = false,
+            };
+
+            var controller = await mw.ShowProgressAsync("Attempting manual match based on word count - mobygames to thegamesdb", "", settings: mySettings);
+            controller.SetCancelable(true);
+            await Task.Delay(100);
+
+            
+
+            await Task.Run(() =>
+            {
+                Task.Delay(1);
+                int progress = 0;
+
+                List<Junction> jList = new List<Junction>();
+
+                List<MasterView> unmatched = (from a in MasterView.GetMasterView()
+                                              where a.mid == null
+                                              select a).ToList();
+
+                controller.Minimum = 0;
+                controller.Maximum = unmatched.Count();
+                int co = unmatched.Count();
+
+                int matched = 0;
+                int notmatched = 0;
+
+                controller.SetProgress(progress);
+                controller.SetMessage("TOTAL: " + co + "\n\nMatched: " + matched + "\nUnmatched: " + notmatched);
+
+                List<int[]> list = new List<int[]>();
+
+                List<MOBY_Game> mgames = MOBY_Game.GetGames().ToList();
+
+                bool cancel = false;
+
+                foreach (MasterView m in unmatched)
+                {
+                    if (cancel == true)
+                        break;
+
+                    controller.SetProgress(progress);
+                    controller.SetMessage("TOTAL: " + co + "\n\nMatched: " + matched + "\nUnmatched: " + notmatched);
+                    progress++;
+                    int gid = m.gid;
+                    int pid = m.pid;
+
+                    // build SearchObject
+                    SearchObject so = new SearchObject();
+                    so.searchId = gid;
+                    so.searchString = m.GDBTitle.Trim();
+                    so.listToSearch = (from a in mgames
+                                       where a.pid == pid
+                                       select new SearchList { id = a.mid, name = a.gameTitle }).ToList();
+
+                    // get search results
+                    so = SearchFunctions.WordCountMatch(so);
+
+                    // get results list separately
+                    List<SearchResult> results = so.searchResults.OrderByDescending(a => a.score).ToList();
+
+                    // if automatch on unique 100 score is selected
+                    if (AutoMatchOnSingle100Score)
+                    {
+                        var hundreds = results.Where(a => a.score == 100).ToList();
+                        if (hundreds.Count == 1)
+                        {
+                            Junction j = new Junction();
+                            j.gid = gid;
+                            j.mid = hundreds.First().resultId;
+                            jList.Add(j);
+                            matched++;
+                            //controller.SetMessage("Saving to Database...");
+                            //Junction.SaveToDatabase(jList);
+                            //jList = new List<Junction>();
+                            continue;
+                        }
+                        else
+                        {
+                            notmatched++;
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        // iterate through each result and prompt user to accept / as for next result / or skip completely
+                        foreach (var res in results)
+                        {
+                            string title = "Matching " + m.PlatformAlias + " - " + m.GDBTitle;
+                            StringBuilder sb = new StringBuilder();
+                            sb.Append("Potential match found for " + m.GDBTitle + " \n(" + m.PlatformAlias + "): ");
+                            sb.Append(res.resultString);
+                            sb.Append("\n\n");
+                            sb.Append("Word score: " + res.score);
+                            sb.Append("\n\n\n");
+                            sb.Append("Press YES to accept this match and save to the database\n");
+                            sb.Append("Press NO to show the next match for this entry\n");
+                            sb.Append("Press CANCEL to skip this entirely and move to the next search object");
+                            MessageBoxResult mbr = MessageBox.Show(sb.ToString(), title, MessageBoxButton.YesNoCancel, MessageBoxImage.Question, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
+
+                            if (mbr == MessageBoxResult.Yes)
+                            {
+                                // match has been confirmed. create a junction record
+                                Junction j = new Junction();
+                                j.gid = gid;
+                                j.mid = res.resultId;
+                                jList.Add(j);
+                                matched++;
+                                controller.SetMessage("Saving to Database...");
+                                Junction.SaveToDatabase(jList);
+                                jList = new List<Junction>();
+                                break;
+                            }
+                            if (mbr == MessageBoxResult.No)
+                            {
+                                continue;
+                            }
+                            if (mbr == MessageBoxResult.Cancel)
+                            {
+                                break;
+                            }
+                            if (mbr == MessageBoxResult.None)
+                            {
+                                cancel = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    controller.SetProgress(progress);
+                    controller.SetMessage("TOTAL: " + co + "\n\nMatched: " + matched + "\nUnmatched: " + notmatched);
+                }
+
+                if (AutoMatchOnSingle100Score)
+                {
+                    controller.SetMessage("Saving to Database...");
+                    Junction.SaveToDatabase(jList);
+                }
+
             });
 
             await controller.CloseAsync();

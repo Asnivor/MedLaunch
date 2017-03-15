@@ -160,7 +160,9 @@
                             <MenuItem Name="dbgImportPlatGames" Header="Update DB with list of gdb platform games" Click="dbgImportPlatGames_Click"/>
                             <MenuItem Name="dbgImportMobyPlatGames" Header="Update DB with list of moby platform games" Click="dbgImportMobyPlatGames_Click"/>
                             <MenuItem Name="dbgtest1" Header="SQLite View Test" Click="dbgtest1_Click"/>
-                            <MenuItem Name="dbgExactMatch" Header="Match moby with dgb exact on name" Click="dbgExactMatch_Click"/>
+                            <MenuItem Name="dbgExactMatch" Header="Match moby with dgb exact on name (auto)" Click="dbgExactMatch_Click"/>
+                            <MenuItem Name="dbgAutoWordMatch" Header="Auto Moby Word Match (only when single 100 score is detected)" Click="dbgAutoWordMatch_Click"/>
+                            <MenuItem Name="dbgManualMatch" Header="Manual match moby with dgb" Click="dbgManualMatch_Click"/>
                         </MenuItem>
                         
                         <MenuItem Header="Scraper Source Operations">
