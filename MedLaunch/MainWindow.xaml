@@ -635,6 +635,9 @@
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSidebarGame" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
                                     <Expander x:Name="expGameInfo" BorderThickness="0" Header="Game Stats">
                                         <StackPanel x:Name="spSidebarGame">
+
+                                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
+                                            
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
@@ -695,6 +698,7 @@
 
 
                                             </Grid>
+                                            </ScrollViewer>
                                         </StackPanel>
                                     </Expander>
                                 </Border>
