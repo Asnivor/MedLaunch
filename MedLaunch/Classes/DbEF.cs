@@ -391,15 +391,7 @@ namespace MedLaunch.Classes
         }
 
 
-        // update game data for games datagrid including search
-        public static void GetGames(DataGrid datagrid, int systemId, string search, CountryFilter countryFilter)
-        {
-            // get the full dataset from application
-            App _App = ((App)Application.Current);
-            //List<DataGridGamesView> allGames = _App.GamesList.AllGames;
-
-            var result = GameListBuilder.Filter(systemId, search, countryFilter);
-        }
+        
 
 
         public static void GetInfo(int gameID, Label sysLabel, TextBlock sysDesc, Image sysImage)//, Image gameImage)

@@ -1,12 +1,15 @@
 ﻿using MedLaunch.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace MedLaunch.Classes.GamesLibrary
 {
@@ -16,6 +19,7 @@ namespace MedLaunch.Classes.GamesLibrary
 
         public string SortColumnName { get; set; }
         public ListSortDirection SortDirection { get; set; }
+        public string DGStatesPath { get; set; }
 
         private ObservableCollection<DataGridGamesView> filteredSet;
         public ObservableCollection<DataGridGamesView> FilteredSet
@@ -34,6 +38,8 @@ namespace MedLaunch.Classes.GamesLibrary
             }
         }
 
+        public Dictionary<int, List<ColumnInfo>> DataGridStates { get; set; }
+
 
         public List<DataGridGamesView> AllGames { get; set; }
         public int SystemId { get; set; }
@@ -50,11 +56,102 @@ namespace MedLaunch.Classes.GamesLibrary
             // populate the object
             AllGames = GamesLibraryDataGridRefresh.Update(AllGames);
 
+            DGStatesPath = AppDomain.CurrentDomain.BaseDirectory + @"Data\Settings\GamesLibraryColumnStates.json";
+
             // set initial sorting
             SortColumnName = "GAME";
             SortDirection = ListSortDirection.Ascending;
             
             UpdateRequired = false;
+
+            if (DataGridStates == null)
+            {
+                // load defaults from disk
+                DataGridStates = new Dictionary<int, List<ColumnInfo>>();
+                DataGridStates.Add(1, new List<ColumnInfo>());
+                DataGridStates.Add(2, new List<ColumnInfo>());
+                DataGridStates.Add(3, new List<ColumnInfo>());
+                DataGridStates.Add(4, new List<ColumnInfo>());
+                DataGridStates.Add(5, new List<ColumnInfo>());
+                DataGridStates.Add(6, new List<ColumnInfo>());
+                DataGridStates.Add(7, new List<ColumnInfo>());
+                DataGridStates.Add(8, new List<ColumnInfo>());
+                DataGridStates.Add(9, new List<ColumnInfo>());
+                DataGridStates.Add(10, new List<ColumnInfo>());
+                DataGridStates.Add(11, new List<ColumnInfo>());
+                DataGridStates.Add(12, new List<ColumnInfo>());
+                DataGridStates.Add(13, new List<ColumnInfo>());
+                DataGridStates.Add(14, new List<ColumnInfo>());
+                DataGridStates.Add(15, new List<ColumnInfo>());
+                DataGridStates.Add(16, new List<ColumnInfo>());
+                DataGridStates.Add(17, new List<ColumnInfo>());
+                DataGridStates.Add(18, new List<ColumnInfo>());
+                DataGridStates.Add(19, new List<ColumnInfo>());
+                DataGridStates.Add(20, new List<ColumnInfo>());
+                DataGridStates.Add(21, new List<ColumnInfo>());
+                DataGridStates.Add(22, new List<ColumnInfo>());
+                DataGridStates.Add(23, new List<ColumnInfo>());
+                DataGridStates.Add(24, new List<ColumnInfo>());
+                DataGridStates.Add(25, new List<ColumnInfo>());
+
+                LoadColumnDefaults();
+            }
+
+            LoadDataGridStatesFromDisk();
+        }
+
+        public void LoadColumnDefaults()
+        {
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"Data\System\ColumnDefaults.json"))
+            {
+                string json = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"Data\System\ColumnDefaults.json");
+                var dict = JsonConvert.DeserializeObject<Dictionary<int, List<ColumnInfo>>>(json);
+                for (int i = 0; i < DataGridStates.Count; i++)
+                {
+                    DataGridStates[i + 1] = dict[1];
+                }
+            }
+        }
+
+        public void LoadColumnDefaults(int filterNumber)
+        {
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"Data\System\ColumnDefaults.json"))
+            {
+                string json = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"Data\System\ColumnDefaults.json");
+                var dict = JsonConvert.DeserializeObject<Dictionary<int, List<ColumnInfo>>>(json);
+
+                DataGridStates[filterNumber] = dict[1];                
+            }
+        }
+
+        public void SaveDataGridStatesToDisk()
+        {
+            // convert to json
+            string json = JsonConvert.SerializeObject(DataGridStates, Formatting.Indented);
+            // save to disk (overwrite)
+            try
+            {
+                File.WriteAllText(DGStatesPath, json);
+            }
+            catch
+            {
+                // IO error
+                MessageBox.Show("There was an error writing to the config file: \n\n" + DGStatesPath + "\n\n Do you have the file open elsewhere??", "IO ERROR!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public void LoadDataGridStatesFromDisk()
+        {
+            if (File.Exists(DGStatesPath))
+            {
+                // load the file
+                string json = File.ReadAllText(DGStatesPath);
+                DataGridStates = JsonConvert.DeserializeObject<Dictionary<int, List<ColumnInfo>>>(json);
+            }
+            else
+            {
+                // file does not exist - populate defaults
+            }
         }
 
         protected void OnPropertyChanged(string propertyname)
@@ -65,6 +162,16 @@ namespace MedLaunch.Classes.GamesLibrary
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
+
+        // update game data for games datagrid including search
+        public static void GetGames(DataGrid datagrid, int systemId, string search, CountryFilter countryFilter)
+        {
+            // get the full dataset from application
+            App _App = ((App)Application.Current);
+            //List<DataGridGamesView> allGames = _App.GamesList.AllGames;
+
+            var result = GameListBuilder.Filter(systemId, search, countryFilter);
+        }
 
         public static void ReLinkData()
         {

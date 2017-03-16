@@ -12,6 +12,7 @@ using MedLaunch.Extensions;
 using System.Windows.Controls.Primitives;
 using System.Windows.Markup;
 using System.Windows.Input;
+using MedLaunch.Classes.GamesLibrary;
 
 namespace MedLaunch.Classes
 {
@@ -1000,8 +1001,70 @@ namespace MedLaunch.Classes
         {
             // get the selected item
             var r = (DataGridGamesView)dgGameList.SelectedItem;
-            int gameId = r.ID;
-            
+            int gameId = r.ID;            
+        }
+
+        public static void SaveColumnInfo(int FilterNumber)
+        {
+            App _App = ((App)Application.Current);
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            DataGrid dgGameList = (DataGrid)mw.FindName("dgGameList");
+
+            // get the list of columninfo from the datagrid
+            List<ColumnInfo> colInfo = ColumnInfo.GetColumnInfo(dgGameList);
+
+            // add to the global object
+            _App.GamesList.DataGridStates[FilterNumber] = colInfo;
+        }
+
+        public static void LoadColumnInfo(int FilterNumber)
+        {
+            App _App = ((App)Application.Current);
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            DataGrid dgGameList = (DataGrid)mw.FindName("dgGameList");
+
+            List<ColumnInfo> colInfo = _App.GamesList.DataGridStates[FilterNumber];
+
+            if (colInfo.Count == 0)
+                return;
+
+            ColumnInfo.ApplyColumnInfo(dgGameList, colInfo);
+        }
+
+        public static void ReloadSelectedColumnState()
+        {
+            App _App = ((App)Application.Current);
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            DataGrid dgGameList = (DataGrid)mw.FindName("dgGameList");
+
+            // get active filter
+            RadioButton[] rbs = ReturnFilterButtons();
+            for (int i = 0; i < rbs.Length; i++)
+            {
+                if (rbs[i].IsChecked == true)
+                {
+                    LoadColumnInfo(i + 1);
+                    break;
+                }
+            }
+        }
+                
+        public static void SaveSelectedColumnState()
+        {
+            App _App = ((App)Application.Current);
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            DataGrid dgGameList = (DataGrid)mw.FindName("dgGameList");
+
+            // get active filter
+            RadioButton[] rbs = ReturnFilterButtons();
+            for (int i = 0; i < rbs.Length; i++)
+            {
+                if (rbs[i].IsChecked == true)
+                {
+                    SaveColumnInfo(i + 1);
+                    break;
+                }
+            }
         }
 
         public static void SetColumnVisibility(int FilterNumber)
@@ -1059,25 +1122,25 @@ namespace MedLaunch.Classes
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             RadioButton[] buttons = new RadioButton[]
             {
-                (RadioButton)mw.FindName("btnShowAll"),
-                (RadioButton)mw.FindName("btnFavorites"),
-                (RadioButton)mw.FindName("btnUnscraped"),
-                (RadioButton)mw.FindName("btnNes"),
-                (RadioButton)mw.FindName("btnSnes"),
-                (RadioButton)mw.FindName("btnSms"),
-                (RadioButton)mw.FindName("btnMd"),
-                (RadioButton)mw.FindName("btnPce"),
-                (RadioButton)mw.FindName("btnVb"),
-                (RadioButton)mw.FindName("btnNgp"),
-                (RadioButton)mw.FindName("btnWswan"),
-                (RadioButton)mw.FindName("btnGb"),
-                (RadioButton)mw.FindName("btnGba"),
-                (RadioButton)mw.FindName("btnGg"),
-                (RadioButton)mw.FindName("btnLynx"),
-                (RadioButton)mw.FindName("btnSs"),
-                (RadioButton)mw.FindName("btnPsx"),
-                (RadioButton)mw.FindName("btnPcecd"),
-                (RadioButton)mw.FindName("btnPcfx"),
+                (RadioButton)mw.FindName("btnShowAll"),         // 1
+                (RadioButton)mw.FindName("btnFavorites"),       // 2
+                (RadioButton)mw.FindName("btnUnscraped"),       // 3
+                (RadioButton)mw.FindName("btnNes"),             // 4
+                (RadioButton)mw.FindName("btnSnes"),            // 5
+                (RadioButton)mw.FindName("btnSms"),             // 6
+                (RadioButton)mw.FindName("btnMd"),              // 7
+                (RadioButton)mw.FindName("btnPce"),             // 8
+                (RadioButton)mw.FindName("btnVb"),              // 9
+                (RadioButton)mw.FindName("btnNgp"),             // 10
+                (RadioButton)mw.FindName("btnWswan"),           // 11
+                (RadioButton)mw.FindName("btnGb"),              // 12
+                (RadioButton)mw.FindName("btnGba"),             // 13
+                (RadioButton)mw.FindName("btnGg"),              // 14
+                (RadioButton)mw.FindName("btnLynx"),            // 15
+                (RadioButton)mw.FindName("btnSs"),              // 16
+                (RadioButton)mw.FindName("btnPsx"),             // 17
+                (RadioButton)mw.FindName("btnPcecd"),           // 18
+                (RadioButton)mw.FindName("btnPcfx"),            // 19
             };
 
             return buttons;

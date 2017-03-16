@@ -124,6 +124,7 @@
                         <MenuItem Name="medCoreVisibility"  Header="Mednafen Core Visibility" ToolTip="Show/Hide certain emulated systems"
                              Click="medCoreVisibility_Click"    />
                         <MenuItem Header="Games Library Column Visibility" Click="MenuItemColumn_Click" />
+                        <MenuItem Name="resetGLColStates" Header="Reset Library Column Saved States to Default" Click="resetGLColStates_Click" />
                     </ContextMenu>
                 </Button.ContextMenu>
             </Button>
@@ -231,17 +232,33 @@
                     <!--<TextBlock FontSize="55" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">Left side</TextBlock>-->
                     <WrapPanel Orientation="Vertical" Grid.Column="0" Margin="0" x:FieldModifier="public" x:Name="wpGamesList">
                         <Button Style="{StaticResource MenuButton}" x:Name="btnClearFilters" HorizontalContentAlignment="Left" Background="{DynamicResource AccentColorBrush}" Click="btnClearFilters_Click">Clear All Filters</Button>
-                        <RadioButton GroupName="flt" x:Name="btnShowAll" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnShowAll_Checked">Show All Games</RadioButton>
-                        <RadioButton GroupName="flt" x:Name="btnFavorites" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnFavorites_Checked">
+                        <RadioButton GroupName="flt" x:Name="btnShowAll" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnShowAll_Checked" Unchecked="btnFilters_UnChecked">Show All Games
+                            <RadioButton.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem x:Name="AllGamesResetToDefaultColumnState" Click="AllGamesResetToDefaultColumnState_Click" Header="Reset 'Show All Games' Column States to Default" />
+                                </ContextMenu>
+                            </RadioButton.ContextMenu>
+                        </RadioButton>
+                        
+                        <RadioButton GroupName="flt" x:Name="btnFavorites" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnFavorites_Checked" Unchecked="btnFilters_UnChecked">
                             <RadioButton.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem x:Name="ScrapeGamesFavorite" Click="ScrapeFavorites_Click" Header="Auto-Scrape (previously unscraped) Favorites" />
                                     <MenuItem x:Name="RescrapeGamesFavorite" Click="ReScrapeFavorites_Click" Header="Re-Scrape ALL Favorites" />
+                                    <Separator />
+                                    <MenuItem x:Name="FavoritesResetToDefaultColumnState" Click="FavoriteResetToDefaultColumnState_Click" Header="Reset 'Favorites' Column States to Default" />
+                                    
                                 </ContextMenu>
                             </RadioButton.ContextMenu>
                             Favorites
                         </RadioButton>
-                        <RadioButton GroupName="flt" x:Name="btnUnscraped" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnUnscraped_Checked">Unscraped Games</RadioButton>
+                        <RadioButton GroupName="flt" x:Name="btnUnscraped" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnUnscraped_Checked" Unchecked="btnFilters_UnChecked">Unscraped Games
+                            <RadioButton.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem x:Name="UnscrapedResetToDefaultColumnState" Click="UnscrapedResetToDefaultColumnState_Click" Header="Reset 'Unscraped Games' Column States to Default" />
+                                </ContextMenu>
+                            </RadioButton.ContextMenu>
+                        </RadioButton>
 
                         <Border Style="{StaticResource Borders1}" Margin="0" Grid.Column="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Roms">
@@ -251,7 +268,7 @@
                                     </ContextMenu>
                                 </Expander.ContextMenu>
                                 <StackPanel x:Name="spRomFilters">
-                                    <RadioButton GroupName="flt" x:Name="btnNes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnNes_Checked">
+                                    <RadioButton GroupName="flt" x:Name="btnNes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnNes_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms11" Click="ScanRoms_Click" Header="Rescan NES ROMs" />
@@ -259,11 +276,13 @@
                                                 <MenuItem x:Name="RescrapeGames11" Click="RescrapeGames_Click" Header="Re-Scrape ALL NES Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms11" Click="RemoveRoms_Click" Header="Remove All NES ROMs from Database" />
+                                                <Separator />
+                                                <MenuItem x:Name="NesResetToDefaultColumnState" Click="NesResetToDefaultColumnState_Click" Header="Reset 'NES' Column States to Default" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         NES
                                     </RadioButton>
-                                    <RadioButton GroupName="flt" x:Name="btnSnes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnSnes_Checked">
+                                    <RadioButton GroupName="flt" x:Name="btnSnes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnSnes_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms12" Click="ScanRoms_Click" Header="Rescan SNES ROMs" />
@@ -271,11 +290,13 @@
                                                 <MenuItem x:Name="RescrapeGames12" Click="RescrapeGames_Click" Header="Re-Scrape ALL SNES Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms12" Click="RemoveRoms_Click" Header="Remove All SNES ROMs from Database" />
+                                                <Separator />
+                                                <MenuItem x:Name="SnesResetToDefaultColumnState" Click="SnesResetToDefaultColumnState_Click" Header="Reset 'SNES' Column States to Default" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         SNES
                                     </RadioButton>
-                                    <RadioButton GroupName="flt" x:Name="btnSms" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnSms_Checked">
+                                    <RadioButton GroupName="flt" x:Name="btnSms" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnSms_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms10" Click="ScanRoms_Click" Header="Rescan SMS ROMs" />
@@ -283,11 +304,13 @@
                                                 <MenuItem x:Name="RescrapeGames10" Click="RescrapeGames_Click" Header="Re-Scrape ALL SMS Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms10" Click="RemoveRoms_Click" Header="Remove All SMS ROMs from Database" />
+                                                <Separator />
+                                                <MenuItem x:Name="SmsResetToDefaultColumnState" Click="SmsResetToDefaultColumnState_Click" Header="Reset 'Master System' Column States to Default" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         Master System
                                     </RadioButton>
-                                    <RadioButton GroupName="flt" x:Name="btnMd" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnMd_Checked">
+                                    <RadioButton GroupName="flt" x:Name="btnMd" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnMd_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms4" Click="ScanRoms_Click" Header="Rescan MD ROMs" />
@@ -295,11 +318,13 @@
                                                 <MenuItem x:Name="RescrapeGames4" Click="RescrapeGames_Click" Header="Re-Scrape ALL MD Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms4" Click="RemoveRoms_Click" Header="Remove All MD ROMs from Database" />
+                                                <Separator />
+                                                <MenuItem x:Name="MdResetToDefaultColumnState" Click="MdResetToDefaultColumnState_Click" Header="Reset 'MegaDrive' Column States to Default" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         MegaDrive
                                     </RadioButton>
-                                    <RadioButton GroupName="flt" x:Name="btnPce" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnPce_Checked">
+                                    <RadioButton GroupName="flt" x:Name="btnPce" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnPce_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms7" Click="ScanRoms_Click" Header="Rescan PCE ROMs"  />
@@ -307,11 +332,13 @@
                                                 <MenuItem x:Name="RescrapeGames7" Click="RescrapeGames_Click" Header="Re-Scrape ALL PCE Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms7" Click="RemoveRoms_Click" Header="Remove All PCE ROMs from Database" />
+                                                <Separator />
+                                                <MenuItem x:Name="PceResetToDefaultColumnState" Click="PceResetToDefaultColumnState_Click" Header="Reset 'PC-Engine' Column States to Default" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         PC-Engine
                                     </RadioButton>
-                                    <RadioButton GroupName="flt" x:Name="btnVb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnVb_Checked">
+                                    <RadioButton GroupName="flt" x:Name="btnVb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnVb_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms14" Click="ScanRoms_Click" Header="Rescan VB ROMs" />
@@ -319,11 +346,13 @@
                                                 <MenuItem x:Name="RescrapeGames14" Click="RescrapeGames_Click" Header="Re-Scrape ALL VB Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms14" Click="RemoveRoms_Click" Header="Remove All VB ROMs from Database" />
+                                                <Separator />
+                                                <MenuItem x:Name="VbResetToDefaultColumnState" Click="VbResetToDefaultColumnState_Click" Header="Reset 'Virtual Boy' Column States to Default" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         Virtual Boy
                                     </RadioButton>
-                                    <RadioButton GroupName="flt" x:Name="btnNgp" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnNgp_Checked">
+                                    <RadioButton GroupName="flt" x:Name="btnNgp" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnNgp_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms6" Click="ScanRoms_Click" Header="Rescan NGP ROMs" />
@@ -331,11 +360,13 @@
                                                 <MenuItem x:Name="RescrapeGames6" Click="RescrapeGames_Click" Header="Re-Scrape ALL NGP Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms6" Click="RemoveRoms_Click" Header="Remove All NGP ROMs from Database" />
+                                                <Separator />
+                                                <MenuItem x:Name="NgpResetToDefaultColumnState" Click="NgpResetToDefaultColumnState_Click" Header="Reset 'NeoGeo Pocket' Column States to Default" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         NeoGeo Pocket
                                     </RadioButton>
-                                    <RadioButton GroupName="flt" x:Name="btnWswan" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnWswan_Checked">
+                                    <RadioButton GroupName="flt" x:Name="btnWswan" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnWswan_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms15" Click="ScanRoms_Click" Header="Rescan WSWAN ROMs" />
@@ -343,11 +374,13 @@
                                                 <MenuItem x:Name="RescrapeGames15" Click="RescrapeGames_Click" Header="Re-Scrape ALL WSWAN Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms15" Click="RemoveRoms_Click" Header="Remove All WSWAN ROMs from Database" />
+                                                <Separator />
+                                                <MenuItem x:Name="WswanResetToDefaultColumnState" Click="WswanResetToDefaultColumnState_Click" Header="Reset 'WonderSwan' Column States to Default" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         WonderSwan
                                     </RadioButton>
-                                    <RadioButton GroupName="flt" x:Name="btnGb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnGb_Checked">
+                                    <RadioButton GroupName="flt" x:Name="btnGb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnGb_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms1" Click="ScanRoms_Click" Header="Rescan GB ROMs" />
@@ -355,11 +388,13 @@
                                                 <MenuItem x:Name="RescrapeGames1" Click="RescrapeGames_Click" Header="Re-Scrape ALL GB Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms1" Click="RemoveRoms_Click" Header="Remove All GB ROMs from Database" />
+                                                <Separator />
+                                                <MenuItem x:Name="GbResetToDefaultColumnState" Click="GbResetToDefaultColumnState_Click" Header="Reset 'Gameboy Color' Column States to Default" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         Gameboy Color
                                     </RadioButton>
-                                    <RadioButton GroupName="flt" x:Name="btnGba" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnGba_Checked">
+                                    <RadioButton GroupName="flt" x:Name="btnGba" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnGba_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms2" Click="ScanRoms_Click" Header="Rescan GBA ROMs" />
@@ -367,11 +402,13 @@
                                                 <MenuItem x:Name="RescrapeGames2" Click="RescrapeGames_Click" Header="Re-Scrape ALL GBA Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms2" Click="RemoveRoms_Click" Header="Remove All GBA ROMs from Database" />
+                                                <Separator />
+                                                <MenuItem x:Name="GbaResetToDefaultColumnState" Click="GbaResetToDefaultColumnState_Click" Header="Reset 'Gameboy Advance' Column States to Default" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         Gameboy Advance
                                     </RadioButton>
-                                    <RadioButton GroupName="flt" x:Name="btnGg" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnGg_Checked">
+                                    <RadioButton GroupName="flt" x:Name="btnGg" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnGg_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms5" Click="ScanRoms_Click" Header="Rescan GG ROMs" />
@@ -379,11 +416,13 @@
                                                 <MenuItem x:Name="RescrapeGames5" Click="RescrapeGames_Click" Header="Re-Scrape ALL GG Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms5" Click="RemoveRoms_Click" Header="Remove All GG ROMs from Database" />
+                                                <Separator />
+                                                <MenuItem x:Name="GgResetToDefaultColumnState" Click="GgResetToDefaultColumnState_Click" Header="Reset 'Game Gear' Column States to Default" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         Game Gear
                                     </RadioButton>
-                                    <RadioButton GroupName="flt" x:Name="btnLynx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnLynx_Checked">
+                                    <RadioButton GroupName="flt" x:Name="btnLynx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnLynx_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ScanRoms3" Click="ScanRoms_Click" Header="Rescan LYNX ROMs" />
@@ -391,6 +430,8 @@
                                                 <MenuItem x:Name="RescrapeGames3" Click="RescrapeGames_Click" Header="Re-Scrape ALL LYNX Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveRoms3" Click="RemoveRoms_Click" Header="Remove All LYNX ROMs from Database" />
+                                                <Separator />
+                                                <MenuItem x:Name="LynxResetToDefaultColumnState" Click="LynxResetToDefaultColumnState_Click" Header="Reset 'Atari Lynx' Column States to Default" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         Atari Lynx
@@ -407,7 +448,7 @@
                                     </ContextMenu>
                                 </Expander.ContextMenu>
                                 <StackPanel x:Name="spDiskFilters">
-                                    <RadioButton GroupName="flt" x:Name="btnSs" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnSs_Checked">
+                                    <RadioButton GroupName="flt" x:Name="btnSs" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnSs_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ManualAddGame13" Click="ManualAddGame_Click" Header="Manually Import a Saturn Game"  />
@@ -416,11 +457,13 @@
                                                 <MenuItem x:Name="RescrapeGames13" Click="RescrapeGames_Click" Header="Re-Scrape ALL SS Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveDisks13" Click="RemoveDisks_Click" Header="Remove All SS Games From Database" />
+                                                <Separator />
+                                                <MenuItem x:Name="SsResetToDefaultColumnState" Click="SsResetToDefaultColumnState_Click" Header="Reset 'Saturn' Column States to Default" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         Saturn
                                     </RadioButton>
-                                    <RadioButton GroupName="flt" x:Name="btnPsx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnPsx_Checked">
+                                    <RadioButton GroupName="flt" x:Name="btnPsx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnPsx_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ManualAddGame9" Click="ManualAddGame_Click" Header="Manually Import a PSX Game"  />
@@ -429,12 +472,14 @@
                                                 <MenuItem x:Name="RescrapeGames9" Click="RescrapeGames_Click" Header="Re-Scrape ALL PSX Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveDisks9" Click="RemoveDisks_Click" Header="Remove All PSX Games From Database" />
+                                                <Separator />
+                                                <MenuItem x:Name="PsxResetToDefaultColumnState" Click="PsxResetToDefaultColumnState_Click" Header="Reset 'Playstation' Column States to Default" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         Playstation
                                     </RadioButton>
 
-                                    <RadioButton GroupName="flt" x:Name="btnPcecd" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnPcecd_Checked">
+                                    <RadioButton GroupName="flt" x:Name="btnPcecd" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnPcecd_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ManualAddGame18" Click="ManualAddGame_Click" Header="Manually Import a PCE Game"  />
@@ -443,11 +488,13 @@
                                                 <MenuItem x:Name="RescrapeGames18" Click="RescrapeGames_Click" Header="Re-Scrape ALL PCE Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveDisks18" Click="RemoveDisks_Click" Header="Remove All PCE(CD) Games From Database" />
+                                                <Separator />
+                                                <MenuItem x:Name="PcecdResetToDefaultColumnState" Click="PcecdResetToDefaultColumnState_Click" Header="Reset 'PC-Engine (CD)' Column States to Default" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         PC-Engine (CD)
                                     </RadioButton>
-                                    <RadioButton GroupName="flt" x:Name="btnPcfx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnPcfx_Checked">
+                                    <RadioButton GroupName="flt" x:Name="btnPcfx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnPcfx_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="ManualAddGame8" Click="ManualAddGame_Click" Header="Manually Import a PC-FX Game"  />
@@ -456,6 +503,8 @@
                                                 <MenuItem x:Name="RescrapeGames8" Click="RescrapeGames_Click" Header="Re-Scrape ALL PCFX Game Info" />
                                                 <Separator />
                                                 <MenuItem x:Name="RemoveDisks8" Click="RemoveDisks_Click" Header="Remove All PCFX Games From Database" />
+                                                <Separator />
+                                                <MenuItem x:Name="PcfxResetToDefaultColumnState" Click="PcfxResetToDefaultColumnState_Click" Header="Reset 'PC-FX' Column States to Default" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         PC-FX

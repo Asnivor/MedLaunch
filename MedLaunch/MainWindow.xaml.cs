@@ -885,6 +885,20 @@ namespace MedLaunch
 
         }
 
+        private void btnFilters_UnChecked(object sender, RoutedEventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+            RadioButton[] btns = GamesLibraryVisualHandler.ReturnFilterButtons();
+            for (int i = 0; i < btns.Length; i++)
+            {
+                if (rb.Name == btns[i].Name)
+                {
+                    GamesLibraryVisualHandler.SaveColumnInfo(i + 1);
+                    break;
+                }
+            }
+        }
+
         // Game filter buttons
         private void btnShowAll_Checked(object sender, RoutedEventArgs e)
         {
@@ -892,26 +906,29 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(1);
             // load datagrid
             _filterId = 0;
-            DbEF.GetGames(dgGameList, 0, tbFilterDatagrid.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, 0, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(1);
            // dg = ((App)Application.Current).GamesList.FilteredSet;
         }
-
+        
         private void btnFavorites_Checked(object sender, RoutedEventArgs e)
         {
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(2);
             // load datagrid
             _filterId = -1;
-            DbEF.GetGames(dgGameList, -1, tbFilterDatagrid.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, -1, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(2);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
-
+        
         private void btnUnscraped_Checked(object sender, RoutedEventArgs e)
         {
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(3);
             // load datagrid
-            DbEF.GetGames(dgGameList, -100, tbFilterDatagrid.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, -100, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(3);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -921,7 +938,8 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(4);
             // load datagrid
             _filterId = 11;
-            DbEF.GetGames(dgGameList, 11, tbFilterDatagrid.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, 11, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(4);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -930,7 +948,8 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(5);
             // load datagrid
-            DbEF.GetGames(dgGameList, 12, tbFilterDatagrid.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, 12, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(5);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -940,7 +959,8 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(6);
             // load datagrid
             _filterId = 10;
-            DbEF.GetGames(dgGameList, 10, tbFilterDatagrid.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, 10, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(6);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -949,7 +969,8 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(7);
             // load datagrid
-            DbEF.GetGames(dgGameList, 4, tbFilterDatagrid.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, 4, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(7);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -959,7 +980,8 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(16);
             // load datagrid
             _filterId = 13;
-            DbEF.GetGames(dgGameList, 13, tbFilterDatagrid.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, 13, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(16);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -968,7 +990,8 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(17);
             // load datagrid
-            DbEF.GetGames(dgGameList, 9, tbFilterDatagrid.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, 9, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(17);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -978,7 +1001,8 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(8);
             // load datagrid
             _filterId = 7;
-            DbEF.GetGames(dgGameList, 7, tbFilterDatagrid.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, 7, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(8);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
         private void btnPcecd_Checked(object sender, RoutedEventArgs e)
@@ -986,7 +1010,8 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(18);
             // load datagrid
-            DbEF.GetGames(dgGameList, 18, tbFilterDatagrid.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, 18, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(18);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -996,8 +1021,9 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(19);
             // load datagrid
             _filterId = 8;
-            DbEF.GetGames(dgGameList, 8, tbFilterDatagrid.Text, _countryFilter);
-           // dg = ((App)Application.Current).GamesList.FilteredSet;
+            GameListBuilder.GetGames(dgGameList, 8, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(19);
+            // dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
         private void btnVb_Checked(object sender, RoutedEventArgs e)
@@ -1005,7 +1031,8 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(9);
             // load datagrid
-            DbEF.GetGames(dgGameList, 14, tbFilterDatagrid.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, 14, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(9);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1015,7 +1042,8 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(10);
             // load datagrid
             _filterId = 6;
-            DbEF.GetGames(dgGameList, 6, tbFilterDatagrid.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, 6, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(10);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1024,7 +1052,8 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(11);
             // load datagrid
-            DbEF.GetGames(dgGameList, 15, tbFilterDatagrid.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, 15, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(11);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1034,8 +1063,9 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(12);
             // load datagrid
             _filterId = 1;
-                
-            DbEF.GetGames(dgGameList, 1, tbFilterDatagrid.Text, _countryFilter);
+
+            GameListBuilder.GetGames(dgGameList, 1, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(12);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1044,7 +1074,8 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(13);
             // load datagrid
-            DbEF.GetGames(dgGameList, 2, tbFilterDatagrid.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, 2, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(13);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1054,7 +1085,8 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(14);
             // load datagrid
             _filterId = 5;
-            DbEF.GetGames(dgGameList, 5, tbFilterDatagrid.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, 5, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(14);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1064,7 +1096,8 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(15);
             // load datagrid
             _filterId = 3;
-            DbEF.GetGames(dgGameList, 3, tbFilterDatagrid.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, 3, tbFilterDatagrid.Text, _countryFilter);
+            GamesLibraryVisualHandler.LoadColumnInfo(15);
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1293,7 +1326,7 @@ namespace MedLaunch
                 system = 18;
             }
 
-            DbEF.GetGames(dgGameList, system, textbox.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, system, textbox.Text, _countryFilter);
         }
 
         // Clear all filters button click
@@ -3103,6 +3136,14 @@ namespace MedLaunch
                 }
                 
             }
+
+            // save the games library column states to disk
+            App _App = ((App)Application.Current);
+            
+            // first save the active state to memory (as this is only usually saved when the filter is unchecked)
+            GamesLibraryVisualHandler.SaveSelectedColumnState();
+            // now save collection to disk
+            _App.GamesList.SaveDataGridStatesToDisk();
 
         }
 
@@ -5117,7 +5158,7 @@ namespace MedLaunch
                     break;
             }
 
-            DbEF.GetGames(dgGameList, _filterId, tbFilterDatagrid.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, _filterId, tbFilterDatagrid.Text, _countryFilter);
 
         }
 
@@ -5155,6 +5196,146 @@ namespace MedLaunch
             _Debug.ScrapeDB.AdminScrapeDb adb = new _Debug.ScrapeDB.AdminScrapeDb();
             adb.MobyManualMatch(true);
         }
+
+        private void resetGLColStates_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults();
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }        
+
+        private void AllGamesResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(1);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
+
+        private void FavoriteResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(2);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
+
+        private void UnscrapedResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(3);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
+
+        private void NesResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(4);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
+
+        private void SnesResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(5);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
+
+        private void SmsResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(6);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
+
+        private void MdResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(7);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
+
+        private void PceResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(8);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
+
+        private void VbResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(9);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
+
+        private void NgpResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(10);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
+
+        private void WswanResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(11);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
+
+        private void GbResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(12);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
+
+        private void GbaResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(13);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
+
+        private void GgResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(14);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
+
+        private void LynxResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(15);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
+
+        private void SsResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(16);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
+
+        private void PsxResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(17);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
+
+        private void PcecdResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(18);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
+
+        private void PcfxResetToDefaultColumnState_Click(object sender, RoutedEventArgs e)
+        {
+            App _App = ((App)Application.Current);
+            _App.GamesList.LoadColumnDefaults(19);
+            GamesLibraryVisualHandler.ReloadSelectedColumnState();
+        }
     }
     /*
     public class SliderIgnoreDelta : Slider
@@ -5172,7 +5353,5 @@ namespace MedLaunch
         DISC,
         ALL
     }
-
-    
 
 }
