@@ -543,7 +543,7 @@ namespace MedLaunch
 
                 // start re-linking routine
                 UpdateStatus("Re-Linking orphaned scraped data...", true);
-                GameListBuilder.ReLinkData();
+                //GameListBuilder.ReLinkData();
             }     
         }
 

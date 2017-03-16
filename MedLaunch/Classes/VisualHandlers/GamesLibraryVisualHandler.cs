@@ -13,6 +13,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Markup;
 using System.Windows.Input;
 using MedLaunch.Classes.GamesLibrary;
+using System.Windows.Data;
 
 namespace MedLaunch.Classes
 {
@@ -1004,6 +1005,26 @@ namespace MedLaunch.Classes
             int gameId = r.ID;            
         }
 
+        public static int GetSelectedFilterNumber()
+        {
+            App _App = ((App)Application.Current);
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            DataGrid dgGameList = (DataGrid)mw.FindName("dgGameList");
+
+            // get active filter
+            RadioButton[] rbs = ReturnFilterButtons();
+            for (int i = 0; i < rbs.Length; i++)
+            {
+                if (rbs[i].IsChecked == true)
+                {
+                    return (i + 1);
+                    break;
+                }
+            }
+
+            return 0;
+        }
+
         public static void SaveColumnInfo(int FilterNumber)
         {
             App _App = ((App)Application.Current);
@@ -1022,6 +1043,11 @@ namespace MedLaunch.Classes
             App _App = ((App)Application.Current);
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             DataGrid dgGameList = (DataGrid)mw.FindName("dgGameList");
+
+            // clear existing sortdescriptions
+            var cView = CollectionViewSource.GetDefaultView(dgGameList.ItemsSource);
+            if (cView != null)
+                cView.SortDescriptions.Clear();
 
             List<ColumnInfo> colInfo = _App.GamesList.DataGridStates[FilterNumber];
 
@@ -1144,6 +1170,47 @@ namespace MedLaunch.Classes
             };
 
             return buttons;
+        }
+
+        public static CountryFilter GetSelectedCountryFilter()
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            if (mw == null)
+            {
+                // maybe mainwindow has not loaded yet
+                return CountryFilter.ALL;
+            }
+
+            Grid CountryFilterGrid = (Grid)mw.FindName("CountryFilterGrid");
+
+            // get all country filter radiobuttons
+            UIHandler ui = UIHandler.GetChildren(CountryFilterGrid);
+            RadioButton[] rbs = ui.RadioButtons.Where(a => a.GroupName == "filters").ToArray();
+
+            // get the checked radio button
+            RadioButton rb = rbs.Where(a => a.IsChecked == true).FirstOrDefault();
+
+            if (rb == null)
+                return CountryFilter.ALL;
+
+            for (int i = 0; i < rbs.Length; i++)
+            {
+                string name = rbs[i].Name.Replace("srcFilterAll", "");
+
+                switch (name)
+                {
+                    case "USA":
+                        return CountryFilter.USA;
+                    case "EUR":
+                        return CountryFilter.EUR;
+                    case "JPN":
+                        return CountryFilter.JPN;
+                    default:
+                        return CountryFilter.ALL;
+                }
+            }
+            return CountryFilter.ALL;
         }
 
     }

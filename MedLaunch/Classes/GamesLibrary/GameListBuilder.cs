@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace MedLaunch.Classes.GamesLibrary
 {
@@ -20,6 +21,10 @@ namespace MedLaunch.Classes.GamesLibrary
         public string SortColumnName { get; set; }
         public ListSortDirection SortDirection { get; set; }
         public string DGStatesPath { get; set; }
+
+        public CountryFilter countryFilter { get; set; }
+
+        public List<DataGridGamesView> FilteredSetCache;
 
         private ObservableCollection<DataGridGamesView> filteredSet;
         public ObservableCollection<DataGridGamesView> FilteredSet
@@ -55,6 +60,9 @@ namespace MedLaunch.Classes.GamesLibrary
 
             // populate the object
             AllGames = GamesLibraryDataGridRefresh.Update(AllGames);
+
+            // country filter initial population
+            countryFilter = GamesLibraryVisualHandler.GetSelectedCountryFilter();
 
             DGStatesPath = AppDomain.CurrentDomain.BaseDirectory + @"Data\Settings\GamesLibraryColumnStates.json";
 
@@ -163,63 +171,46 @@ namespace MedLaunch.Classes.GamesLibrary
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public void CountryFilterUpdate()
+        {
+            countryFilter = GamesLibraryVisualHandler.GetSelectedCountryFilter();
+
+            List<DataGridGamesView> temp = new List<DataGridGamesView>();
+
+            // update the collection based on country code filter
+            switch (countryFilter)
+            {
+                case CountryFilter.EUR:                    
+                    temp = FilteredSetCache.Where(a => a.Country != null && a.Country.ToUpper().Contains("EU")).ToList();
+                    FilteredSet = new ObservableCollection<DataGridGamesView>(temp);
+                    break;
+                case CountryFilter.JPN:
+                    temp = FilteredSetCache.Where(a => a.Country != null && a.Country.ToUpper().Contains("J")).ToList();
+                    FilteredSet = new ObservableCollection<DataGridGamesView>(temp);
+                    break;
+                case CountryFilter.USA:
+                    temp = FilteredSetCache.Where(a => a.Country != null && a.Country.ToUpper().Contains("US")).ToList();
+                    FilteredSet = new ObservableCollection<DataGridGamesView>(temp);
+                    break;
+                default:
+                    FilteredSet = new ObservableCollection<DataGridGamesView>(FilteredSetCache.ToList());
+                    break;
+            }            
+        }
+
         // update game data for games datagrid including search
-        public static void GetGames(DataGrid datagrid, int systemId, string search, CountryFilter countryFilter)
+        public static void GetGames(DataGrid datagrid, int systemId, string search) //, CountryFilter countryFilter)
         {
             // get the full dataset from application
             App _App = ((App)Application.Current);
             //List<DataGridGamesView> allGames = _App.GamesList.AllGames;
 
-            var result = GameListBuilder.Filter(systemId, search, countryFilter);
+            
+
+            var result = GameListBuilder.Filter(systemId, search); //, countryFilter);
         }
 
-        public static void ReLinkData()
-        {
-            /*
-            var allLib = LibraryDataGDBLink.GetLibraryData();
-
-            using (var db = new MyDbContext())
-            {
-                
-                var allLinks = GDBLink.GetAllRecords().ToList();
-
-                List<LibraryDataGDBLink> linksToAdd = new List<LibraryDataGDBLink>();
-
-                // iterate through each entry in allLinks
-                foreach (var l in allLinks)
-                {
-                    // try to match with the library link
-                    var ll = allLib.Where(a => a.GDBId == l.GdbId).ToList();
-                    if (ll.Count == 0)
-                    {
-                        // no entry was found - this needs linking
-                        GamesLibraryScrapedContent gd = new GamesLibraryScrapedContent();
-                        ScrapedGameObject o = gd.GetScrapedGameObject(l.GameId.Value);
-                        if (o == null)
-                            continue;
-
-                        LibraryDataGDBLink d = new LibraryDataGDBLink();
-                        d.GDBId = l.GdbId.Value;
-                        d.Coop = o.Data.Coop;
-                        d.Developer = o.Data.Developer;
-                        d.ESRB = o.Data.ESRB;
-                        d.Players = o.Data.Players;
-                        d.Publisher = o.Data.Publisher;
-                        d.Year = o.Data.Released;
-
-                        linksToAdd.Add(d);
-                        LibraryDataGDBLink.SaveToDataBase(d);
-                        
-                    }
-
-                    // make sure GAME entry has scraped flag set
-                    Game g = Game.GetGame(l.GameId.Value);
-                    g.isScraped = true;
-                    Game.SetGame(g, true);
-                }
-            }
-            */
-        }
+        
 
         /// <summary>
         /// remove hidden systems from results set
@@ -269,11 +260,29 @@ namespace MedLaunch.Classes.GamesLibrary
             }
         }
 
-        public static List<DataGridGamesView> Filter(int systemId, string search, CountryFilter countryFilter)
+        public static List<DataGridGamesView> Filter(int systemId, string search) //, CountryFilter countryFilter)
         {
             List<DataGridGamesView> results = new List<DataGridGamesView>();
             App _App = ((App)Application.Current);
 
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            List<ColumnInfo> cis = new List<ColumnInfo>();
+            DataGrid dgGameList = new DataGrid();
+            List<SortDescription> sdc = new List<SortDescription>();
+
+            ICollectionView cView = CollectionViewSource.GetDefaultView(dgGameList.ItemsSource);
+            if (cView != null)
+                sdc = cView.SortDescriptions.ToList();
+            
+
+            if (mw != null)
+            {
+                dgGameList = (DataGrid)mw.FindName("dgGameList");
+                // get the current datagrid column layout (will re-apply it at the end of this method)
+
+                cis = ColumnInfo.GetColumnInfo(dgGameList);                
+            }
+            
             if (_App.GamesList.UpdateRequired == true)
                 GamesLibraryDataGridRefresh.Update();
 
@@ -332,6 +341,7 @@ namespace MedLaunch.Classes.GamesLibrary
             }
 
             // narrow search based on country/region filter
+            /*
             switch (countryFilter)
             {
                 case CountryFilter.EUR:
@@ -349,10 +359,12 @@ namespace MedLaunch.Classes.GamesLibrary
                 default:
                     break;
             }
+            */
 
             // now we have results based on the system filter - process file search
             List<DataGridGamesView> srch = DoSearch(results, search);
 
+            /*
             List<DataGridGamesView> sorted = new List<DataGridGamesView>();
             // perform sorting
             if (_App.GamesList.SortDirection == ListSortDirection.Ascending)
@@ -457,9 +469,37 @@ namespace MedLaunch.Classes.GamesLibrary
                         break;
                 }
             }
+
+            */
                 
             // trigger update in datagrid with sorting      
-            _App.GamesList.FilteredSet = new ObservableCollection<DataGridGamesView>(sorted);
+            _App.GamesList.FilteredSet = new ObservableCollection<DataGridGamesView>(srch);
+
+            // setup cache
+            _App.GamesList.FilteredSetCache = new List<DataGridGamesView>();
+            _App.GamesList.FilteredSetCache = srch.ToList();
+
+            // countryfilter
+            _App.GamesList.CountryFilterUpdate();
+
+            // re-apply datagrid column states            
+            if (mw != null)
+            {
+                // Mainwindow has been found
+                
+                // re-apply column settings
+                ColumnInfo.ApplyColumnInfo(dgGameList, cis);
+
+                // refresh viewsource
+                
+                if (cView != null)
+                {
+                    //cView.SortDescriptions = sdc;
+                    cView.Refresh();
+                }
+                    
+            }
+            
 
             return srch;
         }

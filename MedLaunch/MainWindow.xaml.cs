@@ -906,8 +906,9 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(1);
             // load datagrid
             _filterId = 0;
-            GameListBuilder.GetGames(dgGameList, 0, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(1);
+            GameListBuilder.GetGames(dgGameList, 0, tbFilterDatagrid.Text);
+            
            // dg = ((App)Application.Current).GamesList.FilteredSet;
         }
         
@@ -917,8 +918,9 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(2);
             // load datagrid
             _filterId = -1;
-            GameListBuilder.GetGames(dgGameList, -1, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(2);
+            GameListBuilder.GetGames(dgGameList, -1, tbFilterDatagrid.Text);
+            
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
         
@@ -927,8 +929,9 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(3);
             // load datagrid
-            GameListBuilder.GetGames(dgGameList, -100, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(3);
+            GameListBuilder.GetGames(dgGameList, -100, tbFilterDatagrid.Text);
+            
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -938,8 +941,9 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(4);
             // load datagrid
             _filterId = 11;
-            GameListBuilder.GetGames(dgGameList, 11, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(4);
+            GameListBuilder.GetGames(dgGameList, 11, tbFilterDatagrid.Text);
+            
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -948,8 +952,9 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(5);
             // load datagrid
-            GameListBuilder.GetGames(dgGameList, 12, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(5);
+            GameListBuilder.GetGames(dgGameList, 12, tbFilterDatagrid.Text);
+            
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -959,8 +964,9 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(6);
             // load datagrid
             _filterId = 10;
-            GameListBuilder.GetGames(dgGameList, 10, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(6);
+            GameListBuilder.GetGames(dgGameList, 10, tbFilterDatagrid.Text);
+            
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -969,8 +975,9 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(7);
             // load datagrid
-            GameListBuilder.GetGames(dgGameList, 4, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(7);
+            GameListBuilder.GetGames(dgGameList, 4, tbFilterDatagrid.Text);
+            
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -980,8 +987,9 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(16);
             // load datagrid
             _filterId = 13;
-            GameListBuilder.GetGames(dgGameList, 13, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(16);
+            GameListBuilder.GetGames(dgGameList, 13, tbFilterDatagrid.Text);
+            
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -990,8 +998,9 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(17);
             // load datagrid
-            GameListBuilder.GetGames(dgGameList, 9, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(17);
+            GameListBuilder.GetGames(dgGameList, 9, tbFilterDatagrid.Text);
+            
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1001,8 +1010,9 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(8);
             // load datagrid
             _filterId = 7;
-            GameListBuilder.GetGames(dgGameList, 7, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(8);
+            GameListBuilder.GetGames(dgGameList, 7, tbFilterDatagrid.Text);
+            
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
         private void btnPcecd_Checked(object sender, RoutedEventArgs e)
@@ -1010,8 +1020,9 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(18);
             // load datagrid
-            GameListBuilder.GetGames(dgGameList, 18, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(18);
+            GameListBuilder.GetGames(dgGameList, 18, tbFilterDatagrid.Text);
+            
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1021,8 +1032,9 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(19);
             // load datagrid
             _filterId = 8;
-            GameListBuilder.GetGames(dgGameList, 8, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(19);
+            GameListBuilder.GetGames(dgGameList, 8, tbFilterDatagrid.Text);
+            
             // dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1031,8 +1043,9 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(9);
             // load datagrid
-            GameListBuilder.GetGames(dgGameList, 14, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(9);
+            GameListBuilder.GetGames(dgGameList, 14, tbFilterDatagrid.Text);
+            
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1042,8 +1055,9 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(10);
             // load datagrid
             _filterId = 6;
-            GameListBuilder.GetGames(dgGameList, 6, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(10);
+            GameListBuilder.GetGames(dgGameList, 6, tbFilterDatagrid.Text);
+            
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1052,8 +1066,9 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(11);
             // load datagrid
-            GameListBuilder.GetGames(dgGameList, 15, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(11);
+            GameListBuilder.GetGames(dgGameList, 15, tbFilterDatagrid.Text);
+            
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1063,9 +1078,9 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(12);
             // load datagrid
             _filterId = 1;
-
-            GameListBuilder.GetGames(dgGameList, 1, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(12);
+            GameListBuilder.GetGames(dgGameList, 1, tbFilterDatagrid.Text);
+            
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1074,8 +1089,9 @@ namespace MedLaunch
             // set column visibility
             GamesLibraryVisualHandler.SetColumnVisibility(13);
             // load datagrid
-            GameListBuilder.GetGames(dgGameList, 2, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(13);
+            GameListBuilder.GetGames(dgGameList, 2, tbFilterDatagrid.Text);
+            
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1085,8 +1101,9 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(14);
             // load datagrid
             _filterId = 5;
-            GameListBuilder.GetGames(dgGameList, 5, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(14);
+            GameListBuilder.GetGames(dgGameList, 5, tbFilterDatagrid.Text);
+            
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1096,8 +1113,9 @@ namespace MedLaunch
             GamesLibraryVisualHandler.SetColumnVisibility(15);
             // load datagrid
             _filterId = 3;
-            GameListBuilder.GetGames(dgGameList, 3, tbFilterDatagrid.Text, _countryFilter);
             GamesLibraryVisualHandler.LoadColumnInfo(15);
+            GameListBuilder.GetGames(dgGameList, 3, tbFilterDatagrid.Text);
+            
             //dg = ((App)Application.Current).GamesList.FilteredSet;
         }
 
@@ -1326,7 +1344,7 @@ namespace MedLaunch
                 system = 18;
             }
 
-            GameListBuilder.GetGames(dgGameList, system, textbox.Text, _countryFilter);
+            GameListBuilder.GetGames(dgGameList, system, textbox.Text);
         }
 
         // Clear all filters button click
@@ -3668,7 +3686,7 @@ namespace MedLaunch
 
             this.Dispatcher.Invoke(() =>
             {
-                GameListBuilder.ReLinkData();
+                //GameListBuilder.ReLinkData();
             });
 
             await controller.CloseAsync();
@@ -4643,6 +4661,7 @@ namespace MedLaunch
 
         private void columnHeaderDGGAMES_Click(object sender, RoutedEventArgs e)
         {
+            /*
             var columnHeader = sender as DataGridColumnHeader;
             
             if (columnHeader != null)
@@ -4656,6 +4675,7 @@ namespace MedLaunch
                 _App.GamesList.SortColumnName = columnName;
                 _App.GamesList.SortDirection = sortDirection;
             }
+            */
         }
 
         private void btnViewMednafenLogFile_Click(object sender, RoutedEventArgs e)
@@ -5158,7 +5178,10 @@ namespace MedLaunch
                     break;
             }
 
-            GameListBuilder.GetGames(dgGameList, _filterId, tbFilterDatagrid.Text, _countryFilter);
+            App _App = ((App)Application.Current);
+            _App.GamesList.CountryFilterUpdate();
+
+            //GameListBuilder.GetGames(dgGameList, _filterId, tbFilterDatagrid.Text, _countryFilter);
 
         }
 
@@ -5336,6 +5359,11 @@ namespace MedLaunch
             _App.GamesList.LoadColumnDefaults(19);
             GamesLibraryVisualHandler.ReloadSelectedColumnState();
         }
+
+
+
+
+        
     }
     /*
     public class SliderIgnoreDelta : Slider

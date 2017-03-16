@@ -553,7 +553,7 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-                            <Grid Grid.Row="0">
+                            <Grid Grid.Row="0" Name="CountryFilterGrid">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
@@ -590,7 +590,6 @@
                                       RowBackground="Transparent" Background="Transparent"  Grid.Row="2" Name="dgGameList" IsReadOnly="True" 
                                       SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Extended" ContextMenuOpening="dgGameList_ContextMenuOpening" AutoGenerateColumns="False"
                                       ItemsSource="{Binding FilteredSet, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DataContext="{Binding Source={x:Static Application.Current}, Path=GamesList}" 
-                                      
                                       
                                       >
                                 <DataGrid.ColumnHeaderStyle>

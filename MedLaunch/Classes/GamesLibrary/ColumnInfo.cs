@@ -39,20 +39,24 @@ namespace MedLaunch.Classes.GamesLibrary
 
         public static void ApplyColumnInfo(DataGrid dataGrid, List<ColumnInfo> colInfoList)
         {
-            List<DataGridColumn> columns = dataGrid.Columns.OrderBy(a => a.DisplayIndex).ToList();
-            for (int i = 0; i < columns.Count; i++)
+            //List<DataGridColumn> columns = dataGrid.Columns.OrderBy(a => a.DisplayIndex).ToList();
+            for (int i = 0; i < dataGrid.Columns.Count; i++)
             {
                 ColumnInfo ci = new ColumnInfo();
                 var lookup = (from a in colInfoList
-                             where a.PropertyPath == ((Binding)((DataGridBoundColumn)columns[i]).Binding).Path.Path
+                             //where a.PropertyPath == ((Binding)((DataGridBoundColumn)dataGrid.Columns[i]).Binding).Path.Path
+                             where a.Header == dataGrid.Columns[i].Header
                              select a).FirstOrDefault();
 
                 if (lookup == null)
                     continue;
 
-                columns[i].SortDirection = lookup.SortDirection;
-                columns[i].DisplayIndex = lookup.DisplayIndex;
-                columns[i].Width = new DataGridLength(lookup.WidthValue, lookup.WidthType);
+                if (lookup.DisplayIndex == -1)
+                    continue;
+
+                dataGrid.Columns[i].SortDirection = lookup.SortDirection;
+                dataGrid.Columns[i].DisplayIndex = lookup.DisplayIndex;
+                dataGrid.Columns[i].Width = new DataGridLength(lookup.WidthValue, lookup.WidthType);
             }
         }
 
