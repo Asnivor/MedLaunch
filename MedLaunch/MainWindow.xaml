@@ -585,11 +585,14 @@
                             
                             <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
 
+                            <!-- ItemsSource="{Binding FilteredSet, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DataContext="{Binding Source={x:Static Application.Current}, Path=GamesList}"  -->
 
                             <DataGrid PreviewMouseRightButtonDown="DataGrid_PreviewMouseRightButtonDown" PreviewMouseRightButtonUp="DataGrid_PreviewMouseRightButtonDown"
                                       RowBackground="Transparent" Background="Transparent"  Grid.Row="2" Name="dgGameList" IsReadOnly="True" 
                                       SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Extended" ContextMenuOpening="dgGameList_ContextMenuOpening" AutoGenerateColumns="False"
-                                      ItemsSource="{Binding FilteredSet, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DataContext="{Binding Source={x:Static Application.Current}, Path=GamesList}" 
+                                      ItemsSource="{Binding ViewSource.View, UpdateSourceTrigger=PropertyChanged}"
+                                      DataContext="{Binding Source={x:Static Application.Current}, Path=GamesLibraryViewModel}"
+                                      IsSynchronizedWithCurrentItem="True"
                                       
                                       >
                                 <DataGrid.ColumnHeaderStyle>

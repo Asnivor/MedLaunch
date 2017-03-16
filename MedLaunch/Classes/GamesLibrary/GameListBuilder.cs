@@ -193,7 +193,7 @@ namespace MedLaunch.Classes.GamesLibrary
                     FilteredSet = new ObservableCollection<DataGridGamesView>(temp);
                     break;
                 default:
-                    FilteredSet = new ObservableCollection<DataGridGamesView>(FilteredSetCache.ToList());
+                    //FilteredSet = new ObservableCollection<DataGridGamesView>(FilteredSetCache.ToList());
                     break;
             }            
         }

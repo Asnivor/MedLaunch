@@ -74,6 +74,8 @@ namespace MedLaunch
         public CountryFilter _countryFilter { get; set; }
         public int _filterId { get; set; }
 
+
+
         public MainWindow()
         {
             // make sure class libraries are built
@@ -907,7 +909,7 @@ namespace MedLaunch
             // load datagrid
             _filterId = 0;
             GamesLibraryVisualHandler.LoadColumnInfo(1);
-            GameListBuilder.GetGames(dgGameList, 0, tbFilterDatagrid.Text);
+            //GameListBuilder.GetGames(dgGameList, 0, tbFilterDatagrid.Text);
             
            // dg = ((App)Application.Current).GamesList.FilteredSet;
         }
