@@ -43,19 +43,19 @@ namespace MedLaunch
             }
         }
 
-        private GamesLibraryViewModel gamesLibraryViewModel;
-        public GamesLibraryViewModel GamesLibraryViewModel
+        private GamesLibraryViewModel gamesLibrary;
+        public GamesLibraryViewModel GamesLibrary
         {
             get
             {
-                return gamesLibraryViewModel;
+                return gamesLibrary;
             }
             set
             {
-                if (gamesLibraryViewModel != value)
+                if (gamesLibrary != value)
                 {
-                    gamesLibraryViewModel = value;
-                    OnPropertyChanged("GamesLibraryViewModel");
+                    gamesLibrary = value;
+                    OnPropertyChanged("GamesLibrary");
 
                 }
             }
@@ -118,13 +118,14 @@ namespace MedLaunch
 
             // instantiate GamesList object  
             GamesList = new GameListBuilder();
+            GamesLibrary = new GamesLibraryViewModel();
 
             MainWindow mw = new MedLaunch.MainWindow();
             Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
             Application.Current.MainWindow = mw;
 
-            GamesLibraryViewModel = new GamesLibraryViewModel();
-            mw.DataContext = GamesLibraryViewModel;
+            
+            //mw.DataContext = _GamesLibraryViewModel;
             mw.Show();
 
             // instantiate GamesList object  

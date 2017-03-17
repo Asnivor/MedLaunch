@@ -11,6 +11,7 @@ using System.ComponentModel;
 
 namespace MedLaunch.Classes
 {  
+    /*
     public class DataGridGamesView : INotifyPropertyChanged
     {
         private int iD;
@@ -297,5 +298,5 @@ namespace MedLaunch.Classes
 
     }
 
-  
+  */
 }

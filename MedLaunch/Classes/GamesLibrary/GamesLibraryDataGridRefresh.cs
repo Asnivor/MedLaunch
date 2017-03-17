@@ -11,18 +11,19 @@ namespace MedLaunch.Classes.GamesLibrary
 {
     public class GamesLibraryDataGridRefresh
     {
-        public static List<DataGridGamesView> Update(List<DataGridGamesView> AllGames)
+        /*
+        public static List<GamesLibraryModel> Update(List<GamesLibraryModel> AllGames)
         {
             using (var cnt = new MyDbContext())
             {
                 List<LibraryDataGDBLink> links = LibraryDataGDBLink.GetLibraryData().ToList();
-                List<DataGridGamesView> q = new List<DataGridGamesView>();
+                List<GamesLibraryModel> q = new List<GamesLibraryModel>();
                 var games = (from g in cnt.Game
                              where g.hidden != true
                              select g).ToList();
                 foreach (var game in games)
                 {
-                    DataGridGamesView d = new DataGridGamesView();
+                    GamesLibraryModel d = new GamesLibraryModel();
                     d.ID = game.gameId;
                     
                     d.System = GSystem.GetSystemName(game.systemId);
@@ -82,18 +83,18 @@ namespace MedLaunch.Classes.GamesLibrary
             }
         }
 
-        public static ObservableCollection<DataGridGamesView> Update(ObservableCollection<DataGridGamesView> AllGames)
+        public static ObservableCollection<GamesLibraryModel> Update(ObservableCollection<GamesLibraryModel> AllGames)
         {
             using (var cnt = new MyDbContext())
             {
                 List<LibraryDataGDBLink> links = LibraryDataGDBLink.GetLibraryData().ToList();
-                List<DataGridGamesView> q = new List<DataGridGamesView>();
+                List<GamesLibraryModel> q = new List<GamesLibraryModel>();
                 var games = (from g in cnt.Game
                              where g.hidden != true
                              select g).ToList();
                 foreach (var game in games)
                 {
-                    DataGridGamesView d = new DataGridGamesView();
+                    GamesLibraryModel d = new GamesLibraryModel();
                     d.ID = game.gameId;
 
                     d.System = GSystem.GetSystemName(game.systemId);
@@ -147,7 +148,7 @@ namespace MedLaunch.Classes.GamesLibrary
                 }
 
 
-                return new ObservableCollection<DataGridGamesView>(q);
+                return new ObservableCollection<GamesLibraryModel>(q);
 
                 //AllGames = ng;
             }
@@ -156,7 +157,7 @@ namespace MedLaunch.Classes.GamesLibrary
         public static void Update()
         {
             App _App = ((App)Application.Current);
-            List<DataGridGamesView> view = Update(_App.GamesList.AllGames);
+            List<GamesLibraryModel> view = Update(_App.GamesList.AllGames);
             _App.GamesList.UpdateRequired = false;
             _App.GamesList.AllGames = view;     
         }
@@ -195,5 +196,7 @@ namespace MedLaunch.Classes.GamesLibrary
             return result;           
         }
         */
+        
     }
+   
 }

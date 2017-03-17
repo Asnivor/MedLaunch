@@ -581,19 +581,21 @@
 
                             </Grid>
 
-                           
+                           <!--
+                            ItemsSource="{Binding DataCollection, UpdateSourceTrigger=PropertyChanged}"
+                                      DataContext="{Binding Source={x:Static Application.Current}, Mode=OneWay, Path=GamesLibrary}"
+                            -->
                             
                             <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
 
                             <!-- ItemsSource="{Binding FilteredSet, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DataContext="{Binding Source={x:Static Application.Current}, Path=GamesList}"  -->
 
                             <DataGrid PreviewMouseRightButtonDown="DataGrid_PreviewMouseRightButtonDown" PreviewMouseRightButtonUp="DataGrid_PreviewMouseRightButtonDown"
-                                      RowBackground="Transparent" Background="Transparent"  Grid.Row="2" Name="dgGameList" IsReadOnly="True" 
+                                      RowBackground="Transparent" Background="Transparent"  Grid.Row="2" x:Name="dgGameList" IsReadOnly="True" 
                                       SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Extended" ContextMenuOpening="dgGameList_ContextMenuOpening" AutoGenerateColumns="False"
-                                      ItemsSource="{Binding ViewSource.View, UpdateSourceTrigger=PropertyChanged}"
-                                      DataContext="{Binding Source={x:Static Application.Current}, Path=GamesLibraryViewModel}"
+                                      Sorting="dgGameList_Sorting"
                                       IsSynchronizedWithCurrentItem="True"
-                                      
+                                      Loaded="dgGameList_Loaded"
                                       >
                                 <DataGrid.ColumnHeaderStyle>
                                     <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MetroDataGridColumnHeader}">
@@ -624,8 +626,8 @@
                                     <DataGridTextColumn x:Name="glCol13"  Header="Developer" Binding="{Binding Developer}" Visibility="{Binding ElementName=chkshowGLDeveloper, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}"/>
                                     <DataGridTextColumn x:Name="glCol14"  Header="Rating" Binding="{Binding ESRB}" Visibility="{Binding ElementName=chkshowGLESRB, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}" />
                                 </DataGrid.Columns>
-                                
-                                
+
+
                                 <DataGrid.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Style.Triggers>

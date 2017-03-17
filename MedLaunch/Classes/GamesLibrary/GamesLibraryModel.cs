@@ -280,4 +280,12 @@ namespace MedLaunch.Classes.GamesLibrary
             }
         }
     }
+
+    public enum CountryFilter
+    {
+        ALL,
+        USA,
+        EUR,
+        JPN
+    }
 }

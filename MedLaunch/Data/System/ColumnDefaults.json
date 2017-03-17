@@ -1,116 +1,120 @@
-{
-  "1": [
-    {
-      "Header": "Co-Op",
-      "PropertyPath": "Coop",
-      "SortDirection": null,
-      "DisplayIndex": 11,
-      "WidthValue": 59.43,
-      "WidthType": 0
-    },
-    {
-      "Header": "Country",
-      "PropertyPath": "Country",
-      "SortDirection": null,
-      "DisplayIndex": 5,
-      "WidthValue": 77.183333333333337,
-      "WidthType": 0
-    },
-    {
-      "Header": "Detected Rom",
-      "PropertyPath": "DatRom",
-      "SortDirection": null,
-      "DisplayIndex": 9,
-      "WidthValue": 180.0,
-      "WidthType": 1
-    },
-    {
-      "Header": "Developer",
-      "PropertyPath": "Developer",
-      "SortDirection": null,
-      "DisplayIndex": 12,
-      "WidthValue": 157.75333333333333,
-      "WidthType": 0
-    },
-    {
-      "Header": "Fav",
-      "PropertyPath": "Favorite",
-      "SortDirection": null,
-      "DisplayIndex": 4,
-      "WidthValue": 43.786666666666669,
-      "WidthType": 0
-    },
-    {
-      "Header": "Flags",
-      "PropertyPath": "Flags",
-      "SortDirection": null,
-      "DisplayIndex": 8,
-      "WidthValue": 69.79,
-      "WidthType": 0
-    },
-    {
-      "Header": "Game",
-      "PropertyPath": "Game",
-      "SortDirection": 0,
-      "DisplayIndex": 1,
-      "WidthValue": 190.0,
-      "WidthType": 1
-    },
-    {
-      "Header": "ID",
-      "PropertyPath": "ID",
-      "SortDirection": null,
-      "DisplayIndex": 0,
-      "WidthValue": 34.076666666666668,
-      "WidthType": 0
-    },
-    {
-      "Header": "LastRun",
-      "PropertyPath": "LastPlayed",
-      "SortDirection": null,
-      "DisplayIndex": 3,
-      "WidthValue": 114.66666666666667,
-      "WidthType": 0
-    },
-    {
-      "Header": "Players",
-      "PropertyPath": "Players",
-      "SortDirection": null,
-      "DisplayIndex": 10,
-      "WidthValue": 70.076666666666668,
-      "WidthType": 0
-    },
-    {
-      "Header": "Publisher",
-      "PropertyPath": "Publisher",
-      "SortDirection": null,
-      "DisplayIndex": 7,
-      "WidthValue": 100.0,
-      "WidthType": 1
-    },
-    {
-      "Header": "Rating",
-      "PropertyPath": "ESRB",
-      "SortDirection": null,
-      "DisplayIndex": 13,
-      "WidthValue": 65.19,
-      "WidthType": 0
-    },
-    {
-      "Header": "System",
-      "PropertyPath": "System",
-      "SortDirection": null,
-      "DisplayIndex": 2,
-      "WidthValue": 100.0,
-      "WidthType": 1
-    },
-    {
-      "Header": "Year",
-      "PropertyPath": "Year",
-      "SortDirection": null,
-      "DisplayIndex": 6,
-      "WidthValue": 50.663333333333334,
-      "WidthType": 0
-    }
-  ]
- }
+[
+  {
+    "FilterNumber": 1,
+    "ColumnInfoList": [
+      {
+        "Header": "ID",
+        "PropertyPath": "ID",
+        "SortDirection": null,
+        "DisplayIndex": 0,
+        "WidthValue": 34.076666666666668,
+        "WidthType": 0
+      },
+      {
+        "Header": "Game",
+        "PropertyPath": "Game",
+        "SortDirection": 0,
+        "DisplayIndex": 1,
+        "WidthValue": 255.0,
+        "WidthType": 1
+      },
+      {
+        "Header": "System",
+        "PropertyPath": "System",
+        "SortDirection": null,
+        "DisplayIndex": 2,
+        "WidthValue": 100.0,
+        "WidthType": 1
+      },
+      {
+        "Header": "LastRun",
+        "PropertyPath": "LastPlayed",
+        "SortDirection": null,
+        "DisplayIndex": 3,
+        "WidthValue": 114.66666666666667,
+        "WidthType": 0
+      },
+      {
+        "Header": "Fav",
+        "PropertyPath": "Favorite",
+        "SortDirection": null,
+        "DisplayIndex": 4,
+        "WidthValue": 43.786666666666669,
+        "WidthType": 0
+      },
+      {
+        "Header": "Country",
+        "PropertyPath": "Country",
+        "SortDirection": null,
+        "DisplayIndex": 5,
+        "WidthValue": 77.183333333333337,
+        "WidthType": 0
+      },
+      {
+        "Header": "Year",
+        "PropertyPath": "Year",
+        "SortDirection": null,
+        "DisplayIndex": 6,
+        "WidthValue": 50.663333333333334,
+        "WidthType": 0
+      },
+      {
+        "Header": "Publisher",
+        "PropertyPath": "Publisher",
+        "SortDirection": null,
+        "DisplayIndex": 7,
+        "WidthValue": 100.0,
+        "WidthType": 1
+      },
+      {
+        "Header": "Flags",
+        "PropertyPath": "Flags",
+        "SortDirection": null,
+        "DisplayIndex": 8,
+        "WidthValue": 89.446666666666673,
+        "WidthType": 0
+      },
+      {
+        "Header": "Detected Rom",
+        "PropertyPath": "DatRom",
+        "SortDirection": null,
+        "DisplayIndex": 9,
+        "WidthValue": 180.0,
+        "WidthType": 1
+      },
+      {
+        "Header": "Players",
+        "PropertyPath": "Players",
+        "SortDirection": null,
+        "DisplayIndex": 10,
+        "WidthValue": 70.076666666666668,
+        "WidthType": 0
+      },
+      {
+        "Header": "Co-Op",
+        "PropertyPath": "Coop",
+        "SortDirection": null,
+        "DisplayIndex": 11,
+        "WidthValue": 59.43,
+        "WidthType": 0
+      },
+      {
+        "Header": "Developer",
+        "PropertyPath": "Developer",
+        "SortDirection": null,
+        "DisplayIndex": 12,
+        "WidthValue": 245.91000000000003,
+        "WidthType": 0
+      },
+      {
+        "Header": "Rating",
+        "PropertyPath": "ESRB",
+        "SortDirection": null,
+        "DisplayIndex": 13,
+        "WidthValue": 65.19,
+        "WidthType": 0
+      }
+    ],
+    "SortDescriptionList": {}
+  }
+]

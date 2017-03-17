@@ -269,6 +269,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\GamesLibrary\ColumnInfo.cs" />
     <Compile Include="Classes\GamesLibrary\DelegateCommand.cs" />
+    <Compile Include="Classes\GamesLibrary\Filters.cs" />
     <Compile Include="Classes\GamesLibrary\GamesLibraryModel.cs" />
     <Compile Include="Classes\GamesLibrary\GamesLibraryView.cs" />
     <Compile Include="Classes\GamesLibrary\GamesLibraryViewModel.cs" />
@@ -279,6 +280,7 @@
     <Compile Include="Classes\Scanning\RomScan.cs" />
     <Compile Include="Classes\Scanning\SaturnGame.cs" />
     <Compile Include="Classes\Scraper\PSXDATACENTER\PsxDc.cs" />
+    <Compile Include="DataGrid.cs" />
     <Compile Include="Models\VersionCompatibility.cs" />
     <Compile Include="Windows\AccentStyleWindow.xaml.cs">
       <DependentUpon>AccentStyleWindow.xaml</DependentUpon>

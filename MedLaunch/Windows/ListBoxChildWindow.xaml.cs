@@ -18,6 +18,7 @@ using MahApps.Metro.Controls.Dialogs;
 using MedLaunch.Extensions;
 using MedLaunch.Classes.MasterScraper;
 using MedLaunch.Classes.Scraper;
+using MedLaunch.Classes.GamesLibrary;
 
 namespace MedLaunch
 {
@@ -36,7 +37,7 @@ namespace MedLaunch
             // get the mainwindow
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             DataGrid dgGameList = (DataGrid)mw.FindName("dgGameList");
-            var row = (DataGridGamesView)dgGameList.SelectedItem;
+            var row = (GamesLibraryModel)dgGameList.SelectedItem;
             if (dgGameList.SelectedItem == null)
             {
                 // game is not selected
@@ -112,7 +113,7 @@ namespace MedLaunch
             };
 
             DataGrid dgGameList = (DataGrid)mw.FindName("dgGameList");
-            var r = (DataGridGamesView)dgGameList.SelectedItem;
+            var r = (GamesLibraryModel)dgGameList.SelectedItem;
             var row = (GameListItem)dgReturnedGames.SelectedItem;
 
             var controller = await mw.ShowProgressAsync("Scraping Data", "Initialising...", true, settings: mySettings);
@@ -140,7 +141,7 @@ namespace MedLaunch
                 await mw.ShowMessageAsync("MedLaunch Scraper", "Scraping Completed");
             }
 
-            var ro = (DataGridGamesView)dgGameList.SelectedItem;
+            var ro = (GamesLibraryModel)dgGameList.SelectedItem;
             dgGameList.SelectedItem = null;
             dgGameList.SelectedItem = ro;
 
