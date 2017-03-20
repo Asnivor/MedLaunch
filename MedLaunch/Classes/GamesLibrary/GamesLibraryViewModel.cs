@@ -33,10 +33,14 @@ namespace MedLaunch.Classes.GamesLibrary
 
         public MultipleFilterHandler MultipleFilter { get; set; }
 
+        public ICollectionViewLiveShaping ShapingItems => LibraryView.View as ICollectionViewLiveShaping;
+
         public GamesLibraryViewModel()
         {
             this.DataCollection = new ObservableCollection<GamesLibraryModel>();
             this.LibraryView = new CollectionViewSource();
+
+            
 
             DGStatesPath = AppDomain.CurrentDomain.BaseDirectory + @"Data\Settings\GamesLibraryColumnStates.json";
             LoadDataGridStatesFromDisk();
@@ -63,12 +67,18 @@ namespace MedLaunch.Classes.GamesLibrary
             // bind the CollectionViewSource to our GamesLibraryModel DataCollection
             _LibraryView.Source = DataCollection;
 
+            ShapingItems.LiveSortingProperties.Add("Game");
+            ShapingItems.LiveSortingProperties.Add("System");
+            ShapingItems.IsLiveSorting = true;
+
             // multiplefilterhandlers
             MultipleFilter = new MultipleFilterHandler(LibraryView, MultipleFilterLogic.And);
 
             CurrentCountryFilter = GamesLibrary.CountryFilter.ALL;
             
-        }        
+        }   
+        
+        
 
         public ObservableCollection<GamesLibraryModel> DataCollection
         {
@@ -80,6 +90,7 @@ namespace MedLaunch.Classes.GamesLibrary
             {
                 _DataCollection = value;
                 OnPropertyChanged("DataCollection");
+                //LibraryView.View.Refresh();
             }
         }
 
@@ -93,9 +104,10 @@ namespace MedLaunch.Classes.GamesLibrary
             set
             {
                 _LibraryView = value;
-               // OnPropertyChanged("ViewSource");
+                OnPropertyChanged("LibraryView");
+                //LibraryView.View.Refresh();
             }
-            
+
         }
 
         public ICommand RemoveCommand

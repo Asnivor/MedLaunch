@@ -86,7 +86,7 @@ namespace MedLaunch
             MainWindow mw = this;
 
             // bind the games library datagrid to the ICollectionView
-            dgGameList.ItemsSource = _App.GamesLibrary.LibraryView.View;
+            //dgGameList.ItemsSource = _App.GamesLibrary.LibraryView.View;
 
             // set settings dirty flag
             SettingsDirtyFlag = false; // not dirty - do not save any settings

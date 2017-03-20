@@ -596,6 +596,9 @@
                                       Sorting="dgGameList_Sorting"
                                       IsSynchronizedWithCurrentItem="True"
                                       Loaded="dgGameList_Loaded"
+                                      
+                                      ItemsSource="{Binding LibraryView.View, UpdateSourceTrigger=PropertyChanged}"
+                                      DataContext="{Binding Source={x:Static Application.Current}, Mode=TwoWay, Path=GamesLibrary}"
                                       >
                                 <DataGrid.ColumnHeaderStyle>
                                     <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MetroDataGridColumnHeader}">
