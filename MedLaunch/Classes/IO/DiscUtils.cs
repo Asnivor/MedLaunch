@@ -56,7 +56,18 @@ namespace MedLaunch.Classes.IO
                         ifn = i.Value;                        
                 }
 
-                lba = Convert.ToInt32(ifn.Offset);
+                if (ifn == null)
+                {
+                    lba = 23;
+                }
+                else
+                {
+                    lba = Convert.ToInt32(ifn.Offset);
+                }                
+            }
+            else
+            {
+                lba = 23;
             }
             
               

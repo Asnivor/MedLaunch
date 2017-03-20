@@ -70,7 +70,7 @@ namespace MedLaunch.Classes.Scanning
                                        where g.systemId == systemId
                                        select g).ToList();
 
-            /*
+            
             // check whether presentGames paths are valid - mark as hidden if not
             foreach (var g in presentGames.Where(a => a.hidden == false))
             {
@@ -81,7 +81,7 @@ namespace MedLaunch.Classes.Scanning
                     HiddenStats++;
                 }
             }
-            */
+            
 
             /* disc games at the moment MUST reside in 1st level subfolders within the system folder */
 
@@ -337,7 +337,7 @@ namespace MedLaunch.Classes.Scanning
                     newGame = lookupGame;
                 }
                 // populate PSX settings from DAT
-                PsxDc psxDc = PsxGamesList.Where(a => a.Serial.Contains(f.ExtraInfo.ToUpper())).FirstOrDefault();
+                PsxDc psxDc = PsxGamesList.Where(a => a.Serial.Contains(f.ExtraInfo.ToUpper()) && f.ExtraInfo != "").FirstOrDefault();
                 if (psxDc != null)
                 {
                     newGame.Country = psxDc.Region;
@@ -573,6 +573,8 @@ namespace MedLaunch.Classes.Scanning
             if (sysId == 9) //psx
             {
                 serial = MedDiscUtils.GetPSXSerial(firstCue);
+                if (serial == null)
+                    serial = "";
                 f.ExtraInfo = serial;
             }
             if (sysId == 13) //ss
