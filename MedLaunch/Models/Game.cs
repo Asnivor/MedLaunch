@@ -235,18 +235,18 @@ namespace MedLaunch.Models
                     return 1;
                 }
             }
-
-
         }
 
         private static void InsertRom(Game rom)
         {
             using (var iR = new MyDbContext())
             {
+                // add game to database and save changes
                 iR.Game.Add(rom);
                 iR.SaveChanges();
                 iR.Dispose();
             }
+            GamesLibraryVisualHandler.DoUpdate();
         }
         private static void UpdateRom(Game rom)
         {
@@ -256,6 +256,7 @@ namespace MedLaunch.Models
                 uR.SaveChanges();
                 uR.Dispose();
             }
+            GamesLibraryVisualHandler.DoUpdate();
         }
 
 
@@ -281,7 +282,8 @@ namespace MedLaunch.Models
                 db.Game.UpdateRange(toUpdate);
                 db.Game.AddRange(toAdd);
                 db.SaveChanges();
-               // GameListBuilder.UpdateFlag();
+                // GameListBuilder.UpdateFlag();
+                GamesLibraryVisualHandler.DoUpdate();
             }
         }
 
@@ -307,6 +309,7 @@ namespace MedLaunch.Models
                 db.Game.UpdateRange(toUpdate);
                 db.Game.AddRange(toAdd);
                 db.SaveChanges();
+                GamesLibraryVisualHandler.DoUpdate();
             }
         }
 
@@ -316,7 +319,8 @@ namespace MedLaunch.Models
             game.gameLastPlayed = DateTime.Now;
             
             SetGame(game);
-           // GameListBuilder.UpdateFlag();
+            // GameListBuilder.UpdateFlag();
+            GamesLibraryVisualHandler.DoUpdate();
         }
         public static void SetFinishedPlaying(int gameId)
         {
@@ -325,7 +329,8 @@ namespace MedLaunch.Models
             SetGame(game);
 
             SetTotalGameTime(gameId);
-           // GameListBuilder.UpdateFlag();
+            // GameListBuilder.UpdateFlag();
+            GamesLibraryVisualHandler.DoUpdate();
         }
 
         public static void SetTotalGameTime(int gameId)
@@ -345,7 +350,8 @@ namespace MedLaunch.Models
                 game.gameTime = newTotalTime;
                 game.timesPlayed++;
                 SetGame(game);
-               // GameListBuilder.UpdateFlag();
+                // GameListBuilder.UpdateFlag();
+                GamesLibraryVisualHandler.DoUpdate();
             }
         }
 
@@ -356,8 +362,9 @@ namespace MedLaunch.Models
             {
                 cfDef.Entry(game).State = Microsoft.Data.Entity.EntityState.Modified;
                 cfDef.SaveChanges();
-                GamesLibData.ForceUpdate();
-               // GameListBuilder.UpdateFlag();
+                //GamesLibData.ForceUpdate();
+                // GameListBuilder.UpdateFlag();
+                GamesLibraryVisualHandler.DoUpdate();
             }
         }
 
@@ -367,6 +374,7 @@ namespace MedLaunch.Models
             {
                 cfDef.Entry(game).State = Microsoft.Data.Entity.EntityState.Modified;
                 cfDef.SaveChanges();
+                GamesLibraryVisualHandler.DoUpdate();
             }
         }
 
@@ -378,6 +386,10 @@ namespace MedLaunch.Models
                 cont.SaveChanges();
                 GamesLibData.ForceUpdate();
                 //GameListBuilder.UpdateFlag();
+                GamesLibraryVisualHandler.DoUpdate();
+                List<Game> games = new List<Game>();
+                games.Add(game);
+                GamesLibraryVisualHandler.DoDelete(games);
             }
 
         }
@@ -388,8 +400,9 @@ namespace MedLaunch.Models
             {
                 cont.Game.RemoveRange(games);
                 cont.SaveChanges();
-                GamesLibData.ForceUpdate();
-               // GameListBuilder.UpdateFlag();
+                //GamesLibData.ForceUpdate();
+                // GameListBuilder.UpdateFlag();
+                GamesLibraryVisualHandler.DoDelete(games);
             }
         }
 
@@ -398,7 +411,8 @@ namespace MedLaunch.Models
             Game game = GetGame(GameId);
             game.gdbId = GdbId;
             SetGame(game);
-           // GameListBuilder.UpdateFlag();
+            // GameListBuilder.UpdateFlag();
+            GamesLibraryVisualHandler.DoUpdate();
         }
     }    
 }

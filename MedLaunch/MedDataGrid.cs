@@ -7,17 +7,21 @@ using System.Windows.Input;
 using System.Windows.Controls;
 using System.ComponentModel;
 using System.Linq.Expressions;
+using System.Windows;
 
 namespace MedLaunch
 {
-    /*
-    public class DataGrid : System.Windows.Controls.DataGrid
+    
+    public class MedDataGrid : DataGrid
     {
-        public DataGrid()
+        public MedDataGrid()
         {
+            _App = (App)System.Windows.Application.Current;
             SortDescriptions = new List<SortDescription>();
             Sorting += DataGridSorting;
         }
+
+        private MedLaunch.App _App { get; set; }
 
         protected List<SortDescription> SortDescriptions { get; private set; }
 
@@ -42,11 +46,31 @@ namespace MedLaunch
                 SortDescriptions =
                     SortDescriptions.Where(x => x.PropertyName != sd.PropertyName).ToList();
             else
+            {
                 SortDescriptions.Clear();
+                _App.GamesLibrary.LibraryView.SortDescriptions.Clear();
+            }
+                
 
-            SortDescriptions.Add(sd);
+            using (_App.GamesLibrary.LibraryView.DeferRefresh())
+            {
+                SortDescriptions.Add(sd);
+
+            
+                foreach (var s in SortDescriptions)
+                {
+                    _App.GamesLibrary.LibraryView.SortDescriptions.Add(s);
+                }
+            }
+
+            _App.GamesLibrary.LibraryView.View.Refresh();
 
             OnSortConstructed(new SortConstructedEventArgs(SortDescriptions));
+
+            
+               
+            //_App.GamesLibrary.LibraryView.View.Refresh();
+            
         }
 
         private bool ShiftPressed
@@ -194,17 +218,17 @@ namespace MedLaunch
         {
             var props = property.Split('.');
             var type = typeof(T);
-            var arg = Expression.Parameter(type, "x");
-            Expression expr = arg;
+            var arg = System.Linq.Expressions.Expression.Parameter(type, "x");
+            System.Linq.Expressions.Expression expr = arg;
             foreach (var prop in props)
             {
                 // use reflection (not ComponentModel) to mirror LINQ
                 var pi = type.GetProperty(prop);
-                expr = Expression.Property(expr, pi);
+                expr = System.Linq.Expressions.Expression.Property(expr, pi);
                 type = pi.PropertyType;
             }
             var delegateType = typeof(Func<,>).MakeGenericType(typeof(T), type);
-            var lambda = Expression.Lambda(delegateType, expr, arg);
+            var lambda = System.Linq.Expressions.Expression.Lambda(delegateType, expr, arg);
 
             var result = typeof(Queryable).GetMethods().Single(
                 method => method.Name == methodName
@@ -217,5 +241,5 @@ namespace MedLaunch
             return (IOrderedQueryable<T>)result;
         }
     }
-    */
+    
 }

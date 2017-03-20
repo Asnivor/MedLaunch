@@ -1,8 +1,10 @@
 ﻿using MedLaunch.Models;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -17,7 +19,8 @@ namespace MedLaunch.Classes.GamesLibrary
 {
     public class GamesLibraryViewModel : GamesLibraryViewModelBase
     {
-        ObservableCollection<GamesLibraryModel> _DataCollection;
+        ObservableCollectionEx<GamesLibraryModel> _DataCollection;
+        //GamesLibraryCollection DataCollection;
         //private ICollectionView _LibraryView;
         private CollectionViewSource _LibraryView;
         ICommand _command;
@@ -33,15 +36,14 @@ namespace MedLaunch.Classes.GamesLibrary
 
         public MultipleFilterHandler MultipleFilter { get; set; }
 
-        public ICollectionViewLiveShaping ShapingItems => LibraryView.View as ICollectionViewLiveShaping;
+        //public ICollectionViewLiveShaping ShapingItems => LibraryView.View as ICollectionViewLiveShaping;
 
         public GamesLibraryViewModel()
         {
-            this.DataCollection = new ObservableCollection<GamesLibraryModel>();
+            // this.DataCollection = new ObservableCollectionEx<GamesLibraryModel>();
+            this._DataCollection = new ObservableCollectionEx<GamesLibraryModel>();
             this.LibraryView = new CollectionViewSource();
-
             
-
             DGStatesPath = AppDomain.CurrentDomain.BaseDirectory + @"Data\Settings\GamesLibraryColumnStates.json";
             LoadDataGridStatesFromDisk();
             if (DataGridStates == null)
@@ -67,20 +69,23 @@ namespace MedLaunch.Classes.GamesLibrary
             // bind the CollectionViewSource to our GamesLibraryModel DataCollection
             _LibraryView.Source = DataCollection;
 
-            ShapingItems.LiveSortingProperties.Add("Game");
-            ShapingItems.LiveSortingProperties.Add("System");
-            ShapingItems.IsLiveSorting = true;
+            //ShapingItems.LiveSortingProperties.Add("Game");
+           // ShapingItems.LiveSortingProperties.Add("System");
+           // ShapingItems.IsLiveSorting = true;
 
             // multiplefilterhandlers
             MultipleFilter = new MultipleFilterHandler(LibraryView, MultipleFilterLogic.And);
 
             CurrentCountryFilter = GamesLibrary.CountryFilter.ALL;
+
             
+
         }   
         
         
 
-        public ObservableCollection<GamesLibraryModel> DataCollection
+        
+        public ObservableCollectionEx<GamesLibraryModel> DataCollection
         {
             get
             {
@@ -93,6 +98,7 @@ namespace MedLaunch.Classes.GamesLibrary
                 //LibraryView.View.Refresh();
             }
         }
+       
 
         public CollectionViewSource LibraryView
         {
@@ -124,11 +130,13 @@ namespace MedLaunch.Classes.GamesLibrary
 
         private void Execute(object parameter)
         {
+            /*
             int index = DataCollection.IndexOf(parameter as GamesLibraryModel);
             if (index > -1 && index < DataCollection.Count)
             {
                 DataCollection.RemoveAt(index);
             }
+            */
         }
 
         private bool CanExecute(object parameter)
@@ -147,24 +155,33 @@ namespace MedLaunch.Classes.GamesLibrary
             }
             else
             {
-                MultipleFilter.SetMainFilter(fn);
-            }            
+               
+            }
+
+            MultipleFilter.SetMainFilter(fn);
+            LibraryView.SortDescriptions.Add(new SortDescription("Game", ListSortDirection.Descending));
         }
 
         public void SearchFilter(string searchStr)
         {
+           
             if (searchStr == "" && SearchText == "")
                 return;
 
             if (searchStr == "")
             {
                 MultipleFilter.Filter -= new FilterEventHandler(MultipleFilter.filters.Search);
-                LibraryView.View.Refresh();
+                //LibraryView.View.Refresh();
                 return;
             }
+           
+            SearchText = searchStr;
 
-            SearchText = searchStr;   
-            MultipleFilter.Filter += new FilterEventHandler(MultipleFilter.filters.Search);
+            using (LibraryView.DeferRefresh())
+            {
+                MultipleFilter.Filter -= new FilterEventHandler(MultipleFilter.filters.Search);
+                MultipleFilter.Filter += new FilterEventHandler(MultipleFilter.filters.Search);
+            } 
         }
 
         public void CountryFilter(CountryFilter countryFilter)
@@ -191,25 +208,45 @@ namespace MedLaunch.Classes.GamesLibrary
             }
         }
 
-       
-        public void Update()
+        public void RemoveEntries(List<Game> games)
+        {
+            foreach (var game in games)
+            {
+                var g = DataCollection.Where(a => a.ID == game.gameId).FirstOrDefault();
+                if (g == null)
+                    continue;
+
+                DataCollection.Remove(g);                    
+            }
+        }
+
+        public void UpdateEntries(List<Game> games)
         {
 
-            if (IsDirty == false)
-            {
-                //return;
-            }
-                
+        }
 
-            DataCollection = new ObservableCollection<GamesLibraryModel>();
+        public void AddEntries(List<Game> games)
+        {
+
+        }
+
+        /// <summary>
+        /// big update - clears DataCollection and re-populates
+        /// </summary>
+        public void Update()
+        {                     
+            if (DataCollection == null)
+                DataCollection = new ObservableCollectionEx<GamesLibraryModel>(); 
 
             using (var cnt = new MyDbContext())
             {
+                DataCollection.Clear();
+
                 List<LibraryDataGDBLink> links = LibraryDataGDBLink.GetLibraryData().ToList();
 
                 var games = (from g in cnt.Game
-                             where g.hidden != true
-                             select g).ToList();
+                                where g.hidden != true
+                                select g).ToList();
                 foreach (var game in games)
                 {
                     GamesLibraryModel d = new GamesLibraryModel();
@@ -224,11 +261,12 @@ namespace MedLaunch.Classes.GamesLibrary
                     if (game.romNameFromDAT != null)
                     {
                         if (game.romNameFromDAT.Contains("(USA)"))
-                            d.Country = "US";
+                            d.Country = "USA";
                         if (game.romNameFromDAT.Contains("(Europe)"))
-                            d.Country = "EU";
+                            d.Country = "EUR";
+                        if (game.romNameFromDAT.Contains("(Japan)"))
+                            d.Country = "JPN";
                     }
-
 
                     d.Flags = game.OtherFlags;
                     d.Language = game.Language;
@@ -332,6 +370,60 @@ namespace MedLaunch.Classes.GamesLibrary
             {
                 // file does not exist - populate defaults
             }
+        }
+    }
+
+    public class ObservableCollectionEx<T> : ObservableCollection<T> where T : INotifyPropertyChanged
+    {
+        protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
+        {
+            if (e != null)  // There's been an addition or removal of items from the Collection
+            {
+                Unsubscribe(e.OldItems);
+                Subscribe(e.NewItems);
+                base.OnCollectionChanged(e);
+            }
+            else
+            {
+                // Just a property has changed, so reset the Collection.
+                base.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+
+            }
+
+        }
+
+        protected override void ClearItems()
+        {
+            foreach (T element in this)
+                element.PropertyChanged -= ContainedElementChanged;
+
+            base.ClearItems();
+        }
+
+        private void Subscribe(IList iList)
+        {
+            if (iList != null)
+            {
+                foreach (T element in iList)
+                    element.PropertyChanged += ContainedElementChanged;
+            }
+        }
+
+        private void Unsubscribe(IList iList)
+        {
+            if (iList != null)
+            {
+                foreach (T element in iList)
+                    element.PropertyChanged -= ContainedElementChanged;
+            }
+        }
+
+        private void ContainedElementChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(e);
+            // Tell the Collection that the property has changed
+            this.OnCollectionChanged(null);
+
         }
     }
 }

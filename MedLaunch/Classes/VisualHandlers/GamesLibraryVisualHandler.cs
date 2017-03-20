@@ -46,6 +46,10 @@ namespace MedLaunch.Classes
         // update sidebar
         public static void UpdateSidebar(int gameId)
         {
+            // if gameid does not exist (ie it has been deleted) then return
+            var ga = Game.GetGame(gameId);
+            if (ga == null)
+                return;
                    
             // get an instance of the MainWindow
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
@@ -1229,6 +1233,32 @@ namespace MedLaunch.Classes
             }
             return CountryFilter.ALL;
         }
+
+        public static void DoUpdate()
+        {
+            App _App = (App)Application.Current;
+
+            
+
+            Application.Current.Dispatcher.Invoke((Action)(() =>
+            {
+                var currentItem = _App.GamesLibrary.LibraryView.View.CurrentItem;
+                int currentPos = _App.GamesLibrary.LibraryView.View.CurrentPosition;
+                _App.GamesLibrary.Update();
+                // reselect current item
+                _App.GamesLibrary.LibraryView.View.MoveCurrentTo(currentItem);
+            }));
+
+            
+        }
+
+        public static void DoDelete(List<Game> games)
+        {
+            App _App = (App)Application.Current;
+            _App.GamesLibrary.RemoveEntries(games);
+        }
+
+
 
     }
 }

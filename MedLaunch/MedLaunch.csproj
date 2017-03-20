@@ -111,6 +111,7 @@
       <HintPath>..\packages\Microsoft.Data.Sqlite.1.0.0-rc1-final\lib\net451\Microsoft.Data.Sqlite.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
       <Private>True</Private>
@@ -268,9 +269,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\GamesLibrary\ColumnInfo.cs" />
+    <Compile Include="Classes\GamesLibrary\DataGridSortDescriptionsSyncBehavior.cs" />
     <Compile Include="Classes\GamesLibrary\DelegateCommand.cs" />
     <Compile Include="Classes\GamesLibrary\Filters.cs" />
+    <Compile Include="Classes\GamesLibrary\GamesLibraryCollection.cs" />
     <Compile Include="Classes\GamesLibrary\GamesLibraryModel.cs" />
+    <Compile Include="Classes\GamesLibrary\GamesLibrarySorting.cs" />
     <Compile Include="Classes\GamesLibrary\GamesLibraryView.cs" />
     <Compile Include="Classes\GamesLibrary\GamesLibraryViewModel.cs" />
     <Compile Include="Classes\GamesLibrary\GamesLibraryViewModelBase.cs" />
@@ -280,7 +284,7 @@
     <Compile Include="Classes\Scanning\RomScan.cs" />
     <Compile Include="Classes\Scanning\SaturnGame.cs" />
     <Compile Include="Classes\Scraper\PSXDATACENTER\PsxDc.cs" />
-    <Compile Include="DataGrid.cs" />
+    <Compile Include="MedDataGrid.cs" />
     <Compile Include="Models\VersionCompatibility.cs" />
     <Compile Include="Windows\AccentStyleWindow.xaml.cs">
       <DependentUpon>AccentStyleWindow.xaml</DependentUpon>

@@ -38,6 +38,11 @@ namespace MedLaunch.Models
             Game game = (from g in db.Game
                          where g.gameId == gameId
                          select g).SingleOrDefault();
+            if (game == null)
+            {
+                return;
+            }
+
             GameName = game.gameName;
             GamePath = game.gamePath;
             IsFavorite = game.isFavorite;

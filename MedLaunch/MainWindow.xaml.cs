@@ -58,6 +58,7 @@ using MedLaunch.Classes.Controls.VirtualDevices;
 using MedLaunch.Classes.Controls.InputManager;
 using MedLaunch.Classes.Scanning;
 using MedLaunch.Classes.Scraper.PSXDATACENTER;
+using System.Windows.Threading;
 
 namespace MedLaunch
 {
@@ -241,6 +242,10 @@ namespace MedLaunch
             // initilisse saturn lookup class
             //SaturnLookup satlook = new SaturnLookup();
 
+            // searchtimer
+            _searchTimer = new DispatcherTimer();
+            _searchTimer.Tick += new EventHandler(OnSearchTimerTick);
+            _searchTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
 
 
         }
@@ -1269,9 +1274,37 @@ namespace MedLaunch
             ScraperHandler.ScrapeGames(sysId, ScrapeType.RescrapeAll);
         }
 
+        private DispatcherTimer _searchTimer;
+
+        private void OnSearchTimerTick(object sender, EventArgs e)
+        {
+            _searchTimer.Stop();
+            Search(tbFilterDatagrid.Text);
+        }
+
+        private void Search(string searchText)
+        {
+            Task.Run(() =>
+            {
+                // Execute search
+
+                Dispatcher.Invoke(() =>
+                {
+                    if (searchText == tbFilterDatagrid.Text)
+                    {
+                        // Result is good
+                        _App.GamesLibrary.SearchFilter(tbFilterDatagrid.Text);
+                    }
+                });
+            });
+        }
+
         // Games grid filter text box event
         private void tbFilterDatagrid_TextChanged(object sender, TextChangedEventArgs e)
         {
+            _searchTimer.Stop();
+            _searchTimer.Start();
+            /*
             var textbox = sender as TextBox;
 
             if (textbox.Text == "")
@@ -1280,7 +1313,7 @@ namespace MedLaunch
             }
 
             _App.GamesLibrary.SearchFilter(textbox.Text);
-
+            */
             /*
 
             int system = 0;
@@ -1377,7 +1410,7 @@ namespace MedLaunch
         // Games Datagrid selection changed
         private void dgGameList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            /*
+            
             // choose context menu to show based on single or multiple selection
             var dg = sender as DataGrid;
             ContextMenu menuToUse;
@@ -1414,7 +1447,7 @@ namespace MedLaunch
                 menuToUse = (ContextMenu)this.Resources["cmGamesListMultiple"];
                 dg.ContextMenu = menuToUse;
             }
-            */
+            
         }
 
         // generic TextBox_TextChanged handler
@@ -2122,8 +2155,8 @@ namespace MedLaunch
         // games list context menu
         private void dgGameList_ContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
-            dgGameList.Items.Refresh();
-            dgGameList.InvalidateVisual();
+            //dgGameList.Items.Refresh();
+            //dgGameList.InvalidateVisual();
             FrameworkElement fe = e.Source as FrameworkElement;
             ContextMenu cm = fe.ContextMenu;
 
@@ -5381,20 +5414,40 @@ namespace MedLaunch
 
         private void dgGameList_Sorting(object sender, DataGridSortingEventArgs e)
         {
-            DataGridColumn d = sender as DataGridColumn;
+            var dgSender = (DataGrid)sender;
+            var cView = CollectionViewSource.GetDefaultView(dgSender.ItemsSource);
 
+            // get datagrid sortdescriptions
+
+
+            //var cView = _App.GamesLibrary.LibraryView.View;
+
+            //Alternate between ascending/descending if the same column is clicked 
+           
+            ListSortDirection direction = ListSortDirection.Ascending;
+            if (cView.SortDescriptions.FirstOrDefault().PropertyName == e.Column.SortMemberPath)
+                direction = cView.SortDescriptions.FirstOrDefault().Direction == ListSortDirection.Descending ? ListSortDirection.Ascending : ListSortDirection.Descending;
+
+            cView.SortDescriptions.Clear();
+            GamesLibrarySorting.AddSortColumn((DataGrid)sender, e.Column.SortMemberPath, direction);
+            //To this point the default sort functionality is implemented
+
+            //Now check the wanted columns and add multiple sort 
+            if (e.Column.SortMemberPath == "WantedColumn")
+            {
+                GamesLibrarySorting.AddSortColumn((DataGrid)sender, "SecondColumn", direction);
+            }
+            e.Handled = true;
             
 
-            List<SortDescription> sd = new List<SortDescription>();
-            foreach (DataGridColumn c in dgGameList.Columns)
-            {
-
-            }
+            List<SortDescription> sds = _App.GamesLibrary.LibraryView.SortDescriptions.ToList();
         }
+
+        
 
         private void dgGameList_Loaded(object sender, RoutedEventArgs e)
         {
-            SortDirectionHelper(sender as DataGrid);
+           // SortDirectionHelper(sender as DataGrid);
         }
 
         public void SortDirectionHelper(DataGrid dg)

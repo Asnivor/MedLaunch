@@ -66,6 +66,7 @@ namespace MedLaunch.Classes.MasterScraper
             }
             int GameId = row.ID;
             PickLocalGame(GameId);
+            dgGameList.SelectedItem = row;
             return "success";
         }
 

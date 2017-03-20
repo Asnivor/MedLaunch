@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:MedLaunch"
+                      xmlns:gl="clr-namespace:MedLaunch.Classes.GamesLibrary"
                       xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
         
                       xmlns:diag="clr-namespace:System.Diagnostics;assembly=mscorlib"
-                  
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
+xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Microsoft.Expression.Interactions"          
         
         mc:Ignorable="d"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
@@ -590,22 +593,25 @@
 
                             <!-- ItemsSource="{Binding FilteredSet, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DataContext="{Binding Source={x:Static Application.Current}, Path=GamesList}"  -->
 
-                            <DataGrid PreviewMouseRightButtonDown="DataGrid_PreviewMouseRightButtonDown" PreviewMouseRightButtonUp="DataGrid_PreviewMouseRightButtonDown"
+                            <local:MedDataGrid PreviewMouseRightButtonDown="DataGrid_PreviewMouseRightButtonDown" PreviewMouseRightButtonUp="DataGrid_PreviewMouseRightButtonDown"
                                       RowBackground="Transparent" Background="Transparent"  Grid.Row="2" x:Name="dgGameList" IsReadOnly="True" 
                                       SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Extended" ContextMenuOpening="dgGameList_ContextMenuOpening" AutoGenerateColumns="False"
-                                      Sorting="dgGameList_Sorting"
+                                      CanUserResizeRows="False"
                                       IsSynchronizedWithCurrentItem="True"
-                                      Loaded="dgGameList_Loaded"
+                                      
                                       
                                       ItemsSource="{Binding LibraryView.View, UpdateSourceTrigger=PropertyChanged}"
-                                      DataContext="{Binding Source={x:Static Application.Current}, Mode=TwoWay, Path=GamesLibrary}"
+                                      DataContext="{Binding Source={x:Static Application.Current}, Mode=OneWay, Path=GamesLibrary}" GridLinesVisibility="None"
                                       >
-                                <DataGrid.ColumnHeaderStyle>
+
+
+
+                                <local:MedDataGrid.ColumnHeaderStyle>
                                     <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MetroDataGridColumnHeader}">
                                         <EventSetter Event="Click" Handler="columnHeaderDGGAMES_Click" />
                                     </Style>
-                                </DataGrid.ColumnHeaderStyle>
-                                <DataGrid.Columns>
+                                </local:MedDataGrid.ColumnHeaderStyle>
+                                <local:MedDataGrid.Columns>
                                     <DataGridTextColumn x:Name="glCol1" Header="ID" Binding="{Binding ID}" />
                                     <DataGridTextColumn x:Name="glCol2" Header="Game" Binding="{Binding Game}" Width="190" />
                                     <!--
@@ -628,10 +634,10 @@
                                     <DataGridTextColumn x:Name="glCol12"  Header="Co-Op" Binding="{Binding Coop}" Visibility="{Binding ElementName=chkshowGLCoop, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}"/>
                                     <DataGridTextColumn x:Name="glCol13"  Header="Developer" Binding="{Binding Developer}" Visibility="{Binding ElementName=chkshowGLDeveloper, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}"/>
                                     <DataGridTextColumn x:Name="glCol14"  Header="Rating" Binding="{Binding ESRB}" Visibility="{Binding ElementName=chkshowGLESRB, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                </DataGrid.Columns>
+                                </local:MedDataGrid.Columns>
 
 
-                                <DataGrid.CellStyle>
+                                <local:MedDataGrid.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Style.Triggers>
                                             <Trigger Property="IsSelected" Value="True">
@@ -641,21 +647,22 @@
                                             </Trigger>
                                         </Style.Triggers>
                                     </Style>
-                                </DataGrid.CellStyle>
-                                <DataGrid.RowStyle>
+                                </local:MedDataGrid.CellStyle>
+                                <local:MedDataGrid.RowStyle>
                                     <Style TargetType="{x:Type DataGridRow}">
                                         <EventSetter Event="MouseDoubleClick" Handler="LaunchRom_Click"/>                                        
                                         <Setter Property="VerticalContentAlignment" Value="Center" />
                                         <Setter Property="VerticalAlignment" Value="Center" />
+                                        
                                     </Style>
-                                </DataGrid.RowStyle>
-                                <DataGrid.ItemContainerStyle>
+                                </local:MedDataGrid.RowStyle>
+                                <local:MedDataGrid.ItemContainerStyle>
                                     <Style TargetType="{x:Type DataGridRow}">
                                         <EventSetter Event="PreviewMouseRightButtonDown" Handler="DataGrid_PreviewMouseRightButtonDownBlock" />
                                     </Style>
-                                </DataGrid.ItemContainerStyle>
-                                <!--
-                                <DataGrid.ContextMenu>
+                                </local:MedDataGrid.ItemContainerStyle>
+                                
+                                <local:MedDataGrid.ContextMenu>
                                     <ContextMenu x:Name="dgContext">
                                         <MenuItem x:Name="LaunchRom" Header="Play Game" Click="LaunchRom_Click" />
                                         <MenuItem x:Name="LaunchRomShowConfig" Header="Play Game (View/Edit Launch String First)" Click="LaunchRomShowConfig_Click" />
@@ -664,12 +671,12 @@
                                         <MenuItem Header="Identify and Scrape Game" Click="btnScrapingPickGame_Click" />
                                         <MenuItem x:Name="DeleteRom" Header="Delete From Games Library" Click="DeleteRom_Click" />
                                     </ContextMenu>
-                                </DataGrid.ContextMenu>
-                                -->
+                                </local:MedDataGrid.ContextMenu>
+                                
 
                                 
                                 
-                            </DataGrid>
+                            </local:MedDataGrid>
                         </Grid>
 
 
