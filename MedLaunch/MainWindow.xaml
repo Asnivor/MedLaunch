@@ -197,7 +197,6 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                             <MenuItem Header="Populate ToolTips (kinda works - best to restart launcher)" Click="btnPopToolTips_Click"/>
                         </MenuItem>
                         <MenuItem Header="Misc">
-                            <MenuItem Header="Joystick test" Click="btnPJoyTest_Click"/>
                             <MenuItem Name="disctest" Header="Disc test" Click="disctest_Click"/>
                         </MenuItem>
                     </ContextMenu>

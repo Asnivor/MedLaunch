@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace MedLaunch.Classes.MasterScraper
+namespace MedLaunch.Classes.Scraper
 {
     // master scraper class - handles all scraping operations
     public class ScraperMainSearch
     {
-        public GamesLibraryScrapedContent GLSC { get; set; }
+        public ScrapeDB GLSC { get; set; }
         public GlobalSettings _GlobalSettings { get; set; }
 
         public List<ScraperMaster> PlatformGames { get; set; }
@@ -762,30 +762,6 @@ namespace MedLaunch.Classes.MasterScraper
             List<ScraperMaster> lg = LevenIteration(SearchCollection, StripSymbols(gameName.ToLower()));
 
             return lg;
-
-            // remove [anything inbetween] or (anything inbetween) from in the incoming string and remove it
-
-            // remove any symbols
-            string gName = StripSymbols(gameName);
-
-            // Pass to search method for fuzzy searching
-            StartFuzzySearch(gName, 0);
-
-            // if there is only one entry in searchcollection - match has been found - add it to the database for scraping later
-            if (WorkingSearchCollection.Count == 1)
-            {
-                ScraperMaster g = WorkingSearchCollection.FirstOrDefault();
-                //GDBGameData gd = new GDBGameData();
-                /*
-                gd.Id = gameId;
-                gd.GDBGameId = g.id;
-                gd.Title = g.GameTitle;
-                gd.ReleaseDate = g.ReleaseDate;  
-                */
-            }
-
-            //return SearchCollection;
-            return WorkingSearchCollection;
         }
 
         public List<ScraperMaster> LevenIteration(List<ScraperMaster> games, string searchStr)

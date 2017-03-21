@@ -93,7 +93,7 @@ namespace MedLaunch
             SettingsDirtyFlag = false; // not dirty - do not save any settings
 
             // instantiate ScrapedContent Object
-            GamesLibraryScrapedContent ScrapedData = new GamesLibraryScrapedContent();
+            ScrapeDB ScrapedData = new ScrapeDB();
             
             // hide the zoom slider (should not be visible to the user)
             dpZoomSlider.Visibility = Visibility.Collapsed;
@@ -2517,11 +2517,8 @@ namespace MedLaunch
                         // update lastfinished time
                         Game.SetFinishedPlaying(gl.GameId);
 
-                        // update gameslibrary data as change has been made
-                        GamesLibData.ForceUpdate();
-
                         // refresh library view
-                        GamesLibraryVisualHandler.RefreshGamesLibrary();
+                        //GamesLibraryVisualHandler.RefreshGamesLibrary();
                     });
                 }                
                 if (controller.IsOpen == true)
@@ -3292,7 +3289,7 @@ namespace MedLaunch
                     var c = wc.DownloadString("https://api.github.com/repos/Asnivor/MedLaunch/releases/latest");
                     contents = c;
                 }
-                catch (Exception ex)
+                catch
                 {
                     controller.SetMessage("The request timed out - please try again");
                     await Task.Delay(2000);
@@ -3444,9 +3441,7 @@ namespace MedLaunch
             controller.SetIndeterminate();
 
             await Task.Delay(400);
-
-            string output;
-
+            
             // download url
             string url = lblDownloadUrl.Content.ToString();
             // get just the filename
@@ -3463,7 +3458,7 @@ namespace MedLaunch
                 {
                     wc.DownloadFile(url, downloadsFolder + "\\" + fName);
                 }
-                catch (Exception ex)
+                catch
                 {
                     controller.SetMessage("The request timed out - please try again");
                     await Task.Delay(2000);
@@ -3744,10 +3739,7 @@ namespace MedLaunch
             string sysCode = rb.Name.Replace("btnConfig", "");
         }
 
-        private void btnPJoyTest_Click(object sender, RoutedEventArgs e)
-        {
-            Controller.Start();
-        }
+        
 
         private async void btnReLink_Click(object sender, RoutedEventArgs e)
         {
@@ -4611,7 +4603,7 @@ namespace MedLaunch
             // split into blocks
             string[] blocks = allstr.Split(new string[] { "\n\n\n" }, StringSplitOptions.None);
 
-            int blockcount = 0;
+            
             foreach (string block in blocks)
             {
                 string[] arr = block.Split('\n');

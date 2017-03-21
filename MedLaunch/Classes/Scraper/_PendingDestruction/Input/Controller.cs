@@ -8,6 +8,7 @@ using System.Windows;
 
 namespace MedLaunch.Classes.Input
 {
+    /*
     public class Controller
     {        
         public static void Start()
@@ -31,4 +32,5 @@ namespace MedLaunch.Classes.Input
         }
         
     }
+    */
 }

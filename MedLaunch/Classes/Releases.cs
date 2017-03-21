@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Medlaunch.Classes
 {
-
+    
     public class Release
     {
         public string Version { get; set; }
@@ -15,4 +15,5 @@ namespace Medlaunch.Classes
         public string Notes { get; set; }
         public List<string> Changelog { get; set; }
     }
+    
 }

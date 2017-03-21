@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MedLaunch.Models;
 using System.Text.RegularExpressions;
+using MedLaunch.Classes.Scraper;
 
 namespace MedLaunch.Classes
 {   

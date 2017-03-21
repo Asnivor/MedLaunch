@@ -64,6 +64,7 @@ namespace MedLaunch.Classes
             catch (System.Net.WebException wex)
             {
                 // error or timeout - run again but change the timeout value
+                Console.WriteLine(wex);
                 request.Abort();
                 
                 Timeout += 5000;

@@ -1,5 +1,6 @@
 ﻿using HtmlAgilityPack;
 using MahApps.Metro.Controls.Dialogs;
+using MedLaunch.Classes.Scraper;
 using MedLaunch.Models;
 using Newtonsoft.Json;
 using System;
@@ -339,8 +340,7 @@ namespace MedLaunch.Classes
             // get all platforms
             List<GSystem> systems = GSystem.GetSystems();
             List<MobyPlatformGame> allGames = new List<MobyPlatformGame>();
-
-            int idCount = 1;
+            
 
             // iterate through each system
             foreach (GSystem s in systems)

@@ -26,11 +26,6 @@ exception of the following 3rd party assemblies that are distributed with
 every MedLaunch binary release and that are subject to the terms of their own
 license agreements:
 
-Assembly:           BasicRestClient.dll
-Author(s):          Arsene Tochemey GANDOTE
-Project Site:       https://github.com/Tochemey/BasicRestClient
-License:            http://www.apache.org/licenses/LICENSE-2.0
-
 Assembly:           HtmlAgilityPack.dll
 Author(s):          Simon Mourrier, Jeff Klawiter, Stephan Grell
 Project Site:       http://htmlagilitypack.codeplex.com/

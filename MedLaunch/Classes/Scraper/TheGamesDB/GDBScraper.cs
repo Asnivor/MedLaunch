@@ -7,6 +7,7 @@ using MedLaunch.Models;
 using MahApps.Metro.Controls.Dialogs;
 using Newtonsoft.Json;
 using System.IO;
+using MedLaunch.Classes.Scraper;
 
 namespace MedLaunch.Classes.TheGamesDB
 {

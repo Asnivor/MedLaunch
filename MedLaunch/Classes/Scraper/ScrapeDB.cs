@@ -1,40 +1,27 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MedLaunch.Models;
-using MedLaunch.Classes.TheGamesDB;
-using MahApps.Metro.Controls.Dialogs;
-using System.Text.RegularExpressions;
-using FuzzyString;
-using System.Windows;
-using System.Net;
-using System.IO;
-using Newtonsoft.Json;
-using System.Windows.Controls;
-using MahApps.Metro.SimpleChildWindow;
-using System.Threading;
 
-namespace MedLaunch.Classes
+namespace MedLaunch.Classes.Scraper
 {
-    // class for scraped sidebar data - instantiated once on main page then passed around (loads masterscraper data from json file once)
-    public class GamesLibraryScrapedContent
+    public class ScrapeDB
     {
         // properties
         public string BaseContentDirectory { get; set; }
-        public List<ScraperMaster> MasterPlatformList { get; set; }
+        public List<MasterView> AllScrapeData { get; set; }
 
         // constructor
-        public GamesLibraryScrapedContent()
+        public ScrapeDB()
         {
             // set base content dir
             BaseContentDirectory = AppDomain.CurrentDomain.BaseDirectory + @"Data\Games";
 
-            // load the master json file
-            string masterPath = AppDomain.CurrentDomain.BaseDirectory + @"Data\System\MasterGames.json";
-            string json = File.ReadAllText(masterPath);
-            MasterPlatformList = JsonConvert.DeserializeObject<List<ScraperMaster>>(json);
+            // load scrape data from sqlite db
+            AllScrapeData = MasterView.GetMasterView();
 
             // ensure initial directory structure is created
             Directory.CreateDirectory(BaseContentDirectory);
@@ -42,6 +29,10 @@ namespace MedLaunch.Classes
 
         /* METHODS */
 
+        /// <summary>
+        /// saves scraped data object to json in the gamedata directory
+        /// </summary>
+        /// <param name="o"></param>
         public void SaveJson(ScrapedGameObjectWeb o)
         {
             string gPath = AppDomain.CurrentDomain.BaseDirectory + @"Data\Games\" + o.GdbId.ToString() + @"\" + o.GdbId.ToString() + ".json";
@@ -49,7 +40,12 @@ namespace MedLaunch.Classes
             File.WriteAllText(gPath, json);
         }
 
-        // looks up and returns scrapeddataobject based on Internal GameId (not gamesdb id)
+        /// <summary>
+        /// looks up and returns scrapeddataobject based on Internal GameId (not gamesdb id)
+        /// </summary>
+        /// <param name="GameId"></param>
+        /// <param name="GdbId"></param>
+        /// <returns></returns>
         public ScrapedGameObject GetScrapedGameObject(int GameId, int GdbId)
         {
             //Game link = Game.GetGame(GameId);
@@ -62,7 +58,7 @@ namespace MedLaunch.Classes
 
             // attempt to load game data json
             string gPath = AppDomain.CurrentDomain.BaseDirectory + @"Data\Games\" + sgo.GdbId.ToString() + @"\" + sgo.GdbId.ToString() + ".json";
-            
+
             if (File.Exists(gPath))
             {
                 ScrapedGameObjectWeb sgoweb = new ScrapedGameObjectWeb();
@@ -75,11 +71,12 @@ namespace MedLaunch.Classes
                 catch (Exception e)
                 {
                     // there was a problem with the file - do nothing
+                    Console.WriteLine(e);
                 }
                 finally
                 {
                     sgo.Data = sgoweb.Data;
-                }                
+                }
             }
             else { sgo.Data = new ScrapedGameData(); }
 
@@ -98,6 +95,11 @@ namespace MedLaunch.Classes
             return sgo;
         }
 
+        /// <summary>
+        /// return all files in a folder
+        /// </summary>
+        /// <param name="folderPath"></param>
+        /// <returns></returns>
         public static List<string> GetAllFolderFiles(string folderPath)
         {
             List<string> list = new List<string>();
@@ -111,8 +113,11 @@ namespace MedLaunch.Classes
             foreach (string s in fileEntries) { list.Add(s); }
             return list;
         }
-        
 
+        /// <summary>
+        /// create gamedata game folder structure
+        /// </summary>
+        /// <param name="gdbId"></param>
         public void CreateFolderStructure(int gdbId)
         {
             string basePath = BaseContentDirectory + @"\" + gdbId.ToString() + @"\";
@@ -129,10 +134,7 @@ namespace MedLaunch.Classes
 
         public void ReloadMasterObject()
         {
-            // reload the master json file
-            string masterPath = AppDomain.CurrentDomain.BaseDirectory + @"Data\System\MasterGames.json";
-            string json = File.ReadAllText(masterPath);
-            MasterPlatformList = JsonConvert.DeserializeObject<List<ScraperMaster>>(json);
+            AllScrapeData = MasterView.GetMasterView();
         }
     }
 }

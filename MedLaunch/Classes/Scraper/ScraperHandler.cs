@@ -1,6 +1,5 @@
 ﻿using MahApps.Metro.Controls.Dialogs;
 using MedLaunch.Classes.GamesLibrary;
-using MedLaunch.Classes.MasterScraper;
 using MedLaunch.Classes.TheGamesDB;
 using MedLaunch.Models;
 using System;
@@ -356,7 +355,7 @@ namespace MedLaunch.Classes.Scraper
         public void ScrapeGame(ProgressDialogController controller, string message)
         {
             // create data object for results that are returned
-            GamesLibraryScrapedContent glsc = new Classes.GamesLibraryScrapedContent();
+            ScrapeDB glsc = new ScrapeDB();
             ScrapedGameData gameData = new ScrapedGameData();
             ScrapedGameObjectWeb gameObject = new ScrapedGameObjectWeb();
             gameObject.Data = gameData;
@@ -423,7 +422,7 @@ namespace MedLaunch.Classes.Scraper
         /// </summary>
         /// <param name="o"></param>
         /// <param name="controller"></param>
-        public static void ContentDownloadManager(ScrapedGameObjectWeb o, ProgressDialogController controller, GamesLibraryScrapedContent glsc, string message)
+        public static void ContentDownloadManager(ScrapedGameObjectWeb o, ProgressDialogController controller, ScrapeDB glsc, string message)
         {
             string baseDir = glsc.BaseContentDirectory + @"\" + o.GdbId.ToString() + @"\";
             int total;
@@ -561,6 +560,7 @@ namespace MedLaunch.Classes.Scraper
                 }
                 catch (Exception e)
                 {
+                    Console.WriteLine(e);
                     wc.Dispose();
                 }
                 finally { wc.Dispose(); }
@@ -655,7 +655,7 @@ namespace MedLaunch.Classes.Scraper
             if (data == null)
                 data = new LibraryDataGDBLink();
 
-            GamesLibraryScrapedContent gd = new GamesLibraryScrapedContent();
+            ScrapeDB gd = new ScrapeDB();
             ScrapedGameObject o = gd.GetScrapedGameObject(gameId, gdbId);
 
             data.GDBId = o.GdbId;
