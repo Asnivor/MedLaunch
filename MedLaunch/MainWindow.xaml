@@ -660,6 +660,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 <local:MedDataGrid.ItemContainerStyle>
                                     <Style TargetType="{x:Type DataGridRow}">
                                         <EventSetter Event="PreviewMouseRightButtonDown" Handler="DataGrid_PreviewMouseRightButtonDownBlock" />
+                                        <Setter Property="Height" Value="10" />
                                     </Style>
                                 </local:MedDataGrid.ItemContainerStyle>
                                 

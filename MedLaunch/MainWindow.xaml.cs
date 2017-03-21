@@ -663,7 +663,9 @@ namespace MedLaunch
                 //GameListBuilder.UpdateFlag();
 
             // refresh library view
-            GamesLibraryVisualHandler.RefreshGamesLibrary();
+            //GamesLibraryVisualHandler.RefreshGamesLibrary();
+            // refresh games library view
+                GamesLibraryVisualHandler.DoFullUpdate();
         }
 
         /// <summary>
@@ -842,10 +844,13 @@ namespace MedLaunch
 
             // update data is changes have been made
             if (addedStats > 0 || updatedStats > 0 || hiddenStats > 0)
-               // GameListBuilder.UpdateFlag();
+                // GameListBuilder.UpdateFlag();
 
-            // refresh library view
-            GamesLibraryVisualHandler.RefreshGamesLibrary();
+                // refresh library view
+                //GamesLibraryVisualHandler.RefreshGamesLibrary();
+
+                // refresh games library view
+                GamesLibraryVisualHandler.DoFullUpdate();
         }
 
         private void RescanRoms(object sender, RoutedEventArgs e)
