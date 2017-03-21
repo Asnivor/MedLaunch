@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:MedLaunch"
                       xmlns:gl="clr-namespace:MedLaunch.Classes.GamesLibrary"
                       xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
-        
+        xmlns:exts="clr-namespace:MedLaunch.Extensions"
                       xmlns:diag="clr-namespace:System.Diagnostics;assembly=mscorlib"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
 xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
@@ -598,7 +598,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                       SelectionChanged="dgGameList_SelectionChanged" SelectionMode="Extended" ContextMenuOpening="dgGameList_ContextMenuOpening" AutoGenerateColumns="False"
                                       CanUserResizeRows="False"
                                       IsSynchronizedWithCurrentItem="True"
-                                      
+                                      exts:FocusExtension.IsFocused="{Binding DataGridFocused, Mode=TwoWay}"
+                                               Focusable="True"
                                       
                                       ItemsSource="{Binding LibraryView.View, UpdateSourceTrigger=PropertyChanged}"
                                       DataContext="{Binding Source={x:Static Application.Current}, Mode=OneWay, Path=GamesLibrary}" GridLinesVisibility="None"

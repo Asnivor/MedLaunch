@@ -60,6 +60,8 @@ namespace MedLaunch.Classes.GamesLibrary
             {
                 if (g.Country != null)
                     e.Accepted = (g.Country.ToUpper().Contains("US")) ? true : false;
+                else
+                    e.Accepted = false;
             }
         }
 
@@ -70,6 +72,8 @@ namespace MedLaunch.Classes.GamesLibrary
             {
                 if (g.Country != null)
                     e.Accepted = (g.Country.ToUpper().Contains("EU")) ? true : false;
+                else
+                    e.Accepted = false;
             }
         }
 
@@ -80,6 +84,8 @@ namespace MedLaunch.Classes.GamesLibrary
             {
                 if (g.Country != null)
                     e.Accepted = (g.Country.ToUpper().Contains("J")) ? true : false;
+                else
+                    e.Accepted = false;
             }
         }
 

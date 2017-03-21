@@ -66,7 +66,8 @@ namespace MedLaunch.Classes.MasterScraper
             }
             int GameId = row.ID;
             PickLocalGame(GameId);
-            dgGameList.SelectedItem = row;
+            //dgGameList.SelectedItem = row;
+            
             return "success";
         }
 
@@ -98,6 +99,7 @@ namespace MedLaunch.Classes.MasterScraper
                     int GameId = row.ID;
                     PickLocalGame(GameId);
                 }
+                
                 return "multiple";
             }
         }
@@ -121,7 +123,8 @@ namespace MedLaunch.Classes.MasterScraper
                 ShowCloseButton = false
             }, RootGrid);
 
-            GamesLibraryVisualHandler.UpdateSidebar(GameId);
+            //GamesLibraryVisualHandler.UpdateSidebar(GameId);
+            //GamesLibraryView.RestoreSelectedRow();
             //GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 

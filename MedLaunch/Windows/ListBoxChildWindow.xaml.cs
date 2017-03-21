@@ -135,17 +135,23 @@ namespace MedLaunch
             if (controller.IsCanceled)
             {
                 await mw.ShowMessageAsync("MedLaunch Scraper", "Scraping Cancelled");
+                //GamesLibraryVisualHandler.UpdateSidebar();
+                GamesLibraryView.RestoreSelectedRow();
             }
             else
             {
                 await mw.ShowMessageAsync("MedLaunch Scraper", "Scraping Completed");
+                //GamesLibraryVisualHandler.UpdateSidebar();
+                GamesLibraryView.RestoreSelectedRow();
             }
 
-            var ro = (GamesLibraryModel)dgGameList.SelectedItem;
-            dgGameList.SelectedItem = null;
-            dgGameList.SelectedItem = ro;
+            //var ro = (GamesLibraryModel)dgGameList.SelectedItem;
+            //dgGameList.SelectedItem = null;
+            //dgGameList.SelectedItem = ro;
 
-            GamesLibraryVisualHandler.RefreshGamesLibrary();
+
+
+            //GamesLibraryVisualHandler.RefreshGamesLibrary();
             
             this.Close();
 

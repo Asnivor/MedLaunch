@@ -13,7 +13,7 @@
       {
         "Header": "Game",
         "PropertyPath": "Game",
-        "SortDirection": 0,
+        "SortDirection": null,
         "DisplayIndex": 1,
         "WidthValue": 255.0,
         "WidthType": 1

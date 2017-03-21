@@ -1061,11 +1061,11 @@ namespace MedLaunch.Classes
             DataGrid dgGameList = (DataGrid)mw.FindName("dgGameList");
 
             // clear existing sortdescriptions
-            /*
+            
             var cView = CollectionViewSource.GetDefaultView(dgGameList.ItemsSource);
             if (cView != null)
                 cView.SortDescriptions.Clear();
-                */
+             
 
             ColumnInfoObject colInfo = _App.GamesLibrary.DataGridStates.Where(a => a.FilterNumber == FilterNumber).FirstOrDefault();
             if (colInfo != null)
@@ -1234,11 +1234,9 @@ namespace MedLaunch.Classes
             return CountryFilter.ALL;
         }
 
-        public static void DoUpdate()
+        public static void DoFullUpdate()
         {
-            App _App = (App)Application.Current;
-
-            
+            App _App = (App)Application.Current;            
 
             Application.Current.Dispatcher.Invoke((Action)(() =>
             {
@@ -1248,17 +1246,37 @@ namespace MedLaunch.Classes
                 // reselect current item
                 _App.GamesLibrary.LibraryView.View.MoveCurrentTo(currentItem);
             }));
-
-            
         }
 
-        public static void DoDelete(List<Game> games)
+        public static void DoGameDelete(List<Game> games)
         {
-            App _App = (App)Application.Current;
-            _App.GamesLibrary.RemoveEntries(games);
+            Application.Current.Dispatcher.Invoke((Action)(() =>
+            {
+                App _App = (App)Application.Current;
+                _App.GamesLibrary.RemoveEntries(games);
+            }));
         }
 
+        public static void DoGameAdd(List<Game> games)
+        {
+            Application.Current.Dispatcher.Invoke((Action)(() =>
+            {
+                App _App = (App)Application.Current;
+                _App.GamesLibrary.AddEntries(games);
+            }));
+        }
 
-
+        public static void DoGameUpdate(List<Game> games)
+        {
+            //App _App = (App)Application.Current;
+            //_App.GamesLibrary.UpdateEntries(games);
+            
+            Application.Current.Dispatcher.Invoke((Action)(() =>
+            {
+                App _App = (App)Application.Current;
+                _App.GamesLibrary.UpdateEntries(games);
+            }));
+           
+        }
     }
 }

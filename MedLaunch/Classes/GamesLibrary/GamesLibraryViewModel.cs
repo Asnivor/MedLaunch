@@ -14,6 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using MedLaunch.Extensions;
 
 namespace MedLaunch.Classes.GamesLibrary
 {
@@ -31,6 +32,8 @@ namespace MedLaunch.Classes.GamesLibrary
         public string DGStatesPath { get; set; }
 
         CollectionViewSource cvs = new CollectionViewSource();
+
+        public bool DataGridFocused { get; set; }
 
         public bool IsDirty;
 
@@ -78,7 +81,7 @@ namespace MedLaunch.Classes.GamesLibrary
 
             CurrentCountryFilter = GamesLibrary.CountryFilter.ALL;
 
-            
+            DataGridFocused = true;
 
         }   
         
@@ -222,12 +225,97 @@ namespace MedLaunch.Classes.GamesLibrary
 
         public void UpdateEntries(List<Game> games)
         {
+            List<LibraryDataGDBLink> links = LibraryDataGDBLink.GetLibraryData().ToList();
 
+            foreach (var game in games)
+            {
+                var g = DataCollection.Where(a => a.ID == game.gameId).FirstOrDefault();
+                if (g == null)
+                    continue;
+
+                App _App = (App)Application.Current;
+                using (_App.GamesLibrary.LibraryView.DeferRefresh())
+                {
+                    DataCollection.Remove(g);
+                    GamesLibraryModel glm = CreateModelFromGame(game, links);
+                    DataCollection.Add(glm);
+                }
+
+                // because we have effectively removed a game from the collection and re-added it
+                // the indecies will be off. go back one.
+                _App.GamesLibrary.LibraryView.View.MoveCurrentToPrevious();                 
+            }
         }
 
         public void AddEntries(List<Game> games)
         {
+            List<LibraryDataGDBLink> links = LibraryDataGDBLink.GetLibraryData().ToList();
 
+            foreach (var game in games)
+            {
+                GamesLibraryModel glm = CreateModelFromGame(game, links);
+
+                DataCollection.Add(glm);
+            }
+        }
+
+        public static GamesLibraryModel CreateModelFromGame(Game game, List<LibraryDataGDBLink> links)
+        {
+            if (links == null)
+                links = LibraryDataGDBLink.GetLibraryData().ToList();
+
+            GamesLibraryModel d = new GamesLibraryModel();
+            d.ID = game.gameId;
+
+            d.System = GSystem.GetSystemName(game.systemId);
+            d.LastPlayed = DbEF.FormatDate(game.gameLastPlayed);
+            d.Favorite = game.isFavorite;
+
+            d.Country = game.Country;
+
+            if (game.romNameFromDAT != null)
+            {
+                if (game.romNameFromDAT.Contains("(USA)"))
+                    d.Country = "USA";
+                if (game.romNameFromDAT.Contains("(Europe)"))
+                    d.Country = "EUR";
+                if (game.romNameFromDAT.Contains("(Japan)"))
+                    d.Country = "JPN";
+            }
+
+            d.Flags = game.OtherFlags;
+            d.Language = game.Language;
+            d.Publisher = game.Publisher;
+            d.Developer = game.Developer;
+            d.Year = game.Year;
+
+            if (game.gameNameFromDAT != null && game.gameNameFromDAT != "")
+                d.Game = game.gameNameFromDAT;
+            else
+                d.Game = game.gameName;
+
+            //d.DatName = game.gameNameFromDAT;
+            d.DatRom = game.romNameFromDAT;
+
+            if (game.gdbId != null && game.gdbId > 0)
+            {
+                var link = links.Where(x => x.GDBId == game.gdbId).SingleOrDefault(); // LibraryDataGDBLink.GetLibraryData(game.gdbId.Value);
+                if (link != null)
+                {
+                    if (link.Publisher != null && link.Publisher != "")
+                        d.Publisher = link.Publisher;
+
+                    d.Developer = link.Developer;
+
+                    if (link.Year != null && link.Year != "")
+                        d.Year = DbEF.ReturnYear(link.Year);
+                    d.Players = link.Players;
+                    d.Coop = link.Coop;
+                    d.ESRB = link.ESRB;
+                }
+            }
+
+            return d;
         }
 
         /// <summary>
@@ -249,61 +337,12 @@ namespace MedLaunch.Classes.GamesLibrary
                                 select g).ToList();
                 foreach (var game in games)
                 {
-                    GamesLibraryModel d = new GamesLibraryModel();
-                    d.ID = game.gameId;
-
-                    d.System = GSystem.GetSystemName(game.systemId);
-                    d.LastPlayed = DbEF.FormatDate(game.gameLastPlayed);
-                    d.Favorite = game.isFavorite;
-
-                    d.Country = game.Country;
-
-                    if (game.romNameFromDAT != null)
-                    {
-                        if (game.romNameFromDAT.Contains("(USA)"))
-                            d.Country = "USA";
-                        if (game.romNameFromDAT.Contains("(Europe)"))
-                            d.Country = "EUR";
-                        if (game.romNameFromDAT.Contains("(Japan)"))
-                            d.Country = "JPN";
-                    }
-
-                    d.Flags = game.OtherFlags;
-                    d.Language = game.Language;
-                    d.Publisher = game.Publisher;
-                    d.Developer = game.Developer;
-                    d.Year = game.Year;
-
-                    if (game.gameNameFromDAT != null && game.gameNameFromDAT != "")
-                        d.Game = game.gameNameFromDAT;
-                    else
-                        d.Game = game.gameName;
-
-                    //d.DatName = game.gameNameFromDAT;
-                    d.DatRom = game.romNameFromDAT;
-
-                    if (game.gdbId != null && game.gdbId > 0)
-                    {
-                        var link = links.Where(x => x.GDBId == game.gdbId).SingleOrDefault(); // LibraryDataGDBLink.GetLibraryData(game.gdbId.Value);
-                        if (link != null)
-                        {
-                            if (link.Publisher != null && link.Publisher != "")
-                                d.Publisher = link.Publisher;
-
-                            d.Developer = link.Developer;
-
-                            if (link.Year != null && link.Year != "")
-                                d.Year = DbEF.ReturnYear(link.Year);
-                            d.Players = link.Players;
-                            d.Coop = link.Coop;
-                            d.ESRB = link.ESRB;
-                        }
-                    }
-
-                    DataCollection.Add(d);
+                    var g = CreateModelFromGame(game, links);
+                    if (g != null)
+                        DataCollection.Add(g);
                 }
 
-                IsDirty = false;
+                DataCollection.OrderBy(a => a.Game);
             }
         }
 

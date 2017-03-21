@@ -1413,6 +1413,11 @@ namespace MedLaunch
             
             // choose context menu to show based on single or multiple selection
             var dg = sender as DataGrid;
+
+           
+            if (dg.SelectedIndex > -1)
+                GamesLibraryView.StoreSelectedRow(dg);
+
             ContextMenu menuToUse;
             int numRowsSelected = dgGameList.SelectedItems.Count;
             var rs = dgGameList.SelectedItems;
@@ -3062,7 +3067,12 @@ namespace MedLaunch
         private void btnScrapingUnlinkGame_Click(object sender, RoutedEventArgs e)
         {
             ScraperHandler.UnlinkGameData(dgGameList);
-            GamesLibraryVisualHandler.RefreshGamesLibrary();
+            //GamesLibraryView.RestoreCurrentItem();
+            GamesLibraryView.RestoreSelectedRow();
+
+            //GamesLibraryView.SelectRowByIndex(dgGameList, 10);
+            //_App.GamesLibrary.DataGridFocused = true;
+            //GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 
         private void btnTestGameSearch_Click(object sender, RoutedEventArgs e)
@@ -3091,11 +3101,13 @@ namespace MedLaunch
         private void btnScrapingPickGames_Click(object sender, RoutedEventArgs e)
         {
             ScraperMainSearch.PickGames(dgGameList);
+            
         }
 
         private void btnScrapingPickGame_Click(object sender, RoutedEventArgs e)
         {
             ScraperMainSearch.PickGame(dgGameList);
+            
         }
 
         private void btnBrowseDataFolder_Click(object sender, RoutedEventArgs e)
@@ -3124,7 +3136,7 @@ namespace MedLaunch
                     Process.Start(dirPath);
                 }
             }
-
+            GamesLibraryView.RestoreSelectedRow();
         }
 
         private async void btnScrapingReScrape_Click(object sender, RoutedEventArgs e)
@@ -3132,7 +3144,11 @@ namespace MedLaunch
             var r = (GamesLibraryModel)dgGameList.SelectedItem;
             // get the gamesdbid
             if (Game.GetGame(Convert.ToInt32(r.ID)).gdbId == null)
+            {
+                GamesLibraryView.RestoreSelectedRow();
                 return;
+            }
+                
 
             int gdbId = Game.GetGame(Convert.ToInt32(r.ID)).gdbId.Value;
             // re-scrape the game
@@ -3164,17 +3180,20 @@ namespace MedLaunch
                 if (controller.IsCanceled)
                 {
                     await mw.ShowMessageAsync("MedLaunch Scraper", "Scraping Cancelled");
+                    GamesLibraryView.RestoreSelectedRow();
                     //GamesLibraryVisualHandler.RefreshGamesLibrary();
                 }
                 else
                 {
                     await mw.ShowMessageAsync("MedLaunch Scraper", "Scraping Completed");
+                    GamesLibraryView.RestoreSelectedRow();
                 }
 
+                /*
                 var ro = (GamesLibraryModel)dgGameList.SelectedItem;
                 dgGameList.SelectedItem = null;
                 dgGameList.SelectedItem = ro;
-
+                */
             }
         }
 
@@ -5486,5 +5505,7 @@ namespace MedLaunch
         DISC,
         ALL
     }
+
+
 
 }
