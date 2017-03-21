@@ -93,7 +93,7 @@ namespace MedLaunch
             // update
             MiscVisualHandler.RefreshCoreVisibilities();
 
-            Classes.GamesLibrary.GamesLibraryDataGridRefresh.Update();
+            //Classes.GamesLibrary.GamesLibraryDataGridRefresh.Update();
 
             this.Close();
         }

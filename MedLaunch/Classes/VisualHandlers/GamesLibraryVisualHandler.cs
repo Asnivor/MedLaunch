@@ -46,6 +46,10 @@ namespace MedLaunch.Classes
         // update sidebar
         public static void UpdateSidebar(int gameId)
         {
+            // if gameid does not exist (ie it has been deleted) then return
+            var ga = Game.GetGame(gameId);
+            if (ga == null)
+                return;
                    
             // get an instance of the MainWindow
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
@@ -797,6 +801,7 @@ namespace MedLaunch.Classes
         // Get the current setup of the games library (selected filters etc), do a refresh then return to previous configuration
         public static void RefreshGamesLibrary()
         {
+            /*
             // get an instance of the MainWindow
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             App _App = ((App)Application.Current);
@@ -833,7 +838,7 @@ namespace MedLaunch.Classes
                 .Where(r => r.Name == "btnShowAll").Single();
 
             // get selected item in datagrid
-            DataGridGamesView row = (DataGridGamesView)dg.SelectedItem;
+            GamesLibraryModel row = (GamesLibraryModel)dg.SelectedItem;
             
             // Clear all settings
             btnShowAll.IsChecked = true;
@@ -842,6 +847,9 @@ namespace MedLaunch.Classes
             // restore settings
             rtTarget.IsChecked = true;
             tbFilterDatagrid.Text = tbText;
+
+            */
+
             /*
             // set column visibuilities
             GlobalSettings gs = GlobalSettings.GetGlobals();
@@ -1001,7 +1009,7 @@ namespace MedLaunch.Classes
         public static void RefreshSideBar(DataGrid dgGameList)
         {
             // get the selected item
-            var r = (DataGridGamesView)dgGameList.SelectedItem;
+            var r = (GamesLibraryModel)dgGameList.SelectedItem;
             int gameId = r.ID;            
         }
 
@@ -1018,7 +1026,6 @@ namespace MedLaunch.Classes
                 if (rbs[i].IsChecked == true)
                 {
                     return (i + 1);
-                    break;
                 }
             }
 
@@ -1032,10 +1039,19 @@ namespace MedLaunch.Classes
             DataGrid dgGameList = (DataGrid)mw.FindName("dgGameList");
 
             // get the list of columninfo from the datagrid
-            List<ColumnInfo> colInfo = ColumnInfo.GetColumnInfo(dgGameList);
+            ColumnInfoObject colInfo = ColumnInfo.GetColumnInfo(dgGameList);
+            colInfo.FilterNumber = FilterNumber;
 
             // add to the global object
-            _App.GamesList.DataGridStates[FilterNumber] = colInfo;
+            var temp = _App.GamesLibrary.DataGridStates.Where(a => a.FilterNumber == colInfo.FilterNumber).FirstOrDefault();
+            if (temp != null)
+            {
+                temp.FilterNumber = colInfo.FilterNumber;
+                temp.ColumnInfoList = colInfo.ColumnInfoList;
+                temp.SortDescriptionList = colInfo.SortDescriptionList;
+            }
+               
+            // _App.GamesLibrary.DataGridStates[FilterNumber] = colInfo;
         }
 
         public static void LoadColumnInfo(int FilterNumber)
@@ -1045,14 +1061,19 @@ namespace MedLaunch.Classes
             DataGrid dgGameList = (DataGrid)mw.FindName("dgGameList");
 
             // clear existing sortdescriptions
+            
             var cView = CollectionViewSource.GetDefaultView(dgGameList.ItemsSource);
             if (cView != null)
                 cView.SortDescriptions.Clear();
+             
 
-            List<ColumnInfo> colInfo = _App.GamesList.DataGridStates[FilterNumber];
-
-            if (colInfo.Count == 0)
-                return;
+            ColumnInfoObject colInfo = _App.GamesLibrary.DataGridStates.Where(a => a.FilterNumber == FilterNumber).FirstOrDefault();
+            if (colInfo != null)
+                if (colInfo.ColumnInfoList.Count == 0)
+                {
+                    return;
+                }
+                
 
             ColumnInfo.ApplyColumnInfo(dgGameList, colInfo);
         }
@@ -1213,5 +1234,49 @@ namespace MedLaunch.Classes
             return CountryFilter.ALL;
         }
 
+        public static void DoFullUpdate()
+        {
+            App _App = (App)Application.Current;            
+
+            Application.Current.Dispatcher.Invoke((Action)(() =>
+            {
+                var currentItem = _App.GamesLibrary.LibraryView.View.CurrentItem;
+                int currentPos = _App.GamesLibrary.LibraryView.View.CurrentPosition;
+                _App.GamesLibrary.Update();
+                // reselect current item
+                _App.GamesLibrary.LibraryView.View.MoveCurrentTo(currentItem);
+            }));
+        }
+
+        public static void DoGameDelete(List<Game> games)
+        {
+            Application.Current.Dispatcher.Invoke((Action)(() =>
+            {
+                App _App = (App)Application.Current;
+                _App.GamesLibrary.RemoveEntries(games);
+            }));
+        }
+
+        public static void DoGameAdd(List<Game> games)
+        {
+            Application.Current.Dispatcher.Invoke((Action)(() =>
+            {
+                App _App = (App)Application.Current;
+                _App.GamesLibrary.AddEntries(games);
+            }));
+        }
+
+        public static void DoGameUpdate(List<Game> games)
+        {
+            //App _App = (App)Application.Current;
+            //_App.GamesLibrary.UpdateEntries(games);
+            
+            Application.Current.Dispatcher.Invoke((Action)(() =>
+            {
+                App _App = (App)Application.Current;
+                _App.GamesLibrary.UpdateEntries(games);
+            }));
+           
+        }
     }
 }

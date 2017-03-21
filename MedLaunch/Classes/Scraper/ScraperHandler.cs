@@ -53,7 +53,7 @@ namespace MedLaunch.Classes.Scraper
 
         /* Methods */
 
-        public async static void ScrapeGamesMultiple(List<DataGridGamesView> list, ScrapeType scrapeType)
+        public async static void ScrapeGamesMultiple(List<GamesLibraryModel> list, ScrapeType scrapeType)
         {
             // instantiate instance of this class
             ScraperMainSearch gs = new ScraperMainSearch();
@@ -180,7 +180,7 @@ namespace MedLaunch.Classes.Scraper
                     // do actual scraping                    
                     ScraperHandler sh = new ScraperHandler(g.gdbId.Value, g.gameId, false);
                     sh.ScrapeGame(controller);
-                    GameListBuilder.UpdateFlag();
+                    //GameListBuilder.UpdateFlag();
                 }
             });
 
@@ -331,7 +331,7 @@ namespace MedLaunch.Classes.Scraper
                     // do actual scraping                    
                     ScraperHandler sh = new ScraperHandler(g.gdbId.Value, g.gameId, false);
                     sh.ScrapeGame(controller);
-                    GameListBuilder.UpdateFlag();
+                    //GameListBuilder.UpdateFlag();
                 }
             });
 
@@ -679,7 +679,7 @@ namespace MedLaunch.Classes.Scraper
         public static void UnlinkGameData(DataGrid dgGameList)
         {
             // get selected row
-            var row = (DataGridGamesView)dgGameList.SelectedItem;
+            var row = (GamesLibraryModel)dgGameList.SelectedItem;
             if (dgGameList.SelectedItem == null)
             {
                 // game is not selected
@@ -689,7 +689,7 @@ namespace MedLaunch.Classes.Scraper
             
             Game.SetGdbId(GameId, 0);
 
-            GameListBuilder.UpdateFlag();
+            //GameListBuilder.UpdateFlag();
             GamesLibraryVisualHandler.UpdateSidebar(GameId);
         }
 

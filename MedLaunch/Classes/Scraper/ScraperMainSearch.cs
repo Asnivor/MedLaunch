@@ -1,5 +1,6 @@
 ﻿using FuzzyString;
 using MahApps.Metro.SimpleChildWindow;
+using MedLaunch.Classes.GamesLibrary;
 using MedLaunch.Models;
 using System;
 using System.Collections.Generic;
@@ -57,7 +58,7 @@ namespace MedLaunch.Classes.MasterScraper
         public static string PickGame(DataGrid dgGameList)
         {
             // get selected row
-            var row = (DataGridGamesView)dgGameList.SelectedItem;
+            var row = (GamesLibraryModel)dgGameList.SelectedItem;
             if (dgGameList.SelectedItem == null)
             {
                 // game is not selected
@@ -65,6 +66,8 @@ namespace MedLaunch.Classes.MasterScraper
             }
             int GameId = row.ID;
             PickLocalGame(GameId);
+            //dgGameList.SelectedItem = row;
+            
             return "success";
         }
 
@@ -84,18 +87,19 @@ namespace MedLaunch.Classes.MasterScraper
             {
                 // multiples selected
                 var rs = dgGameList.SelectedItems;
-                List<DataGridGamesView> rows = new List<DataGridGamesView>();
-                foreach (DataGridGamesView row in rs)
+                List<GamesLibraryModel> rows = new List<GamesLibraryModel>();
+                foreach (GamesLibraryModel row in rs)
                 {
                     rows.Add(row);
                 }
 
                 // process each row
-                foreach (DataGridGamesView row in rows)
+                foreach (GamesLibraryModel row in rows)
                 {
                     int GameId = row.ID;
                     PickLocalGame(GameId);
                 }
+                
                 return "multiple";
             }
         }
@@ -119,7 +123,8 @@ namespace MedLaunch.Classes.MasterScraper
                 ShowCloseButton = false
             }, RootGrid);
 
-            GamesLibraryVisualHandler.UpdateSidebar(GameId);
+            //GamesLibraryVisualHandler.UpdateSidebar(GameId);
+            //GamesLibraryView.RestoreSelectedRow();
             //GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 

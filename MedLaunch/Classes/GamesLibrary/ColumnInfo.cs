@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
@@ -37,15 +38,17 @@ namespace MedLaunch.Classes.GamesLibrary
             DisplayIndex = column.DisplayIndex;
         }
 
-        public static void ApplyColumnInfo(DataGrid dataGrid, List<ColumnInfo> colInfoList)
+        public static void ApplyColumnInfo(DataGrid dataGrid, ColumnInfoObject colInfoList)
         {
-            //List<DataGridColumn> columns = dataGrid.Columns.OrderBy(a => a.DisplayIndex).ToList();
+            App _App = (App)Application.Current;
+
+            // apply the column settings
             for (int i = 0; i < dataGrid.Columns.Count; i++)
             {
                 ColumnInfo ci = new ColumnInfo();
-                var lookup = (from a in colInfoList
-                             //where a.PropertyPath == ((Binding)((DataGridBoundColumn)dataGrid.Columns[i]).Binding).Path.Path
-                             where a.Header == dataGrid.Columns[i].Header
+                var lookup = (from a in colInfoList.ColumnInfoList
+                             where a.PropertyPath == ((Binding)((DataGridBoundColumn)dataGrid.Columns[i]).Binding).Path.Path
+                             //where a.Header == dataGrid.Columns[i].Header
                              select a).FirstOrDefault();
 
                 if (lookup == null)
@@ -54,22 +57,51 @@ namespace MedLaunch.Classes.GamesLibrary
                 if (lookup.DisplayIndex == -1)
                     continue;
 
+                // clear existing                
+                dataGrid.Columns[i].SortDirection = null;
+                
+                // set the sortdirection on the datagrid itself
                 dataGrid.Columns[i].SortDirection = lookup.SortDirection;
+
+                // width and display index
                 dataGrid.Columns[i].DisplayIndex = lookup.DisplayIndex;
-                dataGrid.Columns[i].Width = new DataGridLength(lookup.WidthValue, lookup.WidthType);
+                dataGrid.Columns[i].Width = new DataGridLength(lookup.WidthValue, lookup.WidthType);                
+            }
+
+            // now apply the sort descriptions
+            using (_App.GamesLibrary.LibraryView.DeferRefresh())
+            {
+                _App.GamesLibrary.LibraryView.SortDescriptions.Clear();
+                for (int i = 0; i < colInfoList.SortDescriptionList.Count; i++)
+                {
+                    _App.GamesLibrary.LibraryView.SortDescriptions.Add(new SortDescription(colInfoList.SortDescriptionList[i].PropertyName, colInfoList.SortDescriptionList[i].Direction));
+                }
             }
         }
 
-        public static List<ColumnInfo> GetColumnInfo(DataGrid dataGrid)
+        public static ColumnInfoObject GetColumnInfo(DataGrid dataGrid)
         {
+            App _App = (App)Application.Current;
+            ColumnInfoObject coo = new ColumnInfoObject();
+
             List<ColumnInfo> list = new List<ColumnInfo>();
+
             foreach (DataGridColumn c in dataGrid.Columns)
             {
                 ColumnInfo ci = new ColumnInfo(c);
                 list.Add(ci);
             }
 
-            return list;
+            coo.ColumnInfoList = list;
+
+            // get sort descriptions from view
+            coo.SortDescriptionList = new Dictionary<int, SortDescription>();
+            for (int i = 0; i < _App.GamesLibrary.LibraryView.SortDescriptions.Count; i++)
+            {
+                coo.SortDescriptionList.Add(i, _App.GamesLibrary.LibraryView.SortDescriptions[i]);
+            }
+            
+            return coo;
         }
 
         public void Apply(DataGridColumn column, int gridColumnCount, SortDescriptionCollection sortDescriptions)
@@ -96,5 +128,18 @@ namespace MedLaunch.Classes.GamesLibrary
         public int DisplayIndex;
         public double WidthValue;
         public DataGridLengthUnitType WidthType;
+    }
+
+    public class ColumnInfoObject
+    {
+        public int FilterNumber { get; set; }
+        public List<ColumnInfo> ColumnInfoList { get; set; }
+        public Dictionary<int, SortDescription> SortDescriptionList { get; set; }
+
+        public ColumnInfoObject()
+        {
+            ColumnInfoList = new List<ColumnInfo>();
+            SortDescriptionList = new Dictionary<int, SortDescription>();
+        }
     }
 }

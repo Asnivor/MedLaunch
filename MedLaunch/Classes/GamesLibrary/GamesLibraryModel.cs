@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Migrations;
-using MedLaunch.Models;
-using MedLaunch.Classes;
-using System.ComponentModel;
 
-namespace MedLaunch.Classes
-{  
-    /*
-    public class DataGridGamesView : INotifyPropertyChanged
+namespace MedLaunch.Classes.GamesLibrary
+{
+    public class GamesLibraryModel : GamesLibraryViewModelBase
     {
         private int iD;
         public int ID
@@ -285,18 +279,13 @@ namespace MedLaunch.Classes
                 }
             }
         }
-
-
-        protected void OnPropertyChanged(string propertyname)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
-            }
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-
     }
 
-  */
+    public enum CountryFilter
+    {
+        ALL,
+        USA,
+        EUR,
+        JPN
+    }
 }

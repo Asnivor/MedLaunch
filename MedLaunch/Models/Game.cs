@@ -85,7 +85,7 @@ namespace MedLaunch.Models
                     List<Game> roms = (from a in context.Game
                                        select a).ToList();
                     Game.DeleteGames(roms);
-                    GameListBuilder.UpdateFlag();
+                    //GameListBuilder.UpdateFlag();
                 }
             }
         }
@@ -103,7 +103,7 @@ namespace MedLaunch.Models
                                        where a.systemId == sysId
                                        select a).ToList();
                     Game.DeleteGames(roms);
-                    GameListBuilder.UpdateFlag();
+                    //GameListBuilder.UpdateFlag();
                 }
             }
         }
@@ -121,7 +121,7 @@ namespace MedLaunch.Models
                                         where a.systemId == sysId
                                         select a).ToList();
                     Game.DeleteGames(disks);
-                    GameListBuilder.UpdateFlag();
+                   // GameListBuilder.UpdateFlag();
                 }
             }
         }
@@ -151,7 +151,7 @@ namespace MedLaunch.Models
 
                 // update ROM
                 UpdateRom(rom);
-                GameListBuilder.UpdateFlag();
+                //GameListBuilder.UpdateFlag();
                 romaContext.Dispose();
             }
         }
@@ -214,7 +214,7 @@ namespace MedLaunch.Models
                         g.gamePath = relPath;
 
                         UpdateRom(g);
-                        GameListBuilder.UpdateFlag();
+                        //GameListBuilder.UpdateFlag();
                         return 2;
                     }
                 }
@@ -231,22 +231,24 @@ namespace MedLaunch.Models
                     g.hidden = false;
 
                     InsertRom(g);
-                    GameListBuilder.UpdateFlag();
+                    //GameListBuilder.UpdateFlag();
                     return 1;
                 }
             }
-
-
         }
 
         private static void InsertRom(Game rom)
         {
             using (var iR = new MyDbContext())
             {
+                // add game to database and save changes
                 iR.Game.Add(rom);
                 iR.SaveChanges();
                 iR.Dispose();
             }
+            List<Game> games = new List<Game>();
+            games.Add(rom);
+            GamesLibraryVisualHandler.DoGameAdd(games);
         }
         private static void UpdateRom(Game rom)
         {
@@ -256,6 +258,9 @@ namespace MedLaunch.Models
                 uR.SaveChanges();
                 uR.Dispose();
             }
+            List<Game> games = new List<Game>();
+            games.Add(rom);
+            GamesLibraryVisualHandler.DoGameUpdate(games);
         }
 
 
@@ -281,7 +286,11 @@ namespace MedLaunch.Models
                 db.Game.UpdateRange(toUpdate);
                 db.Game.AddRange(toAdd);
                 db.SaveChanges();
-                GameListBuilder.UpdateFlag();
+                // GameListBuilder.UpdateFlag();
+                if (toAdd.Count > 0)
+                    GamesLibraryVisualHandler.DoGameAdd(toAdd);
+                if (toUpdate.Count > 0)
+                    GamesLibraryVisualHandler.DoGameUpdate(toUpdate);
             }
         }
 
@@ -307,6 +316,10 @@ namespace MedLaunch.Models
                 db.Game.UpdateRange(toUpdate);
                 db.Game.AddRange(toAdd);
                 db.SaveChanges();
+                if (toAdd.Count > 0)
+                    GamesLibraryVisualHandler.DoGameAdd(toAdd);
+                if (toUpdate.Count > 0)
+                    GamesLibraryVisualHandler.DoGameUpdate(toUpdate);
             }
         }
 
@@ -316,7 +329,8 @@ namespace MedLaunch.Models
             game.gameLastPlayed = DateTime.Now;
             
             SetGame(game);
-            GameListBuilder.UpdateFlag();
+            // GameListBuilder.UpdateFlag();
+            GamesLibraryVisualHandler.DoGameUpdate(new List<Game> { game });
         }
         public static void SetFinishedPlaying(int gameId)
         {
@@ -325,7 +339,8 @@ namespace MedLaunch.Models
             SetGame(game);
 
             SetTotalGameTime(gameId);
-            GameListBuilder.UpdateFlag();
+            // GameListBuilder.UpdateFlag();
+            GamesLibraryVisualHandler.DoGameUpdate(new List<Game> { game });
         }
 
         public static void SetTotalGameTime(int gameId)
@@ -345,7 +360,8 @@ namespace MedLaunch.Models
                 game.gameTime = newTotalTime;
                 game.timesPlayed++;
                 SetGame(game);
-                GameListBuilder.UpdateFlag();
+                // GameListBuilder.UpdateFlag();
+                
             }
         }
 
@@ -356,8 +372,9 @@ namespace MedLaunch.Models
             {
                 cfDef.Entry(game).State = Microsoft.Data.Entity.EntityState.Modified;
                 cfDef.SaveChanges();
-                GamesLibData.ForceUpdate();
-                GameListBuilder.UpdateFlag();
+                //GamesLibData.ForceUpdate();
+                // GameListBuilder.UpdateFlag();
+                GamesLibraryVisualHandler.DoGameUpdate(new List<Game> { game });
             }
         }
 
@@ -367,6 +384,7 @@ namespace MedLaunch.Models
             {
                 cfDef.Entry(game).State = Microsoft.Data.Entity.EntityState.Modified;
                 cfDef.SaveChanges();
+                GamesLibraryVisualHandler.DoGameUpdate(new List<Game> { game });
             }
         }
 
@@ -377,7 +395,10 @@ namespace MedLaunch.Models
                 cont.Game.Remove(game);
                 cont.SaveChanges();
                 GamesLibData.ForceUpdate();
-                GameListBuilder.UpdateFlag();
+                //GameListBuilder.UpdateFlag();
+                List<Game> games = new List<Game>();
+                games.Add(game);
+                GamesLibraryVisualHandler.DoGameDelete(new List<Game> { game });
             }
 
         }
@@ -388,8 +409,9 @@ namespace MedLaunch.Models
             {
                 cont.Game.RemoveRange(games);
                 cont.SaveChanges();
-                GamesLibData.ForceUpdate();
-                GameListBuilder.UpdateFlag();
+                //GamesLibData.ForceUpdate();
+                // GameListBuilder.UpdateFlag();
+                GamesLibraryVisualHandler.DoGameDelete(games);
             }
         }
 
@@ -398,7 +420,8 @@ namespace MedLaunch.Models
             Game game = GetGame(GameId);
             game.gdbId = GdbId;
             SetGame(game);
-            GameListBuilder.UpdateFlag();
+            // GameListBuilder.UpdateFlag();
+            GamesLibraryVisualHandler.DoGameUpdate(new List<Game> { game });
         }
     }    
 }

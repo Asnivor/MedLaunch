@@ -43,6 +43,24 @@ namespace MedLaunch
             }
         }
 
+        private GamesLibraryViewModel gamesLibrary;
+        public GamesLibraryViewModel GamesLibrary
+        {
+            get
+            {
+                return gamesLibrary;
+            }
+            set
+            {
+                if (gamesLibrary != value)
+                {
+                    gamesLibrary = value;
+                    OnPropertyChanged("GamesLibrary");
+
+                }
+            }
+        }
+
         /// <summary>
         /// unhandled exception logging
         /// </summary>
@@ -100,13 +118,14 @@ namespace MedLaunch
 
             // instantiate GamesList object  
             GamesList = new GameListBuilder();
+            GamesLibrary = new GamesLibraryViewModel();
 
             MainWindow mw = new MedLaunch.MainWindow();
             Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
             Application.Current.MainWindow = mw;
 
             
-
+            //mw.DataContext = _GamesLibraryViewModel;
             mw.Show();
 
             // instantiate GamesList object  

@@ -130,7 +130,7 @@ namespace MedLaunch.Classes.Scanning
                 }
             }
 
-            GameListBuilder.UpdateFlag();
+            //GameListBuilder.UpdateFlag();
 
         }
 
@@ -246,7 +246,7 @@ namespace MedLaunch.Classes.Scanning
                 InsertOrUpdateDisk(gameFile, sysId);
                 SaveToDatabase();
                 MessageBox.Show("Game: " + gameFile.FileName + " has added to (or updated in) the library", "MedLaunch: Import or Update Completed");
-                GameListBuilder.UpdateFlag();
+               // GameListBuilder.UpdateFlag();
             }
 
         }
@@ -529,14 +529,14 @@ namespace MedLaunch.Classes.Scanning
             {
                 DisksToAdd.Add(newGame);
                 AddedStats++;
-                GameListBuilder.UpdateFlag();
+                //GameListBuilder.UpdateFlag();
             }
 
             if (isNewGame == false && shouldAddUpdate == true)
             {
                 DisksToUpdate.Add(newGame);
                 UpdatedStats++;
-                GameListBuilder.UpdateFlag();
+               // GameListBuilder.UpdateFlag();
             }
 
             return newGame;

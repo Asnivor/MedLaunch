@@ -94,7 +94,7 @@ namespace MedLaunch.Classes.Scanning
                 }
             }
 
-            GameListBuilder.UpdateFlag();
+            //GameListBuilder.UpdateFlag();
 
         }
 
@@ -337,7 +337,7 @@ namespace MedLaunch.Classes.Scanning
                         // add to GamesToUpdate to be processed later
                         RomsToUpdate.Add(newGame);
                         HiddenStats++;
-                        GameListBuilder.UpdateFlag();
+                        //GameListBuilder.UpdateFlag();
 
                     }
                     else
@@ -368,7 +368,7 @@ namespace MedLaunch.Classes.Scanning
                     // add to GamesToUpdate to be processed later
                     RomsToUpdate.Add(newGame);
                     HiddenStats++;
-                    GameListBuilder.UpdateFlag();
+                    //GameListBuilder.UpdateFlag();
                 }
                 else
                 {
