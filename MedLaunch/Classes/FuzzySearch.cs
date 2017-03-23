@@ -18,8 +18,8 @@ namespace MedLaunch.Classes
 
             g = (
                     from s in platformGames
-                    let levenshteinDistance = LevenshteinDistance(StripSymbols(word), StripSymbols(s.TGDBData.GamesDBTitle))
-                    let length = Math.Max(StripSymbols(s.TGDBData.GamesDBTitle).Length, StripSymbols(word).Length)
+                    let levenshteinDistance = LevenshteinDistance(StripSymbols(word), StripSymbols(s.GDBTitle))
+                    let length = Math.Max(StripSymbols(s.GDBTitle).Length, StripSymbols(word).Length)
                     let score = 1.0 - (double)levenshteinDistance / length
                     where score > fuzzyness
                     select s

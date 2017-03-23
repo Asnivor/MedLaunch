@@ -275,11 +275,13 @@
     <Compile Include="Classes\Scanning\DiscScan.cs" />
     <Compile Include="Classes\Scanning\RomScan.cs" />
     <Compile Include="Classes\Scanning\SaturnGame.cs" />
+    <Compile Include="Classes\Scraper\DBModels\Game_Doc.cs" />
+    <Compile Include="Classes\Scraper\DBModels\MasterView.cs" />
     <Compile Include="Classes\Scraper\GDBPlatformGame.cs" />
-    <Compile Include="Classes\Scraper\MasterView.cs" />
     <Compile Include="Classes\Scraper\PSXDATACENTER\PsxDc.cs" />
     <Compile Include="Classes\Scraper\ScrapeDB.cs" />
     <Compile Include="Classes\Scraper\ScrapeDbContext.cs" />
+    <Compile Include="Classes\Scraper\ScraperLookup.cs" />
     <Compile Include="Extensions\FocusExtension.cs" />
     <Compile Include="MedDataGrid.cs" />
     <Compile Include="Windows\AccentStyleWindow.xaml.cs">
@@ -345,7 +347,7 @@
     <Compile Include="Classes\Scraper\DAT\TOSEC\Models\ToSecCollection.cs" />
     <Compile Include="Classes\Scraper\DAT\TOSEC\Models\ToSecObject.cs" />
     <Compile Include="Classes\Scraper\DAT\TOSEC\StringConverterToSec.cs" />
-    <Compile Include="Classes\Scraper\ReplacementDocs\RdScraper.cs" />
+    <Compile Include="_Debug\ScrapeDB\ReplacementDocs\RdScraper.cs" />
     <Compile Include="Classes\Scraper\ScraperHandler.cs" />
     <Compile Include="Classes\VisualHandlers\ConfigsVisualHandler.cs" />
     <Compile Include="Classes\DbMigration.cs" />
@@ -358,7 +360,6 @@
     <Compile Include="Classes\FuzzySearch.cs" />
     <Compile Include="Classes\Scraper\_PendingDestruction\CreateMasterList.cs" />
     <Compile Include="Classes\Scraper\ScraperMainSearch.cs" />
-    <Compile Include="Classes\Scraper\MobyGames\MobyGames.cs" />
     <Compile Include="Classes\Scraper\MobyGames\MobyPageList.cs" />
     <Compile Include="Classes\Scraper\MobyGames\MobyScraper.cs" />
     <Compile Include="Classes\Releases.cs" />
@@ -476,6 +477,7 @@
     <Compile Include="ThemeManagerHelper.cs" />
     <Compile Include="_Debug\ScrapeDB\AdminScrapeDb.cs" />
     <Compile Include="_Debug\ScrapeDB\AsniScrapeAdminDbContext.cs" />
+    <Compile Include="_Debug\ScrapeDB\Game_Doc.cs" />
     <Compile Include="_Debug\ScrapeDB\GDB_Game.cs" />
     <Compile Include="_Debug\ScrapeDB\GDB_Platform.cs" />
     <Compile Include="_Debug\ScrapeDB\Junction.cs" />

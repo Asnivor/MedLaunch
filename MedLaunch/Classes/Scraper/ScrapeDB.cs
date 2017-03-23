@@ -5,14 +5,15 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MedLaunch.Classes.Scraper.DBModels;
 
 namespace MedLaunch.Classes.Scraper
 {
     public class ScrapeDB
     {
-        // properties
-        public string BaseContentDirectory { get; set; }
-        public List<MasterView> AllScrapeData { get; set; }
+        // properties        
+        public static List<ScraperMaster> AllScrapeData { get; set; }
+        public static string BaseContentDirectory { get; set; }
 
         // constructor
         public ScrapeDB()
@@ -21,7 +22,8 @@ namespace MedLaunch.Classes.Scraper
             BaseContentDirectory = AppDomain.CurrentDomain.BaseDirectory + @"Data\Games";
 
             // load scrape data from sqlite db
-            AllScrapeData = MasterView.GetMasterView();
+            if (AllScrapeData == null)
+                AllScrapeData = ScraperMaster.GetMasterList();
 
             // ensure initial directory structure is created
             Directory.CreateDirectory(BaseContentDirectory);

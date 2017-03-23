@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedLaunch.Classes.Scraper
+namespace MedLaunch.Classes.Scraper.DBModels
 {
     public class MasterView
     {

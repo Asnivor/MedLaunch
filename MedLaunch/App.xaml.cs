@@ -24,7 +24,7 @@ namespace MedLaunch
     /// </summary>
     public partial class App : Application, INotifyPropertyChanged
     {
-        public ScrapeDB ScrapedData { get; set; }
+        //public ScrapeDB ScrapedData { get; set; }
 
         /*
         private GameListBuilder gamesList;
@@ -138,8 +138,9 @@ namespace MedLaunch
 
             splashScreen.Close(TimeSpan.FromSeconds(1));
 
-            // instantiate ScrapedContent Object
-            ScrapedData = new ScrapeDB();
+            // instantiate ScrapeDB
+            //ScrapedData = new ScrapeDB();
+            ScrapeDB sdb = new ScrapeDB();
 
             
 

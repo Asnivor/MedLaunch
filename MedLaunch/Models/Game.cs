@@ -394,7 +394,7 @@ namespace MedLaunch.Models
             {
                 cont.Game.Remove(game);
                 cont.SaveChanges();
-                GamesLibData.ForceUpdate();
+                //GamesLibData.ForceUpdate();
                 //GameListBuilder.UpdateFlag();
                 List<Game> games = new List<Game>();
                 games.Add(game);

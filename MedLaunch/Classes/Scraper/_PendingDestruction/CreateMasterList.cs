@@ -14,10 +14,10 @@ using MahApps.Metro.Controls.Dialogs;
 using System.Text.RegularExpressions;
 using System.Net;
 using HtmlAgilityPack;
-using MedLaunch.Classes.Scraper.ReplacementDocs;
 
 namespace MedLaunch.Classes.MasterScraper
 {
+    /*
     // class to generate a master json file to be shipped with each release
     public class CreateMasterList
     {
@@ -822,6 +822,7 @@ namespace MedLaunch.Classes.MasterScraper
 
             }
             */
+            /*
         }
 
         public void MatchWords(ScraperMaster sm, DuplicateSearchResult d)
@@ -1010,6 +1011,7 @@ namespace MedLaunch.Classes.MasterScraper
             }
             s = BuildSearchString(arr);
             */
+            /*
             return s;
         }
 
@@ -1163,6 +1165,7 @@ namespace MedLaunch.Classes.MasterScraper
                     if (!sm.MobyData.MobyURLName.Equals(r.MobyData.MobyURLName) && (sm.MobyData.MobyURLName == "" || sm.MobyData.MobyURLName == null))
                         sm.MobyData.MobyURLName = r.MobyData.MobyURLName;
                         */
+                        /*
                 }
                 MasterGames.Remove(r);
                 MasterGames.Add(sm);                
@@ -1308,4 +1311,5 @@ namespace MedLaunch.Classes.MasterScraper
         public ScraperMaster Game { get; set; }
         public int Matches { get; set; }
     }
+    */
 }

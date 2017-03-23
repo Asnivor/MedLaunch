@@ -14,7 +14,7 @@ using System.Windows.Controls;
 namespace MedLaunch.Classes.Scraper
 {
     // master scraper class - handles all scraping operations
-    public class ScraperMainSearch
+    public class ScraperMainSearch1
     {
         public ScrapeDB GLSC { get; set; }
         public GlobalSettings _GlobalSettings { get; set; }
@@ -41,7 +41,7 @@ namespace MedLaunch.Classes.Scraper
             // populate GlobalSettings
             _GlobalSettings = GlobalSettings.GetGlobals();
 
-            PlatformGames = app.ScrapedData.MasterPlatformList;
+            PlatformGames = ScraperMaster.GetMasterList(); //app.ScrapedData.MasterPlatformList;
             LocalGameFound = false;
             LocalIterationCount = 0;
             ManualIterator = 0;
@@ -51,82 +51,7 @@ namespace MedLaunch.Classes.Scraper
 
         // methods
 
-        /// <summary>
-        /// Choose a game from the local master list to link to an imported medlaunch game
-        /// </summary>
-        /// <param name="dgGameList"></param>
-        public static string PickGame(DataGrid dgGameList)
-        {
-            // get selected row
-            var row = (GamesLibraryModel)dgGameList.SelectedItem;
-            if (dgGameList.SelectedItem == null)
-            {
-                // game is not selected
-                return null;
-            }
-            int GameId = row.ID;
-            PickLocalGame(GameId);
-            //dgGameList.SelectedItem = row;
-            
-            return "success";
-        }
-
-        public static string PickGames(DataGrid dgGameList)
-        {
-            // get number of selected rows
-            int numRowsCount = dgGameList.SelectedItems.Count;
-
-            if (numRowsCount == 0)
-                return null;
-            else if (numRowsCount == 1)
-            {
-                PickGame(dgGameList);
-                return "single";
-            }
-            else
-            {
-                // multiples selected
-                var rs = dgGameList.SelectedItems;
-                List<GamesLibraryModel> rows = new List<GamesLibraryModel>();
-                foreach (GamesLibraryModel row in rs)
-                {
-                    rows.Add(row);
-                }
-
-                // process each row
-                foreach (GamesLibraryModel row in rows)
-                {
-                    int GameId = row.ID;
-                    PickLocalGame(GameId);
-                }
-                
-                return "multiple";
-            }
-        }
-
-        /// <summary>
-        /// Choose a game from the local master list to link to an imported medlaunch game
-        /// based on medlaunch GameId
-        /// </summary>
-        /// <param name="GameId"></param>
-        public static async void PickLocalGame(int GameId)
-        {
-            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            Grid RootGrid = (Grid)mw.FindName("RootGrid");
-
-            await mw.ShowChildWindowAsync(new ListBoxChildWindow()
-            {
-                IsModal = true,
-                AllowMove = false,
-                Title = "Pick a Game",
-                CloseOnOverlay = false,
-                ShowCloseButton = false
-            }, RootGrid);
-
-            //GamesLibraryVisualHandler.UpdateSidebar(GameId);
-            //GamesLibraryView.RestoreSelectedRow();
-            //GamesLibraryVisualHandler.RefreshGamesLibrary();
-        }
+        
 
         /// <summary>
         /// Return a search list
@@ -137,7 +62,7 @@ namespace MedLaunch.Classes.Scraper
         public List<SearchOrdering> ShowPlatformGames(int systemId, string gameName)
         {
             // get a list with all games for this system
-            SystemCollection = PlatformGames.Where(a => a.MedLaunchSystemId == systemId).ToList();
+            SystemCollection = PlatformGames.Where(a => GSystem.GetMedLaunchSystemIdFromGDBPlatformId(a.pid) == systemId).ToList();
             // Match all words and return a list ordered by higest matches
             List<SearchOrdering> searchResult = OrderByMatchedWords(StripSymbols(gameName.ToLower()));
             return searchResult;
@@ -157,7 +82,7 @@ namespace MedLaunch.Classes.Scraper
             {
                 // sanitise
                 string searchstring = StripSymbols(searchStr).ToLower();
-                string resultstring = StripSymbols(g.TGDBData.GamesDBTitle).ToLower();
+                string resultstring = StripSymbols(g.GDBTitle).ToLower();
 
                 int matchingWords = 0;
 
@@ -320,7 +245,7 @@ namespace MedLaunch.Classes.Scraper
                 List<ScraperMaster> matches = new List<ScraperMaster>();
                 foreach (ScraperMaster g in games)
                 {
-                    string resultstring = StripSymbols(g.TGDBData.GamesDBTitle).ToLower();
+                    string resultstring = StripSymbols(g.GDBTitle).ToLower();
                     if (resultstring.Contains(searchstring))
                     {
                         matches.Add(g);
@@ -458,7 +383,7 @@ namespace MedLaunch.Classes.Scraper
             // iterate through each gamesdb game in the list
             foreach (ScraperMaster g in SystemCollection)
             {
-                bool result = searchStr.ApproximatelyEquals(g.TGDBData.GamesDBTitle, tolerance, fuzzOptions.ToArray());
+                bool result = searchStr.ApproximatelyEquals(g.GDBTitle, tolerance, fuzzOptions.ToArray());
                 if (result == true)
                 {
                     // match found - add to searchcollection                    
@@ -479,7 +404,7 @@ namespace MedLaunch.Classes.Scraper
 
             // Check whether the actual game name contains the actual search 
             //GDBPlatformGame gp = SystemCollection.Where(a => StripSymbols(a.GameTitle.ToLower()).Contains(searchStr)).FirstOrDefault();
-            List<ScraperMaster> gp = SystemCollection.Where(a => AddTrailingWhitespace(a.TGDBData.GamesDBTitle.ToLower()).Contains(AddTrailingWhitespace(SearchString))).ToList();
+            List<ScraperMaster> gp = SystemCollection.Where(a => AddTrailingWhitespace(a.GDBTitle.ToLower()).Contains(AddTrailingWhitespace(SearchString))).ToList();
             if (gp == null)
             {
                 // nothing found - proceed to other searches
@@ -516,7 +441,7 @@ namespace MedLaunch.Classes.Scraper
                 int searchLength = arr.Length;
 
                 // get total substrings in result string
-                string[] rArr = BuildArray(g.TGDBData.GamesDBTitle);
+                string[] rArr = BuildArray(g.GDBTitle);
                 int resultLength = rArr.Length;
 
                 // find matching words
@@ -619,7 +544,7 @@ namespace MedLaunch.Classes.Scraper
                     string b = StripSymbols(builder).ToLower();
 
 
-                    var s = SystemCollection.Where(a => a.TGDBData.GamesDBTitle.ToLower().Contains(b)).ToList();
+                    var s = SystemCollection.Where(a => a.GDBTitle.ToLower().Contains(b)).ToList();
                     if (s.Count == 1)
                     {
                         // one entry returned - this is the one to keep
@@ -692,7 +617,7 @@ namespace MedLaunch.Classes.Scraper
                 systemId = 7;
 
             // get a list with all games for this system
-            SystemCollection = PlatformGames.Where(a => a.MedLaunchSystemId == systemId).ToList();
+            SystemCollection = PlatformGames.Where(a => GSystem.GetMedLaunchSystemIdFromGDBPlatformId(a.pid) == systemId).ToList();
 
             // Match all words and return a list ordered by higest matches
             List<SearchOrdering> searchResult = OrderByMatchedWords(StripSymbols(gameName.ToLower()));
@@ -743,9 +668,9 @@ namespace MedLaunch.Classes.Scraper
             {
                 // 2 records returned - check whether they match exactly
                 string first = (from a in SearchCollection
-                                select a.TGDBData.GamesDBTitle).First();
+                                select a.GDBTitle).First();
                 string last = (from a in SearchCollection
-                               select a.TGDBData.GamesDBTitle).Last();
+                               select a.GDBTitle).Last();
                 if (first == last)
                 {
                     // looks like the same game - perhaps different systems on the games db (ie - Megadrive / Genesis) - return the first result
@@ -806,7 +731,7 @@ namespace MedLaunch.Classes.Scraper
                 // build string from array
                 string searchStr = BuildSearchString(gArr, c);
 
-                List<ScraperMaster> list = SystemCollection.Where(a => a.TGDBData.GamesDBTitle.ToLower().Contains(searchStr)).ToList();
+                List<ScraperMaster> list = SystemCollection.Where(a => a.GDBTitle.ToLower().Contains(searchStr)).ToList();
 
                 if (list.Count == 1)
                 {

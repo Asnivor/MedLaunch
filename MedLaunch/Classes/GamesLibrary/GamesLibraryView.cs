@@ -56,8 +56,9 @@ namespace MedLaunch.Classes.GamesLibrary
                 GamesLibraryModel game = DG.Items[i] as GamesLibraryModel;
                 if (game.ID == m.ID)
                 {
+                    /*
                     GamesLibraryModel lo = DG.Items.CurrentItem as GamesLibraryModel;
-                    if (lo.ID != game.ID)
+                    if (lo != null && game.ID != lo.ID)
                     {
                         // selection has skipped on 1 entry to far
                         //SelectRowByIndex(DG, (i - 1));
@@ -69,7 +70,8 @@ namespace MedLaunch.Classes.GamesLibrary
 
                         SelectRowByIndex(DG, i);
                     }
-                    
+                    */
+                    SelectRowByIndex(DG, i);
                     break;
                 }
             }

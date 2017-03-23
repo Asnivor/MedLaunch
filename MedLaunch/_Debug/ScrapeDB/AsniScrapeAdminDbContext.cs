@@ -21,7 +21,10 @@ namespace MedLaunch._Debug.ScrapeDB
         public DbSet<MOBY_Platform> MOBY_Platform { get; set; }             // table containing mobygames platforms (mednafen compatible only)
         public DbSet<MOBY_Game> MOBY_Game { get; set; }                     // table containing mobygames platform games list (medlaunch generated primary key)
 
+        public DbSet<Game_Doc> Game_Doc { get; set; }                       // table with manuals and links
+
         public DbSet<Junction> Junction { get; set; }                       // junction table linking gdb games with all other data
+        
 
         public DbSet<MasterView> MasterView { get; set; }                   // SQLite view that really brings the room together
 
@@ -36,6 +39,9 @@ namespace MedLaunch._Debug.ScrapeDB
                 .HasKey(c => c.pid);
             modelBuilder.Entity<MOBY_Game>()
                 .HasKey(c => c.mid);
+
+            modelBuilder.Entity<Game_Doc>()
+                .HasKey(c => c.id);
 
             modelBuilder.Entity<Junction>()
                 .HasKey(c => c.gid);

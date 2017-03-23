@@ -504,6 +504,11 @@ namespace MedLaunch._Debug.ScrapeDB
             }
         }
 
+        public void ScrapeManualsFromOnline()
+        {
+
+        }
+
         /// <summary>
         /// Pull Back Webpage as a string
         /// </summary>

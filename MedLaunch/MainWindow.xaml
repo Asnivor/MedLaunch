@@ -167,6 +167,10 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                             <MenuItem Name="dbgExactMatch" Header="Match moby with dgb exact on name (auto)" Click="dbgExactMatch_Click"/>
                             <MenuItem Name="dbgAutoWordMatch" Header="Auto Moby Word Match (only when single 100 score is detected)" Click="dbgAutoWordMatch_Click"/>
                             <MenuItem Name="dbgManualMatch" Header="Manual match moby with dgb" Click="dbgManualMatch_Click"/>
+
+                            <Separator />
+
+                            <MenuItem Header="Scrape all manual links from replacementdocs.com and add to ScrapeDB" Click="btnRDmanuallist_Click"/>
                         </MenuItem>
                         
                         <MenuItem Header="Scraper Source Operations">
@@ -182,7 +186,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                             <Separator BorderThickness="0.2" Padding="0" Margin="0" />
 
                             <MenuItem Header="Parse gamesdatabase.org list of manuals and manually match them" Click="btnCombineGamesDatabaseOrgManuals_Click"/>
-                            <MenuItem Header="Scrape all manual links from replacementdocs.com" Click="btnRDmanuallist_Click"/>
+                            
                             <MenuItem Header="Parse replacement docs list of manuals and manually match them (auto on exact match)" Click="btnParseRDList_Click"/>
                         </MenuItem>
                         <MenuItem Header="DAT Functions">

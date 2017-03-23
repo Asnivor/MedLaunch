@@ -36,11 +36,9 @@ using Newtonsoft.Json;
 using System.Threading;
 using Medlaunch.Classes;
 using System.Net;
-using MedLaunch.Classes.MobyGames;
 using MedLaunch.Classes.MasterScraper;
 using MedLaunch.Classes.TheGamesDB;
 using MedLaunch.Classes.Scraper;
-using MedLaunch.Classes.Scraper.ReplacementDocs;
 using MahApps.Metro;
 using MedLaunch.Classes.Input;
 using MedLaunch.Classes.GamesLibrary;
@@ -59,6 +57,7 @@ using MedLaunch.Classes.Controls.InputManager;
 using MedLaunch.Classes.Scanning;
 using MedLaunch.Classes.Scraper.PSXDATACENTER;
 using System.Windows.Threading;
+using MedLaunch._Debug.ScrapeDB.ReplacementDocs;
 
 namespace MedLaunch
 {
@@ -412,7 +411,7 @@ namespace MedLaunch
             {
                 Task.Delay(1);
                 //List<GDBPlatformGame> gs = GameScraper.DatabasePlatformGamesImport(controller);
-                GDBScraper.ScrapeBasicGamesList(controller);
+                //GDBScraper.ScrapeBasicGamesList(controller);
                 /*
                 if (!controller.IsCanceled)
                 {
@@ -460,16 +459,15 @@ namespace MedLaunch
                 Task.Delay(1);
                 // get list of all platformgames in the database
                 controller.SetMessage("Unumerating PlatForm games from database...");
-                App app = ((App)Application.Current);
-                List<ScraperMaster> games = app.ScrapedData.MasterPlatformList;
+                var games = ScrapeDB.AllScrapeData;
                 int gameCount = games.Count;
                 int i = 0;
 
-                foreach (ScraperMaster g in games)
+                foreach (var g in games)
                 {
                     i++;
                     WebOps wo = new WebOps();
-                    wo.Params = "/GetGame.php?id=" + g.GamesDbId;
+                    wo.Params = "/GetGame.php?id=" + g.gid;
 
                 }
 
@@ -3058,7 +3056,7 @@ namespace MedLaunch
         {
             string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
             App app = ((App)Application.Current);
-            var platformgames = app.ScrapedData.MasterPlatformList;
+            var platformgames = app.ScrapedData.AllScrapeData;
 
             string json = JsonConvert.SerializeObject(platformgames.ToArray());
             System.IO.File.WriteAllText(@"Data\Settings\thegamesdbplatformgames_" + linkTimeLocal.Replace(" ", "").Replace(":", "").Replace("-", "") + ".json", json);
@@ -3587,44 +3585,44 @@ namespace MedLaunch
 
         private void btnCombine_Click(object sender, RoutedEventArgs e)
         {
-            CreateMasterList j = new CreateMasterList();
-            j.BeginMerge(false, false, false);
+            //CreateMasterList j = new CreateMasterList();
+            //j.BeginMerge(false, false, false);
         }
 
         private void btnGetManuals_Click(object sender, RoutedEventArgs e)
         {
-            CreateMasterList j = new CreateMasterList();
-            j.ScrapeManuals();
+            //CreateMasterList j = new CreateMasterList();
+            //j.ScrapeManuals();
         }
 
         private void btnCombineManual_Click(object sender, RoutedEventArgs e)
         {
-            CreateMasterList j = new CreateMasterList();
-            j.BeginMerge(true, false, false);
+            //CreateMasterList j = new CreateMasterList();
+            //j.BeginMerge(true, false, false);
         }
 
         private void btnCombineManualnonleven_Click(object sender, RoutedEventArgs e)
         {
-            CreateMasterList j = new CreateMasterList();
-            j.BeginMerge(true, true, false);
+            //CreateMasterList j = new CreateMasterList();
+            //j.BeginMerge(true, true, false);
         }
 
         private void btnCombineManualEverything_Click(object sender, RoutedEventArgs e)
         {
-            CreateMasterList j = new CreateMasterList();
-            j.BeginMerge(false, false, true);
+            //CreateMasterList j = new CreateMasterList();
+            //j.BeginMerge(false, false, true);
         }
 
         private void btnCombineGamesDatabaseOrgManuals_Click(object sender, RoutedEventArgs e)
         {
-            CreateMasterList j = new CreateMasterList();
-            j.ParseGamesDatabaseOrgManuals();
+            //CreateMasterList j = new CreateMasterList();
+            //j.ParseGamesDatabaseOrgManuals();
         }
 
         private void btnParseRDList_Click(object sender, RoutedEventArgs e)
         {
-            CreateMasterList j = new CreateMasterList();
-            j.ParseReplacementDocsManuals();
+           // CreateMasterList j = new CreateMasterList();
+            //j.ParseReplacementDocsManuals();
         }
 
         /// <summary>

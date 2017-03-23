@@ -1,5 +1,6 @@
 ﻿using HtmlAgilityPack;
 using MahApps.Metro.Controls.Dialogs;
+using MedLaunch.Classes;
 using MedLaunch.Classes.TheGamesDB;
 using MedLaunch.Models;
 using Newtonsoft.Json;
@@ -10,12 +11,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedLaunch.Classes.Scraper.ReplacementDocs
+namespace MedLaunch._Debug.ScrapeDB.ReplacementDocs
 {
     public class RdScraper
     {
-        
-
         public static void ScrapeBasicDocsList(ProgressDialogController controller)
         {
             List<ReplacementDocs> rdlist = new List<ReplacementDocs>();
@@ -87,9 +86,25 @@ namespace MedLaunch.Classes.Scraper.ReplacementDocs
                 }
             }
 
+            // Add to scrapeDB
+            foreach (var m in rdlist)
+            {
+                foreach (string entry in m.Urls)
+                {
+                    Game_Doc gd = new Game_Doc();
+                    int pid = GDB_Platform.GetPlatforms().Where(a => a.name == m.TGBSystemName).FirstOrDefault().pid;
+                    gd.pid = pid;
+                    gd.downloadUrl = entry;
+
+                    Game_Doc.AddDoc(gd);
+                }
+            }
+
+            /*
             // save rdlist to json
             string json = JsonConvert.SerializeObject(rdlist, Formatting.Indented);
             File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Data\System\replacementdocs-manuals.json", json);
+            */
         }
 
         public static List<int> ConvertSystemId2RDSystemId(int systemId)

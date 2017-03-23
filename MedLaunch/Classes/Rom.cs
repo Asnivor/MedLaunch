@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace MedLaunch.Classes
 {
-    /*
+    
     public class Rom
     {
         public GSystem gameSystem { get; set; }
         public string path { get; set; }
     }
-    */
+    
 }

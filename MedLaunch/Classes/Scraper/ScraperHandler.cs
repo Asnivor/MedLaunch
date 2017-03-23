@@ -34,7 +34,7 @@ namespace MedLaunch.Classes.Scraper
         public ScraperHandler(int gdbId, int gameId)
         {
             ScraperSearch = new ScraperMainSearch();
-            MasterRecord = ScraperSearch.GLSC.MasterPlatformList.Where(a => a.GamesDbId == gdbId).FirstOrDefault();
+            MasterRecord = ScraperMaster.GetMasterList().Where(a => a.gid == gdbId).FirstOrDefault();
             _GlobalSettings = ScraperSearch._GlobalSettings;
             mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             GameId = gameId;
@@ -43,7 +43,7 @@ namespace MedLaunch.Classes.Scraper
         public ScraperHandler(int gdbId, int gameId, bool MainWindowRequired)
         {
             ScraperSearch = new ScraperMainSearch();
-            MasterRecord = ScraperSearch.GLSC.MasterPlatformList.Where(a => a.GamesDbId == gdbId).FirstOrDefault();
+            MasterRecord = ScraperMaster.GetMasterList().Where(a => a.gid == gdbId).FirstOrDefault();
             _GlobalSettings = ScraperSearch._GlobalSettings;
             if (MainWindowRequired == true)
                 mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
@@ -101,7 +101,7 @@ namespace MedLaunch.Classes.Scraper
                 controller.Maximum = numGames;
                 int i = 0;
                 // iterate through each local game and attempt to match it with the master list
-                foreach (var g in gs.LocalGames)
+                for (int ga = 0; ga < numGames; ga++)
                 {
                     if (controller.IsCanceled)
                     {
@@ -110,8 +110,8 @@ namespace MedLaunch.Classes.Scraper
                     }
                     i++;
                     controller.SetProgress(i);
-                    controller.SetMessage("Attempting local search match for:\n" + g.gameName + " (" + GSystem.GetSystemCode(g.systemId) + ")" + "\n(" + i + " of " + numGames + ")");
-                    List<ScraperMaster> results = gs.SearchGameLocal(g.gameName, g.systemId, g.gameId).ToList();
+                    controller.SetMessage("Attempting local search match for:\n" + gs.LocalGames[ga].gameName + " (" + GSystem.GetSystemCode(gs.LocalGames[ga].systemId) + ")" + "\n(" + i + " of " + numGames + ")");
+                    List<ScraperMaster> results = gs.SearchGameLocal(gs.LocalGames[ga].gameName, gs.LocalGames[ga].systemId, gs.LocalGames[ga].gameId).ToList();
 
                     if (results.Count == 0)
                     {
@@ -120,7 +120,9 @@ namespace MedLaunch.Classes.Scraper
                     if (results.Count == 1)
                     {
                         // one result returned - add GdbId to the Game table
-                        Game.SetGdbId(g.gameId, results.Single().GamesDbId);
+                        Game.SetGdbId(gs.LocalGames[ga].gameId, results.Single().gid);
+                        // also add it to our locagames object (so it is not skipped in the next part)
+                        gs.LocalGames[ga].gdbId = results.Single().gid;
                     }
                 }
 
@@ -268,7 +270,7 @@ namespace MedLaunch.Classes.Scraper
                     if (results.Count == 1)
                     {
                         // one result returned - add GdbId to the Game table
-                        Game.SetGdbId(g.gameId, results.Single().GamesDbId);                         
+                        Game.SetGdbId(g.gameId, results.Single().gid);                         
                     }
                 }
 
@@ -359,7 +361,7 @@ namespace MedLaunch.Classes.Scraper
             ScrapedGameData gameData = new ScrapedGameData();
             ScrapedGameObjectWeb gameObject = new ScrapedGameObjectWeb();
             gameObject.Data = gameData;
-            gameObject.GdbId = MasterRecord.GamesDbId;
+            gameObject.GdbId = MasterRecord.gid;
 
             // check for manuals
             if (_GlobalSettings.scrapeManuals == true)
@@ -367,7 +369,7 @@ namespace MedLaunch.Classes.Scraper
                 if (gameObject.Manuals == null)
                     gameObject.Manuals = new List<string>();
 
-                gameObject.Manuals = MasterRecord.IDDBManual;
+                gameObject.Manuals = MasterRecord.Game_Docs;
             }
             
 
