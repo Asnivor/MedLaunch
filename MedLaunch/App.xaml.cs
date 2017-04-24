@@ -15,6 +15,7 @@ using MedLaunch.Classes.GamesLibrary;
 using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Input;
+using MedLaunch.Classes.Scraper;
 
 namespace MedLaunch
 {
@@ -23,8 +24,9 @@ namespace MedLaunch
     /// </summary>
     public partial class App : Application, INotifyPropertyChanged
     {
-        public GamesLibraryScrapedContent ScrapedData { get; set; }
+        //public ScrapeDB ScrapedData { get; set; }
 
+        /*
         private GameListBuilder gamesList;
         public GameListBuilder GamesList
         {
@@ -42,6 +44,7 @@ namespace MedLaunch
                 }
             }
         }
+        */
 
         private GamesLibraryViewModel gamesLibrary;
         public GamesLibraryViewModel GamesLibrary
@@ -117,7 +120,7 @@ namespace MedLaunch
             // init should have completed - run MainWindow
 
             // instantiate GamesList object  
-            GamesList = new GameListBuilder();
+            //GamesList = new GameListBuilder();
             GamesLibrary = new GamesLibraryViewModel();
 
             MainWindow mw = new MedLaunch.MainWindow();
@@ -135,8 +138,9 @@ namespace MedLaunch
 
             splashScreen.Close(TimeSpan.FromSeconds(1));
 
-            // instantiate ScrapedContent Object
-            ScrapedData = new GamesLibraryScrapedContent();
+            // instantiate ScrapeDB
+            //ScrapedData = new ScrapeDB();
+            ScrapeDB sdb = new ScrapeDB();
 
             
 

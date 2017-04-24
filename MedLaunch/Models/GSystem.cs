@@ -152,6 +152,23 @@ namespace MedLaunch.Models
             return r;
         }
 
+        public static int GetMedLaunchSystemIdFromGDBPlatformId(int pid)
+        {
+            var gsys = GetSystems();
+            foreach (var sys in gsys)
+            {
+                foreach (int i in sys.theGamesDBPlatformId)
+                {
+                    if (i == pid)
+                    {
+                        return sys.systemId;
+                    }
+                }
+            }
+
+            return 0;
+        }
+
         public static List<GSystem> GetSystems()
         {
             List<GSystem> gSystems = new List<GSystem>

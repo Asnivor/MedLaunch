@@ -86,7 +86,6 @@ namespace MedLaunch
                 {
                     string[] dbVersionArr = dbVersion.Split('.');
                     string[] appVersionArr = appVersion.Split('.');
-                    int i = 0;
                     bool upgradeNeeded = false;
                     for (int v = 0; v < 3; v++)
                     {
@@ -234,8 +233,9 @@ namespace MedLaunch
             {
                 System.IO.File.Move(AppDomain.CurrentDomain.BaseDirectory + @"Data\Settings\MedLaunch.db", AppDomain.CurrentDomain.BaseDirectory + newfileName);
             }
-            catch {
-                Exception e;
+            catch (Exception e) {
+                
+                Console.WriteLine(e);
                 MessageBox.Show("ERROR: The database file is locked (perhaps open in another application.\nMedLaunch will now shut down.");
                 Environment.Exit(0);
             }

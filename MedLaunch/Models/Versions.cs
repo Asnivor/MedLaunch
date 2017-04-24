@@ -21,18 +21,6 @@ namespace MedLaunch.Models
         {
             
         }
-        /*
-        // return compatible mednafen version branch
-        public static string CompatibleMednafenBranch()
-        {
-            string branch = "0.9.43.x";
-            return branch;
-        }
-        */
-
-        /*
-         *  Mednafen version compatibility 
-         */
 
         public static List<MednafenChangeHistory> GetMednafenCompatibilityMatrix()
         {
@@ -171,30 +159,7 @@ namespace MedLaunch.Models
         /*
          *      Misc Version methods
          */ 
-
-        // compare mednafen versions
-        /*
-        public static bool IsMednafenVersionValid()
-        {
-            string localbranch = LogParser.GetMednafenVersion();
-            string requiredbranch = Versions.CompatibleMednafenBranch();
-
-            string[] lb = localbranch.Trim().Split('.');
-            string[] rb = requiredbranch.Trim().Split('.');
-
-            bool isValid = true;
-            for (int i = 0; i < 3; i++)
-            {
-                if (lb[i] != rb[i])
-                {
-                    isValid = false;
-                    break;
-                }
-            }
-            return isValid;
-        }
-        */
-
+        
         // get application version
         public static string ReturnApplicationVersion()
         {

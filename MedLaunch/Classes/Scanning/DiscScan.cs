@@ -96,9 +96,6 @@ namespace MedLaunch.Classes.Scanning
                 return;
 
             int foldersFound = subs.Count;
-            int foldersEmpty = 0;
-            int gamesFound = 0;
-            string strBase = "Scanning: ";
 
             // iterate through each sub-directory (should be one game in each)
             for (int i = 0; i < subs.Count; i++)

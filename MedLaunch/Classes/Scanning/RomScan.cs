@@ -169,6 +169,7 @@ namespace MedLaunch.Classes.Scanning
                 catch (System.IO.InvalidDataException ex)
                 {
                     // problem with the archive file
+                    Console.WriteLine(ex);
                 }
                 finally { }
 

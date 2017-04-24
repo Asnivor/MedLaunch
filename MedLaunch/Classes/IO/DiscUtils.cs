@@ -46,8 +46,7 @@ namespace MedLaunch.Classes.IO
                 var appId = System.Text.Encoding.ASCII.GetString(iso.VolumeDescriptors[0].ApplicationIdentifier).TrimEnd('\0', ' ');
 
                 var desc = iso.Root.Children;
-
-                long ir = 0;
+                
                 ISONode ifn = null;
 
                 foreach (var i in desc)

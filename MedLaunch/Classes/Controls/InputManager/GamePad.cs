@@ -219,7 +219,8 @@ namespace MedLaunch.Classes.Controls
             catch (SlimDX.DirectInput.DirectInputException ex)
             {
                 // maybe gamepad has been unplugged
-                
+                Console.WriteLine(ex);
+
                 // remove from devices
                 int joyNum = 100;
                 for (int i = 0; i < Devices.Count; i++)
@@ -421,11 +422,7 @@ namespace MedLaunch.Classes.Controls
 
                 AddItem("joystick " + id + " " + butnameint.ToString("X8").ToLower(), () => state.IsPressed(j));
             }
-
-           
-
-            int states = 0;
-            int povTmpCount = 0;
+            
             Func<bool> cbPos;
             Func<bool> cbNeg;
 

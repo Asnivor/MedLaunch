@@ -290,7 +290,7 @@ namespace MedLaunch.Classes
 
                 db.SaveChanges();
 
-                GamesLibData.ForceUpdate();
+                //GamesLibData.ForceUpdate();
             }
         }
 

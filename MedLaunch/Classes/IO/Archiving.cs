@@ -251,7 +251,7 @@ namespace MedLaunch.Classes.IO
                     {
                         rom.WriteToDirectory(outputDir, new SharpCompress.Readers.ExtractionOptions() { Overwrite = true });
                     }
-                    catch { System.IO.IOException ex; }
+                    catch (System.IO.IOException ex) { Console.WriteLine(ex);  }
 
                     return outputDir + "\\" + rom.Key;
                 }
@@ -271,7 +271,7 @@ namespace MedLaunch.Classes.IO
                         rom2.WriteToDirectory(outputDir, new SharpCompress.Readers.ExtractionOptions() { Overwrite = true });
                     }
 
-                    catch { System.IO.IOException ex; }
+                    catch (System.IO.IOException ex) { Console.WriteLine(ex); }
                     
                     return outputDir + "\\" + rom2.Key;
                 }

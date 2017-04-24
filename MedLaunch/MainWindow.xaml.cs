@@ -36,11 +36,9 @@ using Newtonsoft.Json;
 using System.Threading;
 using Medlaunch.Classes;
 using System.Net;
-using MedLaunch.Classes.MobyGames;
 using MedLaunch.Classes.MasterScraper;
 using MedLaunch.Classes.TheGamesDB;
 using MedLaunch.Classes.Scraper;
-using MedLaunch.Classes.Scraper.ReplacementDocs;
 using MahApps.Metro;
 using MedLaunch.Classes.Input;
 using MedLaunch.Classes.GamesLibrary;
@@ -59,6 +57,7 @@ using MedLaunch.Classes.Controls.InputManager;
 using MedLaunch.Classes.Scanning;
 using MedLaunch.Classes.Scraper.PSXDATACENTER;
 using System.Windows.Threading;
+using MedLaunch._Debug.ScrapeDB.ReplacementDocs;
 
 namespace MedLaunch
 {
@@ -93,7 +92,9 @@ namespace MedLaunch
             SettingsDirtyFlag = false; // not dirty - do not save any settings
 
             // instantiate ScrapedContent Object
-            GamesLibraryScrapedContent ScrapedData = new GamesLibraryScrapedContent();
+            ScrapeDB ScrapedData = new ScrapeDB();
+            ScraperMaster.MasterList = ScraperMaster.GetMasterList();
+
             
             // hide the zoom slider (should not be visible to the user)
             dpZoomSlider.Visibility = Visibility.Collapsed;
@@ -412,7 +413,7 @@ namespace MedLaunch
             {
                 Task.Delay(1);
                 //List<GDBPlatformGame> gs = GameScraper.DatabasePlatformGamesImport(controller);
-                GDBScraper.ScrapeBasicGamesList(controller);
+                //GDBScraper.ScrapeBasicGamesList(controller);
                 /*
                 if (!controller.IsCanceled)
                 {
@@ -460,16 +461,15 @@ namespace MedLaunch
                 Task.Delay(1);
                 // get list of all platformgames in the database
                 controller.SetMessage("Unumerating PlatForm games from database...");
-                App app = ((App)Application.Current);
-                List<ScraperMaster> games = app.ScrapedData.MasterPlatformList;
+                var games = ScrapeDB.AllScrapeData;
                 int gameCount = games.Count;
                 int i = 0;
 
-                foreach (ScraperMaster g in games)
+                foreach (var g in games)
                 {
                     i++;
                     WebOps wo = new WebOps();
-                    wo.Params = "/GetGame.php?id=" + g.GamesDbId;
+                    wo.Params = "/GetGame.php?id=" + g.gid;
 
                 }
 
@@ -2517,11 +2517,8 @@ namespace MedLaunch
                         // update lastfinished time
                         Game.SetFinishedPlaying(gl.GameId);
 
-                        // update gameslibrary data as change has been made
-                        GamesLibData.ForceUpdate();
-
                         // refresh library view
-                        GamesLibraryVisualHandler.RefreshGamesLibrary();
+                        //GamesLibraryVisualHandler.RefreshGamesLibrary();
                     });
                 }                
                 if (controller.IsOpen == true)
@@ -3059,13 +3056,14 @@ namespace MedLaunch
 
         private void btnSavePlatformGamesToDisk_Click(object sender, RoutedEventArgs e)
         {
+            /*
             string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
             App app = ((App)Application.Current);
-            var platformgames = app.ScrapedData.MasterPlatformList;
+            var platformgames = app.ScrapedData.AllScrapeData;
 
             string json = JsonConvert.SerializeObject(platformgames.ToArray());
             System.IO.File.WriteAllText(@"Data\Settings\thegamesdbplatformgames_" + linkTimeLocal.Replace(" ", "").Replace(":", "").Replace("-", "") + ".json", json);
-
+            */
         }
 
         // unlink selected game
@@ -3105,13 +3103,13 @@ namespace MedLaunch
 
         private void btnScrapingPickGames_Click(object sender, RoutedEventArgs e)
         {
-            ScraperMainSearch.PickGames(dgGameList);
+            ScraperLookup.PickGames(dgGameList);
             
         }
 
         private void btnScrapingPickGame_Click(object sender, RoutedEventArgs e)
         {
-            ScraperMainSearch.PickGame(dgGameList);
+            ScraperLookup.PickGame(dgGameList);
             
         }
 
@@ -3292,7 +3290,7 @@ namespace MedLaunch
                     var c = wc.DownloadString("https://api.github.com/repos/Asnivor/MedLaunch/releases/latest");
                     contents = c;
                 }
-                catch (Exception ex)
+                catch
                 {
                     controller.SetMessage("The request timed out - please try again");
                     await Task.Delay(2000);
@@ -3444,9 +3442,7 @@ namespace MedLaunch
             controller.SetIndeterminate();
 
             await Task.Delay(400);
-
-            string output;
-
+            
             // download url
             string url = lblDownloadUrl.Content.ToString();
             // get just the filename
@@ -3463,7 +3459,7 @@ namespace MedLaunch
                 {
                     wc.DownloadFile(url, downloadsFolder + "\\" + fName);
                 }
-                catch (Exception ex)
+                catch
                 {
                     controller.SetMessage("The request timed out - please try again");
                     await Task.Delay(2000);
@@ -3592,44 +3588,44 @@ namespace MedLaunch
 
         private void btnCombine_Click(object sender, RoutedEventArgs e)
         {
-            CreateMasterList j = new CreateMasterList();
-            j.BeginMerge(false, false, false);
+            //CreateMasterList j = new CreateMasterList();
+            //j.BeginMerge(false, false, false);
         }
 
         private void btnGetManuals_Click(object sender, RoutedEventArgs e)
         {
-            CreateMasterList j = new CreateMasterList();
-            j.ScrapeManuals();
+            //CreateMasterList j = new CreateMasterList();
+            //j.ScrapeManuals();
         }
 
         private void btnCombineManual_Click(object sender, RoutedEventArgs e)
         {
-            CreateMasterList j = new CreateMasterList();
-            j.BeginMerge(true, false, false);
+            //CreateMasterList j = new CreateMasterList();
+            //j.BeginMerge(true, false, false);
         }
 
         private void btnCombineManualnonleven_Click(object sender, RoutedEventArgs e)
         {
-            CreateMasterList j = new CreateMasterList();
-            j.BeginMerge(true, true, false);
+            //CreateMasterList j = new CreateMasterList();
+            //j.BeginMerge(true, true, false);
         }
 
         private void btnCombineManualEverything_Click(object sender, RoutedEventArgs e)
         {
-            CreateMasterList j = new CreateMasterList();
-            j.BeginMerge(false, false, true);
+            //CreateMasterList j = new CreateMasterList();
+            //j.BeginMerge(false, false, true);
         }
 
         private void btnCombineGamesDatabaseOrgManuals_Click(object sender, RoutedEventArgs e)
         {
-            CreateMasterList j = new CreateMasterList();
-            j.ParseGamesDatabaseOrgManuals();
+            //CreateMasterList j = new CreateMasterList();
+            //j.ParseGamesDatabaseOrgManuals();
         }
 
         private void btnParseRDList_Click(object sender, RoutedEventArgs e)
         {
-            CreateMasterList j = new CreateMasterList();
-            j.ParseReplacementDocsManuals();
+           // CreateMasterList j = new CreateMasterList();
+            //j.ParseReplacementDocsManuals();
         }
 
         /// <summary>
@@ -3744,10 +3740,7 @@ namespace MedLaunch
             string sysCode = rb.Name.Replace("btnConfig", "");
         }
 
-        private void btnPJoyTest_Click(object sender, RoutedEventArgs e)
-        {
-            Controller.Start();
-        }
+        
 
         private async void btnReLink_Click(object sender, RoutedEventArgs e)
         {
@@ -4611,7 +4604,7 @@ namespace MedLaunch
             // split into blocks
             string[] blocks = allstr.Split(new string[] { "\n\n\n" }, StringSplitOptions.None);
 
-            int blockcount = 0;
+            
             foreach (string block in blocks)
             {
                 string[] arr = block.Split('\n');

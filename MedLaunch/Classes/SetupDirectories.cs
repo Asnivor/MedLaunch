@@ -50,7 +50,7 @@ namespace MedLaunch.Classes
                 }
                 catch (Exception ex)
                 {
-                    //
+                    Console.WriteLine(ex);
                 }
         }
 
@@ -67,7 +67,7 @@ namespace MedLaunch.Classes
                 }
                 catch (Exception ex)
                 {
-                    //
+                    Console.WriteLine(ex);
                 }
             }
 

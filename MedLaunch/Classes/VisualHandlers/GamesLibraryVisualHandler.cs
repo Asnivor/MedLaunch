@@ -14,6 +14,7 @@ using System.Windows.Markup;
 using System.Windows.Input;
 using MedLaunch.Classes.GamesLibrary;
 using System.Windows.Data;
+using MedLaunch.Classes.Scraper;
 
 namespace MedLaunch.Classes
 {
@@ -307,7 +308,7 @@ namespace MedLaunch.Classes
             // Game info (scraped)
             // get the link table record
 
-            GamesLibraryScrapedContent gd = new GamesLibraryScrapedContent();
+            ScrapeDB gd = new ScrapeDB();
             
             Game game = Game.GetGame(gameId);
             
@@ -333,7 +334,7 @@ namespace MedLaunch.Classes
             }
             else
             {
-                ScrapedGameObject o = gd.GetScrapedGameObject(gameId, game.gdbId.Value);
+                ScrapedGameObject o = ScrapeDB.GetScrapedGameObject(gameId, game.gdbId.Value);
 
                 // link is there - SET DATA and control states
                 bool isGameInfoData = false;                            //GameInfo Expander
@@ -697,6 +698,7 @@ namespace MedLaunch.Classes
 
             catch (System.NotSupportedException ex)
             {
+                Console.WriteLine(ex);
                 img.Source = new BitmapImage();
             }
         }
@@ -712,6 +714,7 @@ namespace MedLaunch.Classes
             }
             catch (System.NotSupportedException ex)
             {
+                Console.WriteLine(ex);
                 BitmapImage c = new BitmapImage();
                 return c;
             }        
@@ -1213,7 +1216,9 @@ namespace MedLaunch.Classes
             RadioButton rb = rbs.Where(a => a.IsChecked == true).FirstOrDefault();
 
             if (rb == null)
+            {
                 return CountryFilter.ALL;
+            }                
 
             for (int i = 0; i < rbs.Length; i++)
             {

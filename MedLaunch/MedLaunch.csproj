@@ -63,10 +63,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BasicRestClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BasicRestClient.1.0.0\lib\net451\BasicRestClient.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -171,10 +167,6 @@
     <Reference Include="Remotion.Linq, Version=2.0.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\packages\Remotion.Linq.2.0.1\lib\net45\Remotion.Linq.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="SDLJoystick, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>ExternalAssemblies\SDLJoystick.dll</HintPath>
     </Reference>
     <Reference Include="SharpCompress, Version=0.15.2.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpCompress.0.15.2\lib\net45\SharpCompress.dll</HintPath>
@@ -283,17 +275,21 @@
     <Compile Include="Classes\Scanning\DiscScan.cs" />
     <Compile Include="Classes\Scanning\RomScan.cs" />
     <Compile Include="Classes\Scanning\SaturnGame.cs" />
+    <Compile Include="Classes\Scraper\DBModels\Game_Doc.cs" />
+    <Compile Include="Classes\Scraper\DBModels\MasterView.cs" />
+    <Compile Include="Classes\Scraper\GDBPlatformGame.cs" />
     <Compile Include="Classes\Scraper\PSXDATACENTER\PsxDc.cs" />
+    <Compile Include="Classes\Scraper\ScrapeDB.cs" />
+    <Compile Include="Classes\Scraper\ScrapeDbContext.cs" />
+    <Compile Include="Classes\Scraper\ScraperLookup.cs" />
+    <Compile Include="Classes\Scraper\ScraperSearch.cs" />
     <Compile Include="Extensions\FocusExtension.cs" />
     <Compile Include="MedDataGrid.cs" />
-    <Compile Include="Models\VersionCompatibility.cs" />
     <Compile Include="Windows\AccentStyleWindow.xaml.cs">
       <DependentUpon>AccentStyleWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\BackupConfig.cs" />
-    <Compile Include="Classes\CMenu.cs" />
     <Compile Include="Classes\ConfigImport.cs" />
-    <Compile Include="Classes\ConfigReflection.cs" />
     <Compile Include="Classes\ConfigToolTips.cs" />
     <Compile Include="Classes\Controls\InputManager\GamePad.cs" />
     <Compile Include="Classes\Controls\InputManager\GamePad360.cs" />
@@ -319,7 +315,7 @@
     <Compile Include="Classes\Controls\VirtualDevices\Ss.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\Vb.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\Wswan.cs" />
-    <Compile Include="Classes\GamesLibrary\GameListBuilder.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\GameListBuilder.cs" />
     <Compile Include="Classes\GamesLibrary\GamesLibraryDataGridRefresh.cs" />
     <Compile Include="Classes\HtmlToXaml\CssStylesheet.cs" />
     <Compile Include="Classes\HtmlToXaml\HtmlCSSParser.cs" />
@@ -328,7 +324,7 @@
     <Compile Include="Classes\HtmlToXaml\HtmlSchema.cs" />
     <Compile Include="Classes\HtmlToXaml\HtmlTokenType.cs" />
     <Compile Include="Classes\HtmlToXaml\HtmlToXamlConverter.cs" />
-    <Compile Include="Classes\Input\Controller.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\Input\Controller.cs" />
     <Compile Include="Classes\IO\Archiving.cs" />
     <Compile Include="Classes\IO\Crypto.cs" />
     <Compile Include="Classes\IO\DiscUtils.cs" />
@@ -352,20 +348,18 @@
     <Compile Include="Classes\Scraper\DAT\TOSEC\Models\ToSecCollection.cs" />
     <Compile Include="Classes\Scraper\DAT\TOSEC\Models\ToSecObject.cs" />
     <Compile Include="Classes\Scraper\DAT\TOSEC\StringConverterToSec.cs" />
-    <Compile Include="Classes\Scraper\ReplacementDocs\RdScraper.cs" />
+    <Compile Include="_Debug\ScrapeDB\ReplacementDocs\RdScraper.cs" />
     <Compile Include="Classes\Scraper\ScraperHandler.cs" />
     <Compile Include="Classes\VisualHandlers\ConfigsVisualHandler.cs" />
     <Compile Include="Classes\DbMigration.cs" />
     <Compile Include="Classes\EventArgs.cs" />
-    <Compile Include="Classes\GamesLibData.cs" />
-    <Compile Include="Classes\GamesLibrary\GamesLibraryScrapedContent.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\GamesLibData.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\GamesLibraryScrapedContent.cs" />
     <Compile Include="Classes\VisualHandlers\ControlsVisualHandler.cs" />
     <Compile Include="Classes\VisualHandlers\GamesLibraryVisualHandler.cs" />
     <Compile Include="Classes\GetBuildTime.cs" />
     <Compile Include="Classes\FuzzySearch.cs" />
-    <Compile Include="Classes\Scraper\CreateMasterList.cs" />
-    <Compile Include="Classes\Scraper\ScraperMainSearch.cs" />
-    <Compile Include="Classes\Scraper\MobyGames\MobyGames.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\CreateMasterList.cs" />
     <Compile Include="Classes\Scraper\MobyGames\MobyPageList.cs" />
     <Compile Include="Classes\Scraper\MobyGames\MobyScraper.cs" />
     <Compile Include="Classes\Releases.cs" />
@@ -384,7 +378,6 @@
     <Compile Include="Windows\ConfigureController.xaml.cs">
       <DependentUpon>ConfigureController.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CustomTextBox.cs" />
     <Compile Include="Extensions\ImageExtension.cs" />
     <Compile Include="Extensions\LabelExtension.cs" />
     <Compile Include="Extensions\ListResizeExtension.cs" />
@@ -416,21 +409,16 @@
     <Compile Include="Models\ConfigServerSettings.cs" />
     <Compile Include="Models\ConfigSystemSettings.cs" />
     <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\GameSystem.cs" />
-    <Compile Include="Models\GDBGameData.cs" />
-    <Compile Include="Models\GDBLink.cs" />
-    <Compile Include="Models\GDBPlatformGame.cs" />
     <Compile Include="Models\GlobalSettings.cs" />
     <Compile Include="Models\LibraryDataGDBLink.cs" />
     <Compile Include="Models\LibrarySidebar.cs" />
-    <Compile Include="Models\MednafenControls.cs" />
-    <Compile Include="Models\MobyPlatformGame.cs" />
+    <Compile Include="Classes\Scraper\MobyPlatformGame.cs" />
     <Compile Include="Models\Paths.cs" />
     <Compile Include="Models\GSystem.cs" />
-    <Compile Include="Models\ScrapedGameData.cs" />
-    <Compile Include="Models\ScrapedGameObject.cs" />
-    <Compile Include="Models\ScraperMaster.cs" />
-    <Compile Include="Models\SearchOrdering.cs" />
+    <Compile Include="Classes\Scraper\ScrapedGameData.cs" />
+    <Compile Include="Classes\Scraper\ScrapedGameObject.cs" />
+    <Compile Include="Classes\Scraper\ScraperMaster.cs" />
+    <Compile Include="Classes\Scraper\SearchOrdering.cs" />
     <Compile Include="Models\Versions.cs" />
     <Compile Include="Windows\ScrapedDataAudit.xaml.cs">
       <DependentUpon>ScrapedDataAudit.xaml</DependentUpon>
@@ -489,6 +477,7 @@
     <Compile Include="ThemeManagerHelper.cs" />
     <Compile Include="_Debug\ScrapeDB\AdminScrapeDb.cs" />
     <Compile Include="_Debug\ScrapeDB\AsniScrapeAdminDbContext.cs" />
+    <Compile Include="_Debug\ScrapeDB\Game_Doc.cs" />
     <Compile Include="_Debug\ScrapeDB\GDB_Game.cs" />
     <Compile Include="_Debug\ScrapeDB\GDB_Platform.cs" />
     <Compile Include="_Debug\ScrapeDB\Junction.cs" />
@@ -529,7 +518,7 @@
     </Compile>
     <Compile Include="Classes\DbEF.cs" />
     <Compile Include="Classes\Enums.cs" />
-    <Compile Include="Classes\GamesLibrary\DataGridGamesView.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\DataGridGamesView.cs" />
     <Compile Include="Classes\SetupDirectories.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -789,7 +778,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Settings\" />
-    <Folder Include="_Content\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Graphics\Icons\na.png">
@@ -863,7 +851,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\System\SaturnList.txt" />
-    <Content Include="ExternalAssemblies\md5.dll" />
     <Content Include="ExternalAssemblies\WindowScrape.dll" />
     <Resource Include="MedLaunchIcon.ico" />
     <Resource Include="Data\Graphics\Controllers\lynx_controller.png" />
@@ -878,9 +865,6 @@
     <Resource Include="Data\Graphics\MedLaunchLogo.png" />
     <Resource Include="Data\Graphics\mediconsplash-new.png" />
     <Content Include="ExternalAssemblies\Feeble.dll" />
-    <Content Include="ExternalAssemblies\SDL.dll" />
-    <Content Include="ExternalAssemblies\SDL64.dll" />
-    <Content Include="ExternalAssemblies\SDLJoystick.dll" />
     <Resource Include="LatestVersion.txt" />
     <Resource Include="Data\Graphics\mediconsplash.png" />
     <Content Include="ExternalAssemblies\FuzzyString.dll" />

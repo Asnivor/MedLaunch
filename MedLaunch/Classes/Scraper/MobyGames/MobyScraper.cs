@@ -1,5 +1,6 @@
 ﻿using HtmlAgilityPack;
 using MahApps.Metro.Controls.Dialogs;
+using MedLaunch.Classes.Scraper;
 using MedLaunch.Models;
 using Newtonsoft.Json;
 using System;
@@ -22,7 +23,7 @@ namespace MedLaunch.Classes
         public static ScrapedGameObjectWeb ScrapeGame(ScrapedGameObjectWeb o, ScraperOrder order, ProgressDialogController controller, ScraperMaster masterrecord, string message)
         {
             bool priority;
-            message = message + "Downloading information for: " + masterrecord.MobyData.MobyTitle + "\n(" + masterrecord.MobyData.MobyPlatformName + ")";
+            message = message + "Downloading information for: " + masterrecord.MOBYTitle + "\n(" + masterrecord.MOBYPlatformAlias + ")";
             if (order == ScraperOrder.Primary) { message = "Primary Scraping (mobygames)\n" + message; }
             else { message = "Secondary Scraping (mobygames)\n" + message; }
             GlobalSettings gs = GlobalSettings.GetGlobals();
@@ -30,29 +31,29 @@ namespace MedLaunch.Classes
             {
                 
                 priority = true;    // primary
-                if (masterrecord.MobyData.MobyTitle != null)
+                if (masterrecord.MOBYTitle != null)
                 {
                     // moby data has been matched
                     
                     controller.SetMessage(message);
-                    o.Data.Title = masterrecord.MobyData.MobyTitle;
-                    o.Data.Platform = masterrecord.MobyData.MobyPlatformName;
+                    o.Data.Title = masterrecord.MOBYTitle;
+                    o.Data.Platform = masterrecord.MOBYPlatformAlias;
                 }
                 else
                 {
                     // no moby data matched - use gamesdb title and platform and return
-                    o.Data.Title = masterrecord.TGDBData.GamesDBTitle;
-                    o.Data.Platform = masterrecord.TGDBData.GamesDBPlatformName;
+                    o.Data.Title = masterrecord.GDBTitle;
+                    o.Data.Platform = masterrecord.GDBPlatformName;
                     return o;
                 }                
             }
             else
             {
                 // moby scraping is secondary
-                if (masterrecord.MobyData.MobyTitle == null)
+                if (masterrecord.MOBYTitle == null)
                 {
-                    o.Data.Title = masterrecord.TGDBData.GamesDBTitle;
-                    o.Data.Platform = masterrecord.TGDBData.GamesDBPlatformName;
+                    o.Data.Title = masterrecord.GDBTitle;
+                    o.Data.Platform = masterrecord.GDBPlatformName;
                     return o;
                 }
                 priority = false;    // primary
@@ -82,7 +83,7 @@ namespace MedLaunch.Classes
         {
             // query the main game page
             string baseurl = "http://www.mobygames.com/game/";
-            string param = masterrecord.MobyData.MobyPlatformName + "/" + masterrecord.MobyData.MobyURLName;
+            string param = masterrecord.MOBYPlatformAlias + "/" + masterrecord.MOBYPlatformAlias;
             string initialPage = ReturnWebpage(baseurl, param, 10000);
 
             GlobalSettings gs = GlobalSettings.GetGlobals();
@@ -189,7 +190,7 @@ namespace MedLaunch.Classes
                 // cover art
                 // query the coverart page
                 string baseurlcover = "http://www.mobygames.com/game/";
-                string paramcover = masterrecord.MobyData.MobyPlatformName + "/" + masterrecord.MobyData.MobyURLName + "/cover-art";
+                string paramcover = masterrecord.MOBYPlatformAlias + "/" + masterrecord.MOBYAlias + "/cover-art";
                 string coverPage = ReturnWebpage(baseurlcover, paramcover, 10000);
 
                 // convert page string to htmldoc
@@ -275,7 +276,7 @@ namespace MedLaunch.Classes
                 // screenshots
                 // query the screenshots page
                 string baseurlscreen = "http://www.mobygames.com/game/";
-                string paramscreen = masterrecord.MobyData.MobyPlatformName + "/" + masterrecord.MobyData.MobyURLName + "/screenshots";
+                string paramscreen = masterrecord.MOBYPlatformAlias + "/" + masterrecord.MOBYAlias + "/screenshots";
                 string screenPage = ReturnWebpage(baseurlscreen, paramscreen, 10000);
 
                 // convert page string to htmldoc
@@ -339,8 +340,7 @@ namespace MedLaunch.Classes
             // get all platforms
             List<GSystem> systems = GSystem.GetSystems();
             List<MobyPlatformGame> allGames = new List<MobyPlatformGame>();
-
-            int idCount = 1;
+            
 
             // iterate through each system
             foreach (GSystem s in systems)

@@ -1,6 +1,5 @@
 ﻿using MahApps.Metro.Controls.Dialogs;
 using MedLaunch.Classes.GamesLibrary;
-using MedLaunch.Classes.MasterScraper;
 using MedLaunch.Classes.TheGamesDB;
 using MedLaunch.Models;
 using System;
@@ -19,7 +18,7 @@ namespace MedLaunch.Classes.Scraper
     public class ScraperHandler
     {
         /* Properties */
-        public ScraperMainSearch ScraperSearch { get; set; }
+        public ScraperSearch SSearch { get; set; }
         public ScraperMaster MasterRecord { get; set; }
         public GlobalSettings _GlobalSettings { get; set; }
         public MainWindow mw { get; set; }
@@ -34,18 +33,18 @@ namespace MedLaunch.Classes.Scraper
         /// <param name="gdbId"></param>
         public ScraperHandler(int gdbId, int gameId)
         {
-            ScraperSearch = new ScraperMainSearch();
-            MasterRecord = ScraperSearch.GLSC.MasterPlatformList.Where(a => a.GamesDbId == gdbId).FirstOrDefault();
-            _GlobalSettings = ScraperSearch._GlobalSettings;
+            SSearch = new ScraperSearch();
+            MasterRecord = ScraperMaster.GetMasterList().Where(a => a.gid == gdbId).FirstOrDefault();
+            _GlobalSettings = SSearch._GlobalSettings;
             mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             GameId = gameId;
         }
 
         public ScraperHandler(int gdbId, int gameId, bool MainWindowRequired)
         {
-            ScraperSearch = new ScraperMainSearch();
-            MasterRecord = ScraperSearch.GLSC.MasterPlatformList.Where(a => a.GamesDbId == gdbId).FirstOrDefault();
-            _GlobalSettings = ScraperSearch._GlobalSettings;
+            SSearch = new ScraperSearch();
+            MasterRecord = ScraperMaster.GetMasterList().Where(a => a.gid == gdbId).FirstOrDefault();
+            _GlobalSettings = SSearch._GlobalSettings;
             if (MainWindowRequired == true)
                 mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             GameId = gameId;
@@ -56,7 +55,7 @@ namespace MedLaunch.Classes.Scraper
         public async static void ScrapeGamesMultiple(List<GamesLibraryModel> list, ScrapeType scrapeType)
         {
             // instantiate instance of this class
-            ScraperMainSearch gs = new ScraperMainSearch();
+            ScraperSearch gs = new ScraperSearch();
 
             // get mainwindow 
             MainWindow MWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
@@ -102,7 +101,7 @@ namespace MedLaunch.Classes.Scraper
                 controller.Maximum = numGames;
                 int i = 0;
                 // iterate through each local game and attempt to match it with the master list
-                foreach (var g in gs.LocalGames)
+                for (int ga = 0; ga < numGames; ga++)
                 {
                     if (controller.IsCanceled)
                     {
@@ -111,8 +110,8 @@ namespace MedLaunch.Classes.Scraper
                     }
                     i++;
                     controller.SetProgress(i);
-                    controller.SetMessage("Attempting local search match for:\n" + g.gameName + " (" + GSystem.GetSystemCode(g.systemId) + ")" + "\n(" + i + " of " + numGames + ")");
-                    List<ScraperMaster> results = gs.SearchGameLocal(g.gameName, g.systemId, g.gameId).ToList();
+                    controller.SetMessage("Attempting local search match for:\n" + gs.LocalGames[ga].gameName + " (" + GSystem.GetSystemCode(gs.LocalGames[ga].systemId) + ")" + "\n(" + i + " of " + numGames + ")");
+                    List<ScraperMaster> results = gs.SearchGameLocal(gs.LocalGames[ga].gameName, gs.LocalGames[ga].systemId, gs.LocalGames[ga].gameId).ToList();
 
                     if (results.Count == 0)
                     {
@@ -121,7 +120,9 @@ namespace MedLaunch.Classes.Scraper
                     if (results.Count == 1)
                     {
                         // one result returned - add GdbId to the Game table
-                        Game.SetGdbId(g.gameId, results.Single().GamesDbId);
+                        Game.SetGdbId(gs.LocalGames[ga].gameId, results.Single().gid);
+                        // also add it to our locagames object (so it is not skipped in the next part)
+                        gs.LocalGames[ga].gdbId = results.Single().gid;
                     }
                 }
 
@@ -201,7 +202,7 @@ namespace MedLaunch.Classes.Scraper
         public async static void ScrapeGames(int systemId, ScrapeType scrapeType)
         {
             // instantiate instance of this class
-            ScraperMainSearch gs = new ScraperMainSearch();
+            ScraperSearch gs = new ScraperSearch();
 
             // get mainwindow 
             MainWindow MWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
@@ -269,7 +270,7 @@ namespace MedLaunch.Classes.Scraper
                     if (results.Count == 1)
                     {
                         // one result returned - add GdbId to the Game table
-                        Game.SetGdbId(g.gameId, results.Single().GamesDbId);                         
+                        Game.SetGdbId(g.gameId, results.Single().gid);                         
                     }
                 }
 
@@ -356,11 +357,11 @@ namespace MedLaunch.Classes.Scraper
         public void ScrapeGame(ProgressDialogController controller, string message)
         {
             // create data object for results that are returned
-            GamesLibraryScrapedContent glsc = new Classes.GamesLibraryScrapedContent();
+            //ScrapeDB glsc = new ScrapeDB();
             ScrapedGameData gameData = new ScrapedGameData();
             ScrapedGameObjectWeb gameObject = new ScrapedGameObjectWeb();
             gameObject.Data = gameData;
-            gameObject.GdbId = MasterRecord.GamesDbId;
+            gameObject.GdbId = MasterRecord.gid;
 
             // check for manuals
             if (_GlobalSettings.scrapeManuals == true)
@@ -368,7 +369,7 @@ namespace MedLaunch.Classes.Scraper
                 if (gameObject.Manuals == null)
                     gameObject.Manuals = new List<string>();
 
-                gameObject.Manuals = MasterRecord.IDDBManual;
+                gameObject.Manuals = MasterRecord.Game_Docs;
             }
             
 
@@ -391,18 +392,18 @@ namespace MedLaunch.Classes.Scraper
 
             // gameObject should now be populated - create folder structure on disk if it does not already exist
             controller.SetMessage(message + "Determining local folder structure");
-            glsc.CreateFolderStructure(gameObject.GdbId);
+            ScrapeDB.CreateFolderStructure(gameObject.GdbId);
 
             // save the object to json
             controller.SetMessage(message + "Saving game information");
-            glsc.SaveJson(gameObject);
+            ScrapeDB.SaveJson(gameObject);
 
             // Download all the files
             if (_GlobalSettings.scrapeBanners == true || _GlobalSettings.scrapeBoxart == true || _GlobalSettings.scrapeFanart == true || _GlobalSettings.scrapeManuals == true ||
                 _GlobalSettings.scrapeMedia == true || _GlobalSettings.scrapeScreenshots == true)
             {
                 controller.SetMessage(message + "Downloading media");
-                ContentDownloadManager(gameObject, controller, glsc, message + "Downloading media...\n");
+                ContentDownloadManager(gameObject, controller, message + "Downloading media...\n");
             }
 
 
@@ -423,9 +424,9 @@ namespace MedLaunch.Classes.Scraper
         /// </summary>
         /// <param name="o"></param>
         /// <param name="controller"></param>
-        public static void ContentDownloadManager(ScrapedGameObjectWeb o, ProgressDialogController controller, GamesLibraryScrapedContent glsc, string message)
+        public static void ContentDownloadManager(ScrapedGameObjectWeb o, ProgressDialogController controller, string message)
         {
-            string baseDir = glsc.BaseContentDirectory + @"\" + o.GdbId.ToString() + @"\";
+            string baseDir = ScrapeDB.BaseContentDirectory + @"\" + o.GdbId.ToString() + @"\";
             int total;
             int count;
             
@@ -561,6 +562,7 @@ namespace MedLaunch.Classes.Scraper
                 }
                 catch (Exception e)
                 {
+                    Console.WriteLine(e);
                     wc.Dispose();
                 }
                 finally { wc.Dispose(); }
@@ -655,8 +657,8 @@ namespace MedLaunch.Classes.Scraper
             if (data == null)
                 data = new LibraryDataGDBLink();
 
-            GamesLibraryScrapedContent gd = new GamesLibraryScrapedContent();
-            ScrapedGameObject o = gd.GetScrapedGameObject(gameId, gdbId);
+            //ScrapeDB gd = new ScrapeDB();
+            ScrapedGameObject o = ScrapeDB.GetScrapedGameObject(gameId, gdbId);
 
             data.GDBId = o.GdbId;
             data.Coop = o.Data.Coop;

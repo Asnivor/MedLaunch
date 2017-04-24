@@ -7,6 +7,7 @@ using MedLaunch.Models;
 
 namespace MedLaunch.Classes
 {
+    /*
     public static class GamesLibData
     {
         private static List<Game> _games = new List<Game>();
@@ -36,4 +37,5 @@ namespace MedLaunch.Classes
             }
         }
     }
+    */
 }

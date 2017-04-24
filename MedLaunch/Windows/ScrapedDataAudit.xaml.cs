@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.SimpleChildWindow;
+using MedLaunch.Classes.Scraper;
 using MedLaunch.Models;
 using Newtonsoft.Json;
 using System;
@@ -34,15 +35,7 @@ namespace MedLaunch
 
             Data = new List<FolderData>();
 
-            // load the MasterGames.json
-            if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\Data\\System\\MasterGames.json"))
-            {
-                MessageBox.Show("Unable to locate the MasterGames.json file! MedLaunch re-install may be necessary..");
-                this.Close();
-            }
-
-            string json = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "\\Data\\System\\MasterGames.json");
-            Master = JsonConvert.DeserializeObject<List<ScraperMaster>>(json);
+            Master = ScraperMaster.GetMasterList();
 
             // enumerate game data folder
             BaseFolder = AppDomain.CurrentDomain.BaseDirectory + "\\Data\\Games";
@@ -64,15 +57,15 @@ namespace MedLaunch
 
                 // find gdbid from Master
                 var g = (from a in Master
-                         where a.GamesDbId == n
+                         where a.gid == n
                          select a).FirstOrDefault();
 
                 // is result empty?
                 if (g == null)
                     continue;
 
-                fd.GameName = g.TGDBData.GamesDBTitle;
-                fd.System = GSystem.GetSystemName(Convert.ToInt32(g.MedLaunchSystemId));
+                fd.GameName = g.GDBTitle;
+                fd.System = g.GDBPlatformName; //GSystem.GetSystemName(Convert.ToInt32(g.MedLaunchSystemId));
 
                 // now check whether it is linked anywhere in the database
                 var search = from a in Game.GetGames()

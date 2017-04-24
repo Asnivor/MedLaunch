@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedLaunch.Models
+namespace MedLaunch.Classes.Scraper
 {
     public class ScrapedGameData
     {

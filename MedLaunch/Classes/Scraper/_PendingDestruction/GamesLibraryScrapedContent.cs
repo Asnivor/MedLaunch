@@ -18,6 +18,7 @@ using System.Threading;
 
 namespace MedLaunch.Classes
 {
+    /*
     // class for scraped sidebar data - instantiated once on main page then passed around (loads masterscraper data from json file once)
     public class GamesLibraryScrapedContent
     {
@@ -40,7 +41,7 @@ namespace MedLaunch.Classes
             Directory.CreateDirectory(BaseContentDirectory);
         }
 
-        /* METHODS */
+       
 
         public void SaveJson(ScrapedGameObjectWeb o)
         {
@@ -135,4 +136,5 @@ namespace MedLaunch.Classes
             MasterPlatformList = JsonConvert.DeserializeObject<List<ScraperMaster>>(json);
         }
     }
+    */
 }

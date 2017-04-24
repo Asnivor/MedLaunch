@@ -11,11 +11,6 @@ namespace MedLaunch.Classes.GamesLibrary
 {
     public class GamesLibrarySorting
     {
-        public static void OnSort()
-        {
-
-        }
-
         public static void AddSortColumn(DataGrid sender, string sortColumn, ListSortDirection direction)
         {
             var cView = CollectionViewSource.GetDefaultView(sender.ItemsSource);

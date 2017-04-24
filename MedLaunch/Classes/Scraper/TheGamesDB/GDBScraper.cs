@@ -7,6 +7,7 @@ using MedLaunch.Models;
 using MahApps.Metro.Controls.Dialogs;
 using Newtonsoft.Json;
 using System.IO;
+using MedLaunch.Classes.Scraper;
 
 namespace MedLaunch.Classes.TheGamesDB
 {
@@ -19,7 +20,7 @@ namespace MedLaunch.Classes.TheGamesDB
         public static ScrapedGameObjectWeb ScrapeGame(ScrapedGameObjectWeb o, ScraperOrder order, ProgressDialogController controller, ScraperMaster masterrecord, string message)
         {
             bool priority;
-            message = message + "Downloading information for: " + masterrecord.TGDBData.GamesDBTitle + "\n(" + masterrecord.TGDBData.GamesDBPlatformName + ")";
+            message = message + "Downloading information for: " + masterrecord.GDBTitle + "\n(" + masterrecord.GDBPlatformName + ")";
             if (order == ScraperOrder.Primary) { message = "Primary Scraping (thegamesdb)\n" + message; }
             else { message = "Secondary Scraping (thegamesdb)\n" + message; }
             string BaseImgUrl = "http://thegamesdb.net/banners/";
@@ -30,8 +31,8 @@ namespace MedLaunch.Classes.TheGamesDB
                 controller.SetMessage(message);
                 priority = true;    // primary
                 message = 
-                o.Data.Title = masterrecord.TGDBData.GamesDBTitle;
-                o.Data.Platform = masterrecord.TGDBData.GamesDBPlatformName;
+                o.Data.Title = masterrecord.GDBTitle;
+                o.Data.Platform = masterrecord.GDBPlatformName;
             }
             else
             {
@@ -39,9 +40,9 @@ namespace MedLaunch.Classes.TheGamesDB
                 controller.SetMessage(message);
                 priority = false;    // primary
                 if (o.Data.Title == null)
-                    o.Data.Title = masterrecord.TGDBData.GamesDBTitle;
+                    o.Data.Title = masterrecord.GDBTitle;
                 if (o.Data.Platform == null)
-                    o.Data.Platform = masterrecord.TGDBData.GamesDBPlatformName;
+                    o.Data.Platform = masterrecord.GDBPlatformName;
             }
             
             if (priority == true)
@@ -200,6 +201,7 @@ namespace MedLaunch.Classes.TheGamesDB
             return o;
         }
 
+        /*
         /// <summary>
         /// Scrape the full master list (basic) of games from thegamesdb.net
         /// and save to json file in VS project (not bin).
@@ -294,6 +296,7 @@ namespace MedLaunch.Classes.TheGamesDB
                 File.WriteAllText(filePath, json);
             }
         }
+        */
 
     }
 }
