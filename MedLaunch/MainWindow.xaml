@@ -6730,7 +6730,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     <Expander IsExpanded="True" BorderThickness="0" Header="SNES (Faust) Resolution">
 
                                         <StackPanel>
-
+                                            <CheckBox x:Name="cfg_snes_faust__correct_aspect">Correct Aspect Ratio</CheckBox>
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
@@ -7646,6 +7646,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
@@ -7717,6 +7720,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                 <Label Name="cfglbl_vb__debugger__memcharenc" Grid.Column="0" Grid.Row="9">Debugger Char Encoding</Label>
                                                 <TextBox x:Name="cfg_vb__debugger__memcharenc" Grid.Column="1" Grid.Row="9" />
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="10" VerticalAlignment="Center" Margin="3">
+                                                    <Label Name="cfglbl_vb__ledonscale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">LED ON Duration to RGB Conversion Coefficient</Label>
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="1" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_vb__ledonscale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_vb__ledonscale"/>
+                                                </DockPanel>
 
 
 
@@ -9541,8 +9551,10 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificWswan1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="WonderSwan Specific Settings">
                                         <StackPanel Margin="10">
-                                            <CheckBox x:Name="cfg_wswan__rotateinput">Virtually Rotate D-Pads With Screen</CheckBox>
                                             
+                                            <!--
+                                            <CheckBox x:Name="cfg_wswan__rotateinput">Virtually Rotate D-Pads With Screen</CheckBox>
+                                            -->
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
@@ -9575,52 +9587,58 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
 
-                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                <Label Name="cfglbl_wswan__input__builtin" Grid.Column="0" Grid.Row="0">Input Device</Label>
+                                                <ComboBox x:Name="cfg_wswan__input__builtin" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="0">
+                                                    <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepadraa">Gamepad (Rotation Auto-Adjust)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_wswan__bday" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Birth Day</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_wswan__bday, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="31" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_wswan__bday"/>
                                                 </DockPanel>
 
-                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_wswan__bmonth" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Birth Month</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_wswan__bmonth, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="12" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_wswan__bmonth"/>
                                                 </DockPanel>
 
-                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_wswan__byear" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Birth Year</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_wswan__byear, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="9999" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_wswan__byear"/>
                                                 </DockPanel>
 
-                                                <Label Grid.Column="0" Grid.Row="3">Name</Label>
-                                                <TextBox x:Name="cfg_wswan__name" Grid.Column="1" Grid.Row="3" />
+                                                <Label Grid.Column="0" Grid.Row="4">Name</Label>
+                                                <TextBox x:Name="cfg_wswan__name" Grid.Column="1" Grid.Row="4" />
 
-                                                <Label Name="cfglbl_wswan__sex" Grid.Column="0" Grid.Row="4">Sex</Label>
-                                                <ComboBox x:Name="cfg_wswan__sex" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="4">
+                                                <Label Name="cfglbl_wswan__sex" Grid.Column="0" Grid.Row="5">Sex</Label>
+                                                <ComboBox x:Name="cfg_wswan__sex" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="5">
                                                     <ComboBoxItem Tag="male">Male</ComboBoxItem>
                                                     <ComboBoxItem Tag="female">Female</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="cfglbl_wswan__blood" Grid.Column="0" Grid.Row="5">Blood Type</Label>
-                                                <ComboBox x:Name="cfg_wswan__blood" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="5">
+                                                <Label Name="cfglbl_wswan__blood" Grid.Column="0" Grid.Row="6">Blood Type</Label>
+                                                <ComboBox x:Name="cfg_wswan__blood" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="6">
                                                     <ComboBoxItem Tag="a">A</ComboBoxItem>
                                                     <ComboBoxItem Tag="b">B</ComboBoxItem>
                                                     <ComboBoxItem Tag="o">O</ComboBoxItem>
                                                     <ComboBoxItem Tag="ab">AB</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="cfglbl_wswan__languag" Grid.Column="0" Grid.Row="6">Language</Label>
-                                                <ComboBox x:Name="cfg_wswan__language" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="6">
+                                                <Label Name="cfglbl_wswan__languag" Grid.Column="0" Grid.Row="7">Language</Label>
+                                                <ComboBox x:Name="cfg_wswan__language" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="7">
                                                     <ComboBoxItem Tag="japanese">Japanese</ComboBoxItem>
                                                     <ComboBoxItem Tag="english">English</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="cfglbl_wswan__debugger__disfontsize" Grid.Column="0" Grid.Row="7">Disassembly Font Size</Label>
-                                                <ComboBox x:Name="cfg_wswan__debugger__disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="7">
+                                                <Label Name="cfglbl_wswan__debugger__disfontsize" Grid.Column="0" Grid.Row="8">Disassembly Font Size</Label>
+                                                <ComboBox x:Name="cfg_wswan__debugger__disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="8">
                                                     <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
@@ -9628,8 +9646,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="9x18">9x18 (CJK Support)</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="cfglbl_wswan__debugger__memcharenc" Grid.Column="0" Grid.Row="8">Debugger Char Encoding</Label>
-                                                <TextBox x:Name="cfg_wswan__debugger__memcharenc" Grid.Column="1" Grid.Row="8" />
+                                                <Label Name="cfglbl_wswan__debugger__memcharenc" Grid.Column="0" Grid.Row="9">Debugger Char Encoding</Label>
+                                                <TextBox x:Name="cfg_wswan__debugger__memcharenc" Grid.Column="1" Grid.Row="9" />
                                             </Grid>
                                         </StackPanel>
                                     </Expander>

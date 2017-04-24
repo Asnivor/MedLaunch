@@ -316,6 +316,11 @@ namespace MedLaunch.Models
                 db.Game.UpdateRange(toUpdate);
                 db.Game.AddRange(toAdd);
                 db.SaveChanges();
+
+                App _App = (App)Application.Current;
+                if (_App.GamesLibrary == null)
+                    return;
+
                 if (toAdd.Count > 0)
                     GamesLibraryVisualHandler.DoGameAdd(toAdd);
                 if (toUpdate.Count > 0)

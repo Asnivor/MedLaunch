@@ -692,6 +692,9 @@ namespace MedLaunch.Models
         public double? psx__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
 
         // SNES (Faust)
+
+        public bool? snes_faust__correct_aspect { get; set; }
+
         public bool snes_faust__input__sport1__multitap { get; set; }
         public bool snes_faust__input__sport2__multitap { get; set; }
 
@@ -813,6 +816,8 @@ namespace MedLaunch.Models
         public double? vb__yscale { get; set; }                       // 0.01 through 256
         public double? vb__yscalefs { get; set; }                     // 0.01 through 256
 
+        public double? vb__ledonscale { get; set; }                   // 1 through 2    
+
         public bool? vb__shader__goat__fprog { get; set; }
         public double? vb__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
         public string vb__shader__goat__pat { get; set; }
@@ -856,6 +861,8 @@ namespace MedLaunch.Models
         public bool? wswan__shader__goat__slen { get; set; }
         public double? wswan__shader__goat__tp { get; set; }              // 0.00 through 1.00
         public double? wswan__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
+
+        public string wswan__input__builtin { get; set; }
 
         public static ConfigBaseSettings GetConfigDefaults()
         {
@@ -1523,6 +1530,8 @@ namespace MedLaunch.Models
                 psx__shader__goat__vdiv = 0.50,
 
                 // snes faust
+                snes_faust__correct_aspect = true,
+
                 snes_faust__input__sport1__multitap = false,
                 snes_faust__input__sport2__multitap = false,
                 snes_faust__input__port1 = "gamepad",               // placed
@@ -1642,6 +1651,8 @@ namespace MedLaunch.Models
                 vb__yscale = 2,                                       // control placed
                 vb__yscalefs = 1,                                     // control placed
 
+                vb__ledonscale = 1.75,
+
                 vb__shader__goat__fprog = false,
                 vb__shader__goat__hdiv = 0.50,
                 vb__shader__goat__pat = "goatron",
@@ -1685,6 +1696,8 @@ namespace MedLaunch.Models
                 wswan__shader__goat__slen = true,
                 wswan__shader__goat__tp = 0.50,
                 wswan__shader__goat__vdiv = 0.50,
+
+                wswan__input__builtin = "gamepad",
 
 
             };

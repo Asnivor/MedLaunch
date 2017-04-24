@@ -27,13 +27,26 @@ namespace MedLaunch.Models
             return
                 new List<MednafenChangeHistory>
                 {
+                    // 0.9.44.1
+                    new MednafenChangeHistory
+                    {
+                        Version = "0.9.44.1",
+                        Changes = new List<VersionChange>
+                        {
+                            
+                        }
+                    },
+
                     // 0.9.43
                     new MednafenChangeHistory
                     {
                         Version = "0.9.43",
                         Changes = new List<VersionChange>
                         {
-
+                            new VersionChange { Description = "M3U Disc Chooser", ChangeMethod = ChangeType.ToRemove, Item = "which_medium" },
+                            new VersionChange { Description = "snes_faust correct aspect", ChangeMethod = ChangeType.ToRemove, Item = "snes_faust.correct_aspect" },
+                            new VersionChange { Description = "VB brightness", ChangeMethod = ChangeType.ToRemove, Item = "vb.ledonscale" },
+                            //new VersionChange { Description = "WSWAN rotate input", ChangeMethod = ChangeType.ToRemove, Item = "wswan.rotateinput" },
                         }
                     },
 
