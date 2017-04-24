@@ -1,5 +1,6 @@
 ﻿using MahApps.Metro.SimpleChildWindow;
 using MedLaunch.Classes.GamesLibrary;
+using MedLaunch.Classes.Scraper.DBModels;
 using MedLaunch.Models;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,10 @@ namespace MedLaunch.Classes.Scraper
     public class ScraperLookup
     {
         public GlobalSettings _GlobalSettings { get; set; }
-        public ScrapeDB _ScrapeDB { get; set; }
-        public List<ScraperMaster> SystemCollection { get; set; }
-        public List<ScraperMaster> WorkingSearchCollection { get; set; }
-        public List<ScraperMaster> SearchCollection { get; set; }
+        //public ScrapeDB _ScrapeDB { get; set; }
+        public List<MasterView> SystemCollection { get; set; }
+        public List<MasterView> WorkingSearchCollection { get; set; }
+        public List<MasterView> SearchCollection { get; set; }
         public List<MedLaunch.Models.Game> LocalGames { get; set; }
 
         public string SearchString { get; set; }
@@ -25,10 +26,10 @@ namespace MedLaunch.Classes.Scraper
         public ScraperLookup()
         {
             _GlobalSettings = GlobalSettings.GetGlobals();
-            _ScrapeDB = new ScrapeDB();
+            //_ScrapeDB = new ScrapeDB();
 
-            SearchCollection = new List<ScraperMaster>();
-            WorkingSearchCollection = new List<ScraperMaster>();
+            SearchCollection = new List<MasterView>();
+            WorkingSearchCollection = new List<MasterView>();
         }
 
 

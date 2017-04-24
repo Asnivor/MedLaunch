@@ -282,6 +282,7 @@
     <Compile Include="Classes\Scraper\ScrapeDB.cs" />
     <Compile Include="Classes\Scraper\ScrapeDbContext.cs" />
     <Compile Include="Classes\Scraper\ScraperLookup.cs" />
+    <Compile Include="Classes\Scraper\ScraperSearch.cs" />
     <Compile Include="Extensions\FocusExtension.cs" />
     <Compile Include="MedDataGrid.cs" />
     <Compile Include="Windows\AccentStyleWindow.xaml.cs">
@@ -359,7 +360,6 @@
     <Compile Include="Classes\GetBuildTime.cs" />
     <Compile Include="Classes\FuzzySearch.cs" />
     <Compile Include="Classes\Scraper\_PendingDestruction\CreateMasterList.cs" />
-    <Compile Include="Classes\Scraper\ScraperMainSearch.cs" />
     <Compile Include="Classes\Scraper\MobyGames\MobyPageList.cs" />
     <Compile Include="Classes\Scraper\MobyGames\MobyScraper.cs" />
     <Compile Include="Classes\Releases.cs" />

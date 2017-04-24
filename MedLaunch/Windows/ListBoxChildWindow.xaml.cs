@@ -58,7 +58,7 @@ namespace MedLaunch
             this.Title = "Fuzzy Search Results for " + sysName;
             this.Refresh();
 
-            ScraperMainSearch gs = new ScraperMainSearch();
+            ScraperSearch gs = new ScraperSearch();
             // get a list of all games for this platform - higest match first
             List<SearchOrdering> games = gs.ShowPlatformGames(systemId, row.Game);
 

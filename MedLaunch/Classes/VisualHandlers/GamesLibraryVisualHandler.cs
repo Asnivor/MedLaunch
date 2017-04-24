@@ -334,7 +334,7 @@ namespace MedLaunch.Classes
             }
             else
             {
-                ScrapedGameObject o = gd.GetScrapedGameObject(gameId, game.gdbId.Value);
+                ScrapedGameObject o = ScrapeDB.GetScrapedGameObject(gameId, game.gdbId.Value);
 
                 // link is there - SET DATA and control states
                 bool isGameInfoData = false;                            //GameInfo Expander

@@ -1,6 +1,5 @@
 ﻿using FuzzyString;
-using MahApps.Metro.SimpleChildWindow;
-using MedLaunch.Classes.GamesLibrary;
+using MedLaunch.Classes.Scraper.DBModels;
 using MedLaunch.Models;
 using System;
 using System.Collections.Generic;
@@ -8,15 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 
 namespace MedLaunch.Classes.Scraper
 {
-    // master scraper class - handles all scraping operations
-    public class ScraperMainSearch1
+    public class ScraperSearch
     {
-        public ScrapeDB GLSC { get; set; }
         public GlobalSettings _GlobalSettings { get; set; }
 
         public List<ScraperMaster> PlatformGames { get; set; }
@@ -31,27 +26,17 @@ namespace MedLaunch.Classes.Scraper
         public int ManualIterator { get; set; }
         public int CurrentLocalGameId { get; set; }
 
-        // constructor
-        public ScraperMainSearch()
-        {            
-            // get instance of this application
-            App app = ((App)Application.Current);
-            // populate GLSC
-            GLSC = app.ScrapedData;
-            // populate GlobalSettings
+        public ScraperSearch()
+        {
             _GlobalSettings = GlobalSettings.GetGlobals();
 
-            PlatformGames = ScraperMaster.GetMasterList(); //app.ScrapedData.MasterPlatformList;
+            PlatformGames = ScraperMaster.GetMasterList();
             LocalGameFound = false;
             LocalIterationCount = 0;
             ManualIterator = 0;
             SearchCollection = new List<ScraperMaster>();
             WorkingSearchCollection = new List<ScraperMaster>();
         }
-
-        // methods
-
-        
 
         /// <summary>
         /// Return a search list

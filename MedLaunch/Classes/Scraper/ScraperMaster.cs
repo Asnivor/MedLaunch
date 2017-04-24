@@ -20,15 +20,19 @@ namespace MedLaunch.Classes.Scraper
 
         public string MOBYTitle { get; set; }
         public string MOBYAlias { get; set; }
-        public string MOBYPlatformName { get; set; }
+        public string MOBYPlatformName { get; set; } 
         public string MOBYPlatformAlias { get; set; }
         public string MOBYYear { get; set; }
 
         public List<string> Game_Docs { get; set; }
 
+        public static List<ScraperMaster> MasterList { get; set; }
+
         public ScraperMaster()
         {
             Game_Docs = new List<string>();
+            //if (MasterList == null)
+                //MasterList = new List<ScraperMaster>();
         }
 
         public static List<ScraperMaster> GetMasterList()
@@ -36,7 +40,7 @@ namespace MedLaunch.Classes.Scraper
             List<ScraperMaster> mList = new List<ScraperMaster>();
 
             // get from masterview
-            List<MasterView> mv = MasterView.GetMasterView();
+            List<MasterView> mv = ScrapeDB.AllScrapeData; //MasterView.GetMasterView();
 
             // get gamedocs
             List<Game_Doc> docs = Game_Doc.GetDocs();

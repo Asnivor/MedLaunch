@@ -93,6 +93,8 @@ namespace MedLaunch
 
             // instantiate ScrapedContent Object
             ScrapeDB ScrapedData = new ScrapeDB();
+            ScraperMaster.MasterList = ScraperMaster.GetMasterList();
+
             
             // hide the zoom slider (should not be visible to the user)
             dpZoomSlider.Visibility = Visibility.Collapsed;
@@ -3054,13 +3056,14 @@ namespace MedLaunch
 
         private void btnSavePlatformGamesToDisk_Click(object sender, RoutedEventArgs e)
         {
+            /*
             string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
             App app = ((App)Application.Current);
             var platformgames = app.ScrapedData.AllScrapeData;
 
             string json = JsonConvert.SerializeObject(platformgames.ToArray());
             System.IO.File.WriteAllText(@"Data\Settings\thegamesdbplatformgames_" + linkTimeLocal.Replace(" ", "").Replace(":", "").Replace("-", "") + ".json", json);
-
+            */
         }
 
         // unlink selected game
@@ -3100,13 +3103,13 @@ namespace MedLaunch
 
         private void btnScrapingPickGames_Click(object sender, RoutedEventArgs e)
         {
-            ScraperMainSearch.PickGames(dgGameList);
+            ScraperLookup.PickGames(dgGameList);
             
         }
 
         private void btnScrapingPickGame_Click(object sender, RoutedEventArgs e)
         {
-            ScraperMainSearch.PickGame(dgGameList);
+            ScraperLookup.PickGame(dgGameList);
             
         }
 

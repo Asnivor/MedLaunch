@@ -12,7 +12,7 @@ namespace MedLaunch.Classes.Scraper
     public class ScrapeDB
     {
         // properties        
-        public static List<ScraperMaster> AllScrapeData { get; set; }
+        public static List<MasterView> AllScrapeData { get; set; }
         public static string BaseContentDirectory { get; set; }
 
         // constructor
@@ -23,7 +23,11 @@ namespace MedLaunch.Classes.Scraper
 
             // load scrape data from sqlite db
             if (AllScrapeData == null)
-                AllScrapeData = ScraperMaster.GetMasterList();
+            {
+                //AllScrapeData = ScraperMaster.GetMasterList();
+                ReloadMasterObject();
+            }
+                
 
             // ensure initial directory structure is created
             Directory.CreateDirectory(BaseContentDirectory);
@@ -35,7 +39,7 @@ namespace MedLaunch.Classes.Scraper
         /// saves scraped data object to json in the gamedata directory
         /// </summary>
         /// <param name="o"></param>
-        public void SaveJson(ScrapedGameObjectWeb o)
+        public static void SaveJson(ScrapedGameObjectWeb o)
         {
             string gPath = AppDomain.CurrentDomain.BaseDirectory + @"Data\Games\" + o.GdbId.ToString() + @"\" + o.GdbId.ToString() + ".json";
             string json = JsonConvert.SerializeObject(o, Formatting.Indented);
@@ -48,7 +52,7 @@ namespace MedLaunch.Classes.Scraper
         /// <param name="GameId"></param>
         /// <param name="GdbId"></param>
         /// <returns></returns>
-        public ScrapedGameObject GetScrapedGameObject(int GameId, int GdbId)
+        public static ScrapedGameObject GetScrapedGameObject(int GameId, int GdbId)
         {
             //Game link = Game.GetGame(GameId);
 
@@ -120,7 +124,7 @@ namespace MedLaunch.Classes.Scraper
         /// create gamedata game folder structure
         /// </summary>
         /// <param name="gdbId"></param>
-        public void CreateFolderStructure(int gdbId)
+        public static void CreateFolderStructure(int gdbId)
         {
             string basePath = BaseContentDirectory + @"\" + gdbId.ToString() + @"\";
             // boxart
