@@ -235,6 +235,9 @@ namespace MedLaunch.Classes.TheGamesDB
             XmlNode platformNode = root.FirstChild.NextSibling;
             GDBNETGame game = new GDBNETGame();
 
+            if (platformNode == null)
+                return game;
+
             IEnumerator ienumGame = platformNode.GetEnumerator();
             XmlNode attributeNode;
             while (ienumGame.MoveNext())
