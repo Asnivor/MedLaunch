@@ -146,6 +146,10 @@ namespace MedLaunch.Models
                 case 4926:
                     r = "WonderSwan Color";
                     break;
+                case 4936:
+                    r = "Famicon Disk System";
+                    break;
+
                 default:
                     break;
             }

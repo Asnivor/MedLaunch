@@ -27,13 +27,47 @@ namespace MedLaunch.Models
             return
                 new List<MednafenChangeHistory>
                 {
+                    // 0.9.45.1
+                    new MednafenChangeHistory
+                    {
+                        Version = "0.9.45.1",
+                        Changes = new List<VersionChange>
+                        {
+
+                        }
+                    },
+
                     // 0.9.44.1
                     new MednafenChangeHistory
                     {
                         Version = "0.9.44.1",
                         Changes = new List<VersionChange>
                         {
-                            
+                            new VersionChange { Description = "SS Gun", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port1 gun", ChangeItem = "ss.input.port1 gamepad" },
+                            new VersionChange { Description = "SS Gun", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port2 gun", ChangeItem = "ss.input.port2 gamepad" },
+                            new VersionChange { Description = "SS Gun", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port3 gun", ChangeItem = "ss.input.port3 gamepad" },
+                            new VersionChange { Description = "SS Gun", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port4 gun", ChangeItem = "ss.input.port4 gamepad" },
+                            new VersionChange { Description = "SS Gun", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port5 gun", ChangeItem = "ss.input.port5 gamepad" },
+                            new VersionChange { Description = "SS Gun", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port6 gun", ChangeItem = "ss.input.port6 gamepad" },
+                            new VersionChange { Description = "SS Gun", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port7 gun", ChangeItem = "ss.input.port7 gamepad" },
+                            new VersionChange { Description = "SS Gun", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port8 gun", ChangeItem = "ss.input.port8 gamepad" },
+                            new VersionChange { Description = "SS Gun", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port9 gun", ChangeItem = "ss.input.port9 gamepad" },
+                            new VersionChange { Description = "SS Gun", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port10 gun", ChangeItem = "ss.input.port10 gamepad" },
+                            new VersionChange { Description = "SS Gun", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port11 gun", ChangeItem = "ss.input.port11 gamepad" },
+                            new VersionChange { Description = "SS Gun", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port12 gun", ChangeItem = "ss.input.port12 gamepad" },
+
+                            new VersionChange { Description = "SS xhair", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port1.gun_chairs" },
+                            new VersionChange { Description = "SS xhair", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port2.gun_chairs" },
+                            new VersionChange { Description = "SS xhair", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port3.gun_chairs" },
+                            new VersionChange { Description = "SS xhair", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port4.gun_chairs" },
+                            new VersionChange { Description = "SS xhair", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port5.gun_chairs" },
+                            new VersionChange { Description = "SS xhair", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port6.gun_chairs" },
+                            new VersionChange { Description = "SS xhair", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port7.gun_chairs" },
+                            new VersionChange { Description = "SS xhair", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port8.gun_chairs" },
+                            new VersionChange { Description = "SS xhair", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port9.gun_chairs" },
+                            new VersionChange { Description = "SS xhair", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port10.gun_chairs" },
+                            new VersionChange { Description = "SS xhair", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port11.gun_chairs" },
+                            new VersionChange { Description = "SS xhair", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port12.gun_chairs" },
                         }
                     },
 

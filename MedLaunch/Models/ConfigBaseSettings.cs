@@ -528,17 +528,29 @@ namespace MedLaunch.Models
         public bool? ss__cd_sanity { get; set; }
         public double? ss__input__mouse_sensitivity { get; set; }           // 0.125 through 2
         public string ss__input__port1 { get; set; }
+        public string ss__input__port1__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public string ss__input__port2 { get; set; }
+        public string ss__input__port2__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public string ss__input__port3 { get; set; }
+        public string ss__input__port3__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public string ss__input__port4 { get; set; }
+        public string ss__input__port4__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public string ss__input__port5 { get; set; }
+        public string ss__input__port5__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public string ss__input__port6 { get; set; }
+        public string ss__input__port6__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public string ss__input__port7 { get; set; }
+        public string ss__input__port7__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public string ss__input__port8 { get; set; }
+        public string ss__input__port8__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public string ss__input__port9 { get; set; }
+        public string ss__input__port9__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public string ss__input__port10 { get; set; }
+        public string ss__input__port10__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public string ss__input__port11 { get; set; }
+        public string ss__input__port11__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public string ss__input__port12 { get; set; }
+        public string ss__input__port12__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public bool? ss__midsync { get; set; }
         public bool? ss__region_autodetect { get; set; }
         public string ss__region_default { get; set; }
@@ -1377,17 +1389,29 @@ namespace MedLaunch.Models
                 ss__cd_sanity = true,                                       // placed
                 ss__input__mouse_sensitivity = 0.5,                         // placed
                 ss__input__port1 = "gamepad",                               // placed
+                ss__input__port1__gun_chairs = "0xFF0000",
                 ss__input__port2 = "gamepad",                               // placed
+                ss__input__port2__gun_chairs = "0x00FF00",
                 ss__input__port3 = "gamepad",                               // placed
+                ss__input__port3__gun_chairs = "0xFF00FF",
                 ss__input__port4 = "gamepad",                               // placed
+                ss__input__port4__gun_chairs = "0xFF8000",
                 ss__input__port5 = "gamepad",                               // placed
+                ss__input__port5__gun_chairs = "0xFFFF00",
                 ss__input__port6 = "gamepad",                               // placed
+                ss__input__port6__gun_chairs = "0x00FFFF",
                 ss__input__port7 = "gamepad",                               // placed
+                ss__input__port7__gun_chairs = "0x0080FF",
                 ss__input__port8 = "gamepad",                               // placed
+                ss__input__port8__gun_chairs = "0x8000FF",
                 ss__input__port9 = "gamepad",                               // placed
+                ss__input__port9__gun_chairs = "0xFF80FF",
                 ss__input__port10 = "gamepad",                              // placed
+                ss__input__port10__gun_chairs = "0x00FF80",
                 ss__input__port11 = "gamepad",                              // placed
+                ss__input__port11__gun_chairs = "0x8080FF",
                 ss__input__port12 = "gamepad",                              // placed
+                ss__input__port12__gun_chairs = "0xFF8080",
                 ss__midsync = false,                                        // placed
                 ss__region_autodetect = true,                               // placed
                 ss__region_default = "jp",                                  // placed

@@ -8152,8 +8152,10 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />                                                    
                                                     <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
                                                 </Grid.ColumnDefinitions>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto" />
@@ -8177,14 +8179,14 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
 
-                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                <DockPanel Grid.ColumnSpan="4" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_ss__input__mouse_sensitivity" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Emulated Mouse Sensitivity</Label>
                                                     <Controls:NumericUpDown  Maximum="2" Minimum="0.125" Interval="0.005" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_ss__input__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="0.125" TickPlacement="BottomRight" TickFrequency="0.005" IsSnapToTickEnabled="True" 
                                         Name="cfg_ss__input__mouse_sensitivity"/>
                                                 </DockPanel>
 
-                                                <Label Name="cfglbl_ss__input__port1" Grid.Column="0" Grid.Row="1">Input Device (Virtual) Port 1</Label>
+                                                <Label Name="cfglbl_ss__input__port1" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">Input Device (Virtual) Port 1</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port1" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="1">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
                                                     <ComboBoxItem Tag="gamepad">Digital Gamepad</ComboBoxItem>
@@ -8193,8 +8195,12 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
                                                     <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
                                                     <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
-                                                    <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gun">Light Gun</ComboBoxItem>
+                                                    <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>                                                    
                                                 </ComboBox>
+
+                                                <Label Name="cfglbl_ss__input__port1__gun_chairs" Grid.Column="2" Grid.Row="1">Lightgun Crosshair: </Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="1" x:Name="cfg_ss__input__port1__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port2" Grid.Column="0" Grid.Row="2">Input Device (Virtual) Port 2</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port2" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="2">
@@ -8205,8 +8211,12 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
                                                     <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
                                                     <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gun">Light Gun</ComboBoxItem>
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
+
+                                                <Label Name="cfglbl_ss__input__port2__gun_chairs" Grid.Column="2" Grid.Row="2">Lightgun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="2" x:Name="cfg_ss__input__port2__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port3" Grid.Column="0" Grid.Row="3">Input Device (Virtual) Port 3</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port3" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="3">
@@ -8217,8 +8227,12 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
                                                     <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
                                                     <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gun">Light Gun</ComboBoxItem>
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
+
+                                                <Label Name="cfglbl_ss__input__port3__gun_chairs" Grid.Column="2" Grid.Row="3">Lightgun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="3" x:Name="cfg_ss__input__port3__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port4" Grid.Column="0" Grid.Row="4">Input Device (Virtual) Port 4</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port4" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="4">
@@ -8229,8 +8243,12 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
                                                     <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
                                                     <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gun">Light Gun</ComboBoxItem>
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
+
+                                                <Label Name="cfglbl_ss__input__port4__gun_chairs" Grid.Column="2" Grid.Row="4">Lightgun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="4" x:Name="cfg_ss__input__port4__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port5" Grid.Column="0" Grid.Row="5">Input Device (Virtual) Port 5</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port5" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="5">
@@ -8241,8 +8259,12 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
                                                     <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
                                                     <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gun">Light Gun</ComboBoxItem>
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
+
+                                                <Label Name="cfglbl_ss__input__port5__gun_chairs" Grid.Column="2" Grid.Row="5">Lightgun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="5" x:Name="cfg_ss__input__port5__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port6" Grid.Column="0" Grid.Row="6">Input Device (Virtual) Port 6</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port6" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="6">
@@ -8253,8 +8275,12 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
                                                     <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
                                                     <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gun">Light Gun</ComboBoxItem>
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
+
+                                                <Label Name="cfglbl_ss__input__port6__gun_chairs" Grid.Column="2" Grid.Row="6">Lightgun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="6" x:Name="cfg_ss__input__port6__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port7" Grid.Column="0" Grid.Row="7">Input Device (Virtual) Port 7</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port7" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="7">
@@ -8265,8 +8291,12 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
                                                     <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
                                                     <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gun">Light Gun</ComboBoxItem>
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
+                                                
+                                                <Label Name="cfglbl_ss__input__port7__gun_chairs" Grid.Column="2" Grid.Row="7">Lightgun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="7" x:Name="cfg_ss__input__port7__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port8" Grid.Column="0" Grid.Row="8">Input Device (Virtual) Port 8</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port8" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="8">
@@ -8277,8 +8307,12 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
                                                     <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
                                                     <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gun">Light Gun</ComboBoxItem>
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
+
+                                                <Label Name="cfglbl_ss__input__port8__gun_chairs" Grid.Column="2" Grid.Row="8">Lightgun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="8" x:Name="cfg_ss__input__port8__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port9" Grid.Column="0" Grid.Row="9">Input Device (Virtual) Port 9</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port9" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="9">
@@ -8289,8 +8323,12 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
                                                     <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
                                                     <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gun">Light Gun</ComboBoxItem>
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
+
+                                                <Label Name="cfglbl_ss__input__port9__gun_chairs" Grid.Column="2" Grid.Row="9">Lightgun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="9" x:Name="cfg_ss__input__port9__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port10" Grid.Column="0" Grid.Row="10">Input Device (Virtual) Port 10</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port10" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="10">
@@ -8301,8 +8339,12 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
                                                     <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
                                                     <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gun">Light Gun</ComboBoxItem>
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
+
+                                                <Label Name="cfglbl_ss__input__port10__gun_chairs" Grid.Column="2" Grid.Row="10">Lightgun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="10" x:Name="cfg_ss__input__port10__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port11" Grid.Column="0" Grid.Row="11">Input Device (Virtual) Port 11</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port11" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="11">
@@ -8313,8 +8355,12 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
                                                     <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
                                                     <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gun">Light Gun</ComboBoxItem>
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
+
+                                                <Label Name="cfglbl_ss__input__port11__gun_chairs" Grid.Column="2" Grid.Row="11">Lightgun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="11" x:Name="cfg_ss__input__port11__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port12" Grid.Column="0" Grid.Row="12">Input Device (Virtual) Port 12</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port12" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="12">
@@ -8325,8 +8371,12 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="wheel">Steering Wheel</ComboBoxItem>
                                                     <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
                                                     <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gun">Light Gun</ComboBoxItem>
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
+
+                                                <Label Name="cfglbl_ss__input__port12__gun_chairs" Grid.Column="2" Grid.Row="12">Lightgun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="12" x:Name="cfg_ss__input__port12__gun_chairs" />
 
 
                                             </Grid>
