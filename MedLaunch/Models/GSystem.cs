@@ -227,7 +227,7 @@ namespace MedLaunch.Models
                     supportedFileExtensions = ".sms,.bin", supportedArchiveExtensions = ".zip,.7z",
                         systemDescription = "The Master System (abbreviated to SMS) is a third-generation video game console that was manufactured and released by Sega in 1985 in Japan (as the Sega Mark III), 1986 in North America and 1987 in Europe." },
 
-                new GSystem { systemId = 11, theGamesDBPlatformId = new List<int>  { 7 }, systemCode = "nes", systemName = "NES/Famicon",
+                new GSystem { systemId = 11, theGamesDBPlatformId = new List<int>  { 7, 4936 }, systemCode = "nes", systemName = "NES/Famicon",
                 MobyPlatformName = new List<string> { "nes" },
                     supportedFileExtensions = ".nes,.unf,.fds", supportedArchiveExtensions = ".zip,.7z",
                         systemDescription = "The Nintendo Entertainment System (also abbreviated as NES or simply called Nintendo) is an 8-bit video game console that was released by Nintendo in North America during 1985, in Europe during 1986 and Australia in 1987" },
