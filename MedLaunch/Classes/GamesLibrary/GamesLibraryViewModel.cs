@@ -259,6 +259,31 @@ namespace MedLaunch.Classes.GamesLibrary
             }
         }
 
+        public void AddUpdateEntry(Game game)
+        {
+            List<LibraryDataGDBLink> links = LibraryDataGDBLink.GetLibraryData().ToList();
+
+            if (game != null)
+            {
+                // see if game is already in collection
+                var search = (from a in _DataCollection
+                              where a.ID == game.gameId
+                              select a).FirstOrDefault();
+
+                if (search == null)
+                {
+                    // game does not exist in the view - add it
+                    GamesLibraryModel glm = CreateModelFromGame(game, links);
+                    DataCollection.Add(glm);
+                }
+                else
+                {
+                    // game exists in the view - update it
+                    UpdateEntries(new List<Game> { game });
+                }
+            }          
+        }
+
         public static GamesLibraryModel CreateModelFromGame(Game game, List<LibraryDataGDBLink> links)
         {
             if (links == null)

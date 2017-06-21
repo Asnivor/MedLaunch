@@ -22,8 +22,13 @@ namespace MedLaunch.Classes.Scanning
         public List<PsxDc> PsxGamesList { get; set; }
         public List<PsxName> PsxNames { get; set; }
 
+        public App _App { get; set; }
+
         public DiscScan()
         {
+            _App = (App)Application.Current;
+
+
             // populate SatGamesList
             string satJson = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"Data\System\SaturnGames.json");
             SatGamesList = JsonConvert.DeserializeObject<List<SaturnGame>>(satJson);
@@ -240,10 +245,14 @@ namespace MedLaunch.Classes.Scanning
             else
             {
                 // Add or update the returned GameFile to the database
-                InsertOrUpdateDisk(gameFile, sysId);
+                Game g = InsertOrUpdateDisk(gameFile, sysId);
                 SaveToDatabase();
                 MessageBox.Show("Game: " + gameFile.FileName + " has added to (or updated in) the library", "MedLaunch: Import or Update Completed");
-               // GameListBuilder.UpdateFlag();
+
+                // update GL view
+                _App.GamesLibrary.AddUpdateEntry(g);
+
+                // GameListBuilder.UpdateFlag();
             }
 
         }
@@ -539,7 +548,7 @@ namespace MedLaunch.Classes.Scanning
             return newGame;
         }
 
-        public void InsertOrUpdateDisk(DiscGameFile f, int sysId)
+        public Game InsertOrUpdateDisk(DiscGameFile f, int sysId)
         {
             string firstImage = string.Empty;
             string firstCue = string.Empty;
@@ -552,7 +561,7 @@ namespace MedLaunch.Classes.Scanning
             {
                 // some problem obtaining the image file from the cue
                 MessageBox.Show("There was an issue determining the disc image from the cue/ccd/toc file you are using (" + f.FileName + ").\nPlease check that the cuefile is pointing to a valid (case sensitive) location.\n\n Press OK to skip the import of this game and proceed...", "Disc Image Lookup Issue", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                return null;
             }
 
             firstCue = f.FullPath;
@@ -588,6 +597,8 @@ namespace MedLaunch.Classes.Scanning
 
             // create a game file and process all details
             Game newGame = PopulateGameFile(f, sysId, chkGame);
+
+            return newGame;
             
         }
 
