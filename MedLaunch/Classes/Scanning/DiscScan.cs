@@ -304,6 +304,10 @@ namespace MedLaunch.Classes.Scanning
             bool isNewGame = false;
             bool shouldAddUpdate = true;
 
+            // sanity check
+            if (f == null)
+                return null;
+
             // lookup hash in MasterDAT
             List<DATMerge> lookup = (from i in DAT
                                      where i.SystemId == sysId && i.Roms.Any(l => l.MD5.ToUpper().Trim() == md5Hash)
