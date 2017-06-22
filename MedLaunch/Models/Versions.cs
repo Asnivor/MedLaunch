@@ -80,7 +80,7 @@ namespace MedLaunch.Models
                             new VersionChange { Description = "M3U Disc Chooser", ChangeMethod = ChangeType.ToRemove, Item = "which_medium" },
                             new VersionChange { Description = "snes_faust correct aspect", ChangeMethod = ChangeType.ToRemove, Item = "snes_faust.correct_aspect" },
                             new VersionChange { Description = "VB brightness", ChangeMethod = ChangeType.ToRemove, Item = "vb.ledonscale" },
-                            //new VersionChange { Description = "WSWAN rotate input", ChangeMethod = ChangeType.ToRemove, Item = "wswan.rotateinput" },
+                            new VersionChange { Description = "WSWAN rotate input", ChangeMethod = ChangeType.ToRemove, Item = "wswan.rotateinput" },
                         }
                     },
 
