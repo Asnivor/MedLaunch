@@ -31,14 +31,14 @@
 
 **MedLaunch** is a .NET (Windows only) front-end for the excellent [Mednafen](http://mednafen.fobby.net/) multi-system emulator.
 
-Latest Version: 0.5.0.0
-Compatible with Mednafen: 0.9.39.x - 0.9.43.x
+Latest Version: 0.5.5.0
+Compatible with Mednafen: 0.9.39.x - 0.9.45.x
 
 ### Features
 * Responsive GUI that allows for a wide range of monitor resolutions
 * No installation required
 * Local (SQLite) auto-generated database where all settings are saved
-* Supports Mednafen versions 0.9.39.x through 0.9.43.x
+* Supports Mednafen versions 0.9.39.x through 0.9.45.x
 * Nearly all Mednafen command line parameters available and configurable
 * Mednafen controller configuration available using DirectInput and XInput (changes are saved directly to the mednafen config file rather than MedLaunch database)
 * Built-in games library (with system filters and dynamic search)
@@ -59,7 +59,7 @@ This upcoming changes (and many others) can be found in the current roadmap [her
 
 ### Requirements
 * [Microsoft .NET Framework 4.5.2](https://www.microsoft.com/en-gb/download/details.aspx?id=42643)
-* At least [Mednafen versions 0.9.39.x through 0.9.43.x](http://mednafen.fobby.net/releases/) - 64-bit version required for Saturn games
+* At least [Mednafen versions 0.9.39.x through 0.9.45.x](http://mednafen.fobby.net/releases/) - 64-bit version required for Saturn games
 * Windows 7 and above (may work on Vista but has not been tested)
 * x64 (has not been tested on x86 but should still work on it)
 
