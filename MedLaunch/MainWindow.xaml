@@ -171,6 +171,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                             <Separator />
 
                             <MenuItem Header="Scrape all manual links from replacementdocs.com and add to ScrapeDB" Click="btnRDmanuallist_Click"/>
+                            <MenuItem Header="Match all manuals to games (manual - auto on exact match)" Click="btnParseRDList_Click"/>
+                            
                         </MenuItem>
                         
                         <MenuItem Header="Scraper Source Operations">

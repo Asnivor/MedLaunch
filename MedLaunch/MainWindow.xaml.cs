@@ -3624,6 +3624,7 @@ namespace MedLaunch
 
         private void btnParseRDList_Click(object sender, RoutedEventArgs e)
         {
+            MedLaunch._Debug.ScrapeDB.Game_Doc.ParseManuals();
            // CreateMasterList j = new CreateMasterList();
             //j.ParseReplacementDocsManuals();
         }

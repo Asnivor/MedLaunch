@@ -94,6 +94,7 @@ namespace MedLaunch._Debug.ScrapeDB.ReplacementDocs
                     Game_Doc gd = new Game_Doc();
                     int pid = GDB_Platform.GetPlatforms().Where(a => a.name == m.TGBSystemName).FirstOrDefault().pid;
                     gd.pid = pid;
+                    gd.gameName = m.GameName;
                     gd.downloadUrl = entry;
 
                     Game_Doc.AddDoc(gd);
