@@ -116,7 +116,7 @@ namespace MedLaunch.Classes.Scraper
 
             // enumerate all files in folder (non-recursive)
             string[] fileEntries = Directory.GetFiles(folderPath);
-            foreach (string s in fileEntries) { list.Add(s); }
+            foreach (string s in fileEntries.Where(a => !a.EndsWith(".php"))) { list.Add(s); }
             return list;
         }
 
