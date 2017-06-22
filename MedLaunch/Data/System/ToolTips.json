@@ -393,7 +393,7 @@
   },
   {
     "Command": "nes.input.fcexp",
-    "Description": "Input device for Famicom Expansion Port\n\nnone - none\n\n\narkanoid - Arkanoid Paddle\n\n\nshadow - Space Shadow Gun\n\n\n4player - 4-player Adapter\n\n\nfkb - Family Keyboard\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details.\n\nhypershot - Hypershot Paddles\n\n\nmahjong - Mahjong Controller\n\n\npartytap - Party Tap\n\n\nftrainera - Family Trainer Side A\n\n\nftrainerb - Family Trainer Side B\n\n\noekakids - Oeka Kids Tablet\n\n\nbworld - Barcode World Scanner\n"
+    "Description": "Input device for Famicom Expansion Port\n\nnone - none\n\n\narkanoid - Arkanoid Paddle\n\n\nshadow - Space Shadow Gun\n\n\n4player - 4-player Adapter\n\n\nfkb - Family Keyboard\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details.\n\nhypershot - Hypershot Paddles\n\n\nmahjong - Mahjong Controller\n\n\npartytap - Party Tap\n\n\nftrainera - Family Trainer Side A\n\n\nftrainerb - Family Trainer Side B\n\n\noekakids - Oeka Kids Tablet\n\n\nbworld - Barcode Battler II\n"
   },
   {
     "Command": "nes.input.port1",
@@ -1337,7 +1337,7 @@
   },
   {
     "Command": "ss.cart",
-    "Description": "Expansion cart.\n\nauto - Automatic\n\n\nnone - None\n\n\nbackup - Backup Memory(512KiB)\n\n\nextram1 - 1MiB Extended RAM\n\n\nextram4 - 4MiB Extended RAM\n"
+    "Description": "Expansion cart.\n\nauto - Automatic\n\n\nnone - None\n\n\nbackup - Backup Memory(512KiB)\n\n\nextram1 - 1MiB Extended RAM\n\n\nextram4 - 4MiB Extended RAM\n\n\ncs1ram16 - 16MiB RAM mapped in A-bus CS1\n"
   },
   {
     "Command": "ss.cart.kof95_path",
@@ -1369,51 +1369,99 @@
   },
   {
     "Command": "ss.input.port1",
-    "Description": "Input device for Virtual Port 1\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 1\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port1.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 1.\n\nA value of 0x1000000 disables crosshair drawing."
   },
   {
     "Command": "ss.input.port10",
-    "Description": "Input device for Virtual Port 10\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 10\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port10.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 10.\n\nA value of 0x1000000 disables crosshair drawing."
   },
   {
     "Command": "ss.input.port11",
-    "Description": "Input device for Virtual Port 11\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 11\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port11.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 11.\n\nA value of 0x1000000 disables crosshair drawing."
   },
   {
     "Command": "ss.input.port12",
-    "Description": "Input device for Virtual Port 12\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 12\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port12.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 12.\n\nA value of 0x1000000 disables crosshair drawing."
   },
   {
     "Command": "ss.input.port2",
-    "Description": "Input device for Virtual Port 2\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 2\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port2.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 2.\n\nA value of 0x1000000 disables crosshair drawing."
   },
   {
     "Command": "ss.input.port3",
-    "Description": "Input device for Virtual Port 3\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 3\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port3.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 3.\n\nA value of 0x1000000 disables crosshair drawing."
   },
   {
     "Command": "ss.input.port4",
-    "Description": "Input device for Virtual Port 4\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 4\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port4.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 4.\n\nA value of 0x1000000 disables crosshair drawing."
   },
   {
     "Command": "ss.input.port5",
-    "Description": "Input device for Virtual Port 5\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 5\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port5.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 5.\n\nA value of 0x1000000 disables crosshair drawing."
   },
   {
     "Command": "ss.input.port6",
-    "Description": "Input device for Virtual Port 6\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 6\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port6.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 6.\n\nA value of 0x1000000 disables crosshair drawing."
   },
   {
     "Command": "ss.input.port7",
-    "Description": "Input device for Virtual Port 7\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 7\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port7.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 7.\n\nA value of 0x1000000 disables crosshair drawing."
   },
   {
     "Command": "ss.input.port8",
-    "Description": "Input device for Virtual Port 8\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 8\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port8.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 8.\n\nA value of 0x1000000 disables crosshair drawing."
   },
   {
     "Command": "ss.input.port9",
-    "Description": "Input device for Virtual Port 9\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 9\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port9.gun_chairs",
+    "Description": "Crosshairs color for lightgun on virtual port 9.\n\nA value of 0x1000000 disables crosshair drawing."
   },
   {
     "Command": "ss.input.sport1.multitap",
@@ -1924,6 +1972,10 @@
     "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
   },
   {
+    "Command": "snes_faust.correct_aspect",
+    "Description": "Correct aspect ratio."
+  },
+  {
     "Command": "snes_faust.input.port1",
     "Description": "Input device for Virtual Port 1\n\nnone - none\n\n\ngamepad - Gamepad\n"
   },
@@ -2232,6 +2284,10 @@
     "Description": "Display latency reduction hack.\n\nReduces latency in games by displaying the framebuffer 20ms earlier.  This hack has some potential of causing graphical glitches, so it is disabled by default."
   },
   {
+    "Command": "vb.ledonscale",
+    "Description": "LED on duration to linear RGB conversion coefficient.\n\nSetting this higher than the default will cause excessive white crush in at least one game.  A value of 1.0 is close to ideal, other than causing the image to be rather dark."
+  },
+  {
     "Command": "vb.liprescale",
     "Description": "Line Interlaced prescale."
   },
@@ -2352,16 +2408,16 @@
     "Description": "Birth Year"
   },
   {
+    "Command": "wswan.input.builtin",
+    "Description": "Input device for Built-In\n\ngamepad - Gamepad\n\n\ngamepadraa - Gamepad(Rotation Auto-Adjust)\n"
+  },
+  {
     "Command": "wswan.language",
     "Description": "Language games should display text in.\n\nThe only game this setting is known to affect is \"Digimon Tamers - Battle Spirit\".>\n\njapanese - Japanese\n\n\nenglish - English\n"
   },
   {
     "Command": "wswan.name",
     "Description": "Name"
-  },
-  {
-    "Command": "wswan.rotateinput",
-    "Description": "Virtually rotate the D-pads when the screen is rotated."
   },
   {
     "Command": "wswan.sex",
@@ -2657,7 +2713,7 @@
   },
   {
     "Command": "sound.driver",
-    "Description": "Select sound driver.\n\nThe following choices are possible, sorted by preference, high to low, when \"default\" driver is used, but dependent on being compiled in.>\n\ndefault - Default\nSelects the default sound driver.\n\nalsa - ALSA\nThe default for Linux(if available).\n\noss - Open Sound System\nThe default for non-Linux UN*X/POSIX/BSD systems, or anywhere ALSA is unavailable. If the ALSA driver gives you problems, you can try using this one instead.\n\n\n\nIf you are using OSSv4 or newer, you should edit \"/usr/lib/oss/conf/osscore.conf\", uncomment the max_intrate= line, and change the value from 100(default) to 1000(or higher if you know what you're doing), and restart OSS. Otherwise, performance will be poor, and the sound buffer size in Mednafen will be orders of magnitude larger than specified.\n\n\n\nIf the sound buffer size is still excessively larger than what is specified via the \"sound.buffer_time\" setting, you can try setting \"sound.period_time\" to 2666, and as a last resort, 5333, to work around a design flaw/limitation/choice in the OSS API and OSS implementation.\n\nwasapish - WASAPI(Shared Mode)\nThe default when it's available(running on Microsoft Windows Vista and newer).\n\ndsound - DirectSound\nThe default for Microsoft Windows XP and older.\n\nwasapi - WASAPI(Exclusive Mode)\nExperimental exclusive-mode WASAPI driver, usable on Windows Vista and newer.  Use it for lower-latency sound.  May not work properly on all sound cards.\n\nsdl - Simple Directmedia Layer\nThis driver is not recommended, but it serves as a backup driver if the others aren't available. Its performance is generally sub-par, requiring higher latency or faster CPUs/SMP for glitch-free playback, except where the OS provides a sound callback API itself, such as with Mac OS X and BeOS.\n\njack - JACK\nThe latency reported during startup is for the local sound buffer only and does not include server-side latency.  Please note that video card drivers(in the kernel or X), and hardware-accelerated OpenGL, may interfere with jackd's ability to effectively run with realtime response."
+    "Description": "Select sound driver.\n\nThe following choices are possible, sorted by preference, high to low, when \"default\" driver is used, but dependent on being compiled in.>\n\ndefault - Default\nSelects the default sound driver.\n\nalsa - ALSA\nThe default for Linux(if available).\n\nopenbsd - OpenBSD Audio\nThe default for OpenBSD.\n\noss - Open Sound System\nThe default for non-Linux UN*X/POSIX/BSD(other than OpenBSD) systems, or anywhere ALSA is unavailable. If the ALSA driver gives you problems, you can try using this one instead.\n\n\n\nIf you are using OSSv4 or newer, you should edit \"/usr/lib/oss/conf/osscore.conf\", uncomment the max_intrate= line, and change the value from 100(default) to 1000(or higher if you know what you're doing), and restart OSS. Otherwise, performance will be poor, and the sound buffer size in Mednafen will be orders of magnitude larger than specified.\n\n\n\nIf the sound buffer size is still excessively larger than what is specified via the \"sound.buffer_time\" setting, you can try setting \"sound.period_time\" to 2666, and as a last resort, 5333, to work around a design flaw/limitation/choice in the OSS API and OSS implementation.\n\nwasapish - WASAPI(Shared Mode)\nThe default when it's available(running on Microsoft Windows Vista and newer).\n\ndsound - DirectSound\nThe default for Microsoft Windows XP and older.\n\nwasapi - WASAPI(Exclusive Mode)\nExperimental exclusive-mode WASAPI driver, usable on Windows Vista and newer.  Use it for lower-latency sound.  May not work properly on all sound cards.\n\nsdl - Simple Directmedia Layer\nThis driver is not recommended, but it serves as a backup driver if the others aren't available. Its performance is generally sub-par, requiring higher latency or faster CPUs/SMP for glitch-free playback, except where the OS provides a sound callback API itself, such as with Mac OS X and BeOS.\n\njack - JACK\nThe latency reported during startup is for the local sound buffer only and does not include server-side latency.  Please note that video card drivers(in the kernel or X), and hardware-accelerated OpenGL, may interfere with jackd's ability to effectively run with realtime response."
   },
   {
     "Command": "sound.period_time",
