@@ -83,7 +83,7 @@ namespace MedLaunch.Classes
         {
             // query the main game page
             string baseurl = "http://www.mobygames.com/game/";
-            string param = masterrecord.MOBYPlatformAlias + "/" + masterrecord.MOBYPlatformAlias;
+            string param = masterrecord.MOBYPlatformAlias + "/" + masterrecord.MOBYAlias;
             string initialPage = ReturnWebpage(baseurl, param, 10000);
 
             GlobalSettings gs = GlobalSettings.GetGlobals();
