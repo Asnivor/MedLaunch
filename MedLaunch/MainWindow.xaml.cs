@@ -1453,7 +1453,12 @@ namespace MedLaunch
                 // detect whether game uses m3u
                 if (rows.Count == 0)
                     return;
-                string fileName = Game.GetGame(rows.First().ID).gamePath;
+                Game gm = Game.GetGame(rows.First().ID);
+                if (gm == null)
+                {
+                    return;
+                }
+                string fileName = gm.gamePath;
                 if (fileName.ToLower().EndsWith(".m3u"))
                 {
                     // potentially a multi-disc game (uses an m3u file)

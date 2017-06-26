@@ -627,8 +627,20 @@ namespace MedLaunch.Classes.Scraper
                 systemId = 7;
 
             // get a list with all games for this system
-            SystemCollection = PlatformGames.Where(a => GSystem.GetMedLaunchSystemIdFromGDBPlatformId(a.pid) == systemId).ToList();
 
+            Game gam = Game.GetGame(gameId);
+            if (gam.subSystemId != null && gam.subSystemId > 0)
+            {
+                // sub found
+                var sub = GSystem.GetSubSystems().Where(a => a.systemId == gam.subSystemId.Value).FirstOrDefault();
+                SystemCollection = PlatformGames.Where(a => a.pid == sub.theGamesDBPlatformId.First()).ToList();
+            }
+            else
+            {
+                //sub not found
+                SystemCollection = PlatformGames.Where(a => GSystem.GetMedLaunchSystemIdFromGDBPlatformId(a.pid) == systemId).ToList();
+            }
+            
             // Match all words and return a list ordered by higest matches
             List<SearchOrdering> searchResult = OrderByMatchedWords(StripSymbols(gameName.ToLower()));
 
