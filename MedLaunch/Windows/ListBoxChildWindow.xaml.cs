@@ -63,10 +63,15 @@ namespace MedLaunch
             //List<SearchOrdering> games = gs.ShowPlatformGames(systemId, row.Game);
             List<SearchOrdering> games = gs.ShowPlatformGamesBySub(systemId, row);
 
+            // megadrive
+            
+
             List< GameListItem > g = new List<GameListItem>();
 
             foreach (var gam in games)
             {
+                
+
                 if (gam.Matches == 0 || gam.Game.GDBTitle == "")
                 {
                     continue;

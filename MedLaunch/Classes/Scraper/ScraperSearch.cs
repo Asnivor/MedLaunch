@@ -71,7 +71,36 @@ namespace MedLaunch.Classes.Scraper
                 SystemCollection = PlatformGames.Where(a => a.pid == subIdObj.theGamesDBPlatformId.First()).ToList();
             }
 
-            // get a list with all games for this system
+            // megadrive check
+            if (game.System == "Sega Mega Drive/Genesis")
+            {
+                if (game.Country == "US" ||
+                    game.Country == "USA")
+                {
+                    SystemCollection = SystemCollection.Where(a => a.pid == 18).ToList();
+                }
+                else if (game.Country == "EU" || game.Country == "EUR" ||
+                    game.Country == "JP" || game.Country == "JAP" || game.Country == "JPN")
+                {
+                    SystemCollection = SystemCollection.Where(a => a.pid == 36).ToList();
+                }
+                else
+                {
+                    /*
+                    if (_GlobalSettings.preferGenesis == true)
+                    {
+                        SystemCollection = SystemCollection.Where(a => a.pid == 18).ToList();
+                    }
+                    else
+                    {
+                        SystemCollection = SystemCollection.Where(a => a.pid == 36).ToList();
+                    }
+                    */
+                }
+
+
+                
+            }
             
             // Match all words and return a list ordered by higest matches
             List<SearchOrdering> searchResult = OrderByMatchedWords(StripSymbols(game.Game.ToLower()));
