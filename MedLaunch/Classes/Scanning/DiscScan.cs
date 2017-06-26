@@ -822,14 +822,7 @@ namespace MedLaunch.Classes.Scanning
                         if (l.Contains("FILE") || l.ToLower().Contains("file"))
                         {
                             // this is the line we are interested in
-                            string filename = l.Replace("File ", "")
-                                .Replace("FILE ", "")
-                                .Replace("file ", "")
-                                .Replace("BINARY", "")
-                                .Replace("Binary", "")
-                                .Replace("binary", "")
-                                .Trim()
-                                .Trim('"');
+                            string filename = GetImageNameFromCue(l);
 
                             if (File.Exists(trackSheet.FolderPath + "\\" + filename))
                             {
@@ -878,6 +871,44 @@ namespace MedLaunch.Classes.Scanning
             return working;
         }
 
+        public static string GetImageNameFromCue(string cueLine)
+        {
+            string bin = cueLine;
+
+            if (bin.Contains('"'))
+            {
+                // path is encapsulated with ""
+                bin = bin.Replace("FILE \"", "")
+                    .Replace("File \"", "")
+                    .Replace("file \"", "")
+                    .Replace("\" BINARY", "")
+                    .Replace("\" Binary", "")
+                    .Replace("\" binary", "");
+                
+            }
+            else
+            {
+                // path does not contain ""
+                string[] arr = bin.Split(' ');
+                // build a new string leaving out first and last array elements
+                string newStr = "";
+                for (int i = 1; i < arr.Length - 1; i++)
+                {
+                    if (i > 1)
+                        newStr += " ";
+
+                    newStr += arr[i];
+
+                    if (i < arr.Length - 2)
+                        newStr += " ";
+
+                    bin = newStr;
+                }
+            }
+
+            return bin;
+        }
+
         public static List<DiscGameFile> ParseTrackSheetForImageFiles(DiscGameFile trackSheet, int systemId)
         {
             CueType cueType = new CueType();
@@ -905,14 +936,7 @@ namespace MedLaunch.Classes.Scanning
                         if (l.Contains("FILE") || l.ToLower().Contains("file"))
                         {
                             // this is the line we are interested in
-                            string filename = l.Replace("File ", "")
-                                .Replace("FILE ", "")
-                                .Replace("file ", "")
-                                .Replace("BINARY", "")
-                                .Replace("Binary", "")
-                                .Replace("binary", "")
-                                .Trim()
-                                .Trim('"');
+                            string filename = GetImageNameFromCue(l);
 
                             if (File.Exists(trackSheet.FolderPath + "\\" + filename))
                             {
