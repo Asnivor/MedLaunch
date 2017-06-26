@@ -38,6 +38,15 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
             <MenuItem Header="Identify and Scrape Game" Click="btnScrapingPickGame_Click" />
             <MenuItem Header="Delete From Games Library" Click="DeleteRom_Click" />
         </ContextMenu>
+        <ContextMenu x:Key="cmMultiDiscGamesListSingle" x:Name="cmMultiDiscGamesListSingle">
+            <MenuItem Header="Play Game (First Disc)" Click="LaunchRom_Click" />
+            <MenuItem Header="Play Game (First Disc) (View/Edit Launch String First)" Click="LaunchRomShowConfig_Click" />
+            <MenuItem Header="Play Game (Select Disc)" Click="LaunchRomChooseDisc_Click" />
+            <MenuItem Header="Favorites" Click="MenuItemFavorite_Click" />
+            <MenuItem Header="Copy Launch String to Clipboard" Click="CopyLaunchStringToClipboard_Click" />
+            <MenuItem Header="Identify and Scrape Game" Click="btnScrapingPickGame_Click" />
+            <MenuItem Header="Delete From Games Library" Click="DeleteRom_Click" />
+        </ContextMenu>
         <ContextMenu x:Key="cmGamesListMultiple" x:Name="cmGamesListMultiple">
             <MenuItem Header="Favorites" Click="MenuItemFavorites_Click" />
             <MenuItem Header="Auto-Scrape Selected Games" Click="ScrapeGamesMultiple_Click" />

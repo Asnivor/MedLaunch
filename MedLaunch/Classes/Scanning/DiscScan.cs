@@ -984,6 +984,18 @@ namespace MedLaunch.Classes.Scanning
             return working;
         }
 
+        public static string[] ParseM3UFile(string path)
+        {
+            if (!File.Exists(path))
+                return null;
+
+            string[] arr = (from line in File.ReadAllLines(path).Where(item => !String.IsNullOrWhiteSpace(item))
+                           select line).ToArray();
+
+            return arr;                        
+               
+        }
+
         public static bool CreateM3uPlaylist(List<DiscGameFile> files, string m3uPath, bool overwrite)
         {
             // does the file already exist

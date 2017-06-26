@@ -349,6 +349,9 @@
     <Compile Include="Classes\Scraper\DAT\TOSEC\Models\ToSecCollection.cs" />
     <Compile Include="Classes\Scraper\DAT\TOSEC\Models\ToSecObject.cs" />
     <Compile Include="Classes\Scraper\DAT\TOSEC\StringConverterToSec.cs" />
+    <Compile Include="Windows\DiscSelection.xaml.cs">
+      <DependentUpon>DiscSelection.xaml</DependentUpon>
+    </Compile>
     <Compile Include="_Debug\ScrapeDB\ReplacementDocs\RdScraper.cs" />
     <Compile Include="Classes\Scraper\ScraperHandler.cs" />
     <Compile Include="Classes\VisualHandlers\ConfigsVisualHandler.cs" />
@@ -504,6 +507,10 @@
     <Page Include="Windows\LibraryColumnChooser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DiscSelection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\ListBoxChildWindow.xaml">
       <SubType>Designer</SubType>

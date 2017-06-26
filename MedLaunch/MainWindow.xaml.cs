@@ -70,6 +70,9 @@ namespace MedLaunch
         public bool SettingsDirtyFlag { get; set; }
         public string LaunchString { get; set; }
 
+        public string[] DiscArray { get; set; }
+        public int DiscSelected { get; set; }
+
         public DeviceDefinition ControllerDefinition { get; set; }
 
         public CountryFilter _countryFilter { get; set; }
@@ -1446,8 +1449,21 @@ namespace MedLaunch
                 // update right hand pane with game details
                 GamesLibraryVisualHandler.UpdateSidebar(rows.First().ID);
                 // set single context menu
-                menuToUse = (ContextMenu)this.Resources["cmGamesListSingle"];
-                dg.ContextMenu = menuToUse;
+
+                // detect whether game uses m3u
+                string fileName = Game.GetGame(rows.First().ID).gamePath;
+                if (fileName.ToLower().EndsWith(".m3u"))
+                {
+                    // potentially a multi-disc game (uses an m3u file)
+                    menuToUse = (ContextMenu)this.Resources["cmMultiDiscGamesListSingle"];
+                    dg.ContextMenu = menuToUse;
+                }
+                else
+                {
+                    // not a multi-disc game
+                    menuToUse = (ContextMenu)this.Resources["cmGamesListSingle"];
+                    dg.ContextMenu = menuToUse;
+                }
             }
             else
             {
@@ -2383,6 +2399,22 @@ namespace MedLaunch
             GameLauncher gl = new GameLauncher(romId);
             LaunchString = gl.GetCommandLineArguments();
             LaunchRomHandler(LaunchString, false);
+        }
+
+        private async void LaunchRomChooseDisc_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            Grid RootGrid = (Grid)mw.FindName("RootGrid");
+
+            await mw.ShowChildWindowAsync(new DiscSelection()
+            {
+                IsModal = true,
+                AllowMove = false,
+                Title = "Choose Disc",
+                CloseOnOverlay = false,
+                ShowCloseButton = false
+            }, RootGrid);
+                
         }
 
         public async void LaunchRomHandler(string cmdlineargs, bool bypassSystemConfigs)
