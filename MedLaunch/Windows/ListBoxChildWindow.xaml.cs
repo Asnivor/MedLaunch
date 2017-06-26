@@ -60,9 +60,10 @@ namespace MedLaunch
 
             ScraperSearch gs = new ScraperSearch();
             // get a list of all games for this platform - higest match first
-            List<SearchOrdering> games = gs.ShowPlatformGames(systemId, row.Game);
+            //List<SearchOrdering> games = gs.ShowPlatformGames(systemId, row.Game);
+            List<SearchOrdering> games = gs.ShowPlatformGamesBySub(systemId, row);
 
-            List < GameListItem > g = new List<GameListItem>();
+            List< GameListItem > g = new List<GameListItem>();
 
             foreach (var gam in games)
             {

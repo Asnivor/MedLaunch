@@ -297,7 +297,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <MenuItem x:Name="NesResetToDefaultColumnState" Click="NesResetToDefaultColumnState_Click" Header="Reset 'NES' Column States to Default" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
-                                        NES
+                                        NES / FDC
                                     </RadioButton>
                                     <RadioButton GroupName="flt" x:Name="btnSnes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnSnes_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
@@ -409,7 +409,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <MenuItem x:Name="GbResetToDefaultColumnState" Click="GbResetToDefaultColumnState_Click" Header="Reset 'Gameboy Color' Column States to Default" />
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
-                                        Gameboy Color
+                                        Gameboy
                                     </RadioButton>
                                     <RadioButton GroupName="flt" x:Name="btnGba" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnGba_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>

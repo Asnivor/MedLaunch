@@ -194,6 +194,23 @@ namespace MedLaunch.Models
             return 0;
         }
 
+        public static int GetMedLaunchSubIdFromGDBPlatformId(int pid)
+        {
+            var gsys = GetSystems();
+            foreach (var sys in gsys)
+            {
+                foreach (int i in sys.theGamesDBPlatformId)
+                {
+                    if (i == pid)
+                    {
+                        return sys.systemId;
+                    }
+                }
+            }
+
+            return 0;
+        }
+
         public static string GetSubSystemName(int subId)
         {
             var sys = (from a in GetSubSystems()

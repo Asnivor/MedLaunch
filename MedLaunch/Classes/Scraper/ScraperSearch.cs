@@ -1,4 +1,5 @@
 ﻿using FuzzyString;
+using MedLaunch.Classes.GamesLibrary;
 using MedLaunch.Classes.Scraper.DBModels;
 using MedLaunch.Models;
 using System;
@@ -50,6 +51,30 @@ namespace MedLaunch.Classes.Scraper
             SystemCollection = PlatformGames.Where(a => GSystem.GetMedLaunchSystemIdFromGDBPlatformId(a.pid) == systemId).ToList();
             // Match all words and return a list ordered by higest matches
             List<SearchOrdering> searchResult = OrderByMatchedWords(StripSymbols(gameName.ToLower()));
+            return searchResult;
+        }
+
+        public List<SearchOrdering> ShowPlatformGamesBySub(int systemId, GamesLibraryModel game)
+        {
+            // get gamesdb sub entry
+            var subIdObj = GSystem.GetSubSystems()
+                .Where(a => a.systemName == game.System).FirstOrDefault();
+
+            if (subIdObj == null)
+            {
+                // no sub found
+                SystemCollection = PlatformGames.Where(a => GSystem.GetMedLaunchSystemIdFromGDBPlatformId(a.pid) == systemId).ToList();
+            }
+            else
+            {
+                // sub found
+                SystemCollection = PlatformGames.Where(a => a.pid == subIdObj.theGamesDBPlatformId.First()).ToList();
+            }
+
+            // get a list with all games for this system
+            
+            // Match all words and return a list ordered by higest matches
+            List<SearchOrdering> searchResult = OrderByMatchedWords(StripSymbols(game.Game.ToLower()));
             return searchResult;
         }
 
@@ -124,7 +149,7 @@ namespace MedLaunch.Classes.Scraper
             // add this to the class
             SearchString = s;
             // remove all - : _ '
-            s = s.Replace(" - ", " ").Replace("_", " ").Replace(": ", " ").Replace(" : ", " ").Replace(":", "").Replace("'", "").Replace("-", " ").Trim();
+            s = s.Replace(" - ", " ").Replace("_", " ").Replace(": ", " ").Replace(" : ", " ").Replace(":", "").Replace("'", "").Replace("-", " ").Replace(".", "").Trim();
             // remove all roman numerals
             /*
             s.Replace(" I", " ");
