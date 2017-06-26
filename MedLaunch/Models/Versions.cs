@@ -15,11 +15,13 @@ namespace MedLaunch.Models
         public int versionId { get; set; }
         public string dbVersion { get; set; }
         public string CurrentMednafenVersion { get; set; }
+        public string LatestCompatMednafenVersion { get; set; }
 
         // constructors
         public Versions()
         {
-            
+            CurrentMednafenVersion = LogParser.GetMednafenVersion();
+            LatestCompatMednafenVersion = Versions.GetMednafenCompatibilityMatrix().First().Version;
         }
 
         public static List<MednafenChangeHistory> GetMednafenCompatibilityMatrix()
@@ -92,6 +94,18 @@ namespace MedLaunch.Models
                         {
                             new VersionChange { Description = "ss multitap 1", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.sport1.multitap" },
                             new VersionChange { Description = "ss multitap 2", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.sport2.multitap" },
+                            new VersionChange { Description = "ss wheel", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port1 wheel", ChangeItem = "ss.input.port1 gamepad" },
+                            new VersionChange { Description = "ss wheel", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port2 wheel", ChangeItem = "ss.input.port1 gamepad" },
+                            new VersionChange { Description = "ss wheel", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port3"},
+                            new VersionChange { Description = "ss wheel", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port4"},
+                            new VersionChange { Description = "ss wheel", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port5"},
+                            new VersionChange { Description = "ss wheel", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port6"},
+                            new VersionChange { Description = "ss wheel", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port7"},
+                            new VersionChange { Description = "ss wheel", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port8"},
+                            new VersionChange { Description = "ss wheel", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port9"},
+                            new VersionChange { Description = "ss wheel", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port10"},
+                            new VersionChange { Description = "ss wheel", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port11"},
+                            new VersionChange { Description = "ss wheel", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port12"},
                         }
                     },
 
@@ -103,6 +117,12 @@ namespace MedLaunch.Models
                         {
                             new VersionChange { Description = "snes_faust multitap 1", ChangeMethod = ChangeType.ToRemove, Item = "snes_faust.input.sport1.multitap" },
                             new VersionChange { Description = "snes_faust multitap 2", ChangeMethod = ChangeType.ToRemove, Item = "snes_faust.input.sport2.multitap" },
+                            new VersionChange { Description = "snes_faust extra ports", ChangeMethod = ChangeType.ToRemove, Item = "snes_faust.input.port3" },
+                            new VersionChange { Description = "snes_faust extra ports", ChangeMethod = ChangeType.ToRemove, Item = "snes_faust.input.port4" },
+                            new VersionChange { Description = "snes_faust extra ports", ChangeMethod = ChangeType.ToRemove, Item = "snes_faust.input.port5" },
+                            new VersionChange { Description = "snes_faust extra ports", ChangeMethod = ChangeType.ToRemove, Item = "snes_faust.input.port6" },
+                            new VersionChange { Description = "snes_faust extra ports", ChangeMethod = ChangeType.ToRemove, Item = "snes_faust.input.port7" },
+                            new VersionChange { Description = "snes_faust extra ports", ChangeMethod = ChangeType.ToRemove, Item = "snes_faust.input.port8" },
                         }
                     },
 
@@ -194,13 +214,31 @@ namespace MedLaunch.Models
 
                 working = working.TrimStart('-');
 
-                if (VC.CurrentMednafenVersion == c.Version)
+                if (ReturnMednafenMajor(VC.CurrentMednafenVersion) == ReturnMednafenMajor(c.Version))
                 {
                     // we have reached the targeted version and all transformations should have been applied
                     break;
                 }
             }
             return working;
+        }
+
+        /// <summary>
+        /// return only the first 3 parts of the mednafen version (the major version with APi changes)
+        /// </summary>
+        /// <param name="version"></param>
+        /// <returns></returns>
+        public static string ReturnMednafenMajor(string version)
+        {
+            string[] arr = version.Trim().Split('.');
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < 3; i++)
+            {
+                sb.Append(arr[i]);
+                sb.Append(".");
+            }
+            string ver = sb.ToString().TrimEnd('.');
+            return ver;
         }
 
         /*
