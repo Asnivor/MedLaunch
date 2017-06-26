@@ -136,7 +136,7 @@ namespace MedLaunch.Classes.GamesLibrary
             GamesLibraryModel g = e.Item as GamesLibraryModel;
             if (g != null)
             {
-                int sysId = GSystem.GetSystemId(g.System);
+                int sysId = GSystem.GetSystemIdSubFirst(g.System);
                 e.Accepted = (sysId == 11) ? true : false;
             }
         }
@@ -146,7 +146,7 @@ namespace MedLaunch.Classes.GamesLibrary
             GamesLibraryModel g = e.Item as GamesLibraryModel;
             if (g != null)
             {
-                int sysId = GSystem.GetSystemId(g.System);
+                int sysId = GSystem.GetSystemIdSubFirst(g.System);
                 e.Accepted = (sysId == 12) ? true : false;
             }
         }
@@ -156,7 +156,7 @@ namespace MedLaunch.Classes.GamesLibrary
             GamesLibraryModel g = e.Item as GamesLibraryModel;
             if (g != null)
             {
-                int sysId = GSystem.GetSystemId(g.System);
+                int sysId = GSystem.GetSystemIdSubFirst(g.System);
                 e.Accepted = (sysId == 10) ? true : false;
             }
         }
@@ -166,7 +166,7 @@ namespace MedLaunch.Classes.GamesLibrary
             GamesLibraryModel g = e.Item as GamesLibraryModel;
             if (g != null)
             {
-                int sysId = GSystem.GetSystemId(g.System);
+                int sysId = GSystem.GetSystemIdSubFirst(g.System);
                 e.Accepted = (sysId == 4) ? true : false;
             }
         }
@@ -176,7 +176,7 @@ namespace MedLaunch.Classes.GamesLibrary
             GamesLibraryModel g = e.Item as GamesLibraryModel;
             if (g != null)
             {
-                int sysId = GSystem.GetSystemId(g.System);
+                int sysId = GSystem.GetSystemIdSubFirst(g.System);
                 e.Accepted = (sysId == 13) ? true : false;
             }
         }
@@ -186,7 +186,7 @@ namespace MedLaunch.Classes.GamesLibrary
             GamesLibraryModel g = e.Item as GamesLibraryModel;
             if (g != null)
             {
-                int sysId = GSystem.GetSystemId(g.System);
+                int sysId = GSystem.GetSystemIdSubFirst(g.System);
                 e.Accepted = (sysId == 9) ? true : false;
             }
         }
@@ -196,7 +196,7 @@ namespace MedLaunch.Classes.GamesLibrary
             GamesLibraryModel g = e.Item as GamesLibraryModel;
             if (g != null)
             {
-                int sysId = GSystem.GetSystemId(g.System);
+                int sysId = GSystem.GetSystemIdSubFirst(g.System);
                 e.Accepted = (sysId == 7) ? true : false;
             }
         }
@@ -206,7 +206,7 @@ namespace MedLaunch.Classes.GamesLibrary
             GamesLibraryModel g = e.Item as GamesLibraryModel;
             if (g != null)
             {
-                int sysId = GSystem.GetSystemId(g.System);
+                int sysId = GSystem.GetSystemIdSubFirst(g.System);
                 e.Accepted = (sysId == 18) ? true : false;
             }
         }
@@ -215,7 +215,7 @@ namespace MedLaunch.Classes.GamesLibrary
             GamesLibraryModel g = e.Item as GamesLibraryModel;
             if (g != null)
             {
-                int sysId = GSystem.GetSystemId(g.System);
+                int sysId = GSystem.GetSystemIdSubFirst(g.System);
                 e.Accepted = (sysId == 8) ? true : false;
             }
         }
@@ -225,7 +225,7 @@ namespace MedLaunch.Classes.GamesLibrary
             GamesLibraryModel g = e.Item as GamesLibraryModel;
             if (g != null)
             {
-                int sysId = GSystem.GetSystemId(g.System);
+                int sysId = GSystem.GetSystemIdSubFirst(g.System);
                 e.Accepted = (sysId == 14) ? true : false;
             }
         }
@@ -235,7 +235,7 @@ namespace MedLaunch.Classes.GamesLibrary
             GamesLibraryModel g = e.Item as GamesLibraryModel;
             if (g != null)
             {
-                int sysId = GSystem.GetSystemId(g.System);
+                int sysId = GSystem.GetSystemIdSubFirst(g.System);
                 e.Accepted = (sysId == 6) ? true : false;
             }
         }
@@ -245,7 +245,7 @@ namespace MedLaunch.Classes.GamesLibrary
             GamesLibraryModel g = e.Item as GamesLibraryModel;
             if (g != null)
             {
-                int sysId = GSystem.GetSystemId(g.System);
+                int sysId = GSystem.GetSystemIdSubFirst(g.System);
                 e.Accepted = (sysId == 15) ? true : false;
             }
         }
@@ -255,7 +255,7 @@ namespace MedLaunch.Classes.GamesLibrary
             GamesLibraryModel g = e.Item as GamesLibraryModel;
             if (g != null)
             {
-                int sysId = GSystem.GetSystemId(g.System);
+                int sysId = GSystem.GetSystemIdSubFirst(g.System);
                 e.Accepted = (sysId == 1) ? true : false;
             }
         }
@@ -265,7 +265,7 @@ namespace MedLaunch.Classes.GamesLibrary
             GamesLibraryModel g = e.Item as GamesLibraryModel;
             if (g != null)
             {
-                int sysId = GSystem.GetSystemId(g.System);
+                int sysId = GSystem.GetSystemIdSubFirst(g.System);
                 e.Accepted = (sysId == 2) ? true : false;
             }
         }
@@ -275,7 +275,7 @@ namespace MedLaunch.Classes.GamesLibrary
             GamesLibraryModel g = e.Item as GamesLibraryModel;
             if (g != null)
             {
-                int sysId = GSystem.GetSystemId(g.System);
+                int sysId = GSystem.GetSystemIdSubFirst(g.System);
                 e.Accepted = (sysId == 5) ? true : false;
             }
         }
@@ -285,7 +285,7 @@ namespace MedLaunch.Classes.GamesLibrary
             GamesLibraryModel g = e.Item as GamesLibraryModel;
             if (g != null)
             {
-                int sysId = GSystem.GetSystemId(g.System);
+                int sysId = GSystem.GetSystemIdSubFirst(g.System);
                 e.Accepted = (sysId == 3) ? true : false;
             }
         }

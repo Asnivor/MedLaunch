@@ -49,6 +49,27 @@ namespace MedLaunch.Models
             return _systemName;
         }
 
+        public static int GetSystemIdSubFirst(string systemName)
+        {
+            var subsys = (from a in GetSubSystems()
+                          where a.systemName == systemName
+                          select a).FirstOrDefault();
+
+            if (subsys == null)
+            {
+                // no sub system detected
+                int _sysid = (from a in GetSystems()
+                              where a.systemName == systemName
+                              select a.systemId).FirstOrDefault();
+                return _sysid;
+            }
+            else
+            {
+                // sub sys deetected - return parent
+                return subsys.parentId;
+            }
+        }
+
         public static int GetSystemId(string systemName)
         {
             int _sysid = (from a in GetSystems()
@@ -173,6 +194,89 @@ namespace MedLaunch.Models
             return 0;
         }
 
+        public static string GetSubSystemName(int subId)
+        {
+            var sys = (from a in GetSubSystems()
+                       where a.systemId == subId
+                       select a).FirstOrDefault();
+
+            if (sys == null)
+                return null;
+
+            return sys.systemName;
+        }
+
+        public static int GetSubSystemId(int parent, string extension)
+        {
+            List<GSubSystem> search = (from a in GetSubSystems()
+                                       where a.parentId == parent
+                                       select a).ToList();
+            if (search.Count() == 0)
+                return 0;
+
+            foreach (var thing in search)
+            {
+                var ext = (from a in search
+                           where a.supportedFileExtensions.Contains(extension)
+                           select a).FirstOrDefault();
+
+                if (ext == null)
+                    continue;
+
+                return ext.systemId;
+            }
+            return 0;
+        }
+
+        public static List<GSubSystem> GetSubSystems()
+        {
+            List<GSubSystem> gSystems = new List<GSubSystem>
+                {
+                new GSubSystem { systemId = 1, parentId = 1, theGamesDBPlatformId = new List<int> { 4 }, systemCode = "gb", systemName = "Nintendo Gameboy",
+                 MobyPlatformName = new List<string> { "gameboy" },
+                        supportedFileExtensions = ".gb", supportedArchiveExtensions = ".zip,.7z",
+                        systemDescription = "The Game Boy, is an 8-bit handheld video game device developed and manufactured by Nintendo. It was released in Japan on April 21, 1989, in North America in August 1989, and in Europe on September 28, 1990. It is the first handheld console in the Game Boy line." },
+
+                new GSubSystem { systemId = 2, parentId = 1, theGamesDBPlatformId = new List<int> { 41 }, systemCode = "gb", systemName = "Nintendo Gameboy Color",
+                 MobyPlatformName = new List<string> { "gameboy-color" },
+                        supportedFileExtensions = ".gbc", supportedArchiveExtensions = ".zip,.7z",
+                        systemDescription = "The Game Boy Color is Nintendo's successor to the 8-bit Game Boy handheld game console. It features a color screen and is slightly thicker and taller than the Game Boy Pocket. As with the original Game Boy, it has an 8-bit processor." },
+
+                new GSubSystem { systemId = 3, parentId = 11, theGamesDBPlatformId = new List<int>  { 7 }, systemCode = "nes", systemName = "NES/Famicon",
+                MobyPlatformName = new List<string> { "nes" },
+                    supportedFileExtensions = ".nes,.unf", supportedArchiveExtensions = ".zip,.7z",
+                        systemDescription = "The Nintendo Entertainment System (also abbreviated as NES or simply called Nintendo) is an 8-bit video game console that was released by Nintendo in North America during 1985, in Europe during 1986 and Australia in 1987" },
+
+                new GSubSystem { systemId = 4, parentId = 11, theGamesDBPlatformId = new List<int>  { 4936 }, systemCode = "nes", systemName = "Famicon Disk System",
+                MobyPlatformName = new List<string> { "nes" },
+                    supportedFileExtensions = ".fds", supportedArchiveExtensions = ".zip,.7z",
+                        systemDescription = "The Family Disk System was released on February 21, 1986 by Nintendo as a peripheral for the Nintendo Family Computer console in Japan. It uses proprietary floppy disks (called \"Disk Cards\") for data storage" },
+
+
+                new GSubSystem { systemId = 5, parentId = 6, theGamesDBPlatformId = new List<int>  { 4922 },systemCode = "ngp", systemName = "NeoGeo Pocket",
+                MobyPlatformName = new List<string> { "neo-geo-pocket" },
+                    supportedFileExtensions = ".ngp", supportedArchiveExtensions = ".zip,.7z",
+                        systemDescription = "The Neo Geo Pocket is a monochrome handheld video game console released by SNK. It was the company's first handheld system and is part of the Neo Geo family. It debuted in Japan in late 1998, however never saw a western release, being exclusive to Japan and smaller Asian markets such as Hong Kong." },
+
+                new GSubSystem { systemId = 6, parentId = 6, theGamesDBPlatformId = new List<int>  { 4923 },systemCode = "ngp", systemName = "NeoGeo Pocket Color",
+                MobyPlatformName = new List<string> { "neo-geo-pocket-color" },
+                    supportedFileExtensions = ".ngc", supportedArchiveExtensions = ".zip,.7z",
+                        systemDescription = "The Neo Geo Pocket Color is a 16-bit colour handheld video game console manufactured by SNK. It is a successor to SNK's monochrome Neo Geo Pocket handheld which debuted in 1998 in Japan. The Neo Geo Pocket Color was SNK's last video game console, and is backwards compatible with the Neo Geo Pocket" },
+
+                new GSubSystem { systemId = 7, parentId = 15, theGamesDBPlatformId = new List<int>  { 4925 }, systemCode = "wswan", systemName = "WonderSwan",
+                MobyPlatformName = new List<string> { "wonderswan", "wonderswan-color" },
+                    supportedFileExtensions = ".ws", supportedArchiveExtensions = ".zip,.7z",
+                        systemDescription = "The WonderSwan was a line of handheld game consoles produced in Japan by Bandai. It was developed by Gunpei Yokoi's company Koto and Bandai. The WonderSwan was made to compete with the Neo Geo Pocket Color and the market leader Nintendo's Game Boy Color (even though the developer for the WonderSwan, Gunpei Yokoi, developed the original Nintendo Game Boy)." },
+
+                new GSubSystem { systemId = 8, parentId = 15, theGamesDBPlatformId = new List<int>  { 4926 }, systemCode = "wswan", systemName = "WonderSwan Color",
+                MobyPlatformName = new List<string> { "wonderswan", "wonderswan-color" },
+                    supportedFileExtensions = ".wsc", supportedArchiveExtensions = ".zip,.7z",
+                        systemDescription = "The WonderSwan Color was released on December 9, 2000 in Japan, and was a moderate success. The original WonderSwan had only a black and white screen. Although the WonderSwan Color was slightly larger and heavier (7 mm and 2 g) compared to the original WonderSwan, the color version featured 512KB of RAM and a larger color LCD screen. In addition, the WonderSwan Color is compatible with the original WonderSwan library of games." },
+
+                };
+            return gSystems;
+        }
+
         public static List<GSystem> GetSystems()
         {
             List<GSystem> gSystems = new List<GSystem>
@@ -204,7 +308,7 @@ namespace MedLaunch.Models
 
                 new GSystem { systemId = 6, theGamesDBPlatformId = new List<int>  { 4923, 4922 },systemCode = "ngp", systemName = "NeoGeo Pocket Color",
                 MobyPlatformName = new List<string> { "neo-geo-pocket", "neo-geo-pocket-color" },
-                    supportedFileExtensions = ".ngc", supportedArchiveExtensions = ".zip,.7z",
+                    supportedFileExtensions = ".ngc,.ngp", supportedArchiveExtensions = ".zip,.7z",
                         systemDescription = "The Neo Geo Pocket Color is a 16-bit colour handheld video game console manufactured by SNK. It is a successor to SNK's monochrome Neo Geo Pocket handheld which debuted in 1998 in Japan. The Neo Geo Pocket Color was SNK's last video game console, and is backwards compatible with the Neo Geo Pocket" },
 
                 new GSystem { systemId = 7, theGamesDBPlatformId = new List<int>  { 34, 4955 }, systemCode = "pce", systemName = "PC Engine (CD)/TurboGrafx 16 (CD)/SuperGrafx",
@@ -302,8 +406,39 @@ namespace MedLaunch.Models
             return supported;
         }
 
+        public static HashSet<string> GetAllowedSubFileExtensions(int systemId)
+        {
+            var exts = (from g in GSystem.GetSubSystems()
+                        where g.systemId == systemId
+                        select g).SingleOrDefault();
+            string archive = exts.supportedArchiveExtensions;
+            string nonArchive = exts.supportedFileExtensions;
+
+            HashSet<string> supported = new HashSet<string>();
+            char c = ',';
+            string[] aSplit = archive.Split(c);
+            string[] nSplit = nonArchive.Split(c);
+            foreach (string s in aSplit) { supported.Add(s); }
+            foreach (string s in nSplit) { supported.Add(s); }
+
+            return supported;
+        }
+
         // Properties
         public int systemId { get; set; }
+        public string systemCode { get; set; }
+        public string systemName { get; set; }
+        public string systemDescription { get; set; }
+        public string supportedFileExtensions { get; set; }
+        public string supportedArchiveExtensions { get; set; }
+        public List<int> theGamesDBPlatformId { get; set; }
+        public List<string> MobyPlatformName { get; set; }
+    }
+
+    public class GSubSystem
+    {
+        public int systemId { get; set; }
+        public int parentId { get; set; }
         public string systemCode { get; set; }
         public string systemName { get; set; }
         public string systemDescription { get; set; }

@@ -31,6 +31,7 @@ namespace MedLaunch.Models
         public int timesPlayed { get; set; }
         public double gameTime { get; set; }
         public int systemId { get; set; }
+        public int? subSystemId { get; set; }
         //public GSystem GameSystem { get; set; }
         public bool isFavorite { get; set; }
         public int configId { get; set; }

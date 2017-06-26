@@ -125,6 +125,33 @@ namespace MedLaunch.Classes.Scanning
                     Archiving arch = new Archiving(file, systemId);
                     arch.ProcessArchive();
 
+                    if (Archiving.ArchiveMultiple.Count == 0)
+                    {
+                        // no files returned
+                        return;
+                    }
+
+                    else
+                    {
+                        IsSingleRomInArchive = false;
+                        // multiple allowed rom files in archive detected - add to list to process later
+                        foreach (var a in Archiving.ArchiveMultiple.Where(i => i.IsAllowed == true))
+                        {
+                            //ArchiveFiles.Add(a);
+                            // actual rom extension - not archive extension
+                            string romExtension = "." + (a.FileName.Split('.').Last());
+                            // generate relative path (normal archive path + "*")
+                            string romRelPath = relPath + "*" + a.FileName;
+                            // get romname without extension
+                            string name = a.FileName.Replace(romExtension, "");
+
+                            ProcessGame(name, a.MD5Hash, romRelPath, a.FileName, romExtension);
+                        }
+
+                    }
+
+                    /*
+
                     // retrieve the list of archive objects retrieved
                     if (Archiving.ArchiveMultiple.Count == 1)
                     {
@@ -157,14 +184,16 @@ namespace MedLaunch.Classes.Scanning
                             //ArchiveFiles.Add(a);
                             // actual rom extension - not archive extension
                             string romExtension = "." + (a.FileName.Split('.').Last());
-                            // generate relative path (normal archive path + "*/")
-                            string romRelPath = relPath + "*/" + a.FileName;
+                            // generate relative path (normal archive path + "*")
+                            string romRelPath = relPath + "*" + a.FileName;
                             // get romname without extension
                             string name = a.FileName.Replace(romExtension, "");
 
                             ProcessGame(name, a.MD5Hash, romRelPath, a.FileName, romExtension);
                         }
                     }
+
+                    */
                 }
                 catch (System.IO.InvalidDataException ex)
                 {
@@ -210,6 +239,8 @@ namespace MedLaunch.Classes.Scanning
                                      where i.SystemId == systemId && i.Roms.Any(l => l.MD5.ToUpper().Trim() == hash)
                                      select i).ToList();
 
+            int subSysId = GSystem.GetSubSystemId(systemId, extension);
+
             if (chkGame == null)
             {
                 // does not already exist - create new game
@@ -251,6 +282,13 @@ namespace MedLaunch.Classes.Scanning
                 newGame.systemId = systemId;
                 newGame.CRC32 = hash;
 
+                // check for subsystemid
+                if (subSysId > 0)
+                {
+                    // sub system found
+                    newGame.subSystemId = subSysId;
+                }
+
                 // add to finaGames list
                 RomsToAdd.Add(newGame);
                 // increment the added counter
@@ -259,7 +297,7 @@ namespace MedLaunch.Classes.Scanning
             else
             {
                 // matching game found - update it
-                if (chkGame.gamePath == relPath && chkGame.hidden == false && chkGame.CRC32 == hash)
+                if (chkGame.gamePath == relPath && chkGame.hidden == false && chkGame.CRC32 == hash && chkGame.subSystemId == subSysId)
                 {
                     //nothing to update - increment untouched counter
                     UntouchedStats++;
@@ -298,6 +336,13 @@ namespace MedLaunch.Classes.Scanning
                         {
                             newGame.Publisher = rom.Publisher;
                         }
+                    }
+
+                    // check for subsystemid
+                    if (subSysId > 0)
+                    {
+                        // sub system found
+                        newGame.subSystemId = subSysId;
                     }
 
                     // add to finalGames list

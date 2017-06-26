@@ -292,7 +292,19 @@ namespace MedLaunch.Classes.GamesLibrary
             GamesLibraryModel d = new GamesLibraryModel();
             d.ID = game.gameId;
 
-            d.System = GSystem.GetSystemName(game.systemId);
+            // check for subsystem
+            if (game.subSystemId != null && game.subSystemId > 0)
+            {
+                string subName = GSystem.GetSubSystemName(game.subSystemId.Value);
+                d.System = subName;
+            }
+            else
+            {
+                d.System = GSystem.GetSystemName(game.systemId);
+            }
+            
+
+
             d.LastPlayed = DbEF.FormatDate(game.gameLastPlayed);
             d.Favorite = game.isFavorite;
 

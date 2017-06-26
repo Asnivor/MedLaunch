@@ -1451,6 +1451,8 @@ namespace MedLaunch
                 // set single context menu
 
                 // detect whether game uses m3u
+                if (rows.Count == 0)
+                    return;
                 string fileName = Game.GetGame(rows.First().ID).gamePath;
                 if (fileName.ToLower().EndsWith(".m3u"))
                 {

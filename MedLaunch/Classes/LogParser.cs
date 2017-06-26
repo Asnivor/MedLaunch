@@ -30,8 +30,12 @@ namespace MedLaunch.Classes
         public LogParser()
         {
             Paths paths = Paths.GetPaths();
-            LogPath = paths.mednafenExe + @"\stdout.txt";
-            MednafenEXE = paths.mednafenExe + @"\mednafen.exe";
+            if (paths != null)
+            {
+                LogPath = paths.mednafenExe + @"\stdout.txt";
+                MednafenEXE = paths.mednafenExe + @"\mednafen.exe";
+            }
+            
         }
 
         // methods
@@ -137,12 +141,17 @@ namespace MedLaunch.Classes
         public static void EmptyLoad()
         {
             LogParser lp = new LogParser();
-            Process medproc = new Process();
-            medproc.StartInfo.FileName = lp.MednafenEXE;
-            medproc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            medproc.StartInfo.Arguments = "SDL.dll";
-            medproc.Start();
-            medproc.WaitForExit();
+
+            if (File.Exists(lp.LogPath) && File.Exists(lp.MednafenEXE))
+            {
+                Process medproc = new Process();
+                medproc.StartInfo.FileName = lp.MednafenEXE;
+                medproc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                medproc.StartInfo.Arguments = "SDL.dll";
+                medproc.Start();
+                medproc.WaitForExit();
+            }
+            
         }
     }
 }
