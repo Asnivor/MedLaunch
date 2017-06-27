@@ -16,12 +16,14 @@ namespace MedLaunch.Models
         public string dbVersion { get; set; }
         public string CurrentMednafenVersion { get; set; }
         public string LatestCompatMednafenVersion { get; set; }
+        public string LatestCompatMednafenDownloadURL { get; set; }
 
         // constructors
         public Versions()
         {
             CurrentMednafenVersion = LogParser.GetMednafenVersion();
             LatestCompatMednafenVersion = Versions.GetMednafenCompatibilityMatrix().First().Version;
+            LatestCompatMednafenDownloadURL = Versions.GetMednafenCompatibilityMatrix().First().DownloadURL;
         }
 
         public static List<MednafenChangeHistory> GetMednafenCompatibilityMatrix()
@@ -33,6 +35,7 @@ namespace MedLaunch.Models
                     new MednafenChangeHistory
                     {
                         Version = "0.9.45.1",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-0.9.45.1-win64.zip",
                         Changes = new List<VersionChange>
                         {
 
@@ -43,6 +46,7 @@ namespace MedLaunch.Models
                     new MednafenChangeHistory
                     {
                         Version = "0.9.44.1",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-0.9.44.1-win64.zip",
                         Changes = new List<VersionChange>
                         {
                             new VersionChange { Description = "SS Gun", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port1 gun", ChangeItem = "ss.input.port1 gamepad" },
@@ -77,6 +81,7 @@ namespace MedLaunch.Models
                     new MednafenChangeHistory
                     {
                         Version = "0.9.43",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-0.9.43-win64.zip",
                         Changes = new List<VersionChange>
                         {
                             new VersionChange { Description = "M3U Disc Chooser", ChangeMethod = ChangeType.ToRemove, Item = "which_medium" },
@@ -90,6 +95,7 @@ namespace MedLaunch.Models
                     new MednafenChangeHistory
                     {
                         Version = "0.9.42",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-0.9.42-win64.zip",
                         Changes = new List<VersionChange>
                         {
                             new VersionChange { Description = "ss multitap 1", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.sport1.multitap" },
@@ -113,6 +119,7 @@ namespace MedLaunch.Models
                     new MednafenChangeHistory
                     {
                         Version = "0.9.41",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-0.9.41-win64.zip",
                         Changes = new List<VersionChange>
                         {
                             new VersionChange { Description = "snes_faust multitap 1", ChangeMethod = ChangeType.ToRemove, Item = "snes_faust.input.sport1.multitap" },
@@ -126,10 +133,34 @@ namespace MedLaunch.Models
                         }
                     },
 
-                    // 0.9.39
+                    // 0.9.39.2
                     new MednafenChangeHistory
                     {
-                        Version = "0.9.39",
+                        Version = "0.9.39.2",
+                        DownloadURL = "http://mednafen.fobby.net/releases/files/mednafen-0.9.39.2-win64.zip",
+                        Changes = new List<VersionChange>
+                        {
+                            new VersionChange { Description = "rename pixshader", ChangeMethod = ChangeType.ToRename, Item = ".shader", ChangeItem = ".pixshader" },
+                            new VersionChange { Description = "goat shader", ChangeMethod = ChangeType.ToRemoveCompletely, Item = "goat" },
+                            new VersionChange { Description = "analogmode CT compare", ChangeMethod = ChangeType.ToRemove, Item = "psx.input.analog_mode_ct.compare" },
+                            new VersionChange { Description = "analogmode CT", ChangeMethod = ChangeType.ToRemove, Item = "psx.input.analog_mode_ct" },
+                            new VersionChange { Description = "snes.h_blend", ChangeMethod = ChangeType.ToRemove, Item = "snes.h_blend" },
+                            new VersionChange { Description = "ss.h_blend", ChangeMethod = ChangeType.ToRemove, Item = "ss.h_blend" },
+                            new VersionChange { Description = "ss.h_overscan", ChangeMethod = ChangeType.ToRemove, Item = "ss.h_overscan" },
+                            new VersionChange { Description = "ss.correct_aspect", ChangeMethod = ChangeType.ToRemove, Item = "ss.correct_aspect" },
+                            new VersionChange { Description = "sms.slstart", ChangeMethod = ChangeType.ToRemove, Item = "sms.slstart" },
+                            new VersionChange { Description = "sms.slend", ChangeMethod = ChangeType.ToRemove, Item = "sms.slend" },
+                            new VersionChange { Description = "sms.slstartp", ChangeMethod = ChangeType.ToRemove, Item = "sms.slstartp" },
+                            new VersionChange { Description = "sms.slendp", ChangeMethod = ChangeType.ToRemove, Item = "sms.slendp" },
+                            new VersionChange { Description = "sms.slstart", ChangeMethod = ChangeType.ToRemove, Item = "sms.slstart" },
+                        }
+                    },
+
+                    // 0.9.39.1
+                    new MednafenChangeHistory
+                    {
+                        Version = "0.9.39.1",
+                        DownloadURL = "http://mednafen.fobby.net/releases/files/mednafen-0.9.39.1-win64.zip",
                         Changes = new List<VersionChange>
                         {
                             new VersionChange { Description = "rename pixshader", ChangeMethod = ChangeType.ToRename, Item = ".shader", ChangeItem = ".pixshader" },
@@ -368,6 +399,7 @@ namespace MedLaunch.Models
     public class MednafenChangeHistory
     {
         public string Version { get; set; }
+        public string DownloadURL { get; set; }
         public List<VersionChange> Changes { get; set; }
     }
 

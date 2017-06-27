@@ -192,16 +192,74 @@ namespace MedLaunch.Models
 
         public static void SetMednafenPath(Button btnPathMednafen)
         {
-            MessageBox.Show("Click OK to browse to your Mednafen directory", "Invalid Mednafen.exe path!");
+            MessageBox.Show("Click OK to browse to either an existing Mednafen directory, or a new directory in order to download the latest compatible Mednafen version", "Invalid Mednafen.exe path!");
             btnPathMednafen.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+        }
+
+        public static bool DownloadCheck()
+        {
+            MessageBoxResult result = MessageBox.Show("The selected folder (" + Paths.GetPaths().mednafenExe + ")\nDoes not contain a mednafen executable.\n\nClick YES: Download and extract the latest Mednafen version to this folder\nClick NO: Choose another folder", "Mednafen NOT Detected", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                // download mednafen to this folder
+                return true;
+            }
+            else
+            {
+                // choose another folder
+                return false;
+            }
+        }
+
+        public static void MedPathRoutineContinued(Button btnPathMednafen, TextBox tbPathMednafen)
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            bool pathWorking = Paths.isMednafenPathValid();
+            if (pathWorking == false)
+            {
+                // problem with mednafen path
+                if (DownloadCheck() == false)
+                {
+                    SetMednafenPath(btnPathMednafen);
+                    MedPathRoutineContinued(btnPathMednafen, tbPathMednafen);
+                }
+                else
+                {
+                    mw.DownloadMednafenNoAsync();
+                    MedPathRoutineContinued(btnPathMednafen, tbPathMednafen);
+                }
+            }
+            else
+            {
+                // path is valid and working
+                InitM();
+            }
+        }
+
+        public static void InitM()
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            InitMednafen();
+
+            //ask to import configs
+            MessageBoxResult result = MessageBox.Show("Do you want to import data from any Mednafen config files in this directory?\n(This will overwrite any config data stored in MedLaunch)", "Config Import", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                ConfigImport ci = new ConfigImport();
+                ci.ImportAll(null);
+            }
+            // if option is selected make a backup of the mednafen config file
+            BackupConfig.BackupMain();
+            // mednafen versions
+            mw.UpdateCheckMednafen();
         }
 
         public static void MedPathRoutine(Button btnPathMednafen, TextBox tbPathMednafen)
         {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             bool pathWorking = Paths.isMednafenPathValid();
             if (pathWorking == false)
             {
-                // problem with mednafen path - force user to set it
                 SetMednafenPath(btnPathMednafen);
                 using (var context = new MyDbContext())
                 {
@@ -211,37 +269,22 @@ namespace MedLaunch.Models
                                   select p).SingleOrDefault();
                     path.mednafenExe = tbPathMednafen.Text;
                     context.SaveChanges();
-                }
 
-                // check path again
-                if (Paths.isMednafenPathValid() == false)
-                {
-                    // rinse and repeat
-                    SetMednafenPath(btnPathMednafen);
-                }
-                else
-                {
-                    // path is valid - make sure the mednafen directory is initialised
-                    InitMednafen();
+                    //System.Threading.Thread.Sleep(1500);
 
-                    //ask to import configs
-                    MessageBoxResult result = MessageBox.Show("Do you want to import data from any Mednafen config files in this directory?\n(This will overwrite any config data stored in MedLaunch)", "Config Import", MessageBoxButton.YesNo);
-                    if (result == MessageBoxResult.Yes)
-                    {
-                        ConfigImport ci = new ConfigImport();
-                        ci.ImportAll(null);
-                    }
+                    MedPathRoutineContinued(btnPathMednafen, tbPathMednafen);
 
                     
                 }
             }
             else
             {
-                
+                // path is valid and working
+                InitM();
             }
 
-            // if option is selected make a backup of the mednafen config file
-            BackupConfig.BackupMain();
+
+            
         }
 
     }

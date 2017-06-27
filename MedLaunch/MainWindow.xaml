@@ -10986,7 +10986,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <Button x:Name="btnCheckForUpdates" Click="btnCheckForUpdates_Click" Grid.ColumnSpan="2" Grid.Row="0">Check for Updates</Button>
+                        <Button x:Name="btnCheckForUpdates" Click="btnCheckForUpdates_Click" Grid.ColumnSpan="2" Grid.Row="0">Check for MedLaunch Updates</Button>
                         <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Grid.Row="1" Margin="20" x:Name="lblNoUpdate">No MedLaunch Update Available</Label>
 
                         <Label x:Name="lbl1" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" Margin="10" VerticalContentAlignment="Top">
@@ -11028,6 +11028,40 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                         
 
                     </Grid>
+
+                    <Grid Width="500" Margin="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="0.7*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+
+                        <Button x:Name="btnCheckForMednafenUpdates" Click="btnCheckForMednafenUpdates_Click" Grid.ColumnSpan="2" Grid.Row="0">Refresh Mednafen Version Status</Button>
+                        <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="20" x:Name="lblcompatmedversiontxt">Latest Compatible Mednafen Version: </Label>
+                        <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="20" x:Name="lblcompatmedversion"></Label>
+
+                        <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="20" x:Name="lblinstalledmedversiontxt">Installed Mednafen Version:</Label>
+                        <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="2" Margin="20" x:Name="lblinstalledmedversion"></Label>
+
+
+                        <Button Margin="20" Grid.ColumnSpan="2" Grid.Row="3" x:Name="btnUpdate1" Click="btnUpdateMednafen_Click">
+                            <TextBlock HorizontalAlignment="Center" TextAlignment="Center">
+                                Download and Unpack the Latest Compatible Mednafen
+                                <LineBreak />
+                                Version to Your Current Mednafen Folder
+                            </TextBlock>
+                        </Button>
+
+
+
+                    </Grid>
+
                 </WrapPanel>
             </TabItem>
           

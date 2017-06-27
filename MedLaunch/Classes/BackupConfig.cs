@@ -31,7 +31,7 @@ namespace MedLaunch.Classes
                     Directory.CreateDirectory(backupDir);
                     string destPath = backupDir + "\\mednafen-09x(MLBackup-" + timeStamp + ").cfg";
                     // create a backup
-                    File.Copy(cfgPath, destPath);
+                    File.Copy(cfgPath, destPath, true);
                 }
             }
         }

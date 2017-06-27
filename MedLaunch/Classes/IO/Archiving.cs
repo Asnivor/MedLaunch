@@ -29,6 +29,13 @@ namespace MedLaunch.Classes.IO
         public static List<Archiving> ArchiveMultiple { get; set; }
 
         // constructors
+        public Archiving(string archivePath)
+        {
+            ArchiveMultiple = new List<Archiving>();
+            ArchivePath = archivePath;
+            ArchiveExtension = System.IO.Path.GetExtension(ArchivePath).ToLower();
+        }
+
         public Archiving(string archivePath, int systemId)
         {
             //if (ArchiveMultiple == null)
@@ -55,7 +62,6 @@ namespace MedLaunch.Classes.IO
         /* methods */
         
 
-        
 
         /// <summary>
         /// Process the selected archive
@@ -199,6 +205,22 @@ namespace MedLaunch.Classes.IO
             }
 
             if (ArchiveExtension == ".7z")
+            {
+                var archive = ArchiveFactory.Open(ArchivePath);
+                foreach (var entry in archive.Entries)
+                {
+                    if (entry.IsDirectory)
+                        continue;
+
+                    entry.WriteToDirectory(destinationDirectory, new SharpCompress.Readers.ExtractionOptions() { Overwrite = true });
+                }
+            }
+        }
+
+        public void ExtractArchiveZipOverwrite(string destinationDirectory)
+        {
+            // determine archive type
+            if (ArchiveExtension == ".zip")
             {
                 var archive = ArchiveFactory.Open(ArchivePath);
                 foreach (var entry in archive.Entries)

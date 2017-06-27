@@ -251,7 +251,7 @@ namespace MedLaunch
             _searchTimer.Tick += new EventHandler(OnSearchTimerTick);
             _searchTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
 
-
+            LogParser.EmptyLoad();
         }
 
         private MetroWindow colorSchemeChanger;
@@ -1955,7 +1955,12 @@ namespace MedLaunch
             if (path.SelectedPath != "")
             {
                 string strPath = path.SelectedPath;
+
+                
+
                 tbPathMednafen.Text = strPath;
+
+                UpdateCheckMednafen();
             }
 
         }
@@ -3290,6 +3295,8 @@ namespace MedLaunch
 
         }
 
+
+
         private async void UpdateCheck(bool isStartup)
         {
             Release newRelease = new Release();
@@ -3297,6 +3304,8 @@ namespace MedLaunch
             // get current medlaunch version
             string currVersion = Versions.ReturnApplicationVersion();
             //string currVersion = "0.2.8.0";
+
+            
 
             var mySettings = new MetroDialogSettings()
             {
@@ -3449,11 +3458,252 @@ namespace MedLaunch
                 lbl5.Visibility = Visibility.Collapsed;
                 lblNoUpdate.Visibility = Visibility.Visible;
             }
+
+            // mednafen versions
+            UpdateCheckMednafen();
+        }
+
+        public void UpdateCheckMednafen()
+        {
+            Versions ver = new Versions();
+            // compatible mednafen version
+            lblcompatmedversion.Content = ver.LatestCompatMednafenVersion;
+
+            // installed mednafen version
+            if (ver.CurrentMednafenVersion == null || ver.CurrentMednafenVersion == "")
+            {
+                // version not detected. 
+                lblinstalledmedversion.Content = "ERROR: Unable to detect.";
+                return;
+            }
+            else
+            {
+                lblinstalledmedversion.Content = ver.CurrentMednafenVersion;
+            }
+
+            // update header if there is a newer mednafen version available
+            string[] CurrVersionArr = ver.CurrentMednafenVersion.Split('.');
+            string[] newVersionArr = ver.LatestCompatMednafenVersion.Split('.');
+            bool upgradeNeeded = false;
+
+            for (int v = 0; v < 4; v++)
+            {
+                int currV = 0;
+                int currN = 0;
+
+                if (v < CurrVersionArr.Length)
+                {
+                    currV = Convert.ToInt32(CurrVersionArr[v]);
+                }
+                if (v < newVersionArr.Length)
+                {
+                    currN = Convert.ToInt32(newVersionArr[v]);
+                }
+
+                if (currV > currN)
+                {
+                    // current version is NEWER than new version - upgrade not needed - break
+                    break;
+                }
+                if (currV == currN)
+                {
+                    // versions are the same - continue checking
+                    continue;
+                }
+                if (currV < currN)
+                {
+                    // new version is greater than old for this octet - upgrade needed
+                    upgradeNeeded = true;
+                    break;
+                }
+
+            }
+
+            if (upgradeNeeded == true)
+            {
+                UpdatedHeader.Header = "**MEDNAFEN UPDATE AVAILABLE**";
+            }
+            else
+            {
+                UpdatedHeader.Header = "Updates";
+            }            
         }
 
         private void btnCheckForUpdates_Click(object sender, RoutedEventArgs e)
         {
             UpdateCheck(false);
+        }
+
+        private void btnCheckForMednafenUpdates_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateCheckMednafen();
+        }
+
+        public bool DownloadMednafenNoAsync()
+        {
+            /* start download and extraction of latest compatible mednafen version */
+            Versions ver = new Versions();
+
+            string downloadsFolder = System.AppDomain.CurrentDomain.BaseDirectory + @"Data\Updates";
+            System.IO.Directory.CreateDirectory(downloadsFolder);
+
+            // get the new version
+            string url = ver.LatestCompatMednafenDownloadURL;
+            string fName = url.Split('/').Last();
+
+            // try the download
+
+            using (var wc = new CustomWebClient())
+            {
+                wc.Proxy = null;
+                wc.Timeout = 2000;
+                try
+                {
+                    wc.DownloadFile(url, downloadsFolder + "\\" + fName);
+                }
+                catch
+                {
+                    wc.Dispose();
+                    return false;
+                }
+                finally
+                {
+                    wc.Dispose();
+                }
+            }
+
+            // extract download to current mednafen folder
+            string meddir = Paths.GetPaths().mednafenExe;
+
+            Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
+            try
+            {
+                arch.ExtractArchiveZipOverwrite(meddir);
+            }
+            catch {
+                return false;
+            }
+            finally
+            {
+                
+            }
+            return true;
+        }
+
+        public async void UpdateMednafenToLatest(bool isStartup)
+        {
+            /* start download and extraction of latest compatible mednafen version */
+            Versions ver = new Versions();
+
+            string downloadsFolder = System.AppDomain.CurrentDomain.BaseDirectory + @"Data\Updates";
+            System.IO.Directory.CreateDirectory(downloadsFolder);
+
+            // get the new version
+            string url = ver.LatestCompatMednafenDownloadURL;
+            string fName = url.Split('/').Last();
+
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel Download",
+                AnimateShow = true,
+                AnimateHide = true
+
+            };
+
+            if (isStartup == false)
+            {
+                var controller = await this.ShowProgressAsync("Mednafen Update", "Downloading " + url, settings: mySettings);
+                controller.SetCancelable(false);
+                controller.SetIndeterminate();
+
+                await Task.Delay(400);
+
+                // try the download
+
+                using (var wc = new CustomWebClient())
+                {
+                    wc.Proxy = null;
+                    wc.Timeout = 2000;
+                    try
+                    {
+                        wc.DownloadFile(url, downloadsFolder + "\\" + fName);
+                    }
+                    catch
+                    {
+                        controller.SetMessage("The request timed out - please try again");
+                        await Task.Delay(2000);
+                        await controller.CloseAsync();
+                        wc.Dispose();
+                        return;
+                    }
+                    finally
+                    {
+                        wc.Dispose();
+                    }
+                }
+
+                // extract download to current mednafen folder
+                string meddir = Paths.GetPaths().mednafenExe;
+
+                Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
+                try
+                {
+                    arch.ExtractArchiveZipOverwrite(meddir);
+                }
+                catch { }
+
+
+                await controller.CloseAsync();
+            }
+            else
+            {
+                
+                await Task.Delay(400);
+
+                // try the download
+
+                using (var wc = new CustomWebClient())
+                {
+                    wc.Proxy = null;
+                    wc.Timeout = 2000;
+                    try
+                    {
+                        wc.DownloadFile(url, downloadsFolder + "\\" + fName);
+                    }
+                    catch
+                    {
+                        await Task.Delay(2000);
+                        wc.Dispose();
+                        return;
+                    }
+                    finally
+                    {
+                        wc.Dispose();
+                    }
+                }
+
+                // extract download to current mednafen folder
+                string meddir = Paths.GetPaths().mednafenExe;
+
+                Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
+                try
+                {
+                    arch.ExtractArchiveZipOverwrite(meddir);
+                }
+                catch { }
+                
+            }
+
+            
+
+            // check updates again
+            UpdateCheckMednafen();
+        }
+
+        private void btnUpdateMednafen_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateMednafenToLatest(false);
+            
         }
 
         private async void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -3526,6 +3776,9 @@ namespace MedLaunch
 
 
             await controller.CloseAsync();
+
+            // mednafen versions
+            UpdateCheckMednafen();
 
 
         }
