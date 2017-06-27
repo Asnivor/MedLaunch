@@ -753,9 +753,7 @@
     <None Include="Data\System\DAT\TOSEC\Sony PlayStation - Games - [ISO] %28TOSEC-v2012-09-08_CM%29.dat" />
     <None Include="Data\System\DAT\TOSEC\Sony PlayStation - Samplers - [BIN] %28TOSEC-v2012-09-08_CM%29.dat" />
     <None Include="Data\System\DAT\TOSEC\Sony PlayStation - Samplers - [ISO] %28TOSEC-v2012-09-08_CM%29.dat" />
-    <None Include="Data\System\MasterGames.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="Data\System\MasterGames.json" />
     <None Include="Data\System\MobyGames.json" />
     <None Include="Data\System\SaturnGames.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
