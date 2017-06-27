@@ -166,39 +166,36 @@ namespace MedLaunch.Classes.Scraper
             // remove all (xxx), [xxx] 
             string regex = "(\\[.*\\])|(\\(.*\\))";
             string s = Regex.Replace(i, regex, "").Replace("()", "").Replace("[]", "").ToLower().Trim();
+            
             // add this to the class
             SearchString = s;
-            // remove all - : _ '
-            s = s.Replace(" - ", " ").Replace("_", " ").Replace(": ", " ").Replace(" : ", " ").Replace(":", "").Replace("'", "").Replace("-", " ").Replace(".", "").Trim();
-            // remove all roman numerals
-            /*
-            s.Replace(" I", " ");
-            s.Replace(" II ", " ").Replace(" II", " ");
-            s.Replace(" III ", " ").Replace(" III", " ");
-            s.Replace(" IV ", " ").Replace(" IV", " ");
-            s.Replace(" V ", " ");
-            s.Replace(" VI ", " ").Replace(" VI", " ");
-            s.Replace(" VII ", " ").Replace(" VII", " ");
-            s.Replace(" VIII ", " ").Replace(" VIII", " ");
-            s.Replace(" IX ", " ").Replace(" IX", " ");
-            s.Replace(" X ", " ");
-            s.Replace(" XI ", " ").Replace(" XI", " ");
-            s.Replace(" XII ", " ").Replace(" XII", " ");
+            
+            // remove all extraneous symbols
+            s = s.Replace(" - ", " ").Replace("_", " ").Replace(": ", " ")
+                .Replace(" : ", " ").Replace(":", "").Replace("'", "")
+                .Replace("-", " ").Replace(".", "").Replace("  ", " ").Trim();
 
-            // replace ending numbers
-            string[] arr = BuildArray(s);
-            string l = arr[arr.Length - 1];
-            foreach (char c in l)
-            {
-                if (char.IsDigit(c))
-                {
-                    arr = arr.Take(arr.Count() - 1).ToArray();
-                    break;
-                }
-            }
-            s = BuildSearchString(arr);
-            */
-            return s;
+            // convert all digits to roman numberals
+            s = s.Replace(" 2", " II")
+                .Replace(" 3", " III")
+                .Replace(" 4", " IV")
+                .Replace(" 5", " V")
+                .Replace(" 6", " VI")
+                .Replace(" 7", " VII")
+                .Replace(" 8", " VIII")
+                .Replace(" 9", " IX")
+                .Replace(" 10", " X")
+                .Replace(" 11", " XI")
+                .Replace(" 12", " XII")
+                .Replace(" 13", " XIII")
+                .Replace(" 14", " XIV")
+                .Replace(" 15", " XV")
+                .Replace(" 16", " XVI")
+                .Replace(" 17", " XVII")
+                .Replace(" 18", "XVIII");
+
+            
+            return s.ToLower();
         }
 
         /// <summary>
