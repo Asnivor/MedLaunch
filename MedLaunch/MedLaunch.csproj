@@ -352,6 +352,11 @@
     <Compile Include="Windows\DiscSelection.xaml.cs">
       <DependentUpon>DiscSelection.xaml</DependentUpon>
     </Compile>
+    <Compile Include="_Debug\DATDB\AsniDATAdminDbContext.cs" />
+    <Compile Include="_Debug\DATDB\DAT_Game.cs" />
+    <Compile Include="_Debug\DATDB\DAT_Provider.cs" />
+    <Compile Include="_Debug\DATDB\DAT_Rom.cs" />
+    <Compile Include="_Debug\DATDB\DAT_System.cs" />
     <Compile Include="_Debug\ScrapeDB\ReplacementDocs\RdScraper.cs" />
     <Compile Include="Classes\Scraper\ScraperHandler.cs" />
     <Compile Include="Classes\VisualHandlers\ConfigsVisualHandler.cs" />
