@@ -80,9 +80,13 @@ namespace MedLaunch
 
         public App _App { get; set; }
 
+        public int UpdateStatus { get; set; }
+
         public MainWindow()
         {            
             InitializeComponent();
+
+            UpdateStatus = 0;
 
             _App = ((App)Application.Current); 
 
@@ -3392,7 +3396,9 @@ namespace MedLaunch
             if (upgradeNeeded == true)
             {
                 output = "A New MedLaunch Release is Now Available";
-                UpdatedHeader.Header = "**UPDATE AVAILABLE**";
+                //UpdatedHeader.Header = "**UPDATE AVAILABLE**";
+                UpdateStatus += 1;
+                ChangeUpdateStatus();
                 //await Task.Delay(1000);
                 controller.SetMessage("Downloading release information");
                 await Task.Delay(500);
@@ -3406,7 +3412,9 @@ namespace MedLaunch
             else
             {
                 output = "Your Version of MedLaunch is up to date";
-                UpdatedHeader.Header = "Updates";
+                UpdateStatus -= 1;
+                ChangeUpdateStatus();
+                //UpdatedHeader.Header = "Updates";
             }
             controller.SetMessage(output);
             if (isStartup == false)
@@ -3521,12 +3529,35 @@ namespace MedLaunch
 
             if (upgradeNeeded == true)
             {
-                UpdatedHeader.Header = "**MEDNAFEN UPDATE AVAILABLE**";
+                //UpdatedHeader.Header = "**MEDNAFEN UPDATE AVAILABLE**";
+                UpdateStatus += 2;
             }
             else
             {
-                UpdatedHeader.Header = "Updates";
-            }            
+                //UpdatedHeader.Header = "Updates";
+                UpdateStatus -= 2;
+            }
+            ChangeUpdateStatus();
+        }
+
+        public void ChangeUpdateStatus()
+        {
+            switch (UpdateStatus)
+            {
+                case 1:                             // medlaunch update
+                    UpdatedHeader.Header = "**MEDLAUNCH UPDATE AVAILABLE**";
+                    break;
+                case 2:                             // mednafen update
+                    UpdatedHeader.Header = "**MEDNAFEN UPDATE AVAILABLE**";
+                    break;
+                case 3:                             // medlaunch & mednafen updates
+                    UpdatedHeader.Header = "**2 UPDATES AVAILABLE**";
+                    break;
+                    
+                default:                            // no updates
+                    UpdatedHeader.Header = "Updates";
+                    break;
+            }
         }
 
         private void btnCheckForUpdates_Click(object sender, RoutedEventArgs e)
