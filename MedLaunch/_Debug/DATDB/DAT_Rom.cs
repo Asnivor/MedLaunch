@@ -26,5 +26,65 @@ namespace MedLaunch._Debug.DATDB
         public int datProviderId { get; set; }
         public int pid { get; set; }
 
+
+        /// <summary>
+        /// return list of all roms
+        /// </summary>
+        /// <returns></returns>
+        public static List<DAT_Rom> GetRoms()
+        {
+            using (var context = new AsniDATAdminDbContext())
+            {
+                var cData = (from g in context.DAT_Rom
+                             select g);
+                return cData.ToList();
+            }
+        }
+
+        /// <summary>
+        /// return list of all roms based on platform
+        /// </summary>
+        /// <returns></returns>
+        public static List<DAT_Rom> GetRoms(int pid)
+        {
+            using (var context = new AsniDATAdminDbContext())
+            {
+                var cData = (from g in context.DAT_Rom
+                             where g.pid == pid
+                             select g);
+                return cData.ToList();
+            }
+        }
+
+        /// <summary>
+        /// return list of all roms based on platform that have no game set
+        /// </summary>
+        /// <returns></returns>
+        public static List<DAT_Rom> GetRomsWithNoGameId(int pid)
+        {
+            using (var context = new AsniDATAdminDbContext())
+            {
+                var cData = (from g in context.DAT_Rom
+                             where g.pid == pid && g.gid == null
+                             select g);
+                return cData.ToList();
+            }
+        }
+
+        /// <summary>
+        /// return rom based on md5 hash
+        /// </summary>
+        /// <returns></returns>
+        public static DAT_Rom GetRom(string md5)
+        {
+            using (var context = new AsniDATAdminDbContext())
+            {
+                var cData = (from g in context.DAT_Rom
+                             where g.md5.ToUpper() == md5.ToUpper()
+                             select g);
+                return cData.FirstOrDefault();
+            }
+        }
+
     }
 }

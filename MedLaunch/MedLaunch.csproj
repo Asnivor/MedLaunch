@@ -352,11 +352,16 @@
     <Compile Include="Windows\DiscSelection.xaml.cs">
       <DependentUpon>DiscSelection.xaml</DependentUpon>
     </Compile>
+    <Compile Include="_Debug\DATDB\AdminDATDB.cs" />
     <Compile Include="_Debug\DATDB\AsniDATAdminDbContext.cs" />
     <Compile Include="_Debug\DATDB\DAT_Game.cs" />
     <Compile Include="_Debug\DATDB\DAT_Provider.cs" />
     <Compile Include="_Debug\DATDB\DAT_Rom.cs" />
     <Compile Include="_Debug\DATDB\DAT_System.cs" />
+    <Compile Include="_Debug\DATDB\Platforms\NOINTRO\ImportNoIntroData.cs" />
+    <Compile Include="_Debug\DATDB\Platforms\NOINTRO\Models\NoIntroCollection.cs" />
+    <Compile Include="_Debug\DATDB\Platforms\NOINTRO\Models\NoIntroObject.cs" />
+    <Compile Include="_Debug\DATDB\Platforms\NOINTRO\StringConverterNoIntro.cs" />
     <Compile Include="_Debug\ScrapeDB\ReplacementDocs\RdScraper.cs" />
     <Compile Include="Classes\Scraper\ScraperHandler.cs" />
     <Compile Include="Classes\VisualHandlers\ConfigsVisualHandler.cs" />
@@ -780,6 +785,23 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="_Debug\DATDB\DATFiles\NOINTRO\Atari - Lynx Parent-Clone %2820130303-222635%29.dat" />
+    <None Include="_Debug\DATDB\DATFiles\NOINTRO\Bandai - WonderSwan Color Parent-Clone %2820160925-023748%29.dat" />
+    <None Include="_Debug\DATDB\DATFiles\NOINTRO\Bandai - WonderSwan Parent-Clone %2820161023-173917%29.dat" />
+    <None Include="_Debug\DATDB\DATFiles\NOINTRO\NEC - PC Engine - TurboGrafx 16 Parent-Clone %2820161023-001335%29.dat" />
+    <None Include="_Debug\DATDB\DATFiles\NOINTRO\NEC - PC Engine SuperGrafx Parent-Clone %2820161023-001148%29.dat" />
+    <None Include="_Debug\DATDB\DATFiles\NOINTRO\Nintendo - Family Computer Disk System Parent-Clone %2820170211-085754%29.dat" />
+    <None Include="_Debug\DATDB\DATFiles\NOINTRO\Nintendo - Game Boy Advance Parent-Clone %2820161117-180412%29.dat" />
+    <None Include="_Debug\DATDB\DATFiles\NOINTRO\Nintendo - Game Boy Color Parent-Clone %2820161106-163037%29.dat" />
+    <None Include="_Debug\DATDB\DATFiles\NOINTRO\Nintendo - Game Boy Parent-Clone %2820161106-155610%29.dat" />
+    <None Include="_Debug\DATDB\DATFiles\NOINTRO\Nintendo - Nintendo Entertainment System Parent-Clone %2820161121-011006%29.dat" />
+    <None Include="_Debug\DATDB\DATFiles\NOINTRO\Nintendo - Super Nintendo Entertainment System Parent-Clone %2820161123-101137%29.dat" />
+    <None Include="_Debug\DATDB\DATFiles\NOINTRO\Nintendo - Virtual Boy Parent-Clone %2820160317-160921%29.dat" />
+    <None Include="_Debug\DATDB\DATFiles\NOINTRO\Sega - Game Gear Parent-Clone %2820161022-094907%29.dat" />
+    <None Include="_Debug\DATDB\DATFiles\NOINTRO\Sega - Master System - Mark III Parent-Clone %2820160925-050521%29.dat" />
+    <None Include="_Debug\DATDB\DATFiles\NOINTRO\Sega - Mega Drive - Genesis Parent-Clone %2820161023-001129%29.dat" />
+    <None Include="_Debug\DATDB\DATFiles\NOINTRO\SNK - Neo Geo Pocket Color Parent-Clone %2820151122-095540%29.dat" />
+    <None Include="_Debug\DATDB\DATFiles\NOINTRO\SNK - Neo Geo Pocket Parent-Clone %2820120228-094313%29.dat" />
     <Resource Include="Resources\Entypo.ttf" />
   </ItemGroup>
   <ItemGroup>
