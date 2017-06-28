@@ -13,7 +13,7 @@ namespace MedLaunch._Debug.DATDB
         public int pid { get; set; }
         public string year { get; set; }
         public string publisher { get; set; }
-        public int gdbid { get; set; }
+        public int? gdbid { get; set; }
 
 
         /// <summary>

@@ -9,6 +9,7 @@ namespace MedLaunch._Debug.DATDB
     public class DAT_Rom
     {
         public int rid { get; set; }
+        public int? gid { get; set; }
         public string romName { get; set; }
         public string country { get; set; }
         public string language { get; set; }
@@ -23,6 +24,7 @@ namespace MedLaunch._Debug.DATDB
         public string year { get; set; }
         public string publisher { get; set; }
         public int datProviderId { get; set; }
+        public int pid { get; set; }
 
     }
 }

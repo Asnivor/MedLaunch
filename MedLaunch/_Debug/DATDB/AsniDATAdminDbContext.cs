@@ -15,6 +15,7 @@ namespace MedLaunch._Debug.DATDB
 
         public DbSet<DAT_System> DAT_System { get; set; }                       // table containing thegamesdb.net platforms
         public DbSet<DAT_Game> DAT_Game { get; set; }                           // table containing all top-level games
+        public DbSet<DAT_Rom> DAT_Rom { get; set; }                             // table containing all actual ROMs
         public DbSet<DAT_Provider> DAT_provider { get; set; }                   // table containing all DAT providers
 
 
@@ -27,6 +28,12 @@ namespace MedLaunch._Debug.DATDB
 
             modelBuilder.Entity<DAT_Game>()
                 .HasKey(c => c.gid);
+
+            modelBuilder.Entity<DAT_Rom>()
+                .HasKey(c => c.rid);
+
+            modelBuilder.Entity<DAT_Provider>()
+                .HasKey(c => c.datProviderId);
         }
 
 
