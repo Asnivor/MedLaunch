@@ -31,7 +31,7 @@
 
 **MedLaunch** is a .NET (Windows only) front-end for the excellent [Mednafen](http://mednafen.fobby.net/) multi-system emulator.
 
-Latest Version: 0.5.6.1
+Latest Version: 0.5.6.2
 Compatible with Mednafen: 0.9.39.x - 0.9.45.x
 
 ### Features
