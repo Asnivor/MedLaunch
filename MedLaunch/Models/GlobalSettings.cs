@@ -18,7 +18,7 @@ namespace MedLaunch.Models
         public bool? bypassConfig { get; set; }                     // ignore GUI launcher configs and just launch with the mednafen text config files
         public bool? enableNetplay { get; set; }                    // enable netplay
         public bool? enableSnes_faust { get; set; }                 // use snes_faust emulation rather than SNES
-        public bool? enablePce_fast { get; set; }                  // use pce_fast emulation rather than pce
+        public bool? enablePce_fast { get; set; }                   // use pce_fast emulation rather than pce
         public int? serverSelected { get; set; }                    // stores the currently selected server ID
         public double guiZoom { get; set; }                         // the current GUI zoom factor as a decimal (1 = 100%)
         public bool? showAllBaseSettings { get; set; }              // if enabled, all settings are visible and configurable under the base configuration

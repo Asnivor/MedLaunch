@@ -239,15 +239,27 @@ namespace MedLaunch.Models
         public static void InitM()
         {
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            GlobalSettings gs = GlobalSettings.GetGlobals();
+            
             InitMednafen();
 
-            //ask to import configs
-            MessageBoxResult result = MessageBox.Show("Do you want to import data from any Mednafen config files in this directory?\n(This will overwrite any config data stored in MedLaunch)", "Config Import", MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
+            // check whether bypassconfig is set
+            if (gs.bypassConfig == false)
             {
-                ConfigImport ci = new ConfigImport();
-                ci.ImportAll(null);
+                //ask to import configs
+                MessageBoxResult result = MessageBox.Show("Do you want to import data from any Mednafen config files in this directory?\n(This will overwrite any config data stored in MedLaunch)\n\nYou will only be prompted once for this, but you can control automatic import of mednafen config files from the SETTINGS tab.", "Config Import", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    ConfigImport ci = new ConfigImport();
+                    ci.ImportAll(null);
+
+                    // set bypassconfig to 1
+                    gs.bypassConfig = true;
+                    GlobalSettings.SetGlobals(gs);
+                }
             }
+            
             // if option is selected make a backup of the mednafen config file
             BackupConfig.BackupMain();
             // mednafen versions
