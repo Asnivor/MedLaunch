@@ -88,6 +88,14 @@ namespace MedLaunch._Debug.DATDB
             }
         }
 
+        public static void UpdateRoms(List<DAT_Rom> roms)
+        {
+            using (var db = new AsniDATAdminDbContext())
+            {
+                db.DAT_Rom.UpdateRange(roms);
+                db.SaveChanges();
+            }
+        }
 
         public static int[] SaveToDatabase(List<DAT_Rom> roms)
         {

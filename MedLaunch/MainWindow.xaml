@@ -184,10 +184,18 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                         </MenuItem>
 
                         <MenuItem Header="DATDB (Admin)">
+                            
                             <MenuItem Header="NoIntro">
                                 <MenuItem Header="Import All NoIntro DATS" Click="btnNoIntroImportAll_Click"/>
                                 <Separator />
                             </MenuItem>
+                            <MenuItem Header="ToSec">
+                                <MenuItem Header="Import All ToSec DATS" Click="btnToSecImportAll_Click"/>
+                                <Separator />
+                            </MenuItem>
+                            <MenuItem Header="Process DAT_Game Table" Click="btnProcessDATGameTable_Click"/>
+                            <MenuItem Header="Calculate Missing Names and Publishers" Click="btnCalcYears_Click"/>
+                            <MenuItem Header="Calculate Missing Names and Publishers (Using ScrapeDB)" Click="btnCalcYearsManual_Click"/>
                         </MenuItem>
                         <!--
                         <MenuItem Header="Scraper Source Operations">

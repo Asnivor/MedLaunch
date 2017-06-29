@@ -4101,6 +4101,50 @@ namespace MedLaunch
             db.ImportRoutine(_Debug.DATDB.ProviderType.NoIntro, 0);
         }
 
+        /// <summary>
+        /// import all tosec DAT files
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnToSecImportAll_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.AdminDATDB db = new _Debug.DATDB.AdminDATDB();
+            db.ImportRoutine(_Debug.DATDB.ProviderType.ToSec, 0);
+        }
+
+        /// <summary>
+        /// builds/updates the DAT_Game table
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnProcessDATGameTable_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.AdminDATDB db = new _Debug.DATDB.AdminDATDB();
+            db.ProcessTopLevelGames();
+        }
+
+        /// <summary>
+        /// identify games with missing years and publishers and try to fix that from the rom sets
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCalcYears_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.AdminDATDB db = new _Debug.DATDB.AdminDATDB();
+            db.CalculateYearsAndPublishers();
+        }
+
+        /// <summary>
+        /// identify games with missing years and publishers and try to fix that from the rom sets
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCalcYearsManual_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.AdminDATDB db = new _Debug.DATDB.AdminDATDB();
+            db.CalculateYearsAndPublishersManual();
+        }
+
         private async void btnBuildFromDat_Click(object sender, RoutedEventArgs e)
         {
             var mySettings = new MetroDialogSettings()
