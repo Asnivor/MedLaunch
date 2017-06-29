@@ -19,7 +19,11 @@ namespace MedLaunch._Debug.DATDB
             systems = DAT_System.GetSystems();
         }
 
-
+        /// <summary>
+        /// Main entry point to import DAT files
+        /// </summary>
+        /// <param name="providerType"></param>
+        /// <param name="platformId"></param>
         public async void ImportRoutine(ProviderType providerType, int platformId)
         {
             string providerName = "All Platforms";

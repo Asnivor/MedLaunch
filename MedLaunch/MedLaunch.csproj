@@ -810,6 +810,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Settings\" />
+    <Folder Include="_Debug\DATDB\DATFiles\TOSEC\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Graphics\Icons\na.png">
