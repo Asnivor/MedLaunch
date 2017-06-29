@@ -360,7 +360,6 @@
     <Compile Include="_Debug\DATDB\DAT_System.cs" />
     <Compile Include="_Debug\DATDB\Platforms\NOINTRO\ImportNoIntroData.cs" />
     <Compile Include="_Debug\DATDB\Platforms\NOINTRO\Models\NoIntroCollection.cs" />
-    <Compile Include="_Debug\DATDB\Platforms\NOINTRO\Models\NoIntroObject.cs" />
     <Compile Include="_Debug\DATDB\Platforms\NOINTRO\StringConverterNoIntro.cs" />
     <Compile Include="_Debug\ScrapeDB\ReplacementDocs\RdScraper.cs" />
     <Compile Include="Classes\Scraper\ScraperHandler.cs" />

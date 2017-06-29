@@ -9,9 +9,14 @@ namespace MedLaunch._Debug.DATDB.Platforms.NOINTRO
 {
     public class StringConverterNoIntro
     {
-        public static NoIntroObject ParseString(string nameString)
+        /// <summary>
+        /// Parses the name string from a nointro entry
+        /// </summary>
+        /// <param name="nameString"></param>
+        /// <returns></returns>
+        public static DAT_Rom ParseString(string nameString)
         {
-            NoIntroObject no = new NoIntroObject();
+            DAT_Rom no = new DAT_Rom();
 
             // get name without any options (integrating demo flag if available)
             //no.Name = nameString.Split(new string[] { " ) " }, StringSplitOptions.RemoveEmptyEntries)[0].Trim() + ")";
@@ -23,14 +28,14 @@ namespace MedLaunch._Debug.DATDB.Platforms.NOINTRO
             string[] d = a.ToString().Split('(', ')');
 
             if (d.Length > 0)
-                no.Name = d[0].Trim();
+                no.name = d[0].Trim();
 
 
             if (d.Length > 1)
             {
-                if (d[1].Length > 3)
+                if (d[1].Length >= 3)
                 {
-                    no.Country = d[1].Trim();
+                    no.country = d[1].Trim();
                 }
             }
 
@@ -44,27 +49,27 @@ namespace MedLaunch._Debug.DATDB.Platforms.NOINTRO
                     // check for language
                     if (IsLanguageFlag(f) == true)
                     {
-                        no.Language = f;
+                        no.language = f;
                         continue;
                     }
 
                     // check version
                     if (IsVersion(f) == true)
                     {
-                        no.OtherFlags = f;
+                        no.otherFlags = f;
                     }
 
                     // check development status
                     if (IsDevelopmenttStatus(f) == true)
                     {
-                        no.DevelopmentStatus = f;
+                        no.developmentStatus = f;
                         continue;
                     }
 
                     // check copyright status
                     if (IsCopyrightStatus(f) == true)
                     {
-                        no.Copyright = f;
+                        no.copyright = f;
                         continue;
                     }
 
@@ -75,14 +80,14 @@ namespace MedLaunch._Debug.DATDB.Platforms.NOINTRO
                     // Media Label - ignore for now
                 }
 
-                if (no.Copyright == null)
-                    no.Copyright = "Commercial";
-                if (no.Copyright == "Unl")
-                    no.Copyright = "Unlicensed";
-                if (no.DevelopmentStatus == null)
-                    no.DevelopmentStatus = "Release";
-                if (no.Language == null)
-                    no.Language = "en";
+                if (no.copyright == null)
+                    no.copyright = "Commercial";
+                if (no.copyright == "Unl")
+                    no.copyright = "Unlicensed";
+                if (no.developmentStatus == null)
+                    no.developmentStatus = "Release";
+                if (no.language == null)
+                    no.language = "en";
 
             }
 

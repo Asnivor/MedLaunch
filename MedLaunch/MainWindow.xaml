@@ -168,7 +168,6 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
             <Button Content="Debug" ContextMenuService.IsEnabled="False" Click="TopMenu_Click" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
                 <Button.ContextMenu>
                     <ContextMenu>
-
                         <MenuItem Header="ScrapeDB (Admin)">
                             <MenuItem Name="dbgImportPlatGames" Header="Update DB with list of gdb platform games" Click="dbgImportPlatGames_Click"/>
                             <MenuItem Name="dbgImportMobyPlatGames" Header="Update DB with list of moby platform games" Click="dbgImportMobyPlatGames_Click"/>
@@ -183,7 +182,14 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                             <MenuItem Header="Match all manuals to games (manual - auto on exact match)" Click="btnParseRDList_Click"/>
                             
                         </MenuItem>
-                        
+
+                        <MenuItem Header="DATDB (Admin)">
+                            <MenuItem Header="NoIntro">
+                                <MenuItem Header="Import All NoIntro DATS" Click="btnNoIntroImportAll_Click"/>
+                                <Separator />
+                            </MenuItem>
+                        </MenuItem>
+                        <!--
                         <MenuItem Header="Scraper Source Operations">
                             <MenuItem Header="Download list of PlatformGames from thegamesdb.net (Update TheGamesDB.json)" Click="ScrapeGetAllPlatformGames_Click"/>
                             <MenuItem Header="Download list of PlatformGames from mobygames (Update MobyGames.json)" Click="btnmobyPlatformList_Click"/>
@@ -200,6 +206,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                             
                             <MenuItem Header="Parse replacement docs list of manuals and manually match them (auto on exact match)" Click="btnParseRDList_Click"/>
                         </MenuItem>
+                        -->
                         <MenuItem Header="DAT Functions">
                             <MenuItem Header="Build master information file from DATs (tosec / nointro etc)" Click="btnBuildFromDat_Click"/>
                             <MenuItem Header="Populate entries in the master DAT that do not have date information" Click="btnmatchDATyears_Click"/>

@@ -4090,6 +4090,17 @@ namespace MedLaunch
             }
         }
 
+        /// <summary>
+        /// import all nointro DAT files
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnNoIntroImportAll_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.AdminDATDB db = new _Debug.DATDB.AdminDATDB();
+            db.ImportRoutine(_Debug.DATDB.ProviderType.NoIntro, 0);
+        }
+
         private async void btnBuildFromDat_Click(object sender, RoutedEventArgs e)
         {
             var mySettings = new MetroDialogSettings()

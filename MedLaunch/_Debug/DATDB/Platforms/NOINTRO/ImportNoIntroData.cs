@@ -12,12 +12,16 @@ namespace MedLaunch._Debug.DATDB.Platforms.NOINTRO
 {
     public class ImportNoIntroData
     {
-        public static List<NoIntroObject> Go()
+        /// <summary>
+        /// process all nointro dat files for every system
+        /// </summary>
+        /// <returns></returns>
+        public static List<DAT_Rom> Go()
         {
             // load each system
             List<DAT_System> systems = DAT_System.GetSystems();
 
-            List<NoIntroObject> l = new List<NoIntroObject>();
+            List<DAT_Rom> l = new List<DAT_Rom>();
 
             foreach (var sys in systems)
             {
@@ -27,7 +31,7 @@ namespace MedLaunch._Debug.DATDB.Platforms.NOINTRO
                 // iterate through each data and parse the information into a new object
                 foreach (string s in dats)
                 {
-                    List<NoIntroObject> list = Parse(s, sys.pid);
+                    List<DAT_Rom> list = Parse(s, sys.pid);
                     l.AddRange(list);
                 }
             }
@@ -35,11 +39,32 @@ namespace MedLaunch._Debug.DATDB.Platforms.NOINTRO
             return l;
         }
 
-
-
-        public static List<NoIntroObject> Parse(string dat, int systemId)
+        /// <summary>
+        /// process nointro dat files based on gdb platform ID
+        /// </summary>
+        /// <returns></returns>
+        public static List<DAT_Rom> Go(int platformId)
         {
-            List<NoIntroObject> list = new List<NoIntroObject>();
+            List<DAT_Rom> l = new List<DAT_Rom>();
+
+            // get a list of strings containing all data info for this system
+            List<string> dats = LoadDATs(platformId);
+
+            // iterate through each data and parse the information into a new object
+            foreach (string s in dats)
+            {
+                List<DAT_Rom> list = Parse(s, platformId);
+                l.AddRange(list);
+            }
+          
+            l.Distinct();
+            return l;
+        }
+
+
+        public static List<DAT_Rom> Parse(string dat, int systemId)
+        {
+            List<DAT_Rom> list = new List<DAT_Rom>();
 
             // replace illegal characters
             dat = dat.Replace(" & ", " &amp; ").Replace(" and ", " &amp; ");
@@ -54,33 +79,34 @@ namespace MedLaunch._Debug.DATDB.Platforms.NOINTRO
 
                 string nameString = (string)element.Attribute("name");
 
-                NoIntroObject no = StringConverterNoIntro.ParseString(nameString);
-                no.SystemId = systemId;
+                DAT_Rom no = StringConverterNoIntro.ParseString(nameString);
+                no.pid = systemId;
 
-                no.CloneOf = (string)element.Attribute("cloneof");
+                no.cloneOf = (string)element.Attribute("cloneof");
                 //no.Description = (string)element.Element("description");
                 IEnumerable<XElement> roms = element.Elements("rom");
 
                 foreach (XElement rom in roms)
                 {
-                    NoIntroObject n = new NoIntroObject
+                    DAT_Rom n = new DAT_Rom
                     {
-                        Name = no.Name,
-                        CloneOf = no.CloneOf,
-                        Copyright = no.Copyright,
-                        Country = no.Country,
-                        CRC = (string)rom.Attribute("crc"),
-                        Size = (string)rom.Attribute("size"),
-                        MD5 = (string)rom.Attribute("md5"),
-                        SHA1 = (string)rom.Attribute("sha1"),
-                        DevelopmentStatus = no.DevelopmentStatus,
-                        Language = no.Language,
-                        RomName = (string)rom.Attribute("name"),
-                        SystemId = no.SystemId,
-                        OtherFlags = no.OtherFlags,
-                        Publisher = no.Publisher,
-                        Description = no.Description,
-                        Year = no.Year
+                        name = no.name,
+                        cloneOf = no.cloneOf,
+                        copyright = no.copyright,
+                        country = no.country,
+                        crc = (string)rom.Attribute("crc"),
+                        size = (string)rom.Attribute("size"),
+                        md5 = (string)rom.Attribute("md5"),
+                        sha1 = (string)rom.Attribute("sha1"),
+                        developmentStatus = no.developmentStatus,
+                        language = no.language,
+                        romName = (string)rom.Attribute("name"),
+                        pid = no.pid,
+                        otherFlags = no.otherFlags,
+                        publisher = no.publisher,
+                        description = no.description,
+                        year = no.year,
+                        datProviderId = 1,                        
                     };
 
                     list.Add(n);
