@@ -361,6 +361,11 @@
     <Compile Include="_Debug\DATDB\Platforms\NOINTRO\ImportNoIntroData.cs" />
     <Compile Include="_Debug\DATDB\Platforms\NOINTRO\Models\NoIntroCollection.cs" />
     <Compile Include="_Debug\DATDB\Platforms\NOINTRO\StringConverterNoIntro.cs" />
+    <Compile Include="_Debug\DATDB\Platforms\PSXDATACENTER\ImportPsxDataCenterdata.cs" />
+    <Compile Include="_Debug\DATDB\Platforms\PSXDATACENTER\Models\PsxDataCenterCollection.cs" />
+    <Compile Include="_Debug\DATDB\Platforms\PSXDATACENTER\PsxDataCenterAdminDbContext.cs" />
+    <Compile Include="_Debug\DATDB\Platforms\PSXDATACENTER\PsxDc.cs" />
+    <Compile Include="_Debug\DATDB\Platforms\PSXDATACENTER\PSX_Games.cs" />
     <Compile Include="_Debug\DATDB\Platforms\TOSEC\ImportToSecData.cs" />
     <Compile Include="_Debug\DATDB\Platforms\TOSEC\Models\ToSecCollection.cs" />
     <Compile Include="_Debug\DATDB\Platforms\TOSEC\StringConverterToSec.cs" />
@@ -904,6 +909,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Settings\" />
+    <Folder Include="_Debug\DATDB\DATFiles\PSXDATACENTER\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Graphics\Icons\na.png">

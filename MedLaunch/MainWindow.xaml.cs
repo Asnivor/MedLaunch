@@ -4696,7 +4696,7 @@ namespace MedLaunch
             }
         }
 
-
+       
         private async void btnmatchDATyears_Click(object sender, RoutedEventArgs e)
         {
             var mySettings = new MetroDialogSettings()
@@ -4811,6 +4811,50 @@ namespace MedLaunch
             }
         }
 
+        /// <summary>
+        /// Scrapes all PSX game info from psxdatacenter
+        /// and populates the intermediary debug DB (PSXDC.db)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScrapePsxDataCenter(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.Platforms.PSXDATACENTER.PsxDc.ScrapeInitialList(true);
+        }
+
+        /// <summary>
+        /// Scrapes all PSX game info from psxdatacenter
+        /// and populates the intermediary debug DB (PSXDC.db)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScrapePsxDataCenterNoDownload(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.Platforms.PSXDATACENTER.PsxDc.ScrapeInitialList(false);
+        }
+
+        /// <summary>
+        /// Gets extra detail from online
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ImportPsxDataCenterExtraDetail(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.Platforms.PSXDATACENTER.PsxDc.GetExtraDetail();
+        }
+
+        /// <summary>
+        /// Imports data from psxdc.db into AsniDAT.db
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ImportPsxDataCenter(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.AdminDATDB db = new _Debug.DATDB.AdminDATDB();
+            db.ImportRoutine(_Debug.DATDB.ProviderType.PsxDataCenter, 0);
+        }
+
+        /*
         private async void buildPsxJson_Click(object sender, RoutedEventArgs e)
         {
             var mySettings = new MetroDialogSettings()
@@ -4849,6 +4893,7 @@ namespace MedLaunch
                 GamesLibraryVisualHandler.RefreshGamesLibrary();
             }
         }
+        */
 
         private async void popPsxJson_Click(object sender, RoutedEventArgs e)
         {

@@ -184,15 +184,22 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                         </MenuItem>
 
                         <MenuItem Header="DATDB (Admin)">
-                            
-                            <MenuItem Header="NoIntro">
-                                <MenuItem Header="Import All NoIntro DATS" Click="btnNoIntroImportAll_Click"/>
-                                <Separator />
-                            </MenuItem>
                             <MenuItem Header="ToSec">
                                 <MenuItem Header="Import All ToSec DATS" Click="btnToSecImportAll_Click"/>
                                 <Separator />
                             </MenuItem>
+                            <MenuItem Header="NoIntro">
+                                <MenuItem Header="Import All NoIntro DATS" Click="btnNoIntroImportAll_Click"/>
+                                <Separator />
+                            </MenuItem>
+                            <MenuItem Header="PsxDataCenter">
+                                <MenuItem Header="Scrape online and update PSXDC.db (intermediary debug db)" Click="ScrapePsxDataCenter"/>
+                                <MenuItem Header="Update PSXDC.db (intermediary debug db) NO DOWNLOAD" Click="ScrapePsxDataCenterNoDownload"/>
+                                <MenuItem Header="Scrape online for extra details" Click="ImportPsxDataCenterExtraDetail"/>
+                                <MenuItem Header="Import PSXDC.db data into AsniDAT" Click="ImportPsxDataCenter"/>
+                                <Separator />
+                            </MenuItem>
+                            
                             <MenuItem Header="Process DAT_Game Table" Click="btnProcessDATGameTable_Click"/>
                             <MenuItem Header="Calculate Missing Names and Publishers" Click="btnCalcYears_Click"/>
                             <MenuItem Header="Calculate Missing Names and Publishers (Using ScrapeDB)" Click="btnCalcYearsManual_Click"/>
@@ -219,8 +226,10 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                             <MenuItem Header="Build master information file from DATs (tosec / nointro etc)" Click="btnBuildFromDat_Click"/>
                             <MenuItem Header="Populate entries in the master DAT that do not have date information" Click="btnmatchDATyears_Click"/>
                             <MenuItem Header="Build Saturn Games List JSON" Click="buildSaturnJson_Click"/>
+                            <!--
                             <MenuItem Header="Scrape PSX Games from PSXDATACENTER into json (initial list) - destructive" Click="buildPsxJson_Click"/>
                             <MenuItem Header="Populate PSXDATACENTER json with more advanced details (non-destructive)" Click="popPsxJson_Click"/>
+                            -->
                         </MenuItem>
                         <MenuItem Header="MedLaunch ToolTips">
                             <MenuItem Header="Generate tooltips JSON" Click="btnGenerateToolTips_Click"/>

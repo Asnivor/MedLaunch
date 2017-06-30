@@ -24,6 +24,7 @@ namespace MedLaunch._Debug.DATDB
         public string sha1 { get; set; }
         public string year { get; set; }
         public string publisher { get; set; }
+        public string developer { get; set; }
         public int datProviderId { get; set; }
         public int pid { get; set; }
         public string description { get; set; }

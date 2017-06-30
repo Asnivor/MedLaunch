@@ -65,6 +65,11 @@ namespace MedLaunch._Debug.DATDB
 
                     case ProviderType.ReDump:
                         break;
+
+                    case ProviderType.PsxDataCenter:
+                        Platforms.PSXDATACENTER.Models.PsxDataCenterCollection psxdc = new Platforms.PSXDATACENTER.Models.PsxDataCenterCollection();
+                        roms = psxdc.Data;
+                        break;
                 }
 
                 controller.SetMessage(output + roms.Count + " Separate ROM files scraped. Starting database import procedure");
@@ -199,7 +204,13 @@ namespace MedLaunch._Debug.DATDB
                             {
                                 updateNeeded = true;
                                 dg.publisher = rom.publisher;
-                            }                                
+                            }
+
+                            if (rom.developer != null && rom.developer.Trim() != "")
+                            {
+                                updateNeeded = true;
+                                dg.developer = rom.developer;
+                            }
 
                             // update game directly
                             if (updateNeeded == true)
@@ -497,7 +508,34 @@ namespace MedLaunch._Debug.DATDB
                 
                 // ands
                 .Replace("&", "AND")
-                .Replace("&amp;", "AND");
+                .Replace("&amp;", "AND")
+                
+                // remove the
+                .Replace("THE", "")
+
+                // remove discs in string (psxdatacenter)
+                .Replace("[2 DISCS ]", "")
+                .Replace("[3 DISCS ]", "")
+                .Replace("[4 DISCS ]", "")
+                .Replace("[5 DISCS ]", "")
+                .Replace("[6 DISCS ]", "")
+                .Replace("[7 DISCS ]", "")
+                .Replace("[8 DISCS ]", "")
+                .Replace("[9 DISCS ]", "")
+                .Replace("[10 DISCS ]", "")
+
+                .Replace("[ 2 DISCS ]", "")
+                .Replace("[ 3 DISCS ]", "")
+                .Replace("[ 4 DISCS ]", "")
+                .Replace("[ 5 DISCS ]", "")
+                .Replace("[ 6 DISCS ]", "")
+                .Replace("[ 7 DISCS ]", "")
+                .Replace("[ 8 DISCS ]", "")
+                .Replace("[ 9 DISCS ]", "")
+                .Replace("[ 10 DISCS ]", "")
+
+                // final trim
+                .Trim();
 
             return working;
         }
@@ -508,5 +546,8 @@ namespace MedLaunch._Debug.DATDB
         NoIntro,
         ToSec,
         ReDump,
+        TruRip,
+        PsxDataCenter,
+        Satakore
     }
 }
