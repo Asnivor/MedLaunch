@@ -1,33 +1,33 @@
-<img src="http://medlaunch.asnitech.co.uk/MedLaunch_sm.png" height="80" />
+<img src="https://medlaunch.info/MedLaunch_sm.png" height="80" />
 # MedLaunch
 ## A Windows Front-End for Mednafen
 
 
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/games01.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/games01.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/games02.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/games02.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/games06.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/games06.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/games03.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/games03.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/games04.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/games04.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/games05.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/games05.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/configs01.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/configs01.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/configs02.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/configs02.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/configs03.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/configs03.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/configs04.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/configs04.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/controls01.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/controls01.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/controls02.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/controls02.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/controls03.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/controls03.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/controls04.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/controls04.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/settings01.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/settings01.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/settings02.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/settings02.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/settings03.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/settings03.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/settings04.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/settings04.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/help01.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/help01.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/help02.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/help02.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/misc01.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/misc01.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/misc02.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/misc02.png" width="150" /></a>
-<a href="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/misc03.png"><img src="http://medlaunch.asnitech.co.uk/user/pages/03.screenshots/misc03.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/games01.png"><img src="https://medlaunch.info/user/pages/03.screenshots/games01.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/games02.png"><img src="https://medlaunch.info/user/pages/03.screenshots/games02.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/games06.png"><img src="https://medlaunch.info/user/pages/03.screenshots/games06.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/games03.png"><img src="https://medlaunch.info/user/pages/03.screenshots/games03.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/games04.png"><img src="https://medlaunch.info/user/pages/03.screenshots/games04.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/games05.png"><img src="https://medlaunch.info/user/pages/03.screenshots/games05.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/configs01.png"><img src="https://medlaunch.info/user/pages/03.screenshots/configs01.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/configs02.png"><img src="https://medlaunch.info/user/pages/03.screenshots/configs02.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/configs03.png"><img src="https://medlaunch.info/user/pages/03.screenshots/configs03.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/configs04.png"><img src="https://medlaunch.info/user/pages/03.screenshots/configs04.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/controls01.png"><img src="https://medlaunch.info/user/pages/03.screenshots/controls01.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/controls02.png"><img src="https://medlaunch.info/user/pages/03.screenshots/controls02.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/controls03.png"><img src="https://medlaunch.info/user/pages/03.screenshots/controls03.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/controls04.png"><img src="https://medlaunch.info/user/pages/03.screenshots/controls04.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/settings01.png"><img src="https://medlaunch.info/user/pages/03.screenshots/settings01.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/settings02.png"><img src="https://medlaunch.info/user/pages/03.screenshots/settings02.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/settings03.png"><img src="https://medlaunch.info/user/pages/03.screenshots/settings03.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/settings04.png"><img src="https://medlaunch.info/user/pages/03.screenshots/settings04.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/help01.png"><img src="https://medlaunch.info/user/pages/03.screenshots/help01.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/help02.png"><img src="https://medlaunch.info/user/pages/03.screenshots/help02.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/misc01.png"><img src="https://medlaunch.info/user/pages/03.screenshots/misc01.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/misc02.png"><img src="https://medlaunch.info/user/pages/03.screenshots/misc02.png" width="150" /></a>
+<a href="https://medlaunch.info/user/pages/03.screenshots/misc03.png"><img src="https://medlaunch.info/user/pages/03.screenshots/misc03.png" width="150" /></a>
 
-[http://medlaunch.asnitech.co.uk/](http://medlaunch.asnitech.co.uk/)
+[https://medlaunch.info/](https://medlaunch.info/)
 
 **MedLaunch** is a .NET (Windows only) front-end for the excellent [Mednafen](http://mednafen.fobby.net/) multi-system emulator.
 
@@ -59,14 +59,14 @@ This upcoming changes (and many others) can be found in the current roadmap [her
 
 ### Requirements
 * [Microsoft .NET Framework 4.5.2](https://www.microsoft.com/en-gb/download/details.aspx?id=42643)
-* At least [Mednafen versions 0.9.39.x through 0.9.45.x](http://mednafen.fobby.net/releases/) - 64-bit version required for Saturn games
+* At least [Mednafen versions 0.9.39.x through 0.9.45.x](https://mednafen.github.io/releases/) - 64-bit version required for Saturn games
 * Windows 7 and above (may work on Vista but has not been tested)
 * x64 (has not been tested on x86 but should still work on it)
 
 ### Download
-You can always get the latest release build of MedLaunch on the [GitHub Releases](https://github.com/Asnivor/MedLaunch/releases) page. I am actively working on code in the [Master Branch](https://github.com/Asnivor/MedLaunch/tree/master) and you can see the active changes for the next release on the [ChangeLog](http://medlaunch.asnitech.co.uk/changelog). These pre-release changes will be released when I am happy with them, so please do not ask for builds ahead of the official releases. You can of course get yourself a copy of Visual Studio Community installed and build it yourself from the Master branch.
+You can always get the latest release build of MedLaunch on the [GitHub Releases](https://github.com/Asnivor/MedLaunch/releases) page. I am actively working on code in the [Master Branch](https://github.com/Asnivor/MedLaunch/tree/master) and you can see the active changes for the next release on the [ChangeLog](https://medlaunch.info/changelog). These pre-release changes will be released when I am happy with them, so please do not ask for builds ahead of the official releases. You can of course get yourself a copy of Visual Studio Community installed and build it yourself from the Master branch.
 
-! You can download the latest version of Mednafen from the [**Mednafen website**](http://mednafen.fobby.net/releases/).
+! You can download the latest version of Mednafen from the [**Mednafen website**](https://mednafen.github.io/releases/).
 
 #### New Install
 * Extract this release to a folder, run the 'MedLaunch.exe' executable and choose your Mednafen directory (must be 64-bit version if you want to emulate Saturn games).
@@ -84,7 +84,7 @@ You can always get the latest release build of MedLaunch on the [GitHub Releases
 * Once MedLaunch has upgraded, go to the 'Configs' tab and click the 'IMPORT ALL CONFIGS FROM DISK' button
 
 ### Download
-Check out the [**Releases**](http://medlaunch.asnitech.co.uk/releases) page or the project on [**GitHub**](https://github.com/Asnivor/MedLaunch).
+Check out the [**Releases**](https://medlaunch.info/releases) page or the project on [**GitHub**](https://github.com/Asnivor/MedLaunch).
 
 ## Build From Source
 The project has been built using Visual Studio Community 2015. It may or may not work with previous versions.
