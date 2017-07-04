@@ -166,6 +166,8 @@ namespace MedLaunch._Debug.DATDB
                                 dg.year = rom.year;
                             if (rom.publisher != null && rom.publisher.Trim() != "")
                                 dg.publisher = rom.publisher;
+                            if (rom.developer != null && rom.developer.Trim() != "")
+                                dg.developer = rom.developer;
 
                             // get the latest availble gid and set this
                             var newg = AllGames.ToList().OrderByDescending(a => a.gid).FirstOrDefault();
@@ -304,12 +306,12 @@ namespace MedLaunch._Debug.DATDB
 
                 // automated searching first
 
-                int numGames = AllGames.Where(a => a.year == null || a.publisher == null).Count();
+                int numGames = AllGames.Where(a => a.year == null || a.publisher == null || a.developer == null).Count();
 
                 int skipped = 0;
 
                 // iterate through each game that does not have a year or publisher set
-                foreach (var game in AllGames.Where(a => a.year == null || a.publisher == null))
+                foreach (var game in AllGames.Where(a => a.year == null || a.publisher == null || a.developer == null))
                 {
                     DAT_Game g = new DAT_Game();
                     g = game;                
@@ -328,9 +330,14 @@ namespace MedLaunch._Debug.DATDB
                                           where a.year != null
                                           select a).FirstOrDefault();
 
+                        var devSearch = (from a in search
+                                         where a.developer != null
+                                         select a).FirstOrDefault();
+
                         var pubSearch = (from a in search
                                          where a.publisher != null
                                          select a).FirstOrDefault();
+
 
                         if (yearSearch != null)
                         {
@@ -341,7 +348,12 @@ namespace MedLaunch._Debug.DATDB
                         {
                             g.publisher = pubSearch.publisher;
                             updateNeeded = true;
-                        }                                         
+                        }
+                        if (devSearch != null)
+                        {
+                            g.developer = pubSearch.developer;
+                            updateNeeded = true;
+                        }
                     }
 
                     if (updateNeeded == true)
