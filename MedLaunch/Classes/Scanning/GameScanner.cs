@@ -215,7 +215,7 @@ namespace MedLaunch.Classes
         public static int UpdatedStats { get; set; }
         public static int UntouchedStats { get; set; }
 
-        public static IEnumerable<DATMerge> DAT { get; set; }
+        public static List<DATMerge> DAT { get; set; }
 
         // methods
         public string GetPath(int systemId)

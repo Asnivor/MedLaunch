@@ -660,15 +660,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Data\System\AsniDAT.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\System\AsniScrape.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\System\ColumnDefaults.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\System\DATMaster.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Data\System\DATMaster.json" />
     <None Include="Data\System\DAT\NOINTRO\Atari - Lynx Parent-Clone %2820130303-222635%29.dat" />
     <None Include="Data\System\DAT\NOINTRO\Bandai - WonderSwan Color Parent-Clone %2820160925-023748%29.dat" />
     <None Include="Data\System\DAT\NOINTRO\Bandai - WonderSwan Parent-Clone %2820161023-173917%29.dat" />

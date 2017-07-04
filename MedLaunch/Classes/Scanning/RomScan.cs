@@ -1,5 +1,6 @@
 ﻿using Asnitech.Launch.Common;
 using MahApps.Metro.Controls.Dialogs;
+using MedLaunch.Classes.DAT;
 using MedLaunch.Classes.GamesLibrary;
 using MedLaunch.Classes.IO;
 using MedLaunch.Classes.Scraper.DAT.Models;
@@ -217,11 +218,7 @@ namespace MedLaunch.Classes.Scanning
 
                 ProcessGame(romName, hash, relPath, fileName, extension);
             }
-
-            
-
-            
-                
+   
         }
 
         public void ProcessGame(string romName, string hash, string relPath, string fileName, string extension)
@@ -233,11 +230,12 @@ namespace MedLaunch.Classes.Scanning
                             where g.systemId == systemId && g.gameName == romName //&& g.archiveGame == archiveGame
                             select g).FirstOrDefault();
 
+            // filter DAT by systemId
+            List<DATMerge> lookup = DATMerge.FilterByMedLaunchSystemId(DAT, systemId);
+
             // lookup game in master dat
             string nHash = hash.ToUpper().Trim().ToString();
-            List<DATMerge> lookup = (from i in DAT
-                                     where i.SystemId == systemId && i.Roms.Any(l => l.MD5.ToUpper().Trim() == hash)
-                                     select i).ToList();
+            List<DATMerge> look = lookup.Where(a => a.MD5.ToUpper().Trim() == nHash).ToList();
 
             int subSysId = GSystem.GetSubSystemId(systemId, extension);
 
@@ -246,32 +244,33 @@ namespace MedLaunch.Classes.Scanning
                 // does not already exist - create new game
                 newGame.configId = 1;
 
-                if (lookup != null && lookup.Count > 0)
+                if (look != null && look.Count > 0)
                 {
-                    newGame.gameNameFromDAT = lookup.First().GameName;
-                    newGame.Publisher = lookup.First().Publisher;
-                    newGame.Year = lookup.First().Year;
+                    newGame.gameNameFromDAT = look.First().GameName;
+                    newGame.Publisher = look.First().Publisher;
+                    newGame.Year = look.First().Year;
+                    newGame.romNameFromDAT = look.First().RomName;
+                    newGame.Copyright = look.First().Copyright;
+                    newGame.Country = look.First().Country;
+                    newGame.DevelopmentStatus = look.First().DevelopmentStatus;
+                    newGame.Language = look.First().Language;
+                    newGame.OtherFlags = look.First().OtherFlags;
+                    //newGame.Publisher = look.First().Publisher;
+                    //newGame.Year = look.First().Year;
+                    //newGame.Developer = look.First().Developer;
 
-                    // get rom we are interested in
-                    var rom = (from ro in lookup.First().Roms
-                               where ro.MD5.ToUpper().Trim() == hash.ToUpper().Trim()
-                               select ro).First();
-                    newGame.romNameFromDAT = rom.RomName;
-                    newGame.Copyright = rom.Copyright;
-                    newGame.Country = rom.Country;
-                    newGame.DevelopmentStatus = rom.DevelopmentStatus;
-                    newGame.Language = rom.Language;
-                    newGame.OtherFlags = rom.OtherFlags;
-
-                    if (rom.Year != null && rom.Year != "")
+                    if (look.First().Year != null && look.First().Year != "")
                     {
-                        newGame.Year = rom.Year;
+                        newGame.Year = look.First().Year;
                     }
-                    if (rom.Publisher != null && rom.Publisher != "")
+                    if (look.First().Publisher != null && look.First().Publisher != "")
                     {
-                        newGame.Publisher = rom.Publisher;
+                        newGame.Publisher = look.First().Publisher;
                     }
-
+                    if (look.First().Developer != null && look.First().Developer != "")
+                    {
+                        newGame.Developer = look.First().Developer;
+                    }
                 }
 
                 newGame.gameName = romName;
@@ -311,30 +310,30 @@ namespace MedLaunch.Classes.Scanning
                     newGame.hidden = false;
 
                     newGame.CRC32 = hash;
-                    if (lookup != null && lookup.Count > 0)
+                    if (look != null && look.Count > 0)
                     {
-                        newGame.gameNameFromDAT = lookup.First().GameName;
-                        newGame.Publisher = lookup.First().Publisher;
-                        newGame.Year = lookup.First().Year;
+                        newGame.gameNameFromDAT = look.First().GameName;
+                        //newGame.Publisher = look.First().Publisher;
+                        //newGame.Year = look.First().Year;
+                        //newGame.Developer = look.First().Developer;
+                        newGame.romNameFromDAT = look.First().RomName;
+                        newGame.Copyright = look.First().Copyright;
+                        newGame.Country = look.First().Country;
+                        newGame.DevelopmentStatus = look.First().DevelopmentStatus;
+                        newGame.Language = look.First().Language;
+                        newGame.OtherFlags = look.First().OtherFlags;
 
-                        // get rom we are interested in
-                        var rom = (from ro in lookup.First().Roms
-                                   where ro.MD5.ToUpper().Trim() == hash.ToUpper().Trim()
-                                   select ro).First();
-                        newGame.romNameFromDAT = rom.RomName;
-                        newGame.Copyright = rom.Copyright;
-                        newGame.Country = rom.Country;
-                        newGame.DevelopmentStatus = rom.DevelopmentStatus;
-                        newGame.Language = rom.Language;
-                        newGame.OtherFlags = rom.OtherFlags;
-
-                        if (rom.Year != null && rom.Year != "")
+                        if (look.First().Year != null && look.First().Year != "")
                         {
-                            newGame.Year = rom.Year;
+                            newGame.Year = look.First().Year;
                         }
-                        if (rom.Publisher != null && rom.Publisher != "")
+                        if (look.First().Publisher != null && look.First().Publisher != "")
                         {
-                            newGame.Publisher = rom.Publisher;
+                            newGame.Publisher = look.First().Publisher;
+                        }
+                        if (look.First().Developer != null && look.First().Developer != "")
+                        {
+                            newGame.Developer = look.First().Developer;
                         }
                     }
 

@@ -236,6 +236,7 @@ namespace MedLaunch.Classes.IO
         }
     }
 
+    /*
     public class SaturnLookup
     {
         public static List<SaturnGames> SaturnGamesList { get; set; }
@@ -293,9 +294,11 @@ namespace MedLaunch.Classes.IO
             }
             */
 
-
+    /*
         }
+       
     }
+     */
 
     public class SaturnGames
     {
@@ -316,4 +319,5 @@ namespace MedLaunch.Classes.IO
         public string ModifiedTime { get; set; }
         public string Comments { get; set; }
     }
+    
 }
