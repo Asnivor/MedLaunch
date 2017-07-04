@@ -4146,6 +4146,18 @@ namespace MedLaunch
         }
 
         /// <summary>
+        /// Scrapes all saturn json data into database
+        /// and populates the intermediary debug DB (PSXDC.db)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ImportSaturn(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.AdminDATDB db = new _Debug.DATDB.AdminDATDB();
+            db.ImportRoutine(_Debug.DATDB.ProviderType.Satakore, 0);
+        }
+
+        /// <summary>
         /// builds/updates the DAT_Game table
         /// </summary>
         /// <param name="sender"></param>
@@ -4854,6 +4866,8 @@ namespace MedLaunch
         {
             _Debug.DATDB.Platforms.PSXDATACENTER.PsxDc.ScrapeInitialList(false);
         }
+
+        
 
         /// <summary>
         /// Gets extra detail from online

@@ -70,6 +70,11 @@ namespace MedLaunch._Debug.DATDB
                         Platforms.PSXDATACENTER.Models.PsxDataCenterCollection psxdc = new Platforms.PSXDATACENTER.Models.PsxDataCenterCollection();
                         roms = psxdc.Data;
                         break;
+
+                    case ProviderType.Satakore:
+                        Platforms.SATAKORE.Models.SatakoreCollection saturn = new Platforms.SATAKORE.Models.SatakoreCollection();
+                        roms = saturn.Data;
+                        break;
                 }
 
                 controller.SetMessage(output + roms.Count + " Separate ROM files scraped. Starting database import procedure");
@@ -498,6 +503,7 @@ namespace MedLaunch._Debug.DATDB
                 .Replace("'", "")
                 .Replace(",", "")
                 .Replace("  ", " ")
+                .Replace("~", "")
 
                 // number conversion
                 .Replace(" 2", " II")

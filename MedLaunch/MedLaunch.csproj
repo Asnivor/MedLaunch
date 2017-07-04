@@ -372,6 +372,9 @@
     <Compile Include="_Debug\DATDB\Platforms\PSXDATACENTER\PsxDataCenterAdminDbContext.cs" />
     <Compile Include="_Debug\DATDB\Platforms\PSXDATACENTER\PsxDc.cs" />
     <Compile Include="_Debug\DATDB\Platforms\PSXDATACENTER\PSX_Games.cs" />
+    <Compile Include="_Debug\DATDB\Platforms\SATAKORE\ImportSatakoreData.cs" />
+    <Compile Include="_Debug\DATDB\Platforms\SATAKORE\Models\SatakoreCollection.cs" />
+    <Compile Include="_Debug\DATDB\Platforms\SATAKORE\SaturnGame.cs" />
     <Compile Include="_Debug\DATDB\Platforms\TOSEC\ImportToSecData.cs" />
     <Compile Include="_Debug\DATDB\Platforms\TOSEC\Models\ToSecCollection.cs" />
     <Compile Include="_Debug\DATDB\Platforms\TOSEC\StringConverterToSec.cs" />
@@ -669,7 +672,6 @@
     <None Include="Data\System\ColumnDefaults.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\System\DATMaster.json" />
     <None Include="Data\System\DAT\NOINTRO\Atari - Lynx Parent-Clone %2820130303-222635%29.dat" />
     <None Include="Data\System\DAT\NOINTRO\Bandai - WonderSwan Color Parent-Clone %2820160925-023748%29.dat" />
     <None Include="Data\System\DAT\NOINTRO\Bandai - WonderSwan Parent-Clone %2820161023-173917%29.dat" />
@@ -686,9 +688,7 @@
     <None Include="Data\System\DAT\NOINTRO\Sega - Mega Drive - Genesis Parent-Clone %2820161023-001129%29.dat" />
     <None Include="Data\System\DAT\NOINTRO\SNK - Neo Geo Pocket Color Parent-Clone %2820151122-095540%29.dat" />
     <None Include="Data\System\DAT\NOINTRO\SNK - Neo Geo Pocket Parent-Clone %2820120228-094313%29.dat" />
-    <None Include="Data\System\DAT\PSXDATACENTER\PSXDC.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Data\System\DAT\PSXDATACENTER\PSXDC.json" />
     <None Include="Data\System\DAT\TOSEC\Atari Lynx - Applications %28TOSEC-v2013-12-13_CM%29.dat" />
     <None Include="Data\System\DAT\TOSEC\Atari Lynx - Demos %28TOSEC-v2013-12-13_CM%29.dat" />
     <None Include="Data\System\DAT\TOSEC\Atari Lynx - Firmware %28TOSEC-v2013-12-13_CM%29.dat" />
@@ -779,9 +779,7 @@
     <None Include="Data\System\DAT\TOSEC\Sony PlayStation - Samplers - [ISO] %28TOSEC-v2012-09-08_CM%29.dat" />
     <None Include="Data\System\MasterGames.json" />
     <None Include="Data\System\MobyGames.json" />
-    <None Include="Data\System\SaturnGames.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Data\System\SaturnGames.json" />
     <None Include="Data\System\SbiFiles.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
