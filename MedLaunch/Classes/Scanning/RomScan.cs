@@ -134,20 +134,51 @@ namespace MedLaunch.Classes.Scanning
 
                     else
                     {
-                        IsSingleRomInArchive = false;
-                        // multiple allowed rom files in archive detected - add to list to process later
-                        foreach (var a in Archiving.ArchiveMultiple.Where(i => i.IsAllowed == true))
-                        {
-                            //ArchiveFiles.Add(a);
-                            // actual rom extension - not archive extension
-                            string romExtension = "." + (a.FileName.Split('.').Last());
-                            // generate relative path (normal archive path + "*")
-                            string romRelPath = relPath + "*" + a.FileName;
-                            // get romname without extension
-                            string name = a.FileName.Replace(romExtension, "");
+                        // check how many allowed files are in the archive
+                        int alcnt = Archiving.ArchiveMultiple.Where(i => i.IsAllowed == true).Count();
 
-                            ProcessGame(name, a.MD5Hash, romRelPath, a.FileName, romExtension);
+                        if (alcnt == 0)
+                        {
+                            // no allowed files
+                            return;
                         }
+                        else if (alcnt == 1 && Archiving.ArchiveMultiple.Count == 1 && extension == ".zip")
+                        {
+                            // 1 allowed file and 1 total files in a zip file - use the zip file rather than the embedded rom
+                            foreach (var a in Archiving.ArchiveMultiple.Where(i => i.IsAllowed == true))
+                            {
+                                //ArchiveFiles.Add(a);
+                                // actual rom extension - not archive extension
+                                string romExtension = "." + (a.FileName.Split('.').Last());
+                                // generate relative path (normal archive path)
+                                string romRelPath = relPath;
+                                // get romname without extension
+                                string name = a.FileName.Replace(romExtension, "");
+
+                                ProcessGame(name, a.MD5Hash, romRelPath, a.FileName, romExtension);
+                            }
+                        }
+                        else
+                        {
+                            // either multiple allowed files or
+                            // 7zip archive
+                            // - Add the individual embedded rom(s)
+                            IsSingleRomInArchive = false;
+                            foreach (var a in Archiving.ArchiveMultiple.Where(i => i.IsAllowed == true))
+                            {
+                                //ArchiveFiles.Add(a);
+                                // actual rom extension - not archive extension
+                                string romExtension = "." + (a.FileName.Split('.').Last());
+                                // generate relative path (normal archive path + "*")
+                                string romRelPath = relPath + "*/" + a.FileName;
+                                // get romname without extension
+                                string name = a.FileName.Replace(romExtension, "");
+
+                                ProcessGame(name, a.MD5Hash, romRelPath, a.FileName, romExtension);
+                            }
+                        }
+
+                        
 
                     }
 
