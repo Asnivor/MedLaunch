@@ -64,7 +64,7 @@ This upcoming changes (and many others) can be found in the current roadmap [her
 * x64 (has not been tested on x86 but should still work on it)
 
 ### Download
-You can always get the latest release build of MedLaunch on the [GitHub Releases](https://github.com/Asnivor/MedLaunch/releases) page. I am actively working on code in the [Master Branch](https://github.com/Asnivor/MedLaunch/tree/master) and you can see the active changes for the next release on the [ChangeLog](https://medlaunch.info/changelog). These pre-release changes will be released when I am happy with them, so please do not ask for builds ahead of the official releases. You can of course get yourself a copy of Visual Studio Community installed and build it yourself from the Master branch.
+You can always get the latest release build of MedLaunch on the [GitHub Releases](https://github.com/Asnivor/MedLaunch/releases) page. I am actively working on code in the [Dev Branch](https://github.com/Asnivor/MedLaunch/tree/dev) and you can see the active changes for the next release on the [ChangeLog](https://medlaunch.info/changelog). These pre-release changes will be released when I am happy with them, so please do not ask for builds ahead of the official releases. You can of course get yourself a copy of Visual Studio Community installed and build it yourself from the Master branch.
 
 ! You can download the latest version of Mednafen from the [**Mednafen website**](https://mednafen.github.io/releases/).
 
@@ -88,7 +88,7 @@ Check out the [**Releases**](https://medlaunch.info/releases) page or the projec
 
 ## Build From Source
 The project has been built using Visual Studio Community 2015. It may or may not work with previous versions.
-* Clone the Master branch (or download as zip)
+* Clone the Dev (or Master) branch (or download as zip)
 * Open MedLaunch.sln in VisualStudio
 * Restore NuGet packages
 * Cross your fingers?
