@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE datafile PUBLIC "-//Logiqx//DTD ROM Management Datafile//EN" "http://www.logiqx.com/Dats/datafile.dtd">
+
+<datafile>
+	<header>
+		<name>Sega Mega Drive &amp; Genesis - Educational</name>
+		<description>Sega Mega Drive &amp; Genesis - Educational (TOSEC-v2012-02-27)</description>
+		<category>TOSEC</category>
+		<version>2012-02-27</version>
+		<author>Cassiel</author>
+		<email>contact@tosecdev.org</email>
+		<homepage>TOSEC</homepage>
+		<url>http://www.tosecdev.org/</url>
+	</header>
+	<game name="Richard Scarry's Busytown (1994)(Novotrade - Sega)(US)">
+		<description>Richard Scarry's Busytown (1994)(Novotrade - Sega)(US)</description>
+		<rom name="Richard Scarry's Busytown (1994)(Novotrade - Sega)(US).bin" size="2097152" crc="7bb60c3f" md5="06ddc929a7bf834c40344ac83a4acc97" sha1="42e5ac265e3bf82c44dca70deb71b0aa08acf1a9"/>
+	</game>
+	<game name="Richard Scarry's Busytown (1994)(Novotrade - Sega)(US)[b]">
+		<description>Richard Scarry's Busytown (1994)(Novotrade - Sega)(US)[b]</description>
+		<rom name="Richard Scarry's Busytown (1994)(Novotrade - Sega)(US)[b].bin" size="2097152" crc="7addcb2c" md5="3d8e05bbece3ccf285e4962f68dcf252" sha1="4383cc606b94c954dcd2a23b4564d49ac6701da6"/>
+	</game>
+	<game name="Richard Scarry's Busytown (1994)(Novotrade - Sega)(US)[h]">
+		<description>Richard Scarry's Busytown (1994)(Novotrade - Sega)(US)[h]</description>
+		<rom name="Richard Scarry's Busytown (1994)(Novotrade - Sega)(US)[h].bin" size="2097152" crc="50da1199" md5="9216fbd5fe6568cafd1b79d62b9fc009" sha1="d8eda1cbca1e5caa2a0bb3c4f4955653d17df998"/>
+	</game>
+	<game name="Sesame Street - Counting Cafe (1994)(Electronic Arts)(US)">
+		<description>Sesame Street - Counting Cafe (1994)(Electronic Arts)(US)</description>
+		<rom name="Sesame Street - Counting Cafe (1994)(Electronic Arts)(US).bin" size="1048576" crc="0a4f48c3" md5="36b04381309d06508ee0f19f58fd2c8c" sha1="d5ef2b50cf1a22e07401f6a14c7946df66d8b605"/>
+	</game>
+	<game name="Wacky Worlds (1994)(Headgames - Sega)(US)">
+		<description>Wacky Worlds (1994)(Headgames - Sega)(US)</description>
+		<rom name="Wacky Worlds (1994)(Headgames - Sega)(US).bin" size="1048576" crc="8af4552d" md5="def151887d5fd58b778df4ee077192c6" sha1="e331c57ce6a176ab9ff1461e9423514756c5558d"/>
+	</game>
+	<game name="Wacky Worlds (1994)(Headgames - Sega)(US)[b2]">
+		<description>Wacky Worlds (1994)(Headgames - Sega)(US)[b2]</description>
+		<rom name="Wacky Worlds (1994)(Headgames - Sega)(US)[b2].bin" size="1097728" crc="63cd8961" md5="3b357cdaaabe6e49b142c666f91c97f4" sha1="073067a2937d2283a36c7f0966a11c44f77c7c89"/>
+	</game>
+	<game name="Wacky Worlds (1994)(Headgames - Sega)(US)[b]">
+		<description>Wacky Worlds (1994)(Headgames - Sega)(US)[b]</description>
+		<rom name="Wacky Worlds (1994)(Headgames - Sega)(US)[b].bin" size="1097728" crc="b1fff915" md5="a1d18d2a46621b51d4c28dafe7e95d49" sha1="09473b835d43e21af2763bdcaead1fef5486e878"/>
+	</game>
+	<game name="Wacky Worlds (1994)(Headgames - Sega)(US)[h2]">
+		<description>Wacky Worlds (1994)(Headgames - Sega)(US)[h2]</description>
+		<rom name="Wacky Worlds (1994)(Headgames - Sega)(US)[h2].bin" size="1097728" crc="08d0f8a4" md5="98ec11c4ed677cc6a25a25ccd40878f2" sha1="3a140d267a1f6e36b91d13b1b0702637dfc51efe"/>
+	</game>
+	<game name="Wacky Worlds (1994)(Headgames - Sega)(US)[h]">
+		<description>Wacky Worlds (1994)(Headgames - Sega)(US)[h]</description>
+		<rom name="Wacky Worlds (1994)(Headgames - Sega)(US)[h].bin" size="1048576" crc="1167804e" md5="f9f812054151d93426425e5c1b78e63f" sha1="20cdb8a434544d3bdad1b60d73a22872005f1057"/>
+	</game>
+	<game name="Wacky Worlds Rev 19940808 (1994)(Headgames - Sega)(US)(beta)">
+		<description>Wacky Worlds Rev 19940808 (1994)(Headgames - Sega)(US)(beta)</description>
+		<rom name="Wacky Worlds Rev 19940808 (1994)(Headgames - Sega)(US)(beta).bin" size="1048576" crc="48d33ea0" md5="6cd70dedfe8e9578e5922ba37e360dd8" sha1="6526dbef07792ae5d854c20452c4dfee656c299c"/>
+	</game>
+	<game name="Wacky Worlds Rev 19940817 (1994)(Headgames - Sega)(US)(beta)">
+		<description>Wacky Worlds Rev 19940817 (1994)(Headgames - Sega)(US)(beta)</description>
+		<rom name="Wacky Worlds Rev 19940817 (1994)(Headgames - Sega)(US)(beta).bin" size="1035184" crc="4615970b" md5="fd74f485ef1569ec4822e919167de03f" sha1="e6409dd65c522af90f65209e8c00a9e1f248c52a"/>
+	</game>
+	<game name="Wacky Worlds Rev 19940819 (1994)(Headgames - Sega)(US)(beta)">
+		<description>Wacky Worlds Rev 19940819 (1994)(Headgames - Sega)(US)(beta)</description>
+		<rom name="Wacky Worlds Rev 19940819 (1994)(Headgames - Sega)(US)(beta).bin" size="1035158" crc="7f286925" md5="b6b59479110fd8774529685dc4c7f784" sha1="42a8927f0738ed9baa88f8115a23941431fa1ae7"/>
+	</game>
+	<game name="Where in the World Is Carmen Sandiego (1992)(Electronic Arts)(EU)(M5)">
+		<description>Where in the World Is Carmen Sandiego (1992)(Electronic Arts)(EU)(M5)</description>
+		<rom name="Where in the World Is Carmen Sandiego (1992)(Electronic Arts)(EU)(M5).bin" size="1048576" crc="eef372e8" md5="73b10dc65ef1e21e9aaf2b34d74dc7b2" sha1="97c1f36e375ac33fbc5724bbb4bb296d974b114f"/>
+	</game>
+	<game name="Where in the World Is Carmen Sandiego (1992)(Electronic Arts)(EU)(M5)[b]">
+		<description>Where in the World Is Carmen Sandiego (1992)(Electronic Arts)(EU)(M5)[b]</description>
+		<rom name="Where in the World Is Carmen Sandiego (1992)(Electronic Arts)(EU)(M5)[b].bin" size="1048576" crc="8c1a2610" md5="954392012a2c3ea3ca227fb67f73da8a" sha1="54a2a35422b6da55043e148437a0cf17552fa6a1"/>
+	</game>
+	<game name="Where in the World Is Carmen Sandiego (1992)(Electronic Arts)(EU)(M5)[h]">
+		<description>Where in the World Is Carmen Sandiego (1992)(Electronic Arts)(EU)(M5)[h]</description>
+		<rom name="Where in the World Is Carmen Sandiego (1992)(Electronic Arts)(EU)(M5)[h].bin" size="1048576" crc="0c420ed0" md5="b4cef26b692355f82c75b4657756ff6a" sha1="5f0c96e0cda7e8d9539d348ac7c493e9d6897278"/>
+	</game>
+	<game name="Where in the World Is Carmen Sandiego (1994)(Electronic Arts - Tec Toy)(BR)(es-pt)">
+		<description>Where in the World Is Carmen Sandiego (1994)(Electronic Arts - Tec Toy)(BR)(es-pt)</description>
+		<rom name="Where in the World Is Carmen Sandiego (1994)(Electronic Arts - Tec Toy)(BR)(es-pt).bin" size="1048576" crc="7d4450ad" md5="74b8fb79ad7b5e3a8c6d39d687fa5a88" sha1="8441f0eba23c0b013ca3932914f9f8d364e61a01"/>
+	</game>
+	<game name="Where in the World Is Carmen Sandiego (1994)(Electronic Arts - Tec Toy)(BR)(es-pt)[h]">
+		<description>Where in the World Is Carmen Sandiego (1994)(Electronic Arts - Tec Toy)(BR)(es-pt)[h]</description>
+		<rom name="Where in the World Is Carmen Sandiego (1994)(Electronic Arts - Tec Toy)(BR)(es-pt)[h].bin" size="1048576" crc="a3f2d3da" md5="6237acedc8dd01ca14981058136d7d84" sha1="fad156ce80a7ca5a78a0692a11d6cea368f44a85"/>
+	</game>
+	<game name="Where in Time Is Carmen Sandiego (1992)(Electronic Arts)(EU-US)(M5)">
+		<description>Where in Time Is Carmen Sandiego (1992)(Electronic Arts)(EU-US)(M5)</description>
+		<rom name="Where in Time Is Carmen Sandiego (1992)(Electronic Arts)(EU-US)(M5).bin" size="1048576" crc="ea19d4a4" md5="f7f6f16a56a5fad6c7a458b9a7822d77" sha1="0b726481cd9333d26aa3fe53fa2f293c0c385509"/>
+	</game>
+	<game name="Where in Time Is Carmen Sandiego (1992)(Electronic Arts)(EU-US)(M5)[b]">
+		<description>Where in Time Is Carmen Sandiego (1992)(Electronic Arts)(EU-US)(M5)[b]</description>
+		<rom name="Where in Time Is Carmen Sandiego (1992)(Electronic Arts)(EU-US)(M5)[b].bin" size="1048576" crc="a5342678" md5="30f5df6068c7a0f23e60ed98d3e302b6" sha1="9016b7bf8b7616c4bf7d8380d71f87dcac1ee94b"/>
+	</game>
+	<game name="Where in Time Is Carmen Sandiego (1994)(Electronic Arts - Tec Toy)(BR)(es-pt)">
+		<description>Where in Time Is Carmen Sandiego (1994)(Electronic Arts - Tec Toy)(BR)(es-pt)</description>
+		<rom name="Where in Time Is Carmen Sandiego (1994)(Electronic Arts - Tec Toy)(BR)(es-pt).bin" size="1048576" crc="d523b552" md5="f3a7f38fc5516e1de23e294137475564" sha1="213b6dfc129fe245f2ecd73ad91c772efd628462"/>
+	</game>
+</datafile>

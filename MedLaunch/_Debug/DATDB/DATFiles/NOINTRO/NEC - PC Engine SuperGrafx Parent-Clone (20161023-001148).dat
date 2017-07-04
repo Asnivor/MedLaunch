@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE datafile PUBLIC "-//Logiqx//DTD ROM Management Datafile//EN" "http://www.logiqx.com/Dats/datafile.dtd">
+<datafile>
+	<header>
+		<name>NEC - PC Engine SuperGrafx Parent-Clone</name>
+		<description>NEC - PC Engine SuperGrafx Parent-Clone</description>
+		<version>20161023-001148</version>
+		<date>20161023-001148</date>
+		<author>kazumi213</author>
+		<url>www.no-intro.org</url>
+	</header>
+	<game name="1941 - Counter Attack (Japan)">
+		<description>1941 - Counter Attack (Japan)</description>
+		<release name="1941 - Counter Attack (Japan)" region="JPN"/>
+		<rom name="1941 - Counter Attack (Japan).pce" size="1048576" crc="8C4588E2" md5="30686DBA4795521174658DE2492E0046" sha1="66873B0E0CC699AA75DAF06A3F74C0508037E605"/>
+	</game>
+	<game name="Aldynes - The Misson Code for Rage Crisis (Japan)">
+		<description>Aldynes - The Misson Code for Rage Crisis (Japan)</description>
+		<release name="Aldynes - The Misson Code for Rage Crisis (Japan)" region="JPN"/>
+		<rom name="Aldynes - The Misson Code for Rage Crisis (Japan).pce" size="1048576" crc="4C2126B0" md5="8CE21667658EF9C025AD007F65147C6D" sha1="D876248EE1B80AD11633FD4BE8AA21A187B52193"/>
+	</game>
+	<game name="Battle Ace (Japan)">
+		<description>Battle Ace (Japan)</description>
+		<release name="Battle Ace (Japan)" region="JPN"/>
+		<rom name="Battle Ace (Japan).pce" size="524288" crc="3B13AF61" md5="FC0053C0C050353B87886B1B89349168" sha1="EDC8F7D2233C92EBD309AC804527C461851A4B63"/>
+	</game>
+	<game name="Dai-Makaimura (Japan)">
+		<description>Dai-Makaimura (Japan)</description>
+		<release name="Dai-Makaimura (Japan)" region="JPN"/>
+		<rom name="Dai-Makaimura (Japan).pce" size="1048576" crc="B486A8ED" md5="6D9FF6F70608166C88FD2553D44CA17A" sha1="CAB9E4A1A8B6DA07CC2C5CC35949928199A417EE"/>
+	</game>
+	<game name="Madou King Granzort (Japan)">
+		<description>Madou King Granzort (Japan)</description>
+		<release name="Madou King Granzort (Japan)" region="JPN"/>
+		<rom name="Madou King Granzort (Japan).pce" size="524288" crc="1F041166" md5="7E1E489C50FC6213196E6DBB704F6671" sha1="5ED16565753C902E14DA9A0C5361EF01FA74463B"/>
+	</game>
+</datafile>

@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE datafile PUBLIC "-//Logiqx//DTD ROM Management Datafile//EN" "http://www.logiqx.com/Dats/datafile.dtd">
+
+<datafile>
+	<header>
+		<name>Sega Mega Drive &amp; Genesis - Demos</name>
+		<description>Sega Mega Drive &amp; Genesis - Demos (TOSEC-v2012-02-27)</description>
+		<category>TOSEC</category>
+		<version>2012-02-27</version>
+		<author>Cassiel</author>
+		<email>contact@tosecdev.org</email>
+		<homepage>TOSEC</homepage>
+		<url>http://www.tosecdev.org/</url>
+	</header>
+	<game name="Demo de Saludo Navide 2004 (2004)(Maneiro, Tom)(es)(PD)">
+		<description>Demo de Saludo Navide 2004 (2004)(Maneiro, Tom)(es)(PD)</description>
+		<rom name="Demo de Saludo Navide 2004 (2004)(Maneiro, Tom)(es)(PD).bin" size="65536" crc="a62ddc57" md5="df30600fc432c1a79911ed2385bc4089" sha1="f311dfeaf0ab3cf71af639a3c5bd3d5e6af32351"/>
+	</game>
+	<game name="FELIZ 2005! (2005)(Maneiro, Tom)(es)(PD)">
+		<description>FELIZ 2005! (2005)(Maneiro, Tom)(es)(PD)</description>
+		<rom name="FELIZ 2005! (2005)(Maneiro, Tom)(es)(PD).bin" size="55650" crc="d6b8ea92" md5="5ac4dc7db9c9491f6ab6c04185f9b1aa" sha1="a47352f34597894965050b5a7a0f037f5d8e7115"/>
+	</game>
+	<game name="FVR Summer Demo (2004)(Voltnov, Fonzie)[p]">
+		<description>FVR Summer Demo (2004)(Voltnov, Fonzie)[p]</description>
+		<rom name="FVR Summer Demo (2004)(Voltnov, Fonzie)[p].bin" size="81168" crc="50c9dc5d" md5="f97dc2bc8aae12ceca2a8c2ade826a2d" sha1="65a73eaca39453b378c79ff9b86be2818df68603"/>
+	</game>
+	<game name="FVR Technical Demo (2004)(Voltnov, Fonzie)(PD)">
+		<description>FVR Technical Demo (2004)(Voltnov, Fonzie)(PD)</description>
+		<rom name="FVR Technical Demo (2004)(Voltnov, Fonzie)(PD).bin" size="131072" crc="cf2ce272" md5="319f7333ad29c597c717fc9c65205139" sha1="7760e9a5cc12a9fe270c53702f061cadb11fef80"/>
+	</game>
+	<game name="FVR Tiles Loader v1.0 (2004)(Voltnov, Fonzie)(PD)">
+		<description>FVR Tiles Loader v1.0 (2004)(Voltnov, Fonzie)(PD)</description>
+		<rom name="FVR Tiles Loader v1.0 (2004)(Voltnov, Fonzie)(PD).bin" size="46688" crc="ad308cad" md5="5231868c7821da277332fe9c82717845" sha1="68929caa6fcc8a001313796590250e4931e73c34"/>
+	</game>
+	<game name="FVR Window Test (2004)(Voltnov, Fonzie)(PD)">
+		<description>FVR Window Test (2004)(Voltnov, Fonzie)(PD)</description>
+		<rom name="FVR Window Test (2004)(Voltnov, Fonzie)(PD).bin" size="7588" crc="527199d1" md5="bd7140c068757ae59bede27c1476f451" sha1="39088ea24964fde180a31439681c80987ee0f785"/>
+	</game>
+	<game name="SGCC Demo 1 (1996)(Lee, Paul)(PD)">
+		<description>SGCC Demo 1 (1996)(Lee, Paul)(PD)</description>
+		<rom name="SGCC Demo 1 (1996)(Lee, Paul)(PD).bin" size="131072" crc="7ce26fd6" md5="53216a03f2e905d6f1c1d6a0aeda2346" sha1="c76a37fbaeb13f720b068ff3f568f7ee2063470c"/>
+	</game>
+	<game name="SGCC Demo 2 (1996)(Lee, Paul)(PD)">
+		<description>SGCC Demo 2 (1996)(Lee, Paul)(PD)</description>
+		<rom name="SGCC Demo 2 (1996)(Lee, Paul)(PD).bin" size="131072" crc="c95aece4" md5="653e157452fa91f4f6e8ece118ef986c" sha1="2f849877afe87f809ea245f776ddc7ab21946715"/>
+	</game>
+	<game name="SGCC Demo 3 (1996)(Lee, Paul)(PD)">
+		<description>SGCC Demo 3 (1996)(Lee, Paul)(PD)</description>
+		<rom name="SGCC Demo 3 (1996)(Lee, Paul)(PD).bin" size="131072" crc="ac65a4fc" md5="713c0dd56a99709482f9bf3d7aecbc74" sha1="c9eeb6faea43b650c1c38c0ae129530e4baef15b"/>
+	</game>
+	<game name="SGCC Demo 4 (1996)(Lee, Paul)(PD)">
+		<description>SGCC Demo 4 (1996)(Lee, Paul)(PD)</description>
+		<rom name="SGCC Demo 4 (1996)(Lee, Paul)(PD).bin" size="131072" crc="70823d3e" md5="d534d49d7741800787f0d94652daa2c4" sha1="3b26de5732fd5b668076e2dae1f6ba9c0e3c741c"/>
+	</game>
+	<game name="SGCC Demo 5 (1996)(Lee, Paul)(PD)">
+		<description>SGCC Demo 5 (1996)(Lee, Paul)(PD)</description>
+		<rom name="SGCC Demo 5 (1996)(Lee, Paul)(PD).bin" size="131072" crc="810389bd" md5="4b43ff23ad98febdc702d0cf6612ca7c" sha1="54b3693901bd334bc69e0e2e9a978db79797d18c"/>
+	</game>
+	<game name="SGCC Demo 6 (1996)(Lee, Paul)(PD)">
+		<description>SGCC Demo 6 (1996)(Lee, Paul)(PD)</description>
+		<rom name="SGCC Demo 6 (1996)(Lee, Paul)(PD).bin" size="131072" crc="38ba28c0" md5="8feaeafaa8d02d9c238165b597e02d60" sha1="76b3a77f9db2085b5b492e2a696303cf023450a7"/>
+	</game>
+	<game name="Shadow-Hilight Test Program #2 (2000)(MacDonald, Charles)(PD)">
+		<description>Shadow-Hilight Test Program #2 (2000)(MacDonald, Charles)(PD)</description>
+		<rom name="Shadow-Hilight Test Program #2 (2000)(MacDonald, Charles)(PD).bin" size="131072" crc="9c81f2f5" md5="1e6a565bbb64e186d1b617925643b84e" sha1="17d71ef668edcc8502e36e537b640eaf7340b86e"/>
+	</game>
+	<game name="Singapore I Love You (2004)(Voltnov, Fonzie)(PD)">
+		<description>Singapore I Love You (2004)(Voltnov, Fonzie)(PD)</description>
+		<rom name="Singapore I Love You (2004)(Voltnov, Fonzie)(PD).bin" size="34152" crc="6e853605" md5="d9ef796b7c6378ff6651edc26db1f883" sha1="662387e7ba6a39a2a311608833637c82bc4753c0"/>
+	</game>
+	<game name="SJIS Text Demo (2003)(Uchuusen)(PD)">
+		<description>SJIS Text Demo (2003)(Uchuusen)(PD)</description>
+		<rom name="SJIS Text Demo (2003)(Uchuusen)(PD).bin" size="2111238" crc="5daec41d" md5="57666b7babc593ce2d3c579c1abc98f6" sha1="de34955ff7c92b4db85126c64231a32c5fdae410"/>
+	</game>
+	<game name="Spacewar v0.00 (1998)(Banks, Kevin)(PD)">
+		<description>Spacewar v0.00 (1998)(Banks, Kevin)(PD)</description>
+		<rom name="Spacewar v0.00 (1998)(Banks, Kevin)(PD).bin" size="131072" crc="dd6de823" md5="5df485d6293c3ff2745dcd8ee6bbccc8" sha1="9f17dd7b57c452390f2602f5b28cfe8bfb8f45ff"/>
+	</game>
+	<game name="Spacewar v0.01 (1998)(Banks, Kevin)(PD)">
+		<description>Spacewar v0.01 (1998)(Banks, Kevin)(PD)</description>
+		<rom name="Spacewar v0.01 (1998)(Banks, Kevin)(PD).bin" size="131072" crc="20c83416" md5="468048a99e0a3c6761875d8a6b69affe" sha1="ccdb5fbeac0390c7709c1c490c40eccdd530c814"/>
+	</game>
+	<game name="Spatula - Sega Patch Editor v0.00 (2001)(Banks, Kevin)(PD)">
+		<description>Spatula - Sega Patch Editor v0.00 (2001)(Banks, Kevin)(PD)</description>
+		<rom name="Spatula - Sega Patch Editor v0.00 (2001)(Banks, Kevin)(PD).bin" size="16356" crc="dddcb6a7" md5="28d58b55a0262b398ae5c39cfc27a502" sha1="255ef7c19599927523b9b3f9aefc9f93258d77fe"/>
+	</game>
+	<game name="Spheres Demo (2003)(-)(PD)">
+		<description>Spheres Demo (2003)(-)(PD)</description>
+		<rom name="Spheres Demo (2003)(-)(PD).bin" size="131072" crc="d1cba4d5" md5="e784140f38d8c8e55086136bda23cfe5" sha1="73e24f94dd199f9bfbdcd8ae5aac3241beb9f7a4"/>
+	</game>
+	<game name="STDream (2002)(Kaneda)(PD)">
+		<description>STDream (2002)(Kaneda)(PD)</description>
+		<rom name="STDream (2002)(Kaneda)(PD).bin" size="131072" crc="a674cfa3" md5="450f1cd50db1a694cd53208737bd254f" sha1="dde1371a150b4ca7a8193e9779df680fa6c72e4c"/>
+	</game>
+	<game name="Super-X Engine Test v0.3 (2004)(Voltnov, Fonzie)(PD)">
+		<description>Super-X Engine Test v0.3 (2004)(Voltnov, Fonzie)(PD)</description>
+		<rom name="Super-X Engine Test v0.3 (2004)(Voltnov, Fonzie)(PD).bin" size="25960" crc="0171743e" md5="5838ba43d20bf0bbb556992ea44bf190" sha1="bbe6fec182baae5e4d47d263fae6b419db5366ae"/>
+	</game>
+	<game name="Togepi! Demo (2004)(-)(PD)">
+		<description>Togepi! Demo (2004)(-)(PD)</description>
+		<rom name="Togepi! Demo (2004)(-)(PD).bin" size="29516" crc="4feac88d" md5="a5a21c3474f0405d89c5bc50ec7e22a0" sha1="b7eb8b0ebb3d1bfad94d592d2f51c98ca746a158"/>
+	</game>
+	<game name="Universal Driver Demo v4.0 (1994)(Sega)(US)">
+		<description>Universal Driver Demo v4.0 (1994)(Sega)(US)</description>
+		<rom name="Universal Driver Demo v4.0 (1994)(Sega)(US).bin" size="393216" crc="4a1b3daa" md5="83315c353f85123373c42074a7e3ae36" sha1="978d3f892a7d154b103408d6685bc3ceb3468be1"/>
+	</game>
+	<game name="Very Simple FM Music Player Demo (2004)(Uchuusen)(PD)">
+		<description>Very Simple FM Music Player Demo (2004)(Uchuusen)(PD)</description>
+		<rom name="Very Simple FM Music Player Demo (2004)(Uchuusen)(PD).bin" size="29250" crc="a33d0960" md5="d3d4b51094708e1e8cd12695a2628ae9" sha1="0b91285aeea331507ad26b16740603fc839a9b80"/>
+	</game>
+	<game name="Windows 68K Edition Setup Demo (2005)(Maneiro, Tom)(es)(PD)">
+		<description>Windows 68K Edition Setup Demo (2005)(Maneiro, Tom)(es)(PD)</description>
+		<rom name="Windows 68K Edition Setup Demo (2005)(Maneiro, Tom)(es)(PD).bin" size="35674" crc="54a9869e" md5="5dc166bc317d32c6975ae3eb43e77187" sha1="05c074e7a3e42148cc2ce459a1baf3928d9e492a"/>
+	</game>
+</datafile>
