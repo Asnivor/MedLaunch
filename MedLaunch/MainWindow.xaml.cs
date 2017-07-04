@@ -4134,6 +4134,8 @@ namespace MedLaunch
             db.CalculateYearsAndPublishers();
         }
 
+
+
         /// <summary>
         /// identify games with missing years and publishers and try to fix that from the rom sets
         /// </summary>
@@ -4145,6 +4147,8 @@ namespace MedLaunch
             db.CalculateYearsAndPublishersManual();
         }
 
+
+        /*
         private async void btnBuildFromDat_Click(object sender, RoutedEventArgs e)
         {
             var mySettings = new MetroDialogSettings()
@@ -4221,7 +4225,6 @@ namespace MedLaunch
 
                     if (mCount == 1)
                     {
-                        /* one record returned - dig into this further */
                         var one = n.Single();
 
                         // search roms present for this game
@@ -4315,12 +4318,7 @@ namespace MedLaunch
                     //Thread.Sleep(1);
 
                     // first check whether MD5 is already present
-                    /*
-                    var cr = (from game in Master
-                              from rom in game.Roms
-                              where rom.MD5.ToUpper() == a.MD5.ToUpper()
-                              select rom);
-*/
+
                     var cr = Master.Where(p => p.Roms.Any(x => x.MD5.ToUpper().Trim() == a.MD5.ToUpper().Trim()));
 
                     if (cr.ToList().Count > 0)
@@ -4339,7 +4337,6 @@ namespace MedLaunch
 
                     if (mCount == 1)
                     {
-                        /* one record returned - dig into this further */
                         var one = n.Single();
 
                         // search roms present for this game
@@ -4435,12 +4432,7 @@ namespace MedLaunch
                     //Thread.Sleep(1);
 
                     // first check whether MD5 is already present
-                    /*
-                    var cr = (from game in Master
-                              from rom in game.Roms
-                              where rom.MD5.ToUpper() == a.MD5.ToUpper()
-                              select rom);
-*/
+                   
                     var cr = Master.Where(p => p.Roms.Any(x => x.MD5.ToUpper().Trim() == a.MD5.ToUpper().Trim()));
 
                     if (cr.ToList().Count > 0)
@@ -4459,7 +4451,6 @@ namespace MedLaunch
 
                     if (mCount == 1)
                     {
-                        /* one record returned - dig into this further */
                         var one = n.Single();
 
                         // search roms present for this game
@@ -4554,12 +4545,7 @@ namespace MedLaunch
                     //Thread.Sleep(1);
 
                     // first check whether MD5 is already present
-                    /*
-                    var cr = (from game in Master
-                              from rom in game.Roms
-                              where rom.MD5.ToUpper() == a.MD5.ToUpper()
-                              select rom);
-*/
+                   
                     var cr = Master.Where(p => p.Roms.Any(x => x.MD5.ToUpper().Trim() == a.MD5.ToUpper().Trim()));
 
                     if (cr.ToList().Count > 0)
@@ -4578,7 +4564,6 @@ namespace MedLaunch
 
                     if (mCount == 1)
                     {
-                        /* one record returned - dig into this further */
                         var one = n.Single();
 
                         // search roms present for this game
@@ -4695,8 +4680,10 @@ namespace MedLaunch
                 GamesLibraryVisualHandler.RefreshGamesLibrary();                
             }
         }
-
+        */
        
+
+        /*
         private async void btnmatchDATyears_Click(object sender, RoutedEventArgs e)
         {
             var mySettings = new MetroDialogSettings()
@@ -4811,6 +4798,8 @@ namespace MedLaunch
             }
         }
 
+            */
+
         /// <summary>
         /// Scrapes all PSX game info from psxdatacenter
         /// and populates the intermediary debug DB (PSXDC.db)
@@ -4895,6 +4884,7 @@ namespace MedLaunch
         }
         */
 
+            /*
         private async void popPsxJson_Click(object sender, RoutedEventArgs e)
         {
             var mySettings = new MetroDialogSettings()
@@ -4968,6 +4958,8 @@ namespace MedLaunch
                 GamesLibraryVisualHandler.RefreshGamesLibrary();
             }
         }
+
+        */
 
         private async void buildSaturnJson_Click(object sender, RoutedEventArgs e)
         {

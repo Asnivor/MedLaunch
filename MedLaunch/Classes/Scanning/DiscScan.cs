@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls.Dialogs;
+using MedLaunch.Classes.DAT;
 using MedLaunch.Classes.GamesLibrary;
 using MedLaunch.Classes.IO;
 using MedLaunch.Classes.Scraper.DAT.Models;
@@ -309,9 +310,18 @@ namespace MedLaunch.Classes.Scanning
                 return null;
 
             // lookup hash in MasterDAT
-            List<DATMerge> lookup = (from i in DAT
+            List<DATMerge> lookup = DATMerge.FilterByMedLaunchSystemId(DAT.ToList(), sysId);
+
+            if (sysId == 9)
+            {
+                lookup = DATMerge.FilterByMedLaunchSystemId(DAT.ToList(), sysId).Where(a => a.OtherFlags.ToUpper().Trim() == f.ExtraInfo.ToUpper().Trim()).ToList();
+            }
+
+
+            DATMerge.GetDATs(DAT.ToList(), sysId, md5Hash); /*(from i in DAT
                                      where i.SystemId == sysId && i.Roms.Any(l => l.MD5.ToUpper().Trim() == md5Hash)
                                      select i).ToList();
+                                     */
 
             // get md5 hash of first disc cuefile
             if (f.Extension.ToLower() == ".m3u")

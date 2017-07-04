@@ -261,6 +261,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\DAT\AsniDATDbContext.cs" />
+    <Compile Include="Classes\DAT\DATMerge.cs" />
+    <Compile Include="Classes\DAT\DAT_Game.cs" />
+    <Compile Include="Classes\DAT\DAT_Provider.cs" />
+    <Compile Include="Classes\DAT\DAT_Rom.cs" />
+    <Compile Include="Classes\DAT\DAT_System.cs" />
     <Compile Include="Classes\GamesLibrary\ColumnInfo.cs" />
     <Compile Include="Classes\GamesLibrary\DataGridSortDescriptionsSyncBehavior.cs" />
     <Compile Include="Classes\GamesLibrary\DelegateCommand.cs" />
@@ -279,7 +285,7 @@
     <Compile Include="Classes\Scraper\DBModels\Game_Doc.cs" />
     <Compile Include="Classes\Scraper\DBModels\MasterView.cs" />
     <Compile Include="Classes\Scraper\GDBPlatformGame.cs" />
-    <Compile Include="Classes\Scraper\PSXDATACENTER\PsxDc.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\PSXDATACENTER\PsxDc.cs" />
     <Compile Include="Classes\Scraper\ScrapeDB.cs" />
     <Compile Include="Classes\Scraper\ScrapeDbContext.cs" />
     <Compile Include="Classes\Scraper\ScraperLookup.cs" />
@@ -332,23 +338,23 @@
     <Compile Include="Classes\IO\FileAndFolder.cs" />
     <Compile Include="Classes\IO\FileAssociation.cs" />
     <Compile Include="Classes\LogParser.cs" />
-    <Compile Include="Classes\Scraper\DAT\Models\DATMerge.cs" />
-    <Compile Include="Classes\Scraper\DAT\NOINTRO\ImportNoIntroData.cs" />
-    <Compile Include="Classes\Scraper\DAT\NOINTRO\Models\NoIntroCollection.cs" />
-    <Compile Include="Classes\Scraper\DAT\NOINTRO\Models\NoIntroObject.cs" />
-    <Compile Include="Classes\Scraper\DAT\NOINTRO\StringConverterNoIntro.cs" />
-    <Compile Include="Classes\Scraper\DAT\REDUMP\ImportRedumpData.cs" />
-    <Compile Include="Classes\Scraper\DAT\REDUMP\Models\RedumpCollection.cs" />
-    <Compile Include="Classes\Scraper\DAT\REDUMP\Models\RedumpObject.cs" />
-    <Compile Include="Classes\Scraper\DAT\REDUMP\StringConverterRedump.cs" />
-    <Compile Include="Classes\Scraper\DAT\TRURIP\ImportTruRipData.cs" />
-    <Compile Include="Classes\Scraper\DAT\TRURIP\Models\TruRipCollection.cs" />
-    <Compile Include="Classes\Scraper\DAT\TRURIP\Models\TruRipObject.cs" />
-    <Compile Include="Classes\Scraper\DAT\TRURIP\StringConverterTruRip.cs" />
-    <Compile Include="Classes\Scraper\DAT\TOSEC\ImportToSecData.cs" />
-    <Compile Include="Classes\Scraper\DAT\TOSEC\Models\ToSecCollection.cs" />
-    <Compile Include="Classes\Scraper\DAT\TOSEC\Models\ToSecObject.cs" />
-    <Compile Include="Classes\Scraper\DAT\TOSEC\StringConverterToSec.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\DAT\Models\DATMerge.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\DAT\NOINTRO\ImportNoIntroData.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\DAT\NOINTRO\Models\NoIntroCollection.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\DAT\NOINTRO\Models\NoIntroObject.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\DAT\NOINTRO\StringConverterNoIntro.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\DAT\REDUMP\ImportRedumpData.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\DAT\REDUMP\Models\RedumpCollection.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\DAT\REDUMP\Models\RedumpObject.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\DAT\REDUMP\StringConverterRedump.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TRURIP\ImportTruRipData.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TRURIP\Models\TruRipCollection.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TRURIP\Models\TruRipObject.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TRURIP\StringConverterTruRip.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\ImportToSecData.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\Models\ToSecCollection.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\Models\ToSecObject.cs" />
+    <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\StringConverterToSec.cs" />
     <Compile Include="Windows\DiscSelection.xaml.cs">
       <DependentUpon>DiscSelection.xaml</DependentUpon>
     </Compile>
