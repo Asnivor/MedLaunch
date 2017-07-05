@@ -333,10 +333,16 @@ namespace MedLaunch.Classes.Scanning
 
             // serial
             if (f.ExtraInfo != null && f.ExtraInfo != "")
-                look = lookup.Where(a => a.OtherFlags.ToUpper().Trim() == f.ExtraInfo.ToUpper().Trim()).FirstOrDefault();
+                look = lookup.Where(a => a.OtherFlags == f.ExtraInfo).FirstOrDefault();
 
             if (look == null)
-                look = lookup.Where(a => a.MD5.ToUpper().Trim() == md5Hash.ToUpper().Trim()).FirstOrDefault();
+            {
+                // no serial number located - lookup md5 in existing DAT structure
+                look = (from a in lookup
+                       where a.MD5 != null && a.MD5.ToUpper().Trim() == md5Hash.ToUpper().Trim()
+                       select a).FirstOrDefault(); 
+            }
+                //look = lookup.Where(a => a.MD5.ToUpper().Trim() == md5Hash.ToUpper().Trim()).FirstOrDefault();
 
             //lookup.Where(a => a.MD5.ToUpper().Trim() == md5Hash.ToUpper().Trim() || a.OtherFlags.ToUpper().Trim() == f.ExtraInfo.ToUpper().Trim()).ToList();
 
@@ -361,7 +367,7 @@ namespace MedLaunch.Classes.Scanning
             newGame.isDiskBased = true;
             newGame.systemId = sysId;
             newGame.disks = f.ExtraInfo;
-            newGame.OtherFlags = f.ExtraInfo.ToUpper(); // serial number to otherflags field for now as well
+            newGame.OtherFlags = f.ExtraInfo; // serial number to otherflags field for now as well
             newGame.gameNameFromDAT = look.GameName;
             newGame.Publisher = look.Publisher;
             newGame.Developer = look.Developer;
@@ -430,9 +436,12 @@ namespace MedLaunch.Classes.Scanning
             {
                 var ssInfo = MedDiscUtils.GetSSData(firstImage);
                 if (ssInfo.SerialNumber != null && ssInfo.SerialNumber != "")
-                    f.ExtraInfo = ssInfo.SerialNumber + "*/";
+                    f.ExtraInfo = ssInfo.SerialNumber; // + "*/";
+                /*
                 if (ssInfo.Version != null && ssInfo.Version != "")
                     f.ExtraInfo += ssInfo.Version;
+                    */
+                
             }
 
             // check whether game already exists in the database
