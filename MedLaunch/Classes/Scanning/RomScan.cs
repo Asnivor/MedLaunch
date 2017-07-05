@@ -81,6 +81,8 @@ namespace MedLaunch.Classes.Scanning
             // now we have a list of allowed files, loop through them
             foreach (string file in allowedFiles)
             {
+                if (_dialog.IsCanceled)
+                    return;
                 ProcessFile(file);                
             }
 

@@ -70,6 +70,12 @@ namespace MedLaunch.Classes
                 o = PullWebpageData(o, masterrecord, controller, ScraperOrder.Secondary, message);
             }
 
+            if (controller.IsCanceled == true)
+            {
+                controller.CloseAsync();
+                return o;
+            }
+
             return o;
         }
 
@@ -99,6 +105,12 @@ namespace MedLaunch.Classes
             int divcount = divs.Count;
             for (int i = 0; i < divcount; i++)
             {
+                if (controller.IsCanceled == true)
+                {
+                    controller.CloseAsync();
+                    return o;
+                }
+
                 // get just headings
                 if (divs[i].InnerText == divs[i].InnerHtml)
                 {
@@ -224,6 +236,12 @@ namespace MedLaunch.Classes
 
                         for (int i = 0; i < typeCount; i++)
                         {
+                            if (controller.IsCanceled == true)
+                            {
+                                controller.CloseAsync();
+                                return o;
+                            }
+
                             string t = type[i].InnerText.Trim().ToLower();
                             string MEDIA = "http://mobygames.com" + img[i].Attributes["style"].Value.Replace(");", "").Replace("background-image:url(", "").Replace("/s/", "/l/");
 

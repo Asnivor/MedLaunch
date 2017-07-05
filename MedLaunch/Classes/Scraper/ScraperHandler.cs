@@ -133,6 +133,13 @@ namespace MedLaunch.Classes.Scraper
                 gs.LocalGames = new List<Game>();
                 foreach (var g in gamesTmp)
                 {
+                    if (controller.IsCanceled == true)
+                    {
+                        controller.CloseAsync();
+                        return;
+                    }
+                        
+
                     if (g.gdbId == null || g.gdbId == 0)
                         continue;
 
@@ -166,7 +173,7 @@ namespace MedLaunch.Classes.Scraper
                 controller.Maximum = gamesCount;
                 foreach (var g in gs.LocalGames)
                 {
-                    if (controller.IsCanceled)
+                    if (controller.IsCanceled == true)
                     {
                         controller.CloseAsync();
                         return;
@@ -286,6 +293,12 @@ namespace MedLaunch.Classes.Scraper
                 gs.LocalGames = new List<Game>();
                 foreach (var g in gamesTmp)
                 {
+                    if (controller.IsCanceled == true)
+                    {
+                        controller.CloseAsync();
+                        return;
+                    }
+
                     if (scrapeType == ScrapeType.RescrapeAll || scrapeType == ScrapeType.RescrapeFavorites)
                     {
                         gs.LocalGames.Add(g);
@@ -388,6 +401,12 @@ namespace MedLaunch.Classes.Scraper
                     if (_GlobalSettings.enabledSecondaryScraper == true)
                         GDBScraper.ScrapeGame(gameObject, ScraperOrder.Secondary, controller, MasterRecord, message);
                     break;
+            }
+
+            if (controller.IsCanceled == true)
+            {
+                controller.CloseAsync();
+                return;
             }
 
             // gameObject should now be populated - create folder structure on disk if it does not already exist

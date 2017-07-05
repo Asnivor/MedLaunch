@@ -108,12 +108,17 @@ namespace MedLaunch.Classes.Scanning
                 return;
 
             int foldersFound = subs.Count;
+            string strBase = "\nScanning Game Directory: ";
 
             // iterate through each sub-directory (should be one game in each)
             for (int i = 0; i < subs.Count; i++)
             {
                 //string uiUpdate = strBase + "\nGames Found: " + gamesFound;
                 //dialog.SetMessage(uiUpdate);
+                dialog.SetMessage(strBase + (i + 1) + " of " + subs.Count);
+
+                if (dialog.IsCanceled == true)
+                    return;
 
                 List<DiscGameFile> game = DetermineDiscFileFromSubFolder(subs[i], systemId);
 
@@ -131,6 +136,7 @@ namespace MedLaunch.Classes.Scanning
                 // if multiple, create m3u file
                 if (game.Count > 0)
                 {
+                    
                     string t = game.First().FolderPath + "\\" + game.First().GameName;
                     CreateM3uPlaylist(game.OrderBy(a => a.FileName).ToList(), game.First().FolderPath + "\\" + game.First().GameName + ".m3u", true);
                     // create a new discgamefile for the m3u and add it to library
