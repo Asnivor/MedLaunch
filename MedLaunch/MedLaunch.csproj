@@ -984,9 +984,7 @@
     <Resource Include="Data\Graphics\Controllers\ss-dualmission.png" />
     <Resource Include="Data\Graphics\Controllers\ss-mission.png" />
     <Resource Include="Data\Graphics\Controllers\ss-wheel.png" />
-    <None Include="Data\System\ps1titles_us_eu_jp.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="Data\System\ps1titles_us_eu_jp.txt" />
     <None Include="Data\System\SaturnList.txt" />
     <Content Include="ExternalAssemblies\WindowScrape.dll" />
     <Resource Include="MedLaunchIcon.ico" />

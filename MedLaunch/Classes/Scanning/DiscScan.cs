@@ -368,16 +368,21 @@ namespace MedLaunch.Classes.Scanning
             newGame.systemId = sysId;
             newGame.disks = f.ExtraInfo;
             newGame.OtherFlags = f.ExtraInfo; // serial number to otherflags field for now as well
-            newGame.gameNameFromDAT = look.GameName;
-            newGame.Publisher = look.Publisher;
-            newGame.Developer = look.Developer;
-            newGame.Year = look.Year;
-            newGame.romNameFromDAT = look.RomName;
-            newGame.Copyright = look.Copyright;
-            newGame.Country = look.Country;
-            newGame.DevelopmentStatus = look.DevelopmentStatus;
-            newGame.Language = look.Language;
-            newGame.CRC32 = look.MD5;
+
+            if (look != null)
+            {
+                newGame.gameNameFromDAT = look.GameName;
+                newGame.Publisher = look.Publisher;
+                newGame.Developer = look.Developer;
+                newGame.Year = look.Year;
+                newGame.romNameFromDAT = look.RomName;
+                newGame.Copyright = look.Copyright;
+                newGame.Country = look.Country;
+                newGame.DevelopmentStatus = look.DevelopmentStatus;
+                newGame.Language = look.Language;
+                newGame.CRC32 = look.MD5;
+            }
+                       
 
             // now add to added or update list
             if (isNewGame == true && shouldAddUpdate == true)
@@ -539,6 +544,9 @@ namespace MedLaunch.Classes.Scanning
                     sheets[i].ToLower().Contains("cd " + disc) ||
                     sheets[i].ToLower().Contains("d" + disc) ||
                     sheets[i].ToLower().Contains("c" + disc) ||
+                    sheets[i].ToLower().Contains("cd" + disc) ||
+                    sheets[i].ToLower().Contains("disk" + disc) ||
+                    sheets[i].ToLower().Contains("disk " + disc) ||
                     sheets[i].ToLower().Contains("cd" + disc) ||
                     sheets[i].ToLower().Contains("disc" + disc))
                     {
