@@ -844,7 +844,7 @@ namespace MedLaunch.Models
         public int? wswan__byear { get; set; }                                  // 0 through 9999
         public string wswan__language { get; set; }
         public string wswan__name { get; set; }
-        public bool? wswan__rotateinput { get; set; }
+        //public bool? wswan__rotateinput { get; set; }
         public string wswan__sex { get; set; }
 
         public bool? wswan__enable { get; set; }
@@ -1691,7 +1691,7 @@ namespace MedLaunch.Models
                 wswan__byear = 1989,                                // placed
                 wswan__language = "english",
                 wswan__name = "Mednafen",                           // placed
-                wswan__rotateinput = false,                         // placed
+                //wswan__rotateinput = false,                         // placed
                 wswan__sex = "female",                              // placed
 
                 wswan__debugger__disfontsize = "5x7",

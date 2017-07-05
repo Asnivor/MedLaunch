@@ -4123,6 +4123,77 @@ namespace MedLaunch
             }
         }
 
+        /// <summary>
+        /// import all nointro DAT files
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnNoIntroImportAll_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.AdminDATDB db = new _Debug.DATDB.AdminDATDB();
+            db.ImportRoutine(_Debug.DATDB.ProviderType.NoIntro, 0);
+        }
+
+        /// <summary>
+        /// import all tosec DAT files
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnToSecImportAll_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.AdminDATDB db = new _Debug.DATDB.AdminDATDB();
+            db.ImportRoutine(_Debug.DATDB.ProviderType.ToSec, 0);
+        }
+
+        /// <summary>
+        /// Scrapes all saturn json data into database
+        /// and populates the intermediary debug DB (PSXDC.db)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ImportSaturn(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.AdminDATDB db = new _Debug.DATDB.AdminDATDB();
+            db.ImportRoutine(_Debug.DATDB.ProviderType.Satakore, 0);
+        }
+
+        /// <summary>
+        /// builds/updates the DAT_Game table
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnProcessDATGameTable_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.AdminDATDB db = new _Debug.DATDB.AdminDATDB();
+            db.ProcessTopLevelGames();
+        }
+
+        /// <summary>
+        /// identify games with missing years and publishers and try to fix that from the rom sets
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCalcYears_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.AdminDATDB db = new _Debug.DATDB.AdminDATDB();
+            db.CalculateYearsAndPublishers();
+        }
+
+
+
+        /// <summary>
+        /// identify games with missing years and publishers and try to fix that from the rom sets
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCalcYearsManual_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.AdminDATDB db = new _Debug.DATDB.AdminDATDB();
+            db.CalculateYearsAndPublishersManual();
+        }
+
+
+        /*
         private async void btnBuildFromDat_Click(object sender, RoutedEventArgs e)
         {
             var mySettings = new MetroDialogSettings()
@@ -4199,7 +4270,6 @@ namespace MedLaunch
 
                     if (mCount == 1)
                     {
-                        /* one record returned - dig into this further */
                         var one = n.Single();
 
                         // search roms present for this game
@@ -4293,12 +4363,7 @@ namespace MedLaunch
                     //Thread.Sleep(1);
 
                     // first check whether MD5 is already present
-                    /*
-                    var cr = (from game in Master
-                              from rom in game.Roms
-                              where rom.MD5.ToUpper() == a.MD5.ToUpper()
-                              select rom);
-*/
+
                     var cr = Master.Where(p => p.Roms.Any(x => x.MD5.ToUpper().Trim() == a.MD5.ToUpper().Trim()));
 
                     if (cr.ToList().Count > 0)
@@ -4317,7 +4382,6 @@ namespace MedLaunch
 
                     if (mCount == 1)
                     {
-                        /* one record returned - dig into this further */
                         var one = n.Single();
 
                         // search roms present for this game
@@ -4413,12 +4477,7 @@ namespace MedLaunch
                     //Thread.Sleep(1);
 
                     // first check whether MD5 is already present
-                    /*
-                    var cr = (from game in Master
-                              from rom in game.Roms
-                              where rom.MD5.ToUpper() == a.MD5.ToUpper()
-                              select rom);
-*/
+                   
                     var cr = Master.Where(p => p.Roms.Any(x => x.MD5.ToUpper().Trim() == a.MD5.ToUpper().Trim()));
 
                     if (cr.ToList().Count > 0)
@@ -4437,7 +4496,6 @@ namespace MedLaunch
 
                     if (mCount == 1)
                     {
-                        /* one record returned - dig into this further */
                         var one = n.Single();
 
                         // search roms present for this game
@@ -4532,12 +4590,7 @@ namespace MedLaunch
                     //Thread.Sleep(1);
 
                     // first check whether MD5 is already present
-                    /*
-                    var cr = (from game in Master
-                              from rom in game.Roms
-                              where rom.MD5.ToUpper() == a.MD5.ToUpper()
-                              select rom);
-*/
+                   
                     var cr = Master.Where(p => p.Roms.Any(x => x.MD5.ToUpper().Trim() == a.MD5.ToUpper().Trim()));
 
                     if (cr.ToList().Count > 0)
@@ -4556,7 +4609,6 @@ namespace MedLaunch
 
                     if (mCount == 1)
                     {
-                        /* one record returned - dig into this further */
                         var one = n.Single();
 
                         // search roms present for this game
@@ -4673,8 +4725,10 @@ namespace MedLaunch
                 GamesLibraryVisualHandler.RefreshGamesLibrary();                
             }
         }
+        */
+       
 
-
+        /*
         private async void btnmatchDATyears_Click(object sender, RoutedEventArgs e)
         {
             var mySettings = new MetroDialogSettings()
@@ -4789,6 +4843,54 @@ namespace MedLaunch
             }
         }
 
+            */
+
+        /// <summary>
+        /// Scrapes all PSX game info from psxdatacenter
+        /// and populates the intermediary debug DB (PSXDC.db)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScrapePsxDataCenter(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.Platforms.PSXDATACENTER.PsxDc.ScrapeInitialList(true);
+        }
+
+        /// <summary>
+        /// Scrapes all PSX game info from psxdatacenter
+        /// and populates the intermediary debug DB (PSXDC.db)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScrapePsxDataCenterNoDownload(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.Platforms.PSXDATACENTER.PsxDc.ScrapeInitialList(false);
+        }
+
+        
+
+        /// <summary>
+        /// Gets extra detail from online
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ImportPsxDataCenterExtraDetail(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.Platforms.PSXDATACENTER.PsxDc.GetExtraDetail();
+        }
+
+        /// <summary>
+        /// Imports data from psxdc.db into AsniDAT.db
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ImportPsxDataCenter(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.AdminDATDB db = new _Debug.DATDB.AdminDATDB();
+            db.ImportRoutine(_Debug.DATDB.ProviderType.PsxDataCenter, 0);
+        }
+
+        /*
         private async void buildPsxJson_Click(object sender, RoutedEventArgs e)
         {
             var mySettings = new MetroDialogSettings()
@@ -4827,7 +4929,9 @@ namespace MedLaunch
                 GamesLibraryVisualHandler.RefreshGamesLibrary();
             }
         }
+        */
 
+            /*
         private async void popPsxJson_Click(object sender, RoutedEventArgs e)
         {
             var mySettings = new MetroDialogSettings()
@@ -4902,6 +5006,8 @@ namespace MedLaunch
             }
         }
 
+        */
+        /*
         private async void buildSaturnJson_Click(object sender, RoutedEventArgs e)
         {
             var mySettings = new MetroDialogSettings()
@@ -5011,7 +5117,7 @@ namespace MedLaunch
         }
 
 
-
+        */
 
 
 

@@ -13,13 +13,12 @@ using Ookii.Dialogs.Wpf;
 using Microsoft.Win32;
 using MahApps.Metro.Controls.Dialogs;
 using MedLaunch.Classes.GamesLibrary;
-using MedLaunch.Classes.Scraper.DAT.NOINTRO.Models;
 using MedLaunch.Classes.IO;
-using MedLaunch.Classes.Scraper.DAT.Models;
 using Newtonsoft.Json;
 using System.Security.Cryptography;
 using SharpCompress;
 using SharpCompress.Archives;
+using MedLaunch.Classes.DAT;
 
 namespace MedLaunch.Classes
 {
@@ -30,9 +29,11 @@ namespace MedLaunch.Classes
         // constructor
         public GameScanner()
         {
-            // load master dat from disk
-            string filePath = AppDomain.CurrentDomain.BaseDirectory + @"Data\System\DATMaster.json";
-            DAT = JsonConvert.DeserializeObject<IEnumerable<DATMerge>>(File.ReadAllText(filePath));
+            // load master dat 
+            DAT = DATMerge.GetDATs();
+
+            //string filePath = AppDomain.CurrentDomain.BaseDirectory + @"Data\System\DATMaster.json";
+            //DAT = JsonConvert.DeserializeObject<IEnumerable<DATMerge>>(File.ReadAllText(filePath));
 
             db = new MyDbContext();            
 
@@ -214,7 +215,7 @@ namespace MedLaunch.Classes
         public static int UpdatedStats { get; set; }
         public static int UntouchedStats { get; set; }
 
-        public static IEnumerable<DATMerge> DAT { get; set; }
+        public static List<DATMerge> DAT { get; set; }
 
         // methods
         public string GetPath(int systemId)

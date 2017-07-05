@@ -93,20 +93,25 @@ namespace MedLaunch.Classes
                 { 
                     if (PsxSBI.IsSbiAvailable(imageFiles.First().ExtraInfo) == true)
                     {
-                        // sbi is available - prompt user
-                        if (!File.Exists(imageFiles.First().FolderPath + "\\" + imageFiles.First().FileName.Replace(imageFiles.First().Extension, "") + ".sbi"))
+                        // sbi is available - check whether sbi already exists
+                        string sbipath = imageFiles.First().FullPath.Replace(imageFiles.First().Extension, ".sbi");
+                        
+                        //if (!File.Exists(imageFiles.First().FolderPath + "\\" + imageFiles.First().FileName.Replace(imageFiles.First().Extension, "") + ".sbi"))
+
+                        if (!File.Exists(sbipath))
                         {
-                            MessageBoxResult result =  MessageBox.Show("MedLaunch has determined that you need an available SBI patch file to play this game properly.\n\nDo you wish to copy this file to your disc directory?\n", 
-                                "SBI Patch Needed - " + imageFiles.First().FileName + imageFiles.First().Extension, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                            MessageBoxResult result = MessageBox.Show("MedLaunch has determined that you need an available SBI patch file to play this game properly.\n\nDo you wish to copy this file to your disc directory?\n",
+                                "SBI Patch Needed - " + imageFiles.First().FileName, MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                             if (result == MessageBoxResult.Yes)
                             {
                                 // copy sbi file to folder (named the same as the cue file)
                                 originalCue.ExtraInfo = imageFiles.First().ExtraInfo;
 
-                                PsxSBI.InstallSBIFile(originalCue);
-                            }                           
-                        }                        
+                                //PsxSBI.InstallSBIFile(originalCue);
+                                PsxSBI.InstallSBIFile(imageFiles.First());
+                            }
+                        }                   
                     }
                 }
 

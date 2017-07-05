@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE datafile PUBLIC "-//Logiqx//DTD ROM Management Datafile//EN" "http://www.logiqx.com/Dats/datafile.dtd">
+
+<datafile>
+	<header>
+		<name>Nintendo Famicom Disk System - Demos</name>
+		<description>Nintendo Famicom Disk System - Demos (TOSEC-v2014-04-23)</description>
+		<category>TOSEC</category>
+		<version>2014-04-23</version>
+		<author>Cassiel</author>
+		<email>contact@tosecdev.org</email>
+		<homepage>TOSEC</homepage>
+		<url>http://www.tosecdev.org/</url>
+	</header>
+	<game name="Ai Senshi Nicol Audio and WAVE RAM Demo (1999)(Covell, Chris)">
+		<description>Ai Senshi Nicol Audio and WAVE RAM Demo (1999)(Covell, Chris)</description>
+		<rom name="Ai Senshi Nicol Audio and WAVE RAM Demo (1999)(Covell, Chris).bin" size="65500" crc="b508f4da" md5="49f31d9fba02294d22bc6a80354ad91f" sha1="b5d1aedf4eaca439151bb75ddab4351d53c6e579"/>
+	</game>
+</datafile>

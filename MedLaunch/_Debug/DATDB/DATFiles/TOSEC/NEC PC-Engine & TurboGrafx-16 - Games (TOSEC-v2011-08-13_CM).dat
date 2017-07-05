@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE datafile PUBLIC "-//Logiqx//DTD ROM Management Datafile//EN" "http://www.logiqx.com/Dats/datafile.dtd">
+
+<datafile>
+	<header>
+		<name>NEC PC-Engine &amp; TurboGrafx-16 - Games</name>
+		<description>NEC PC-Engine &amp; TurboGrafx-16 - Games (TOSEC-v2011-08-13)</description>
+		<category>TOSEC</category>
+		<version>2011-08-13</version>
+		<author>Cassiel</author>
+		<email>contact@tosecdev.org</email>
+		<homepage>TOSEC</homepage>
+		<url>http://www.tosecdev.org/</url>
+	</header>
+	<game name="After Burner II (1990)(NEC)(JP)(en)">
+		<description>After Burner II (1990)(NEC)(JP)(en)</description>
+		<rom name="After Burner II (1990)(NEC)(JP)(en).bin" size="524288" crc="ca72a828" md5="ac0cdee014e725e428fde5774751ff8d" sha1="50b9d22fe5179aee5cb95022472714ef8483841f"/>
+	</game>
+	<game name="After Burner II (1990)(NEC)(JP)(en)[b2]">
+		<description>After Burner II (1990)(NEC)(JP)(en)[b2]</description>
+		<rom name="After Burner II (1990)(NEC)(JP)(en)[b2].bin" size="524288" crc="4edd963c" md5="38cc562ca8ad52ea5d5979a4d7d4838f" sha1="c63df3f9aa5e6dde6563ed94bf33c5579935df50"/>
+	</game>
+	<game name="After Burner II (1990)(NEC)(JP)(en)[b3]">
+		<description>After Burner II (1990)(NEC)(JP)(en)[b3]</description>
+		<rom name="After Burner II (1990)(NEC)(JP)(en)[b3].bin" size="524288" crc="d3f4774b" md5="110ad6c444cd0a4e19bda5762e787639" sha1="290bb750aea00e4b7a46573682aff76a5c2f6ae0"/>
+	</game>
+	<game name="After Burner II (1990)(NEC)(JP)(en)[b4]">
+		<description>After Burner II (1990)(NEC)(JP)(en)[b4]</description>
+		<rom name="After Burner II (1990)(NEC)(JP)(en)[b4].bin" size="524288" crc="667ace1a" md5="e6007d05d1e7ef57787110451496eecf" sha1="e0be991d0a17985c205af91d781be29d5d698edc"/>
+	</game>
+	<game name="After Burner II (1990)(NEC)(JP)(en)[b]">
+		<description>After Burner II (1990)(NEC)(JP)(en)[b]</description>
+		<rom name="After Burner II (1990)(NEC)(JP)(en)[b].bin" size="524288" crc="aae9c786" md5="4b8c2fdeb120050ac6ef87fcaf4f04bf" sha1="fad79ed9ecb310b438af57a9e15114ca277bbd32"/>
+	</game>
+	<game name="Air Zonk (1992)(Hudson)(US)">
+		<description>Air Zonk (1992)(Hudson)(US)</description>
+		<rom name="Air Zonk (1992)(Hudson)(US).bin" size="524288" crc="933d5bcc" md5="406bec60ffca9ac151a793969b0c10c6" sha1="1ee94b6016ffdf996409955287e8799019a68658"/>
+	</game>
+	<game name="Air Zonk (1992)(Hudson)(US)[h]">
+		<description>Air Zonk (1992)(Hudson)(US)[h]</description>
+		<rom name="Air Zonk (1992)(Hudson)(US)[h].bin" size="524288" crc="e3284ba7" md5="caa17e131ddd5ad01799beb161c3216d" sha1="e76b529a626f51c6a986abde0e20000a7dbaeb03"/>
+	</game>
+	<game name="Chouzetsu Rinjin Berabou Man (1990)(Namco)(JP)">
+		<description>Chouzetsu Rinjin Berabou Man (1990)(Namco)(JP)</description>
+		<rom name="Chouzetsu Rinjin Berabou Man (1990)(Namco)(JP).bin" size="524288" crc="0df57c90" md5="2cb4b55b6c4883530cdd452552b277c4" sha1="9abb7d96a4dba96a26f7073ea06cb8b2deb24a43"/>
+	</game>
+	<game name="Chouzetsu Rinjin Berabou Man (1990)(Namco)(JP)[b2]">
+		<description>Chouzetsu Rinjin Berabou Man (1990)(Namco)(JP)[b2]</description>
+		<rom name="Chouzetsu Rinjin Berabou Man (1990)(Namco)(JP)[b2].bin" size="524288" crc="b6058e41" md5="83a3187b0b85ab518a8546ec92023500" sha1="40e6d4d7128ba9fc7661d93d5083e1899a4728b1"/>
+	</game>
+	<game name="Chouzetsu Rinjin Berabou Man (1990)(Namco)(JP)[b3]">
+		<description>Chouzetsu Rinjin Berabou Man (1990)(Namco)(JP)[b3]</description>
+		<rom name="Chouzetsu Rinjin Berabou Man (1990)(Namco)(JP)[b3].bin" size="524288" crc="2b0b82bc" md5="f144b24b45bb99d5b05e346b57f67668" sha1="a09fb1851036a3a74c163e0b516af869b33e96e8"/>
+	</game>
+	<game name="Chouzetsu Rinjin Berabou Man (1990)(Namco)(JP)[b4]">
+		<description>Chouzetsu Rinjin Berabou Man (1990)(Namco)(JP)[b4]</description>
+		<rom name="Chouzetsu Rinjin Berabou Man (1990)(Namco)(JP)[b4].bin" size="524288" crc="3ea4a162" md5="9d522969e3b8c492122c2916ab78efcc" sha1="b1dcc25b97d5e307827d66f7aef5fa26a5cca41e"/>
+	</game>
+	<game name="Chouzetsu Rinjin Berabou Man (1990)(Namco)(JP)[b]">
+		<description>Chouzetsu Rinjin Berabou Man (1990)(Namco)(JP)[b]</description>
+		<rom name="Chouzetsu Rinjin Berabou Man (1990)(Namco)(JP)[b].bin" size="524288" crc="23efd9ea" md5="131d58d4db54d773659c7ce65924adfd" sha1="70e1e42d1955c4545040bfd2913e36fb7ee2b6ab"/>
+	</game>
+	<game name="Keith Courage in Alpha Zones (1989)(Hudson)(US)">
+		<description>Keith Courage in Alpha Zones (1989)(Hudson)(US)</description>
+		<rom name="Keith Courage in Alpha Zones (1989)(Hudson)(US).bin" size="262144" crc="474d7a72" md5="e5309b10903ccc3032c2f919e8db7384" sha1="09f37cf6ddbbf202994d88ac62225ca027e791ac"/>
+	</game>
+	<game name="Keith Courage in Alpha Zones (1989)(Hudson)(US)[b]">
+		<description>Keith Courage in Alpha Zones (1989)(Hudson)(US)[b]</description>
+		<rom name="Keith Courage in Alpha Zones (1989)(Hudson)(US)[b].bin" size="262144" crc="8cd2ceb6" md5="233c0b892b3648d3ab1789093d1f52e6" sha1="2e45054381593663a971cea96e3cc0697fb2e318"/>
+	</game>
+	<game name="Keith Courage in Alpha Zones (1989)(Hudson)(US)[h2]">
+		<description>Keith Courage in Alpha Zones (1989)(Hudson)(US)[h2]</description>
+		<rom name="Keith Courage in Alpha Zones (1989)(Hudson)(US)[h2].bin" size="262144" crc="8c34e073" md5="20f948ecfa71910aace86875fdcfcd21" sha1="42b9c2e8e97260c04bd62cfd1c34caa332da7807"/>
+	</game>
+	<game name="Keith Courage in Alpha Zones (1989)(Hudson)(US)[h]">
+		<description>Keith Courage in Alpha Zones (1989)(Hudson)(US)[h]</description>
+		<rom name="Keith Courage in Alpha Zones (1989)(Hudson)(US)[h].bin" size="262144" crc="b54debd1" md5="644190707b2b926b00c508bcea7096f9" sha1="4ab2c3f38c4763a224dafdf74e103a8bbf30298e"/>
+	</game>
+	<game name="Keith Courage in Alpha Zones (1989)(Hudson)(US)[tr el]">
+		<description>Keith Courage in Alpha Zones (1989)(Hudson)(US)[tr el]</description>
+		<rom name="Keith Courage in Alpha Zones (1989)(Hudson)(US)[tr el].bin" size="262144" crc="d4ed4749" md5="a5973142bcfe0d5cc97dbdd1fae7db4f" sha1="06ff950f8b8f119591f62a82ffd2f2414f3eba90"/>
+	</game>
+</datafile>
