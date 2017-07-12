@@ -35,25 +35,48 @@ Latest Version: 0.5.7.0
 Compatible with Mednafen: 0.9.39.x - 0.9.45.x
 
 ### Features
-* Responsive GUI that allows for a wide range of monitor resolutions
-* No installation required
-* Local (SQLite) auto-generated database where all settings are saved
-* Supports Mednafen versions 0.9.39.x through 0.9.45.x
-* Nearly all Mednafen command line parameters available and configurable
-* Mednafen controller configuration available using DirectInput and XInput (changes are saved directly to the mednafen config file rather than MedLaunch database)
-* Built-in games library (with system filters and dynamic search)
-* ROM scanner (for games library import) with NOINTRO/TOSEC matching
-* Manual and Auto disc import (disc games must be in their own sub-folders within the system (PSX, SS, PCFX or PCECD) folder)
-* DISC scanner (for games library import) with custom DAT matching based on game serial number (detected from disc image)
-* Auto-M3U platlist generation for multi-disc games
-* Supports the usual Mednafen rom and disc formats
-* Supports multiple ROM files per archive (7zip and zip) - (no archives within archives and no subfolders within the archive)
-* Games library sidebar for game info, stats and media (with the option to hide certain columns on a per-system basis)
-* Scraping of game data and media from thegamesdb.net and mobygames
-* Built-in netplay server selection
-* Built-in browser control with links to Mednafen help pages
-* Ability to hide mednafen cores completely 
-* Customizable color scheme
+* **No installation required (and no data is written outside of the MedLaunch folder)**
+* **Local (SQLite) auto-generated database where all settings are saved**
+* **Can import existing mednafen configuration options**
+* **Responsive UI**
+  * Customizable color scheme
+  * Scaleable to aid usability on a wide range of resolutions
+* **Supports versions of Mednafen 0.9.39.x - 0.9.45.x (latest)**
+* **Nearly all Mednafen config parameters are supported and configurable through the launcher**
+  * With the exception of control configuration parameters, all config settings are stored internally on per-emulated system basis
+  * On game launch a {system}.cfg file is generated (so that per-system configurations can be utilized outside of MedLaunch)
+* **Built-in update checking (with manual ability to grab the latest MedLaunch and supported Mednafen x64 binaries)**
+* **Customizable games library**
+  * Hide/show individual mednafen emulated systems and games library columns
+  * Multi-column sorting and dynamic search
+  * Library sorting and column sizing/positioning state saved on a per-filter basis
+  * Sidebar that shows game information, boxart, screenshots, manuals etc. (once the game has been scraped)
+* **Auto scan and import of ROM based games**
+  * Imports all standard ROM formats that mednafen supports
+  * Extended archive support - will import single or multiple ROMs from within .zip or .7z files
+* **Auto scan and import of Disc based games (PSX, Saturn, PCFX & PCE-CD)**
+  * All disc cue/image files must reside in game-specific sub-folders below the designated system game folder
+  * Games that do not adhere to this file/folder structure can be imported manually
+  * Auto-generation of .m3u playlist files for multi-disc games
+* **DAT data lookup on import**
+  * MedLaunch ships with a DAT database that combines NoIntro, Tosec, PsxDataCenter & Satakore information that enables detailed information (Country, Year, Publisher etc) to be populated in the games library upon import
+  * ROM (and some disc-based system) files are matched based on MD5 hash
+  * PSX and Saturn discs are matched based on game serial number lookup (that is obtained by interogating the disc image itself)
+* **Online scraping of game data/media/docs**
+  * Auto and manual scraping of data from thegamesdb and mobygames
+  * PDF manuals downloaded from replacementdocs
+* **Configuration of mednafen controls**
+  * DirectInput and XInput are fully supported - covering keyboard, standard gamepads/joysticks and XInput devices (xbox/playstation controllers etc.)
+  * Configure nearly all emulated gamepad/joystick/wheel etc. devices for all virtual input ports for every emulated system
+  * Standard mouse bindings can be inserted using pre-defined templates
+* **Extended game launch functionality**
+  * Last played and total game time stats recorded on a per-game basis
+  * Option to remember mednafen window/screen position (on a per-emulated system basis) and re-apply this on game launch (useful for people with multi-monitor setups)
+  * Choose the CD image that should be inserted when mednafen starts (in the case of multi-disc games)
+  * Edit the mednafen launch string before running the game
+  * Option to copy launch string to clipboard (for use in other frontends or batch files)
+* **Built-in netplay server list (with pre-populated servers)**
+* **Browser control with links to the mednafen and medlaunch websites**
 
 This upcoming changes (and many others) can be found in the current roadmap [here](http://medlaunch.asnitech.co.uk/roadmap).
 
