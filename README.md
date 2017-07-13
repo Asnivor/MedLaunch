@@ -82,12 +82,12 @@ This upcoming changes (and many others) can be found in the current roadmap [her
 
 ### Requirements
 * [Microsoft .NET Framework 4.5.2](https://www.microsoft.com/en-gb/download/details.aspx?id=42643)
-* At least [Mednafen versions 0.9.39.x through 0.9.45.x](https://mednafen.github.io/releases/) - 64-bit version required for Saturn games
+* At least [Mednafen version 0.9.39.x](https://mednafen.github.io/releases/) - 64-bit version required for Saturn games
 * Windows 7 and above (may work on Vista but has not been tested)
 * x64 (has not been tested on x86 but should still work on it)
 
 ### Download
-You can always get the latest release build of MedLaunch on the [GitHub Releases](https://github.com/Asnivor/MedLaunch/releases) page. I am actively working on code in the [Dev Branch](https://github.com/Asnivor/MedLaunch/tree/dev) and you can see the active changes for the next release on the [ChangeLog](https://medlaunch.info/changelog). These pre-release changes will be released when I am happy with them, so please do not ask for builds ahead of the official releases. You can of course get yourself a copy of Visual Studio Community installed and build it yourself from the Master branch.
+You can always get the latest release build of MedLaunch on the [GitHub Releases](https://github.com/Asnivor/MedLaunch/releases/latest) page. I am actively working on code in the [Dev Branch](https://github.com/Asnivor/MedLaunch/tree/dev) and you can see the active changes for the next release on the [ChangeLog](https://medlaunch.info/changelog). These pre-release changes will be released when I am happy with them, so please do not ask for builds ahead of the official releases. You can of course get yourself a copy of Visual Studio Community installed and build it yourself from the Master branch.
 
 ! You can download the latest version of Mednafen from the [**Mednafen website**](https://mednafen.github.io/releases/).
 
