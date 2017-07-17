@@ -1,5 +1,7 @@
 <img src="https://medlaunch.info/MedLaunch_sm.png" height="80" />
+
 # MedLaunch
+
 ## A Windows Front-End for Mednafen
 
 
@@ -33,6 +35,8 @@
 
 Latest Version: 0.5.7.0
 Compatible with Mednafen: 0.9.39.x - 0.9.45.x
+
+Bugs/Suggestions/Feature Requests can be posted on the GitHub [Issue Tracker](https://github.com/Asnivor/MedLaunch/issues), or connect to our [Discord Server](https://discord.gg/nsbanNa) and let us know there.
 
 ### Features
 * **No installation required (and no data is written outside of the MedLaunch folder)**
