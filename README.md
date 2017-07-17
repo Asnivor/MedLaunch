@@ -36,6 +36,8 @@
 Latest Version: 0.5.7.0
 Compatible with Mednafen: 0.9.39.x - 0.9.45.x
 
+Documentation: Please see the [REQUIREMENTS](https://medlaunch.info/documentation/en/introduction/requirements) and [QUICK SETUP GUIDE](https://medlaunch.info/documentation/en/introduction/quick-setup-guide) documentation portal pages. 
+
 Bugs/Suggestions/Feature Requests can be posted on the GitHub [Issue Tracker](https://github.com/Asnivor/MedLaunch/issues), or connect to our [Discord Server](https://discord.gg/nsbanNa) and let us know there.
 
 ### Features
