@@ -509,10 +509,10 @@ namespace MedLaunch.Classes
                     baseStr += "-netplay.port " + Validate(Server.netplay__port.ToString()) + sep;
                 }
             
-                // add password and gamekey fields from id 100
+                // add password and gamekey fields from Server row
 
                 // password
-                if (Server.netplay__password == null || Server.netplay__password == "")
+                if (Server.netplay__password == null || Server.netplay__password.Trim() == "")
                 {
                     // no password set - apply blank
                     baseStr += "-netplay.password \"\""  + sep;
@@ -523,7 +523,7 @@ namespace MedLaunch.Classes
                 }
 
                 // gamekey
-                if (Server.netplay__gamekey == null || Server.netplay__gamekey == "")
+                if (Server.netplay__gamekey == null || Server.netplay__gamekey.Trim() == "")
                 {
                     // no gamekey set - set blank
                     baseStr += "-netplay.gamekey \"\"" + sep;
