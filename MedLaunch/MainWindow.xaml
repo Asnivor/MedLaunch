@@ -7327,6 +7327,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="superscope">Super Scope</ComboBoxItem>
                                                 </ComboBox>
 
+                                                <Label Grid.ColumnSpan="2" Grid.Row="6">(Emulated Ports 3-8 are GAMEPAD Only)</Label>
+
                                                 <!--
                                                 <Label Name="cfglbl_snes__input__port3" Grid.Column="0" Grid.Row="6">Port 3 Input Device</Label>
                                                 <ComboBox x:Name="cfg_snes__input__port3" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="6">

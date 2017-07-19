@@ -141,6 +141,13 @@ namespace MedLaunch.Models
             SetPaths(paths);
         }
 
+        public static void SaveMednafenPath(string path)
+        {
+            Paths paths = Paths.GetPaths();
+            paths.mednafenExe = path;
+            SaveToDatabase(new List<Paths> { paths });
+        }
+
         public static bool isMednafenPathValid()
         {
             bool pathWorking = false;
@@ -255,6 +262,12 @@ namespace MedLaunch.Models
                     ci.ImportAll(null);
 
                     // set bypassconfig to 1
+                    gs.bypassConfig = true;
+                    GlobalSettings.SetGlobals(gs);
+                }
+
+                else
+                {
                     gs.bypassConfig = true;
                     GlobalSettings.SetGlobals(gs);
                 }

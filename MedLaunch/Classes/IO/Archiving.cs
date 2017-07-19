@@ -214,6 +214,7 @@ namespace MedLaunch.Classes.IO
 
                     entry.WriteToDirectory(destinationDirectory, new SharpCompress.Readers.ExtractionOptions() { Overwrite = true });
                 }
+                archive.Dispose();
             }
         }
 
@@ -230,6 +231,7 @@ namespace MedLaunch.Classes.IO
 
                     entry.WriteToDirectory(destinationDirectory, new SharpCompress.Readers.ExtractionOptions() { Overwrite = true });
                 }
+                archive.Dispose();
             }
         }
 
