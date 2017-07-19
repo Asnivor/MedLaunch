@@ -3574,6 +3574,9 @@ namespace MedLaunch
             /* start download and extraction of latest compatible mednafen version */
             Versions ver = new Versions();
 
+            ProgressBar pb = new ProgressBar();
+            pb.IsIndeterminate = true;
+
             string downloadsFolder = System.AppDomain.CurrentDomain.BaseDirectory + @"Data\Updates";
             System.IO.Directory.CreateDirectory(downloadsFolder);
 
