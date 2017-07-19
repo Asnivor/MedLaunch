@@ -141,6 +141,13 @@ namespace MedLaunch.Models
             SetPaths(paths);
         }
 
+        public static void SaveMednafenPath(string path)
+        {
+            Paths paths = Paths.GetPaths();
+            paths.mednafenExe = path;
+            SaveToDatabase(new List<Paths> { paths });
+        }
+
         public static bool isMednafenPathValid()
         {
             bool pathWorking = false;

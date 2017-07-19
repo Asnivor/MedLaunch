@@ -1960,12 +1960,9 @@ namespace MedLaunch
 
             if (path.SelectedPath != "")
             {
-                string strPath = path.SelectedPath;
-
-                
-
+                string strPath = path.SelectedPath;     
                 tbPathMednafen.Text = strPath;
-
+                Paths.SaveMednafenPath(strPath);
                 UpdateCheckMednafen();
             }
 
