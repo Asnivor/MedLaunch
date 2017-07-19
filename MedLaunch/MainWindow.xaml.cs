@@ -3650,38 +3650,47 @@ namespace MedLaunch
 
                 // try the download
 
-                using (var wc = new CustomWebClient())
+                await Task.Run(() =>
                 {
-                    wc.Proxy = null;
-                    wc.Timeout = 2000;
+                    // delete the update locally if it already exists
+                    if (File.Exists(downloadsFolder + "\\" + fName))
+                    {
+                        File.Delete(downloadsFolder + "\\" + fName);
+                    }
+
+
+                    using (var wc = new CustomWebClient())
+                    {
+                        wc.Proxy = null;
+                        wc.Timeout = 2000;
+                        try
+                        {
+                            wc.DownloadFile(url, downloadsFolder + "\\" + fName);
+                        }
+                        catch
+                        {
+                            controller.SetMessage("The request timed out - please try again");
+                            Task.Delay(2000);
+                            controller.CloseAsync();
+                            wc.Dispose();
+                            return;
+                        }
+                        finally
+                        {
+                            wc.Dispose();
+                        }
+                    }
+
+                    // extract download to current mednafen folder
+                    string meddir = Paths.GetPaths().mednafenExe;
+
+                    Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
                     try
                     {
-                        wc.DownloadFile(url, downloadsFolder + "\\" + fName);
+                        arch.ExtractArchiveZipOverwrite(meddir);                        
                     }
-                    catch
-                    {
-                        controller.SetMessage("The request timed out - please try again");
-                        await Task.Delay(2000);
-                        await controller.CloseAsync();
-                        wc.Dispose();
-                        return;
-                    }
-                    finally
-                    {
-                        wc.Dispose();
-                    }
-                }
-
-                // extract download to current mednafen folder
-                string meddir = Paths.GetPaths().mednafenExe;
-
-                Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
-                try
-                {
-                    arch.ExtractArchiveZipOverwrite(meddir);
-                }
-                catch { }
-
+                    catch { }
+                });
 
                 await controller.CloseAsync();
             }
