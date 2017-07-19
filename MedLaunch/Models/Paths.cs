@@ -265,6 +265,12 @@ namespace MedLaunch.Models
                     gs.bypassConfig = true;
                     GlobalSettings.SetGlobals(gs);
                 }
+
+                else
+                {
+                    gs.bypassConfig = true;
+                    GlobalSettings.SetGlobals(gs);
+                }
             }
             
             // if option is selected make a backup of the mednafen config file
