@@ -3772,12 +3772,14 @@ namespace MedLaunch
             controller.SetCancelable(false);
             controller.SetIndeterminate();
 
+            // download url
+            string url = lblDownloadUrl.Content.ToString();
+
             await Task.Delay(400);
 
             await Task.Run(() =>
             {
-                // download url
-                string url = lblDownloadUrl.Content.ToString();
+                
                 // get just the filename
                 string[] fArr = url.Split('/');
                 string fName = fArr[fArr.Length - 1];
