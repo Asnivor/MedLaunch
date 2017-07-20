@@ -84,9 +84,19 @@ namespace MedLaunch
         public bool UpdateStatusML { get; set; }
         public bool UpdateStatusMF { get; set; }
 
+        /// <summary>
+        /// public instance of the mahapps progressdialogcontroller
+        /// </summary>
+        public ProgressDialogController PDC { get; set; }
+        public string DialogMessage { get; set; }
+        public bool DownloadComplete { get; set; }
+
+
         public MainWindow()
         {            
             InitializeComponent();
+
+            DownloadComplete = false;
 
             UpdateStatus = 0;
 
@@ -3661,7 +3671,9 @@ namespace MedLaunch
                         File.Delete(downloadsFolder + "\\" + fName);
                     }
 
-
+                    // download mednafen
+                    bool result = StartDownload(controller, url, downloadsFolder + "\\" + fName, "URL: " + url);
+                    /*
                     using (var wc = new CustomWebClient())
                     {
                         wc.Proxy = null;
@@ -3683,16 +3695,20 @@ namespace MedLaunch
                             wc.Dispose();
                         }
                     }
+                    */
 
-                    // extract download to current mednafen folder
-                    string meddir = Paths.GetPaths().mednafenExe;
-
-                    Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
-                    try
+                    if (result == true)
                     {
-                        arch.ExtractArchiveZipOverwrite(meddir);                        
+                        // extract download to current mednafen folder
+                        string meddir = Paths.GetPaths().mednafenExe;
+
+                        Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
+                        try
+                        {
+                            arch.ExtractArchiveZipOverwrite(meddir);
+                        }
+                        catch { }
                     }
-                    catch { }
                 });
 
                 await controller.CloseAsync();
@@ -3765,12 +3781,11 @@ namespace MedLaunch
                 NegativeButtonText = "Cancel Download",
                 AnimateShow = true,
                 AnimateHide = true
-
             };
 
-            var controller = await this.ShowProgressAsync("MedLaunch Update", "Downloading MedLaunch v" + v, settings: mySettings);
+            var controller = await this.ShowProgressAsync("Downloading MedLaunch v" + v, "", settings: mySettings);
             controller.SetCancelable(false);
-            controller.SetIndeterminate();
+            //controller.SetIndeterminate();
 
             // download url
             string url = lblDownloadUrl.Content.ToString();
@@ -3785,51 +3800,99 @@ namespace MedLaunch
                 string fName = fArr[fArr.Length - 1];
 
                 // try the download
+                bool result = StartDownload(controller, url, downloadsFolder + "\\" + fName, "URL: " + url);
 
-                using (var wc = new CustomWebClient())
+                if (result == true)
                 {
-                    wc.Proxy = null;
-                    wc.Timeout = 2000;
-                    try
-                    {
-                        wc.DownloadFile(url, downloadsFolder + "\\" + fName);
-                    }
-                    catch
-                    {
-                        controller.SetMessage("The request timed out - please try again");
-                        Task.Delay(2000);
-                        controller.CloseAsync();
-                        wc.Dispose();
-                        return;
-                    }
-                    finally
-                    {
-                        wc.Dispose();
-                    }
+                    controller.SetIndeterminate();
+                    controller.SetMessage("Download Complete. Starting Install.....");
+
+                    // now run updater app to extract MedLaunch over the existing directory
+                    // build command line args
+                    string processArg = "/P:" + Process.GetCurrentProcess().Id.ToString();
+                    string upgradeArg = "/U:" + fName; // "MedLaunch_v" + vArr[0] + "_" + vArr[1] + "_" + vArr[2] + "_" + vArr[3] + ".zip";
+                    string args = processArg + " " + upgradeArg;
+                    // call the external updater app and close this one
+                    // call the updater app and close this one
+                    Process.Start("lib\\Updater.exe", args);
+                    Thread.Sleep(2000);
+                    Environment.Exit(0);
                 }
-
-
-                // now run updater app to extract MedLaunch over the existing directory
-                // build command line args
-                string processArg = "/P:" + Process.GetCurrentProcess().Id.ToString();
-                string upgradeArg = "/U:" + fName; // "MedLaunch_v" + vArr[0] + "_" + vArr[1] + "_" + vArr[2] + "_" + vArr[3] + ".zip";
-                string args = processArg + " " + upgradeArg;
-                // call the external updater app and close this one
-                // call the updater app and close this one
-                Process.Start("lib\\Updater.exe", args);
-                Thread.Sleep(2000);
-                Environment.Exit(0);
             });
-
-            
-
-
             await controller.CloseAsync();
 
             // mednafen versions
-            UpdateCheckMednafen();
+            UpdateCheckMednafen();            
+        }
 
+        private bool StartDownload(ProgressDialogController controller, string uri, string destination, string dialogMessage)
+        {
+            DialogMessage = dialogMessage;
 
+            using (var wc = new CustomWebClient())
+            {
+                wc.Proxy = null;
+                wc.Timeout = 2000;
+                try
+                {
+                    DownloadComplete = false;
+                    PDC = controller;
+                    PDC.Maximum = 100;
+                    PDC.Minimum = 0;
+                    wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                    wc.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                    wc.DownloadFileAsync(new Uri(uri), destination);
+
+                    while (!DownloadComplete)
+                    {
+                        // tick
+                    }
+
+                    Task.Delay(2000);
+                }
+                catch
+                {
+                    controller.SetMessage("The request timed out - please try again");
+                    Task.Delay(2000);
+                    controller.CloseAsync();
+                    wc.Dispose();
+                    return false;
+                }
+                finally
+                {
+                    wc.Dispose();
+                }
+
+                return true;
+            }
+        }
+
+        private void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            // update PDC with percentage
+            PDC.SetProgress(e.ProgressPercentage);
+            PDC.SetMessage(DialogMessage +  "\n\nDownloaded " + e.BytesReceived + " of " + e.TotalBytesToReceive + " bytes");
+        }
+
+        private void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            //progressBar1.Value = 0;
+            DownloadComplete = true;
+
+            if (e.Cancelled)
+            {
+                MessageBox.Show("The download has been cancelled");
+                return;
+            }
+
+            if (e.Error != null) // We have an error! Retry a few times, then abort.
+            {
+                MessageBox.Show("An error ocurred while trying to download file");
+
+                return;
+            }
+
+            //MessageBox.Show("File succesfully downloaded");
         }
 
         private class CustomWebClient : System.Net.WebClient
