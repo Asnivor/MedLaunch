@@ -3773,48 +3773,53 @@ namespace MedLaunch
             controller.SetIndeterminate();
 
             await Task.Delay(400);
-            
-            // download url
-            string url = lblDownloadUrl.Content.ToString();
-            // get just the filename
-            string[] fArr = url.Split('/');
-            string fName = fArr[fArr.Length - 1];
 
-            // try the download
-
-            using (var wc = new CustomWebClient())
+            await Task.Run(() =>
             {
-                wc.Proxy = null;
-                wc.Timeout = 2000;
-                try
+                // download url
+                string url = lblDownloadUrl.Content.ToString();
+                // get just the filename
+                string[] fArr = url.Split('/');
+                string fName = fArr[fArr.Length - 1];
+
+                // try the download
+
+                using (var wc = new CustomWebClient())
                 {
-                    wc.DownloadFile(url, downloadsFolder + "\\" + fName);
+                    wc.Proxy = null;
+                    wc.Timeout = 2000;
+                    try
+                    {
+                        wc.DownloadFile(url, downloadsFolder + "\\" + fName);
+                    }
+                    catch
+                    {
+                        controller.SetMessage("The request timed out - please try again");
+                        Task.Delay(2000);
+                        controller.CloseAsync();
+                        wc.Dispose();
+                        return;
+                    }
+                    finally
+                    {
+                        wc.Dispose();
+                    }
                 }
-                catch
-                {
-                    controller.SetMessage("The request timed out - please try again");
-                    await Task.Delay(2000);
-                    await controller.CloseAsync();
-                    wc.Dispose();
-                    return;
-                }
-                finally
-                {
-                    wc.Dispose();
-                }
-            }
 
 
-            // now run updater app to extract MedLaunch over the existing directory
-            // build command line args
-            string processArg = "/P:" + Process.GetCurrentProcess().Id.ToString();
-            string upgradeArg = "/U:" + fName; // "MedLaunch_v" + vArr[0] + "_" + vArr[1] + "_" + vArr[2] + "_" + vArr[3] + ".zip";
-            string args = processArg + " " + upgradeArg;
-            // call the external updater app and close this one
-            // call the updater app and close this one
-            Process.Start("lib\\Updater.exe", args);
-            Thread.Sleep(2000);
-            Environment.Exit(0);
+                // now run updater app to extract MedLaunch over the existing directory
+                // build command line args
+                string processArg = "/P:" + Process.GetCurrentProcess().Id.ToString();
+                string upgradeArg = "/U:" + fName; // "MedLaunch_v" + vArr[0] + "_" + vArr[1] + "_" + vArr[2] + "_" + vArr[3] + ".zip";
+                string args = processArg + " " + upgradeArg;
+                // call the external updater app and close this one
+                // call the updater app and close this one
+                Process.Start("lib\\Updater.exe", args);
+                Thread.Sleep(2000);
+                Environment.Exit(0);
+            });
+
+            
 
 
             await controller.CloseAsync();
