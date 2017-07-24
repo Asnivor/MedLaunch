@@ -11043,7 +11043,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                         <Label x:Name="lbl5" Grid.Column="0" Grid.Row="5" VerticalAlignment="Top" Margin="10" VerticalContentAlignment="Top">
                             Binary URL
                         </Label>
-                        <Label x:Name="lblDownloadUrl" Grid.Column="1" Grid.Row="5" Margin="10"/>
+                        <TextBlock x:Name="lblDownloadUrl" Grid.Column="1" Grid.Row="5" Margin="10">
+                           
+                        </TextBlock>
                         <!--
                         <Label x:Name="lbl5" Grid.Column="0" Grid.Row="4" VerticalAlignment="Top" Margin="10" VerticalContentAlignment="Top">
                             Changelog

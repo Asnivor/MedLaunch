@@ -3455,7 +3455,17 @@ namespace MedLaunch
 
                 // download URL
                 lblDownloadUrl.Visibility = Visibility.Visible;
-                lblDownloadUrl.Content = d.assets[0].browser_download_url;
+
+                string ghUrl = d.assets[0].browser_download_url;
+                // split the string up so only the version is left
+                string[] stArr = ghUrl.Split(new string[] { "MedLaunch_v" }, StringSplitOptions.None);
+                string verUnderscores = stArr.Last().Replace(".zip", "");
+                // display new medlaunch.info download url
+                string newUrl = "https://downloads.medlaunch.info/?download=" + verUnderscores;
+
+                string te = newUrl.ToString();
+
+                lblDownloadUrl.Text = newUrl.ToString();
 
                 btnUpdate.Visibility = Visibility.Visible;
                 lblNoUpdate.Visibility = Visibility.Collapsed;
@@ -3788,16 +3798,17 @@ namespace MedLaunch
             //controller.SetIndeterminate();
 
             // download url
-            string url = lblDownloadUrl.Content.ToString();
-
+            string url = lblDownloadUrl.Text.ToString();
+            string ver = lblVersion.Content.ToString();
             await Task.Delay(400);
 
             await Task.Run(() =>
             {
-                
                 // get just the filename
-                string[] fArr = url.Split('/');
-                string fName = fArr[fArr.Length - 1];
+                //string[] fArr = url.Split('/');
+                //string fName = fArr[fArr.Length - 1];
+
+                string fName = "MedLaunch_v" + ver.Replace(".", "_") + ".zip";
 
                 // try the download
                 bool result = StartDownload(controller, url, downloadsFolder + "\\" + fName, "URL: " + url);
