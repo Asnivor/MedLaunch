@@ -116,7 +116,8 @@ namespace MedLaunch.Classes.GamesLibrary
                 {
                     // possibly not scraped - check for psx
                     string system = g.System;
-                    if (GSystem.GetSystemCode(GSystem.GetSystemId(g.System)).ToLower() != "psx")
+                    int sysId = GSystem.GetSystemIdSubFirst(system);
+                    if (GSystem.GetSystemCode(sysId).ToLower() != "psx")
                     {
                         e.Accepted = true;
                     }
