@@ -2329,7 +2329,26 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             <CheckBox Name="cfg_video__disable_composition">Disable Desktop Composition</CheckBox>
 
 
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Name="cfglbl_video__driver" Grid.Row="1">Video Driver</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_video__driver" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="opengl">OpenGL + SDL</ComboBoxItem>
+                                                    <ComboBoxItem Tag="sdl">SDL Surface</ComboBoxItem>
+                                                    <ComboBoxItem Tag="overlay">SDL Overlay</ComboBoxItem>                                                    
+                                                </ComboBox>
 
+                                            </Grid>
 
 
 
