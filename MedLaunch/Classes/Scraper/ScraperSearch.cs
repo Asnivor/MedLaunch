@@ -693,8 +693,8 @@ namespace MedLaunch.Classes.Scraper
             }
 
 
-                // Match all words and return a list ordered by higest matches
-                List<SearchOrdering> searchResult = OrderByMatchedWords(StripSymbols(gameName.ToLower()));
+            // Match all words and return a list ordered by higest matches
+            List<SearchOrdering> searchResult = OrderByMatchedWords(StripSymbols(gameName.ToLower()));
 
             // get max value in the list
             var maxValueRecord = searchResult.OrderByDescending(v => v.Matches).FirstOrDefault();

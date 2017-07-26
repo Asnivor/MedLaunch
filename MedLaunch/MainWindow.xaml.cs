@@ -1219,12 +1219,13 @@ namespace MedLaunch
 
         private void ScrapeFavorites_Click(object sender, RoutedEventArgs e)
         {            
-            ScraperHandler.ScrapeGames(0, ScrapeType.Favorites);
+            //ScraperHandler.ScrapeGames(0, ScrapeType.Favorites);
+            ScraperHandler.ScrapeMultiple(null, ScrapeType.Favorites, 0);
         }
 
         private void ReScrapeFavorites_Click(object sender, RoutedEventArgs e)
         {
-            ScraperHandler.ScrapeGames(0, ScrapeType.RescrapeFavorites);
+            ScraperHandler.ScrapeMultiple(null, ScrapeType.RescrapeFavorites, 0);
         }
 
         private void ScrapeGamesMultiple_Click(object sender, RoutedEventArgs e)
@@ -1251,7 +1252,8 @@ namespace MedLaunch
             }
 
             // parse list of games to the method to be auto-scraped
-            ScraperHandler.ScrapeGamesMultiple(games, ScrapeType.Selected);            
+            //ScraperHandler.ScrapeGamesMultiple(games, ScrapeType.Selected);    
+            ScraperHandler.ScrapeMultiple(games, ScrapeType.Selected, 0);
         }
 
         private void ReScrapeGamesMultiple_Click(object sender, RoutedEventArgs e)
@@ -1278,7 +1280,7 @@ namespace MedLaunch
             }
 
             // parse list of games to the method to be auto-scraped
-            ScraperHandler.ScrapeGamesMultiple(games, ScrapeType.SelectedRescrape);
+            ScraperHandler.ScrapeMultiple(games, ScrapeType.SelectedRescrape, 0);
         }
 
         private void ScrapeGames_Click(object sender, RoutedEventArgs e)
@@ -1286,7 +1288,7 @@ namespace MedLaunch
             // get systemId from menu name
             string menuName = (sender as MenuItem).Name;
             int sysId = Convert.ToInt32(menuName.Replace("ScrapeGames", ""));
-            ScraperHandler.ScrapeGames(sysId, ScrapeType.System);
+            ScraperHandler.ScrapeMultiple(null, ScrapeType.ScrapeSystem, sysId);
         }
 
         private void RescrapeGames_Click(object sender, RoutedEventArgs e)
@@ -1295,7 +1297,7 @@ namespace MedLaunch
             string menuName = (sender as MenuItem).Name;
             int sysId = Convert.ToInt32(menuName.Replace("RescrapeGames", ""));
 
-            ScraperHandler.ScrapeGames(sysId, ScrapeType.RescrapeAll);
+            ScraperHandler.ScrapeMultiple(null, ScrapeType.RescrapeSystem, sysId);
         }
 
         private DispatcherTimer _searchTimer;
@@ -1327,99 +1329,7 @@ namespace MedLaunch
         private void tbFilterDatagrid_TextChanged(object sender, TextChangedEventArgs e)
         {
             _searchTimer.Stop();
-            _searchTimer.Start();
-            /*
-            var textbox = sender as TextBox;
-
-            if (textbox.Text == "")
-            {
-
-            }
-
-            _App.GamesLibrary.SearchFilter(textbox.Text);
-            */
-            /*
-
-            int system = 0;
-            // determine which radiobutton is checked
-            if (btnShowAll.IsChecked == true)
-            {
-                system = 0;
-            }
-            if (btnFavorites.IsChecked == true)
-            {
-                system = -1;
-            }
-            if (btnLynx.IsChecked == true)
-            {
-                system = 3;
-            }
-            if (btnGg.IsChecked == true)
-            {
-                system = 5;
-            }
-            if (btnGba.IsChecked == true)
-            {
-                system = 2;
-            }
-            if (btnGb.IsChecked == true)
-            {
-                system = 1;
-            }
-            if (btnWswan.IsChecked == true)
-            {
-                system = 15;
-            }
-            if (btnNgp.IsChecked == true)
-            {
-                system = 6;
-            }
-            if (btnVb.IsChecked == true)
-            {
-                system = 14;
-            }
-            if (btnPcfx.IsChecked == true)
-            {
-                system = 8;
-            }
-            if (btnPce.IsChecked == true)
-            {
-                system = 7;
-            }
-
-            if (btnPsx.IsChecked == true)
-            {
-                system = 9;
-            }
-            if (btnSs.IsChecked == true)
-            {
-                system = 13;
-            }
-
-            if (btnMd.IsChecked == true)
-            {
-                system = 4;
-            }
-            if (btnSms.IsChecked == true)
-            {
-                system = 10;
-            }
-            if (btnSnes.IsChecked == true)
-            {
-                system = 12;
-            }
-            if (btnNes.IsChecked == true)
-            {
-                system = 11;
-            }
-            if (btnPcecd.IsChecked == true)
-            {
-                system = 18;
-            }
-
-            GameListBuilder.GetGames(dgGameList, system, textbox.Text);
-
-            */
+            _searchTimer.Start();           
         }
 
         // Clear all filters button click
