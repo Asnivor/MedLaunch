@@ -2400,7 +2400,7 @@ namespace MedLaunch
                     o += s + "\n";
                 }
                 controller.SetMessage(o + "\n...Cancelling Operation...");
-                await Task.Delay(100);
+                await Task.Delay(3000);
                 await controller.CloseAsync();
             }
             else
