@@ -2330,6 +2330,8 @@ namespace MedLaunch
                 return;
             }
 
+            
+
             // create new GameLauncher instance
             GameLauncher gl = new GameLauncher(romId);
             LaunchString = gl.GetCommandLineArguments();
