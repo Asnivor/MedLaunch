@@ -16,6 +16,7 @@ using MedLaunch.Classes.GamesLibrary;
 using System.Windows.Data;
 using MedLaunch.Classes.Scraper;
 using System.Windows.Threading;
+using System.Threading;
 
 namespace MedLaunch.Classes
 {
@@ -43,16 +44,46 @@ namespace MedLaunch.Classes
             sv.Visibility = Visibility.Collapsed;
             ColumnDefinition cd = (ColumnDefinition)mw.FindName("sidebarColumn");
             cd.Width = new GridLength(0);
+
+            // hide individual images as well.
+            // lists of gamesdb related controls
+            Image imgBoxartFront = (Image)mw.FindName("imgBoxartFront");
+            Image imgBoxartBack = (Image)mw.FindName("imgBoxartBack");
+            Image imgBanner = (Image)mw.FindName("imgBanner");
+            Image imgMedia = (Image)mw.FindName("imgMedia");
+            List<Image> gdbImages = new List<Image>
+            {
+                imgBoxartFront,
+                imgBoxartBack,
+                imgBanner,
+                imgMedia
+            };
+
+            foreach (var img in gdbImages)
+            {
+                img.Visibility = Visibility.Collapsed;
+            }
         }
 
         // update sidebar async handler
         public static async void UpdateSidebar(int gameId)
         {
-
+            // first clear the sidebar
+            //await Task.Run(() => UpdateSidebar());
+            //UpdateSidebar();
+            //Thread.Sleep(100);
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            await Task.Run(() =>
+            {
+                mw.Dispatcher.BeginInvoke((Action)(() =>
+                {
+                    UpdateSidebar();
+                }));
+            });
 
             // update the sidebar asyncronously
-            await Task.Run(() =>
+            //await Task.Run(() =>
+            ThreadPool.QueueUserWorkItem(o =>
             {
                 DoSidebarUpdate(gameId, mw);
             });
@@ -69,7 +100,7 @@ namespace MedLaunch.Classes
             //MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
 
             // use dispatcher invoke to get to the UI thread
-            mw.Dispatcher.Invoke((() =>
+            await mw.Dispatcher.BeginInvoke((Action)(() =>
             {
                 // new instance of the LibrarySidebar class
                 LibrarySidebar lsb = new LibrarySidebar(gameId);
@@ -380,7 +411,8 @@ namespace MedLaunch.Classes
                         isGameInfoData = true;
                         // boxart - back
                         SetImage(imgBoxartBack, o.BackCovers.FirstOrDefault(), UriKind.Absolute);
-                        imgBoxartBack.SetVisibility();
+                        //imgBoxartBack.SetVisibility();
+                        imgBoxartBack.Visibility = Visibility.Visible;
                     }
 
                     // Banner Image
@@ -395,7 +427,8 @@ namespace MedLaunch.Classes
                         // banner (just take one)
                         List<string> banners = new List<string>();
                         SetImage(imgBanner, o.Banners.FirstOrDefault(), UriKind.Absolute);
-                        imgBanner.SetVisibility();
+                        //imgBanner.SetVisibility();
+                        imgBanner.Visibility = Visibility.Visible;
                     }
 
                     // Front Cover Image
@@ -409,7 +442,8 @@ namespace MedLaunch.Classes
                         isGameInfoData = true;
                         // boxart - front
                         SetImage(imgBoxartFront, o.FrontCovers.FirstOrDefault(), UriKind.Absolute);
-                        imgBoxartFront.SetVisibility();
+                        //imgBoxartFront.SetVisibility();
+                        imgBoxartFront.Visibility = Visibility.Visible;
                     }
 
                     // Media Image
@@ -423,7 +457,8 @@ namespace MedLaunch.Classes
                         isGameInfoData = true;
                         // media image
                         SetImage(imgMedia, o.Medias.FirstOrDefault(), UriKind.Absolute);
-                        imgMedia.SetVisibility();
+                        //imgMedia.SetVisibility();
+                        imgMedia.Visibility = Visibility.Visible;
                     }
 
                     // Alternate Game Titles
@@ -688,32 +723,63 @@ namespace MedLaunch.Classes
         }
 
         
-        public static  void SetImage(Image img, string path, UriKind urikind)
+        public static async void SetImage(Image img, string path, UriKind urikind)
         {            
             if (!File.Exists(path))
                 return;
             try
             {
+                /*
                 BitmapImage b = new BitmapImage(new Uri(path, urikind));
                 img.Source = b;
-
+                MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
                 // get actual pixel dimensions of image
                 double pixelWidth = (img.Source as BitmapSource).PixelWidth;
                 double pixelHeight = (img.Source as BitmapSource).PixelHeight;
 
                 // get dimensions of main window
-                MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
                 double windowWidth = mw.ActualWidth;
                 double windowHeight = mw.ActualHeight;
 
                 // set max dimensions on Image.ToolTip
-
                 double ttPercentage = GlobalSettings.GetGlobals().imageToolTipPercentage;
 
                 ToolTip tt = (ToolTip)img.ToolTip;
                 tt.MaxHeight = windowHeight * ttPercentage;
                 tt.MaxWidth = windowWidth * ttPercentage;
                 img.ToolTip = tt;
+                */
+
+                
+                MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+                ThreadPool.QueueUserWorkItem(
+                o =>
+                {
+                    BitmapImage b = new BitmapImage(new Uri(path, urikind));        
+                    b.Freeze();   
+                    mw.Dispatcher.BeginInvoke((Action)(() =>
+                    {
+                        img.Source = b;
+                       
+                        // get actual pixel dimensions of image
+                        double pixelWidth = (img.Source as BitmapSource).PixelWidth;
+                        double pixelHeight = (img.Source as BitmapSource).PixelHeight;
+
+                        // get dimensions of main window
+                        double windowWidth = mw.ActualWidth;
+                        double windowHeight = mw.ActualHeight;
+
+                        // set max dimensions on Image.ToolTip
+                        double ttPercentage = GlobalSettings.GetGlobals().imageToolTipPercentage;
+
+                        ToolTip tt = (ToolTip)img.ToolTip;
+                        tt.MaxHeight = windowHeight * ttPercentage;
+                        tt.MaxWidth = windowWidth * ttPercentage;
+                        img.ToolTip = tt;
+                        
+                    }));
+                }); 
+                
             }
 
             catch (System.NotSupportedException ex)
