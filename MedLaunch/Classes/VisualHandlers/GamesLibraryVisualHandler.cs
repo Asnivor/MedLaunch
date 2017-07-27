@@ -667,33 +667,38 @@ namespace MedLaunch.Classes
             return counter;
         }
 
-        public static void SetImage(Image img, string path, UriKind urikind)
+        public static async Task LoadImage(Image img, string path, UriKind urikind)
+        {
+            // load content into the image
+            BitmapImage b = new BitmapImage(new Uri(path, urikind));
+            img.Source = b;
+
+            // get actual pixel dimensions of image
+            double pixelWidth = (img.Source as BitmapSource).PixelWidth;
+            double pixelHeight = (img.Source as BitmapSource).PixelHeight;
+
+            // get dimensions of main window
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            double windowWidth = mw.ActualWidth;
+            double windowHeight = mw.ActualHeight;
+
+            // set max dimensions on Image.ToolTip
+
+            double ttPercentage = GlobalSettings.GetGlobals().imageToolTipPercentage;
+
+            ToolTip tt = (ToolTip)img.ToolTip;
+            tt.MaxHeight = windowHeight * ttPercentage;
+            tt.MaxWidth = windowWidth * ttPercentage;
+            img.ToolTip = tt;
+        }
+
+        public static async void SetImage(Image img, string path, UriKind urikind)
         {            
             if (!File.Exists(path))
                 return;
             try
             {
-                // load content into the image
-                BitmapImage b = new BitmapImage(new Uri(path, urikind));
-                img.Source = b;
-
-                // get actual pixel dimensions of image
-                double pixelWidth = (img.Source as BitmapSource).PixelWidth;
-                double pixelHeight = (img.Source as BitmapSource).PixelHeight;
-
-                // get dimensions of main window
-                MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-                double windowWidth = mw.ActualWidth;
-                double windowHeight = mw.ActualHeight;
-
-                // set max dimensions on Image.ToolTip
-
-                double ttPercentage = GlobalSettings.GetGlobals().imageToolTipPercentage;
-
-                ToolTip tt = (ToolTip)img.ToolTip;
-                tt.MaxHeight = windowHeight * ttPercentage;
-                tt.MaxWidth = windowWidth * ttPercentage;
-                img.ToolTip = tt;
+                await LoadImage(img, path, urikind);
             }
 
             catch (System.NotSupportedException ex)
