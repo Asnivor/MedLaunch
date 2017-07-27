@@ -46,7 +46,7 @@ namespace MedLaunch.Classes
         }
 
         // update sidebar
-        public static void UpdateSidebar(int gameId)
+        public static async void UpdateSidebar(int gameId)
         {
             // if gameid does not exist (ie it has been deleted) then return
             var ga = Game.GetGame(gameId);
@@ -668,52 +668,33 @@ namespace MedLaunch.Classes
             return counter;
         }
 
-        public static async Task LoadImage(Image img, string path, UriKind urikind)
-        {
-            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            BitmapImage b = new BitmapImage(new Uri(path, urikind));
-
-            mw.Dispatcher.Invoke((() => 
-            {
-                // load content into the image                
-                img.Source = b;                
-            }));
-
-            while (img.Source == null)
-            {
-                // wait
-            }
-
-            // get actual pixel dimensions of image
-            double pixelWidth = (img.Source as BitmapSource).PixelWidth;
-            double pixelHeight = (img.Source as BitmapSource).PixelHeight;
-
-            // get dimensions of main window
-            
-            double windowWidth = mw.ActualWidth;
-            double windowHeight = mw.ActualHeight;
-
-            // set max dimensions on Image.ToolTip
-
-            double ttPercentage = GlobalSettings.GetGlobals().imageToolTipPercentage;
-
-            ToolTip tt = (ToolTip)img.ToolTip;
-            tt.MaxHeight = windowHeight * ttPercentage;
-            tt.MaxWidth = windowWidth * ttPercentage;
-            img.ToolTip = tt;
-        }
-
-        public static async void SetImage(Image img, string path, UriKind urikind)
+        
+        public static  void SetImage(Image img, string path, UriKind urikind)
         {            
             if (!File.Exists(path))
                 return;
             try
             {
-                //await LoadImage(img, path, urikind);
-                await Task.Run(() =>
-                {
-                    LoadImage(img, path, urikind);
-                });
+                BitmapImage b = new BitmapImage(new Uri(path, urikind));
+                img.Source = b;
+
+                // get actual pixel dimensions of image
+                double pixelWidth = (img.Source as BitmapSource).PixelWidth;
+                double pixelHeight = (img.Source as BitmapSource).PixelHeight;
+
+                // get dimensions of main window
+                MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+                double windowWidth = mw.ActualWidth;
+                double windowHeight = mw.ActualHeight;
+
+                // set max dimensions on Image.ToolTip
+
+                double ttPercentage = GlobalSettings.GetGlobals().imageToolTipPercentage;
+
+                ToolTip tt = (ToolTip)img.ToolTip;
+                tt.MaxHeight = windowHeight * ttPercentage;
+                tt.MaxWidth = windowWidth * ttPercentage;
+                img.ToolTip = tt;
             }
 
             catch (System.NotSupportedException ex)
