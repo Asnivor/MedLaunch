@@ -15,6 +15,7 @@ using System.Windows.Input;
 using MedLaunch.Classes.GamesLibrary;
 using System.Windows.Data;
 using MedLaunch.Classes.Scraper;
+using System.Windows.Threading;
 
 namespace MedLaunch.Classes
 {
@@ -669,16 +670,26 @@ namespace MedLaunch.Classes
 
         public static async Task LoadImage(Image img, string path, UriKind urikind)
         {
-            // load content into the image
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             BitmapImage b = new BitmapImage(new Uri(path, urikind));
-            img.Source = b;
+
+            mw.Dispatcher.Invoke((() => 
+            {
+                // load content into the image                
+                img.Source = b;                
+            }));
+
+            while (img.Source == null)
+            {
+                // wait
+            }
 
             // get actual pixel dimensions of image
             double pixelWidth = (img.Source as BitmapSource).PixelWidth;
             double pixelHeight = (img.Source as BitmapSource).PixelHeight;
 
             // get dimensions of main window
-            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            
             double windowWidth = mw.ActualWidth;
             double windowHeight = mw.ActualHeight;
 
@@ -698,7 +709,11 @@ namespace MedLaunch.Classes
                 return;
             try
             {
-                await LoadImage(img, path, urikind);
+                //await LoadImage(img, path, urikind);
+                await Task.Run(() =>
+                {
+                    LoadImage(img, path, urikind);
+                });
             }
 
             catch (System.NotSupportedException ex)
