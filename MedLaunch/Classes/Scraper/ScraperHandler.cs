@@ -60,7 +60,19 @@ namespace MedLaunch.Classes.Scraper
 
             // attempt local match for game
             controller.SetMessage("Attempting local search match for:\n" + gameName + " (" + GSystem.GetSystemCode(systemId) + ")" + "\n(" + countString);
-            List<ScraperMaster> results = gs.SearchGameLocal(gameName, systemId, gameId).ToList();
+
+            List<ScraperMaster> results = new List<ScraperMaster>();
+
+            try
+            {
+                results = gs.SearchGameLocal(gameName, systemId, gameId).ToList();
+            }
+            catch
+            {
+                // an issue with the searchlocalgame
+                return;
+            }
+            
 
             if (results.Count == 0)
             {
