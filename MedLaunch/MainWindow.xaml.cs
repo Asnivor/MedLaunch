@@ -5978,6 +5978,32 @@ namespace MedLaunch
                 
             }
         }
+
+        private void DiscordLogo_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Launch discord invite link in default browser
+            try
+            {
+                Process.Start("https://discord.gg/sD54x3");
+            }
+            catch
+            {
+                // do nothing
+            }
+            
+        }
+
+        private void DiscordLogo_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var im = (Image)sender as Image;
+            im.Cursor = Cursors.Hand;
+        }
+
+        private void DiscordLogo_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var im = (Image)sender as Image;
+            im.Cursor = Cursors.Arrow;
+        }
     }
 
 

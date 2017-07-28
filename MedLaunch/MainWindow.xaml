@@ -124,7 +124,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                         </MenuItem>
                         -->
                         <MenuItem Name="AuditScrapedData" Header="Audit Scraped Data Folder" ToolTip="Show a list of game data that has been scraped along with system and game title" Click="AuditScrapedData_Click"/>
-                        
+
                     </ContextMenu>
                 </Button.ContextMenu>
             </Button>
@@ -180,7 +180,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                             <MenuItem Header="Scrape all manual links from replacementdocs.com and add to ScrapeDB" Click="btnRDmanuallist_Click"/>
                             <MenuItem Header="Match all manuals to games (manual - auto on exact match)" Click="btnParseRDList_Click"/>
-                            
+
                         </MenuItem>
 
                         <MenuItem Header="DATDB (Admin)">
@@ -202,7 +202,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                             <MenuItem Header="Satakore (Saturn)">
                                 <MenuItem Header="Import SaturnGames.json data into DATDB" Click="ImportSaturn" />
                             </MenuItem>
-                            
+
                             <MenuItem Header="Process DAT_Game Table" Click="btnProcessDATGameTable_Click"/>
                             <MenuItem Header="Calculate Missing Names and Publishers" Click="btnCalcYears_Click"/>
                             <MenuItem Header="Calculate Missing Names and Publishers (Using ScrapeDB)" Click="btnCalcYearsManual_Click"/>
@@ -225,7 +225,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                             <MenuItem Header="Parse replacement docs list of manuals and manually match them (auto on exact match)" Click="btnParseRDList_Click"/>
                         </MenuItem>
                         -->
-                        
+
                         <!--
                         <MenuItem Header="DAT Functions">
                             <MenuItem Header="Build master information file from DATs (tosec / nointro etc)" Click="btnBuildFromDat_Click"/>
@@ -251,7 +251,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
 
-    
+
 
     <Grid x:Name="RootGrid">
         <Grid.LayoutTransform>
@@ -264,9 +264,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
         <Grid.Background>
             <ImageBrush ImageSource="/Data/Graphics/medicon.png" Opacity="0.1" />
         </Grid.Background>
-        
-        
-        
+
+
+
         <TabControl SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Games">
                 <Grid x:Name="grdGameLibrary">
@@ -286,7 +286,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 </ContextMenu>
                             </RadioButton.ContextMenu>
                         </RadioButton>
-                        
+
                         <RadioButton GroupName="flt" x:Name="btnFavorites" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnFavorites_Checked" Unchecked="btnFilters_UnChecked">
                             <RadioButton.ContextMenu>
                                 <ContextMenu>
@@ -294,7 +294,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     <MenuItem x:Name="RescrapeGamesFavorite" Click="ReScrapeFavorites_Click" Header="Re-Scrape ALL Favorites" />
                                     <Separator />
                                     <MenuItem x:Name="FavoritesResetToDefaultColumnState" Click="FavoriteResetToDefaultColumnState_Click" Header="Reset 'Favorites' Column States to Default" />
-                                    
+
                                 </ContextMenu>
                             </RadioButton.ContextMenu>
                             Favorites
@@ -567,7 +567,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 </StackPanel>
                             </Expander>
                         </Border>
-<!--
+                        <!--
                         <Border Style="{StaticResource Borders1}" Margin="0" Grid.Column="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Misc" >
                                 <StackPanel x:Name="spGlobalSettings">
@@ -628,11 +628,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                             </Grid>
 
-                           <!--
+                            <!--
                             ItemsSource="{Binding DataCollection, UpdateSourceTrigger=PropertyChanged}"
                                       DataContext="{Binding Source={x:Static Application.Current}, Mode=OneWay, Path=GamesLibrary}"
                             -->
-                            
+
                             <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
 
                             <!-- ItemsSource="{Binding FilteredSet, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DataContext="{Binding Source={x:Static Application.Current}, Path=GamesList}"  -->
@@ -695,10 +695,10 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 </local:MedDataGrid.CellStyle>
                                 <local:MedDataGrid.RowStyle>
                                     <Style TargetType="{x:Type DataGridRow}">
-                                        <EventSetter Event="MouseDoubleClick" Handler="LaunchRom_Click"/>                                        
+                                        <EventSetter Event="MouseDoubleClick" Handler="LaunchRom_Click"/>
                                         <Setter Property="VerticalContentAlignment" Value="Center" />
                                         <Setter Property="VerticalAlignment" Value="Center" />
-                                        
+
                                     </Style>
                                 </local:MedDataGrid.RowStyle>
                                 <local:MedDataGrid.ItemContainerStyle>
@@ -707,7 +707,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                         <Setter Property="Height" Value="10" />
                                     </Style>
                                 </local:MedDataGrid.ItemContainerStyle>
-                                
+
                                 <local:MedDataGrid.ContextMenu>
                                     <ContextMenu x:Name="dgContext">
                                         <MenuItem x:Name="LaunchRom" Header="Play Game" Click="LaunchRom_Click" />
@@ -718,95 +718,95 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                         <MenuItem x:Name="DeleteRom" Header="Delete From Games Library" Click="DeleteRom_Click" />
                                     </ContextMenu>
                                 </local:MedDataGrid.ContextMenu>
-                                
 
-                                
-                                
+
+
+
                             </local:MedDataGrid>
                         </Grid>
 
 
                     </Grid>
 
-                    
-                        <Grid x:Name="grdGamesSidebar" Grid.Column="3">
+
+                    <Grid x:Name="grdGamesSidebar" Grid.Column="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"  />
 
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
 
-                            <ScrollViewer x:Name="srcSidebar" Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" MinWidth="150" Width="{Binding ElementName=grdGamesSidebar, Path=ActualWidth}" Height="{Binding ElementName=grdGamesSidebar, Path=ActualHeight}">
-                                <WrapPanel  Orientation="Horizontal" x:Name="SidebarWrapPanel">
+                        <ScrollViewer x:Name="srcSidebar" Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" MinWidth="150" Width="{Binding ElementName=grdGamesSidebar, Path=ActualWidth}" Height="{Binding ElementName=grdGamesSidebar, Path=ActualHeight}">
+                            <WrapPanel  Orientation="Horizontal" x:Name="SidebarWrapPanel">
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSidebarGame" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
                                     <Expander x:Name="expGameInfo" BorderThickness="0" Header="Game Stats">
                                         <StackPanel x:Name="spSidebarGame">
 
                                             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
-                                            
-                                            <Grid Margin="0">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="Auto" />
 
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="*" />
-                                                </Grid.RowDefinitions>
+                                                <Grid Margin="0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="Auto" />
 
-                                                <Label Grid.Column="0" Grid.Row="0" FontSize="10" Padding="2" FontWeight="Medium">Game:</Label>
-                                                <Label x:Name="lblGameName" Grid.Column="1" Grid.Row="0"  FontSize="10" Padding="2" FontWeight="Medium">
-                                                    <Label.Content>
-                                                        <AccessText TextWrapping="Wrap" />
-                                                    </Label.Content>
-                                                </Label>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="*" />
+                                                    </Grid.RowDefinitions>
 
-                                                <Label Grid.Column="0" Grid.Row="1"  FontSize="10" Padding="2" FontWeight="Medium">Is Favorite:</Label>
-                                                <Label x:Name="lblIsFavorite" Grid.Column="1" Grid.Row="1" FontSize="10" Padding="2" FontWeight="Medium" >
-                                                    <Label.Content>
-                                                        <AccessText TextWrapping="Wrap" />
-                                                    </Label.Content>
-                                                </Label>
+                                                    <Label Grid.Column="0" Grid.Row="0" FontSize="10" Padding="2" FontWeight="Medium">Game:</Label>
+                                                    <Label x:Name="lblGameName" Grid.Column="1" Grid.Row="0"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                        <Label.Content>
+                                                            <AccessText TextWrapping="Wrap" />
+                                                        </Label.Content>
+                                                    </Label>
 
-                                                <Label Grid.Column="0" Grid.Row="2" FontSize="10" Padding="2" FontWeight="Medium">Last Launched:</Label>
-                                                <Label x:Name="lblLastLaunched" Grid.Column="1" Grid.Row="2"  FontSize="10" Padding="2" FontWeight="Medium">
-                                                    <Label.Content>
-                                                        <AccessText TextWrapping="Wrap" />
-                                                    </Label.Content>
-                                                </Label>
+                                                    <Label Grid.Column="0" Grid.Row="1"  FontSize="10" Padding="2" FontWeight="Medium">Is Favorite:</Label>
+                                                    <Label x:Name="lblIsFavorite" Grid.Column="1" Grid.Row="1" FontSize="10" Padding="2" FontWeight="Medium" >
+                                                        <Label.Content>
+                                                            <AccessText TextWrapping="Wrap" />
+                                                        </Label.Content>
+                                                    </Label>
 
-                                                <Label Grid.Column="0" Grid.Row="3" FontSize="10" Padding="2" FontWeight="Medium">Last Session Length:</Label>
-                                                <Label x:Name="lblSessionLength" Grid.Column="1" Grid.Row="3"  FontSize="10" Padding="2" FontWeight="Medium">
-                                                    <Label.Content>
-                                                        <AccessText TextWrapping="Wrap" />
-                                                    </Label.Content>
-                                                </Label>
+                                                    <Label Grid.Column="0" Grid.Row="2" FontSize="10" Padding="2" FontWeight="Medium">Last Launched:</Label>
+                                                    <Label x:Name="lblLastLaunched" Grid.Column="1" Grid.Row="2"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                        <Label.Content>
+                                                            <AccessText TextWrapping="Wrap" />
+                                                        </Label.Content>
+                                                    </Label>
 
-                                                <Label Grid.Column="0" Grid.Row="4" FontSize="10" Padding="2" FontWeight="Medium">Times Played:</Label>
-                                                <Label x:Name="lblTimesPlayed" Grid.Column="1" Grid.Row="4"  FontSize="10" Padding="2" FontWeight="Medium">
-                                                    <Label.Content>
-                                                        <AccessText TextWrapping="Wrap" />
-                                                    </Label.Content>
-                                                </Label>
+                                                    <Label Grid.Column="0" Grid.Row="3" FontSize="10" Padding="2" FontWeight="Medium">Last Session Length:</Label>
+                                                    <Label x:Name="lblSessionLength" Grid.Column="1" Grid.Row="3"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                        <Label.Content>
+                                                            <AccessText TextWrapping="Wrap" />
+                                                        </Label.Content>
+                                                    </Label>
 
-                                                <Label Grid.Column="0" Grid.Row="5" FontSize="10" Padding="2" FontWeight="Medium">Total Time In-Game:</Label>
-                                                <Label x:Name="lblTotalTime" Grid.Column="1" Grid.Row="5" FontSize="10" Padding="2" FontWeight="Medium" >
-                                                    <Label.Content>
-                                                        <AccessText TextWrapping="Wrap" />
-                                                    </Label.Content>
-                                                </Label>
+                                                    <Label Grid.Column="0" Grid.Row="4" FontSize="10" Padding="2" FontWeight="Medium">Times Played:</Label>
+                                                    <Label x:Name="lblTimesPlayed" Grid.Column="1" Grid.Row="4"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                        <Label.Content>
+                                                            <AccessText TextWrapping="Wrap" />
+                                                        </Label.Content>
+                                                    </Label>
+
+                                                    <Label Grid.Column="0" Grid.Row="5" FontSize="10" Padding="2" FontWeight="Medium">Total Time In-Game:</Label>
+                                                    <Label x:Name="lblTotalTime" Grid.Column="1" Grid.Row="5" FontSize="10" Padding="2" FontWeight="Medium" >
+                                                        <Label.Content>
+                                                            <AccessText TextWrapping="Wrap" />
+                                                        </Label.Content>
+                                                    </Label>
 
 
-                                            </Grid>
+                                                </Grid>
                                             </ScrollViewer>
                                         </StackPanel>
                                     </Expander>
@@ -848,7 +848,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Image>
 
                                                 <UniformGrid x:Name="gridBoxArt" Margin="0" Grid.ColumnSpan="2" Grid.Row="1" Rows="1">
-                                                    
+
                                                     <Image x:Name="imgBoxartFront" Grid.Column="0" Grid.Row="0" Margin="5" >
                                                         <Image.ToolTip>
                                                             <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
@@ -879,8 +879,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                 </UniformGrid>
 
-                                                
-                                                
+
+
 
                                                 <Grid Margin="0"  Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="2" x:Name="gdatagrid">
                                                     <Grid.ColumnDefinitions>
@@ -1019,7 +1019,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <Expander x:Name="expScreenshots" IsExpanded="True" BorderThickness="0" Header="Screenshots" >
                                                         <StackPanel x:Name="spSidebarScreenshots">
 
-                                                            <UniformGrid x:Name="ugridScreenshots" Margin="0"  Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="3" Columns="4">                                                                
+                                                            <UniformGrid x:Name="ugridScreenshots" Margin="0"  Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="3" Columns="4">
                                                                 <Image x:Name="ss1" Grid.Column="0" Grid.Row="0" Margin="0">
                                                                     <Image.ToolTip>
                                                                         <ToolTip DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
@@ -1705,7 +1705,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 Browse Game Data Folder
                                             </Button>
 
-                                            
+
 
                                             <Button x:Name="btnScrapingPickGame" ToolTip="Choose game from a list of local search results and automatically scrape online data" Click="btnScrapingPickGame_Click">
                                                 Identify &amp; Scrape Game
@@ -1727,7 +1727,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 Refresh GamesDB Games List
                                             </Button>
 
-  -->                                          
+  -->
 
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
@@ -1789,19 +1789,19 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     </Expander>
                                 </Border>
 
-                               
 
-                               
+
+
 
                             </WrapPanel>
-                            </ScrollViewer>
+                        </ScrollViewer>
 
-                            <!--
+                        <!--
                             <TextBlock Grid.Row="0" TextWrapping="Wrap" TextAlignment="Center" FontSize="15" TextDecorations="underline">Game and System Information</TextBlock>
                             <TextBlock Grid.Row="1" TextWrapping="Wrap">This is where the game information goes</TextBlock>
                             -->
-                            <!-- Game System Info -->
-                            <!--
+                        <!-- Game System Info -->
+                        <!--
                             <Label Grid.Row="2" x:Name="lblSystemName" HorizontalAlignment="Center"></Label>
                             <Image
                                 HorizontalAlignment="Center"
@@ -1816,13 +1816,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 x:Name="taSystemDescription"
                                 TextWrapping="Wrap"/>
 -->
-                            <!-- Game Info -->
+                        <!-- Game Info -->
 
-                            <!--<TextBlock Grid.Row="3" TextWrapping="Wrap">This is where the game information goes</TextBlock>-->
+                        <!--<TextBlock Grid.Row="3" TextWrapping="Wrap">This is where the game information goes</TextBlock>-->
 
-                        </Grid>
+                    </Grid>
 
-                    
+
 
                 </Grid>
             </TabItem>
@@ -1863,7 +1863,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <!--
                                                 <MenuItem Header="Save the NES configuration to disk (nes.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
                                             -->
-                                                </ContextMenu>
+                                            </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnConfigSnes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1877,7 +1877,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <!--
                                                 <MenuItem Header="Save the SNES configuration to disk (snes.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
                                             -->
-                                                </ContextMenu>
+                                            </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton  x:Name="btnConfigSnes_Faust" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1891,7 +1891,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <!--
                                                 <MenuItem Header="Save the SNES-FAUST configuration to disk (snes_faust.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
                                             -->
-                                                </ContextMenu>
+                                            </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton  x:Name="btnConfigSms" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1905,7 +1905,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <!--
                                                 <MenuItem Header="Save the SMS configuration to disk (sms.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
                                            -->
-                                                </ContextMenu>
+                                            </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnConfigMd" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1919,7 +1919,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <!--
                                                 <MenuItem Header="Save the MD configuration to disk (md.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
                                             -->
-                                                </ContextMenu>
+                                            </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnConfigPce" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1933,7 +1933,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <!--
                                                 <MenuItem Header="Save the PCE configuration to disk (pce.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
                                             -->
-                                                </ContextMenu>
+                                            </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnConfigPce_Fast" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1947,7 +1947,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <!--
                                                 <MenuItem Header="Save the PCE-FAST configuration to disk (pce_fast.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
                                             -->
-                                                </ContextMenu>
+                                            </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnConfigVb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1961,7 +1961,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <!--
                                                 <MenuItem Header="Save the VB configuration to disk (vb.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
                                             -->
-                                                </ContextMenu>
+                                            </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnConfigNgp" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1975,7 +1975,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <!--
                                                 <MenuItem Header="Save the NGP configuration to disk (ngp.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
                                            -->
-                                                </ContextMenu>
+                                            </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnConfigWswan" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -1989,7 +1989,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <!--
                                                 <MenuItem Header="Save the WSWAN configuration to disk (wswan.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
                                             -->
-                                                </ContextMenu>
+                                            </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnConfigGb" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -2003,7 +2003,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <!--
                                                 <MenuItem Header="Save the GB configuration to disk (gb.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
                                             -->
-                                                </ContextMenu>
+                                            </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnConfigGba" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -2017,7 +2017,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <!--
                                                 <MenuItem Header="Save the GBA configuration to disk (gba.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
                                             -->
-                                                </ContextMenu>
+                                            </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnConfigGg" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -2031,7 +2031,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <!--
                                                 <MenuItem Header="Save the GG configuration to disk (gg.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
                                             -->
-                                                </ContextMenu>
+                                            </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnConfigLynx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -2045,7 +2045,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <!--
                                                 <MenuItem Header="Save the LYNX configuration to disk (lynx.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
                                             -->
-                                                </ContextMenu>
+                                            </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
 
@@ -2060,7 +2060,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <!--
                                                 <MenuItem Header="Save the SS configuration to disk (ss.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
                                             -->
-                                                </ContextMenu>
+                                            </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnConfigPsx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -2074,7 +2074,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <!--
                                                 <MenuItem Header="Save the PSX configuration to disk (psx.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
                                             -->
-                                                </ContextMenu>
+                                            </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
                                     <RadioButton x:Name="btnConfigPcfx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
@@ -2088,7 +2088,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <!--
                                                 <MenuItem Header="Save the PC-FX configuration to disk (pcfx.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
                                             -->
-                                                </ContextMenu>
+                                            </ContextMenu>
                                         </RadioButton.ContextMenu>
                                     </RadioButton>
 
@@ -2126,8 +2126,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                             <!--<RowDefinition Height="Auto" /> -->
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        
-                        
+
+
 
 
                         <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Width="{Binding ElementName=configGrid, Path=ActualWidth}" Height="{Binding ElementName=configGrid, Path=ActualHeight}">
@@ -2322,7 +2322,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                         <StackPanel Margin="10">
 
 
-                                           
+
 
                                             <CheckBox Name="cfg_video__fs">Full Screen</CheckBox>
                                             <CheckBox Name="cfg_video__frameskip">Frame Skip</CheckBox>
@@ -2347,7 +2347,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_video__driver" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="opengl">OpenGL + SDL</ComboBoxItem>
                                                     <ComboBoxItem Tag="sdl">SDL Surface</ComboBoxItem>
-                                                    <ComboBoxItem Tag="overlay">SDL Overlay</ComboBoxItem>                                                    
+                                                    <ComboBoxItem Tag="overlay">SDL Overlay</ComboBoxItem>
                                                 </ComboBox>
 
                                             </Grid>
@@ -2359,7 +2359,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                         </StackPanel>
                                     </Expander>
                                 </Border>
-                                
+
                                 <!-- Control Border -->
                                 <Border Style="{StaticResource Borders1}" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Control">
@@ -2411,8 +2411,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                 <!-- System specific settings - only show when system config is selected -->
 
-                                <!-- lynx -->      
-                                
+                                <!-- lynx -->
+
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificLynx2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Lynx Filters/Misc">
 
@@ -2530,7 +2530,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
                                                     <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
                                                 </ComboBox>
-                                               
+
                                                 <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="Auto" />
@@ -2640,7 +2640,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Controls:NumericUpDown Name="cfg_lynx__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_lynx__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-<!--
+                                                    <!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_lynx__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -2687,7 +2687,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                         </StackPanel>
                                     </Expander>
                                 </Border>
-                                
+
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificLynx1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Lynx Specific Settings">
                                         <StackPanel Margin="10">
@@ -2696,7 +2696,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                         </StackPanel>
                                     </Expander>
                                 </Border>
-                                
+
                                 <!-- gg -->
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGg1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Game Gear Filters/Misc">
@@ -2925,7 +2925,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Controls:NumericUpDown Name="cfg_gg__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_gg__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-<!--
+                                                    <!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_gg__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -3203,7 +3203,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Controls:NumericUpDown Name="cfg_gb__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_gb__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-<!--
+                                                    <!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_gb__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -3273,8 +3273,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                         </StackPanel>
                                     </Expander>
                                 </Border>
-                                
-                                
+
+
                                 <!-- gba -->
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGba1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Gameboy Advance Filters/Misc">
@@ -3503,7 +3503,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Controls:NumericUpDown Name="cfg_gba__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_gba__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-<!--
+                                                    <!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_gba__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -3550,9 +3550,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                         </StackPanel>
                                     </Expander>
                                 </Border>
-                                
+
                                 <!-- ngp -->
-                                
+
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNgp2" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="NGP Filters/Misc">
 
@@ -3780,7 +3780,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Controls:NumericUpDown Name="cfg_ngp__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_ngp__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-<!--
+                                                    <!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_ngp__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -4077,7 +4077,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Controls:NumericUpDown Name="cfg_nes__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_nes__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-<!--
+                                                    <!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_nes__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -4375,7 +4375,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <CheckBox x:Name="cfg_nes__ntscblitter" Grid.ColumnSpan="2" Grid.Row="5">Enable NTSC Color Gen. and Blitter</CheckBox>
                                                 <CheckBox x:Name="cfg_nes__ntsc__mergefields" Grid.ColumnSpan="2" Grid.Row="6">NTSC Merge Fields</CheckBox>
 
-                                                
+
                                             </Grid>
                                         </StackPanel>
                                     </Expander>
@@ -4385,7 +4385,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     <Expander IsExpanded="True" BorderThickness="0" Header="NES Video Settings (Cont.)">
                                         <StackPanel Margin="10">
 
-                                            
+
 
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
@@ -4407,7 +4407,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
 
-                                                
+
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="9" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_nes__ntsc__hue" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">NTSC Composite Blitter Contrast</Label>
@@ -4435,7 +4435,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     </Expander>
                                 </Border>
 
-                                
+
 
                                 <!-- pce_fast -->
 
@@ -4666,7 +4666,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Controls:NumericUpDown Name="cfg_pce_fast__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_pce_fast__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-<!--
+                                                    <!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_pce_fast__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -4870,7 +4870,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     </Expander>
                                 </Border>
 
-                                
+
 
                                 <!-- pce -->
 
@@ -5101,7 +5101,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Controls:NumericUpDown Name="cfg_pce__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_pce__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-<!--
+                                                    <!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_pce__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -5318,7 +5318,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="huc6280a">HuC6280A</ComboBoxItem>
                                                 </ComboBox>
 
-                                                
+
 
                                                 <DockPanel Grid.ColumnSpan="2" Grid.Row="12" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_pce__slstart" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">First Rendered Scanline</Label>
@@ -5350,7 +5350,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     </Expander>
                                 </Border>
 
-                                
+
 
 
                                 <!-- pcfx-->
@@ -5583,7 +5583,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Controls:NumericUpDown Name="cfg_pcfx__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_pcfx__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-<!--
+                                                    <!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_pcfx__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -5835,7 +5835,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     </Expander>
                                 </Border>
 
-                                
+
 
                                 <!-- sms -->
 
@@ -6066,7 +6066,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Controls:NumericUpDown Name="cfg_sms__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_sms__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-<!--
+                                                    <!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_sms__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -6170,7 +6170,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     </Expander>
                                 </Border>
 
-                               
+
 
 
                                 <!-- md -->
@@ -6402,7 +6402,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Controls:NumericUpDown Name="cfg_md__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_md__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-<!--
+                                                    <!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_md__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -6609,7 +6609,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     </Expander>
                                 </Border>
 
-                                
+
 
                                 <!-- snes_faust -->
 
@@ -6840,7 +6840,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Controls:NumericUpDown Name="cfg_snes_faust__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_snes_faust__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-<!--
+                                                    <!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_snes_faust__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -7005,7 +7005,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     </Expander>
                                 </Border>
 
-                               
+
 
                                 <!-- snes -->
 
@@ -7237,7 +7237,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Controls:NumericUpDown Name="cfg_snes__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_snes__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-<!--
+                                                    <!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_snes__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -7338,7 +7338,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
                                                     <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
                                                     <ComboBoxItem Tag="mouse">Mouse</ComboBoxItem>
-                                                </ComboBox>                                                
+                                                </ComboBox>
 
                                                 <Label Name="cfglbl_snes__input__port2" Grid.Column="0" Grid.Row="5">Port 2 Input Device</Label>
                                                 <ComboBox x:Name="cfg_snes__input__port2" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="5">
@@ -7398,7 +7398,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     </Expander>
                                 </Border>
 
-                                
+
 
                                 <!-- vb -->
 
@@ -7629,7 +7629,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Controls:NumericUpDown Name="cfg_vb__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_vb__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-<!--
+                                                    <!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_vb__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -7799,7 +7799,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     </Expander>
                                 </Border>
 
-                                
+
 
                                 <!-- ss -->
 
@@ -8035,7 +8035,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Controls:NumericUpDown Name="cfg_ss__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_ss__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-<!--
+                                                    <!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_ss__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -8216,7 +8216,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" />                                                    
+                                                    <ColumnDefinition Width="Auto" />
                                                     <ColumnDefinition Width="*" />
                                                     <ColumnDefinition Width="Auto" />
                                                     <ColumnDefinition Width="Auto" />
@@ -8260,10 +8260,10 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="mission">Mission Stick</ComboBoxItem>
                                                     <ComboBoxItem Tag="dmission">Dual Mission Stick</ComboBoxItem>
                                                     <ComboBoxItem Tag="gun">Light Gun</ComboBoxItem>
-                                                    <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>                                                    
+                                                    <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="cfglbl_ss__input__port1__gun_chairs" Grid.Column="2" Grid.Row="1">Lightgun Crosshair: </Label>
+                                                <Label Name="cfglbl_ss__input__port1__gun_chairs" Grid.Column="2" Grid.Row="1">Lightgun Crosshair:</Label>
                                                 <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="1" x:Name="cfg_ss__input__port1__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port2" Grid.Column="0" Grid.Row="2">Input Device (Virtual) Port 2</Label>
@@ -8358,7 +8358,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="gun">Light Gun</ComboBoxItem>
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
-                                                
+
                                                 <Label Name="cfglbl_ss__input__port7__gun_chairs" Grid.Column="2" Grid.Row="7">Lightgun Crosshair:</Label>
                                                 <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="7" x:Name="cfg_ss__input__port7__gun_chairs" />
 
@@ -8448,7 +8448,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     </Expander>
                                 </Border>
 
-                                
+
 
                                 <!-- psx -->
 
@@ -8679,7 +8679,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Controls:NumericUpDown Name="cfg_psx__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_psx__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-<!--
+                                                    <!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_psx__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -8874,7 +8874,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Expander>
 
                                             </Grid>
-                                            
+
                                             <CheckBox x:Name="cfg_psx__input__pport1__multitap">Enable MultiTap on PSX Port 1</CheckBox>
                                             <CheckBox x:Name="cfg_psx__input__pport2__multitap">Enable MultiTap on PSX Port 2</CheckBox>
                                             <Grid Margin="0">
@@ -9371,7 +9371,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                         Name="cfg_psx__input__port8__dualshock__axis_scale"/>
                                                 </DockPanel>
                                                 <Label Name="cfglbl_psx__input__port8__gun_chairs" Grid.Column="0" Grid.Row="4">Crosshair Color (Lightgun - Port 8)</Label>
-                                                
+
                                                 <!--
                                                 <TextBox x:Name="cfg_psx__input__port8__gun_chairs" Grid.Column="1" Grid.Row="4"></TextBox>
                                                 -->
@@ -9382,7 +9382,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     </Expander>
                                 </Border>
 
-                               
+
 
                                 <!-- wswan -->
 
@@ -9614,7 +9614,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Controls:NumericUpDown Name="cfg_wswan__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
                                                     <Controls:NumericUpDown Name="cfg_wswan__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
-<!--
+                                                    <!--
                                                     <ComboBox SelectedValuePath="Tag" Name="cfg_wswan__xres" Grid.Column="0" Grid.Row="2">
                                                         <ComboBoxItem Tag="0">Native</ComboBoxItem>
                                                         <ComboBoxItem Tag="1920">1920</ComboBoxItem>
@@ -9665,7 +9665,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificWswan1" Margin="10">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="WonderSwan Specific Settings">
                                         <StackPanel Margin="10">
-                                            
+
                                             <!--
                                             <CheckBox x:Name="cfg_wswan__rotateinput">Virtually Rotate D-Pads With Screen</CheckBox>
                                             -->
@@ -9767,7 +9767,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     </Expander>
                                 </Border>
 
-                                
+
 
 
 
@@ -9791,7 +9791,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                     <WrapPanel Orientation="Vertical" Grid.Column="0" Margin="0" x:FieldModifier="public" x:Name="wpControlLeftPane">
                         <Border Style="{StaticResource Borders1}" Margin="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Controls" >
-                                <WrapPanel Orientation="Vertical" x:Name="ControlSelectorWrapPanel">                                    
+                                <WrapPanel Orientation="Vertical" x:Name="ControlSelectorWrapPanel">
                                     <RadioButton x:Name="btnAllControls" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnControl_Checked" Unchecked="btnControl_UnChecked" ContextMenuService.ShowOnDisabled="True" 
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
@@ -9800,7 +9800,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     <RadioButton x:Name="btnControlNes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                       ContextMenuService.ShowOnDisabled="True"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
-                                        NES/Famicon                                        
+                                        NES/Famicon
                                     </RadioButton>
                                     <RadioButton x:Name="btnControlSnes" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                       ContextMenuService.ShowOnDisabled="True"
@@ -9914,7 +9914,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                 <!-- dynamically inserted control stuff goes below -->
                                 <Controls:TransitioningContentControl x:Name="tccControls" Transition="LeftReplace"/>
-                                
+
                                 <!-- controls for showing all -->
                                 <Controls:TransitioningContentControl x:Name="tccControlsDyn1" Transition="LeftReplace"/>
                                 <Controls:TransitioningContentControl x:Name="tccControlsDyn2" Transition="LeftReplace"/>
@@ -9934,7 +9934,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 <Controls:TransitioningContentControl x:Name="tccControlsDyn16" Transition="LeftReplace"/>
                                 <Controls:TransitioningContentControl x:Name="tccControlsDyn17" Transition="LeftReplace"/>
                                 <Controls:TransitioningContentControl x:Name="tccControlsDyn18" Transition="LeftReplace"/>
-                               
+
                             </WrapPanel>
                         </ScrollViewer>
                     </Grid>
@@ -10123,7 +10123,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                         <ColumnDefinition Width="0.2*" />
                                                     </Grid.ColumnDefinitions>
                                                     <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto" />                                                        
+                                                        <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
 
                                                     <Label Grid.Row="10" HorizontalContentAlignment="Left" Grid.Column="0">Image ToolTip size (% of current window size)</Label>
@@ -10161,7 +10161,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 -->
 
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="17">
-                                                    
+
                                                 </StackPanel>
                                             </Grid>
                                         </StackPanel>
@@ -10293,9 +10293,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <CheckBox x:Name="chkPreferGenesis" Grid.ColumnSpan="2" Grid.Row="4" Checked="chkPreferGenesis_Checked" Unchecked="chkPreferGenesis_Unchecked">
                                                     <AccessText TextWrapping="Wrap"        
                                                             Text="Auto-Resolve Duplicates (improves auto-matching (sometimes) for systems with mulitple entries on thegamesdb.net eg: Megadrive/Genesis)"/>
-                                                    
+
                                                 </CheckBox>
-                                                
+
                                                 <Label Grid.ColumnSpan="2" Grid.Row="5" HorizontalAlignment="Left">Allow Scraping of the Following Media:</Label>
                                                 <CheckBox x:Name="chkAllowBanners" Grid.ColumnSpan="2" Grid.Row="6" Content="Banners" Checked="chkAllowBanners_Checked" Unchecked="chkAllowBanners_Unchecked"/>
                                                 <CheckBox x:Name="chkAllowBoxart" Grid.ColumnSpan="2" Grid.Row="7" Content="Boxart" Checked="chkAllowBoxart_Checked" Unchecked="chkAllowBoxart_Unchecked"/>
@@ -10508,7 +10508,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
-                                                    
+
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
 
@@ -10555,7 +10555,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdNetplay1" Margin="10" Grid.Column="0">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="Netplay Settings" >
-                                                                             
+
 
 
                                         <StackPanel x:Name="spNetplaySettings">
@@ -10576,7 +10576,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid.RowDefinitions>
 
                                                 <CheckBox x:Name="chkEnableNetplay" HorizontalAlignment="Center" Margin="0,10,0,15" Checked="chkEnableNetplay_Checked" Unchecked="chkEnableNetplay_Unchecked" Grid.Row="0" Grid.ColumnSpan="2">Enable Netplay</CheckBox>
-                                                
+
 
                                                 <Label Grid.Row="2">Nickname</Label>
                                                 <TextBox x:Name="tbNetplayNick" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" TextChanged="tbSettings_Netplay_TextChanged" />
@@ -10725,7 +10725,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             <CheckBox x:Name="chkrememberSysWinPositions" Checked="chkrememberSysWinPositions_Checked" Unchecked="chkrememberSysWinPositions_Unchecked">Remember Mednafen Window Positions (per system)</CheckBox>
                                             <Button x:Name="btnForgetSystemPosition" Click="btnForgetSystemPosition_Click">Forget All Mednafen Window Positions</Button>
-                                                
+
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="90" />
@@ -10743,7 +10743,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     </Expander>
                                 </Border>
 
-                                
+
 
                             </WrapPanel>
                         </ScrollViewer>
@@ -10753,7 +10753,227 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                 </Grid>
             </TabItem>
 
+            <TabItem x:Name="tiDiscord" Header="Discord">
+                <Grid x:Name="grdDiscord">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="0" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="224" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
+                    <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="230"/>
+                        </Grid.ColumnDefinitions>
+
+                        <WrapPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                            <Label VerticalAlignment="Bottom" VerticalContentAlignment="Center" FontSize="22" FontWeight="Bold">MedLaunch: Discord</Label>
+
+                            <TextBox Controls:TextBoxHelper.Watermark="Enter your preferred username..." VerticalContentAlignment="Center"
+                                     Margin="20,0,0,0" x:Name="tbDiscordName"></TextBox>
+                            <Button>CONNECT</Button>
+
+                        </WrapPanel>
+
+                        <WrapPanel Grid.Column="1" VerticalAlignment="Center">
+                            <Label VerticalContentAlignment="Center" VerticalAlignment="Center">
+                                MednaNet API Status: 
+                            </Label>
+                            <Label VerticalContentAlignment="Center" VerticalAlignment="Center">
+                                Disconnected
+                            </Label>
+                        </WrapPanel>
+
+                        <WrapPanel Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="1">
+                            <!--
+                            <TextBlock FontWeight="Bold" FontStyle="Italic" HorizontalAlignment="Center">Click Below to Launch Discord Externally</TextBlock>
+                            -->
+                            <Image x:Name="DiscordLogo" Source="Data/Graphics/Discord_logo_svg.svg.png" Height="40" MouseDown="DiscordLogo_MouseDown" MouseEnter="DiscordLogo_MouseEnter" MouseLeave="DiscordLogo_MouseLeave">
+                                <Image.ToolTip>
+                                    <ToolTip Content="Click here to launch Discord externally (and take advantage of more features)" />
+                                </Image.ToolTip>
+                            </Image>
+                            <!--
+                            <Image x:Name="MedLogo" Height="35" Source="Data/Graphics/MedLaunch_sm.png"  />
+                            -->
+                        </WrapPanel>
+                    </Grid>
+
+                    <WrapPanel Orientation="Vertical" Grid.Column="0" Margin="0" x:FieldModifier="public" x:Name="wpDiscordLeftPane" Grid.Row="1">
+
+                        <!-- above left border -->
+
+                        <Border Style="{StaticResource Borders1}" Margin="0">
+                            <Expander IsExpanded="True" BorderThickness="0" Header="Discord Channels" IsManipulationEnabled="False" >
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                    
+                                
+                                <StackPanel Orientation="Vertical" x:Name="DiscordSelectorWrapPanel">
+
+                                    <!-- left menu buttons -->
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh01" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 01"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh02" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 02"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh03" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 03"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh04" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 04"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh05" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 05"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh06" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 06"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh07" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 07"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh08" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 08"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh09" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 09"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh10" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 10"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh11" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 11"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh12" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 12"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh13" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 13"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh14" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 14"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh15" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 15"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh16" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 16"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh17" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 17"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh18" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 18"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh19" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 19"/>
+
+                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh20" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="Channel 20"/>
+
+                                </StackPanel>
+
+                                </ScrollViewer>
+                            </Expander>
+                        </Border>
+                    </WrapPanel>
+
+                    <GridSplitter Grid.Column="1" Width="0" Grid.ColumnSpan="2" />
+
+                    <Grid x:Name="DiscordGrid" Grid.Column="2" Margin="10" Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="70" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <!--<RowDefinition Height="Auto" /> -->
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+
+                        <RichTextBox x:Name="rtbDocument" ScrollViewer.VerticalScrollBarVisibility="Auto" IsUndoEnabled="False" IsReadOnly="True" BorderThickness="0" 
+                                         IsDocumentEnabled="True"  Grid.Row="0" Grid.ColumnSpan="2"
+                                         VerticalAlignment="Stretch">
+                            <FlowDocument/>
+                        </RichTextBox>
+
+
+                        <TextBox Controls:TextBoxHelper.Watermark="Type your message here..." Grid.Row="1" Grid.Column="0"
+                                 VerticalContentAlignment="Center" x:Name="tbDiscordMessageBox"></TextBox>
+
+                        <Button Grid.Row="1" Grid.Column="1" x:Name="btnDiscordChatSend">SEND</Button>
+
+
+
+                    </Grid>
+
+                    <WrapPanel Orientation="Vertical" Grid.Column="3" Margin="0,0,10,30" x:FieldModifier="public" x:Name="wpDiscordRightPane" Grid.Row="1">
+
+                        <!-- above right panel -->
+
+                        <Border Style="{StaticResource Borders1}" Margin="0" Width="{Binding ElementName=wpDiscordRightPane,Path=ActualWidth}">
+                            <Expander IsExpanded="True" BorderThickness="0" Header="Connected Users" IsManipulationEnabled="False" >
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                    <StackPanel Orientation="Vertical" x:Name="DiscordUserListWrapPanel">
+
+                                        <!-- user menu buttons -->
+                                        <Button x:Name="btnusertest1" HorizontalContentAlignment="Left" 
+                                      ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordUserListWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="User Template"/>
+
+                                        <Button x:Name="btnusertest2" HorizontalContentAlignment="Left" 
+                                      ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordUserListWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="User Template"/>
+
+                                        <Button x:Name="btnusertest3" HorizontalContentAlignment="Left" 
+                                      ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordUserListWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="User Template"/>
+
+                                        <Button x:Name="btnusertest4" HorizontalContentAlignment="Left" 
+                                      ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordUserListWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="User Template"/>
+
+                                        <Button x:Name="btnusertest5" HorizontalContentAlignment="Left" 
+                                      ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordUserListWrapPanel,Path=ActualWidth}"                                                 
+                                     Content="User Template"/>
+
+                                    </StackPanel>
+                                </ScrollViewer>
+                                
+                            </Expander>
+                        </Border>
+                    </WrapPanel>
+
+                </Grid>
+            </TabItem>
 
             <!-- 
             <TabItem Header="Scraping">
@@ -10796,7 +11016,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                         </Border>
 
                         <Button Style="{StaticResource MenuButton}"  x:Name="btnCaptureSaveAllChanges"  Content="SAVE ALL CHANGES" Background="{DynamicResource AccentColorBrush}" Click="btnSettingsSaveAllChanges_Click" ></Button>
-                     
+
                         <Label x:Name="lblCaptureLabel" HorizontalContentAlignment="Center"></Label>
 
 
@@ -10816,7 +11036,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                         <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Width="{Binding ElementName=CaptureGrid, Path=ActualWidth}" Height="{Binding ElementName=CaptureGrid, Path=ActualHeight}">
                             <WrapPanel HorizontalAlignment="Left" Orientation="Vertical" x:Name="CapWrapPanel">
 
-                                
+
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdCapGeneral" Margin="10" Grid.Column="0">
                                     <Expander IsExpanded="True" BorderThickness="0" Header="General Capture Settings" >
@@ -10839,7 +11059,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
-                                                
+
                                                 <Label Grid.Row="0" HorizontalContentAlignment="Left" Grid.Column="0">Recording Region Type</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="comboRecordingRegionType" Grid.Row="0" Grid.Column="1" Margin="0,0,0,0">
                                                     <ComboBoxItem Tag="window">Window</ComboBoxItem>
@@ -10973,7 +11193,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
             </TabItem>
 
 
-           
+
 
             <TabItem Header="Help">
                 <DockPanel x:Name="brws_Dp">
@@ -11020,10 +11240,10 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                 </DockPanel>
             </TabItem>
 
-            
+
             <TabItem x:Name="UpdatedHeader" Header="Updates">
                 <WrapPanel Orientation="Vertical">
-                   
+
                     <Grid Width="500" Margin="50">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -11058,14 +11278,14 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                         <ScrollViewer x:Name="lbl4" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                             <TextBlock TextWrapping="Wrap" x:Name="tbNotes" Margin="10">
 
-                        </TextBlock>
+                            </TextBlock>
                         </ScrollViewer>
 
                         <Label x:Name="lbl5" Grid.Column="0" Grid.Row="5" VerticalAlignment="Top" Margin="10" VerticalContentAlignment="Top">
                             Binary URL
                         </Label>
                         <TextBlock x:Name="lblDownloadUrl" Grid.Column="1" Grid.Row="5" Margin="10">
-                           
+
                         </TextBlock>
                         <!--
                         <Label x:Name="lbl5" Grid.Column="0" Grid.Row="4" VerticalAlignment="Top" Margin="10" VerticalContentAlignment="Top">
@@ -11080,7 +11300,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                         <Button Margin="0,50,0,0" Grid.ColumnSpan="2" Grid.Row="5" x:Name="btnUpdate" Content="Auto-Download and Install Latest MedLaunch Version" Click="btnUpdate_Click"/>
 
-                        
+
 
                     </Grid>
 
@@ -11098,7 +11318,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
 
                         <Button x:Name="btnCheckForMednafenUpdates" Click="btnCheckForMednafenUpdates_Click" Grid.ColumnSpan="2" Grid.Row="0">Refresh Mednafen Version Status</Button>
-                        <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="20" x:Name="lblcompatmedversiontxt">Latest Compatible Mednafen Version: </Label>
+                        <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="20" x:Name="lblcompatmedversiontxt">Latest Compatible Mednafen Version:</Label>
                         <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="20" x:Name="lblcompatmedversion"></Label>
 
                         <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="20" x:Name="lblinstalledmedversiontxt">Installed Mednafen Version:</Label>
@@ -11119,7 +11339,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                 </WrapPanel>
             </TabItem>
-          
+
         </TabControl>
 
     </Grid>
