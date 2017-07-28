@@ -84,6 +84,8 @@ namespace MedLaunch
         public bool UpdateStatusML { get; set; }
         public bool UpdateStatusMF { get; set; }
 
+        public bool? ConfigsTabSelected { get; set; }
+
         /// <summary>
         /// public instance of the mahapps progressdialogcontroller
         /// </summary>
@@ -5912,6 +5914,68 @@ namespace MedLaunch
                 {
                     col.SortDirection = sd.Direction;
                 }
+            }
+        }
+
+        /// <summary>
+        /// triggered when tab navigation happens
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var tc = sender as TabControl;
+            if (tc != null)
+            {
+                var item = (TabItem)tc.SelectedItem;
+                if (item == null)
+                    return;
+
+                if (item.Header.ToString() == "Configs")
+                {
+                    ConfigsTabSelected = true;
+                }
+
+                if (ConfigsTabSelected == null)
+                {
+                    // application is still starting and/or the configs tab has not been selected yet.
+                    return;
+                }
+
+                if (item.Header.ToString() == "Configs")
+                {
+                    //MessageBox.Show("Tab Item Configs has been selected");
+                    ConfigsTabSelected = true;
+                }
+                else
+                {
+                    //MessageBox.Show("Tab Item " + item.Header.ToString() +" has been selected");
+                    ConfigsTabSelected = false;
+                }
+
+                // if something other than configs tab is selected (and the bool check is not null) then save the current config
+                if (ConfigsTabSelected == false)
+                {
+                    // get config ID
+                    int configId = 2000000000;
+                    foreach (UIElement element in ConfigSelectorWrapPanel.Children)
+                    {
+                        if (element is RadioButton)
+                        {
+                            // Is Radiobutton selected?
+                            if ((element as RadioButton).IsChecked == true)
+                            {
+                                string rbName = (element as RadioButton).Name;
+                                configId = ConfigBaseSettings.GetConfigIdFromButtonName(rbName);
+                            }
+                        }
+                    }
+                    // save config changes
+                    ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, configId);
+                    //MessageBox.Show("Config saved for configid: " + configId);
+                    //lblConfigStatus.Content = "***Config Saved***";
+                }
+                
             }
         }
     }

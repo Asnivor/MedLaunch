@@ -267,7 +267,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
         
         
         
-        <TabControl>
+        <TabControl SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Games">
                 <Grid x:Name="grdGameLibrary">
                     <Grid.ColumnDefinitions>
@@ -2106,7 +2106,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 FROM DISK
                             </TextBlock>
                         </Button>
+                        <!--
                         <Button Style="{StaticResource MenuButton}"  x:Name="btnConfigSaveChanges"  Content="SAVE CHANGES" Background="{DynamicResource AccentColorBrush}" Click="btnConfigSaveChanges_Click" />
+                        -->
                         <!--
                         <Button x:Name="btnConfigCancelChanges"  Content="Revert Changes" Background="Red" Click="btnConfigCancelChanges_Click" ></Button>
 -->
