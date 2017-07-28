@@ -662,14 +662,19 @@ namespace MedLaunch.Classes.Scraper
             if (gam.systemId == 4)
             {
                 if (
+                    gam.Country != null &&
+                    (
                     gam.Country.ToUpper() == "US" ||
                     gam.Country.ToUpper() == "USA" ||
                     gam.Country.ToUpper() == "U"
+                    )
                     )
                 {
                     SystemCollection = SystemCollection.Where(a => a.pid == 18).ToList();
                 }
                 else if 
+                    (
+                    gam.Country != null &&
                     (
                     gam.Country.ToUpper() == "EU" || 
                     gam.Country.ToUpper() == "EUR" ||
@@ -678,6 +683,7 @@ namespace MedLaunch.Classes.Scraper
                     gam.Country.ToUpper() == "JAP" ||
                     gam.Country.ToUpper() == "J" ||
                     gam.Country.ToUpper() == "JPN"
+                    )
                     )
                 {
                     SystemCollection = SystemCollection.Where(a => a.pid == 36).ToList();
@@ -693,8 +699,8 @@ namespace MedLaunch.Classes.Scraper
             }
 
 
-                // Match all words and return a list ordered by higest matches
-                List<SearchOrdering> searchResult = OrderByMatchedWords(StripSymbols(gameName.ToLower()));
+            // Match all words and return a list ordered by higest matches
+            List<SearchOrdering> searchResult = OrderByMatchedWords(StripSymbols(gameName.ToLower()));
 
             // get max value in the list
             var maxValueRecord = searchResult.OrderByDescending(v => v.Matches).FirstOrDefault();

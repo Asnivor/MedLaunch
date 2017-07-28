@@ -142,7 +142,7 @@ namespace MedLaunch.Classes
         {
             LogParser lp = new LogParser();
 
-            if (File.Exists(lp.LogPath) && File.Exists(lp.MednafenEXE))
+            if (File.Exists(lp.MednafenEXE)) // File.Exists(lp.LogPath) && 
             {
                 Process medproc = new Process();
                 medproc.StartInfo.FileName = lp.MednafenEXE;

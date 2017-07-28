@@ -267,7 +267,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
         
         
         
-        <TabControl>
+        <TabControl SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Games">
                 <Grid x:Name="grdGameLibrary">
                     <Grid.ColumnDefinitions>
@@ -2106,7 +2106,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 FROM DISK
                             </TextBlock>
                         </Button>
+                        <!--
                         <Button Style="{StaticResource MenuButton}"  x:Name="btnConfigSaveChanges"  Content="SAVE CHANGES" Background="{DynamicResource AccentColorBrush}" Click="btnConfigSaveChanges_Click" />
+                        -->
                         <!--
                         <Button x:Name="btnConfigCancelChanges"  Content="Revert Changes" Background="Red" Click="btnConfigCancelChanges_Click" ></Button>
 -->
@@ -2329,7 +2331,26 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             <CheckBox Name="cfg_video__disable_composition">Disable Desktop Composition</CheckBox>
 
 
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Name="cfglbl_video__driver" Grid.Row="1">Video Driver</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_video__driver" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="opengl">OpenGL + SDL</ComboBoxItem>
+                                                    <ComboBoxItem Tag="sdl">SDL Surface</ComboBoxItem>
+                                                    <ComboBoxItem Tag="overlay">SDL Overlay</ComboBoxItem>                                                    
+                                                </ComboBox>
 
+                                            </Grid>
 
 
 
@@ -11043,7 +11064,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                         <Label x:Name="lbl5" Grid.Column="0" Grid.Row="5" VerticalAlignment="Top" Margin="10" VerticalContentAlignment="Top">
                             Binary URL
                         </Label>
-                        <Label x:Name="lblDownloadUrl" Grid.Column="1" Grid.Row="5" Margin="10"/>
+                        <TextBlock x:Name="lblDownloadUrl" Grid.Column="1" Grid.Row="5" Margin="10">
+                           
+                        </TextBlock>
                         <!--
                         <Label x:Name="lbl5" Grid.Column="0" Grid.Row="4" VerticalAlignment="Top" Margin="10" VerticalContentAlignment="Top">
                             Changelog

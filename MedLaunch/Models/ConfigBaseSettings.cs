@@ -2032,6 +2032,7 @@ namespace MedLaunch.Models
                     c.psx__bios_eu = psxeu;
                     c.psx__bios_jp = psxjp;
                     c.psx__bios_na = psxna;
+                    //db.SaveChanges();
                 }
 
                 // save changes

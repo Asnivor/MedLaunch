@@ -330,7 +330,7 @@ namespace MedLaunch.Models
 
                 new GSystem { systemId = 7, theGamesDBPlatformId = new List<int>  { 34, 4955 }, systemCode = "pce", systemName = "PC Engine (CD)/TurboGrafx 16 (CD)/SuperGrafx",
                 MobyPlatformName = new List<string> { "turbo-grafx" },
-                    supportedFileExtensions = ".pce", supportedArchiveExtensions = ".zip,.7z",
+                    supportedFileExtensions = ".pce, .sgx", supportedArchiveExtensions = ".zip,.7z",
                         systemDescription = "TurboGrafx-16, fully titled as TurboGrafx-16 Entertainment SuperSystem and known in Japan as the PC Engine, is a video game console developed by Hudson Soft and NEC, released in Japan on October 30, 1987, and in North America on August 29, 1989." },
 
                 new GSystem { systemId = 8, theGamesDBPlatformId = new List<int>  { 4930 }, systemCode = "pcfx", systemName = "PC-FX",
@@ -380,7 +380,7 @@ namespace MedLaunch.Models
 
                 new GSystem { systemId = 17, theGamesDBPlatformId = new List<int>  { 34, 4955 }, systemCode = "pce_fast", systemName = "PC Engine (CD)/TurboGrafx 16 (CD)/SuperGrafx (Fast Emulation)",
                 MobyPlatformName = new List<string> { "turbo-grafx" },
-                    supportedFileExtensions = ".pce", supportedArchiveExtensions = ".zip,.7z",
+                    supportedFileExtensions = ".pce, .sgx", supportedArchiveExtensions = ".zip,.7z",
                        systemDescription = "TurboGrafx-16, fully titled as TurboGrafx-16 Entertainment SuperSystem and known in Japan as the PC Engine, is a video game console developed by Hudson Soft and NEC, released in Japan on October 30, 1987, and in North America on August 29, 1989." },
 
                 new GSystem { systemId = 18, theGamesDBPlatformId = new List<int>  { 34, 4955 }, systemCode = "pcecd", systemName = "PC Engine (CD)/TurboGrafx 16 (CD)",

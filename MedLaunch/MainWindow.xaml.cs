@@ -84,9 +84,21 @@ namespace MedLaunch
         public bool UpdateStatusML { get; set; }
         public bool UpdateStatusMF { get; set; }
 
+        public bool? ConfigsTabSelected { get; set; }
+
+        /// <summary>
+        /// public instance of the mahapps progressdialogcontroller
+        /// </summary>
+        public ProgressDialogController PDC { get; set; }
+        public string DialogMessage { get; set; }
+        public bool DownloadComplete { get; set; }
+
+
         public MainWindow()
         {            
             InitializeComponent();
+
+            DownloadComplete = false;
 
             UpdateStatus = 0;
 
@@ -1209,12 +1221,13 @@ namespace MedLaunch
 
         private void ScrapeFavorites_Click(object sender, RoutedEventArgs e)
         {            
-            ScraperHandler.ScrapeGames(0, ScrapeType.Favorites);
+            //ScraperHandler.ScrapeGames(0, ScrapeType.Favorites);
+            ScraperHandler.ScrapeMultiple(null, ScrapeType.Favorites, 0);
         }
 
         private void ReScrapeFavorites_Click(object sender, RoutedEventArgs e)
         {
-            ScraperHandler.ScrapeGames(0, ScrapeType.RescrapeFavorites);
+            ScraperHandler.ScrapeMultiple(null, ScrapeType.RescrapeFavorites, 0);
         }
 
         private void ScrapeGamesMultiple_Click(object sender, RoutedEventArgs e)
@@ -1241,7 +1254,8 @@ namespace MedLaunch
             }
 
             // parse list of games to the method to be auto-scraped
-            ScraperHandler.ScrapeGamesMultiple(games, ScrapeType.Selected);            
+            //ScraperHandler.ScrapeGamesMultiple(games, ScrapeType.Selected);    
+            ScraperHandler.ScrapeMultiple(games, ScrapeType.Selected, 0);
         }
 
         private void ReScrapeGamesMultiple_Click(object sender, RoutedEventArgs e)
@@ -1268,7 +1282,7 @@ namespace MedLaunch
             }
 
             // parse list of games to the method to be auto-scraped
-            ScraperHandler.ScrapeGamesMultiple(games, ScrapeType.SelectedRescrape);
+            ScraperHandler.ScrapeMultiple(games, ScrapeType.SelectedRescrape, 0);
         }
 
         private void ScrapeGames_Click(object sender, RoutedEventArgs e)
@@ -1276,7 +1290,7 @@ namespace MedLaunch
             // get systemId from menu name
             string menuName = (sender as MenuItem).Name;
             int sysId = Convert.ToInt32(menuName.Replace("ScrapeGames", ""));
-            ScraperHandler.ScrapeGames(sysId, ScrapeType.System);
+            ScraperHandler.ScrapeMultiple(null, ScrapeType.ScrapeSystem, sysId);
         }
 
         private void RescrapeGames_Click(object sender, RoutedEventArgs e)
@@ -1285,7 +1299,7 @@ namespace MedLaunch
             string menuName = (sender as MenuItem).Name;
             int sysId = Convert.ToInt32(menuName.Replace("RescrapeGames", ""));
 
-            ScraperHandler.ScrapeGames(sysId, ScrapeType.RescrapeAll);
+            ScraperHandler.ScrapeMultiple(null, ScrapeType.RescrapeSystem, sysId);
         }
 
         private DispatcherTimer _searchTimer;
@@ -1317,99 +1331,7 @@ namespace MedLaunch
         private void tbFilterDatagrid_TextChanged(object sender, TextChangedEventArgs e)
         {
             _searchTimer.Stop();
-            _searchTimer.Start();
-            /*
-            var textbox = sender as TextBox;
-
-            if (textbox.Text == "")
-            {
-
-            }
-
-            _App.GamesLibrary.SearchFilter(textbox.Text);
-            */
-            /*
-
-            int system = 0;
-            // determine which radiobutton is checked
-            if (btnShowAll.IsChecked == true)
-            {
-                system = 0;
-            }
-            if (btnFavorites.IsChecked == true)
-            {
-                system = -1;
-            }
-            if (btnLynx.IsChecked == true)
-            {
-                system = 3;
-            }
-            if (btnGg.IsChecked == true)
-            {
-                system = 5;
-            }
-            if (btnGba.IsChecked == true)
-            {
-                system = 2;
-            }
-            if (btnGb.IsChecked == true)
-            {
-                system = 1;
-            }
-            if (btnWswan.IsChecked == true)
-            {
-                system = 15;
-            }
-            if (btnNgp.IsChecked == true)
-            {
-                system = 6;
-            }
-            if (btnVb.IsChecked == true)
-            {
-                system = 14;
-            }
-            if (btnPcfx.IsChecked == true)
-            {
-                system = 8;
-            }
-            if (btnPce.IsChecked == true)
-            {
-                system = 7;
-            }
-
-            if (btnPsx.IsChecked == true)
-            {
-                system = 9;
-            }
-            if (btnSs.IsChecked == true)
-            {
-                system = 13;
-            }
-
-            if (btnMd.IsChecked == true)
-            {
-                system = 4;
-            }
-            if (btnSms.IsChecked == true)
-            {
-                system = 10;
-            }
-            if (btnSnes.IsChecked == true)
-            {
-                system = 12;
-            }
-            if (btnNes.IsChecked == true)
-            {
-                system = 11;
-            }
-            if (btnPcecd.IsChecked == true)
-            {
-                system = 18;
-            }
-
-            GameListBuilder.GetGames(dgGameList, system, textbox.Text);
-
-            */
+            _searchTimer.Start();           
         }
 
         // Clear all filters button click
@@ -2410,6 +2332,8 @@ namespace MedLaunch
                 return;
             }
 
+            
+
             // create new GameLauncher instance
             GameLauncher gl = new GameLauncher(romId);
             LaunchString = gl.GetCommandLineArguments();
@@ -2480,7 +2404,7 @@ namespace MedLaunch
                     o += s + "\n";
                 }
                 controller.SetMessage(o + "\n...Cancelling Operation...");
-                await Task.Delay(100);
+                await Task.Delay(3000);
                 await controller.CloseAsync();
             }
             else
@@ -3445,7 +3369,17 @@ namespace MedLaunch
 
                 // download URL
                 lblDownloadUrl.Visibility = Visibility.Visible;
-                lblDownloadUrl.Content = d.assets[0].browser_download_url;
+
+                string ghUrl = d.assets[0].browser_download_url;
+                // split the string up so only the version is left
+                string[] stArr = ghUrl.Split(new string[] { "MedLaunch_v" }, StringSplitOptions.None);
+                string verUnderscores = stArr.Last().Replace(".zip", "");
+                // display new medlaunch.info download url
+                string newUrl = "https://downloads.medlaunch.info/?download=" + verUnderscores;
+
+                string te = newUrl.ToString();
+
+                lblDownloadUrl.Text = newUrl.ToString();
 
                 btnUpdate.Visibility = Visibility.Visible;
                 lblNoUpdate.Visibility = Visibility.Collapsed;
@@ -3661,7 +3595,9 @@ namespace MedLaunch
                         File.Delete(downloadsFolder + "\\" + fName);
                     }
 
-
+                    // download mednafen
+                    bool result = StartDownload(controller, url, downloadsFolder + "\\" + fName, "URL: " + url);
+                    /*
                     using (var wc = new CustomWebClient())
                     {
                         wc.Proxy = null;
@@ -3683,16 +3619,20 @@ namespace MedLaunch
                             wc.Dispose();
                         }
                     }
+                    */
 
-                    // extract download to current mednafen folder
-                    string meddir = Paths.GetPaths().mednafenExe;
-
-                    Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
-                    try
+                    if (result == true)
                     {
-                        arch.ExtractArchiveZipOverwrite(meddir);                        
+                        // extract download to current mednafen folder
+                        string meddir = Paths.GetPaths().mednafenExe;
+
+                        Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
+                        try
+                        {
+                            arch.ExtractArchiveZipOverwrite(meddir);
+                        }
+                        catch { }
                     }
-                    catch { }
                 });
 
                 await controller.CloseAsync();
@@ -3765,22 +3705,54 @@ namespace MedLaunch
                 NegativeButtonText = "Cancel Download",
                 AnimateShow = true,
                 AnimateHide = true
-
             };
 
-            var controller = await this.ShowProgressAsync("MedLaunch Update", "Downloading MedLaunch v" + v, settings: mySettings);
+            var controller = await this.ShowProgressAsync("Downloading MedLaunch v" + v, "", settings: mySettings);
             controller.SetCancelable(false);
-            controller.SetIndeterminate();
+            //controller.SetIndeterminate();
 
-            await Task.Delay(400);
-            
             // download url
-            string url = lblDownloadUrl.Content.ToString();
-            // get just the filename
-            string[] fArr = url.Split('/');
-            string fName = fArr[fArr.Length - 1];
+            string url = lblDownloadUrl.Text.ToString();
+            string ver = lblVersion.Content.ToString();
+            await Task.Delay(400);
 
-            // try the download
+            await Task.Run(() =>
+            {
+                // get just the filename
+                //string[] fArr = url.Split('/');
+                //string fName = fArr[fArr.Length - 1];
+
+                string fName = "MedLaunch_v" + ver.Replace(".", "_") + ".zip";
+
+                // try the download
+                bool result = StartDownload(controller, url, downloadsFolder + "\\" + fName, "URL: " + url);
+
+                if (result == true)
+                {
+                    controller.SetIndeterminate();
+                    controller.SetMessage("Download Complete. Starting Install.....");
+
+                    // now run updater app to extract MedLaunch over the existing directory
+                    // build command line args
+                    string processArg = "/P:" + Process.GetCurrentProcess().Id.ToString();
+                    string upgradeArg = "/U:" + fName; // "MedLaunch_v" + vArr[0] + "_" + vArr[1] + "_" + vArr[2] + "_" + vArr[3] + ".zip";
+                    string args = processArg + " " + upgradeArg;
+                    // call the external updater app and close this one
+                    // call the updater app and close this one
+                    Process.Start("lib\\Updater.exe", args);
+                    Thread.Sleep(2000);
+                    Environment.Exit(0);
+                }
+            });
+            await controller.CloseAsync();
+
+            // mednafen versions
+            UpdateCheckMednafen();            
+        }
+
+        private bool StartDownload(ProgressDialogController controller, string uri, string destination, string dialogMessage)
+        {
+            DialogMessage = dialogMessage;
 
             using (var wc = new CustomWebClient())
             {
@@ -3788,41 +3760,64 @@ namespace MedLaunch
                 wc.Timeout = 2000;
                 try
                 {
-                    wc.DownloadFile(url, downloadsFolder + "\\" + fName);
+                    DownloadComplete = false;
+                    PDC = controller;
+                    PDC.Maximum = 100;
+                    PDC.Minimum = 0;
+                    wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                    wc.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                    wc.DownloadFileAsync(new Uri(uri), destination);
+
+                    while (!DownloadComplete)
+                    {
+                        // tick
+                    }
+
+                    Task.Delay(2000);
                 }
                 catch
                 {
                     controller.SetMessage("The request timed out - please try again");
-                    await Task.Delay(2000);
-                    await controller.CloseAsync();
+                    Task.Delay(2000);
+                    controller.CloseAsync();
                     wc.Dispose();
-                    return;
+                    return false;
                 }
                 finally
                 {
                     wc.Dispose();
                 }
+
+                return true;
+            }
+        }
+
+        private void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            // update PDC with percentage
+            PDC.SetProgress(e.ProgressPercentage);
+            PDC.SetMessage(DialogMessage +  "\n\nDownloaded " + e.BytesReceived + " of " + e.TotalBytesToReceive + " bytes");
+        }
+
+        private void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            //progressBar1.Value = 0;
+            DownloadComplete = true;
+
+            if (e.Cancelled)
+            {
+                MessageBox.Show("The download has been cancelled");
+                return;
             }
 
+            if (e.Error != null) // We have an error! Retry a few times, then abort.
+            {
+                MessageBox.Show("An error ocurred while trying to download file");
 
-            // now run updater app to extract MedLaunch over the existing directory
-            // build command line args
-            string processArg = "/P:" + Process.GetCurrentProcess().Id.ToString();
-            string upgradeArg = "/U:" + fName; // "MedLaunch_v" + vArr[0] + "_" + vArr[1] + "_" + vArr[2] + "_" + vArr[3] + ".zip";
-            string args = processArg + " " + upgradeArg;
-            // call the external updater app and close this one
-            // call the updater app and close this one
-            Process.Start("lib\\Updater.exe", args);
-            Thread.Sleep(2000);
-            Environment.Exit(0);
+                return;
+            }
 
-
-            await controller.CloseAsync();
-
-            // mednafen versions
-            UpdateCheckMednafen();
-
-
+            //MessageBox.Show("File succesfully downloaded");
         }
 
         private class CustomWebClient : System.Net.WebClient
@@ -5919,6 +5914,68 @@ namespace MedLaunch
                 {
                     col.SortDirection = sd.Direction;
                 }
+            }
+        }
+
+        /// <summary>
+        /// triggered when tab navigation happens
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var tc = sender as TabControl;
+            if (tc != null)
+            {
+                var item = (TabItem)tc.SelectedItem;
+                if (item == null)
+                    return;
+
+                if (item.Header.ToString() == "Configs")
+                {
+                    ConfigsTabSelected = true;
+                }
+
+                if (ConfigsTabSelected == null)
+                {
+                    // application is still starting and/or the configs tab has not been selected yet.
+                    return;
+                }
+
+                if (item.Header.ToString() == "Configs")
+                {
+                    //MessageBox.Show("Tab Item Configs has been selected");
+                    ConfigsTabSelected = true;
+                }
+                else
+                {
+                    //MessageBox.Show("Tab Item " + item.Header.ToString() +" has been selected");
+                    ConfigsTabSelected = false;
+                }
+
+                // if something other than configs tab is selected (and the bool check is not null) then save the current config
+                if (ConfigsTabSelected == false)
+                {
+                    // get config ID
+                    int configId = 2000000000;
+                    foreach (UIElement element in ConfigSelectorWrapPanel.Children)
+                    {
+                        if (element is RadioButton)
+                        {
+                            // Is Radiobutton selected?
+                            if ((element as RadioButton).IsChecked == true)
+                            {
+                                string rbName = (element as RadioButton).Name;
+                                configId = ConfigBaseSettings.GetConfigIdFromButtonName(rbName);
+                            }
+                        }
+                    }
+                    // save config changes
+                    ConfigBaseSettings.SaveControlValues(ConfigWrapPanel, configId);
+                    //MessageBox.Show("Config saved for configid: " + configId);
+                    //lblConfigStatus.Content = "***Config Saved***";
+                }
+                
             }
         }
     }

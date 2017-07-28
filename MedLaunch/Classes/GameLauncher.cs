@@ -51,8 +51,8 @@ namespace MedLaunch.Classes
 
             SystemId = game.systemId;
 
-            // do PSX sbi check
-            if (SystemId == 9)
+            // do PSX sbi check and check whether game file actually exists (as it might have been renamed)
+            if (SystemId == 9 && File.Exists(game.gamePath))
             {
                 // get all implied files from othe cue/m3u that is in the database
                 string cuePath = game.gamePath;     // this is never relative with disc-based games
