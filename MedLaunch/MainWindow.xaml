@@ -10775,11 +10775,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                         <WrapPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
 
-                            <Label VerticalAlignment="Bottom" VerticalContentAlignment="Center" FontSize="22" FontWeight="Bold">MedLaunch: Discord</Label>
+                            <Label VerticalAlignment="Bottom" VerticalContentAlignment="Center" FontSize="17" FontWeight="Bold" x:Name="lblDiscordChannel">MedLaunch: Discord</Label>
 
                             <TextBox Controls:TextBoxHelper.Watermark="Enter your preferred username..." VerticalContentAlignment="Center"
                                      Margin="20,0,0,0" x:Name="tbDiscordName"></TextBox>
-                            <Button>CONNECT</Button>
+                            <Button x:Name="btnDiscordConnect" Click="btnDiscordConnect_Click" IsDefault="{Binding ElementName=tbDiscordName, Path=IsKeyboardFocused}">CONNECT</Button>
 
                         </WrapPanel>
 
@@ -10787,7 +10787,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                             <Label VerticalContentAlignment="Center" VerticalAlignment="Center">
                                 MednaNet API Status: 
                             </Label>
-                            <Label VerticalContentAlignment="Center" VerticalAlignment="Center">
+                            <Label VerticalContentAlignment="Center" VerticalAlignment="Center" x:Name="lblConnectedStatus">
                                 Disconnected
                             </Label>
                         </WrapPanel>
@@ -10813,91 +10813,18 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                         <Border Style="{StaticResource Borders1}" Margin="0">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Discord Channels" IsManipulationEnabled="False" >
-                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" x:Name="scrlDiscordChannels">
                                     
                                 
                                 <StackPanel Orientation="Vertical" x:Name="DiscordSelectorWrapPanel">
 
                                     <!-- left menu buttons -->
+                                    
+                                    <!--
                                     <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh01" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
                                      Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
                                      Content="Channel 01"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh02" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 02"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh03" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 03"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh04" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 04"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh05" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 05"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh06" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 06"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh07" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 07"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh08" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 08"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh09" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 09"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh10" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 10"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh11" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 11"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh12" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 12"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh13" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 13"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh14" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 14"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh15" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 15"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh16" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 16"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh17" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 17"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh18" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 18"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh19" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 19"/>
-
-                                    <RadioButton GroupName="grpDiscordChannels" x:Name="rbDiscordCh20" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Checked="btnSettings_Checked" ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordSelectorWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="Channel 20"/>
+                                    -->
 
                                 </StackPanel>
 
@@ -10921,7 +10848,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                         <RichTextBox x:Name="rtbDocument" ScrollViewer.VerticalScrollBarVisibility="Auto" IsUndoEnabled="False" IsReadOnly="True" BorderThickness="0" 
                                          IsDocumentEnabled="True"  Grid.Row="0" Grid.ColumnSpan="2"
-                                         VerticalAlignment="Stretch">
+                                         VerticalAlignment="Stretch" Padding="20 0 20 20">
                             <FlowDocument/>
                         </RichTextBox>
 
@@ -10929,7 +10856,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                         <TextBox Controls:TextBoxHelper.Watermark="Type your message here..." Grid.Row="1" Grid.Column="0"
                                  VerticalContentAlignment="Center" x:Name="tbDiscordMessageBox"></TextBox>
 
-                        <Button Grid.Row="1" Grid.Column="1" x:Name="btnDiscordChatSend">SEND</Button>
+                        <Button Grid.Row="1" Grid.Column="1" x:Name="btnDiscordChatSend" Click="btnDiscordChatSend_Click" IsDefault="{Binding ElementName=tbDiscordMessageBox, Path=IsKeyboardFocused}">SEND</Button>
 
 
 
@@ -10941,29 +10868,17 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                         <Border Style="{StaticResource Borders1}" Margin="0" Width="{Binding ElementName=wpDiscordRightPane,Path=ActualWidth}">
                             <Expander IsExpanded="True" BorderThickness="0" Header="Connected Users" IsManipulationEnabled="False" >
-                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" x:Name="scrlDiscordUsers">
                                     <StackPanel Orientation="Vertical" x:Name="DiscordUserListWrapPanel">
 
                                         <!-- user menu buttons -->
+                                        
+                                        <!--
                                         <Button x:Name="btnusertest1" HorizontalContentAlignment="Left" 
                                       ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordUserListWrapPanel,Path=ActualWidth}"                                                 
                                      Content="User Template"/>
-
-                                        <Button x:Name="btnusertest2" HorizontalContentAlignment="Left" 
-                                      ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordUserListWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="User Template"/>
-
-                                        <Button x:Name="btnusertest3" HorizontalContentAlignment="Left" 
-                                      ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordUserListWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="User Template"/>
-
-                                        <Button x:Name="btnusertest4" HorizontalContentAlignment="Left" 
-                                      ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordUserListWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="User Template"/>
-
-                                        <Button x:Name="btnusertest5" HorizontalContentAlignment="Left" 
-                                      ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordUserListWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="User Template"/>
+                                        
+                                        -->
 
                                     </StackPanel>
                                 </ScrollViewer>

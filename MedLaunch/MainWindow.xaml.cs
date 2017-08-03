@@ -58,6 +58,7 @@ using MedLaunch.Classes.Scanning;
 using MedLaunch.Classes.Scraper.PSXDATACENTER;
 using System.Windows.Threading;
 using MedLaunch._Debug.ScrapeDB.ReplacementDocs;
+using MedLaunch.Classes.MednaNet;
 
 namespace MedLaunch
 {
@@ -85,6 +86,8 @@ namespace MedLaunch
         public bool UpdateStatusMF { get; set; }
 
         public bool? ConfigsTabSelected { get; set; }
+
+        public DiscordVisualHandler DVH { get; set; }
 
         /// <summary>
         /// public instance of the mahapps progressdialogcontroller
@@ -5931,6 +5934,12 @@ namespace MedLaunch
                 if (item == null)
                     return;
 
+                // instantiate the discord visual handler when the discord tab is first clicked
+                if (DVH == null && item.Header.ToString() == "Discord")
+                {
+                    DVH = new DiscordVisualHandler();
+                }
+
                 if (item.Header.ToString() == "Configs")
                 {
                     ConfigsTabSelected = true;
@@ -5975,6 +5984,8 @@ namespace MedLaunch
                     //MessageBox.Show("Config saved for configid: " + configId);
                     //lblConfigStatus.Content = "***Config Saved***";
                 }
+
+                
                 
             }
         }
@@ -5984,7 +5995,7 @@ namespace MedLaunch
             // Launch discord invite link in default browser
             try
             {
-                Process.Start("https://discord.gg/sD54x3");
+                Process.Start("https://discord.gg/nsbanNa");
             }
             catch
             {
@@ -6003,6 +6014,78 @@ namespace MedLaunch
         {
             var im = (Image)sender as Image;
             im.Cursor = Cursors.Arrow;
+        }
+
+        /// <summary>
+        /// entry point for discord connection
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDiscordConnect_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = (Button)sender as Button;
+
+            // temporary code for now until mednanet client is implemented
+            if (tbDiscordName.Text == null || tbDiscordName.Text.Trim() == "")
+            {
+                MessageBox.Show("Please enter a valid username", "Username Missing!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else if (btn.Content.ToString() == "CONNECT")
+            {
+                DVH.SetConnectedStatus(true);
+                DVH.PostLocalOnlyMessage("Connecting to the MednaNet API...");
+
+
+                // select the first channel
+
+                UIHandler ui = UIHandler.GetChildren(DiscordSelectorWrapPanel);
+                RadioButton rb = ui.RadioButtons.FirstOrDefault();
+
+                if (rb != null)
+                {
+                    rb.IsChecked = true;
+                    string name = rb.Name;
+                    string idStr = name.Replace("rbDiscordCh", "");
+                    int id = Convert.ToInt32(idStr);
+                    DVH.ChangeChannel(id);
+
+                    // update title
+                    lblDiscordChannel.Content = "MedLaunch: Discord - #" + DVH.channels.Data.Where(a => a.ChannelId == id).FirstOrDefault().ChannelName;
+                }            
+            }
+            else
+            {
+                DVH.SetConnectedStatus(false);
+                DVH.PostLocalOnlyMessage("Disconnecting from the MednaNet API...");
+                lblDiscordChannel.Content = "MedLaunch: Discord";
+            }
+        }
+
+        private void btnDiscordChatSend_Click(object sender, RoutedEventArgs e)
+        {
+            string con = tbDiscordMessageBox.Text.Trim();
+            if (con == "")
+                return;
+
+            DVH.PostMessage(con, DVH.channels.ActiveChannel);
+
+            tbDiscordMessageBox.Text = "";
+        }
+
+        public void btnDiscordChannel_Checked(object sender, RoutedEventArgs e)
+        {
+            // get channel ID from name
+            var btn = (RadioButton)sender as RadioButton;
+            string name = btn.Name;
+            string idStr = name.Replace("rbDiscordCh", "");
+            int id = Convert.ToInt32(idStr);
+
+            // notify discordvisualhandler that channel has changed
+            DVH.ChangeChannel(id);
+
+            // update title
+            lblDiscordChannel.Content = "MedLaunch: Discord - #" + DVH.channels.Data.Where(a => a.ChannelId == id).FirstOrDefault().ChannelName;
+
         }
     }
 

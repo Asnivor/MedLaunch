@@ -279,6 +279,8 @@
     <Compile Include="Classes\GamesLibrary\GamesLibraryViewModelBase.cs" />
     <Compile Include="Classes\GamesLibrary\MultipleFilterHandler.cs" />
     <Compile Include="Classes\IO\Hex.cs" />
+    <Compile Include="Classes\MednaNet\DiscordChannels.cs" />
+    <Compile Include="Classes\MednaNet\DiscordUsers.cs" />
     <Compile Include="Classes\MednaNet\DiscordVisualHandler.cs" />
     <Compile Include="Classes\Scanning\DiscScan.cs" />
     <Compile Include="Classes\Scanning\RomScan.cs" />
