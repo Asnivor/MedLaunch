@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,6 +11,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace MedLaunch.Classes.MednaNet
 {
@@ -17,7 +19,7 @@ namespace MedLaunch.Classes.MednaNet
     {
         public MainWindow mw { get; set; }
         public List<RadioButton> ChannelRadios { get; set; }
-        public List<Button> UserButtons { get; set; }
+        public List<Label> UserButtons { get; set; }
         public TextBox tbDiscordName { get; set; }
         public Label lblConnectedStatus { get; set; }
         public Button btnDiscordConnect { get; set; }
@@ -28,11 +30,14 @@ namespace MedLaunch.Classes.MednaNet
         public RichTextBox rtbDocument { get; set; }
         public StackPanel DiscordSelectorWrapPanel { get; set; }
         public StackPanel DiscordUserListWrapPanel { get; set; }
+        public Expander expDiscordUsersOnline { get; set; }
 
         private Paragraph paragraph { get; set; }
 
         public DiscordChannels channels { get; set; }
         public DiscordUsers users { get; set; }
+
+        public bool APIConnected { get; set; }
 
         /// <summary>
         /// default contructor
@@ -40,6 +45,8 @@ namespace MedLaunch.Classes.MednaNet
         public DiscordVisualHandler()
         {
             mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            APIConnected = false;
 
             // get misc controls
             tbDiscordName = (TextBox)mw.FindName("tbDiscordName");
@@ -50,6 +57,7 @@ namespace MedLaunch.Classes.MednaNet
             btnDiscordChatSend = (Button)mw.FindName("btnDiscordChatSend");
             DiscordSelectorWrapPanel = (StackPanel)mw.FindName("DiscordSelectorWrapPanel");
             DiscordUserListWrapPanel = (StackPanel)mw.FindName("DiscordUserListWrapPanel");
+            expDiscordUsersOnline = (Expander)mw.FindName("expDiscordUsersOnline");
 
             // chat text window
             rtbDocument = (RichTextBox)mw.FindName("rtbDocument");
@@ -75,6 +83,7 @@ namespace MedLaunch.Classes.MednaNet
             // initialise richtextbox
             paragraph = new Paragraph();
             rtbDocument.Document = new FlowDocument(paragraph);
+            rtbDocument.IsDocumentEnabled = true;
 
             UpdateChannelButtons();
             UpdateUsers();
@@ -107,6 +116,19 @@ namespace MedLaunch.Classes.MednaNet
         }
 
         /// <summary>
+        /// Begin sending a message to the chatbox
+        /// </summary>
+        /// <param name="message"></param>
+        public async void PostMessage(DiscordMessage discordMessage)
+        {
+            // post message on another thread
+            ThreadPool.QueueUserWorkItem(o =>
+            {
+                ChatUpdater(discordMessage);
+            });
+        }
+
+        /// <summary>
         /// update the chatbox
         /// </summary>
         /// <param name="message"></param>
@@ -120,6 +142,204 @@ namespace MedLaunch.Classes.MednaNet
                 para.Inlines.Add(message);
                 para.Inlines.Add(new LineBreak());
             }));            
+        }
+
+        public void PostFromLocal(string message)
+        {
+            // build discordMessage object
+            DiscordMessage dm = new DiscordMessage();
+            dm.postedOn = DateTime.Now;
+            dm.name = tbDiscordName.Text;
+            dm.messageId = 0;
+            dm.message = message;
+            dm.channel = channels.ActiveChannel;
+            
+
+            // send to API
+            //not yet implemented
+
+            // send to chat window
+            PostMessage(dm);
+        }
+
+        /// <summary>
+        /// update the chatbox
+        /// </summary>
+        /// <param name="message"></param>
+        private async void ChatUpdater(DiscordMessage discordMessage)
+        {
+            await mw.Dispatcher.BeginInvoke((Action)(() =>
+            {
+                // get channel paragraph
+                var para = GetChannelParagraph(discordMessage.channel);
+
+                // timestamp
+                string stamp = discordMessage.postedOn.ToShortTimeString();
+                para.Inlines.Add(new Run(" " + stamp + " ")
+                {
+                    Foreground = Brushes.Silver
+                });
+
+                // get user client type
+                var usr = users.Users.Where(a => a.UserName == discordMessage.name).FirstOrDefault();
+
+                // username formatting
+                if (usr != null)
+                {
+                    if (usr.clientType == ClientType.discord)
+                    {
+                        para.Inlines.Add(new Run(" " + discordMessage.name + "   ")
+                        {
+                            Foreground = Brushes.AliceBlue
+                        });
+                    }
+                    else if (usr.clientType == ClientType.medlaunch)
+                    {
+                        para.Inlines.Add(new Run(" " + discordMessage.name + "   ")
+                        {
+                            Foreground = Brushes.ForestGreen
+                        });
+                    }
+                    else
+                    {
+                        // no formatting
+                        para.Inlines.Add(new Run(" " + discordMessage.name + "   "));
+                    }
+                }
+                else
+                {
+                    // user not listed in online users. local testing?
+                    para.Inlines.Add(new Bold(new Run(" " + discordMessage.name + "   "))
+                    {
+                        Foreground = Brushes.Red
+                    });
+                }
+
+                //para.Inlines.Add(discordMessage.message);
+                ParseMessage(para, discordMessage.message);
+                para.Inlines.Add(new LineBreak());
+            }));
+        }
+
+        public void ParseMessage(Paragraph para, string message)
+        {
+            DetectURLs(message, para);
+        }
+
+        private static readonly Regex UrlRegex = new Regex(@"(?#Protocol)(?:(?:ht|f)tp(?:s?)\:\/\/|~/|/)?(?#Username:Password)(?:\w+:\w+@)?(?#Subdomains)(?:(?:[-\w]+\.)+(?#TopLevel Domains)(?:com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum|travel|[a-z]{2}))(?#Port)(?::[\d]{1,5})?(?#Directories)(?:(?:(?:/(?:[-\w~!$+|.,=]|%[a-f\d]{2})+)+|/)+|\?|#)?(?#Query)(?:(?:\?(?:[-\w~!$+|.,*:]|%[a-f\d{2}])+=(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)(?:&amp;(?:[-\w~!$+|.,*:]|%[a-f\d{2}])+=(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)*)*(?#Anchor)(?:#(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)?");
+        
+        public void DetectURLs(string par, Paragraph para)
+        {
+            string paragraphText = par;
+
+            // Split the paragraph by words
+            string[] words = paragraphText.Split(' ');
+            List<int> positionToReplace = new List<int>();
+
+            //foreach (string word in paragraphText.Split(' ').ToList())
+
+            // iterate through each word
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (!IsHyperlink(words[i]))
+                {
+                    // word is not a hyperlink - just post it
+                    para.Inlines.Add(words[i] + " ");
+                }
+                else
+                {
+                    // word is detected as a hyperlink
+                    positionToReplace.Add(i);
+
+                    Uri uri = new Uri(words[i], UriKind.RelativeOrAbsolute);
+
+                    if (!uri.IsAbsoluteUri)
+                    {
+                        // Prepend it with http
+                        uri = new Uri(@"http://" + words[i], UriKind.Absolute);
+                    }
+
+                    if (uri != null)
+                    {
+                        var link = new Hyperlink()
+                        {
+                            NavigateUri = uri,
+                        };
+                        link.IsEnabled = true;
+                        link.Inlines.Add(words[i]);
+                        link.Click += mw.Hyperlink_Click;
+
+                        // post the hyperlink
+                        para.Inlines.Add(link);
+                        para.Inlines.Add(" ");
+                    }
+                    else
+                    {
+                        //just post word
+                        para.Inlines.Add(words[i] + " ");
+                    }
+
+                    //
+                }
+            }
+        }
+
+        public static bool IsHyperlink(string word)
+        {
+            try
+            {
+                // First check to make sure the word has at least one of the characters we need to make a hyperlink
+                if (word.IndexOfAny(@":.\/".ToCharArray()) != -1)
+                {
+                    if (Uri.IsWellFormedUriString(word, UriKind.Absolute))
+                    {
+                        // The string is an Absolute URI
+                        return true;
+                    }
+                    else if (UrlRegex.IsMatch(word))
+                    {
+                        Uri uri = new Uri(word, UriKind.RelativeOrAbsolute);
+
+                        if (!uri.IsAbsoluteUri)
+                        {
+                            // rebuild it it with http to turn it into an Absolute URI
+                            uri = new Uri(@"http://" + word, UriKind.Absolute);
+                        }
+
+                        if (uri.IsAbsoluteUri)
+                        {
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        /*
+                        try
+                        {
+                            Uri wordUri = new Uri(word);
+
+                            // Check to see if URL is a network path
+                            if (wordUri.IsUnc || wordUri.IsFile)
+                            {
+                                return true;
+                            }
+                        }
+                        catch
+                        {
+                            return false;
+                        }
+                        */
+                        
+                    }
+                }
+
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+            
         }
 
         /// <summary>
@@ -217,12 +437,15 @@ namespace MedLaunch.Classes.MednaNet
             {
                 // get all user buttons
                 var controls = UIHandler.GetChildren(DiscordUserListWrapPanel);
-                UserButtons = controls.Buttons;
+                UserButtons = controls.Labels;
 
-                // get a copy of the DiscordChannels data object
+                // get a copy of the DiscordUsers data object
                 var usrs = users.Users.OrderBy(a => a.UserName).ToList();
 
-                List<Button> bTemp = new List<Button>();
+                // set online user count
+                expDiscordUsersOnline.Header = "USERS ONLINE (" + usrs.Count() + ")";
+
+                List<Label> bTemp = new List<Label>();
 
                 // iterate through each user
                 for (int i = 0; i < usrs.Count(); i++)
@@ -242,31 +465,57 @@ namespace MedLaunch.Classes.MednaNet
 
                     // update completed. now button creation..
 
-                    // create the channel button
+                    // create image
+                    Image img = new Image();
+                    if (usrs[i].clientType == ClientType.discord)
+                        img.Source = new BitmapImage(new Uri(@"Data/Graphics/Icons/usericon_discord.png", UriKind.Relative));
+                    else
+                        img.Source = new BitmapImage(new Uri(@"Data/Graphics/Icons/usericon_medlaunch.png", UriKind.Relative));
+                    img.Height = 20;
+                    img.Width = 20;
+                    img.HorizontalAlignment = HorizontalAlignment.Left;
+
+                    // textblock
+                    TextBlock tb = new TextBlock();
+                    tb.Text = usrs[i].UserName;
+                    Thickness margin = tb.Margin;
+                    margin.Left = 10;
+                    tb.Margin = margin;
+                    tb.VerticalAlignment = VerticalAlignment.Center;
+                    tb.HorizontalAlignment = HorizontalAlignment.Left;
+                    
+
+                    // button stackpanel
+                    StackPanel stackPnl = new StackPanel();
+                    stackPnl.Orientation = Orientation.Horizontal;
+                    stackPnl.HorizontalAlignment = HorizontalAlignment.Left;
+                    stackPnl.Children.Add(img);
+                    stackPnl.Children.Add(tb);
+
+                    Label l = new Label();
+                    l.Name = "btnDiscordUs" + usrs[i].UserId;
+                    l.Content = stackPnl;
+                    l.HorizontalAlignment = HorizontalAlignment.Left;
+                    l.HorizontalContentAlignment = HorizontalAlignment.Left;
+                    Thickness mar = l.Margin;
+                    mar.Bottom = 0;
+                    mar.Top = 0;
+                    mar.Left = 0;
+                    mar.Right = 0;
+                    l.Padding = new Thickness(0);
+                    DiscordUserListWrapPanel.Children.Add(l);
+
+                    /*
+                    // create the user button
                     Button b = new Button();
                     b.Name = "btnDiscordUs" + usrs[i].UserId;
-                    b.Content = usrs[i].UserName;
-                    //b.AddHandler(Button.ClickEvent, new RoutedEventHandler(mw.btnDiscordChannel_Checked));
+                    b.Content = stackPnl;
+                    b.HorizontalContentAlignment = HorizontalAlignment.Left;
 
-                    // width binding
-                    /*
-                    Binding b = new Binding("Width");
-                    b.ElementName = "DiscordSelectorWrapPanel";
-                    b.Path = new PropertyPath(DiscordSelectorWrapPanel.Width);
-                    rb.SetBinding(FrameworkElement.WidthProperty, b);
-                    */
-
-                    // styling
-                    /*
-                    Style style = new Style(typeof(RadioButton));
-                    style.BasedOn = (Style)mw.TryFindResource(typeof(ToggleButton));
-                    rb.Style = style;
-                    */
-
-                    // add button to UI
                     DiscordUserListWrapPanel.Children.Add(b);
-
+                    
                     bTemp.Add(b);
+                    */
                 }
 
             }));
@@ -367,6 +616,7 @@ namespace MedLaunch.Classes.MednaNet
             // set the flowdocument of the richtextbox to be the correct one for the selected channel
             paragraph = chan.Paragraph;
             rtbDocument.Document = new FlowDocument(paragraph);
+            rtbDocument.IsDocumentEnabled = true;
         }
 
         // static methods

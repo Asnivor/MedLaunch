@@ -20,22 +20,78 @@ namespace MedLaunch.Classes.MednaNet
                 new DiscordUser()
                 {
                     UserId = 1,
-                    UserName = "JoE BloGgs",
+                    UserName = "D. Hicks",
                     clientType = ClientType.discord,
                     IsOnline = true
                 },
                 new DiscordUser()
                 {
                     UserId = 2,
-                    UserName = "ff399jf f 39",
-                    clientType = ClientType.discord,
+                    UserName = "W. Hudson",
+                    clientType = ClientType.medlaunch,
                     IsOnline = true
                 },
                 new DiscordUser()
                 {
                     UserId = 3,
-                    UserName = "R2D2",
+                    UserName = "S. Gorman",
                     clientType = ClientType.discord,
+                    IsOnline = true
+                },
+                new DiscordUser()
+                {
+                    UserId = 4,
+                    UserName = "J. Vasquez",
+                    clientType = ClientType.medlaunch,
+                    IsOnline = true
+                },
+                new DiscordUser()
+                {
+                    UserId = 100,
+                    UserName = "A. Apone",
+                    clientType = ClientType.discord,
+                    IsOnline = true
+                },
+                new DiscordUser()
+                {
+                    UserId = 200,
+                    UserName = "C. Ferro",
+                    clientType = ClientType.medlaunch,
+                    IsOnline = true
+                },
+                new DiscordUser()
+                {
+                    UserId = 300,
+                    UserName = "M. Drake",
+                    clientType = ClientType.discord,
+                    IsOnline = true
+                },
+                new DiscordUser()
+                {
+                    UserId = 37,
+                    UserName = "T. Crowe",
+                    clientType = ClientType.medlaunch,
+                    IsOnline = true
+                },
+                new DiscordUser()
+                {
+                    UserId = 3004,
+                    UserName = "T. Wierzbowski",
+                    clientType = ClientType.discord,
+                    IsOnline = true
+                },
+                new DiscordUser()
+                {
+                    UserId = 375,
+                    UserName = "R. Frost",
+                    clientType = ClientType.medlaunch,
+                    IsOnline = true
+                },
+                new DiscordUser()
+                {
+                    UserId = 37543,
+                    UserName = "D. Spunkmeyer",
+                    clientType = ClientType.medlaunch,
                     IsOnline = true
                 },
             };

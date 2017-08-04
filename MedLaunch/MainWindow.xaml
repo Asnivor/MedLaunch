@@ -10759,7 +10759,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="0" />
                         <ColumnDefinition />
-                        <ColumnDefinition Width="224" />
+                        <ColumnDefinition Width="160" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50" />
@@ -10866,19 +10866,27 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                         <!-- above right panel -->
 
-                        <Border Style="{StaticResource Borders1}" Margin="0" Width="{Binding ElementName=wpDiscordRightPane,Path=ActualWidth}">
-                            <Expander IsExpanded="True" BorderThickness="0" Header="Connected Users" IsManipulationEnabled="False" >
-                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" x:Name="scrlDiscordUsers">
+                        <Border Style="{StaticResource Borders1}" Margin="0" x:Name="discordusrborder" Width="{Binding ElementName=wpDiscordRightPane,Path=ActualWidth}">
+                            <Expander IsExpanded="True" BorderThickness="0" Header="Users Online (0)" IsManipulationEnabled="False" x:Name="expDiscordUsersOnline">
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" x:Name="scrlDiscordUsers">
                                     <StackPanel Orientation="Vertical" x:Name="DiscordUserListWrapPanel">
 
                                         <!-- user menu buttons -->
-                                        
-                                        <!--
+
+<!--
                                         <Button x:Name="btnusertest1" HorizontalContentAlignment="Left" 
-                                      ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordUserListWrapPanel,Path=ActualWidth}"                                                 
-                                     Content="User Template"/>
-                                        
-                                        -->
+                                      ContextMenuService.ShowOnDisabled="True" Width="{Binding ElementName=DiscordUserListWrapPanel,Path=ActualWidth}">
+
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="Data/Graphics/Icons/usericon_medlaunch.png" Width="20" Height="20"/>
+                                                <TextBlock VerticalAlignment="Center" Margin="10,0,0,0">
+                                                    some user
+                                                </TextBlock>
+                                            </StackPanel>
+
+                                        </Button>
+-->
+
 
                                     </StackPanel>
                                 </ScrollViewer>

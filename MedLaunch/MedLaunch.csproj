@@ -280,6 +280,7 @@
     <Compile Include="Classes\GamesLibrary\MultipleFilterHandler.cs" />
     <Compile Include="Classes\IO\Hex.cs" />
     <Compile Include="Classes\MednaNet\DiscordChannels.cs" />
+    <Compile Include="Classes\MednaNet\DiscordMessage.cs" />
     <Compile Include="Classes\MednaNet\DiscordUsers.cs" />
     <Compile Include="Classes\MednaNet\DiscordVisualHandler.cs" />
     <Compile Include="Classes\Scanning\DiscScan.cs" />
@@ -991,6 +992,8 @@
     <None Include="Data\System\SaturnList.txt" />
     <Resource Include="Data\Graphics\Discord_logo_svg.svg.png" />
     <Resource Include="Data\Graphics\MedLaunch_sm.png" />
+    <Resource Include="Data\Graphics\Icons\usericon_discord.png" />
+    <Resource Include="Data\Graphics\Icons\usericon_medlaunch.png" />
     <Content Include="ExternalAssemblies\WindowScrape.dll" />
     <Resource Include="MedLaunchIcon.ico" />
     <Resource Include="Data\Graphics\Controllers\lynx_controller.png" />
