@@ -2130,8 +2130,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
 
 
-                        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Width="{Binding ElementName=configGrid, Path=ActualWidth}" Height="{Binding ElementName=configGrid, Path=ActualHeight}">
-                            <WrapPanel HorizontalAlignment="Left" Orientation="Vertical" x:Name="ConfigWrapPanel">
+                        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Width="{Binding ElementName=configGrid, Path=ActualWidth}" Height="{Binding ElementName=configGrid, Path=ActualHeight}">
+                            <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal" x:Name="ConfigWrapPanel">
 
                                 <!-- General Border -->
                                 <Border Style="{StaticResource Borders1}" Margin="10">
@@ -9912,8 +9912,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                         </Grid.RowDefinitions>
 
 
-                        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Width="{Binding ElementName=controlGrid, Path=ActualWidth}" Height="{Binding ElementName=controlGrid, Path=ActualHeight}">
-                            <WrapPanel HorizontalAlignment="Left" Orientation="Vertical" x:Name="ControlWrapPanel">
+                        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Width="{Binding ElementName=controlGrid, Path=ActualWidth}" Height="{Binding ElementName=controlGrid, Path=ActualHeight}">
+                            <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal" x:Name="ControlWrapPanel">
 
                                 <!-- dynamically inserted control stuff goes below -->
                                 <Controls:TransitioningContentControl x:Name="tccControls" Transition="LeftReplace"/>

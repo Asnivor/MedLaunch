@@ -13,7 +13,7 @@
     
         
             <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrd">
-                <Expander IsExpanded="True" BorderThickness="0" Header="Game Gear">
+        <GroupBox Margin="0" BorderThickness="0" Header="Game Gear">
                     <StackPanel Margin="10">
                        
                         <WrapPanel HorizontalAlignment="Center" Margin="5" Orientation="Vertical">
@@ -49,7 +49,7 @@
                         </WrapPanel>
 
                     </StackPanel>
-                </Expander>
+                </GroupBox>
             </Border>
 
         

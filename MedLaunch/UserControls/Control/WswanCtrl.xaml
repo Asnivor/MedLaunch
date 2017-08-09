@@ -12,7 +12,7 @@
              d:DesignHeight="600" d:DesignWidth="600">
 
             <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrd">
-                <Expander IsExpanded="True" BorderThickness="0" Header="WonderSwan / WonderSwan Color">
+        <GroupBox Margin="0" BorderThickness="0" Header="WonderSwan / WonderSwan Color">
                     <StackPanel Margin="10">
                        
                         <WrapPanel HorizontalAlignment="Center" Margin="5" Orientation="Vertical">
@@ -48,7 +48,7 @@
                         </WrapPanel>
 
                     </StackPanel>
-                </Expander>
+                </GroupBox>
             </Border>
 
 
