@@ -564,6 +564,8 @@ namespace MedLaunch.Models
         public string ss__debugger__disfontsize { get; set; }
         public string ss__debugger__memcharenc { get; set; }
 
+        
+
         public bool? ss__enable { get; set; }
         public bool? ss__forcemono { get; set; }
         public string ss__shader { get; set; }

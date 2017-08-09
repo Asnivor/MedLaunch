@@ -503,6 +503,20 @@ namespace MedLaunch.Classes.MednaNet
                     mar.Left = 0;
                     mar.Right = 0;
                     l.Padding = new Thickness(0);
+
+                    if (usrs[i].clientType == ClientType.discord)
+                    {
+                        l.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#7289DA"));
+                    }
+                        
+                    else if (usrs[i].clientType == ClientType.medlaunch)
+                    {
+                        // get the current primary color and set the user label as this
+                        var color = mw.discordChannelExpander.Background;
+                        l.Foreground = color;
+                    }
+                        
+
                     DiscordUserListWrapPanel.Children.Add(l);
 
                     /*

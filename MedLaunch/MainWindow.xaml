@@ -8264,7 +8264,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </ComboBox>
 
                                                 <Label Name="cfglbl_ss__input__port1__gun_chairs" Grid.Column="2" Grid.Row="1">Lightgun Crosshair:</Label>
-                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="1" x:Name="cfg_ss__input__port1__gun_chairs" />
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black" Width="40" Grid.Column="3" Grid.Row="1" x:Name="cfg_ss__input__port1__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port2" Grid.Column="0" Grid.Row="2">Input Device (Virtual) Port 2</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port2" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="2">
@@ -10812,7 +10812,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                         <!-- above left border -->
 
                         <Border Style="{StaticResource Borders1}" Margin="0">
-                            <Expander IsExpanded="True" BorderThickness="0" Header="Discord Channels" IsManipulationEnabled="False" >
+                            <Expander IsExpanded="True" BorderThickness="0" Header="Discord Channels" IsManipulationEnabled="False" x:Name="discordChannelExpander">
                                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" x:Name="scrlDiscordChannels">
                                     
                                 
