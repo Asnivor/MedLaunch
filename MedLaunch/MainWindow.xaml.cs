@@ -3753,6 +3753,14 @@ namespace MedLaunch
             UpdateCheckMednafen();            
         }
 
+        DispatcherTimer dlTimer = new DispatcherTimer();
+        private void dlTimer_Tick(object sender, EventArgs e)
+        {
+            // if this gets called, we can assume the download has timed out
+            //MessageBox.Show("download has timed out!");
+            dlTimedout = true;
+        }
+
         private bool StartDownload(ProgressDialogController controller, string uri, string destination, string dialogMessage)
         {
             DialogMessage = dialogMessage;
@@ -3768,8 +3776,13 @@ namespace MedLaunch
                     PDC.Maximum = 100;
                     PDC.Minimum = 0;
                     wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
-                    wc.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                    wc.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);                    
                     wc.DownloadFileAsync(new Uri(uri), destination);
+
+                    // start the download timer 
+                    DownloadTimerGo(wc);
+                    
+
 
                     while (!DownloadComplete)
                     {
@@ -3795,27 +3808,56 @@ namespace MedLaunch
             }
         }
 
+        bool dlTimedout = false;
+
+        private void DownloadTimerGo(CustomWebClient wc)
+        {
+            dlTimedout = false;
+            dlTimer.Tick += new EventHandler(dlTimer_Tick);
+            dlTimer.Interval = new TimeSpan(0, 0, 20);
+            dlTimer.Start();
+
+            while (dlTimer.IsEnabled)
+            {
+                // timer is running
+                if (dlTimedout == true)
+                {
+                    // download has timed out - cancel it
+                    wc.CancelAsync();
+                }
+            }
+        }
+
         private void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             // update PDC with percentage
             PDC.SetProgress(e.ProgressPercentage);
             PDC.SetMessage(DialogMessage +  "\n\nDownloaded " + e.BytesReceived + " of " + e.TotalBytesToReceive + " bytes");
+
+            // reset the timer
+            dlTimer.Stop();
+            dlTimer.Start();
         }
 
         private void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
+            // stop the timer
+            dlTimer.Stop();
+
             //progressBar1.Value = 0;
             DownloadComplete = true;
 
             if (e.Cancelled)
             {
-                MessageBox.Show("The download has been cancelled");
+                MessageBox.Show("The download has been cancelled: \n\n" + e.Cancelled);
                 return;
             }
 
+            
+
             if (e.Error != null) // We have an error! Retry a few times, then abort.
             {
-                MessageBox.Show("An error ocurred while trying to download file");
+                MessageBox.Show("An error ocurred while trying to download file: \n\n" + e.Error);
 
                 return;
             }
