@@ -2135,7 +2135,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                 <!-- General Border -->
                                 <Border Style="{StaticResource Borders1}" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="General">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="General">
                                         <StackPanel Margin="10">
 
                                             <CheckBox Name="cfg_autosave">Autosave</CheckBox>
@@ -2191,11 +2191,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             <CheckBox Name="cfg_debugger__autostepmode" Grid.Row="4" Grid.ColumnSpan="2">Debugger Auto-Step Mode</CheckBox>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
                                 <!-- Audio Border -->
                                 <Border Style="{StaticResource Borders1}" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Audio">
+                                    <GroupBox Margin="0"  BorderThickness="0" Header="Audio">
                                         <StackPanel Margin="10">
 
 
@@ -2271,11 +2271,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
                                 <!-- OSD Border -->
                                 <Border Style="{StaticResource Borders1}" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="OSD">
+                                    <GroupBox Margin="0"  BorderThickness="0" Header="OSD">
                                         <StackPanel Margin="10">
 
 
@@ -2314,11 +2314,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
                                 <!-- Video Border -->
                                 <Border Style="{StaticResource Borders1}" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Video">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Video">
                                         <StackPanel Margin="10">
 
 
@@ -2357,12 +2357,12 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <!-- Control Border -->
                                 <Border Style="{StaticResource Borders1}" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Control">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Control">
                                         <StackPanel Margin="10">
 
 
@@ -2406,7 +2406,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <!-- System specific settings - only show when system config is selected -->
@@ -2414,7 +2414,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 <!-- lynx -->
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificLynx2" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Lynx Filters/Misc">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Lynx Filters/Misc">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_lynx__enable">Enable (Automatic) Usage of this module</CheckBox>
@@ -2503,11 +2503,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificLynx99" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Lynx OGL Goat Filter Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Lynx OGL Goat Filter Settings">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_lynx__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
@@ -2585,11 +2585,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificLynx3" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Lynx Resolution">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Lynx Resolution">
 
                                         <StackPanel>
 
@@ -2685,21 +2685,21 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificLynx1" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Lynx Specific Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Lynx Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_lynx__lowpass">Enable Lowpass Filter (sound)</CheckBox>
                                             <CheckBox x:Name="cfg_lynx__rotateinput">Rotate D-Pad with Screen</CheckBox>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <!-- gg -->
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGg1" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Game Gear Filters/Misc">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Game Gear Filters/Misc">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_gg__enable">Enable (Automatic) Usage of this module</CheckBox>
@@ -2788,11 +2788,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGg99" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="GG OGL Goat Filter Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="GG OGL Goat Filter Settings">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_gg__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
@@ -2870,11 +2870,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGg2" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Game Gear Resolution">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Game Gear Resolution">
 
                                         <StackPanel>
 
@@ -2970,14 +2970,14 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
 
                                 <!-- gb -->
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGb2" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Gameboy Filters/Misc">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Gameboy Filters/Misc">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_gb__enable">Enable (Automatic) Usage of this module</CheckBox>
@@ -3066,11 +3066,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGb99" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="GB OGL Goat Filter Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="GB OGL Goat Filter Settings">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_gb__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
@@ -3148,11 +3148,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGb3" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Gameboy Resolution">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Gameboy Resolution">
 
                                         <StackPanel>
 
@@ -3248,11 +3248,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGb1" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Gameboy Specific Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Gameboy Specific Settings">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
@@ -3271,13 +3271,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </ComboBox>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
 
                                 <!-- gba -->
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGba1" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Gameboy Advance Filters/Misc">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Gameboy Advance Filters/Misc">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_gba__enable">Enable (Automatic) Usage of this module</CheckBox>
@@ -3366,11 +3366,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGba99" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="GBA OGL Goat Filter Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="GBA OGL Goat Filter Settings">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_gba__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
@@ -3448,11 +3448,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificGba2" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Gameboy Advance Resolution">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Gameboy Advance Resolution">
 
                                         <StackPanel>
 
@@ -3548,13 +3548,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <!-- ngp -->
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNgp2" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="NGP Filters/Misc">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="NGP Filters/Misc">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_ngp__enable">Enable (Automatic) Usage of this module</CheckBox>
@@ -3643,11 +3643,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNgp99" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="NGP OGL Goat Filter Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="NGP OGL Goat Filter Settings">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_ngp__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
@@ -3725,11 +3725,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNgp3" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="NGP Resolution">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="NGP Resolution">
 
                                         <StackPanel>
 
@@ -3825,11 +3825,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNgp1" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="NeoGeo Pocket Specific Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="NeoGeo Pocket Specific Settings">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
@@ -3846,13 +3846,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </ComboBox>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <!-- nes -->
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNes5" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="NES Filters/Misc">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="NES Filters/Misc">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_nes__enable">Enable (Automatic) Usage of this module</CheckBox>
@@ -3940,11 +3940,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNes99" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="NES OGL Goat Filter Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="NES OGL Goat Filter Settings">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_nes__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
@@ -4022,11 +4022,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNes6" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="NES Resolution">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="NES Resolution">
 
                                         <StackPanel>
 
@@ -4122,11 +4122,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNes1" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="NES Specific General Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="NES Specific General Settings">
                                         <StackPanel Margin="10">
 
                                             <CheckBox x:Name="cfg_nes__fnscan">Filname-based PAL Detection</CheckBox>
@@ -4237,11 +4237,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNes2" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="NES NTSC Advanced">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="NES NTSC Advanced">
                                         <StackPanel Margin="10">
 
                                             <CheckBox x:Name="cfg_nes__ntsc__matrix">NTSC Custom Decoder Matrix</CheckBox>
@@ -4306,11 +4306,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNes3" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="NES Specific Video Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="NES Specific Video Settings">
                                         <StackPanel Margin="10">
 
                                             <CheckBox x:Name="cfg_nes__pal">Enable PAL (50Hz) Emulation</CheckBox>
@@ -4378,11 +4378,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificNes4" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="NES Video Settings (Cont.)">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="NES Video Settings (Cont.)">
                                         <StackPanel Margin="10">
 
 
@@ -4432,7 +4432,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
 
@@ -4440,7 +4440,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 <!-- pce_fast -->
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce_fast3" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PC-Engine (fast) Filters/Misc">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PC-Engine (fast) Filters/Misc">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_pce_fast__enable">Enable (Automatic) Usage of this module</CheckBox>
@@ -4529,11 +4529,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce_fast99" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PCE (Fast) OGL Goat Filter Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PCE (Fast) OGL Goat Filter Settings">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_pce_fast__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
@@ -4611,11 +4611,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce_fast4" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PC-Engine (fast) Resolution">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PC-Engine (fast) Resolution">
 
                                         <StackPanel>
 
@@ -4711,12 +4711,12 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce_fast1" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PC-Engine (fast) Specific Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PC-Engine (fast) Specific Settings">
                                         <StackPanel Margin="10">
 
                                             <CheckBox x:Name="cfg_pce_fast__arcadecard">Arcade Card Emulation</CheckBox>
@@ -4776,11 +4776,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce_fast2" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PC-Engine (fast) Continued">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PC-Engine (fast) Continued">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
@@ -4867,7 +4867,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </DockPanel>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
 
@@ -4875,7 +4875,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 <!-- pce -->
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce3" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PC-Engine Filters/Misc">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PC-Engine Filters/Misc">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_pce__enable">Enable (Automatic) Usage of this module</CheckBox>
@@ -4964,11 +4964,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce99" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PCE OGL Goat Filter Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PCE OGL Goat Filter Settings">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_pce__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
@@ -5046,11 +5046,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce4" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PC-Engine Resolution">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PC-Engine Resolution">
 
                                         <StackPanel>
 
@@ -5146,12 +5146,12 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce1" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PC-Engine Specific Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PC-Engine Specific Settings">
                                         <StackPanel Margin="10">
 
                                             <CheckBox x:Name="cfg_pce__arcadecard">Arcade Card Emulation</CheckBox>
@@ -5224,11 +5224,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPce2" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PC-Engine Continued">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PC-Engine Continued">
                                         <StackPanel Margin="10">
 
 
@@ -5347,7 +5347,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <TextBox x:Name="cfg_pce__debugger__memcharenc" Grid.Column="1" Grid.Row="15" />
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
 
@@ -5357,7 +5357,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPcfx4" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PC-FX Filters/Misc">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PC-FX Filters/Misc">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_pcfx__enable">Enable (Automatic) Usage of this module</CheckBox>
@@ -5446,11 +5446,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPcfx99" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PCFX OGL Goat Filter Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PCFX OGL Goat Filter Settings">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_pcfx__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
@@ -5528,11 +5528,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPcfx3" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PC-FX Resolution">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PC-FX Resolution">
 
                                         <StackPanel>
 
@@ -5628,11 +5628,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPcfx1" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PC-FX Specific Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PC-FX Specific Settings">
                                         <StackPanel Margin="10">
 
                                             <CheckBox x:Name="cfg_pcfx__adpcm__emulate_buggy_codec">Buggy ADPCM Hack</CheckBox>
@@ -5721,11 +5721,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPcfx2" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PC-FX Continued">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PC-FX Continued">
                                         <StackPanel Margin="10">
 
 
@@ -5832,7 +5832,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </ComboBox>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
 
@@ -5840,7 +5840,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 <!-- sms -->
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSms2" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Master System Filters/Misc">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Master System Filters/Misc">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_sms__enable">Enable (Automatic) Usage of this module</CheckBox>
@@ -5929,11 +5929,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSms99" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="SMS OGL Goat Filter Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="SMS OGL Goat Filter Settings">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_sms__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
@@ -6011,11 +6011,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSms3" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Master System Resolution">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Master System Resolution">
 
                                         <StackPanel>
 
@@ -6111,11 +6111,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSms1" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Master System Specific Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Master System Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_sms__fm">FM Sound Emulation</CheckBox>
                                             <Grid Margin="0">
@@ -6167,7 +6167,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
 
@@ -6176,7 +6176,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 <!-- md -->
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificMd2" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="MegaDrive Filters/Misc">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="MegaDrive Filters/Misc">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_md__enable">Enable (Automatic) Usage of this module</CheckBox>
@@ -6265,11 +6265,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificMd99" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="MD OGL Goat Filter Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="MD OGL Goat Filter Settings">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_md__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
@@ -6347,11 +6347,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificMd3" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="MegaDrive Resolution">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="MegaDrive Resolution">
 
                                         <StackPanel>
 
@@ -6447,11 +6447,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificMd1" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="MegaDrive Specific Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="MegaDrive Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_md__correct_aspect">Correct Aspect Ratio</CheckBox>
                                             <CheckBox x:Name="cfg_md__input__auto">Auto-Select Input Device</CheckBox>
@@ -6606,7 +6606,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
 
@@ -6614,7 +6614,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 <!-- snes_faust -->
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes_faust2" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Snes (Faust) Filters/Misc">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Snes (Faust) Filters/Misc">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_snes_faust__enable">Enable (Automatic) Usage of this module</CheckBox>
@@ -6703,11 +6703,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes_faust99" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="SNES (Faust) OGL Goat Filter Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="SNES (Faust) OGL Goat Filter Settings">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_snes_faust__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
@@ -6785,11 +6785,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes_faust3" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="SNES (Faust) Resolution">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="SNES (Faust) Resolution">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_snes_faust__correct_aspect">Correct Aspect Ratio</CheckBox>
@@ -6885,11 +6885,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes_faust1" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="SNES (Faust) Specific Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="SNES (Faust) Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_snes_faust__spex">1-Frame Speculative Video Execution</CheckBox>
                                             <CheckBox x:Name="cfg_snes_faust__spex__sound">1-Frame Speculative Sound</CheckBox>
@@ -7002,7 +7002,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
 
@@ -7010,7 +7010,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 <!-- snes -->
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes2" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Snes Filters/Misc">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Snes Filters/Misc">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_snes__enable">Enable (Automatic) Usage of this module</CheckBox>
@@ -7100,11 +7100,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes99" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="SNES OGL Goat Filter Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="SNES OGL Goat Filter Settings">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_snes__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
@@ -7182,11 +7182,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes3" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Snes Resolution">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Snes Resolution">
 
                                         <StackPanel>
 
@@ -7282,11 +7282,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes1" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="SNES Specific Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="SNES Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_snes__correct_aspect">Correct Aspect Ratio</CheckBox>
                                             <Grid Margin="0">
@@ -7395,7 +7395,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 -->
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
 
@@ -7403,7 +7403,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 <!-- vb -->
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificVb2" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Virtual Boy Filters/Misc">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Virtual Boy Filters/Misc">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_vb__enable">Enable (Automatic) Usage of this module</CheckBox>
@@ -7492,11 +7492,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificVb99" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="VB OGL Goat Filter Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="VB OGL Goat Filter Settings">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_vb__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
@@ -7574,11 +7574,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificVb3" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Virtual Boy Resolution">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Virtual Boy Resolution">
 
                                         <StackPanel>
 
@@ -7674,11 +7674,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificVb1" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Virtual Boy Specific Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Virtual Boy Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_vb__input__instant_read_hack">Input Latency Reduction Hack</CheckBox>
                                             <CheckBox x:Name="cfg_vb__instant_display_hack">Display Latency Reduction Hack</CheckBox>
@@ -7796,7 +7796,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
 
@@ -7804,7 +7804,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 <!-- ss -->
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSs3" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Saturn Filters/Misc">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Saturn Filters/Misc">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_ss__enable">Enable (Automatic) Usage of this module</CheckBox>
@@ -7898,11 +7898,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSs99" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="SS OGL Goat Filter Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="SS OGL Goat Filter Settings">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_ss__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
@@ -7980,11 +7980,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSs4" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Saturn Resolution">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Saturn Resolution">
 
                                         <StackPanel>
 
@@ -8080,11 +8080,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSs1" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Saturn Specific Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Saturn Specific Settings">
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_ss__bios_sanity">Enable BIOS (ROM) Sanity Checks</CheckBox>
                                             <CheckBox x:Name="cfg_ss__cd_sanity">Enable CD (Image) Sanity Checks</CheckBox>
@@ -8204,11 +8204,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSs2" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Saturn Controller Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Saturn Controller Settings">
                                         <StackPanel Margin="10">
 
                                             <CheckBox x:Name="cfg_ss__input__sport1__multitap">Enable Multitap Emulation on Port 1</CheckBox>
@@ -8218,6 +8218,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
                                                     <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
                                                     <ColumnDefinition Width="Auto" />
                                                     <ColumnDefinition Width="Auto" />
                                                 </Grid.ColumnDefinitions>
@@ -8243,7 +8245,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
 
-                                                <DockPanel Grid.ColumnSpan="4" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                <DockPanel Grid.ColumnSpan="6" Grid.Row="0" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_ss__input__mouse_sensitivity" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Emulated Mouse Sensitivity</Label>
                                                     <Controls:NumericUpDown  Maximum="2" Minimum="0.125" Interval="0.005" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_ss__input__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="2" Minimum="0.125" TickPlacement="BottomRight" TickFrequency="0.005" IsSnapToTickEnabled="True" 
@@ -8263,9 +8265,10 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="cfglbl_ss__input__port1__gun_chairs" Grid.Column="2" Grid.Row="1">Lightgun Crosshair:</Label>
+                                                <Label Name="cfglbl_ss__input__port1__gun_chairs" Grid.Column="2" Grid.Row="1">Gun Crosshair:</Label>
                                                 <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black" Width="40" Grid.Column="3" Grid.Row="1" x:Name="cfg_ss__input__port1__gun_chairs" />
-
+                                                <Label Name="cfglbl_ss__input__port1__3dpad__mode__defpos" Grid.Column="4" Grid.Row="1">3DPad Default Mode:</Label>
+                                                
                                                 <Label Name="cfglbl_ss__input__port2" Grid.Column="0" Grid.Row="2">Input Device (Virtual) Port 2</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port2" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="2">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
@@ -8279,8 +8282,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="cfglbl_ss__input__port2__gun_chairs" Grid.Column="2" Grid.Row="2">Lightgun Crosshair:</Label>
-                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="2" x:Name="cfg_ss__input__port2__gun_chairs" />
+                                                <Label Name="cfglbl_ss__input__port2__gun_chairs" Grid.Column="2" Grid.Row="2">Gun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black" Width="40"   Grid.Column="3" Grid.Row="2" x:Name="cfg_ss__input__port2__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port3" Grid.Column="0" Grid.Row="3">Input Device (Virtual) Port 3</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port3" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="3">
@@ -8295,8 +8298,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="cfglbl_ss__input__port3__gun_chairs" Grid.Column="2" Grid.Row="3">Lightgun Crosshair:</Label>
-                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="3" x:Name="cfg_ss__input__port3__gun_chairs" />
+                                                <Label Name="cfglbl_ss__input__port3__gun_chairs" Grid.Column="2" Grid.Row="3">Gun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black" Width="40"   Grid.Column="3" Grid.Row="3" x:Name="cfg_ss__input__port3__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port4" Grid.Column="0" Grid.Row="4">Input Device (Virtual) Port 4</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port4" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="4">
@@ -8311,8 +8314,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="cfglbl_ss__input__port4__gun_chairs" Grid.Column="2" Grid.Row="4">Lightgun Crosshair:</Label>
-                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="4" x:Name="cfg_ss__input__port4__gun_chairs" />
+                                                <Label Name="cfglbl_ss__input__port4__gun_chairs" Grid.Column="2" Grid.Row="4">Gun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black" Width="40"   Grid.Column="3" Grid.Row="4" x:Name="cfg_ss__input__port4__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port5" Grid.Column="0" Grid.Row="5">Input Device (Virtual) Port 5</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port5" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="5">
@@ -8327,8 +8330,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="cfglbl_ss__input__port5__gun_chairs" Grid.Column="2" Grid.Row="5">Lightgun Crosshair:</Label>
-                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="5" x:Name="cfg_ss__input__port5__gun_chairs" />
+                                                <Label Name="cfglbl_ss__input__port5__gun_chairs" Grid.Column="2" Grid.Row="5">Gun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black" Width="40"   Grid.Column="3" Grid.Row="5" x:Name="cfg_ss__input__port5__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port6" Grid.Column="0" Grid.Row="6">Input Device (Virtual) Port 6</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port6" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="6">
@@ -8343,8 +8346,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="cfglbl_ss__input__port6__gun_chairs" Grid.Column="2" Grid.Row="6">Lightgun Crosshair:</Label>
-                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="6" x:Name="cfg_ss__input__port6__gun_chairs" />
+                                                <Label Name="cfglbl_ss__input__port6__gun_chairs" Grid.Column="2" Grid.Row="6">Gun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black" Width="40"   Grid.Column="3" Grid.Row="6" x:Name="cfg_ss__input__port6__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port7" Grid.Column="0" Grid.Row="7">Input Device (Virtual) Port 7</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port7" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="7">
@@ -8359,8 +8362,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="cfglbl_ss__input__port7__gun_chairs" Grid.Column="2" Grid.Row="7">Lightgun Crosshair:</Label>
-                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="7" x:Name="cfg_ss__input__port7__gun_chairs" />
+                                                <Label Name="cfglbl_ss__input__port7__gun_chairs" Grid.Column="2" Grid.Row="7">Gun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Width="40"  Grid.Column="3" Grid.Row="7" x:Name="cfg_ss__input__port7__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port8" Grid.Column="0" Grid.Row="8">Input Device (Virtual) Port 8</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port8" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="8">
@@ -8375,8 +8378,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="cfglbl_ss__input__port8__gun_chairs" Grid.Column="2" Grid.Row="8">Lightgun Crosshair:</Label>
-                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="8" x:Name="cfg_ss__input__port8__gun_chairs" />
+                                                <Label Name="cfglbl_ss__input__port8__gun_chairs" Grid.Column="2" Grid.Row="8">Gun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Width="40"  Grid.Column="3" Grid.Row="8" x:Name="cfg_ss__input__port8__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port9" Grid.Column="0" Grid.Row="9">Input Device (Virtual) Port 9</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port9" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="9">
@@ -8391,8 +8394,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="cfglbl_ss__input__port9__gun_chairs" Grid.Column="2" Grid.Row="9">Lightgun Crosshair:</Label>
-                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="9" x:Name="cfg_ss__input__port9__gun_chairs" />
+                                                <Label Name="cfglbl_ss__input__port9__gun_chairs" Grid.Column="2" Grid.Row="9">Gun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Width="40"  Grid.Column="3" Grid.Row="9" x:Name="cfg_ss__input__port9__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port10" Grid.Column="0" Grid.Row="10">Input Device (Virtual) Port 10</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port10" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="10">
@@ -8407,8 +8410,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="cfglbl_ss__input__port10__gun_chairs" Grid.Column="2" Grid.Row="10">Lightgun Crosshair:</Label>
-                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="10" x:Name="cfg_ss__input__port10__gun_chairs" />
+                                                <Label Name="cfglbl_ss__input__port10__gun_chairs" Grid.Column="2" Grid.Row="10">Gun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Width="40"  Grid.Column="3" Grid.Row="10" x:Name="cfg_ss__input__port10__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port11" Grid.Column="0" Grid.Row="11">Input Device (Virtual) Port 11</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port11" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="11">
@@ -8423,8 +8426,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="cfglbl_ss__input__port11__gun_chairs" Grid.Column="2" Grid.Row="11">Lightgun Crosshair:</Label>
-                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="11" x:Name="cfg_ss__input__port11__gun_chairs" />
+                                                <Label Name="cfglbl_ss__input__port11__gun_chairs" Grid.Column="2" Grid.Row="11">Gun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Width="40"  Grid.Column="3" Grid.Row="11" x:Name="cfg_ss__input__port11__gun_chairs" />
 
                                                 <Label Name="cfglbl_ss__input__port12" Grid.Column="0" Grid.Row="12">Input Device (Virtual) Port 12</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port12" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="12">
@@ -8439,13 +8442,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="keyboard">Keyboard</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="cfglbl_ss__input__port12__gun_chairs" Grid.Column="2" Grid.Row="12">Lightgun Crosshair:</Label>
-                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Grid.Column="3" Grid.Row="12" x:Name="cfg_ss__input__port12__gun_chairs" />
+                                                <Label Name="cfglbl_ss__input__port12__gun_chairs" Grid.Column="2" Grid.Row="12">Gun Crosshair:</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black" Width="40"  Grid.Column="3" Grid.Row="12" x:Name="cfg_ss__input__port12__gun_chairs" />
 
 
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
 
@@ -8453,7 +8456,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 <!-- psx -->
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx11" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Psx Filters/Misc">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Psx Filters/Misc">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_psx__enable">Enable (Automatic) Usage of this module</CheckBox>
@@ -8542,11 +8545,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx99" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX OGL Goat Filter Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PSX OGL Goat Filter Settings">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_psx__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
@@ -8624,11 +8627,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx12" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Psx Resolution">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Psx Resolution">
 
                                         <StackPanel>
 
@@ -8724,11 +8727,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx1" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="Playstation Specific Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Playstation Specific Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_psx__bios_sanity">Enable BIOS (ROM) Sanity Checks</CheckBox>
                                             <CheckBox x:Name="cfg_psx__cd_sanity">Enable CD (Image) Sanity Checks</CheckBox>
@@ -8827,11 +8830,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx2" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX Control Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PSX Control Settings">
                                         <StackPanel Margin="10">
                                             <CheckBox x:Name="cfg_psx__input__analog_mode_ct">Analog Mode Combo-Button Toggle</CheckBox>
 
@@ -8914,11 +8917,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx3" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 1">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PSX Controller 1">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
@@ -8972,11 +8975,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <CheckBox x:Name="cfg_psx__input__port1__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 1</CheckBox>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx4" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 2">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PSX Controller 2">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
@@ -9030,11 +9033,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <CheckBox x:Name="cfg_psx__input__port2__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 2</CheckBox>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx5" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 3">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PSX Controller 3">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
@@ -9088,11 +9091,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <CheckBox x:Name="cfg_psx__input__port3__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 3</CheckBox>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx6" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 4">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PSX Controller 4">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
@@ -9146,11 +9149,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <CheckBox x:Name="cfg_psx__input__port4__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 4</CheckBox>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx7" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 5">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PSX Controller 5">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
@@ -9204,11 +9207,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <CheckBox x:Name="cfg_psx__input__port5__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 5</CheckBox>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx8" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 6">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PSX Controller 6">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
@@ -9262,11 +9265,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <CheckBox x:Name="cfg_psx__input__port6__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 6</CheckBox>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx9" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 7">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PSX Controller 7">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
@@ -9320,11 +9323,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <CheckBox x:Name="cfg_psx__input__port7__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 7</CheckBox>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificPsx10" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="PSX Controller 8">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="PSX Controller 8">
                                         <StackPanel Margin="10">
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
@@ -9379,7 +9382,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <CheckBox x:Name="cfg_psx__input__port8__memcard" Grid.Row="5">Emulate Memory Card on Virtual Port 8</CheckBox>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
 
@@ -9388,7 +9391,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificWswan2" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="WonderSwan Filters/Misc">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="WonderSwan Filters/Misc">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_wswan__enable">Enable (Automatic) Usage of this module</CheckBox>
@@ -9477,11 +9480,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificWswan99" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="WSWAN OGL Goat Filter Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="WSWAN OGL Goat Filter Settings">
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_wswan__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
@@ -9559,11 +9562,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Grid>
 
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificWswan3" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="WonderSwan Resolution">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="WonderSwan Resolution">
 
                                         <StackPanel>
 
@@ -9659,11 +9662,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid>
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSpecificWswan1" Margin="10">
-                                    <Expander IsExpanded="True" BorderThickness="0" Header="WonderSwan Specific Settings">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="WonderSwan Specific Settings">
                                         <StackPanel Margin="10">
 
                                             <!--
@@ -9764,7 +9767,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <TextBox x:Name="cfg_wswan__debugger__memcharenc" Grid.Column="1" Grid.Row="9" />
                                             </Grid>
                                         </StackPanel>
-                                    </Expander>
+                                    </GroupBox>
                                 </Border>
 
 
