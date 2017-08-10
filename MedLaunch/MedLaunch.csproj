@@ -953,7 +953,9 @@
     <Resource Include="medicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\Graphics\medicon.png" />
+    <None Include="Data\Graphics\medicon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Graphics\Systems\default.jpg" />

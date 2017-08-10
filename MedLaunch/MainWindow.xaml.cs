@@ -282,6 +282,9 @@ namespace MedLaunch
             _searchTimer.Tick += new EventHandler(OnSearchTimerTick);
             _searchTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
 
+            // background image
+            SetBackgroundImage();
+
             LogParser.EmptyLoad();
         }
 
@@ -301,6 +304,9 @@ namespace MedLaunch
             colorSchemeChanger.Left = this.Left + this.ActualWidth / 2.0;
             colorSchemeChanger.Top = this.Top + this.ActualHeight / 2.0;
             colorSchemeChanger.Show();
+
+            // change background
+            //SetBackgroundImage();
         }
 
         void RestoreScalingFactor(object sender, MouseButtonEventArgs args)
@@ -6159,6 +6165,30 @@ namespace MedLaunch
             double width = sidebarColumn.ActualWidth;
             GamesSidebarWidth = width;
             GlobalSettings.SetSidebarWidth(width);
+        }
+
+        public void SetBackgroundImage()
+        {
+            var gs = GlobalSettings.GetGlobals();
+            double opac = gs.bgImageOpacity;
+            string path = gs.bgImagePath;
+            int type = gs.bgImageDisplayType;
+
+            RootGrid.Background = null;
+
+            ImageBrush ib = new ImageBrush();
+            ib.ImageSource = new BitmapImage(new Uri(path));
+            ib.Opacity = opac;
+
+            if (type == 1)
+            {
+                ib.TileMode = TileMode.Tile;
+                Rect r = new Rect(new Size(32, 32));
+                ib.Viewport = r;
+                ib.ViewportUnits = BrushMappingMode.Absolute;
+            }
+
+            RootGrid.Background = ib;
         }
     }
 

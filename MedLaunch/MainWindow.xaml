@@ -261,11 +261,12 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                 CenterY="0"
                 />
         </Grid.LayoutTransform>
+        
+        <!--
         <Grid.Background>
-            <ImageBrush ImageSource="/Data/Graphics/medicon.png" Opacity="0.1" />
+            <ImageBrush ImageSource="/Data/Graphics/medicon.png" Opacity="0.1" TileMode="None" ViewboxUnits="Absolute" Viewport="0,0,32,32" />
         </Grid.Background>
-
-
+-->
 
         <TabControl SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Games">

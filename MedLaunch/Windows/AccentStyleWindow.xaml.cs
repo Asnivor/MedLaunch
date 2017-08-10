@@ -7,6 +7,9 @@ using System.Windows.Media;
 using MahApps.Metro;
 using MahApps.Metro.Controls;
 using MedLaunch.Models;
+using System.Windows.Media.Imaging;
+using Ookii.Dialogs.Wpf;
+using Microsoft.Win32;
 
 namespace MedLaunch
 {
@@ -27,6 +30,11 @@ namespace MedLaunch
             set { SetValue(ColorsProperty, value); }
         }
 
+        public string ImgPath { get; set; }
+        public int ImageDisplayType { get; set; }
+        // 0 = stretch
+        // 1 = tile
+
         public AccentStyleWindow()
         {
             InitializeComponent();
@@ -42,8 +50,36 @@ namespace MedLaunch
             var theme = ThemeManager.DetectAppStyle(Application.Current);
             //ThemeManager.ChangeAppStyle(this, theme.Item2, theme.Item1);
 
-           
+            // image display type
+            ImageDisplayType = GlobalSettings.getBgImageDisplayType();
+            if (ImageDisplayType == 0)
+                rbDtStretch.IsChecked = true;
+            if (ImageDisplayType == 1)
+                rbDtTile.IsChecked = true;
 
+            // opacity
+            ImgOpacity = GlobalSettings.GetBGImageOpacity();
+            slOpac.Value = ImgOpacity;
+
+            // set button text
+            ImgPath = GlobalSettings.GetFullBGImagePath(null);
+            tbImagePath.Text = ImgPath;
+
+            // display the image
+            DisplayImage();
+        }
+
+        private void DisplayImage()
+        {
+            try
+            {
+                ImageSource imageSource = new BitmapImage(new Uri(ImgPath));
+                imgBgImage.Source = imageSource;
+            }
+            catch
+            {
+                // do nothing
+            }
         }
         
         private void ChangeAppThemeButtonClick(object sender, RoutedEventArgs e)
@@ -79,7 +115,16 @@ namespace MedLaunch
             gs.colorBackground = bg;
             gs.colorAccent = c;
 
+            // bgimage
+            gs.bgImageDisplayType = ImageDisplayType;
+            gs.bgImageOpacity = ImgOpacity;
+            gs.bgImagePath = tbImagePath.Text;
+
             GlobalSettings.SetGlobals(gs);
+
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            mw.SetBackgroundImage();
+
             this.Close();
         }
 
@@ -101,6 +146,16 @@ namespace MedLaunch
                     break;
                 }
             }
+
+            // bgground image stuff
+            ImgPath = GlobalSettings.GetFullBGImagePath(GlobalSettings.GetDefaultBeetlePath());
+            DisplayImage();
+            ImgOpacity = 0.1;
+            slOpac.Value = ImgOpacity;
+            rbDtStretch.IsChecked = true;
+            ImageDisplayType = 0;
+            tbImagePath.Text = ImgPath;
+
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -127,6 +182,55 @@ namespace MedLaunch
                     break;
                 }
             }
+        }
+
+        private void btnChooseImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog filePath = new OpenFileDialog();
+            filePath.Multiselect = false;
+            filePath.Title = "Select Background Image";
+            filePath.Filter = "Image files (*.jpg, *.jpeg, *.gif, *.bmp, *.png) | *.jpg; *.jpeg; *.gif; *.bmp; *.png";
+            filePath.ShowDialog();
+
+            if (filePath.FileName.Length > 0)
+            {
+                tbImagePath.Text = filePath.FileName;
+            }
+        }
+
+
+
+        private void rbDtStretch_Click(object sender, RoutedEventArgs e)
+        {
+            ImageDisplayType = 0;
+        }
+
+        private void rbDtTile_Click(object sender, RoutedEventArgs e)
+        {
+            ImageDisplayType = 1;
+        }
+
+        private void btnResetToBeetle_Click(object sender, RoutedEventArgs e)
+        {
+            ImgPath = GlobalSettings.GetFullBGImagePath(GlobalSettings.GetDefaultBeetlePath());
+            DisplayImage();
+            tbImagePath.Text = ImgPath;
+        }
+
+        private void tbImagePath_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var tb = (TextBox)sender;
+            string text = tb.Text;
+            ImgPath = GlobalSettings.GetFullBGImagePath(text);
+            DisplayImage();
+        }
+
+        public double ImgOpacity { get; set; }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var tb = (TextBox)sender;
+            ImgOpacity = Convert.ToDouble(tb.Text);
         }
     }
 }

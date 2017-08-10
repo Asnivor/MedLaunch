@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.Entity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -112,6 +113,11 @@ namespace MedLaunch.Models
         // GUI color scheme
         public string colorBackground { get; set; }
         public string colorAccent { get; set; }
+
+        // background image
+        public string bgImagePath { get; set; }
+        public int bgImageDisplayType { get; set; }
+        public double bgImageOpacity { get; set; }
 
         // application settings
         public bool? checkUpdatesOnStart { get; set; }
@@ -235,10 +241,76 @@ namespace MedLaunch.Models
                 coreVis18 = true,
 
                 sidebarwidth = 350,
+                bgImagePath = @"Data\Graphics\medicon.png",
+                bgImageDisplayType = 0,
+                bgImageOpacity = 0.1,
 
                 rememberSysWinPositions = false
             };
             return gs;
+        }
+
+        public static double GetBGImageOpacity()
+        {
+            var gs = GetGlobals();
+            return gs.bgImageOpacity;
+        }
+
+        public static void SetBgImageOpacity(double opac)
+        {
+            var gs = GetGlobals();
+            gs.bgImageOpacity = opac;
+            SetGlobals(gs);
+        }
+
+        public static string GetDefaultBeetlePath()
+        {
+            return @"Data\Graphics\medicon.png";
+        }
+
+        public static string GetFullBGImagePath(string imagePath)
+        {
+            var gs = GlobalSettings.GetGlobals();
+            string bgImage = gs.bgImagePath;
+            string finalPath = bgImage;
+
+            if (imagePath != null)
+            {
+                bgImage = imagePath;
+            }
+
+            if (bgImage.StartsWith(@"Data"))
+            {
+                // relative path
+                finalPath = AppDomain.CurrentDomain.BaseDirectory + bgImage;
+            }
+            else
+            {
+                // absolute path                
+                finalPath = bgImage;
+            }
+
+            if (finalPath != null && File.Exists(finalPath))
+            {
+                return finalPath;
+            }
+            else
+            {
+                // problem - return beetle
+                return GetFullBGImagePath(GetDefaultBeetlePath());
+            }
+        }
+
+        public static int getBgImageDisplayType()
+        {
+            var gs = GetGlobals();
+            return gs.bgImageDisplayType;
+        }
+        public static void setBgImageDisplayType(int type)
+        {
+            var gs = GetGlobals();
+            gs.bgImageDisplayType = type;
+            SetGlobals(gs);
         }
 
         public static double GetSidebarWidth()
