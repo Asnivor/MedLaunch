@@ -264,6 +264,10 @@ namespace MedLaunch
                 ConfigToolTips.SetToolTips(1);
             }
 
+            // set all tooltips to remain open until user moves the mouse away
+            ToolTipService.ShowDurationProperty.OverrideMetadata(
+    typeof(DependencyObject), new FrameworkPropertyMetadata(Int32.MaxValue));
+
             // initialise input class            
             Input.Initialize(this);
 
