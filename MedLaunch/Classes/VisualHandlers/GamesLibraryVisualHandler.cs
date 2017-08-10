@@ -41,6 +41,8 @@ namespace MedLaunch.Classes
             // no gameId specified - hide everything
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
 
+            //mw.sidebarColumn.Width = new GridLength(0);
+
             ScrollViewer sv = (ScrollViewer)mw.FindName("srcSidebar");
             sv.Visibility = Visibility.Collapsed;
             ColumnDefinition cd = (ColumnDefinition)mw.FindName("sidebarColumn");

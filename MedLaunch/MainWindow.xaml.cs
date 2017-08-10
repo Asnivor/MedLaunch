@@ -254,9 +254,16 @@ namespace MedLaunch
 
             btnReLink.Visibility = Visibility.Collapsed;
 
-            // set library sidebar width from db
-            sidebarColumn.Width = new GridLength(gs.sidebarwidth);
+            // set library sidebar width from db if games library is not null
             GamesSidebarWidth = gs.sidebarwidth;
+            if (Game.GetGames().Where(a => a.hidden != true).Count() > 0)
+            {
+                sidebarColumn.Width = new GridLength(gs.sidebarwidth);                
+            }
+            else
+            {
+                sidebarColumn.Width = new GridLength(0);
+            }
 
             // enable tooltips if neccesary
             if (gs.enableConfigToolTips == true)

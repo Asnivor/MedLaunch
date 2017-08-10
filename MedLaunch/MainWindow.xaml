@@ -276,7 +276,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                         <ColumnDefinition Width="0" />
                         <ColumnDefinition Width="0.9*" MinWidth="250" />
                         <ColumnDefinition Width="Auto" Name="gsRight" />
-                        <ColumnDefinition Width="350" Name="sidebarColumn" MaxWidth="1050" MinWidth="100" />
+                        <ColumnDefinition Width="350" Name="sidebarColumn" MaxWidth="1050" />
                     </Grid.ColumnDefinitions>
                     <!--<TextBlock FontSize="55" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">Left side</TextBlock>-->
                     <WrapPanel Orientation="Vertical" Grid.Column="0" Margin="0" x:FieldModifier="public" x:Name="wpGamesList">

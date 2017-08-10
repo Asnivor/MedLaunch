@@ -450,7 +450,8 @@ namespace MedLaunch.Classes.Scraper
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    wc.Dispose();
+                    //wc.Dispose();
+                    return;
                 }
                 finally { wc.Dispose(); }
             }
