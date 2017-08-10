@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MedLaunch"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             TextOptions.TextFormattingMode="Display"
              xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
              xmlns:diag="clr-namespace:System.Diagnostics;assembly=mscorlib"
              

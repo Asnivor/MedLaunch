@@ -7,6 +7,7 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
              xmlns:diag="clr-namespace:System.Diagnostics;assembly=mscorlib"
+             TextOptions.TextFormattingMode="Display"
              
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="600">

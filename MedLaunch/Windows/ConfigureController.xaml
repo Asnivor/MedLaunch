@@ -15,6 +15,7 @@
 							   BorderThickness="1"
 							   ShowCloseButton="False"
                                IsModal="True"
+                               TextOptions.TextFormattingMode="Display"
                                Closing="ChildWindow_Closing">
 
     <simpleChildWindow:ChildWindow.Icon>
