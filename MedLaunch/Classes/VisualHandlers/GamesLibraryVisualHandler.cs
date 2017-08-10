@@ -40,6 +40,7 @@ namespace MedLaunch.Classes
         {
             // no gameId specified - hide everything
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
             ScrollViewer sv = (ScrollViewer)mw.FindName("srcSidebar");
             sv.Visibility = Visibility.Collapsed;
             ColumnDefinition cd = (ColumnDefinition)mw.FindName("sidebarColumn");
@@ -95,13 +96,10 @@ namespace MedLaunch.Classes
             var ga = Game.GetGame(gameId);
             if (ga == null)
                 return;
-
-            // get an instance of the MainWindow
-            //MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-
+            
             // use dispatcher invoke to get to the UI thread
             await mw.Dispatcher.BeginInvoke((Action)(() =>
-            {
+            {                
                 // new instance of the LibrarySidebar class
                 LibrarySidebar lsb = new LibrarySidebar(gameId);
 
@@ -377,6 +375,9 @@ namespace MedLaunch.Classes
                     brdSidebarFanArt.Visibility = Visibility.Collapsed;
                     brdSidebarOverview.Visibility = Visibility.Collapsed;
                     brdManuals.Visibility = Visibility.Collapsed;
+
+                    // set the sidebar width (as it will be wrong if the sidebar was previously hidden)
+                    mw.sidebarColumn.Width = new GridLength(mw.GamesSidebarWidth); // (GridLength)glcon.ConvertFrom(mw.GamesSidebarWidth);
                     return;
                 }
                 else
@@ -699,6 +700,9 @@ namespace MedLaunch.Classes
                         brdManuals.Visibility = Visibility.Collapsed;
                     else
                         brdManuals.Visibility = Visibility.Visible;
+
+                    // set the sidebar width (as it will be wrong if the sidebar was previously hidden)
+                    mw.sidebarColumn.Width = new GridLength(mw.GamesSidebarWidth); // (GridLength)glcon.ConvertFrom(mw.GamesSidebarWidth);
 
                 }
             }));

@@ -40,6 +40,9 @@ namespace MedLaunch.Models
         public bool glSystemInfo { get; set; }
         public bool glManuals { get; set; }
 
+        // library sidebar width
+        public double sidebarwidth { get; set; }
+
         // games library columns (no longer used)
         public bool showGLPublisher { get; set; }
         public bool showGLDeveloper { get; set; }
@@ -231,9 +234,23 @@ namespace MedLaunch.Models
                 coreVis17 = true,
                 coreVis18 = true,
 
+                sidebarwidth = 350,
+
                 rememberSysWinPositions = false
             };
             return gs;
+        }
+
+        public static double GetSidebarWidth()
+        {
+            var gs = GlobalSettings.GetGlobals();
+            return gs.sidebarwidth;
+        }
+        public static void SetSidebarWidth(double width)
+        {
+            var gs = GlobalSettings.GetGlobals();
+            gs.sidebarwidth = width;
+            SetGlobals(gs);
         }
 
         public static string[] GetGUIColors()

@@ -79,6 +79,8 @@ namespace MedLaunch
         public CountryFilter _countryFilter { get; set; }
         public int _filterId { get; set; }
 
+        public Double GamesSidebarWidth { get; set; }
+
         public App _App { get; set; }
 
         public int UpdateStatus { get; set; }
@@ -251,6 +253,10 @@ namespace MedLaunch
             lblNoUpdate.Visibility = Visibility.Collapsed;
 
             btnReLink.Visibility = Visibility.Collapsed;
+
+            // set library sidebar width from db
+            sidebarColumn.Width = new GridLength(gs.sidebarwidth);
+            GamesSidebarWidth = gs.sidebarwidth;
 
             // enable tooltips if neccesary
             if (gs.enableConfigToolTips == true)
@@ -1353,7 +1359,6 @@ namespace MedLaunch
             // choose context menu to show based on single or multiple selection
             var dg = sender as DataGrid;
 
-           
             if (dg.SelectedIndex > -1)
                 GamesLibraryView.StoreSelectedRow(dg);
 
@@ -6138,7 +6143,19 @@ namespace MedLaunch
             Process.Start((sender as Hyperlink).NavigateUri.AbsoluteUri);
         }
 
-
+        /// <summary>
+        /// fired when the games library sidebar gridsplitter has finished being dragged
+        /// the width value should be then saved
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gamesSidebarGS_DragCompleted(object sender, DragCompletedEventArgs e)
+        {
+            // set current column width
+            double width = sidebarColumn.ActualWidth;
+            GamesSidebarWidth = width;
+            GlobalSettings.SetSidebarWidth(width);
+        }
     }
 
 

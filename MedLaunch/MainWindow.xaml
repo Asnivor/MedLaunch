@@ -273,8 +273,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="0" />
-                        <ColumnDefinition Width="0.9*" />
-                        <ColumnDefinition Width="0.6*" Name="sidebarColumn" />
+                        <ColumnDefinition Width="0.9*" MinWidth="250" />
+                        <ColumnDefinition Width="Auto" Name="gsRight" />
+                        <ColumnDefinition Width="350" Name="sidebarColumn" MaxWidth="1050" MinWidth="100" />
                     </Grid.ColumnDefinitions>
                     <!--<TextBlock FontSize="55" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">Left side</TextBlock>-->
                     <WrapPanel Orientation="Vertical" Grid.Column="0" Margin="0" x:FieldModifier="public" x:Name="wpGamesList">
@@ -728,10 +729,12 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                     </Grid>
 
+                    <GridSplitter Name="gamesSidebarGS" Grid.Column="3" Width="1" HorizontalAlignment="Stretch" Background="{DynamicResource AccentColorBrush}"
+                                  DragCompleted="gamesSidebarGS_DragCompleted" Margin="5"/>
 
-                    <Grid x:Name="grdGamesSidebar" Grid.Column="3">
+                    <Grid x:Name="grdGamesSidebar" Grid.Column="4">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"  />
+                            <ColumnDefinition  />
 
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
