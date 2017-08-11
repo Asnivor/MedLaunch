@@ -6183,8 +6183,20 @@ namespace MedLaunch
 
             RootGrid.Background = null;
 
+            
+            
+
             ImageBrush ib = new ImageBrush();
-            ib.ImageSource = new BitmapImage(new Uri(path));
+
+            if (!File.Exists(GlobalSettings.GetFullBGImagePath(path)))
+            {
+                ib.ImageSource = new BitmapImage(new Uri(GlobalSettings.GetFullBGImagePath(GlobalSettings.GetDefaultBeetlePath())));
+            }
+            else
+            {
+                ib.ImageSource = new BitmapImage(new Uri(GlobalSettings.GetFullBGImagePath(path)));
+            }
+
             ib.Opacity = opac;
 
             if (type == 1)

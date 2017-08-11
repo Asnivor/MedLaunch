@@ -10826,7 +10826,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                 </Grid>
             </TabItem>
 
-            <TabItem x:Name="tiDiscord" Header="Discord">
+            <TabItem x:Name="tiDiscord" Header="Discord" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
                 <Grid x:Name="grdDiscord">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
