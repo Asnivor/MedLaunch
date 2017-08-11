@@ -2,6 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             TextOptions.TextFormattingMode="Display"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MedLaunch"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
@@ -12,7 +13,7 @@
              d:DesignHeight="600" d:DesignWidth="600">
 
             <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrd">
-                <Expander IsExpanded="True" BorderThickness="0" Header="SNES">
+        <GroupBox Margin="0" BorderThickness="0" Header="SNES">
                     <StackPanel Margin="10">
                        
                         <WrapPanel HorizontalAlignment="Center" Margin="5" Orientation="Vertical">
@@ -59,7 +60,7 @@
                         </WrapPanel>
 
                     </StackPanel>
-                </Expander>
+                </GroupBox>
             </Border>
 
 </UserControl>

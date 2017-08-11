@@ -10,7 +10,11 @@
         
         <ResourceDictionary>
             
-           
+           <!-- Groupbox styleing -->
+            <Style TargetType="GroupBox" BasedOn="{StaticResource MetroGroupBox}">
+                
+            </Style>
+            
             <!-- NumericUpDown Styling -->
             <Style x:Key="NoArrows" TargetType="{StaticResource MetroNumericUpDown}">
                 <Style.Triggers>

@@ -7,12 +7,13 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
              xmlns:diag="clr-namespace:System.Diagnostics;assembly=mscorlib"
+             TextOptions.TextFormattingMode="Display"
              
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="600">
 
             <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrd">
-                <Expander IsExpanded="True" BorderThickness="0" Header="Saturn">
+        <GroupBox Margin="0" BorderThickness="0" Header="Saturn">
                     <StackPanel Margin="10">
                        
                         <WrapPanel HorizontalAlignment="Center" Margin="5" Orientation="Vertical">
@@ -205,7 +206,7 @@
                         </WrapPanel>
 
                     </StackPanel>
-                </Expander>
+                </GroupBox>
             </Border>
 
 </UserControl>

@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MedLaunch is Initialising" Height="300" Width="500"
         Loaded="Window_Loaded"
+        TextOptions.TextFormattingMode="Display"
         ResizeMode="NoResize"
         ContentRendered="Window_ContentRendered"
         WindowStartupLocation="CenterScreen" 

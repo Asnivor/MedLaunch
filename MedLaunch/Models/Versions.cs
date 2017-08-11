@@ -31,6 +31,17 @@ namespace MedLaunch.Models
             return
                 new List<MednafenChangeHistory>
                 {
+                    // 0.9.46.1
+                    new MednafenChangeHistory
+                    {
+                        Version = "0.9.46",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-0.9.46-win64.zip",
+                        Changes = new List<VersionChange>
+                        {
+
+                        }
+                    },
+
                     // 0.9.45.1
                     new MednafenChangeHistory
                     {
@@ -38,7 +49,18 @@ namespace MedLaunch.Models
                         DownloadURL = "https://mednafen.github.io/releases/files/mednafen-0.9.45.1-win64.zip",
                         Changes = new List<VersionChange>
                         {
-
+                            new VersionChange { Description = "SS 3dpad default mode", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port1.3dpad.mode.defpos" },
+                            new VersionChange { Description = "SS 3dpad default mode", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port2.3dpad.mode.defpos" },
+                            new VersionChange { Description = "SS 3dpad default mode", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port3.3dpad.mode.defpos" },
+                            new VersionChange { Description = "SS 3dpad default mode", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port4.3dpad.mode.defpos" },
+                            new VersionChange { Description = "SS 3dpad default mode", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port5.3dpad.mode.defpos" },
+                            new VersionChange { Description = "SS 3dpad default mode", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port6.3dpad.mode.defpos" },
+                            new VersionChange { Description = "SS 3dpad default mode", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port7.3dpad.mode.defpos" },
+                            new VersionChange { Description = "SS 3dpad default mode", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port8.3dpad.mode.defpos" },
+                            new VersionChange { Description = "SS 3dpad default mode", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port9.3dpad.mode.defpos" },
+                            new VersionChange { Description = "SS 3dpad default mode", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port10.3dpad.mode.defpos" },
+                            new VersionChange { Description = "SS 3dpad default mode", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port11.3dpad.mode.defpos" },
+                            new VersionChange { Description = "SS 3dpad default mode", ChangeMethod = ChangeType.ToRemove, Item = "ss.input.port12.3dpad.mode.defpos" },
                         }
                     },
 

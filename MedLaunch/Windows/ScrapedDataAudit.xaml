@@ -6,6 +6,7 @@
 							   xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
 							   mc:Ignorable="d"
 							   d:DesignHeight="800"
+                               TextOptions.TextFormattingMode="Display"
 							   d:DesignWidth="600"
 							   CloseOnOverlay="True"
 							   GlowBrush="{DynamicResource AccentColorBrush}"

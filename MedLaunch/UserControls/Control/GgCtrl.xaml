@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             TextOptions.TextFormattingMode="Display"
              xmlns:local="clr-namespace:MedLaunch"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
@@ -13,7 +14,7 @@
     
         
             <Border Style="{StaticResource Borders1}" Margin="10" Name="controlBrd">
-                <Expander IsExpanded="True" BorderThickness="0" Header="Game Gear">
+        <GroupBox Margin="0" BorderThickness="0" Header="Game Gear">
                     <StackPanel Margin="10">
                        
                         <WrapPanel HorizontalAlignment="Center" Margin="5" Orientation="Vertical">
@@ -49,7 +50,7 @@
                         </WrapPanel>
 
                     </StackPanel>
-                </Expander>
+                </GroupBox>
             </Border>
 
         

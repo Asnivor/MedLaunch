@@ -58,6 +58,7 @@ using MedLaunch.Classes.Scanning;
 using MedLaunch.Classes.Scraper.PSXDATACENTER;
 using System.Windows.Threading;
 using MedLaunch._Debug.ScrapeDB.ReplacementDocs;
+using MedLaunch.Classes.MednaNet;
 
 namespace MedLaunch
 {
@@ -78,6 +79,8 @@ namespace MedLaunch
         public CountryFilter _countryFilter { get; set; }
         public int _filterId { get; set; }
 
+        public Double GamesSidebarWidth { get; set; }
+
         public App _App { get; set; }
 
         public int UpdateStatus { get; set; }
@@ -85,6 +88,8 @@ namespace MedLaunch
         public bool UpdateStatusMF { get; set; }
 
         public bool? ConfigsTabSelected { get; set; }
+
+        public DiscordVisualHandler DVH { get; set; }
 
         /// <summary>
         /// public instance of the mahapps progressdialogcontroller
@@ -249,11 +254,26 @@ namespace MedLaunch
 
             btnReLink.Visibility = Visibility.Collapsed;
 
+            // set library sidebar width from db if games library is not null
+            GamesSidebarWidth = gs.sidebarwidth;
+            if (Game.GetGames().Where(a => a.hidden != true).Count() > 0)
+            {
+                sidebarColumn.Width = new GridLength(gs.sidebarwidth);                
+            }
+            else
+            {
+                sidebarColumn.Width = new GridLength(0);
+            }
+
             // enable tooltips if neccesary
             if (gs.enableConfigToolTips == true)
             {
                 ConfigToolTips.SetToolTips(1);
             }
+
+            // set all tooltips to remain open until user moves the mouse away
+            ToolTipService.ShowDurationProperty.OverrideMetadata(
+    typeof(DependencyObject), new FrameworkPropertyMetadata(Int32.MaxValue));
 
             // initialise input class            
             Input.Initialize(this);
@@ -268,6 +288,9 @@ namespace MedLaunch
             _searchTimer = new DispatcherTimer();
             _searchTimer.Tick += new EventHandler(OnSearchTimerTick);
             _searchTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
+
+            // background image
+            SetBackgroundImage();
 
             LogParser.EmptyLoad();
         }
@@ -288,6 +311,9 @@ namespace MedLaunch
             colorSchemeChanger.Left = this.Left + this.ActualWidth / 2.0;
             colorSchemeChanger.Top = this.Top + this.ActualHeight / 2.0;
             colorSchemeChanger.Show();
+
+            // change background
+            //SetBackgroundImage();
         }
 
         void RestoreScalingFactor(object sender, MouseButtonEventArgs args)
@@ -1350,7 +1376,6 @@ namespace MedLaunch
             // choose context menu to show based on single or multiple selection
             var dg = sender as DataGrid;
 
-           
             if (dg.SelectedIndex > -1)
                 GamesLibraryView.StoreSelectedRow(dg);
 
@@ -3750,6 +3775,14 @@ namespace MedLaunch
             UpdateCheckMednafen();            
         }
 
+        DispatcherTimer dlTimer = new DispatcherTimer();
+        private void dlTimer_Tick(object sender, EventArgs e)
+        {
+            // if this gets called, we can assume the download has timed out
+            //MessageBox.Show("download has timed out!");
+            dlTimedout = true;
+        }
+
         private bool StartDownload(ProgressDialogController controller, string uri, string destination, string dialogMessage)
         {
             DialogMessage = dialogMessage;
@@ -3765,8 +3798,13 @@ namespace MedLaunch
                     PDC.Maximum = 100;
                     PDC.Minimum = 0;
                     wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
-                    wc.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                    wc.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);                    
                     wc.DownloadFileAsync(new Uri(uri), destination);
+
+                    // start the download timer 
+                    DownloadTimerGo(wc);
+                    
+
 
                     while (!DownloadComplete)
                     {
@@ -3792,27 +3830,56 @@ namespace MedLaunch
             }
         }
 
+        bool dlTimedout = false;
+
+        private void DownloadTimerGo(CustomWebClient wc)
+        {
+            dlTimedout = false;
+            dlTimer.Tick += new EventHandler(dlTimer_Tick);
+            dlTimer.Interval = new TimeSpan(0, 0, 20);
+            dlTimer.Start();
+
+            while (dlTimer.IsEnabled)
+            {
+                // timer is running
+                if (dlTimedout == true)
+                {
+                    // download has timed out - cancel it
+                    wc.CancelAsync();
+                }
+            }
+        }
+
         private void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             // update PDC with percentage
             PDC.SetProgress(e.ProgressPercentage);
             PDC.SetMessage(DialogMessage +  "\n\nDownloaded " + e.BytesReceived + " of " + e.TotalBytesToReceive + " bytes");
+
+            // reset the timer
+            dlTimer.Stop();
+            dlTimer.Start();
         }
 
         private void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
+            // stop the timer
+            dlTimer.Stop();
+
             //progressBar1.Value = 0;
             DownloadComplete = true;
 
             if (e.Cancelled)
             {
-                MessageBox.Show("The download has been cancelled");
+                MessageBox.Show("The download has been cancelled: \n\n" + e.Cancelled);
                 return;
             }
 
+            
+
             if (e.Error != null) // We have an error! Retry a few times, then abort.
             {
-                MessageBox.Show("An error ocurred while trying to download file");
+                MessageBox.Show("An error ocurred while trying to download file: \n\n" + e.Error);
 
                 return;
             }
@@ -5931,6 +5998,12 @@ namespace MedLaunch
                 if (item == null)
                     return;
 
+                // instantiate the discord visual handler when the discord tab is first clicked
+                if (DVH == null && item.Header.ToString() == "Discord")
+                {
+                    DVH = new DiscordVisualHandler();
+                }
+
                 if (item.Header.ToString() == "Configs")
                 {
                     ConfigsTabSelected = true;
@@ -5975,6 +6048,8 @@ namespace MedLaunch
                     //MessageBox.Show("Config saved for configid: " + configId);
                     //lblConfigStatus.Content = "***Config Saved***";
                 }
+
+                
                 
             }
         }
@@ -5984,7 +6059,7 @@ namespace MedLaunch
             // Launch discord invite link in default browser
             try
             {
-                Process.Start("https://discord.gg/sD54x3");
+                Process.Start("https://discord.gg/nsbanNa");
             }
             catch
             {
@@ -6003,6 +6078,136 @@ namespace MedLaunch
         {
             var im = (Image)sender as Image;
             im.Cursor = Cursors.Arrow;
+        }
+
+        /// <summary>
+        /// entry point for discord connection
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDiscordConnect_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = (Button)sender as Button;
+
+            // temporary code for now until mednanet client is implemented
+            if (tbDiscordName.Text == null || tbDiscordName.Text.Trim() == "")
+            {
+                MessageBox.Show("Please enter a valid username", "Username Missing!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else if (btn.Content.ToString() == "CONNECT")
+            {
+                DVH.SetConnectedStatus(true);
+                DVH.PostLocalOnlyMessage("Connecting to the MednaNet API...");
+
+
+                // select the first channel
+
+                UIHandler ui = UIHandler.GetChildren(DiscordSelectorWrapPanel);
+                RadioButton rb = ui.RadioButtons.FirstOrDefault();
+
+                if (rb != null)
+                {
+                    rb.IsChecked = true;
+                    string name = rb.Name;
+                    string idStr = name.Replace("rbDiscordCh", "");
+                    int id = Convert.ToInt32(idStr);
+                    DVH.ChangeChannel(id);
+
+                    // update title
+                    lblDiscordChannel.Content = "MedLaunch: Discord - #" + DVH.channels.Data.Where(a => a.ChannelId == id).FirstOrDefault().ChannelName;
+
+                }            
+            }
+            else
+            {
+                DVH.SetConnectedStatus(false);
+                DVH.PostLocalOnlyMessage("Disconnecting from the MednaNet API...");
+                lblDiscordChannel.Content = "MedLaunch: Discord";
+                expDiscordUsersOnline.Header = "USERS ONLINE (0)";
+            }
+        }
+
+        private void btnDiscordChatSend_Click(object sender, RoutedEventArgs e)
+        {
+            string con = tbDiscordMessageBox.Text.Trim();
+            if (con == "")
+                return;
+
+            //DVH.PostMessage(con, DVH.channels.ActiveChannel);
+            DVH.PostFromLocal(con);
+
+            tbDiscordMessageBox.Text = "";
+        }
+
+        public void btnDiscordChannel_Checked(object sender, RoutedEventArgs e)
+        {
+            // get channel ID from name
+            var btn = (RadioButton)sender as RadioButton;
+            string name = btn.Name;
+            string idStr = name.Replace("rbDiscordCh", "");
+            int id = Convert.ToInt32(idStr);
+
+            // notify discordvisualhandler that channel has changed
+            DVH.ChangeChannel(id);
+
+            // update title
+            lblDiscordChannel.Content = "MedLaunch: Discord - #" + DVH.channels.Data.Where(a => a.ChannelId == id).FirstOrDefault().ChannelName;
+
+        }
+
+        public void Hyperlink_Click(object sender, EventArgs e)
+        {
+            Process.Start((sender as Hyperlink).NavigateUri.AbsoluteUri);
+        }
+
+        /// <summary>
+        /// fired when the games library sidebar gridsplitter has finished being dragged
+        /// the width value should be then saved
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gamesSidebarGS_DragCompleted(object sender, DragCompletedEventArgs e)
+        {
+            // set current column width
+            double width = sidebarColumn.ActualWidth;
+            GamesSidebarWidth = width;
+            GlobalSettings.SetSidebarWidth(width);
+        }
+
+        public void SetBackgroundImage()
+        {
+            var gs = GlobalSettings.GetGlobals();
+            double opac = gs.bgImageOpacity;
+            string path = gs.bgImagePath;
+            int type = gs.bgImageDisplayType;
+
+            RootGrid.Background = null;
+
+            
+            
+
+            ImageBrush ib = new ImageBrush();
+
+            if (!File.Exists(GlobalSettings.GetFullBGImagePath(path)))
+            {
+                ib.ImageSource = new BitmapImage(new Uri(GlobalSettings.GetFullBGImagePath(GlobalSettings.GetDefaultBeetlePath())));
+            }
+            else
+            {
+                ib.ImageSource = new BitmapImage(new Uri(GlobalSettings.GetFullBGImagePath(path)));
+            }
+
+            ib.Opacity = opac;
+
+            if (type == 1)
+            {
+                ib.TileMode = TileMode.Tile;
+                Rect r = new Rect(new Size(32, 32));
+                ib.Viewport = r;
+                ib.ViewportUnits = BrushMappingMode.Absolute;
+            }
+
+            RootGrid.Background = ib;
         }
     }
 
@@ -6028,6 +6233,126 @@ namespace MedLaunch
         ALL
     }
 
+    public class AttachedProperties
+    {
+        #region HideExpanderArrow AttachedProperty
 
+        [AttachedPropertyBrowsableForType(typeof(Expander))]
+        public static bool GetHideExpanderArrow(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(HideExpanderArrowProperty);
+        }
+
+        [AttachedPropertyBrowsableForType(typeof(Expander))]
+        public static void SetHideExpanderArrow(DependencyObject obj, bool value)
+        {
+            obj.SetValue(HideExpanderArrowProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for HideExpanderArrow.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty HideExpanderArrowProperty =
+            DependencyProperty.RegisterAttached("HideExpanderArrow", typeof(bool), typeof(AttachedProperties), new UIPropertyMetadata(false, OnHideExpanderArrowChanged));
+
+        private static void OnHideExpanderArrowChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            Expander expander = (Expander)o;
+
+            if (expander.IsLoaded)
+            {
+                UpdateExpanderArrow(expander, (bool)e.NewValue);
+            }
+            else
+            {
+                expander.Loaded += new RoutedEventHandler((x, y) => UpdateExpanderArrow(expander, (bool)e.NewValue));
+            }
+        }
+
+        private static void UpdateExpanderArrow(Expander expander, bool visible)
+        {
+            int c = VisualTreeHelper.GetChildrenCount(expander);
+            if (c == 0)
+                return;
+
+            Grid headerGrid = new Grid();
+
+            switch (c)
+            {
+                case 1:
+                    headerGrid = VisualTreeHelper.GetChild(expander, 0) as Grid;
+                    break;
+
+                case 2:
+                    headerGrid =
+               VisualTreeHelper.GetChild(
+                           VisualTreeHelper.GetChild(
+                                       expander,
+                                       0),
+                       0) as Grid;
+                    break;
+
+                case 3:
+                    headerGrid =
+               VisualTreeHelper.GetChild(
+                           VisualTreeHelper.GetChild(
+                               VisualTreeHelper.GetChild(
+                                       expander,
+                                       0),
+                                   0),
+                       0) as Grid;
+                    break;
+
+                case 4:
+                    headerGrid =
+                VisualTreeHelper.GetChild(
+                            VisualTreeHelper.GetChild(
+                                VisualTreeHelper.GetChild(
+                                    VisualTreeHelper.GetChild(
+                                        expander,
+                                        0),
+                                    0),
+                            0),
+                        0) as Grid;
+                    break;
+
+                case 5:
+                    headerGrid =
+                VisualTreeHelper.GetChild(
+                    VisualTreeHelper.GetChild(
+                            VisualTreeHelper.GetChild(
+                                VisualTreeHelper.GetChild(
+                                    VisualTreeHelper.GetChild(
+                                        expander,
+                                        0),
+                                    0),
+                                0),
+                            0),
+                        0) as Grid;
+                    break;
+            }
+            
+            /*
+            Grid headerGrid =
+                VisualTreeHelper.GetChild(
+                    VisualTreeHelper.GetChild(
+                            VisualTreeHelper.GetChild(
+                                VisualTreeHelper.GetChild(
+                                    VisualTreeHelper.GetChild(
+                                        expander,
+                                        0),
+                                    0),
+                                0),
+                            0),
+                        0) as Grid;
+                        */
+
+            headerGrid.Children[0].Visibility = visible ? Visibility.Collapsed : Visibility.Visible; // Hide or show the Ellipse
+            headerGrid.Children[1].Visibility = visible ? Visibility.Collapsed : Visibility.Visible; // Hide or show the Arrow
+            headerGrid.Children[2].SetValue(Grid.ColumnProperty, visible ? 0 : 1); // If the Arrow is not visible, then shift the Header Content to the first column.
+            headerGrid.Children[2].SetValue(Grid.ColumnSpanProperty, visible ? 2 : 1); // If the Arrow is not visible, then set the Header Content to span both rows.
+            headerGrid.Children[2].SetValue(ContentPresenter.MarginProperty, visible ? new Thickness(0) : new Thickness(4, 0, 0, 0)); // If the Arrow is not visible, then remove the margin from the Content.
+        }
+
+        #endregion
+    }
 
 }

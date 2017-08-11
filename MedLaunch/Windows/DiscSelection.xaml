@@ -12,6 +12,7 @@
 							   BorderBrush="{DynamicResource AccentColorBrush}"
 							   BorderThickness="1"
 							   ShowCloseButton="True"
+                               TextOptions.TextFormattingMode="Display"
                                IsModal="True">
 
     <simpleChildWindow:ChildWindow.Icon>
