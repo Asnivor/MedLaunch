@@ -807,6 +807,10 @@
     <None Include="Data\System\ToolTips.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Resource Include="Fonts\Arvo-Bold.ttf" />
+    <Resource Include="Fonts\Arvo-BoldItalic.ttf" />
+    <Resource Include="Fonts\Arvo-Italic.ttf" />
+    <Resource Include="Fonts\Arvo-Regular.ttf" />
     <None Include="LICENSE">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -992,6 +996,7 @@
     <Resource Include="Data\Graphics\Systems\wswan.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Fonts\SIL Open Font License.txt" />
     <Resource Include="Data\Graphics\Controllers\snes-controller.png" />
     <Resource Include="Data\Graphics\Controllers\sms-controller.png" />
     <Resource Include="Data\Graphics\Controllers\pce-controller.png" />

@@ -7,10 +7,11 @@
              
              >
     <Application.Resources>
-        
         <ResourceDictionary>
-            
-           <!-- Groupbox styleing -->
+
+            <FontFamily x:Key="Arvo">pack://application:,,,/Fonts/#Arvp</FontFamily>
+
+            <!-- Groupbox styleing -->
             <Style TargetType="GroupBox" BasedOn="{StaticResource MetroGroupBox}">
                 
             </Style>
@@ -239,6 +240,8 @@
                 </Setter>
             </Style>
             
+            
+
             <!-- Menu bar styling -->
             <Style BasedOn="{StaticResource MetroContextMenu}" TargetType="{x:Type ContextMenu}">
                 <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
@@ -395,8 +398,8 @@
                
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Emerald.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/basedark.xaml" />
-                
-                
+
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.TabControl.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
                 <ResourceDictionary Source="/Resources/Icons.xaml" />
             </ResourceDictionary.MergedDictionaries>

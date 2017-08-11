@@ -53,6 +53,145 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
             <MenuItem Header="Re-Scrape Selected Games" Click="ReScrapeGamesMultiple_Click" />
             <MenuItem Header="Delete From Games Library" Click="DeleteRoms_Click" />
         </ContextMenu>
+
+        <!-- TabItem styling -->
+        <Style x:Key="MetroTabItemCustom"  TargetType="TabItem">
+            <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=Background, Mode=OneWay, FallbackValue=Transparent}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <!--  special property for header font size  -->
+            <Setter Property="Controls:ControlsHelper.HeaderFontSize" Value="{DynamicResource TabItemFontSize}" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="MinHeight" Value="5" />
+            <Setter Property="MinWidth" Value="5" />
+            <Setter Property="Padding" Value="6 2 6 2" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border x:Name="Border"
+                            HorizontalAlignment="Stretch"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                            <Grid HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"
+                              UseLayoutRounding="True">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition x:Name="PART_ContentLeftCol" Width="Auto" />
+                                    <ColumnDefinition x:Name="PART_ContentRightCol" Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition x:Name="PART_ContentTopRow" Height="Auto" />
+                                    <RowDefinition x:Name="PART_ContentBottomRow" Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Controls:ContentControlEx x:Name="ContentSite"
+                                                       Grid.Row="0"
+                                                       Grid.Column="0"
+                                                       Padding="{TemplateBinding Padding}"
+                                                       Content="{TemplateBinding Header}"
+                                                       ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ControlsHelper.ContentCharacterCasing)}"
+                                                       ContentStringFormat="{TemplateBinding HeaderStringFormat}"
+                                                       ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                                       ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
+                                                       FontFamily="{TemplateBinding FontFamily}"
+                                                       FontSize="25"
+                                                       FontStretch="{TemplateBinding Controls:ControlsHelper.HeaderFontStretch}"
+                                                       FontStyle="Normal"
+                                                       FontWeight="ExtraBold"
+                                                       Foreground="{TemplateBinding Foreground}"
+                                                       RecognizesAccessKey="True"
+                                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                       UseLayoutRounding="True" />
+                               
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="TabStripPlacement" Value="Left">
+                                <Setter TargetName="ContentSite" Property="Grid.Column" Value="0" />
+                                <Setter TargetName="ContentSite" Property="Grid.Row" Value="0" />
+                                <Setter TargetName="PART_ContentBottomRow" Property="Height" Value="Auto" />
+                                <Setter TargetName="PART_ContentLeftCol" Property="Width" Value="*" />
+                                <Setter TargetName="PART_ContentRightCol" Property="Width" Value="Auto" />
+                                <Setter TargetName="PART_ContentTopRow" Property="Height" Value="*" />
+                            </Trigger>
+                            <Trigger Property="TabStripPlacement" Value="Top">
+                                <Setter TargetName="ContentSite" Property="Grid.Column" Value="0" />
+                                <Setter TargetName="ContentSite" Property="Grid.Row" Value="0" />
+                                <Setter TargetName="PART_ContentBottomRow" Property="Height" Value="Auto" />
+                                <Setter TargetName="PART_ContentLeftCol" Property="Width" Value="*" />
+                                <Setter TargetName="PART_ContentRightCol" Property="Width" Value="Auto" />
+                                <Setter TargetName="PART_ContentTopRow" Property="Height" Value="*" />
+                            </Trigger>
+                            <Trigger Property="TabStripPlacement" Value="Right">
+                                <Setter TargetName="ContentSite" Property="Grid.Column" Value="1" />
+                                <Setter TargetName="ContentSite" Property="Grid.Row" Value="0" />
+                                <Setter TargetName="PART_ContentBottomRow" Property="Height" Value="Auto" />
+                                <Setter TargetName="PART_ContentLeftCol" Property="Width" Value="Auto" />
+                                <Setter TargetName="PART_ContentRightCol" Property="Width" Value="*" />
+                                <Setter TargetName="PART_ContentTopRow" Property="Height" Value="*" />
+                            </Trigger>
+                            <Trigger Property="TabStripPlacement" Value="Bottom">
+                                <Setter TargetName="ContentSite" Property="Grid.Column" Value="0" />
+                                <Setter TargetName="ContentSite" Property="Grid.Row" Value="1" />
+                                <Setter TargetName="PART_ContentBottomRow" Property="Height" Value="*" />
+                                <Setter TargetName="PART_ContentLeftCol" Property="Width" Value="*" />
+                                <Setter TargetName="PART_ContentRightCol" Property="Width" Value="Auto" />
+                                <Setter TargetName="PART_ContentTopRow" Property="Height" Value="Auto" />
+                            </Trigger>
+
+                            
+
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="{DynamicResource AccentColorBrush}" /></Trigger>
+                            <Trigger Property="IsSelected" Value="false">
+                                <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="{DynamicResource GrayNormalBrush}" />
+                            </Trigger>
+
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions><Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />
+                                </MultiDataTrigger.Conditions>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions><Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />
+                                </MultiDataTrigger.Conditions>
+                            </MultiDataTrigger>
+
+                            <Trigger SourceName="Border" Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="{DynamicResource GrayHoverBrush}" />
+                                </Trigger>
+
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False" />
+                                    <Condition Binding="{Binding ElementName=Border, Path=IsMouseOver}" Value="True" />
+                                </MultiDataTrigger.Conditions>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False" />
+                                    <Condition Binding="{Binding ElementName=Border, Path=IsMouseOver}" Value="True" />
+                                </MultiDataTrigger.Conditions>
+                          
+                            </MultiDataTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition SourceName="Border" Property="IsMouseOver" Value="True" />
+                                    <Condition Property="IsSelected" Value="True" />
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="{DynamicResource HighlightBrush}" />
+                                </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        </Style>
     </Window.Resources>
 
     <Window.CommandBindings>
@@ -268,8 +407,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
         </Grid.Background>
 -->
 
-        <TabControl SelectionChanged="TabControl_SelectionChanged">
-            <TabItem Header="Games">
+        <TabControl SelectionChanged="TabControl_SelectionChanged" >
+            <TabItem Header="Games" Style="{StaticResource MetroTabItemCustom}">
                 <Grid x:Name="grdGameLibrary">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -1831,7 +1970,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Configs">
+            <TabItem Header="Configs" Style="{StaticResource MetroTabItemCustom}">
                 <Grid x:Name="grdMednafenConfig">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -9859,7 +9998,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
             </TabItem>
 
 
-            <TabItem Header="Controls">
+            <TabItem Header="Controls" Style="{StaticResource MetroTabItemCustom}">
                 <Grid x:Name="grdMednafenControls">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -10023,7 +10162,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
 
 
-            <TabItem x:Name="tiSettings" Header="Settings" LostFocus="tiSettings_LostFocus">
+            <TabItem x:Name="tiSettings" Header="Settings" LostFocus="tiSettings_LostFocus" Style="{StaticResource MetroTabItemCustom}">
                 <Grid x:Name="grdSettings">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -10826,7 +10965,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                 </Grid>
             </TabItem>
 
-            <TabItem x:Name="tiDiscord" Header="Discord" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
+            <TabItem x:Name="tiDiscord" Header="Discord" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}" Style="{StaticResource MetroTabItemCustom}">
                 <Grid x:Name="grdDiscord">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -10976,7 +11115,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
             </TabItem>
 -->
-            <TabItem Header="Capture" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
+            <TabItem Header="Capture" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}" Style="{StaticResource MetroTabItemCustom}">
                 <Grid x:Name="grdCapture">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -11191,7 +11330,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
 
 
-            <TabItem Header="Help">
+            <TabItem Header="Help"  Style="{StaticResource MetroTabItemCustom}">
                 <DockPanel x:Name="brws_Dp">
                     <Grid DockPanel.Dock="Top" Width="{Binding ElementName=brws_Dp, Path=ActualWidth}">
                         <Grid.ColumnDefinitions>
@@ -11237,7 +11376,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
             </TabItem>
 
 
-            <TabItem x:Name="UpdatedHeader" Header="Updates">
+            <TabItem x:Name="UpdatedHeader" Header="Updates" Style="{StaticResource MetroTabItemCustom}">
                 <WrapPanel Orientation="Vertical">
 
                     <Grid Width="500" Margin="50">
