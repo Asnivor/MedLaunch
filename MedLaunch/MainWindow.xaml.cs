@@ -91,6 +91,8 @@ namespace MedLaunch
 
         public DiscordVisualHandler DVH { get; set; }
 
+        public int CaseConvert { get; set; }
+
         /// <summary>
         /// public instance of the mahapps progressdialogcontroller
         /// </summary>
@@ -102,6 +104,8 @@ namespace MedLaunch
         public MainWindow()
         {            
             InitializeComponent();
+
+            
 
             DownloadComplete = false;
 
@@ -164,11 +168,13 @@ namespace MedLaunch
             GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar,
                chkAllowBanners, chkAllowBoxart, chkAllowScreenshots, chkAllowFanart, chkPreferGenesis, chkAllowManuals, chkAllowMedia, chkSecondaryScraperBackup,
                rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost, chkAllowUpdateCheck, chkBackupMednafenConfig, chkSaveSysConfigs, comboImageTooltipSize, chkLoadConfigsOnStart, chkEnableConfigToolTips,
-               chkshowGLYear, chkshowGLESRB, chkshowGLCoop, chkshowGLDeveloper, chkshowGLPublisher, chkshowGLPlayers, chkEnableClearCacheOnExit, chkrememberSysWinPositions, chkHideCountryFilter);
+               chkshowGLYear, chkshowGLESRB, chkshowGLCoop, chkshowGLDeveloper, chkshowGLPublisher, chkshowGLPlayers, chkEnableClearCacheOnExit, chkrememberSysWinPositions, chkHideCountryFilter, cbFormatGameTitles);
             //gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
             GlobalSettings gs = GlobalSettings.GetGlobals();
             mainScaleTransform.ScaleX = Convert.ToDouble(gs.guiZoom);
             mainScaleTransform.ScaleY = Convert.ToDouble(gs.guiZoom);
+
+            CaseConvert = gs.changeTitleCase;
 
             // load netplay settings for netplay page
             ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
@@ -5491,7 +5497,15 @@ namespace MedLaunch
         private void comboSettings_Global_DropDownClosed(object sender, EventArgs e)
         {
             if (SettingsDirtyFlag == true)
+            {
                 ConfigsVisualHandler.SaveSettings(SettingGroup.GlobalSettings);
+                var cbs = sender as ComboBox;
+                if (cbs.Name == "cbFormatGameTitles")
+                {
+                    CaseConvert = Convert.ToInt32(cbs.SelectedValue);
+                }
+            }
+                
         }
 
         private void slSettings_Global_PreviewMouseUp(object sender, MouseButtonEventArgs e)
@@ -6209,10 +6223,77 @@ namespace MedLaunch
 
             RootGrid.Background = ib;
         }
+
+
+        
     }
 
 
+    public class CaseConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
 
+            if (value is String)
+            {
+                if (mw.CaseConvert == 0)
+                    return value.ToString();
+                if (mw.CaseConvert == 2)
+                    return value.ToString().ToUpper();
+                if (mw.CaseConvert == 1)
+                {
+                    // title case logic
+                    string s = value.ToString().Replace("  ", " ").Trim();
+                    string tc = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(s.ToLower());
+
+                    /* some more logic */
+                    // numerals
+                    tc = tc.Replace("Iii", "II")
+                        .Replace("Ii", "II")
+                        .Replace("Iiv", "IIV")
+                        .Replace("Iv", "IV")
+                        .Replace("Viii", "VIII")
+                        .Replace("Vii", "VII")
+                        .Replace("Vi", "VI")
+                        .Replace("Iix", "IIX")
+                        .Replace("Ix", "IX")
+                        .Replace("Xiii", "XIII")
+                        .Replace("Xii", "XII")
+                        .Replace("Xi", "XII");
+
+                    // known upper case phrases
+                    tc = tc.Replace("Wwf", "WWF")
+                        .Replace("Cg", "CG")
+                        .Replace("VIr", "Vir")
+                        .Replace("Nhl", "NHL")
+                        .Replace("Nba", "NBA")
+                        .Replace("Nfl", "NFL");
+
+                    // playstation codes
+                    tc = tc.Replace("Slus", "SLUS")
+                        .Replace("Scus", "SCUS")
+                        .Replace("Sles", "SLES")
+                        .Replace("Sces", "SCES")
+                        .Replace("Slps", "SLPS")
+                        .Replace("Scps", "SCPS")
+                        .Replace("Slpm", "SLPM")
+                        .Replace("Sips", "SIPS");
+
+
+
+                    return tc;
+                }
+            }
+
+            return string.Empty;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
 
 

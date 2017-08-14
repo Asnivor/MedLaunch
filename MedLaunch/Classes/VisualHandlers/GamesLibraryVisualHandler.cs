@@ -17,12 +17,13 @@ using System.Windows.Data;
 using MedLaunch.Classes.Scraper;
 using System.Windows.Threading;
 using System.Threading;
+using System.Globalization;
 
 namespace MedLaunch.Classes
 {
     public static class GamesLibraryVisualHandler
     {
-
+        
         public static string ConvertDateString(DateTime dt)
         {
             string lp;

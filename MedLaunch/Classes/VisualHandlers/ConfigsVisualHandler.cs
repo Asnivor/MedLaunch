@@ -298,10 +298,12 @@ namespace MedLaunch.Classes
                     Slider slFanrtsPerHost = (Slider)mw.FindName("slFanrtsPerHost");
                     Slider slScreenshotsPerHost = (Slider)mw.FindName("slScreenshotsPerHost");
                     ComboBox comboImageTooltipSize = (ComboBox)mw.FindName("comboImageTooltipSize");
+                    ComboBox cbFormatGameTitles = (ComboBox)mw.FindName("cbFormatGameTitles");
 
                     gs.maxFanarts = slFanrtsPerHost.Value;
                     gs.maxScreenshots = slScreenshotsPerHost.Value;
                     gs.imageToolTipPercentage = Convert.ToDouble(comboImageTooltipSize.SelectedValue);
+                    gs.changeTitleCase = Convert.ToInt32(cbFormatGameTitles.SelectedValue);
 
                     GlobalSettings.SetGlobals(gs);
                     break;

@@ -790,7 +790,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                       DataContext="{Binding Source={x:Static Application.Current}, Mode=OneWay, Path=GamesLibrary}" GridLinesVisibility="None"
                                       >
 
-
+                                <local:MedDataGrid.Resources>
+                                    <local:CaseConverter x:Key="CaseConverter" />
+                                </local:MedDataGrid.Resources>
 
                                 <local:MedDataGrid.ColumnHeaderStyle>
                                     <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MetroDataGridColumnHeader}">
@@ -799,7 +801,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 </local:MedDataGrid.ColumnHeaderStyle>
                                 <local:MedDataGrid.Columns>
                                     <DataGridTextColumn x:Name="glCol1" Header="ID" Binding="{Binding ID}" />
-                                    <DataGridTextColumn x:Name="glCol2" Header="Game" Binding="{Binding Game}" Width="190" />
+                                    <DataGridTextColumn x:Name="glCol2" Header="Game" Binding="{Binding Game, Converter={StaticResource CaseConverter}}" Width="190" />
                                     <!--
                                     <DataGridTextColumn Header="DAT Name" Binding="{Binding DatName}" />
                                     -->
@@ -10451,6 +10453,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                         Click="btnReLink_Click">
                                                     Re-link games library datagrid
                                                 </Button>
+
+                                                <Label Grid.Row="8" HorizontalContentAlignment="Left" Grid.Column="0" Margin="0,10,0,1" Grid.ColumnSpan="2">Auto-Change Game Title Case:</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cbFormatGameTitles" Grid.Row="9" Grid.Column="0" Margin="0,0,0,10" DropDownClosed="comboSettings_Global_DropDownClosed" Grid.ColumnSpan="2">
+                                                    <ComboBoxItem Tag="0">No Changes</ComboBoxItem>
+                                                    <ComboBoxItem Tag="1">Title Case (Capitlise First Letter of Each Word)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="2">Capitalise All</ComboBoxItem>                                                    
+                                                </ComboBox>
 
                                             </Grid>
                                         </StackPanel>
