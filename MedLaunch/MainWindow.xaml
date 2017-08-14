@@ -37,6 +37,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
             <MenuItem Header="Copy Launch String to Clipboard" Click="CopyLaunchStringToClipboard_Click" />
             <MenuItem Header="Identify and Scrape Game" Click="btnScrapingPickGame_Click" />
             <MenuItem Header="Delete From Games Library" Click="DeleteRom_Click" />
+            <MenuItem Header="Destructive Options" Foreground="Yellow" Background="Red">
+                <MenuItem Header="Delete ROM From Disk" Click="DeleteRomFromDisk_Click" />
+            </MenuItem>
         </ContextMenu>
         <ContextMenu x:Key="cmMultiDiscGamesListSingle" x:Name="cmMultiDiscGamesListSingle">
             <MenuItem Header="Play Game (First Disc)" Click="LaunchRom_Click" />
@@ -46,12 +49,18 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
             <MenuItem Header="Copy Launch String to Clipboard" Click="CopyLaunchStringToClipboard_Click" />
             <MenuItem Header="Identify and Scrape Game" Click="btnScrapingPickGame_Click" />
             <MenuItem Header="Delete From Games Library" Click="DeleteRom_Click" />
+            <MenuItem Header="Destructive Options" Foreground="Yellow" Background="Red">
+                <MenuItem Header="Delete ROM From Disk" Click="DeleteRomFromDisk_Click" />
+            </MenuItem>
         </ContextMenu>
         <ContextMenu x:Key="cmGamesListMultiple" x:Name="cmGamesListMultiple">
             <MenuItem Header="Favorites" Click="MenuItemFavorites_Click" />
             <MenuItem Header="Auto-Scrape Selected Games" Click="ScrapeGamesMultiple_Click" />
             <MenuItem Header="Re-Scrape Selected Games" Click="ReScrapeGamesMultiple_Click" />
             <MenuItem Header="Delete From Games Library" Click="DeleteRoms_Click" />
+            <MenuItem Header="Destructive Options" Foreground="Yellow" Background="Red">
+                <MenuItem Header="Delete ROMs From Disk" Click="DeleteRomsFromDisk_Click" />
+            </MenuItem>
         </ContextMenu>
 
         <!-- TabItem styling -->

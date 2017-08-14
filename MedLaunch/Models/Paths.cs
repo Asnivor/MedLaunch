@@ -36,6 +36,49 @@ namespace MedLaunch.Models
         public string systemVb { get; set; }                        // Virtual Boy
         public string systemWswan { get; set; }                     // WonderSwan
 
+        public static string GetSystemPath(int systemId)
+        {
+            var paths = Paths.GetPaths();
+            switch (systemId)
+            {
+                case 1:
+                    return paths.systemGb;
+                case 2:
+                    return paths.systemGba;
+                case 3:
+                    return paths.systemLynx;
+                case 4:
+                    return paths.systemMd;
+                case 5:
+                    return paths.systemGg;
+                case 6:
+                    return paths.systemNgp;
+                case 7:
+                case 17:
+                    return paths.systemPce;
+                case 8:
+                    return paths.systemPcfx;
+                case 9:
+                    return paths.systemPsx;
+                case 10:
+                    return paths.systemSms;
+                case 11:
+                    return paths.systemNes;
+                case 16:
+                case 12:                
+                    return paths.systemSnes;
+                case 13:
+                    return paths.systemSs;
+                case 14:
+                    return paths.systemVb;
+                case 15:
+                    return paths.systemWswan;
+                case 18:
+                    return paths.systemPceCd;
+                default:
+                    return null;
+            }
+        }
 
         public static void SaveToDatabase(List<Paths> Configs)
         {

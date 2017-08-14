@@ -654,7 +654,7 @@ namespace MedLaunch.Classes
             return MednafenFolder + ".\\mednafen.exe";
         }
 
-        private string BuildFullGamePath(string GamesFolder, string GamePath)
+        public string BuildFullGamePath(string GamesFolder, string GamePath)
         {
             string path = string.Empty;
             string extension = string.Empty;

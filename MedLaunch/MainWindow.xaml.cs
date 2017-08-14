@@ -2248,6 +2248,72 @@ namespace MedLaunch
             GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 
+        private void DeleteRomFromDisk_Click(object sender, RoutedEventArgs e)
+        {
+            GamesLibraryModel drv = (GamesLibraryModel)dgGameList.SelectedItem;
+            int romId = drv.ID;
+            Game game = Game.GetGame(romId);
+
+            var g = Game.DeleteGamesFromDisk(new List<Game> { game });
+
+            if (g.Count() > 0)
+            {
+                // delete from library
+                Game.DeleteGame(g.First());
+            }
+
+            // refresh library view
+            //GameListBuilder.UpdateFlag();
+            GamesLibraryVisualHandler.RefreshGamesLibrary();
+        }
+
+        private void DeleteRomsFromDisk_Click(object sender, RoutedEventArgs e)
+        {
+            int numRows = dgGameList.SelectedItems.Count;
+
+            if (numRows == 0)
+                return;
+            else if (numRows == 1)
+            {
+                GamesLibraryModel drv = (GamesLibraryModel)dgGameList.SelectedItem;
+                int romId = drv.ID;
+                Game game = Game.GetGame(romId);
+                var g = Game.DeleteGamesFromDisk(new List<Game> { game });
+                if (g.Count() > 0)
+                {
+                    // delete from library
+                    Game.DeleteGame(g.First());
+                }
+            }
+            else
+            {
+                var rs = dgGameList.SelectedItems;
+                List<GamesLibraryModel> rows = new List<GamesLibraryModel>();
+                foreach (GamesLibraryModel row in rs)
+                {
+                    rows.Add(row);
+                }
+
+                List<Game> games = new List<Game>();
+
+                foreach (GamesLibraryModel row in rows)
+                {
+                    int id = row.ID;
+                    Game game = Game.GetGame(id);
+                    games.Add(game);
+                }
+                var r = Game.DeleteGamesFromDisk(games);
+                if (r.Count > 0)
+                {
+                    Game.DeleteGames(r);
+                }
+            }
+
+            // refresh library view
+            // GameListBuilder.UpdateFlag();
+            GamesLibraryVisualHandler.RefreshGamesLibrary();
+        }
+
         private void DeleteRom_Click(object sender, RoutedEventArgs e)
         {
             GamesLibraryModel drv = (GamesLibraryModel)dgGameList.SelectedItem;

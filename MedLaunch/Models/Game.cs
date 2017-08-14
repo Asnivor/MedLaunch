@@ -3,6 +3,7 @@ using MedLaunch.Classes.GamesLibrary;
 using Microsoft.Data.Entity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -428,6 +429,69 @@ namespace MedLaunch.Models
             SetGame(game);
             // GameListBuilder.UpdateFlag();
             GamesLibraryVisualHandler.DoGameUpdate(new List<Game> { game });
+        }
+
+        public static List<Game> DeleteGamesFromDisk(List<Game> Games)
+        {
+            // display warning
+            string message = "WARNING: The clicking OK will perminently delete the following games from disk\nThis CANNOT be undone:\n\n";
+            string notmessage = "The following games cannot be deleted (possibly they are CD games, 7zip archives or zip archives with multiple ROMs in):\n\n";
+            List<Game> toDelete = new List<Game>();
+            foreach (var game in Games)
+            {
+                if (game.gamePath.Contains("*/") || game.gamePath.ToLower().Contains(".cue") || game.gamePath.ToLower().Contains(".toc") || game.gamePath.ToLower().Contains(".ccd") || game.gamePath.ToLower().Contains(".m3u"))
+                {
+                    // game cannot be deleted
+                    notmessage += game.gameName + "- (" + game.gamePath + ")\n";
+                }
+                else
+                {
+                    // game can be deleted
+                    message += game.gameName + "- (" + game.gamePath + ")\n";
+                    toDelete.Add(game);
+                }
+                
+            }
+
+            MessageBoxResult result = MessageBox.Show(message + "\n\n" + notmessage, "HERE BE DRAGONS!", MessageBoxButton.OKCancel, MessageBoxImage.Stop);
+            if (result == MessageBoxResult.OK)
+            {
+                // delete the games
+                foreach (var g in toDelete)
+                {
+                    if (File.Exists(ReturnActualGamePath(g)))
+                    {
+                        File.Delete(ReturnActualGamePath(g));
+                    }
+                }
+                return toDelete;
+            }
+            else
+            {
+                // do nothing
+                return new List<Game>();
+            }
+        }
+
+        public static string ReturnActualGamePath(Game game)
+        {
+            string path = string.Empty;
+            string extension = string.Empty;
+            string folderpath = Paths.GetSystemPath(game.systemId);
+
+            // check whether relative or absolute path has been set in the database for this game
+            if (game.gamePath.StartsWith("."))
+            {
+                // path is relative (rom autoimported from defined path) - build path
+                path = folderpath + game.gamePath;
+            }
+            else
+            {
+                // rom or disk has been manually added with full path - return just full path
+                path = game.gamePath;
+            }
+
+            return path;
         }
     }    
 }
