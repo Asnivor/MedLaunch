@@ -827,6 +827,7 @@
     <None Include="ucon64-bin\giveio64.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="ucon64-bin\README.MD" />
     <None Include="ucon64-bin\UserPort.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
