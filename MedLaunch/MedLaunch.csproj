@@ -821,6 +821,18 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="ucon64-bin\FILE_ID.DIZ">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ucon64-bin\giveio64.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ucon64-bin\UserPort.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ucon64-bin\VERSION">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="_Debug\DATDB\DATFiles\NOINTRO\Atari - Lynx Parent-Clone %2820130303-222635%29.dat" />
     <None Include="_Debug\DATDB\DATFiles\NOINTRO\Bandai - WonderSwan Color Parent-Clone %2820160925-023748%29.dat" />
     <None Include="_Debug\DATDB\DATFiles\NOINTRO\Bandai - WonderSwan Parent-Clone %2820161023-173917%29.dat" />
@@ -958,6 +970,10 @@
       <Project>{f51946ea-827f-4d82-b841-1f2f6d060312}</Project>
       <Name>BizHawk.Emulation.DiscSystem</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ucon64-wrapper\ucon64-wrapper.csproj">
+      <Project>{32EEAB9C-791A-4303-A675-A43324C35154}</Project>
+      <Name>ucon64-wrapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Updater\Updater.csproj">
       <Project>{554a0a91-f3cd-4800-8a19-1575fb1ca8d1}</Project>
       <Name>Updater</Name>
@@ -996,6 +1012,39 @@
     <Resource Include="Data\Graphics\Systems\wswan.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ucon64-bin\changes.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ucon64-bin\developers.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ucon64-bin\discmage.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ucon64-bin\faq.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ucon64-bin\inpout32.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ucon64-bin\install.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ucon64-bin\io.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ucon64-bin\license.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ucon64-bin\readme.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ucon64-bin\ucon64.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ucon64-bin\zlib1.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Fonts\SIL Open Font License.txt" />
     <Resource Include="Data\Graphics\Controllers\snes-controller.png" />
     <Resource Include="Data\Graphics\Controllers\sms-controller.png" />

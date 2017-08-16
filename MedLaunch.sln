@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedLaunch", "MedLaunch\MedLaunch.csproj", "{6B1B4A85-5A13-4A5D-B551-1AC97CC53D38}"
+	ProjectSection(ProjectDependencies) = postProject
+		{32EEAB9C-791A-4303-A675-A43324C35154} = {32EEAB9C-791A-4303-A675-A43324C35154}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asnitech.Launch.Common", "Asnitech.Launch.Common\Asnitech.Launch.Common.csproj", "{2E332847-6DF3-4BF4-92C2-42A5C6359CC1}"
 EndProject
@@ -22,6 +25,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReleaseGenerator", "ReleaseGenerator\ReleaseGenerator.csproj", "{11D05113-3DD4-4228-84F1-C81F12A2F89C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BizHawk.Emulation.DiscSystem", "BizHawk.Emulation.DiscSystem\BizHawk.Emulation.DiscSystem.csproj", "{F51946EA-827F-4D82-B841-1F2F6D060312}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ucon64-wrapper", "ucon64-wrapper\ucon64-wrapper.csproj", "{32EEAB9C-791A-4303-A675-A43324C35154}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +110,18 @@ Global
 		{F51946EA-827F-4D82-B841-1F2F6D060312}.Release|x64.Build.0 = Release|x64
 		{F51946EA-827F-4D82-B841-1F2F6D060312}.Release|x86.ActiveCfg = Release|x86
 		{F51946EA-827F-4D82-B841-1F2F6D060312}.Release|x86.Build.0 = Release|x86
+		{32EEAB9C-791A-4303-A675-A43324C35154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32EEAB9C-791A-4303-A675-A43324C35154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32EEAB9C-791A-4303-A675-A43324C35154}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{32EEAB9C-791A-4303-A675-A43324C35154}.Debug|x64.Build.0 = Debug|Any CPU
+		{32EEAB9C-791A-4303-A675-A43324C35154}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{32EEAB9C-791A-4303-A675-A43324C35154}.Debug|x86.Build.0 = Debug|Any CPU
+		{32EEAB9C-791A-4303-A675-A43324C35154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32EEAB9C-791A-4303-A675-A43324C35154}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32EEAB9C-791A-4303-A675-A43324C35154}.Release|x64.ActiveCfg = Release|Any CPU
+		{32EEAB9C-791A-4303-A675-A43324C35154}.Release|x64.Build.0 = Release|Any CPU
+		{32EEAB9C-791A-4303-A675-A43324C35154}.Release|x86.ActiveCfg = Release|Any CPU
+		{32EEAB9C-791A-4303-A675-A43324C35154}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -59,6 +59,7 @@ using MedLaunch.Classes.Scraper.PSXDATACENTER;
 using System.Windows.Threading;
 using MedLaunch._Debug.ScrapeDB.ReplacementDocs;
 using MedLaunch.Classes.MednaNet;
+using ucon64_wrapper;
 
 namespace MedLaunch
 {
@@ -6290,8 +6291,38 @@ namespace MedLaunch
             RootGrid.Background = ib;
         }
 
+        private void UCONtest_Click(object sender, RoutedEventArgs e)
+        {
+            UconWrapper u = new UconWrapper(System.AppDomain.CurrentDomain.BaseDirectory + @"\ucon64-bin\ucon64.exe");
+            string gamePath = @"G:\_Emulation\Sega Megadrive - 32x - SegaCD\roms\Megadrive\long folder test long folder test long folder testlong folder test long folder test long folder test\Animaniacs (E).zip";
+            //string result = u.DoTestScan(gamePath, SystemType.Genesis);
+            var result = u.ScanGame(gamePath, SystemType.Genesis);
 
-        
+            if (result.Data.IsChecksumValid == true && result.Data.IsInterleaved == true)
+            {
+                // checksum is valid and rom needs interleaving
+                u.OutputFolder = System.AppDomain.CurrentDomain.BaseDirectory + @"\Data\Cache";
+            }
+        }
+
+        private void UCONConvertSmd_Click(object sender, RoutedEventArgs e)
+        {
+            UconWrapper u = new UconWrapper(System.AppDomain.CurrentDomain.BaseDirectory + @"\ucon64-bin\ucon64.exe");
+            //string gamePath = @"G:\_Emulation\Sega Megadrive - 32x - SegaCD\roms\Megadrive\long folder test long folder test long folder testlong folder test long folder test long folder test\Animaniacs (E).zip";
+            string gamePath = @"G:\_Emulation\Sega Megadrive - 32x - SegaCD\roms\Megadrive\test\Alex Kidd in the Enchanted Castle (J).smd";
+            u.OutputFolder = System.AppDomain.CurrentDomain.BaseDirectory + @"\Data\Cache";
+            var result = u.ProcessSMD(gamePath);
+            if (result == null)
+            {
+                MessageBox.Show("checksum invalid - skipping rom");
+                return;
+            }
+            else
+            {
+                // either rom has been converted, or it is compatible
+                MessageBox.Show("Final Rom Path: " + result.ConvertedPath);
+            }
+        }
     }
 
 
