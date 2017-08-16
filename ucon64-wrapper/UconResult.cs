@@ -26,11 +26,18 @@ namespace ucon64_wrapper
         public RomType romType { get; set; }
         public string RomPath { get; set; }
         public string Header { get; set; }
+        public string DetectedSystemType { get; set; }
         public string DetectedRomType { get; set; }
         public bool? IsInterleaved { get; set; }
         public bool IsChecksumValid { get; set; }
+        public string DetectedChecksumComparison { get; set; }
+        public string CRC32 { get; set; }
         public string DetectedGameName { get; set; }
         public string DetectedPublisher { get; set; }
         public string DetectedRegion { get; set; }
+        public string DetectedYear { get; set; }
+        public string DetectedSize { get; set; }
+        public string DetectedVersion { get; set; }
+        public string DetectedPadding { get; set; }
     }
 }

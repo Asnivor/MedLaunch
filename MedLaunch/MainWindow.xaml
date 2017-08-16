@@ -35,6 +35,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
             <MenuItem Header="Play Game (View/Edit Launch String First)" Click="LaunchRomShowConfig_Click" />
             <MenuItem Header="Favorites" Click="MenuItemFavorite_Click" />
             <MenuItem Header="Copy Launch String to Clipboard" Click="CopyLaunchStringToClipboard_Click" />
+            <MenuItem Header="Show Extended ROM/Disc Info" Click="examineRom_Click" />
             <MenuItem Header="Identify and Scrape Game" Click="btnScrapingPickGame_Click" />
             <MenuItem Header="Delete From Games Library" Click="DeleteRom_Click" />
             <MenuItem Header="Destructive Options" Foreground="Yellow" Background="Red">
@@ -47,6 +48,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
             <MenuItem Header="Play Game (Select Disc)" Click="LaunchRomChooseDisc_Click" />
             <MenuItem Header="Favorites" Click="MenuItemFavorite_Click" />
             <MenuItem Header="Copy Launch String to Clipboard" Click="CopyLaunchStringToClipboard_Click" />
+            <MenuItem Header="Show Extended ROM/Disc Info" Click="examineRom_Click" />
             <MenuItem Header="Identify and Scrape Game" Click="btnScrapingPickGame_Click" />
             <MenuItem Header="Delete From Games Library" Click="DeleteRom_Click" />
             <MenuItem Header="Destructive Options" Foreground="Yellow" Background="Red">
@@ -1869,6 +1871,10 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                             <Button x:Name="btnScrapingReScrape" ToolTip="Re-scrape data for this game using currently defined settings" Click="btnScrapingReScrape_Click">
                                                 Re-Scrape Game
+                                            </Button>
+
+                                            <Button x:Name="btnInterogateRom" ToolTip="Re-scrape data for this game using currently defined settings" Click="examineRom_Click">
+                                                Inspect ROM/Disc
                                             </Button>
 
                                             <Button  x:Name="btnScrapingUnlinkGame" ToolTip="Removes the link between the selected game and the downloaded data" Click="btnScrapingUnlinkGame_Click">

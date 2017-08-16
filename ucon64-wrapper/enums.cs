@@ -20,7 +20,8 @@ namespace ucon64_wrapper
         SMS,
         GenericDisc,
         WonderSwan,
-        VirtualBoy        
+        VirtualBoy,
+        Lynx       
     }
 
     public enum RomType

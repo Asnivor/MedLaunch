@@ -78,7 +78,9 @@ namespace ucon64_wrapper
             UconResult u = new UconResult();
             string options = UconExePath + GetForceSystemString(systemType) + '"' + gamepath + '"';
             string result = RunCommand(options);
-            u.RawOutput = result;
+            u.RawOutput = result.Replace("Create: NTUSER.idx", "")
+                .Replace("WARNING: \"NTUSER.DAT\" is meant for a console unknown to uCON64", "")
+                .Replace("\r\n\r\n\r\n\r\n\r\n", "\r\n");
             u.Data.systemType = systemType;
             u.Data.RomPath = gamepath;
 
@@ -112,7 +114,7 @@ namespace ucon64_wrapper
                     {
                         dataStarted = true;
                     }
-                    continue;
+                    //continue;
                 }
 
                 /* now we should be into the actual data we want */
@@ -133,8 +135,14 @@ namespace ucon64_wrapper
                 if (IsSystemType(arr[i]) == true)
                 {
                     resultObj.Data.systemType = GetSystemType(arr[i]);
+                    resultObj.Data.DetectedSystemType = arr[i];
                     // start game info counter (next 4 lines are information about the rom)
                     gameInfoCounter++;
+                    if (arr[i].Trim() == "PC-Engine (CD Unit/Core Grafx(II)/Shuttle/GT/LT/Super CDROM/DUO(-R(X)))")
+                    {
+                        // pcengine system name takes up two lines
+                        i++;
+                    }
                     continue;
                 }
 
@@ -153,6 +161,11 @@ namespace ucon64_wrapper
                     case 3:
                         // detected region data
                         resultObj.Data.DetectedRegion = arr[i];
+                        gameInfoCounter++;
+                        break;
+                    case 4:
+                        // detected size data
+                        resultObj.Data.DetectedSize = arr[i];
                         gameInfoCounter++;
                         break;
                     default:
@@ -174,8 +187,8 @@ namespace ucon64_wrapper
                     }
                 }
 
-                // checksum
-                if (arr[i].StartsWith("Checksum"))
+                // checksum comprison
+                if (arr[i].StartsWith("Checksum:"))
                 {
                     string[] chks = arr[i].Split(':');
                     string dChks = chks[1];
@@ -187,6 +200,13 @@ namespace ucon64_wrapper
                     {
                         resultObj.Data.IsChecksumValid = false;
                     }
+
+                    resultObj.Data.DetectedChecksumComparison = dChks;
+                }
+                if (arr[i].StartsWith("Checksum (CRC32):"))
+                {
+                    string crc = arr[i].Replace("Checksum (CRC32): ", "").Trim();
+                    resultObj.Data.CRC32 = crc;
                 }
 
                 // output rom path
@@ -194,6 +214,30 @@ namespace ucon64_wrapper
                 {
                     string path = arr[i].Replace("Wrote output to ", "").Trim();
                     resultObj.ConvertedPath = path;
+                }
+
+                // year
+                if (arr[i].StartsWith("Date:"))
+                {
+                    string[] dates = arr[i].Split(':');
+                    string date = dates[1];
+                    resultObj.Data.DetectedYear = date.Trim();
+                }
+
+                // version
+                if (arr[i].StartsWith("Version:"))
+                {
+                    string[] versions = arr[i].Split(':');
+                    string version = versions[1];
+                    resultObj.Data.DetectedVersion = version.Trim();
+                }
+
+                // padding
+                if (arr[i].StartsWith("Padded:"))
+                {
+                    string[] pads = arr[i].Split(':');
+                    string pad = pads[1];
+                    resultObj.Data.DetectedPadding = pad.Trim();
                 }
             }
 
@@ -208,7 +252,26 @@ namespace ucon64_wrapper
             {
                 case "Genesis/Sega Mega Drive/Sega CD/32X/Nomad":                
                     return true;
-                
+                case "Nintendo Entertainment System/NES/Famicom/Game Axe (Redant)":
+                    return true;
+                case "Super Nintendo Entertainment System/SNES/Super Famicom":
+                    return true;
+                case "Neo Geo Pocket/Neo Geo Pocket Color":
+                    return true;
+                case "Game Boy/(Super GB)/GB Pocket/Color GB":
+                    return true;
+                case "Handy (prototype)/Lynx/Lynx II":
+                    return true;
+                case "Game Boy Advance (SP)":
+                    return true;
+                case "Nintendo Virtual Boy":
+                    return true;
+                case "PC-Engine (CD Unit/Core Grafx(II)/Shuttle/GT/LT/Super CDROM/DUO(-R(X)))":
+                    return true;
+                case "Sega Master System(II/III)/Game Gear (Handheld)":
+                    return true;
+                case "WonderSwan/WonderSwan Color/SwanCrystal":
+                    return true;
                 default:
                     return false;
             }
@@ -220,6 +283,10 @@ namespace ucon64_wrapper
             {
                 case "Genesis/Sega Mega Drive/Sega CD/32X/Nomad":
                     return SystemType.Genesis;
+                case "Nintendo Entertainment System/NES/Famicom/Game Axe (Redant)":
+                    return SystemType.NES;
+                case "Super Nintendo Entertainment System/SNES/Super Famicom":
+                    return SystemType.SNES;
                 default:
                     return SystemType.None;
             }
@@ -232,6 +299,16 @@ namespace ucon64_wrapper
                 case "Super Com Pro/Super Magic Drive/SMD":
                     return true;
                 case "Magicom/BIN/RAW":
+                    return true;
+                case "Famicom Disk System file (diskimage)":
+                    return true;
+                case "Multi Game Doctor (2)/Multi Game Hunter/MGH":
+                    return true;
+                case "Pocket Linker":
+                    return true;
+                case "Unknown backup unit/emulator":
+                    return true;
+                case "Flash Advance Linker":
                     return true;
                 default:
                     return false;
@@ -311,6 +388,8 @@ namespace ucon64_wrapper
                     return " --vboy ";
                 case SystemType.WonderSwan:
                     return " --swan ";
+                case SystemType.Lynx:
+                    return " --lynx ";
 
                 default:
                     return "";

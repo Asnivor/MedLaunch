@@ -6323,6 +6323,21 @@ namespace MedLaunch
                 MessageBox.Show("Final Rom Path: " + result.ConvertedPath);
             }
         }
+
+        private async void examineRom_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            Grid RootGrid = (Grid)mw.FindName("RootGrid");
+
+            await mw.ShowChildWindowAsync(new RomInspector()
+            {
+                IsModal = true,
+                AllowMove = false,
+                Title = "Library Inspector",
+                CloseOnOverlay = false,
+                ShowCloseButton = true
+            }, RootGrid);
+        }
     }
 
 

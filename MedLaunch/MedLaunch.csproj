@@ -310,6 +310,7 @@
     <Compile Include="Classes\Scraper\ScrapeDbContext.cs" />
     <Compile Include="Classes\Scraper\ScraperLookup.cs" />
     <Compile Include="Classes\Scraper\ScraperSearch.cs" />
+    <Compile Include="Classes\uConOps.cs" />
     <Compile Include="Extensions\FocusExtension.cs" />
     <Compile Include="MedDataGrid.cs" />
     <Compile Include="Windows\AccentStyleWindow.xaml.cs">
@@ -375,6 +376,9 @@
     <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\Models\ToSecCollection.cs" />
     <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\Models\ToSecObject.cs" />
     <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\StringConverterToSec.cs" />
+    <Compile Include="Windows\RomInspector.xaml.cs">
+      <DependentUpon>RomInspector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\DiscSelection.xaml.cs">
       <DependentUpon>DiscSelection.xaml</DependentUpon>
     </Compile>
@@ -541,6 +545,10 @@
     <Page Include="Windows\ConfigureController.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\RomInspector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\InitWindow.xaml">
       <SubType>Designer</SubType>
