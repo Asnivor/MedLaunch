@@ -429,6 +429,9 @@ namespace MedLaunch
                 case "PCE (fast) Mouse":
                     imgName = "pce-mouse.png";
                     break;
+                case "PCFX Mouse":
+                    imgName = "pcfx-mouse.png";
+                    break;
 
                 default:
                     return null;

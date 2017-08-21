@@ -1080,6 +1080,7 @@
     <Resource Include="Data\Graphics\Controllers\psx-gcon.png" />
     <Resource Include="Data\Graphics\Controllers\psx-justifier.png" />
     <Resource Include="Data\Graphics\Controllers\pce-mouse.png" />
+    <Resource Include="Data\Graphics\Controllers\pcfx-mouse.png" />
     <Content Include="ExternalAssemblies\WindowScrape.dll" />
     <Resource Include="MedLaunchIcon.ico" />
     <Resource Include="Data\Graphics\Controllers\lynx_controller.png" />

@@ -38,5 +38,20 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
             DeviceDefinition.PopulateConfig(device);
             return device;
         }
+
+        public static DeviceDefinition Mouse(int VirtualPort)
+        {
+            DeviceDefinition device = new DeviceDefinition();
+            device.DeviceName = "PCFX Mouse";
+            device.CommandStart = "pcfx.input.port" + VirtualPort;
+            device.VirtualPort = VirtualPort;
+            device.MapList = new List<Mapping>
+            {
+                new Mapping { Description = "Left Button", MednafenCommand = device.CommandStart +".mouse.left" },
+                new Mapping { Description = "Right Button", MednafenCommand = device.CommandStart +".mouse.right" },
+            };
+            DeviceDefinition.PopulateConfig(device);
+            return device;
+        }
     }
 }
