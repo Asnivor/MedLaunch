@@ -441,6 +441,9 @@ namespace MedLaunch
                 case "SS Mouse":
                     imgName = "ss-mouse.png";
                     break;
+                case "NES Zapper":
+                    imgName = "nes-zapper.png";
+                    break;
 
                 default:
                     return null;

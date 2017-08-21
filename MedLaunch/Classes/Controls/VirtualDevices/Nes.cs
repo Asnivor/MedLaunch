@@ -30,6 +30,23 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
             DeviceDefinition.PopulateConfig(device);
             return device;
         }
+
+        public static DeviceDefinition Zapper(int VirtualPort)
+        {
+            DeviceDefinition device = new DeviceDefinition();
+            device.DeviceName = "NES Zapper";
+            device.CommandStart = "nes.input.port" + VirtualPort;
+            device.VirtualPort = VirtualPort;
+            device.MapList = new List<Mapping>
+            {
+                new Mapping { Description = "Away Trigger", MednafenCommand = device.CommandStart +".zapper.away_trigger" },
+                new Mapping { Description = "Trigger", MednafenCommand = device.CommandStart +".zapper.trigger" },
+                new Mapping { Description = "X Axis", MednafenCommand = device.CommandStart +".zapper.x_axis" },
+                new Mapping { Description = "Y Axis", MednafenCommand = device.CommandStart +".zapper.y_axis" },
+            };
+            DeviceDefinition.PopulateConfig(device);
+            return device;
+        }
     }
 
     
