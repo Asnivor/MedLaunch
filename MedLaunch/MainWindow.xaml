@@ -203,6 +203,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
             </Setter>
             <Setter Property="VerticalContentAlignment" Value="Stretch" />
         </Style>
+        
+        
+
     </Window.Resources>
 
     <Window.CommandBindings>
@@ -821,7 +824,21 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                     <DataGridTextColumn x:Name="glCol3" Header="System" Binding="{Binding System}" Width="100" />
                                     <DataGridTextColumn x:Name="glCol4" Header="LastRun" Binding="{Binding LastPlayed}" />
-                                    <DataGridCheckBoxColumn x:Name="glCol5" Header="Fav" Binding="{Binding Favorite}" />
+                                    
+                                    
+                                    <DataGridCheckBoxColumn x:Name="glCol5" Header="Fav" Binding="{Binding Favorite}" ElementStyle="{StaticResource MetroCheckBoxDataGrid}" />
+                                    
+                                    <!--
+                                    <DataGridTemplateColumn x:Name="glCol5" Header="Fav">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Viewbox>
+                                                    <Controls:ToggleSwitch IsChecked="{Binding Favorite}" OnSwitchBrush="{DynamicResource AccentColorBrush}" />
+                                                </Viewbox>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    -->
                                     <DataGridTextColumn x:Name="glCol6" Header="Country" Binding="{Binding Country}" />
                                     <!--
                                     <DataGridTextColumn Header="Language" Binding="{Binding Language}" />

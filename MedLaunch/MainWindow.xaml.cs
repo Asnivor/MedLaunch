@@ -6329,14 +6329,23 @@ namespace MedLaunch
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             Grid RootGrid = (Grid)mw.FindName("RootGrid");
 
+            var h = RootGrid.ActualHeight; // mw.ActualHeight; // RootGrid.ActualHeight;
+            var w = RootGrid.ActualWidth; // mw.ActualWidth; // RootGrid.ActualWidth;
+
+            mw.ShowMaxRestoreButton = false;
+
             await mw.ShowChildWindowAsync(new RomInspector()
             {
                 IsModal = true,
                 AllowMove = false,
-                Title = "Library Inspector",
+                Title = "Library Editor/Inspector",
                 CloseOnOverlay = false,
-                ShowCloseButton = true
+                ShowCloseButton = true,
+                ChildWindowHeight = h,
+                ChildWindowWidth = w
             }, RootGrid);
+
+            mw.ShowMaxRestoreButton = true;
         }
     }
 

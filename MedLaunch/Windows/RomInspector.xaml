@@ -13,6 +13,7 @@
 							   BorderThickness="1"
 							   ShowCloseButton="True"
                                TextOptions.TextFormattingMode="Display"
+                               xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                                IsModal="True">
 
     <simpleChildWindow:ChildWindow.Icon>
@@ -26,9 +27,388 @@
         </Rectangle>
     </simpleChildWindow:ChildWindow.Icon>
 
-    <Grid Name="InspectorRootGrid" Height="650" Width="1024">
+    <DockPanel Name="InspectorRootGrid">
 
-        <TabControl>
+        <TabControl Grid.Row="0" DockPanel.Dock="Top">
+
+            <TabItem Header="Library Data">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*" />
+                        <ColumnDefinition Width="0.25*" />
+                        <ColumnDefinition Width="0.25*" />
+                        <ColumnDefinition Width="0.25*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  Name="tbLibInspecResults"
+				   Margin="5"
+				   FontSize="15"
+				   FontWeight="Thin"
+				   Text="Library Inspection Results" />
+
+                    <!--
+                    <Button Grid.Row="0" Grid.Column="2" Name="btnToggleManualEdit" Click="btnToggleManualEdit_Click" />
+                    -->
+                    
+                     <Controls:ToggleSwitch Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Header="Game Manual Editing Status" Name="btnToggleManualEdit"
+                                           OnLabel="ON (Game is 'locked' and can only be edited manually)" 
+                                           OffLabel="OFF (Game data can be overwritten by Scrape and DAT lookup)" Checked="btnToggleManualEdit_Click" Unchecked="btnToggleManualEdit_Click" 
+                                            OffSwitchBrush="Green" OnSwitchBrush="Red" 
+                                           FontSize="12" />
+               
+                    
+                    
+                    <!-- From Database -->
+                    <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="15">
+                        Library Data
+                    </Label>                    
+                    
+                    <ScrollViewer Grid.Column="0" Grid.Row="2" Margin="5" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="0.7*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />                               
+                            </Grid.RowDefinitions>
+                            <!-- Labels -->
+
+                            <Label Grid.Column="0" Grid.Row="0">Favorite</Label>
+                            <Viewbox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left">
+                                <Controls:ToggleSwitch Name="tbLibData_isFavorite" OnLabel="" OffLabel="" HorizontalAlignment="Left" />
+                            </Viewbox>                            
+                            
+                            <Label Grid.Column="0" Grid.Row="1">Game ID</Label>
+                            <TextBox Grid.Column="1" Grid.Row="1" Name="tbLibData_gameId" IsReadOnly="True" />
+
+                            <Label Grid.Column="0" Grid.Row="2">Game Name</Label>
+                            <TextBox Grid.Column="1" Grid.Row="2" Name="tbLibData_gameName" />
+
+                            <Label Grid.Column="0" Grid.Row="3">Year</Label>
+                            <TextBox Grid.Column="1" Grid.Row="3" Name="tbLibData_Year" />
+
+                            <Label Grid.Column="0" Grid.Row="4">Developer</Label>
+                            <TextBox Grid.Column="1" Grid.Row="4" Name="tbLibData_Developer" />
+
+                            <Label Grid.Column="0" Grid.Row="5">Publisher</Label>
+                            <TextBox Grid.Column="1" Grid.Row="5" Name="tbLibData_Publisher" />
+
+                            <Label Grid.Column="0" Grid.Row="6">Region</Label>
+                            <TextBox Grid.Column="1" Grid.Row="6" Name="tbLibData_Country" />
+
+                            <Label Grid.Column="0" Grid.Row="7">Language</Label>
+                            <TextBox Grid.Column="1" Grid.Row="7" Name="tbLibData_Language" />
+
+                            <Label Grid.Column="0" Grid.Row="8">Copyright</Label>
+                            <TextBox Grid.Column="1" Grid.Row="8" Name="tbLibData_Copyright" />
+
+                            <Label Grid.Column="0" Grid.Row="9">Development Status</Label>
+                            <TextBox Grid.Column="1" Grid.Row="9" Name="tbLibData_DevelopmentStatus" />
+
+                            <Label Grid.Column="0" Grid.Row="10">Other Flags</Label>
+                            <TextBox Grid.Column="1" Grid.Row="10" Name="tbLibData_OtherFlags" />
+
+                            <Label Grid.Column="0" Grid.Row="11">thegamesdb.net ID</Label>
+                            <TextBox Grid.Column="1" Grid.Row="11" Name="tbLibData_gdbId" IsReadOnly="True"/>
+                        </Grid>
+                    </ScrollViewer>
+                    
+                    
+                    <!-- From DAT -->
+                    <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="15">
+                        DAT Database Lookup
+                    </Label>
+
+                    <ScrollViewer Grid.Column="1" Grid.Row="2" Margin="5" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="0.7*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <!-- Labels -->
+
+                            <Button Name="btnRescanDat" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Click="btnRescanDat_Click">
+                                Rescan DAT Database
+                            </Button>
+
+
+                            <Label Grid.Column="0" Grid.Row="2">Game Name</Label>
+                            <TextBox Grid.Column="1" Grid.Row="2" Name="tbDatData_gameName" IsReadOnly="True" />
+                            <Button Grid.Column="2" Grid.Row="2" Width="25" Height="25" Name="btnDatCopyData_gameName" Click="btnDatCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+
+                            <Label Grid.Column="0" Grid.Row="3">Year</Label>
+                            <TextBox Grid.Column="1" Grid.Row="3" Name="tbDatData_Year" IsReadOnly="True" />
+                            <Button Grid.Column="2" Grid.Row="3" Width="25" Height="25" Name="btnDatCopyData_Year" Click="btnDatCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+
+                            <Label Grid.Column="0" Grid.Row="4">Developer</Label>
+                            <TextBox Grid.Column="1" Grid.Row="4" Name="tbDatData_Developer" IsReadOnly="True" />
+                            <Button Grid.Column="2" Grid.Row="4" Width="25" Height="25" Name="btnDatCopyData_Developer" Click="btnDatCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+
+                            <Label Grid.Column="0" Grid.Row="5">Publisher</Label>
+                            <TextBox Grid.Column="1" Grid.Row="5" Name="tbDatData_Publisher" IsReadOnly="True" />
+                            <Button Grid.Column="2" Grid.Row="5" Width="25" Height="25" Name="btnDatCopyData_Publisher" Click="btnDatCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+
+                            <Label Grid.Column="0" Grid.Row="6">Region</Label>
+                            <TextBox Grid.Column="1" Grid.Row="6" Name="tbDatData_Country" IsReadOnly="True" />
+                            <Button Grid.Column="2" Grid.Row="6" Width="25" Height="25" Name="btnDatCopyData_Country" Click="btnDatCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+
+                            <Label Grid.Column="0" Grid.Row="7">Language</Label>
+                            <TextBox Grid.Column="1" Grid.Row="7" Name="tbDatData_Language" IsReadOnly="True" />
+                            <Button Grid.Column="2" Grid.Row="7" Width="25" Height="25" Name="btnDatCopyData_Language" Click="btnDatCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+
+                            <Label Grid.Column="0" Grid.Row="8">Copyright</Label>
+                            <TextBox Grid.Column="1" Grid.Row="8" Name="tbDatData_Copyright" IsReadOnly="True" />
+                            <Button Grid.Column="2" Grid.Row="8" Width="25" Height="25" Name="btnDatCopyData_Copyright" Click="btnDatCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+
+                            <Label Grid.Column="0" Grid.Row="9">Development Status</Label>
+                            <TextBox Grid.Column="1" Grid.Row="9" Name="tbDatData_DevelopmentStatus" IsReadOnly="True" />
+                            <Button Grid.Column="2" Grid.Row="9" Width="25" Height="25" Name="btnDatCopyData_DevelopmentStatus" Click="btnDatCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+
+                            <Label Grid.Column="0" Grid.Row="10">Other Flags</Label>
+                            <TextBox Grid.Column="1" Grid.Row="10" Name="tbDatData_OtherFlags" IsReadOnly="True" />
+                            <Button Grid.Column="2" Grid.Row="10" Width="25" Height="25" Name="btnDatCopyData_OtherFlags" Click="btnDatCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+                        </Grid>
+                    </ScrollViewer>
+                    
+                    <!-- from scrape -->
+                    <Label Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="15">
+                        Scrape Database Lookup
+                    </Label>
+
+                    <ScrollViewer Grid.Column="2" Grid.Row="2" Margin="5" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="0.7*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <!-- Labels -->
+
+                            <Button Name="btnLookupScrapeDB" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center">
+                                Lookup in Local ScrapeDB
+                            </Button>
+
+
+                            <Label Grid.Column="0" Grid.Row="2">Game Name</Label>
+                            <TextBox Grid.Column="1" Grid.Row="2" Name="tbScrapeData_gameName" IsReadOnly="True" />
+                            <Button Grid.Column="2" Grid.Row="2" Width="25" Height="25" Name="btnScrapeCopyData_gameName" Click="btnScrapeCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+
+                            <Label Grid.Column="0" Grid.Row="3">Year</Label>
+                            <TextBox Grid.Column="1" Grid.Row="3" Name="tbScrapeData_Year" IsReadOnly="True" />
+                            <Button Grid.Column="2" Grid.Row="3" Width="25" Height="25" Name="btnScrapeCopyData_Year" Click="btnScrapeCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+
+                            <Label Grid.Column="0" Grid.Row="4">Developer</Label>
+                            <TextBox Grid.Column="1" Grid.Row="4" Name="tbScrapeData_Developer" IsReadOnly="True" />
+                            <Button Grid.Column="2" Grid.Row="4" Width="25" Height="25" Name="btnScrapeCopyData_Developer" Click="btnScrapeCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+
+                            <Label Grid.Column="0" Grid.Row="5">Publisher</Label>
+                            <TextBox Grid.Column="1" Grid.Row="5" Name="tbScrapeData_Publisher" IsReadOnly="True" />
+                            <Button Grid.Column="2" Grid.Row="5" Width="25" Height="25" Name="btnScrapeCopyData_Publisher" Click="btnScrapeCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+
+                            <Label Grid.Column="0" Grid.Row="6">Region</Label>
+                            <TextBox Grid.Column="1" Grid.Row="6" Name="tbScrapeData_Country" IsReadOnly="True" />
+                            <Button Grid.Column="2" Grid.Row="6" Width="25" Height="25" Name="btnScrapeCopyData_Country" Click="btnScrapeCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+
+                            <Label Grid.Column="0" Grid.Row="7">Language</Label>
+                            <TextBox Grid.Column="1" Grid.Row="7" Name="tbScrapeData_Language" IsReadOnly="True" />
+                            <Button Grid.Column="2" Grid.Row="7" Width="25" Height="25" Name="btnScrapeCopyData_Language" Click="btnScrapeCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+
+                            <Label Grid.Column="0" Grid.Row="8">Copyright</Label>
+                            <TextBox Grid.Column="1" Grid.Row="8" Name="tbScrapeData_Copyright" IsReadOnly="True" />
+                            <Button Grid.Column="2" Grid.Row="8" Width="25" Height="25" Name="btnScrapeCopyData_Copyright" Click="btnScrapeCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+
+                            <Label Grid.Column="0" Grid.Row="9">Development Status</Label>
+                            <TextBox Grid.Column="1" Grid.Row="9" Name="tbScrapeData_DevelopmentStatus" IsReadOnly="True" />
+                            <Button Grid.Column="2" Grid.Row="9" Width="25" Height="25" Name="btnScrapeCopyData_DevelopmentStatus" Click="btnScrapeCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+
+                            <Label Grid.Column="0" Grid.Row="10">Other Flags</Label>
+                            <TextBox Grid.Column="1" Grid.Row="10" Name="tbScrapeData_OtherFlags" IsReadOnly="True" />
+                            <Button Grid.Column="2" Grid.Row="10" Width="25" Height="25" Name="btnScrapeCopyData_OtherFlags" Click="btnScrapeCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+                        </Grid>
+                    </ScrollViewer>
+
+                    <!-- From ROM itself -->
+                    <Label Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="15">
+                        ROM Inspection Data
+                    </Label>
+                    <Grid Grid.Column="3" Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <!-- Labels -->
+                        <StackPanel Orientation="Vertical" Grid.Column="0">
+
+                        </StackPanel>
+                        <!-- Data -->
+                        <StackPanel Orientation="Vertical" Grid.Column="1">
+
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+
+            </TabItem>
+
+
             <TabItem Header="Raw Data">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -42,33 +422,15 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" 
+                    <TextBlock Grid.Row="0" Grid.Column="0"  Name="tbRawInspecResults"
 				   Margin="5"
-				   FontSize="20"
+				   FontSize="15"
 				   FontWeight="Thin"
 				   Text="ROM/Disc Inspection Results" />
 
                     <TextBox Grid.Column="0" FontFamily="Courier New" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Name="tbInsResult" Height="500" Width="600" Grid.Row="1" IsReadOnly="True" />
 
-                    <UniformGrid Columns="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3">
-                        <Button                
-				Margin="5"
-				IsDefault="True"
-				VerticalAlignment="Bottom"
-				FontSize="20"
-				FontWeight="Thin"
-				Content="SAVE CHANGES"
-				Click="CloseSec_OnClick" />
 
-                        <Button                
-				Margin="5"
-				IsDefault="True"
-				VerticalAlignment="Bottom"
-				FontSize="20"
-				FontWeight="Thin"
-				Content="CANCEL"
-				Click="CloseSec_OnClick" />
-                    </UniformGrid>
 
                     <TextBlock Grid.Row="0" Grid.Column="1" 
 				   Margin="5"
@@ -146,12 +508,30 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Library Data">
-
-            </TabItem>
+            
         </TabControl>
 
-    </Grid>
+        <UniformGrid Columns="2" Grid.Row="1" DockPanel.Dock="Bottom">
+            <Button                
+				Margin="5"
+				IsDefault="True"
+				VerticalAlignment="Bottom"
+				FontSize="20"
+				FontWeight="Thin"
+				Content="SAVE CHANGES"
+				Click="SaveSec_OnClick" />
+
+            <Button                
+				Margin="5"
+				IsDefault="True"
+				VerticalAlignment="Bottom"
+				FontSize="20"
+				FontWeight="Thin"
+				Content="CANCEL"
+				Click="CloseSec_OnClick" />
+        </UniformGrid>
+
+    </DockPanel>
 
     
 

@@ -177,5 +177,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
             DeviceDefinition.PopulateConfig(device);
             return device;
         }
+
+        
     }
 }

@@ -43,6 +43,46 @@ namespace MedLaunch.Models
         public int? gdbId { get; set; }
         public string CRC32 { get; set; }
 
+        public bool? ManualEditSet { get; set; }
+
+        public static void SetManualEdit(int gameId)
+        {
+            using (var romaContext = new MyDbContext())
+            {
+                Game rom = (from r in romaContext.Game
+                            where r.gameId == gameId
+                            select r).SingleOrDefault();
+
+                if (rom != null)
+                {
+                    rom.ManualEditSet = true;
+                }
+
+                // update ROM
+                UpdateRom(rom);
+                romaContext.Dispose();
+            }
+        }
+
+        public static void UnSetManualEdit(int gameId)
+        {
+            using (var romaContext = new MyDbContext())
+            {
+                Game rom = (from r in romaContext.Game
+                            where r.gameId == gameId
+                            select r).SingleOrDefault();
+
+                if (rom != null)
+                {
+                    rom.ManualEditSet = false;
+                }
+
+                // update ROM
+                UpdateRom(rom);
+                romaContext.Dispose();
+            }
+        }
+
         public static Game GetGame(int gameId)
         {
             using (var context = new MyDbContext())

@@ -1244,6 +1244,7 @@ namespace MedLaunch.Classes
                 else
                 {
                     DataGridCheckBoxColumn cc = (DataGridCheckBoxColumn)mw.FindName("glCol" + i.ToString());
+                    //DataGridTemplateColumn cc = (DataGridTemplateColumn)mw.FindName("glCol" + i.ToString());
                     if (value / testValue == 1)
                     {
                         // column should be visible

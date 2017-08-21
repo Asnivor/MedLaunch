@@ -172,10 +172,21 @@ namespace MedLaunch.Classes.DAT
         {
             using (var context = new AsniDATDbContext())
             {
-                var cData = (from g in context.DATMerge
-                             where g.MD5.ToUpper().Trim() == md5.ToUpper().Trim()
-                             select g);
-                return cData.ToList();
+                var aData = (from a in context.DATMerge
+                             where a.MD5 != null
+                             select a).ToList();
+
+                if (md5 != null)
+                {
+                    var cData = (from g in aData
+                                 where g.MD5 != null && g.MD5.ToUpper().Trim() == md5.ToUpper().Trim()
+                                 select g);
+
+
+                    return cData.ToList();
+                }
+
+                return new List<DATMerge>();    
             }
         }
 
@@ -188,14 +199,47 @@ namespace MedLaunch.Classes.DAT
         {
             using (var context = new AsniDATDbContext())
             {
-                var cData = (from g in context.DATMerge
-                             where g.MD5.ToUpper().Trim() == md5.ToUpper().Trim()
-                             select g).FirstOrDefault();
-                return cData;
+                var aData = (from a in context.DATMerge
+                             where a.MD5 != null
+                             select a).ToList();
+
+                if (md5 != null)
+                {
+                    var cData = (from g in aData
+                                 where g.MD5.ToUpper().Trim() == md5.ToUpper().Trim()
+                                 select g).FirstOrDefault();
+                    return cData;
+                }
+
+                return null;
             }
         }
 
-        
+        /// <summary>
+        /// return a list of entries based on systemid and extraflags (serial number)
+        /// </summary>
+        /// <param name="inputList"></param>
+        /// <param name="systemId"></param>
+        /// <param name="md5Hash"></param>
+        /// <returns></returns>
+        public static DATMerge GetDATsBySN(int systemId, string serialNumber)
+        {
+            using (var context = new AsniDATDbContext())
+            {
+                if (serialNumber != null)
+                {
+                    var cData = (from g in context.DATMerge
+                                 where g.OtherFlags != null && g.OtherFlags.ToUpper().Trim() == serialNumber.ToUpper().Trim()
+                                 select g).FirstOrDefault();
+                    return cData;
+                }
+
+                else
+                {
+                    return null;
+                }
+            }            
+        }
 
     }
 }
