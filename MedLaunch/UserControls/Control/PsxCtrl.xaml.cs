@@ -71,6 +71,9 @@ namespace MedLaunch
                 case "PsxJustifier":
                     dev = Psx.Justifier(portNum);
                     break;
+                case "PsxMouse":
+                    dev = Psx.Mouse(portNum);
+                    break;
                 default:
                     return;
             }
