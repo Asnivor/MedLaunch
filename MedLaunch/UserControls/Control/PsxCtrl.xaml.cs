@@ -65,6 +65,9 @@ namespace MedLaunch
                 case "PsxDancepad":
                     dev = Psx.DancePad(portNum);
                     break;
+                case "PsxGunCon":
+                    dev = Psx.GunCon(portNum);
+                    break;
                 default:
                     return;
             }

@@ -416,6 +416,9 @@ namespace MedLaunch
                 case "SNES Super Scope":
                     imgName = "snes-superscope.png";
                     break;
+                case "PSX GunCon":
+                    imgName = "psx-gcon.png";
+                    break;
 
                 default:
                     return null;

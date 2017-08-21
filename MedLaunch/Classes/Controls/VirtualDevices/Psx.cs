@@ -168,5 +168,24 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
             DeviceDefinition.PopulateConfig(device);
             return device;
         }
+
+        public static DeviceDefinition GunCon(int VirtualPort)
+        {
+            DeviceDefinition device = new DeviceDefinition();
+            device.DeviceName = "PSX GunCon Controller";
+            device.CommandStart = "psx.input.port" + VirtualPort;
+            device.VirtualPort = VirtualPort;
+            device.MapList = new List<Mapping>
+            {
+                new Mapping { Description = "A", MednafenCommand = device.CommandStart +".guncon.a" },
+                new Mapping { Description = "B", MednafenCommand = device.CommandStart +".guncon.b" },
+                new Mapping { Description = "Offscreen Shot(Simulated)", MednafenCommand = device.CommandStart +".guncon.offscreen_shot" },
+                new Mapping { Description = "Trigger", MednafenCommand = device.CommandStart +".guncon.trigger" },
+                new Mapping { Description = "X Axis", MednafenCommand = device.CommandStart +".guncon.x_axis" },
+                new Mapping { Description = "Y Axis", MednafenCommand = device.CommandStart +".guncon.y_axis" },
+            };
+            DeviceDefinition.PopulateConfig(device);
+            return device;
+        }
     }
 }
