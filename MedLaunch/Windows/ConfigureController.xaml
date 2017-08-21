@@ -16,7 +16,8 @@
 							   ShowCloseButton="False"
                                IsModal="True"
                                TextOptions.TextFormattingMode="Display"
-                               Closing="ChildWindow_Closing">
+                               Closing="ChildWindow_Closing"
+                               IsOpen="True">
 
     <simpleChildWindow:ChildWindow.Icon>
         <Rectangle Width="22"

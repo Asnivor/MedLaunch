@@ -24,6 +24,7 @@ using ucon64_wrapper;
 using System.IO;
 using MedLaunch.Classes.DAT;
 using MedLaunch.Classes.Scraper.DBModels;
+using MedLaunch.Classes.IO;
 
 namespace MedLaunch
 {
@@ -87,6 +88,35 @@ namespace MedLaunch
                 extension.ToLower().Contains(".toc")
                 )
             {
+
+                if (g.systemId == 13)
+                {
+                    // saturn
+                    DiscGameFile dgf = new DiscGameFile(gamePath, g.systemId);
+                    // get saturn data from disk image
+                    var file = DiscScan.ParseTrackSheetForImageFiles(dgf, g.systemId).FirstOrDefault();
+                    if (file != null)
+                    {
+                        var satInfo = MedDiscUtils.GetSSData(file.FullPath);
+                        string outp = "Initialising MedLaunch Sega Saturn DISC Interogator\n*******************************************\n\n";
+                        outp += satInfo.Title + "\n";
+                        outp += satInfo.SerialNumber + "\n";
+                        outp += satInfo.Date + "\n";
+                        outp += satInfo.Country + "\n";
+                        outp += satInfo.JpnTitle + "\n";
+                        outp += satInfo.PeriphCode + "\n";
+                        outp += satInfo.CountryCode + "\n";
+
+                        tbInsResult.Text = outp;
+
+                        // pop tbs
+                        tbIntGame.Text = satInfo.Title;
+                        tbIntRegion.Text = satInfo.Country;
+                        tbIntYear.Text = satInfo.Date;
+                        tbIntVersion.Text = satInfo.SerialNumber;
+                    }
+                }
+
                 /*
                 DiscGameFile dgf = new DiscGameFile(gamePath, g.systemId);
                 var files = DiscScan.ParseTrackSheetForImageFiles(dgf, g.systemId);
@@ -146,69 +176,86 @@ namespace MedLaunch
             /* populate other textboxes */
 
             // raw
-            tbIntSystem.Text = obj.Data.DetectedSystemType;
-            tbIntGame.Text = obj.Data.DetectedGameName;
-            tbIntPublisher.Text = obj.Data.DetectedPublisher;
-            tbIntRegion.Text = obj.Data.DetectedRegion;
-            tbIntType.Text = obj.Data.DetectedRomType;
-            tbIntYear.Text = obj.Data.DetectedYear;
-            tbIntChecksumString.Text = obj.Data.DetectedChecksumComparison;
-            if (obj.Data.IsInterleaved == true)
-                tbIntInterleaving.Text = "Yes";
-            if (obj.Data.IsInterleaved == false)
-                tbIntInterleaving.Text = "No";
-            tbIntChecksumCrc.Text = obj.Data.CRC32;
-
-            if (tbIntChecksumString.Text.Contains("Bad,"))
+            if (g.systemId != 13)
             {
-                tbIntChecksumString.Foreground = new SolidColorBrush(Colors.Red);
-            }
-            if (tbIntChecksumString.Text.Contains("OK,"))
-            {
-                tbIntChecksumString.Foreground = new SolidColorBrush(Colors.Green);
-            }
+                tbIntSystem.Text = obj.Data.DetectedSystemType;
+                tbIntGame.Text = obj.Data.DetectedGameName;
+                tbIntPublisher.Text = obj.Data.DetectedPublisher;
+                tbIntRegion.Text = obj.Data.DetectedRegion;
+                tbIntType.Text = obj.Data.DetectedRomType;
+                tbIntYear.Text = obj.Data.DetectedYear;
+                tbIntChecksumString.Text = obj.Data.DetectedChecksumComparison;
+                if (obj.Data.IsInterleaved == true)
+                    tbIntInterleaving.Text = "Yes";
+                if (obj.Data.IsInterleaved == false)
+                    tbIntInterleaving.Text = "No";
+                tbIntChecksumCrc.Text = obj.Data.CRC32;
 
-            tbIntVersion.Text = obj.Data.DetectedVersion;
-            tbIntPadding.Text = obj.Data.DetectedPadding;
-            tbIntSize.Text = obj.Data.DetectedSize;
-
-            // status box
-            string resultMessage = obj.Status;
-
-            if (obj.Data.systemType == SystemType.Genesis && obj.Data.romType == RomType.SMD)
-            {
-                if (obj.Data.IsChecksumValid == false)
+                if (tbIntChecksumString.Text.Contains("Bad,"))
                 {
-                    resultMessage = "Checksum invalid\n";
-                    if (obj.Data.IsInterleaved == true)
+                    tbIntChecksumString.Foreground = new SolidColorBrush(Colors.Red);
+                }
+                if (tbIntChecksumString.Text.Contains("OK,"))
+                {
+                    tbIntChecksumString.Foreground = new SolidColorBrush(Colors.Green);
+                }
+
+                tbIntVersion.Text = obj.Data.DetectedVersion;
+                tbIntPadding.Text = obj.Data.DetectedPadding;
+                tbIntSize.Text = obj.Data.DetectedSize;
+
+                // status box
+                string resultMessage = obj.Status;
+
+                if (obj.Data.systemType == SystemType.Genesis && obj.Data.romType == RomType.SMD)
+                {
+                    if (obj.Data.IsChecksumValid == false)
                     {
-                        // needs de-interleaving
-                        resultMessage += "Also, this is a genesis SMD ROM that is interleaved. Mednafen will not run this game and MedLaunch cannot currently convert it.";
+                        resultMessage = "Checksum invalid\n";
+                        if (obj.Data.IsInterleaved == true)
+                        {
+                            // needs de-interleaving
+                            resultMessage += "Also, this is a genesis SMD ROM that is interleaved. Mednafen will not run this game and MedLaunch cannot currently convert it.";
+                        }
+                        if (obj.Data.IsInterleaved == false)
+                        {
+                            // game will most probably play
+                            resultMessage += "However this is a genesis ROM that is NOT interleaved. It should work in Mednafen.";
+                        }
                     }
-                    if (obj.Data.IsInterleaved == false)
+                    else
                     {
-                        // game will most probably play
-                        resultMessage += "However this is a genesis ROM that is NOT interleaved. It should work in Mednafen.";
+                        resultMessage = "Checksum is valid\n";
+                        if (obj.Data.IsInterleaved == true)
+                        {
+                            // needs de-interleaving
+                            resultMessage += "This is a genesis SMD ROM that is interleaved. MedLaunch will auto-convert this game at launch-time so that it works with Mednafen.";
+                        }
+                        if (obj.Data.IsInterleaved == false)
+                        {
+                            // game will most probably play
+                            resultMessage += "This is a genesis ROM that is NOT interleaved. It should work in Mednafen without conversion.";
+                        }
                     }
                 }
-                else
-                {
-                    resultMessage = "Checksum is valid\n";
-                    if (obj.Data.IsInterleaved == true)
-                    {
-                        // needs de-interleaving
-                        resultMessage += "This is a genesis SMD ROM that is interleaved. MedLaunch will auto-convert this game at launch-time so that it works with Mednafen.";
-                    }
-                    if (obj.Data.IsInterleaved == false)
-                    {
-                        // game will most probably play
-                        resultMessage += "This is a genesis ROM that is NOT interleaved. It should work in Mednafen without conversion.";
-                    }
-                }                
+
+                tbIntResult.Text = resultMessage;
             }
+            
 
-            tbIntResult.Text = resultMessage;
+            //populate rom field on library tab
+            LookupROM();
 
+        }
+
+        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            double winHeight = ChildWindowHeight;
+            double dataHeight = (winHeight / 100.00) * 80.00;
+
+            //InspectorRootGrid.Height = dataHeight;
+
+            mainScroll.Height = dataHeight; // new GridLength(dataHeight);
         }
 
         private void LookupScrapeMatched()
@@ -269,6 +316,16 @@ namespace MedLaunch
             }
         }
 
+        private void LookupROM()
+        {
+            tbRomData_Country.Text = tbIntRegion.Text;
+            tbRomData_Developer.Text = tbIntPublisher.Text;
+            tbRomData_gameName.Text = tbIntGame.Text;
+            tbRomData_OtherFlags.Text = tbIntVersion.Text;
+            tbRomData_Publisher.Text = tbIntPublisher.Text;
+            tbRomData_Year.Text = tbIntYear.Text;
+        }
+
         private void PopulateLibraryData()
         {
             tbLibData_gameId.Text = GameObj.gameId.ToString();
@@ -294,6 +351,12 @@ namespace MedLaunch
             tbLibData_OtherFlags.IsReadOnly = false;
             tbLibData_Publisher.IsReadOnly = false;
             tbLibData_Year.IsReadOnly = false;
+            tbLibData_AlternateTitles.IsReadOnly = false;
+            tbLibData_Coop.IsReadOnly = false;
+            tbLibData_ESRB.IsReadOnly = false;
+            tbLibData_Genres.IsReadOnly = false;
+            tbLibData_Overview.IsReadOnly = false;
+            
 
             btnDatCopyData_Copyright.Visibility = Visibility.Visible;
             btnDatCopyData_Country.Visibility = Visibility.Visible;
@@ -314,6 +377,22 @@ namespace MedLaunch
             btnScrapeCopyData_OtherFlags.Visibility = Visibility.Visible;
             btnScrapeCopyData_Publisher.Visibility = Visibility.Visible;
             btnScrapeCopyData_Year.Visibility = Visibility.Visible;
+            btnScrapeCopyData_AlternateTitles.Visibility = Visibility.Visible;
+            btnScrapeCopyData_Coop.Visibility = Visibility.Visible;
+            btnScrapeCopyData_ESRB.Visibility = Visibility.Visible;
+            btnScrapeCopyData_Genres.Visibility = Visibility.Visible;
+            btnScrapeCopyData_Overview.Visibility = Visibility.Visible;
+            btnScrapeCopyData_Players.Visibility = Visibility.Visible;
+
+            //btnRomCopyData_Copyright.Visibility = Visibility.Visible;
+            btnRomCopyData_Country.Visibility = Visibility.Visible;
+            btnRomCopyData_Developer.Visibility = Visibility.Visible;
+            //btnRomCopyData_DevelopmentStatus.Visibility = Visibility.Visible;
+            btnRomCopyData_gameName.Visibility = Visibility.Visible;
+            btnRomCopyData_Language.Visibility = Visibility.Visible;
+            btnRomCopyData_OtherFlags.Visibility = Visibility.Visible;
+            btnRomCopyData_Publisher.Visibility = Visibility.Visible;
+            btnRomCopyData_Year.Visibility = Visibility.Visible;
         }
 
         private void DisableControls()
@@ -326,6 +405,11 @@ namespace MedLaunch
             tbLibData_OtherFlags.IsReadOnly = true;
             tbLibData_Publisher.IsReadOnly = true;
             tbLibData_Year.IsReadOnly = true;
+            tbLibData_AlternateTitles.IsReadOnly = true;
+            tbLibData_Coop.IsReadOnly = true;
+            tbLibData_ESRB.IsReadOnly = true;
+            tbLibData_Genres.IsReadOnly = true;
+            tbLibData_Overview.IsReadOnly = true;
 
             btnDatCopyData_Copyright.Visibility = Visibility.Collapsed;
             btnDatCopyData_Country.Visibility = Visibility.Collapsed;
@@ -346,6 +430,23 @@ namespace MedLaunch
             btnScrapeCopyData_OtherFlags.Visibility = Visibility.Collapsed;
             btnScrapeCopyData_Publisher.Visibility = Visibility.Collapsed;
             btnScrapeCopyData_Year.Visibility = Visibility.Collapsed;
+            btnScrapeCopyData_AlternateTitles.Visibility = Visibility.Collapsed;
+            btnScrapeCopyData_Coop.Visibility = Visibility.Collapsed;
+            btnScrapeCopyData_ESRB.Visibility = Visibility.Collapsed;
+            btnScrapeCopyData_Genres.Visibility = Visibility.Collapsed;
+            btnScrapeCopyData_Overview.Visibility = Visibility.Collapsed;
+            btnScrapeCopyData_Players.Visibility = Visibility.Collapsed;
+            
+
+            //btnRomCopyData_Copyright.Visibility = Visibility.Collapsed;
+            btnRomCopyData_Country.Visibility = Visibility.Collapsed;
+            btnRomCopyData_Developer.Visibility = Visibility.Collapsed;
+            //btnRomCopyData_DevelopmentStatus.Visibility = Visibility.Collapsed;
+            btnRomCopyData_gameName.Visibility = Visibility.Collapsed;
+            btnRomCopyData_Language.Visibility = Visibility.Collapsed;
+            btnRomCopyData_OtherFlags.Visibility = Visibility.Collapsed;
+            btnRomCopyData_Publisher.Visibility = Visibility.Collapsed;
+            btnRomCopyData_Year.Visibility = Visibility.Collapsed;
 
         }
 
@@ -428,6 +529,26 @@ namespace MedLaunch
                 tb.Text = tbs.Text;
 
                 
+            }
+        }
+
+        private void btnRomCopyData_Click(object sender, RoutedEventArgs e)
+        {
+            if (GameObj.ManualEditSet == true)
+            {
+                Button b = sender as Button;
+
+                string libName = "tbLibData_";
+                string datName = "tbRomData_";
+
+                string n = b.Name.Split('_')[1];
+
+                TextBox tb = (TextBox)this.FindName(libName + n);
+                TextBox tbs = (TextBox)this.FindName(datName + n);
+
+                tb.Text = tbs.Text;
+
+
             }
         }
     }

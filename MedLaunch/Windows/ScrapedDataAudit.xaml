@@ -13,7 +13,8 @@
 							   BorderBrush="{DynamicResource AccentColorBrush}"
 							   BorderThickness="1"
 							   ShowCloseButton="True"
-                               IsModal="True">
+                               IsModal="True"
+                               IsOpen="True">
 
     <simpleChildWindow:ChildWindow.Icon>
         <Rectangle Width="22"
