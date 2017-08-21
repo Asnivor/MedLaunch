@@ -27,6 +27,12 @@ namespace MedLaunch.Models
         public string Publisher { get; set; }
         public string Developer { get; set; }
         public string Year { get; set; }
+        public string AlternateTitles { get; set; }
+        public string Genres { get; set; }
+        public string Coop { get; set; }
+        public string ESRB { get; set; }
+        public string Players { get; set; }
+        public string Overview { get; set; }
         public DateTime gameLastPlayed { get; set; }
         public DateTime gameLastFinished { get; set; }
         public int timesPlayed { get; set; }

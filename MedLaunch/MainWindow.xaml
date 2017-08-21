@@ -1890,8 +1890,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 Re-Scrape Game
                                             </Button>
 
-                                            <Button x:Name="btnInterogateRom" ToolTip="Re-scrape data for this game using currently defined settings" Click="examineRom_Click">
-                                                Inspect ROM/Disc
+                                            <Button x:Name="btnInterogateRom" ToolTip="Manually edit and interrogate game" Click="examineRom_Click">
+                                                Inspect/Edit Game
                                             </Button>
 
                                             <Button  x:Name="btnScrapingUnlinkGame" ToolTip="Removes the link between the selected game and the downloaded data" Click="btnScrapingUnlinkGame_Click">
