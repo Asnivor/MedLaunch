@@ -68,6 +68,9 @@ namespace MedLaunch
                 case "PsxGunCon":
                     dev = Psx.GunCon(portNum);
                     break;
+                case "PsxJustifier":
+                    dev = Psx.Justifier(portNum);
+                    break;
                 default:
                     return;
             }

@@ -419,6 +419,9 @@ namespace MedLaunch
                 case "PSX GunCon":
                     imgName = "psx-gcon.png";
                     break;
+                case "PSX Konami Justifier":
+                    imgName = "psx-justifier.png";
+                    break;
 
                 default:
                     return null;

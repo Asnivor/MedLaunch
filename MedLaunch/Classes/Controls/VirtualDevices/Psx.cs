@@ -187,5 +187,24 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
             DeviceDefinition.PopulateConfig(device);
             return device;
         }
+
+        public static DeviceDefinition Justifier(int VirtualPort)
+        {
+            DeviceDefinition device = new DeviceDefinition();
+            device.DeviceName = "PSX Konami Justifier";
+            device.CommandStart = "psx.input.port" + VirtualPort;
+            device.VirtualPort = VirtualPort;
+            device.MapList = new List<Mapping>
+            {
+                new Mapping { Description = "O", MednafenCommand = device.CommandStart +".justifier.o" },                
+                new Mapping { Description = "Offscreen Shot(Simulated)", MednafenCommand = device.CommandStart +".guncon.offscreen_shot" },
+                new Mapping { Description = "Start", MednafenCommand = device.CommandStart +".justifier.start" },
+                new Mapping { Description = "Trigger", MednafenCommand = device.CommandStart +".justifier.trigger" },
+                new Mapping { Description = "X Axis", MednafenCommand = device.CommandStart +".justifier.x_axis" },
+                new Mapping { Description = "Y Axis", MednafenCommand = device.CommandStart +".justifier.y_axis" },
+            };
+            DeviceDefinition.PopulateConfig(device);
+            return device;
+        }
     }
 }
