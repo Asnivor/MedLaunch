@@ -60,6 +60,9 @@ namespace MedLaunch
                 case "SnesSuperscope":
                     dev = Snes.Superscope(portNum);
                     break;
+                case "SnesMouse":
+                    dev = Snes.Mouse(portNum);
+                    break;
                 default:
                     return;
             }

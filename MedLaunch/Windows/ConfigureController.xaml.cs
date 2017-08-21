@@ -435,6 +435,9 @@ namespace MedLaunch
                 case "PSX Mouse":
                     imgName = "psx-mouse.png";
                     break;
+                case "SNES Mouse":
+                    imgName = "snes-mouse.png";
+                    break;
 
                 default:
                     return null;
