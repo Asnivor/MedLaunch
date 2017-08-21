@@ -410,6 +410,12 @@ namespace MedLaunch
                 case "SS Mission Stick":
                     imgName = "ss-dualmission.png";
                     break;
+                case "SS Light Gun":
+                    imgName = "ss_gun.png";
+                    break;
+                case "SNES Super Scope":
+                    imgName = "snes-superscope.png";
+                    break;
 
                 default:
                     return null;

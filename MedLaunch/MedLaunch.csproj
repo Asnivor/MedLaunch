@@ -1076,6 +1076,7 @@
     <Resource Include="Data\Graphics\Icons\usericon_discord.png" />
     <Resource Include="Data\Graphics\Icons\usericon_medlaunch.png" />
     <Resource Include="Data\Graphics\Controllers\ss_gun.png" />
+    <Resource Include="Data\Graphics\Controllers\snes-superscope.png" />
     <Content Include="ExternalAssemblies\WindowScrape.dll" />
     <Resource Include="MedLaunchIcon.ico" />
     <Resource Include="Data\Graphics\Controllers\lynx_controller.png" />
