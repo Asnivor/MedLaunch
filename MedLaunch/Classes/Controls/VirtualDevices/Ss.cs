@@ -195,5 +195,22 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
             DeviceDefinition.PopulateConfig(device);
             return device;
         }
+
+        public static DeviceDefinition Mouse(int VirtualPort)
+        {
+            DeviceDefinition device = new DeviceDefinition();
+            device.DeviceName = "SS Mouse";
+            device.CommandStart = "ss.input.port" + VirtualPort;
+            device.VirtualPort = VirtualPort;
+            device.MapList = new List<Mapping>
+            {
+                new Mapping { Description = "Left Button", MednafenCommand = device.CommandStart +".mouse.left" },
+                new Mapping { Description = "Middle Button", MednafenCommand = device.CommandStart +".mouse.middle" },
+                new Mapping { Description = "Right Button", MednafenCommand = device.CommandStart +".mouse.right" },
+                new Mapping { Description = "Start", MednafenCommand = device.CommandStart +".mouse.start" },
+            };
+            DeviceDefinition.PopulateConfig(device);
+            return device;
+        }
     }
 }

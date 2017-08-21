@@ -68,6 +68,9 @@ namespace MedLaunch
                 case "SsGun":
                     dev = Ss.Gun(portNum);
                     break;
+                case "SsMouse":
+                    dev = Ss.Mouse(portNum);
+                    break;
                 default:
                     return;
             }
