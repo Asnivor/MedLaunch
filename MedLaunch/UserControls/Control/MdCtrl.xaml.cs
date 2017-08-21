@@ -59,6 +59,9 @@ namespace MedLaunch
                 case "Md2ButtonGamepad":
                     dev = Md.TwoButton(portNum);
                     break;
+                case "MdMegaMouse":
+                    dev = Md.MegaMouse(portNum);
+                    break;
                 default:
                     return;
             }

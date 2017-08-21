@@ -422,6 +422,9 @@ namespace MedLaunch
                 case "PSX Konami Justifier":
                     imgName = "psx-justifier.png";
                     break;
+                case "MD Mega Mouse":
+                    imgName = "md-controller-megamouse.png";
+                    break;
 
                 default:
                     return null;

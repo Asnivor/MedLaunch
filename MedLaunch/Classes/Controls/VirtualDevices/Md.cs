@@ -83,5 +83,23 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
             DeviceDefinition.PopulateConfig(device);
             return device;
         }
+
+        public static DeviceDefinition MegaMouse(int VirtualPort)
+        {
+            DeviceDefinition device = new DeviceDefinition();
+            device.DeviceName = "MD Mega Mouse";
+            device.CommandStart = "md.input.port" + VirtualPort;
+            device.VirtualPort = VirtualPort;
+            device.MapList = new List<Mapping>
+            {
+                new Mapping { Description = "Left Button", MednafenCommand = device.CommandStart +".megamouse.left" },
+                new Mapping { Description = "Middle Button", MednafenCommand = device.CommandStart +".megamouse.middle" },
+                new Mapping { Description = "Right Button", MednafenCommand = device.CommandStart +".megamouse.right" },
+                new Mapping { Description = "Start Button", MednafenCommand = device.CommandStart +".gamepad6.right" },
+                new Mapping { Description = "START", MednafenCommand = device.CommandStart +".megamouse.start" },
+            };
+            DeviceDefinition.PopulateConfig(device);
+            return device;
+        }
     }
 }
