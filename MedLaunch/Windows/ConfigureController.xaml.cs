@@ -425,6 +425,9 @@ namespace MedLaunch
                 case "MD Mega Mouse":
                     imgName = "md-controller-megamouse.png";
                     break;
+                case "PCE Mouse":
+                    imgName = "pce-mouse.png";
+                    break;
 
                 default:
                     return null;

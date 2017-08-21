@@ -48,7 +48,21 @@ namespace MedLaunch
             int portNum = Convert.ToInt32(selectedString.Replace("Virtual Port ", ""));
 
             // Get device definition for this controller
-            DeviceDefinition dev = Pce.GamePad(portNum);
+            //DeviceDefinition dev = Pce.GamePad(portNum);
+            DeviceDefinition dev = new DeviceDefinition();
+
+            switch (name)
+            {
+                case "PceGamepad":
+                    dev = Pce.GamePad(portNum);
+                    break;
+                case "PceMouse":
+                    dev = Pce.Mouse(portNum);
+                    break;
+                default:
+                    return;
+            }
+
             mw.ControllerDefinition = dev;
 
             // launch controller configuration window

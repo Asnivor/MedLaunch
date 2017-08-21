@@ -35,5 +35,22 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
             DeviceDefinition.PopulateConfig(device);
             return device;
         }
+
+        public static DeviceDefinition Mouse(int VirtualPort)
+        {
+            DeviceDefinition device = new DeviceDefinition();
+            device.DeviceName = "PCE Mouse";
+            device.CommandStart = "pce.input.port" + VirtualPort;
+            device.VirtualPort = VirtualPort;
+            device.MapList = new List<Mapping>
+            {
+                new Mapping { Description = "Left Button", MednafenCommand = device.CommandStart +".mouse.left" },
+                new Mapping { Description = "Right Button", MednafenCommand = device.CommandStart +".mouse.right" },
+                new Mapping { Description = "RUN", MednafenCommand = device.CommandStart +".mouse.run" },
+                new Mapping { Description = "SELECT", MednafenCommand = device.CommandStart +".mouse.select" },
+            };
+            DeviceDefinition.PopulateConfig(device);
+            return device;
+        }
     }
 }
