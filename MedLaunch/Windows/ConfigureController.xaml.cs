@@ -169,7 +169,11 @@ namespace MedLaunch
                 TextBox configInfo = new TextBox();
                 configInfo.Name = "Primary_" + TranslateConfigName(ControllerDefinition.MapList[i].MednafenCommand);
                 //configInfo.Text = KeyboardTranslation.SDLCodetoDx(GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Primary), KeyboardType.UK);  //ControllerDefinition.MapList[i].Config;
-                configInfo.Text = GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Primary);  //ControllerDefinition.MapList[i].Config;
+                //configInfo.Text = GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Primary);  //ControllerDefinition.MapList[i].Config;
+
+                string primTxt = GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Primary);  //ControllerDefinition.MapList[i].Config;
+                configInfo.Text = ConvertText(primTxt, ConversionOrder.Load);
+
                 configInfo.GotFocus += TextBox_GotFocus;
                 configInfo.LostFocus += TextBox_LostFocus;
                 configInfo.KeyDown += TextBox_KeyDownHandler;
@@ -179,6 +183,7 @@ namespace MedLaunch
                 configInfo.SetValue(Grid.RowProperty, i + 1);
                 KeyboardNavigation.SetTabIndex(configInfo, i + 1);
                 configInfo.ContextMenu = TBCM;
+                configInfo.MouseEnter += tb_MouseEnter;
                 DynamicDataGrid.Children.Add(configInfo);
 
 
@@ -186,7 +191,11 @@ namespace MedLaunch
                 TextBox configInfo2 = new TextBox();
                 configInfo2.Name = "Secondary_" + TranslateConfigName(ControllerDefinition.MapList[i].MednafenCommand);
                 //configInfo2.Text = /*KeyboardTranslation.SDLCodetoDx(GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Secondary), KeyboardType.UK); //*/ControllerDefinition.MapList[i].Config;
-                configInfo2.Text = GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Secondary);
+                //configInfo2.Text = GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Secondary);
+
+                string secTxt = GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Secondary);  //ControllerDefinition.MapList[i].Config;
+                configInfo2.Text = ConvertText(secTxt, ConversionOrder.Load);
+
                 configInfo2.GotFocus += TextBox_GotFocus;
                 configInfo2.LostFocus += TextBox_LostFocus;
                 configInfo2.KeyDown += TextBox_KeyDownHandler;
@@ -196,6 +205,7 @@ namespace MedLaunch
                 configInfo2.SetValue(Grid.RowProperty, i + 1);
                 KeyboardNavigation.SetTabIndex(configInfo2, i + 1 + ControllerDefinition.MapList.Count);
                 configInfo2.ContextMenu = TBCM;
+                configInfo2.MouseEnter += tb_MouseEnter;
                 DynamicDataGrid.Children.Add(configInfo2);
 
             
@@ -203,7 +213,11 @@ namespace MedLaunch
                 TextBox configInfo3 = new TextBox();
                 configInfo3.Name = "Tertiary_" + TranslateConfigName(ControllerDefinition.MapList[i].MednafenCommand);
                 //configInfo3.Text = /*KeyboardTranslation.SDLCodetoDx(GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Tertiary), KeyboardType.UK); //*/ControllerDefinition.MapList[i].Config;
-                configInfo3.Text = GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Tertiary);
+                //configInfo3.Text = GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Tertiary);
+
+                string terTxt = GetConfigItem(ControllerDefinition.MapList[i].MednafenCommand, ConfigOrder.Tertiary);  //ControllerDefinition.MapList[i].Config;
+                configInfo3.Text = ConvertText(terTxt, ConversionOrder.Load);
+
                 configInfo3.GotFocus += TextBox_GotFocus;
                 configInfo3.LostFocus += TextBox_LostFocus;
                 configInfo3.KeyDown += TextBox_KeyDownHandler;
@@ -213,6 +227,7 @@ namespace MedLaunch
                 configInfo3.SetValue(Grid.RowProperty, i + 1);
                 KeyboardNavigation.SetTabIndex(configInfo3, i + 1 + (ControllerDefinition.MapList.Count * 2));
                 configInfo3.ContextMenu = TBCM;
+                configInfo3.MouseEnter += tb_MouseEnter;
                 DynamicDataGrid.Children.Add(configInfo3);
 
           
@@ -541,7 +556,7 @@ namespace MedLaunch
             // iterate through each primary textbox
             foreach (TextBox tb in prims)
             {
-                string content = tb.Text;
+                string content = ConvertText(tb.Text, ConversionOrder.Save);
                 string name = tb.Name;
                 string configName = name.Replace("Primary_Control", "");
 
@@ -552,8 +567,27 @@ namespace MedLaunch
                 TextBox tSec = tbs.Where(a => a.Name.Contains("Secondary_Control" + configName)).First();
                 TextBox tTer = tbs.Where(a => a.Name.Contains("Tertiary_Control" + configName)).First();
 
-                sec = tSec.Text;
-                ter = tTer.Text;
+                sec = ConvertText(tSec.Text, ConversionOrder.Save);
+                ter = ConvertText(tTer.Text, ConversionOrder.Save); 
+
+                /*
+                // convert non-mednafen things
+                if (!content.StartsWith("joystick ") && !content.StartsWith("mouse "))
+                {
+                    // this is a translated keyboard entry
+                    content = KeyboardTranslation.DXtoSDLCode(content, KeyboardType.UK);
+                }
+                if (!sec.StartsWith("joystick ") && !sec.StartsWith("mouse "))
+                {
+                    // this is a translated keyboard entry
+                    sec = KeyboardTranslation.DXtoSDLCode(sec, KeyboardType.UK);
+                }
+                if (!ter.StartsWith("joystick ") && !ter.StartsWith("mouse "))
+                {
+                    // this is a translated keyboard entry
+                    ter = KeyboardTranslation.DXtoSDLCode(ter, KeyboardType.UK);
+                }
+                */
 
                 // build config string
                 string configData = ConfigLineBuilder(content, sec, ter);
@@ -629,7 +663,7 @@ namespace MedLaunch
             {
                 // check whether secondary is populated
                 TextBox tbSec = tbs.Where(a => a.Name == name.Replace("Tertiary_", "Secondary_")).FirstOrDefault(); 
-                if (tb.Text == "")
+                if (tbSec.Text == "")
                 {
                     tb.Text = "<-- Secondary box cannot be empty";
                     tb.Background = Brushes.Orange;
@@ -726,7 +760,7 @@ namespace MedLaunch
 
 
                 //UpdateLabel();
-                _activeTB.Text = KeyboardTranslation.DXtoSDLCode(bindingStr, KeyboardType.UK); // bindingStr;
+                _activeTB.Text = bindingStr; // KeyboardTranslation.DXtoSDLCode(bindingStr, KeyboardType.UK); // bindingStr;
                 Increment();
                
 
@@ -777,48 +811,134 @@ namespace MedLaunch
             switch (menuName)
             {
                 case "menuLMB":
-                    tb.Text = "mouse 0000000000000000 00000000";
+                    tb.Text = ConvertText("mouse 0000000000000000 00000000", ConversionOrder.Load);
                     break;
 
                 case "menuMMB":
-                    tb.Text = "mouse 0000000000000000 00000001";
+                    tb.Text = ConvertText("mouse 0000000000000000 00000001", ConversionOrder.Load);
                     break;
 
                 case "menuRMB":
-                    tb.Text = "mouse 0000000000000000 00000002";
+                    tb.Text = ConvertText("mouse 0000000000000000 00000002", ConversionOrder.Load);
                     break;                
 
                 case "menuMSU":
-                    tb.Text = "mouse 0000000000000000 00000003";
+                    tb.Text = ConvertText("mouse 0000000000000000 00000003", ConversionOrder.Load);
                     break;
 
                 case "menuMSD":
-                    tb.Text = "mouse 0000000000000000 00000004";
+                    tb.Text = ConvertText("mouse 0000000000000000 00000004", ConversionOrder.Load);
                     break;
 
                 case "menuMSB3":
-                    tb.Text = "mouse 0000000000000000 00000005";
+                    tb.Text = ConvertText("mouse 0000000000000000 00000005", ConversionOrder.Load);
                     break;
 
                 case "menuMSB4":
-                    tb.Text = "mouse 0000000000000000 00000006";
+                    tb.Text = ConvertText("mouse 0000000000000000 00000006", ConversionOrder.Load);
                     break;
 
                 case "menuMSB5":
-                    tb.Text = "mouse 0000000000000000 00000007";
+                    tb.Text = ConvertText("mouse 0000000000000000 00000007", ConversionOrder.Load);
                     break;
 
                 case "menuMSXAXIS":
-                    tb.Text = "mouse 0000000000000000 00008000";
+                    tb.Text = ConvertText("mouse 0000000000000000 00008000", ConversionOrder.Load);
                     break;
 
                 case "menuMSYAXIS":
-                    tb.Text = "mouse 0000000000000000 00008001";
+                    tb.Text = ConvertText("mouse 0000000000000000 00008001", ConversionOrder.Load);
                     break;
             }
         }
 
+        /// <summary>
+        /// handles conversions between how control bindings are displayed versus how mednafen stores them in its config file
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="conversionOrder"></param>
+        /// <returns></returns>
+        public static string ConvertText(string input, ConversionOrder conversionOrder)
+        {
+            // create the output string
+            string output = input;
 
+            switch (conversionOrder)
+            {
+                // Text is being loaded FROM mednafen config
+                case ConversionOrder.Load:
+                    if (input.StartsWith("keyboard "))
+                    {
+                        // keyboard binding
+                        output = KeyboardTranslation.SDLCodetoDx(input, KeyboardType.UK);
+                    }
+                    if (input.StartsWith("mouse "))
+                    {
+                        // mouse binding
+                        if (input.Contains("mouse 0000000000000000 00000000")) { output = "LeftMouseButton"; }
+                        if (input.Contains("mouse 0000000000000000 00000001")) { output = "MiddleMouseButton"; }
+                        if (input.Contains("mouse 0000000000000000 00000002")) { output = "RightMouseButton"; }
+                        if (input.Contains("mouse 0000000000000000 00000003")) { output = "MouseScrollWheelUp"; }
+                        if (input.Contains("mouse 0000000000000000 00000004")) { output = "MouseScrollWheelDown"; }
+                        if (input.Contains("mouse 0000000000000000 00000005")) { output = "MouseButton3"; }
+                        if (input.Contains("mouse 0000000000000000 00000006")) { output = "MouseButton4"; }
+                        if (input.Contains("mouse 0000000000000000 00000007")) { output = "MouseButton5"; }
+                        if (input.Contains("mouse 0000000000000000 00008000")) { output = "MouseX-Axis"; }
+                        if (input.Contains("mouse 0000000000000000 00008001")) { output = "MouseY-Axis"; }
+                    }
+                    if (input.StartsWith("joystick "))
+                    {
+                        // joystick binding - not currently used
+                    }
+                    break;
+
+                // Text is being saved TO mednafen config
+                case ConversionOrder.Save:
+
+                    if (input == "LeftMouseButton") { output = "mouse 0000000000000000 00000000"; return output; }
+                    if (input == "MiddleMouseButton") { output = "mouse 0000000000000000 00000001"; return output; }
+                    if (input == "RightMouseButton") { output = "mouse 0000000000000000 00000002"; return output; }
+                    if (input == "MouseScrollWheelUp") { output = "mouse 0000000000000000 00000003"; return output; }
+                    if (input == "MouseScrollWheelDown") { output = "mouse 0000000000000000 00000004"; return output; }
+                    if (input == "MouseButton3") { output = "mouse 0000000000000000 00000005"; return output; }
+                    if (input == "MouseButton4") { output = "mouse 0000000000000000 00000006"; return output; }
+                    if (input == "MouseButton5") { output = "mouse 0000000000000000 00000007"; return output; }
+                    if (input == "MouseX-Axis") { output = "mouse 0000000000000000 00008000"; return output; }
+                    if (input == "MouseY-Axis") { output = "mouse 0000000000000000 00008001"; return output; }
+
+
+                    if (!input.StartsWith("mouse ") && !input.StartsWith("joystick "))
+                    {
+                        // assume keyboard
+                        output = KeyboardTranslation.DXtoSDLCode(input, KeyboardType.UK);
+                    }
+                    break;
+            }
+
+            return output;
+        }
+
+        /// <summary>
+        /// gets fired everytime mouse enters a textbox
+        /// used to update tooltip with mednafen converted string
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tb_MouseEnter(object sender, MouseEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            string text = tb.Text;
+
+            if (text == null || text.Trim() == "")
+                return;
+
+            string ttText = ConvertText(text, ConversionOrder.Save);
+
+            // create tooltip based on the conversion
+            ToolTip tt = new System.Windows.Controls.ToolTip();
+            tt.Content = ttText;
+            tb.ToolTip = tt;
+        }
     }
 
     public enum ConfigOrder
@@ -826,6 +946,12 @@ namespace MedLaunch
         Primary,
         Secondary,
         Tertiary
+    }
+
+    public enum ConversionOrder
+    {
+        Load,
+        Save
     }
 
     public class CustomInsert
