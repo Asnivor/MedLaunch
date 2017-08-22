@@ -36,6 +36,7 @@ namespace MedLaunch
         public string LaunchString { get; set; }
         public string[] DiscArray { get; set; }
         public Game GameObj { get; set; }
+        public List<DAT_Rom> Roms { get; set; }
 
         public RomInspector()
         {
@@ -277,6 +278,34 @@ namespace MedLaunch
                 tbScrapeData_Year.Text = o.Data.Released;
                 tbScrapeData_Developer.Text = o.Data.Developer;
                 tbScrapeData_Publisher.Text = o.Data.Publisher;
+
+                StringBuilder sbAT = new StringBuilder();
+                for (int i = 0; i < o.Data.AlternateTitles.Count(); i++)
+                {
+                    sbAT.Append(o.Data.AlternateTitles[i]);
+                    if (i > 0 && i < (o.Data.AlternateTitles.Count() - 1))
+                        sbAT.Append(", ");
+                }
+                tbScrapeData_AlternateTitles.Text = sbAT.ToString();
+
+                tbScrapeData_Coop.Text = o.Data.Coop;
+                tbScrapeData_ESRB.Text = o.Data.ESRB;
+
+                StringBuilder sbGN = new StringBuilder();
+                for (int i = 0; i < o.Data.Genres.Count(); i++)
+                {
+                    sbGN.Append(o.Data.Genres[i]);
+                    if (i > 0 && i < (o.Data.Genres.Count() - 1))
+                        sbGN.Append(", ");                        
+                }
+                tbScrapeData_Genres.Text = sbGN.ToString();
+
+                tbScrapeData_Overview.Text = o.Data.Overview;
+                tbScrapeData_Players.Text = o.Data.Players;
+
+                if (o.GdbId != 0)
+                    tbScrapeData_gdbId.Text = o.GdbId.ToString();
+
             }
         }
 
@@ -313,6 +342,21 @@ namespace MedLaunch
                 tbDatData_OtherFlags.Text = lookup.OtherFlags;
                 tbDatData_Publisher.Text = lookup.Publisher;
                 tbDatData_Year.Text = lookup.Year;
+
+                // get other roms
+                Roms = DAT_Rom.GetRoms(lookup.MD5);
+
+                var staticItem = cmbRomChooser.Items[0];
+                cmbRomChooser.Items.Clear();
+                cmbRomChooser.Items.Add(staticItem);
+
+                for (int i = 0; i < Roms.Count(); i++)
+                {
+                    ComboBoxItem cbi = new ComboBoxItem();
+                    cbi.Content = Roms[i].romName;
+                    cmbRomChooser.Items.Add(cbi);
+                }
+                cmbRomChooser.SelectedIndex = 0;
             }
         }
 
@@ -490,7 +534,28 @@ namespace MedLaunch
 
         private void btnRescanDat_Click(object sender, RoutedEventArgs e)
         {
-            LookupDAT();
+            // get selected combobox item
+            int index = cmbRomChooser.SelectedIndex;
+
+            if (index == 0)
+            {
+                LookupDAT();
+                return;
+            }
+
+            var rom = Roms[index - 1];
+
+            tbDatData_Copyright.Text = rom.copyright;
+            tbDatData_Country.Text = rom.country;
+            tbDatData_Developer.Text = rom.developer;
+            tbDatData_DevelopmentStatus.Text = rom.developmentStatus;
+            tbDatData_gameName.Text = rom.name;
+            tbDatData_Language.Text = rom.language;
+            tbDatData_OtherFlags.Text = rom.otherFlags;
+            tbDatData_Publisher.Text = rom.publisher;
+            tbDatData_Year.Text = rom.year;
+
+            // LookupDAT();
         }
 
         private void btnScrapeCopyData_Click(object sender, RoutedEventArgs e)

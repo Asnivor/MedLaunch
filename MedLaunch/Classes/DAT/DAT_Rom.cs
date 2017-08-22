@@ -89,6 +89,15 @@ namespace MedLaunch.Classes.DAT
             }
         }
 
-        
+        public static List<DAT_Rom> GetRoms(string md5)
+        {
+            using (var context = new AsniDATDbContext())
+            {
+                var cData = (from g in context.DAT_Rom
+                             where g.md5.ToUpper() == md5.ToUpper()
+                             select g);
+                return cData.ToList();
+            }
+        }
     }
 }

@@ -80,7 +80,7 @@
                         </Label>
 
                         <Label Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="15">
-                            Scrape Database Lookup
+                            Scrape Lookup
                         </Label>
 
                         <Label Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="15">
@@ -247,9 +247,20 @@
                             </Grid.RowDefinitions>
                             <!-- Labels -->
 
-                            <Button Name="btnRescanDat" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Click="btnRescanDat_Click">
-                                Rescan DAT Database
-                            </Button>
+                            <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" Name="cmbWidth" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <ComboBox SelectedIndex="0" Name="cmbRomChooser" Grid.Column="0" HorizontalAlignment="Stretch">
+                                    <ComboBoxItem>Merged Results</ComboBoxItem>
+                                </ComboBox>
+                                <Button Name="btnRescanDat"  Click="btnRescanDat_Click" Grid.Column="1">
+                                    Refresh
+                                </Button>
+                            </Grid>
+
+                            
 
 
                             <Label Grid.Column="0" Grid.Row="2">Game Name</Label>
@@ -396,13 +407,17 @@
                             </Grid.RowDefinitions>
                             <!-- Labels -->
 
-                            <Button Name="btnLookupScrapeDB" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">
-                                Lookup GDBID
-                            </Button>
+                            <WrapPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center">
+                                <Button Name="btnLookupScrapeDB" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,3,0">
+                                    Lookup GDBID
+                                </Button>
 
-                            <Button Name="btnScrapeOnline" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-                                Scrape Online
-                            </Button>
+                                <Button Name="btnScrapeOnline" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="0,0,3,0">
+                                    Scrape Online
+                                </Button>
+                            </WrapPanel>
+
+                            
 
 
                             <Label Grid.Column="0" Grid.Row="2">Game Name</Label>
@@ -555,6 +570,10 @@
                                     </Rectangle.OpacityMask>
                                 </Rectangle>
                             </Button>
+
+
+                            <Label Grid.Column="0" Grid.Row="18">thegamesdb.net ID</Label>
+                            <TextBox Grid.Column="1" Grid.Row="18" Name="tbScrapeData_gdbId" IsReadOnly="True"/>
 
                         </Grid>
 
