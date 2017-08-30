@@ -148,10 +148,21 @@ namespace MedLaunch
             // get application version
             string appVersion = Versions.ReturnApplicationVersion();
 
+            bool isDevBuild = false;
+            foreach (string de in Versions.GetDevReleases())
+            {
+                if (de == appVersion)
+                    isDevBuild = true;
+            }
+
             // set title
             string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
-            this.Title = "MedLaunch (v" + appVersion + ") - Windows Front-End for Mednafen"; 
-            
+
+            if (isDevBuild == false)
+                this.Title = "MedLaunch (v" + appVersion + ") - Windows Front-End for Mednafen"; 
+            else
+                this.Title = "MedLaunch (v" + appVersion + ") - DEVBUILD - Windows Front-End for Mednafen";
+
             rightMenuLabel.Text = "(Compatible Mednafen v" + Versions.GetMednafenCompatibilityMatrix().Last().Version + " - v" + Versions.GetMednafenCompatibilityMatrix().First().Version + ")";
 
             // Startup checks

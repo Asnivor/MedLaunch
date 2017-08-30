@@ -26,6 +26,14 @@ namespace MedLaunch.Models
             LatestCompatMednafenDownloadURL = Versions.GetMednafenCompatibilityMatrix().First().DownloadURL;
         }
 
+        public static List<string> GetDevReleases()
+        {
+            return new List<string>
+            {
+                "0.5.11.0",
+            };
+        }
+
         public static List<MednafenChangeHistory> GetMednafenCompatibilityMatrix()
         {
             return
