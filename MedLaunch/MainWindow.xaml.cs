@@ -330,10 +330,16 @@ namespace MedLaunch
         }
         private void gui_zoom_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            double value = Convert.ToDouble((sender as ComboBox).SelectedValue);
+            var val = (sender as ComboBox).SelectedValue;
+            double value = 0;
+            if (val != null)
+            {
+                value = double.Parse(val.ToString()); //Convert.ToDouble((sender as ComboBox).SelectedValue);
+            }
+
             //MessageBox.Show(value.ToString());
             //gui_zoom.Value = value;
-            if (Convert.ToDouble(value) > 0)
+            if (value > 0)
             {
                 GlobalSettings.UpdateGuiZoom(value);
             }
