@@ -86,6 +86,7 @@ namespace ucon64_wrapper
 
             ParseOutput(u);
 
+            /*
             if (u.Data.IsChecksumValid == true)
                 u.Status = "Detected Checksum is valid";
             else if (u.Data.IsChecksumValid == false)
@@ -93,6 +94,7 @@ namespace ucon64_wrapper
             else
                 u.Status = "Checksum could not be determined";
 
+            */
             return u;
         }
 

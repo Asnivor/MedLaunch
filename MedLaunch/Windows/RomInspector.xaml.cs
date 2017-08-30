@@ -280,6 +280,9 @@ namespace MedLaunch
                 tbScrapeData_Publisher.Text = o.Data.Publisher;
 
                 StringBuilder sbAT = new StringBuilder();
+                if (o.Data.AlternateTitles == null)
+                    o.Data.AlternateTitles = new List<string>();
+
                 for (int i = 0; i < o.Data.AlternateTitles.Count(); i++)
                 {
                     sbAT.Append(o.Data.AlternateTitles[i]);
@@ -292,6 +295,9 @@ namespace MedLaunch
                 tbScrapeData_ESRB.Text = o.Data.ESRB;
 
                 StringBuilder sbGN = new StringBuilder();
+                if (o.Data.Genres == null)
+                    o.Data.Genres = new List<string>();
+
                 for (int i = 0; i < o.Data.Genres.Count(); i++)
                 {
                     sbGN.Append(o.Data.Genres[i]);

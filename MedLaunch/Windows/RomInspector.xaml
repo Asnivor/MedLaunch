@@ -4,6 +4,7 @@
 							   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 							   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 							   xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
+                               xmlns:diag="clr-namespace:System.Diagnostics;assembly=mscorlib"
 							   mc:Ignorable="d"
 							   d:DesignHeight="800"
 							   d:DesignWidth="1024"
@@ -33,7 +34,7 @@
 
         <TabControl Grid.Row="0" DockPanel.Dock="Top" VerticalAlignment="Top" VerticalContentAlignment="Top">
 
-            <TabItem Header="Library Data">
+            <TabItem Header="Library Data" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
 
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Name="mainScroll" BorderBrush="{DynamicResource AccentColorBrush}"
                               BorderThickness="5" Margin="0" Padding="0">
@@ -831,16 +832,17 @@
 
         </TabControl>
 
-        <UniformGrid Columns="2" Grid.Row="1" DockPanel.Dock="Bottom">
+        <UniformGrid Columns="1" Grid.Row="1" DockPanel.Dock="Bottom">
             <Button                
 				Margin="5"
 				IsDefault="True"
 				VerticalAlignment="Bottom"
 				FontSize="20"
 				FontWeight="Thin"
-				Content="SAVE CHANGES"
+				Content="CLOSE"
 				Click="SaveSec_OnClick" />
 
+            <!--
             <Button                
 				Margin="5"
 				IsDefault="True"
@@ -849,6 +851,7 @@
 				FontWeight="Thin"
 				Content="CANCEL"
 				Click="CloseSec_OnClick" />
+            -->
         </UniformGrid>
 
     </DockPanel>
