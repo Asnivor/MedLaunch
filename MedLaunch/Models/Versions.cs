@@ -31,7 +31,18 @@ namespace MedLaunch.Models
             return
                 new List<MednafenChangeHistory>
                 {
-                    // 0.9.46.1
+                    // 0.9.47
+                    new MednafenChangeHistory
+                    {
+                        Version = "0.9.47",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-0.9.47-win64.zip",
+                        Changes = new List<VersionChange>
+                        {
+
+                        }
+                    },
+
+                    // 0.9.46
                     new MednafenChangeHistory
                     {
                         Version = "0.9.46",

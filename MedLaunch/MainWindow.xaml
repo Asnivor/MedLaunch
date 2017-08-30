@@ -1054,10 +1054,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                 </UniformGrid>
 
-
-
-
-                                                <Grid Margin="0"  Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="2" x:Name="gdatagrid">
+                                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="2">
+                                                
+                                                <Grid Margin="0"  x:Name="gdatagrid">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="Auto" />
                                                         <ColumnDefinition Width="Auto" />
@@ -1152,6 +1151,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
 
                                                 </Grid>
+
+                                                </ScrollViewer>
 
                                                 <!-- Screenshots -->
 
