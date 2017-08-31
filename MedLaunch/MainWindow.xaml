@@ -808,6 +808,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                 <local:MedDataGrid.Resources>
                                     <local:CaseConverter x:Key="CaseConverter" />
+                                    <local:DateConverter x:Key="DateConverter" />
                                 </local:MedDataGrid.Resources>
 
                                 <local:MedDataGrid.ColumnHeaderStyle>
@@ -843,7 +844,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                     <!--
                                     <DataGridTextColumn Header="Language" Binding="{Binding Language}" />
                                     -->
-                                    <DataGridTextColumn x:Name="glCol7" Header="Year" Binding="{Binding Year}" Visibility="{Binding ElementName=chkshowGLYear, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                    <DataGridTextColumn x:Name="glCol7" Header="Year" Binding="{Binding Year, Converter={StaticResource DateConverter}}" Visibility="{Binding ElementName=chkshowGLYear, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}"/>
                                     <DataGridTextColumn x:Name="glCol8" Width="100"  Header="Publisher" Binding="{Binding Publisher}" Visibility="{Binding ElementName=chkshowGLPublisher, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}"/>
 
                                     <DataGridTextColumn x:Name="glCol9" Header="Flags" Binding="{Binding Flags}" />

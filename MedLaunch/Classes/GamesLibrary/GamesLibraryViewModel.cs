@@ -302,8 +302,8 @@ namespace MedLaunch.Classes.GamesLibrary
             {
                 d.System = GSystem.GetSystemName(game.systemId);
             }
-            
 
+            
 
             d.LastPlayed = DbEF.FormatDate(game.gameLastPlayed);
             d.Favorite = game.isFavorite;
@@ -325,6 +325,10 @@ namespace MedLaunch.Classes.GamesLibrary
             d.Publisher = game.Publisher;
             d.Developer = game.Developer;
             d.Year = game.Year;
+            d.Coop = game.Coop;
+            d.ESRB = game.ESRB;
+            d.Players = game.Players;
+            d.Year = game.Year;
 
             if (game.gameNameFromDAT != null && game.gameNameFromDAT != "")
                 d.Game = game.gameNameFromDAT;
@@ -334,6 +338,7 @@ namespace MedLaunch.Classes.GamesLibrary
             //d.DatName = game.gameNameFromDAT;
             d.DatRom = game.romNameFromDAT;
 
+            /*
             if (game.gdbId != null && game.gdbId > 0)
             {
                 var link = links.Where(x => x.GDBId == game.gdbId).SingleOrDefault(); // LibraryDataGDBLink.GetLibraryData(game.gdbId.Value);
@@ -351,7 +356,8 @@ namespace MedLaunch.Classes.GamesLibrary
                     d.ESRB = link.ESRB;
                 }
             }
-
+            */
+            //d.Year = "2914";
             return d;
         }
 

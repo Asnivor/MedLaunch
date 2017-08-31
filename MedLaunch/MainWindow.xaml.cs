@@ -6370,6 +6370,8 @@ namespace MedLaunch
     }
 
 
+
+
     public class CaseConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -6436,6 +6438,72 @@ namespace MedLaunch
         }
     }
 
+
+    public class DateConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            if (value is String)
+            {
+                string input = value.ToString().Trim();
+
+                // does string have 4 characters only (ie a possible year string, 1990, 200x etc)
+                if (input.Length == 4)
+                {
+                    // is the first character a number
+                    int n;
+                    bool isNumeric = int.TryParse(input[0].ToString(), out n);
+                    if (isNumeric)
+                    {
+                        return input;
+                    }
+                    else
+                        return string.Empty;
+                }
+
+                // dates spit by delimeters
+                char[] chrs = { '/', '_', '-', '.', ' ' };
+                string final = "";
+                foreach (var c in chrs)
+                {
+                    if (final != "")
+                        break;
+
+                    if (input.Contains(c))
+                    {
+                        string[] arr = input.Split(c);
+                        foreach (var s in arr)
+                        {
+                            if (s.Length == 4)
+                            {
+                                // this is probably the date
+                                // is the first character a number
+                                int n;
+                                bool isNumeric = int.TryParse(s[0].ToString(), out n);
+                                if (isNumeric)
+                                {
+                                    final = s;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // if we get this far its probably not a correct year.
+                return string.Empty;
+            }
+
+            return string.Empty;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
 
     /*
