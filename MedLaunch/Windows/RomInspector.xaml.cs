@@ -247,6 +247,9 @@ namespace MedLaunch
             //populate rom field on library tab
             LookupROM();
 
+            // add gameobj to mainwindow
+            mw.InspGame = GameObj;
+
         }
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -388,7 +391,14 @@ namespace MedLaunch
             tbLibData_Publisher.Text = GameObj.Publisher;
             tbLibData_Year.Text = GameObj.Year;
             tbLibData_gdbId.Text = GameObj.gdbId.ToString();
-            tbLibData_isFavorite.IsChecked = GameObj.isFavorite;       
+            tbLibData_isFavorite.IsChecked = GameObj.isFavorite;
+            tbLibData_AlternateTitles.Text = GameObj.AlternateTitles;
+            tbLibData_Genres.Text = GameObj.Genres;
+            tbLibData_Coop.Text = GameObj.Coop;
+            tbLibData_ESRB.Text = GameObj.ESRB;
+            tbLibData_Players.Text = GameObj.Players;
+            tbLibData_Overview.Text = GameObj.Overview;
+                 
         }
 
         private void EnableControls()
@@ -433,6 +443,7 @@ namespace MedLaunch
             btnScrapeCopyData_Genres.Visibility = Visibility.Visible;
             btnScrapeCopyData_Overview.Visibility = Visibility.Visible;
             btnScrapeCopyData_Players.Visibility = Visibility.Visible;
+            btnScrapeCopyData_gdbId.Visibility = Visibility.Visible;
 
             //btnRomCopyData_Copyright.Visibility = Visibility.Visible;
             btnRomCopyData_Country.Visibility = Visibility.Visible;
@@ -486,7 +497,7 @@ namespace MedLaunch
             btnScrapeCopyData_Genres.Visibility = Visibility.Collapsed;
             btnScrapeCopyData_Overview.Visibility = Visibility.Collapsed;
             btnScrapeCopyData_Players.Visibility = Visibility.Collapsed;
-            
+            btnScrapeCopyData_gdbId.Visibility = Visibility.Collapsed;
 
             //btnRomCopyData_Copyright.Visibility = Visibility.Collapsed;
             btnRomCopyData_Country.Visibility = Visibility.Collapsed;
@@ -506,7 +517,7 @@ namespace MedLaunch
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CloseSec_OnClick(object sender, RoutedEventArgs e)
-        {
+        {            
             this.Close();
         }
 
@@ -517,6 +528,41 @@ namespace MedLaunch
         /// <param name="e"></param>
         private void SaveSec_OnClick(object sender, RoutedEventArgs e)
         {
+            // togglebuttons
+            GameObj.ManualEditSet = btnToggleManualEdit.IsChecked.Value;
+            GameObj.isFavorite = tbLibData_isFavorite.IsChecked.Value;
+
+            // set data from all textboxes
+            GameObj.gameName = tbLibData_gameName.Text;
+            GameObj.Year = tbLibData_Year.Text;
+            GameObj.Developer = tbLibData_Developer.Text;
+            GameObj.Publisher = tbLibData_Publisher.Text;
+            GameObj.Country = tbLibData_Country.Text;
+            GameObj.Language = tbLibData_Language.Text;
+            GameObj.Copyright = tbLibData_Copyright.Text;
+            GameObj.DevelopmentStatus = tbLibData_DevelopmentStatus.Text;
+            GameObj.OtherFlags = tbLibData_OtherFlags.Text;
+            GameObj.AlternateTitles = tbLibData_AlternateTitles.Text;
+            GameObj.Genres = tbLibData_Genres.Text;
+            GameObj.Coop = tbLibData_Coop.Text;
+            GameObj.ESRB = tbLibData_ESRB.Text;
+            GameObj.Players = tbLibData_Players.Text;
+            GameObj.Overview = tbLibData_Overview.Text;
+
+            string gdi = tbLibData_gdbId.Text;
+            if (gdi != "" && gdi != "0")
+            {
+                GameObj.gdbId = Convert.ToInt32(gdi);
+            }
+            else
+            {
+                GameObj.gdbId = null;
+            }
+
+            // save game data
+            Game.SaveToDatabase(new List<Game> { GameObj });
+            
+            // close childwindow
             this.Close();
         }
         
@@ -622,6 +668,16 @@ namespace MedLaunch
 
             }
         }
+
+        private void btnLookupScrapeDB_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            ScraperLookup.PickLocalGameInspector(GameObj.gameId, mw, this);
+
+        }
+
+        
+        
     }
     
 }

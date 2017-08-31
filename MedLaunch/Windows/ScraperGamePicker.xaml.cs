@@ -25,9 +25,11 @@ namespace MedLaunch
     /// <summary>
     /// Interaction logic for ListBoxChildWindow.xaml
     /// </summary>
-    public partial class ListBoxChildWindow : ChildWindow
+    public partial class ScraperGamePicker : ChildWindow
     {
-        public ListBoxChildWindow()
+        public MainWindow mw { get; set; }
+
+        public ScraperGamePicker()
         {
             this.InitializeComponent();
 
@@ -35,19 +37,11 @@ namespace MedLaunch
             btnSelect.IsEnabled = false;
 
             // get the mainwindow
-            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            DataGrid dgGameList = (DataGrid)mw.FindName("dgGameList");
-            var row = (GamesLibraryModel)dgGameList.SelectedItem;
-            if (dgGameList.SelectedItem == null)
-            {
-                // game is not selected
-                this.Close();
-                return;
-            }
-            int GameId = row.ID;
-            //MessageBox.Show(GameId.ToString());
-            int systemId = (Game.GetGame(GameId)).systemId;
-
+            mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            
+           
+            int GameId = mw.InspGame.gameId;
+            int systemId = mw.InspGame.systemId;
             
             // check for pcecd games
             if (systemId == 18)
@@ -61,15 +55,17 @@ namespace MedLaunch
             ScraperSearch gs = new ScraperSearch();
             // get a list of all games for this platform - higest match first
             //List<SearchOrdering> games = gs.ShowPlatformGames(systemId, row.Game);
-            List<SearchOrdering> games = gs.ShowPlatformGamesBySub(systemId, row);
 
+            GamesLibraryModel row = new GamesLibraryModel();
+            row.ID = mw.InspGame.gameId;
+            row.Game = mw.InspGame.gameName;
+
+            List<SearchOrdering> games = gs.ShowPlatformGamesBySub(systemId, row);
 
             List< GameListItem > g = new List<GameListItem>();
 
             foreach (var gam in games)
             {
-                
-
                 if (gam.Matches == 0 || gam.Game.GDBTitle == "")
                 {
                     continue;
@@ -86,13 +82,11 @@ namespace MedLaunch
             // make sure list is ordered descending
             g.OrderByDescending(a => a.Matches);
 
-            
-
             dgReturnedGames.ItemsSource = g;
 
         }
         private void CloseSec_OnClick(object sender, RoutedEventArgs e)
-        {
+        {            
             this.Close();
         }
 
@@ -104,6 +98,7 @@ namespace MedLaunch
             else
                 btnSelect.IsEnabled = true;
 
+            
         }
 
         private async void btnSelect_Click(object sender, RoutedEventArgs e)
@@ -131,7 +126,42 @@ namespace MedLaunch
                     controller.CloseAsync();
                     return;
                 }
-                sh.ScrapeGame(controller);
+                // get the scraped datawebobject
+                var obj = sh.ScrapeGameInspector(controller);
+
+                mw.InspGameScrape = new Game();
+
+                // populate the destination object
+                mw.InspGameScrape.gameId = mw.InspGame.gameId;
+                mw.InspGameScrape.systemId = mw.InspGame.systemId;
+
+                StringBuilder sbAT = new StringBuilder();
+                for (int i = 0; i < obj.Data.AlternateTitles.Count(); i++)
+                {                    
+                    sbAT.Append(obj.Data.AlternateTitles[i]);
+                    if (i < (obj.Data.AlternateTitles.Count() - 1))
+                        sbAT.Append(", ");
+                }
+                mw.InspGameScrape.AlternateTitles = sbAT.ToString();
+                mw.InspGameScrape.Coop = obj.Data.Coop;
+                mw.InspGameScrape.Developer = obj.Data.Developer;
+                mw.InspGameScrape.ESRB = obj.Data.ESRB;
+                mw.InspGameScrape.gameName = obj.Data.Title;
+                mw.InspGameScrape.gdbId = obj.GdbId;
+                StringBuilder sbGe = new StringBuilder();
+                for (int i = 0; i < obj.Data.Genres.Count(); i++)
+                {
+                    sbGe.Append(obj.Data.Genres[i]);
+                    if (i < (obj.Data.Genres.Count() - 1))
+                        sbGe.Append(", ");
+                }
+                mw.InspGameScrape.Genres = sbGe.ToString();
+                mw.InspGameScrape.Overview = obj.Data.Overview;
+                mw.InspGameScrape.Players = obj.Data.Players;
+                mw.InspGameScrape.Publisher = obj.Data.Publisher;
+                mw.InspGameScrape.Year = obj.Data.Released;
+                
+
             });
 
             await controller.CloseAsync();
@@ -140,13 +170,13 @@ namespace MedLaunch
             {
                 await mw.ShowMessageAsync("MedLaunch Scraper", "Scraping Cancelled");
                 //GamesLibraryVisualHandler.UpdateSidebar();
-                GamesLibraryView.RestoreSelectedRow();
+                //GamesLibraryView.RestoreSelectedRow();
             }
             else
             {
-                await mw.ShowMessageAsync("MedLaunch Scraper", "Scraping Completed");
+                //await mw.ShowMessageAsync("MedLaunch Scraper", "Scraping Completed");
                 //GamesLibraryVisualHandler.UpdateSidebar();
-                GamesLibraryView.RestoreSelectedRow();
+                //GamesLibraryView.RestoreSelectedRow();
             }
 
             //var ro = (GamesLibraryModel)dgGameList.SelectedItem;
@@ -161,5 +191,6 @@ namespace MedLaunch
 
         }
     }
+
     
 }

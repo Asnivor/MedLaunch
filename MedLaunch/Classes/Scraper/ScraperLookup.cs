@@ -105,5 +105,43 @@ namespace MedLaunch.Classes.Scraper
                 ShowCloseButton = false
             }, RootGrid);
         }
+
+        /// <summary>
+        /// Choose a game from the local master list to link to an imported medlaunch game
+        /// based on medlaunch GameId - SHOW IN INSPECTOR BUT DONT UPDATE THE GAME DB TABLE
+        /// </summary>
+        /// <param name="GameId"></param>
+        public static async void PickLocalGameInspector(int GameId, MainWindow mw, RomInspector cw)
+        {            
+            //mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            Grid RootGrid = (Grid)mw.FindName("RootGrid");
+
+            await mw.ShowChildWindowAsync(new ScraperGamePicker()
+            {
+                IsModal = true,
+                AllowMove = false,
+                Title = "Pick a Game",
+                CloseOnOverlay = false,
+                ShowCloseButton = false
+            }, RootGrid);
+
+            // populate textboxes
+            cw.tbScrapeData_AlternateTitles.Text = mw.InspGameScrape.AlternateTitles;
+            cw.tbScrapeData_Coop.Text = mw.InspGameScrape.Coop;
+            cw.tbScrapeData_Copyright.Text = mw.InspGameScrape.Copyright;
+            cw.tbScrapeData_Country.Text = mw.InspGameScrape.Country;
+            cw.tbScrapeData_Developer.Text = mw.InspGameScrape.Developer;
+            cw.tbScrapeData_ESRB.Text = mw.InspGameScrape.ESRB;
+            cw.tbScrapeData_gameName.Text = mw.InspGameScrape.gameName;
+            cw.tbScrapeData_gdbId.Text = mw.InspGameScrape.gdbId.ToString();
+            cw.tbScrapeData_Genres.Text = mw.InspGameScrape.Genres;
+            cw.tbScrapeData_Language.Text = mw.InspGameScrape.Language;
+            cw.tbScrapeData_Overview.Text = mw.InspGameScrape.Overview;
+            cw.tbScrapeData_Players.Text = mw.InspGameScrape.Players;
+            cw.tbScrapeData_Publisher.Text = mw.InspGameScrape.Publisher;
+            cw.tbScrapeData_Year.Text = mw.InspGameScrape.Year;
+        }
+
+
     }
 }

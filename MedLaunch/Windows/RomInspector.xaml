@@ -34,7 +34,7 @@
 
         <TabControl Grid.Row="0" DockPanel.Dock="Top" VerticalAlignment="Top" VerticalContentAlignment="Top">
 
-            <TabItem Header="Library Data" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
+            <TabItem Header="Library Data">
 
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Name="mainScroll" BorderBrush="{DynamicResource AccentColorBrush}"
                               BorderThickness="5" Margin="0" Padding="0">
@@ -65,7 +65,7 @@
 
                         <Controls:ToggleSwitch Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Header="Game Manual Editing Status" Name="btnToggleManualEdit"
                                            OnLabel="ON (Game is 'locked' and can only be edited manually)" 
-                                           OffLabel="OFF (Game data can be overwritten by Scrape and DAT lookup)" Checked="btnToggleManualEdit_Click" Unchecked="btnToggleManualEdit_Click" 
+                                           OffLabel="OFF (Game data may be overwritten by auto-lookups)" Checked="btnToggleManualEdit_Click" Unchecked="btnToggleManualEdit_Click" 
                                             OffSwitchBrush="Green" OnSwitchBrush="Red" 
                                            FontSize="12" />
 
@@ -409,12 +409,8 @@
                             <!-- Labels -->
 
                             <WrapPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center">
-                                <Button Name="btnLookupScrapeDB" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,3,0">
-                                    Lookup GDBID
-                                </Button>
-
-                                <Button Name="btnScrapeOnline" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="0,0,3,0">
-                                    Scrape Online
+                                <Button Name="btnLookupScrapeDB" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,3,0" Click="btnLookupScrapeDB_Click">
+                                    Match and Scrape Data
                                 </Button>
                             </WrapPanel>
 
@@ -575,6 +571,13 @@
 
                             <Label Grid.Column="0" Grid.Row="18">thegamesdb.net ID</Label>
                             <TextBox Grid.Column="1" Grid.Row="18" Name="tbScrapeData_gdbId" IsReadOnly="True"/>
+                            <Button Grid.Column="2" Grid.Row="18" Width="25" Height="25" Name="btnScrapeCopyData_gdbId" Click="btnScrapeCopyData_Click">
+                                <Rectangle Width="12" Height="12" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_arrow_left}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
 
                         </Grid>
 
@@ -832,17 +835,17 @@
 
         </TabControl>
 
-        <UniformGrid Columns="1" Grid.Row="1" DockPanel.Dock="Bottom">
+        <UniformGrid Columns="2" Grid.Row="1" DockPanel.Dock="Bottom">
             <Button                
 				Margin="5"
 				IsDefault="True"
 				VerticalAlignment="Bottom"
 				FontSize="20"
 				FontWeight="Thin"
-				Content="CLOSE"
+				Content="SAVE CHANGES"
 				Click="SaveSec_OnClick" />
 
-            <!--
+            
             <Button                
 				Margin="5"
 				IsDefault="True"
@@ -851,7 +854,7 @@
 				FontWeight="Thin"
 				Content="CANCEL"
 				Click="CloseSec_OnClick" />
-            -->
+            
         </UniformGrid>
 
     </DockPanel>

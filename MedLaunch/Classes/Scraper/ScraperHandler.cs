@@ -301,6 +301,79 @@ namespace MedLaunch.Classes.Scraper
             
         }
 
+        /// <summary>
+        /// Game scraping logic
+        /// </summary>
+        /// <param name="controller"></param>
+        public ScrapedGameObjectWeb ScrapeGameInspector(ProgressDialogController controller)
+        {
+            string message = "";
+
+            // create data object for results that are returned
+            //ScrapeDB glsc = new ScrapeDB();
+            ScrapedGameData gameData = new ScrapedGameData();
+            ScrapedGameObjectWeb gameObject = new ScrapedGameObjectWeb();
+            gameObject.Data = gameData;
+            gameObject.GdbId = MasterRecord.gid;
+
+            // check for manuals
+            if (_GlobalSettings.scrapeManuals == true)
+            {
+                if (gameObject.Manuals == null)
+                    gameObject.Manuals = new List<string>();
+
+                gameObject.Manuals = MasterRecord.Game_Docs;
+            }
+
+
+            // enumerate globalsettings
+            switch (_GlobalSettings.primaryScraper)
+            {
+                case 1:
+                    // gamesdb.net is primary scraper
+                    GDBScraper.ScrapeGame(gameObject, ScraperOrder.Primary, controller, MasterRecord, message);
+                    if (_GlobalSettings.enabledSecondaryScraper == true)
+                        MobyScraper.ScrapeGame(gameObject, ScraperOrder.Secondary, controller, MasterRecord, message);
+                    break;
+                case 2:
+                    // moby is primary scraper
+                    MobyScraper.ScrapeGame(gameObject, ScraperOrder.Primary, controller, MasterRecord, message);
+                    if (_GlobalSettings.enabledSecondaryScraper == true)
+                        GDBScraper.ScrapeGame(gameObject, ScraperOrder.Secondary, controller, MasterRecord, message);
+                    break;
+            }
+
+            if (controller.IsCanceled == true)
+            {
+                controller.CloseAsync();
+                return null;
+            }
+
+            // gameObject should now be populated - create folder structure on disk if it does not already exist
+            controller.SetMessage(message + "Determining local folder structure");
+            ScrapeDB.CreateFolderStructure(gameObject.GdbId);
+
+            // save the object to json
+            controller.SetMessage(message + "Saving game information");
+            ScrapeDB.SaveJson(gameObject);
+
+            // Download all the files
+            if (_GlobalSettings.scrapeBanners == true || _GlobalSettings.scrapeBoxart == true || _GlobalSettings.scrapeFanart == true || _GlobalSettings.scrapeManuals == true ||
+                _GlobalSettings.scrapeMedia == true || _GlobalSettings.scrapeScreenshots == true)
+            {
+                controller.SetMessage(message + "Downloading media");
+                ContentDownloadManager(gameObject, controller, message + "Downloading media...\n");
+            }
+
+
+            // Return data
+            return gameObject;
+            //PopulateLibraryData(GameId, gameObject.GdbId);
+            //CreateDatabaseLink(GameId, gameObject.GdbId);
+
+
+        }
+
         public void ScrapeGame(ProgressDialogController controller)
         {
             ScrapeGame(controller, "");

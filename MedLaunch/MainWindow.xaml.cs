@@ -72,6 +72,9 @@ namespace MedLaunch
         public bool SettingsDirtyFlag { get; set; }
         public string LaunchString { get; set; }
 
+        public Game InspGame { get; set; }  // initial game data when opening the game inspection window
+        public Game InspGameScrape { get; set; }    // game object returned after scraping within the inspection window
+
         public string[] DiscArray { get; set; }
         public int DiscSelected { get; set; }
 
@@ -6573,5 +6576,7 @@ namespace MedLaunch
 
         #endregion
     }
+
+
 
 }

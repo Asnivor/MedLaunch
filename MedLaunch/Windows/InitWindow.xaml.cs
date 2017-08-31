@@ -24,6 +24,7 @@ using System.Threading;
 using System.Reflection;
 using MedLaunch.Extensions;
 using MedLaunch.Classes.GamesLibrary;
+using MedLaunch.Classes.Scraper;
 
 namespace MedLaunch
 {
@@ -48,8 +49,7 @@ namespace MedLaunch
 
         private void Init()
         {
-            // make sure class libraries are built
-            
+            // make sure class libraries are built            
             Asnitech.Launch.Common.Startup.Start();
 
             // initialise directories if they do not exist
@@ -541,9 +541,64 @@ namespace MedLaunch
 
                 // Now we should be done - proceed with main application
 
-                // start re-linking routine
+                // start re-linking routine (copy flatfile scraped text into database if game manual edit is not enabled)
                 UpdateStatus("Re-Linking orphaned scraped data...", true);
-                //GameListBuilder.ReLinkData();
+
+                List<Game> gToUpdate = new List<Game>();
+
+                // get all games from database where manual editing is not enabled and it has a gdbid set
+                var games = Game.GetGames().Where(a => a.ManualEditSet != true && (a.gdbId != null && a.gdbId > 0)).ToList();
+
+                UpdateStatus("Processing " + games.Count().ToString() + " detected games", true);
+                UpdateStatus("Please wait....", true);
+
+                // iterate through each game
+                foreach (Game g in games)
+                {
+                    // attempt to load xml data from disk
+                    ScrapedGameObject o = ScrapeDB.GetScrapedGameObject(g.gameId, g.gdbId.Value);
+
+                    // populate fields
+                    StringBuilder sbAT = new StringBuilder();
+                    if (o.Data.AlternateTitles == null)
+                        o.Data.AlternateTitles = new List<string>();
+
+                    for (int i = 0; i < o.Data.AlternateTitles.Count(); i++)
+                    {
+                        sbAT.Append(o.Data.AlternateTitles[i]);
+                        if (i > 0 && i < (o.Data.AlternateTitles.Count() - 1))
+                            sbAT.Append(", ");
+                    }
+                    g.AlternateTitles = sbAT.ToString();
+
+                    StringBuilder sbGN = new StringBuilder();
+                    if (o.Data.Genres == null)
+                        o.Data.Genres = new List<string>();
+
+                    for (int i = 0; i < o.Data.Genres.Count(); i++)
+                    {
+                        sbGN.Append(o.Data.Genres[i]);
+                        if (i > 0 && i < (o.Data.Genres.Count() - 1))
+                            sbGN.Append(", ");
+                    }
+                    g.Genres = sbGN.ToString();
+
+                    g.Coop = o.Data.Coop;
+                    g.Developer = o.Data.Developer;
+                    g.Publisher = o.Data.Publisher;
+                    g.Overview = o.Data.Overview;
+                    g.Players = o.Data.Players;
+                    g.Year = o.Data.Released;
+                    g.ESRB = o.Data.ESRB;
+                    g.gameName = o.Data.Title;
+
+                    // add game to be updated
+                    gToUpdate.Add(g);
+                }
+
+                // update all games
+                Game.SaveToDatabase(gToUpdate);
+
             }     
         }
 

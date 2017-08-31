@@ -35,7 +35,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
             <MenuItem Header="Play Game (View/Edit Launch String First)" Click="LaunchRomShowConfig_Click" />
             <MenuItem Header="Favorites" Click="MenuItemFavorite_Click" />
             <MenuItem Header="Copy Launch String to Clipboard" Click="CopyLaunchStringToClipboard_Click" />
-            <MenuItem Header="Show Extended ROM/Disc Info" Click="examineRom_Click" />
+            <MenuItem Header="View/Edit Game Data" Click="examineRom_Click" />
             <MenuItem Header="Identify and Scrape Game" Click="btnScrapingPickGame_Click" />
             <MenuItem Header="Delete From Games Library" Click="DeleteRom_Click" />
             <MenuItem Header="Destructive Options" Foreground="Yellow" Background="Red">
@@ -48,7 +48,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
             <MenuItem Header="Play Game (Select Disc)" Click="LaunchRomChooseDisc_Click" />
             <MenuItem Header="Favorites" Click="MenuItemFavorite_Click" />
             <MenuItem Header="Copy Launch String to Clipboard" Click="CopyLaunchStringToClipboard_Click" />
-            <MenuItem Header="Show Extended ROM/Disc Info" Click="examineRom_Click" />
+            <MenuItem Header="View/Edit Game Data" Click="examineRom_Click" />
             <MenuItem Header="Identify and Scrape Game" Click="btnScrapingPickGame_Click" />
             <MenuItem Header="Delete From Games Library" Click="DeleteRom_Click" />
             <MenuItem Header="Destructive Options" Foreground="Yellow" Background="Red">
@@ -980,6 +980,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                         </Label.Content>
                                                     </Label>
 
+                                                    <Label Grid.Column="0" Grid.Row="6" FontSize="10" Padding="2" FontWeight="Medium">Internal GameID</Label>
+                                                    <Label x:Name="lblGameId" Grid.Column="1" Grid.Row="6" FontSize="10" Padding="2" FontWeight="Medium" >
+                                                        <Label.Content>
+                                                            <AccessText TextWrapping="Wrap" />
+                                                        </Label.Content>
+                                                    </Label>
+
 
                                                 </Grid>
                                             </ScrollViewer>
@@ -990,6 +997,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSidebarGameInformation" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
                                     <Expander x:Name="expGameInformation" IsExpanded="True" BorderThickness="0" Header="Game Info" >
                                         <StackPanel x:Name="spSidebarGameInformation">
+
+                                            
+
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="0.5*" Name="gameImageColumn" />
@@ -1091,66 +1101,106 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                         <RowDefinition Height="*" />
                                                     </Grid.RowDefinitions>
 
+                                                        <Label x:Name="lblManualEditStatusTitle" Grid.Column="0" Grid.Row="0" FontSize="10" Padding="2" FontWeight="Medium">Manual Edit Status:</Label>
+                                                        <Label  x:Name="lblManualEditStatus" Grid.Column="1" Grid.Row="0"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                            <Label.Content>
+                                                                <AccessText TextWrapping="Wrap" />
+                                                            </Label.Content>
+                                                        </Label>
 
-
-                                                    <Label x:Name="lblAltNamesTitle" Grid.Column="0" Grid.Row="0" FontSize="10" Padding="2" FontWeight="Medium">Alternate Names:</Label>
-                                                    <Label  x:Name="lblAltNames" Grid.Column="1" Grid.Row="0"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                        <Label x:Name="lblAltNamesTitle" Grid.Column="0" Grid.Row="1" FontSize="10" Padding="2" FontWeight="Medium">Alternate Names:</Label>
+                                                    <Label  x:Name="lblAltNames" Grid.Column="1" Grid.Row="1"  FontSize="10" Padding="2" FontWeight="Medium">
                                                         <Label.Content>
                                                             <AccessText TextWrapping="Wrap" />
                                                         </Label.Content>
                                                     </Label>
 
-                                                    <Label x:Name="lblReleaseDateTitle"  Grid.Column="0" Grid.Row="1" FontSize="10" Padding="2" FontWeight="Medium">Release Date:</Label>
-                                                    <Label  x:Name="lblReleaseDate" Grid.Column="1" Grid.Row="1"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                    <Label x:Name="lblReleaseDateTitle"  Grid.Column="0" Grid.Row="2" FontSize="10" Padding="2" FontWeight="Medium">Release Date:</Label>
+                                                    <Label  x:Name="lblReleaseDate" Grid.Column="1" Grid.Row="2"  FontSize="10" Padding="2" FontWeight="Medium">
                                                         <Label.Content>
                                                             <AccessText TextWrapping="Wrap" />
                                                         </Label.Content>
                                                     </Label>
 
-                                                    <Label x:Name="lblPlayersTitle"  Grid.Column="0" Grid.Row="2" FontSize="10" Padding="2" FontWeight="Medium">Players:</Label>
-                                                    <Label  x:Name="lblPlayers" Grid.Column="1" Grid.Row="2"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                    <Label x:Name="lblPlayersTitle"  Grid.Column="0" Grid.Row="3" FontSize="10" Padding="2" FontWeight="Medium">Players:</Label>
+                                                    <Label  x:Name="lblPlayers" Grid.Column="1" Grid.Row="3"  FontSize="10" Padding="2" FontWeight="Medium">
                                                         <Label.Content>
                                                             <AccessText TextWrapping="Wrap" />
                                                         </Label.Content>
                                                     </Label>
 
-                                                    <Label x:Name="lblCoopTitle"  Grid.Column="0" Grid.Row="3" FontSize="10" Padding="2" FontWeight="Medium">Co-op:</Label>
-                                                    <Label  x:Name="lblCoop" Grid.Column="1" Grid.Row="3"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                    <Label x:Name="lblCoopTitle"  Grid.Column="0" Grid.Row="4" FontSize="10" Padding="2" FontWeight="Medium">Co-op:</Label>
+                                                    <Label  x:Name="lblCoop" Grid.Column="1" Grid.Row="4"  FontSize="10" Padding="2" FontWeight="Medium">
                                                         <Label.Content>
                                                             <AccessText TextWrapping="Wrap" />
                                                         </Label.Content>
                                                     </Label>
 
-                                                    <Label x:Name="lblGenresTitle"  Grid.Column="0" Grid.Row="4" FontSize="10" Padding="2" FontWeight="Medium">Genres:</Label>
-                                                    <Label  x:Name="lblGenres" Grid.Column="1" Grid.Row="4"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                    <Label x:Name="lblGenresTitle"  Grid.Column="0" Grid.Row="5" FontSize="10" Padding="2" FontWeight="Medium">Genres:</Label>
+                                                    <Label  x:Name="lblGenres" Grid.Column="1" Grid.Row="5"  FontSize="10" Padding="2" FontWeight="Medium">
                                                         <Label.Content>
                                                             <AccessText TextWrapping="Wrap" />
                                                         </Label.Content>
                                                     </Label>
 
-                                                    <Label x:Name="lblDeveloperTitle"  Grid.Column="0" Grid.Row="5" FontSize="10" Padding="2" FontWeight="Medium">Developer:</Label>
-                                                    <Label  x:Name="lblDeveloper" Grid.Column="1" Grid.Row="5"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                    <Label x:Name="lblDeveloperTitle"  Grid.Column="0" Grid.Row="6" FontSize="10" Padding="2" FontWeight="Medium">Developer:</Label>
+                                                    <Label  x:Name="lblDeveloper" Grid.Column="1" Grid.Row="6"  FontSize="10" Padding="2" FontWeight="Medium">
                                                         <Label.Content>
                                                             <AccessText TextWrapping="Wrap" />
                                                         </Label.Content>
                                                     </Label>
 
-                                                    <Label x:Name="lblPublisherTitle"  Grid.Column="0" Grid.Row="6" FontSize="10" Padding="2" FontWeight="Medium">Publisher</Label>
-                                                    <Label  x:Name="lblPublisher" Grid.Column="1" Grid.Row="6"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                    <Label x:Name="lblPublisherTitle"  Grid.Column="0" Grid.Row="7" FontSize="10" Padding="2" FontWeight="Medium">Publisher:</Label>
+                                                    <Label  x:Name="lblPublisher" Grid.Column="1" Grid.Row="7"  FontSize="10" Padding="2" FontWeight="Medium">
                                                         <Label.Content>
                                                             <AccessText TextWrapping="Wrap" />
                                                         </Label.Content>
                                                     </Label>
 
-                                                    <Label x:Name="lblESRBTitle"  Grid.Column="0" Grid.Row="7" FontSize="10" Padding="2" FontWeight="Medium">ESRB Rating</Label>
-                                                    <Label  x:Name="lblESRB" Grid.Column="1" Grid.Row="7"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                    <Label x:Name="lblESRBTitle"  Grid.Column="0" Grid.Row="8" FontSize="10" Padding="2" FontWeight="Medium">ESRB Rating:</Label>
+                                                    <Label  x:Name="lblESRB" Grid.Column="1" Grid.Row="8"  FontSize="10" Padding="2" FontWeight="Medium">
                                                         <Label.Content>
                                                             <AccessText TextWrapping="Wrap" />
                                                         </Label.Content>
                                                     </Label>
 
+                                                    <Label x:Name="lblCopyrightTitle"  Grid.Column="0" Grid.Row="9" FontSize="10" Padding="2" FontWeight="Medium">Copyright Status:</Label>
+                                                        <Label  x:Name="lblCopyright" Grid.Column="1" Grid.Row="9"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                            <Label.Content>
+                                                                <AccessText TextWrapping="Wrap" />
+                                                            </Label.Content>
+                                                        </Label>
 
-                                                </Grid>
+                                                        <Label x:Name="lblCountryTitle"  Grid.Column="0" Grid.Row="10" FontSize="10" Padding="2" FontWeight="Medium">Country/Region:</Label>
+                                                        <Label  x:Name="lblCountry" Grid.Column="1" Grid.Row="10"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                            <Label.Content>
+                                                                <AccessText TextWrapping="Wrap" />
+                                                            </Label.Content>
+                                                        </Label>
+
+                                                        <Label x:Name="lblLanguageTitle"  Grid.Column="0" Grid.Row="11" FontSize="10" Padding="2" FontWeight="Medium">Language:</Label>
+                                                        <Label  x:Name="lblLanguage" Grid.Column="1" Grid.Row="11"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                            <Label.Content>
+                                                                <AccessText TextWrapping="Wrap" />
+                                                            </Label.Content>
+                                                        </Label>
+
+                                                        <Label x:Name="lblDevelopmentStatusTitle"  Grid.Column="0" Grid.Row="12" FontSize="10" Padding="2" FontWeight="Medium">Development Status:</Label>
+                                                        <Label  x:Name="lblDevelopmentStatus" Grid.Column="1" Grid.Row="12"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                            <Label.Content>
+                                                                <AccessText TextWrapping="Wrap" />
+                                                            </Label.Content>
+                                                        </Label>
+
+                                                        <Label x:Name="lblOtherFlagsTitle"  Grid.Column="0" Grid.Row="13" FontSize="10" Padding="2" FontWeight="Medium">Other Flags:</Label>
+                                                        <Label  x:Name="lblOtherFlags" Grid.Column="1" Grid.Row="13"  FontSize="10" Padding="2" FontWeight="Medium">
+                                                            <Label.Content>
+                                                                <AccessText TextWrapping="Wrap" />
+                                                            </Label.Content>
+                                                        </Label>
+
+
+                                                    </Grid>
 
                                                 </ScrollViewer>
 
@@ -1874,8 +1924,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 </Border>
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdScrapingOptions" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
-                                    <Expander x:Name="expScrapingOptions" IsExpanded="True" BorderThickness="0" Header="Scraping Options" >
+                                    <Expander x:Name="expScrapingOptions" IsExpanded="True" BorderThickness="0" Header="Actions" >
                                         <StackPanel x:Name="spSidebarScrapingOptions">
+
 
                                             <Button  x:Name="btnBrowseDataFolder" ToolTip="Opens the data folder in windows explorer. You can then manually delete or add images/manuals" Click="btnBrowseDataFolder_Click">
                                                 Browse Game Data Folder
@@ -1892,7 +1943,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             </Button>
 
                                             <Button x:Name="btnInterogateRom" ToolTip="Manually interrogate game" Click="examineRom_Click">
-                                                Inspect ROM/Disc
+                                                View/Edit Game Data
                                             </Button>
 
                                             <Button  x:Name="btnScrapingUnlinkGame" ToolTip="Removes the link between the selected game and the downloaded data" Click="btnScrapingUnlinkGame_Click">
