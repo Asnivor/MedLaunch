@@ -54,6 +54,10 @@ namespace MedLaunch.Classes.Scraper
 
         public static void DoScrape(ProgressDialogController controller, Game game, string countString, ScraperSearch gs, bool rescrape)
         {
+            // ignore if manual editing is set
+            if (game.ManualEditSet == true)
+                return;
+
             string gameName = game.gameName;
             int systemId = game.systemId;
             int gameId = game.gameId;
@@ -634,8 +638,41 @@ namespace MedLaunch.Classes.Scraper
 
             // set isScraped flag in Game table
             Game ga = Game.GetGame(gameId);
+
+            // ignore if manual editing is set
+            if (ga.ManualEditSet == true)
+                return;
+
             ga.isScraped = true;
             ga.gdbId = gdbId;
+
+            // populate new extended fields
+            ga.Coop = o.Data.Coop;
+            ga.Developer = o.Data.Developer;
+            ga.ESRB = o.Data.ESRB;
+            ga.Overview = o.Data.Overview;
+            ga.Players = o.Data.Players;
+            ga.Publisher = o.Data.Publisher;
+            ga.Year = o.Data.Released;
+
+            StringBuilder sbAT = new StringBuilder();
+            for (int i = 0; i < o.Data.AlternateTitles.Count(); i++)
+            {
+                sbAT.Append(o.Data.AlternateTitles[i]);
+                if (i < (o.Data.AlternateTitles.Count() - 1))
+                    sbAT.Append(", ");
+            }
+            ga.AlternateTitles = sbAT.ToString();
+
+            StringBuilder sbGE = new StringBuilder();
+            for (int i = 0; i < o.Data.AlternateTitles.Count(); i++)
+            {
+                sbGE.Append(o.Data.AlternateTitles[i]);
+                if (i < (o.Data.AlternateTitles.Count() - 1))
+                    sbGE.Append(", ");
+            }
+            ga.AlternateTitles = sbGE.ToString();
+
             Game.SetGame(ga);
         }
 

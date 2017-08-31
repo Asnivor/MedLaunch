@@ -96,6 +96,10 @@ namespace MedLaunch.Classes.Scraper
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             Grid RootGrid = (Grid)mw.FindName("RootGrid");
 
+            var g = Game.GetGame(GameId);
+            if (g.ManualEditSet == true)
+                return;
+
             await mw.ShowChildWindowAsync(new ListBoxChildWindow()
             {
                 IsModal = true,
