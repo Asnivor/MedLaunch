@@ -295,6 +295,7 @@
     <Compile Include="Classes\GamesLibrary\GamesLibraryViewModel.cs" />
     <Compile Include="Classes\GamesLibrary\GamesLibraryViewModelBase.cs" />
     <Compile Include="Classes\GamesLibrary\MultipleFilterHandler.cs" />
+    <Compile Include="Classes\GamesLibrary\StringConv.cs" />
     <Compile Include="Classes\IO\Hex.cs" />
     <Compile Include="Classes\MednaNet\DiscordChannels.cs" />
     <Compile Include="Classes\MednaNet\DiscordMessage.cs" />

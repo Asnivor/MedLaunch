@@ -809,6 +809,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 <local:MedDataGrid.Resources>
                                     <local:CaseConverter x:Key="CaseConverter" />
                                     <local:DateConverter x:Key="DateConverter" />
+                                    <local:CountryConverter x:Key="CountryConverter" />
                                 </local:MedDataGrid.Resources>
 
                                 <local:MedDataGrid.ColumnHeaderStyle>
@@ -840,7 +841,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>
                                     -->
-                                    <DataGridTextColumn x:Name="glCol6" Header="Country" Binding="{Binding Country}" />
+                                    <DataGridTextColumn x:Name="glCol6" Header="Country" Binding="{Binding Country, Converter={StaticResource CountryConverter}}" />
                                     <!--
                                     <DataGridTextColumn Header="Language" Binding="{Binding Language}" />
                                     -->

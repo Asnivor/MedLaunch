@@ -1927,8 +1927,11 @@ namespace MedLaunch
         // Path Page button clicks
         private void btnPathMednafen_Click(object sender, RoutedEventArgs e)
         {
+            //System.Windows.Forms.FolderBrowserDialog path = new System.Windows.Forms.FolderBrowserDialog();
+            
             VistaFolderBrowserDialog path = new VistaFolderBrowserDialog();
-            path.ShowNewFolderButton = true;
+            //path.ShowNewFolderButton = true;
+            
             path.Description = "Select Mednafen Directory";
             path.ShowDialog();
 
@@ -6492,11 +6495,36 @@ namespace MedLaunch
                     }
                 }
 
+                if (final != "")
+                    return final;
+
                 // if we get this far its probably not a correct year.
                 return string.Empty;
             }
 
             return string.Empty;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class CountryConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            if (value is String)
+            {
+                string input = value.ToString().Trim();
+
+                return StringConv.ConvertCountryString(input);
+            }
+
+            return value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
