@@ -1930,7 +1930,7 @@ namespace MedLaunch
             //System.Windows.Forms.FolderBrowserDialog path = new System.Windows.Forms.FolderBrowserDialog();
             
             VistaFolderBrowserDialog path = new VistaFolderBrowserDialog();
-            //path.ShowNewFolderButton = true;
+            path.ShowNewFolderButton = true;
             
             path.Description = "Select Mednafen Directory";
             path.ShowDialog();
