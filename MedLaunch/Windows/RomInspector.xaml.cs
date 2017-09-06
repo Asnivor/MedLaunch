@@ -117,6 +117,25 @@ namespace MedLaunch
                         tbIntVersion.Text = satInfo.SerialNumber;
                     }
                 }
+                else if (g.systemId == 9)
+                {
+                    // psx
+                    DiscGameFile dgf = new DiscGameFile(gamePath, g.systemId);
+                    var files = DiscScan.ParseTrackSheetForImageFiles(dgf, g.systemId);
+
+                    // iterate through each image file and scan it
+                    int cnt = 0;
+                    foreach (var im in files)
+                    {
+                        var res = u.ScanGame(im.FullPath, uConOps.GetSystemType(g.systemId));
+                        tbInsResult.Text += res.RawOutput;
+                        if (files.Count > 1)
+                            tbInsResult.Text += "\n****************************\n";
+                        if (cnt == 0)
+                            obj = res;
+                        cnt++;
+                    }
+                }
 
                 /*
                 DiscGameFile dgf = new DiscGameFile(gamePath, g.systemId);
@@ -167,6 +186,13 @@ namespace MedLaunch
                 // library data tab
 
                 
+            }
+
+            if (GameObj.systemId == 9)
+            {
+                // get the playstation serial
+                string ser = MedDiscUtils.GetPSXSerial(GameObj.gamePath);
+                tbIntVersion.Text = ser;
             }
 
             PopulateLibraryData();

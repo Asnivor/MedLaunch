@@ -80,6 +80,10 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DiscSN, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ExternalAssemblies\DiscSN.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -988,10 +992,6 @@
       <Project>{21b251c5-8c12-43cd-b256-ad55cb5d4b57}</Project>
       <Name>Asnitech.SQLite</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BizHawk.Emulation.DiscSystem\BizHawk.Emulation.DiscSystem.csproj">
-      <Project>{f51946ea-827f-4d82-b841-1f2f6d060312}</Project>
-      <Name>BizHawk.Emulation.DiscSystem</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ucon64-wrapper\ucon64-wrapper.csproj">
       <Project>{32EEAB9C-791A-4303-A675-A43324C35154}</Project>
       <Name>ucon64-wrapper</Name>
@@ -1099,6 +1099,7 @@
     <Resource Include="Data\Graphics\Controllers\ss-mouse.png" />
     <Resource Include="Data\Graphics\Controllers\nes-zapper.png" />
     <Content Include="Data\Installers\vcredist_x86.exe" />
+    <Content Include="ExternalAssemblies\DiscSN.dll" />
     <Content Include="ExternalAssemblies\WindowScrape.dll" />
     <Resource Include="MedLaunchIcon.ico" />
     <Resource Include="Data\Graphics\Controllers\lynx_controller.png" />
