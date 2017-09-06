@@ -1098,6 +1098,7 @@
     <Resource Include="Data\Graphics\Controllers\snes-mouse.png" />
     <Resource Include="Data\Graphics\Controllers\ss-mouse.png" />
     <Resource Include="Data\Graphics\Controllers\nes-zapper.png" />
+    <Content Include="Data\Installers\vcredist_x86.exe" />
     <Content Include="ExternalAssemblies\WindowScrape.dll" />
     <Resource Include="MedLaunchIcon.ico" />
     <Resource Include="Data\Graphics\Controllers\lynx_controller.png" />

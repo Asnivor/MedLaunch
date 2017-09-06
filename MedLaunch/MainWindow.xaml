@@ -28,6 +28,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                       Height="800"
                       Width="1600"
                       WindowStartupLocation="CenterScreen" Loaded="MetroWindow_Loaded">
+    
+    
 
     <Window.Resources>
         <ContextMenu x:Key="cmGamesListSingle" x:Name="cmGamesListSingle">
@@ -221,7 +223,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    Margin="8 -1 8 0"
-                   FontWeight="Light"
+                   FontWeight="Black"
                    FontSize="14"
                    FontFamily="{DynamicResource HeaderFontFamily}" />
         </DataTemplate>
@@ -918,11 +920,30 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                         <ScrollViewer x:Name="srcSidebar" Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" MinWidth="150" Width="{Binding ElementName=grdGamesSidebar, Path=ActualWidth}" Height="{Binding ElementName=grdGamesSidebar, Path=ActualHeight}">
                             <WrapPanel  Orientation="Horizontal" x:Name="SidebarWrapPanel">
 
+                                <i:Interaction.Behaviors>
+                                    <local:BubbleScrollEvent />
+                                </i:Interaction.Behaviors>
+
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSidebarGame" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
+                                    <i:Interaction.Behaviors>
+                                        <local:BubbleScrollEvent />
+                                    </i:Interaction.Behaviors>
                                     <Expander x:Name="expGameInfo" BorderThickness="0" Header="Game Stats">
+
+                                        <i:Interaction.Behaviors>
+                                            <local:BubbleScrollEvent />
+                                        </i:Interaction.Behaviors>
                                         <StackPanel x:Name="spSidebarGame">
 
+                                            <i:Interaction.Behaviors>
+                                                <local:BubbleScrollEvent />
+                                            </i:Interaction.Behaviors>
+
                                             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
+
+                                                <i:Interaction.Behaviors>
+                                                    <local:BubbleScrollEvent />
+                                                </i:Interaction.Behaviors>
 
                                                 <Grid Margin="0">
                                                     <Grid.ColumnDefinitions>
@@ -939,6 +960,10 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="*" />
                                                     </Grid.RowDefinitions>
+
+                                                    <i:Interaction.Behaviors>
+                                                        <local:BubbleScrollEvent />
+                                                    </i:Interaction.Behaviors>
 
                                                     <Label Grid.Column="0" Grid.Row="0" FontSize="10" Padding="2" FontWeight="Medium">Game:</Label>
                                                     <Label x:Name="lblGameName" Grid.Column="1" Grid.Row="0"  FontSize="10" Padding="2" FontWeight="Medium">
@@ -998,9 +1023,16 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                 <Border Style="{StaticResource Borders1}" x:Name="brdSidebarGameInformation" Margin="0" Grid.Column="0"  Width="{Binding ElementName=SidebarWrapPanel, Path=ActualWidth}">
                                     <Expander x:Name="expGameInformation" IsExpanded="True" BorderThickness="0" Header="Game Info" >
+
+                                        <i:Interaction.Behaviors>
+                                            <local:BubbleScrollEvent />
+                                        </i:Interaction.Behaviors>
+                                        
                                         <StackPanel x:Name="spSidebarGameInformation">
 
-                                            
+                                            <i:Interaction.Behaviors>
+                                                <local:BubbleScrollEvent />
+                                            </i:Interaction.Behaviors>
 
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
@@ -1067,6 +1099,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </UniformGrid>
 
                                                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="2">
+                                                    <i:Interaction.Behaviors>
+                                                        <local:BubbleScrollEvent />
+                                                    </i:Interaction.Behaviors>
                                                 
                                                 <Grid Margin="0"  x:Name="gdatagrid">
                                                     <Grid.ColumnDefinitions>
@@ -1103,6 +1138,10 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                         <RowDefinition Height="*" />
                                                     </Grid.RowDefinitions>
 
+                                                        <i:Interaction.Behaviors>
+                                                            <local:BubbleScrollEvent />
+                                                        </i:Interaction.Behaviors>
+                                                    
                                                         <Label x:Name="lblManualEditStatusTitle" Grid.Column="0" Grid.Row="0" FontSize="10" Padding="2" FontWeight="Medium">Manual Edit Status:</Label>
                                                         <Label  x:Name="lblManualEditStatus" Grid.Column="1" Grid.Row="0"  FontSize="10" Padding="2" FontWeight="Medium">
                                                             <Label.Content>
