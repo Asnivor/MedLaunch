@@ -23,7 +23,9 @@ namespace MedLaunch
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application, INotifyPropertyChanged
-    {        
+    {
+        public bool IsX86 { get; set; }
+                
         private GamesLibraryViewModel gamesLibrary;
         public GamesLibraryViewModel GamesLibrary
         {
@@ -87,6 +89,22 @@ namespace MedLaunch
                 (s, exception) =>
                 LogUnhandledException(exception.Exception, "TaskScheduler.UnobservedException");
 
+
+            /* is the OS x64 or x86? */
+            // determine windows install drive letter
+            string letter = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System));
+
+            // test for /Program Files (x86)
+            if (Directory.Exists(letter + @"Program Files (x86)"))
+            {
+                // assume this is x64
+                IsX86 = false;
+            }
+            else
+            {
+                // assume x86
+                IsX86 = true;
+            }
 
 
             var splashScreen = new SplashScreen(@"Data\Graphics\mediconsplash-new.png");
