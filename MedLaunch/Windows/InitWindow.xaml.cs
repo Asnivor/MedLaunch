@@ -25,6 +25,8 @@ using System.Reflection;
 using MedLaunch.Extensions;
 using MedLaunch.Classes.GamesLibrary;
 using MedLaunch.Classes.Scraper;
+using Microsoft.Win32;
+using System.IO;
 
 namespace MedLaunch
 {
@@ -36,8 +38,6 @@ namespace MedLaunch
         public InitWindow()
         {
             InitializeComponent();
-            
-
         }
 
         private const int GWL_STYLE = -16;
@@ -54,6 +54,64 @@ namespace MedLaunch
 
             // initialise directories if they do not exist
             SetupDirectories.Go();
+
+            /* check that pre-reqs are installed */
+            UpdateStatus("Scanning for pre-requisites...", true);
+
+            UpdateStatus("Visual C++ 2010 x86 redist... ", true);
+            // Visual c++ 2010 x86 (for SlimDX.dll)
+            string keyName = "ProductName";
+            string keyPath = @"SOFTWARE\Classes\Installer\Products";//\1D5E3C0FEDA1E123187686FED06E995A";
+
+            var rootKey = Asnitech.Launch.Common.RegistryHelpers.GetRegistryKey(keyPath);
+
+            // get an array of all installerproduct subkey names
+            string[] subKeys = rootKey.GetSubKeyNames();
+
+            bool isFound = false;
+
+            // iterate through each subkey and see if vcredist x86 is installed
+            foreach (string k in subKeys)
+            {
+                string match = "Microsoft Visual C++ 2010  x86 Redistributable";
+                string newKeyPath = keyPath + @"\" + k;
+                var conString = Asnitech.Launch.Common.RegistryHelpers.GetRegistryValue(newKeyPath, keyName);
+                if (conString != null && conString.ToString().Contains(match))
+                {
+                    isFound = true;
+                    break;
+                }                    
+            }
+
+            if (isFound == true)
+            {
+                // it appears vcredist is installed
+                UpdateStatus("...OK", true);
+            }
+            else
+            {
+                // doesnt appear to be installed
+                UpdateStatus("...NOT FOUND", true);
+                MessageBoxResult r = MessageBox.Show("MedLaunch requires the Microsoft Visual C++ 2010 (x86) Redistributable to be installed and this was NOT detected on your system.\n\nClicking YES will install this before proceeding.\nClicking NO will terminate MedLaunch.", "vcredist_x86.exe not installed", MessageBoxButton.YesNo);
+                if (r == MessageBoxResult.Yes)
+                {
+                    // install
+                    UpdateStatus("Installing vcredist_x86.exe...", true);
+                    string currDir = Directory.GetCurrentDirectory();
+                    string installerPath = currDir + @"\Data\Installers\vcredist_x86.exe";
+
+                    var p = new System.Diagnostics.Process();
+                    p.StartInfo.FileName = installerPath;
+                    p.StartInfo.Arguments = "/passive /norestart";
+                    p.Start();
+                    p.WaitForExit();
+                }
+                else
+                {
+                    // exit medlaunch
+                    Environment.Exit(0);
+                }
+            }
 
             // Check whether database exists
             UpdateStatus("Checking whether there is an existing database present", true);
@@ -132,19 +190,8 @@ namespace MedLaunch
                         }
 
                     }
-                    /*
-                    while (i < 3)
-                    {
-                        // if anything but the 4th number (private build) is greater in the appVersion - database needs to be upgraded
-                        if (Convert.ToInt32(appVersionArr[i]) > Convert.ToInt32(dbVersionArr[i]))
-                        {
-                            // database upgrade needed
-                            upgradeNeeded = true;
-                            break;
-                        }
-                        i++;
-                    }
-                    */
+                    
+                    
                     if (upgradeNeeded == true)
                     {
                         // unhide the init window

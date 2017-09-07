@@ -23,29 +23,7 @@ namespace MedLaunch
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application, INotifyPropertyChanged
-    {
-        //public ScrapeDB ScrapedData { get; set; }
-
-        /*
-        private GameListBuilder gamesList;
-        public GameListBuilder GamesList
-        {
-            get
-            {
-                return gamesList;
-            }
-            set
-            {
-                if (gamesList != value)
-                {
-                    gamesList = value;
-                    OnPropertyChanged("GamesList");
-
-                }
-            }
-        }
-        */
-
+    {        
         private GamesLibraryViewModel gamesLibrary;
         public GamesLibraryViewModel GamesLibrary
         {
