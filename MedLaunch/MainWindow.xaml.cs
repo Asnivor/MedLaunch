@@ -349,7 +349,7 @@ namespace MedLaunch
             double value = 0;
             if (val != null)
             {
-                value = double.Parse(val.ToString()); //Convert.ToDouble((sender as ComboBox).SelectedValue);
+                value = double.Parse(val.ToString(), System.Globalization.CultureInfo.InvariantCulture); //Convert.ToDouble((sender as ComboBox).SelectedValue);
             }
 
             //MessageBox.Show(value.ToString());
