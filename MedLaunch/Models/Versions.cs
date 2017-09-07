@@ -31,6 +31,7 @@ namespace MedLaunch.Models
             return new List<string>
             {
                 "0.5.11.0",
+                "0.5.12.0"
             };
         }
 
