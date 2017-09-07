@@ -334,6 +334,41 @@ namespace MedLaunch.Classes
 
         public void RunGame(string cmdArguments, int systemId)
         {
+            // check mednafen.exe instruction set
+            InstructionSet medInst = InstructionSetDetector.GetExeInstructionSet(BuildMednafenPath(MednafenFolder));
+            // get operating system type            
+            InstructionSet osInst = InstructionSetDetector.GetOperatingSystemInstructionSet();
+
+            if (osInst == InstructionSet.x86)
+            {
+                if (medInst == InstructionSet.x64)
+                {
+                    MessageBox.Show("You are targetting a 64-bit version of Mednafen on a 32-bit operating system. This will not work.\n\nPlease target a 32-bit (x86) version of Mednafen", "Warning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+
+                if (systemId == 13 && medInst == InstructionSet.x86)
+                {
+                    MessageBox.Show("You are trying to emulate a Sega Saturn game using a 32-bit Mednafen build on a 32-bit operating system. This will not work.\n\nYou are unable to emulate Saturn games on this machine", "Warning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+
+                if (systemId == 13)
+                {
+                    MessageBox.Show("You are trying to emulate a Sega Saturn game using a 32-bit operating system. This will not work.\n\nYou are unable to emulate Saturn games on this machine", "Warning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+            }
+
+            if (osInst == InstructionSet.x64)
+            {
+                if (systemId == 13 && medInst == InstructionSet.x86)
+                {
+                    MessageBox.Show("You are trying to emulate a Sega Saturn game using a 32-bit Mednafen build. This will not work.\n\nPlease target a 64-bit (x64) version of Mednafen", "Warning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+            }
+
             int procId;
 
             bool rememberWinPos = GlobalSettings.GetGlobals().rememberSysWinPositions.Value;

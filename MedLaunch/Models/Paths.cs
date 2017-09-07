@@ -226,9 +226,12 @@ namespace MedLaunch.Models
             // get mednafen path from database
             string medFolderPath = Paths.GetPaths().mednafenExe;
             string medConfigFile = medFolderPath + @"\mednafen-09x.cfg";
+            
             // check for existence of config file (if it is not there, mednafen needs initialising)
             if (!File.Exists(medConfigFile))
             {
+                
+
                 System.Diagnostics.Process mProc = new System.Diagnostics.Process();
                 mProc.StartInfo.UseShellExecute = true;
                 mProc.StartInfo.RedirectStandardOutput = false;

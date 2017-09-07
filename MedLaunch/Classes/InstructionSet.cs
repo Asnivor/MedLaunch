@@ -25,24 +25,40 @@ namespace MedLaunch.Classes
             btnControlSs = (RadioButton)mw.FindName("btnControlSs");
         }
 
+        public static InstructionSet GetOperatingSystemInstructionSet()
+        {
+            var IS = new InstructionSetDetector();
+            bool x86 = ((App)Application.Current).IsX86;
+            if (x86)
+                return InstructionSet.x86;
+            else
+                return InstructionSet.x64;
+        }
+
         public static InstructionSet GetExeInstructionSet(string path)
         {
-            byte[] test = File.ReadAllBytes(path).Skip(132).Take(10).ToArray();
-            var i = test[0].ToString();
-            if (i == "100")
+            if (!File.Exists(path))
+                return InstructionSet.x64;
+
+            try
+            {
+                byte[] exeData = File.ReadAllBytes(path).Skip(132).Take(10).ToArray();
+                var i = exeData[0];
+                if (i == 100)
+                {
+                    return InstructionSet.x64;
+                }
+                else if (i == 76)
+                {
+                    return InstructionSet.x86;
+                }
+            }
+            catch
             {
                 return InstructionSet.x64;
             }
-            else if (i == "76")
-            {
-                return InstructionSet.x86;
-            }
-            else
-            {
-                // unknown
-                return InstructionSet.x64;
-            }
-                
+            // unknown - assume x64
+            return InstructionSet.x64;                
         }
 
         // shows/hides saturn core options depending on x64/x86 detected
