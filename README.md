@@ -91,6 +91,7 @@ This upcoming changes (and many others) can be found in the current roadmap [her
 
 ### Requirements
 * [Microsoft .NET Framework 4.5.2](https://www.microsoft.com/en-gb/download/details.aspx?id=42643)
+* Microsoft Visual C++ 2010 x86 Redistributable (MedLaunch will prompt you to auto-install this if you do not have it)
 * At least [Mednafen version 0.9.39.x](https://mednafen.github.io/releases/) - 64-bit version required for Saturn games
 * Tested on Windows 7/8/10. It may work on Vista but has not been tested but will certainly not run on XP
 * x64 (has not been tested on x86 but should still work on it)
