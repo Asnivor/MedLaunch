@@ -317,7 +317,7 @@
     <Compile Include="Classes\Scraper\ScraperLookup.cs" />
     <Compile Include="Classes\Scraper\ScraperSearch.cs" />
     <Compile Include="Classes\uConOps.cs" />
-    <Compile Include="Classes\VisualHandlers\InstructionSetVisualHandler.cs" />
+    <Compile Include="Classes\InstructionSet.cs" />
     <Compile Include="Extensions\FocusExtension.cs" />
     <Compile Include="MedDataGrid.cs" />
     <Compile Include="Windows\AccentStyleWindow.xaml.cs">
