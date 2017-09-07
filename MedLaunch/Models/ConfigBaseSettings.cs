@@ -2248,7 +2248,7 @@ namespace MedLaunch.Models
                         // get the property value using reflection
                         var value = settings.GetType().GetProperty(propName).GetValue(settings, null);
                         //bool v = Convert.ToBoolean(value.ToString());
-                        double v = Convert.ToDouble(value.ToString());
+                        double v = Convert.ToDouble(value.ToString(), System.Globalization.CultureInfo.InvariantCulture);
 
                         // update wpf control
                         control.Value = v;
@@ -2296,7 +2296,7 @@ namespace MedLaunch.Models
                         // get the property value using reflection
                         var value = settings.GetType().GetProperty(propName).GetValue(settings, null);
                         //bool v = Convert.ToBoolean(value.ToString());
-                        double v = Convert.ToDouble(value.ToString());
+                        double v = Convert.ToDouble(value.ToString(), System.Globalization.CultureInfo.InvariantCulture);
 
                         // update wpf control
                         control.Value = v;
@@ -2477,7 +2477,7 @@ namespace MedLaunch.Models
                             if (propInfo.PropertyType.ToString().Contains("[System.Double]"))
                             {
                                 // double is required
-                                double? d = Convert.ToDouble(v);
+                                double? d = Convert.ToDouble(v, System.Globalization.CultureInfo.InvariantCulture);
                                 propInfo.SetValue(settings, d, null);
                                 //MessageBoxResult aresult = MessageBox.Show(propInfo.PropertyType.ToString());
                             }

@@ -662,12 +662,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?) && value != "")
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))
@@ -713,12 +713,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?) && value != "")
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))
@@ -764,12 +764,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?) && value != "")
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))
@@ -816,12 +816,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))
@@ -870,12 +870,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))
@@ -922,12 +922,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?) && value != "")
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))
@@ -973,12 +973,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?) && value != "")
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))
@@ -1024,12 +1024,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?) && value != "")
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))
@@ -1075,12 +1075,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?) && value != "")
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))
@@ -1126,12 +1126,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?) && value != "")
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))

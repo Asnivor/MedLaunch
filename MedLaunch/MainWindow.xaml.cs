@@ -3035,7 +3035,7 @@ namespace MedLaunch
                 GlobalSettings gs = GlobalSettings.GetGlobals();
                 gs.maxFanarts = slFanrtsPerHost.Value;
                 gs.maxScreenshots = slScreenshotsPerHost.Value;
-                gs.imageToolTipPercentage = Convert.ToDouble(comboImageTooltipSize.SelectedValue);
+                gs.imageToolTipPercentage = Convert.ToDouble(comboImageTooltipSize.SelectedValue, System.Globalization.CultureInfo.InvariantCulture);
                 GlobalSettings.SetGlobals(gs);
             });
 
@@ -5682,7 +5682,7 @@ namespace MedLaunch
                 tbGameKey.Text = row.Gamekey;
                 if (row.Port > 0)
                 {
-                    slServerPort.Value = Convert.ToDouble(row.Port);
+                    slServerPort.Value = Convert.ToDouble(row.Port, System.Globalization.CultureInfo.InvariantCulture);
                 }
                 
             }
