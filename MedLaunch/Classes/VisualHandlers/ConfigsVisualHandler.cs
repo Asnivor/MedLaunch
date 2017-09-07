@@ -302,7 +302,7 @@ namespace MedLaunch.Classes
 
                     gs.maxFanarts = slFanrtsPerHost.Value;
                     gs.maxScreenshots = slScreenshotsPerHost.Value;
-                    gs.imageToolTipPercentage = Convert.ToDouble(comboImageTooltipSize.SelectedValue);
+                    gs.imageToolTipPercentage = Convert.ToDouble(comboImageTooltipSize.SelectedValue, System.Globalization.CultureInfo.InvariantCulture);
                     gs.changeTitleCase = Convert.ToInt32(cbFormatGameTitles.SelectedValue);
 
                     GlobalSettings.SetGlobals(gs);
