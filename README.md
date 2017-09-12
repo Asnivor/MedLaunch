@@ -33,13 +33,17 @@
 
 **MedLaunch** is a .NET (Windows only) front-end for the excellent [Mednafen](http://mednafen.fobby.net/) multi-system emulator.
 
-Latest Version: 0.5.8.0
+Latest Production Version: 0.5.8.0
 
-Direct Download: [LATEST](https://downloads.medlaunch.info/latest)
+Direct Production Download: [LATEST](https://downloads.medlaunch.info/latest)
 
 Compatible with Mednafen: 0.9.39.x - 0.9.47
 
-Documentation: Please see the [REQUIREMENTS](https://medlaunch.info/documentation/en/introduction/requirements) and [QUICK SETUP GUIDE](https://medlaunch.info/documentation/en/introduction/quick-setup-guide) documentation portal pages. 
+You can also find the latest DEV release [HERE](https://ci.appveyor.com/project/asnivor/medlaunch/build/artifacts) https://ci.appveyor.com/api/projects/status/github/asnivor/medlaunch?branch=dev&svg=true
+
+The DEV version of MedLaunch is now automatically built and released everytime a change is pushed to the dev branch.
+
+Documentation: Please see the [REQUIREMENTS](https://medlaunch.info/documentation/en/introduction/requirements) and [QUICK SETUP GUIDE](https://medlaunch.info/documentation/en/introduction/quick-setup-guide) documentation portal pages.
 
 Bugs/Suggestions/Feature Requests can be posted on the GitHub [Issue Tracker](https://github.com/Asnivor/MedLaunch/issues), or connect to our [Discord Server](https://discord.gg/nsbanNa) and let us know there.
 
@@ -48,21 +52,21 @@ Bugs/Suggestions/Feature Requests can be posted on the GitHub [Issue Tracker](ht
 * **Local (SQLite) auto-generated database where all settings are saved**
 * **Can import existing mednafen configuration options**
 * **Responsive UI**
-  * Customizable color scheme
-  * Scaleable to aid usability on a wide range of resolutions
+* Customizable color scheme
+* Scaleable to aid usability on a wide range of resolutions
 * **Supports versions of Mednafen 0.9.39.x - 0.9.45.x (latest)**
 * **Nearly all Mednafen config parameters are supported and configurable through the launcher**
-  * With the exception of control configuration parameters, all config settings are stored internally on per-emulated system basis
-  * On game launch a {system}.cfg file is generated (so that per-system configurations can be utilized outside of MedLaunch)
+* With the exception of control configuration parameters, all config settings are stored internally on per-emulated system basis
+* On game launch a {system}.cfg file is generated (so that per-system configurations can be utilized outside of MedLaunch)
 * **Built-in update checking (with manual ability to grab the latest MedLaunch and supported Mednafen x64 binaries)**
 * **Customizable games library**
-  * Hide/show individual mednafen emulated systems and games library columns
-  * Multi-column sorting and dynamic search
-  * Library sorting and column sizing/positioning state saved on a per-filter basis
-  * Sidebar that shows game information, boxart, screenshots, manuals etc. (once the game has been scraped)
+* Hide/show individual mednafen emulated systems and games library columns
+* Multi-column sorting and dynamic search
+* Library sorting and column sizing/positioning state saved on a per-filter basis
+* Sidebar that shows game information, boxart, screenshots, manuals etc. (once the game has been scraped)
 * **Auto scan and import of ROM based games**
-  * Imports all standard ROM formats that mednafen supports
-  * Extended archive support - will import single or multiple ROMs from within .zip or .7z files
+* Imports all standard ROM formats that mednafen supports
+* Extended archive support - will import single or multiple ROMs from within .zip or .7z files
 * **Auto scan and import of Disc based games (PSX, Saturn, PCFX & PCE-CD)**
   * All disc cue/image files must reside in game-specific sub-folders below the designated system game folder
   * Games that do not adhere to this file/folder structure can be imported manually
