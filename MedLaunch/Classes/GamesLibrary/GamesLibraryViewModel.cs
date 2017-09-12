@@ -367,8 +367,8 @@ namespace MedLaunch.Classes.GamesLibrary
             //d.Year = "2914";
 
             // last minute region detection
-            if (d.Country == null || d.Country.Trim() == "")
-            {
+            if ((d.Country == null || d.Country.Trim() == ""))
+            {                
                 if (d.Game.Contains("(Japan)"))
                     d.Country = "Japan";
                 if (d.Game.Contains("(Europe)"))
