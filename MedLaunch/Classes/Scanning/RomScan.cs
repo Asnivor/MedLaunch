@@ -121,7 +121,7 @@ namespace MedLaunch.Classes.Scanning
             // inspect archive files
             if (extension == ".zip" || extension == ".7z")
             {
-                bool isAllowed = false;
+                //bool isAllowed = false;
                 try
                 {
                     // create an instance of the archiving class and process this archive

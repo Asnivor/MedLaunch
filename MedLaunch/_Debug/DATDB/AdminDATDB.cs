@@ -434,7 +434,7 @@ namespace MedLaunch._Debug.DATDB
 
                     controller.SetMessage(output + "Number of games to process: " + numGames + "\nFixed: " + gWorking.Count() + "\nSkipped: " + skipped);
 
-                    bool updateNeeded = false;
+                    //bool updateNeeded = false;
 
                     // lookup names for this game
                     var searchAll = (from a in scrapes
@@ -452,7 +452,7 @@ namespace MedLaunch._Debug.DATDB
                         if (yearSearch != null)
                         {
                             g.year = yearSearch.GDBYear;
-                            updateNeeded = true;
+                            //updateNeeded = true;
                             gWorking.Add(g);
                         } 
                         else

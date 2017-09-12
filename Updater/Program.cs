@@ -27,7 +27,7 @@ namespace Updater
 ";
 
             Console.WriteLine(title);
-            int milliseconds = 2000;
+            //int milliseconds = 2000;
             //Thread.Sleep(milliseconds);
 
             // handle args

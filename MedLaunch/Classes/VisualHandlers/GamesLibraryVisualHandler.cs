@@ -547,6 +547,7 @@ namespace MedLaunch.Classes
                     bool isFanrtsData = false;                              //Fanrt expander
                     bool isManualsData = false;                             //manuals expander
 
+                    if (isGameInfoData) { };
                     
 
                     // Back Cover Image
@@ -1460,13 +1461,12 @@ namespace MedLaunch.Classes
             RadioButton rb = rbs.Where(a => a.IsChecked == true).FirstOrDefault();
 
             if (rb == null)
-            {
                 return CountryFilter.ALL;
-            }                
+                          
 
-            for (int i = 0; i < rbs.Length; i++)
+            foreach (var r in rbs)
             {
-                string name = rbs[i].Name.Replace("srcFilterAll", "");
+                string name = r.Name.Replace("srcFilterAll", "");
 
                 switch (name)
                 {
