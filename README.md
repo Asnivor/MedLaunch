@@ -39,7 +39,7 @@ Direct Production Download: [LATEST](https://downloads.medlaunch.info/latest)
 
 Compatible with Mednafen: 0.9.39.x - 0.9.47
 
-You can also find the latest DEV release [HERE](https://ci.appveyor.com/project/asnivor/medlaunch/build/artifacts) https://ci.appveyor.com/api/projects/status/github/asnivor/medlaunch?branch=dev&svg=true
+You can also find the latest DEV release [HERE](https://ci.appveyor.com/project/asnivor/medlaunch/build/artifacts) <img src="https://ci.appveyor.com/api/projects/status/github/asnivor/medlaunch?branch=dev&svg=true" />
 
 The DEV version of MedLaunch is now automatically built and released everytime a change is pushed to the dev branch.
 
