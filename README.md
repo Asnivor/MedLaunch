@@ -33,17 +33,26 @@
 
 **MedLaunch** is a .NET (Windows only) front-end for the excellent [Mednafen](http://mednafen.fobby.net/) multi-system emulator.
 
-Latest Production Version: 0.5.8.0
+### Production Releases
+* Latest Production Version: 0.5.8.0
+* Direct Production Download: [LATEST](https://downloads.medlaunch.info/latest)
+* Compatible with Mednafen: 0.9.39.x - 0.9.47
 
-Direct Production Download: [LATEST](https://downloads.medlaunch.info/latest)
+Official production releases happen when the team are happy after testing. The frequency of these releases has decreased over time, so users should look to the dev builds to get new features and compatibility early.
 
-Compatible with Mednafen: 0.9.39.x - 0.9.47
+### Development Releases
+A rolling development version of MedLaunch is now automatically built and released everytime a change is pushed to the dev branch on GitHub.
 
-You can also find the latest DEV release [HERE](https://ci.appveyor.com/project/asnivor/medlaunch/build/artifacts) <img src="https://ci.appveyor.com/api/projects/status/github/asnivor/medlaunch?branch=dev&svg=true" />
+* The latest development build can always be found [HERE](https://ci.appveyor.com/project/asnivor/medlaunch/build/artifacts)
+* [![Build status](https://ci.appveyor.com/api/projects/status/4maii9la7yb72bw8/branch/dev?svg=true)](https://ci.appveyor.com/project/Asnivor/medlaunch/branch/dev)
 
-The DEV version of MedLaunch is now automatically built and released everytime a change is pushed to the dev branch.
+The development releases should usually be stable, but it is advisable to backup your MedLaunch directory before upgrading.
 
-Documentation: Please see the [REQUIREMENTS](https://medlaunch.info/documentation/en/introduction/requirements) and [QUICK SETUP GUIDE](https://medlaunch.info/documentation/en/introduction/quick-setup-guide) documentation portal pages.
+**Note: Development builds do NOT currently appear within GitHub releases and are NOT available through the MedLaunch internal updater**.
+
+### Documentation
+
+Please see the [REQUIREMENTS](https://medlaunch.info/documentation/en/introduction/requirements) and [QUICK SETUP GUIDE](https://medlaunch.info/documentation/en/introduction/quick-setup-guide) documentation portal pages.
 
 Bugs/Suggestions/Feature Requests can be posted on the GitHub [Issue Tracker](https://github.com/Asnivor/MedLaunch/issues), or connect to our [Discord Server](https://discord.gg/nsbanNa) and let us know there.
 
