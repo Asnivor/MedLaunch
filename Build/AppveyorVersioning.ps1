@@ -28,6 +28,8 @@ if ($env:APPVEYOR -eq $true)
         $buildVer = $filename.Replace(".zip", "")
         # set enviroment version
         $env:APPVEYOR_BUILD_VERSION = $buildVer
+        # set custom environment filename
+        $env:ML_ARTIFACT_NAME=$filename
     }
     if ($env:APPVEYOR_REPO_BRANCH -eq "master")
     {
@@ -38,6 +40,8 @@ if ($env:APPVEYOR -eq $true)
         $buildVer = "$($tmp)-MASTER_$($buildNo)"
         # set enviroment version
         $env:APPVEYOR_BUILD_VERSION = $buildVer
+        # set custom environment filename
+        $env:ML_ARTIFACT_NAME=$filename
     }
 }
 else
@@ -47,3 +51,5 @@ else
 }
 
 write-host "Artifact name will be: $filename"
+write-host "Environment variable for artifact is stored as: $env:ML_ARTIFACT_NAME"
+write-host "buildversion has been set to: $buildVer"
