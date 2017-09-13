@@ -21,16 +21,3 @@ test: off
 artifacts:
 - path: MedLaunch\bin\Release\
   name: '$(ML_ARTIFACT_NAME)'
-notifications:
-- provider: Webhook
-  url: https://skyhook.glitch.me/api/webhooks/357125621983346690/-NuJ4ROmBiYLaBN_2JBJjNunMhgFE0LUJdG5ipvD0ELpodX7gQ5FXXbDwTbCeaXIGwMp/appveyor
-  method: POST
-  on_build_success: true
-  on_build_failure: true
-  on_build_status_changed: true
-- provider: Webhook
-  url: https://skyhook.glitch.me/api/webhooks/357134081672085504/kyPTxJJpXEaKswAxzqbfdIo-CbQ2AdQFUEJpGT-Sg7SHRL0e7UJE08ARG6CcmbD4TJn6/appveyor
-  method: POST
-  on_build_success: true
-  on_build_failure: false
-  on_build_status_changed: false
