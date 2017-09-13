@@ -28,6 +28,8 @@ namespace MedLaunch.Classes
 
         private MyDbContext db;
 
+        public MainWindow mw { get; set; }
+
         // Constructor
         public GameLauncher(int gameId)
         {
@@ -334,6 +336,7 @@ namespace MedLaunch.Classes
 
         public void RunGame(string cmdArguments, int systemId)
         {
+            /*
             // check mednafen.exe instruction set
             InstructionSet medInst = InstructionSetDetector.GetExeInstructionSet(BuildMednafenPath(MednafenFolder));
             // get operating system type            
@@ -368,6 +371,8 @@ namespace MedLaunch.Classes
                     return;
                 }
             }
+
+            */
 
             int procId;
 
