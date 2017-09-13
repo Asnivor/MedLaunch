@@ -13,6 +13,10 @@ before_build:
 build:
   project: MedLaunch/MedLaunch.csproj
   verbosity: minimal
+before_package:
+- cmd: >-
+    powershell.exe ".\Build\AppveyorPackaging.ps1"
+
 test: off
 artifacts:
 - path: MedLaunch\bin\Release\

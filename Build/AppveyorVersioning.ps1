@@ -1,4 +1,4 @@
-﻿write-host "Starting MedLaunch pre-build scripts.."
+﻿write-host "...Starting MedLaunch pre-build scripts.."
 
 # get current directory (this will be something/something/Build)
 # so root would be $loc\..\
