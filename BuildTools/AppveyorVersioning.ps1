@@ -1,6 +1,6 @@
 ﻿write-host "...Starting MedLaunch pre-build scripts.."
 
-# get current directory (this will be something/something/Build)
+# get current directory (this will be something/something/BuildTools)
 # so root would be $loc\..\
 $loc = Split-Path $script:MyInvocation.MyCommand.Path
 $root = (get-item $loc).parent.FullName

@@ -29,8 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedLaunch.IO", "MedLaunch.I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiscTesting", "MiscTesting\MiscTesting.csproj", "{1F455AB4-0B8B-42E4-85F1-29984CB2C867}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build", "Build\Build.csproj", "{252C7C91-508B-4D59-BCDF-8B3D56A5D69F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,18 +123,6 @@ Global
 		{1F455AB4-0B8B-42E4-85F1-29984CB2C867}.Release|x64.Build.0 = Release|Any CPU
 		{1F455AB4-0B8B-42E4-85F1-29984CB2C867}.Release|x86.ActiveCfg = Release|Any CPU
 		{1F455AB4-0B8B-42E4-85F1-29984CB2C867}.Release|x86.Build.0 = Release|Any CPU
-		{252C7C91-508B-4D59-BCDF-8B3D56A5D69F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{252C7C91-508B-4D59-BCDF-8B3D56A5D69F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{252C7C91-508B-4D59-BCDF-8B3D56A5D69F}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{252C7C91-508B-4D59-BCDF-8B3D56A5D69F}.Debug|x64.Build.0 = Debug|Any CPU
-		{252C7C91-508B-4D59-BCDF-8B3D56A5D69F}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{252C7C91-508B-4D59-BCDF-8B3D56A5D69F}.Debug|x86.Build.0 = Debug|Any CPU
-		{252C7C91-508B-4D59-BCDF-8B3D56A5D69F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{252C7C91-508B-4D59-BCDF-8B3D56A5D69F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{252C7C91-508B-4D59-BCDF-8B3D56A5D69F}.Release|x64.ActiveCfg = Release|Any CPU
-		{252C7C91-508B-4D59-BCDF-8B3D56A5D69F}.Release|x64.Build.0 = Release|Any CPU
-		{252C7C91-508B-4D59-BCDF-8B3D56A5D69F}.Release|x86.ActiveCfg = Release|Any CPU
-		{252C7C91-508B-4D59-BCDF-8B3D56A5D69F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
