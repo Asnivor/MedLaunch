@@ -34,7 +34,8 @@ if ($env:APPVEYOR -eq $true)
         $buildNo = $env:APPVEYOR_BUILD_NUMBER
         write-host "master branch detected"
         $filename = "MedLaunch_v$($version).zip"
-        $buildVer = "$($filename.Replace(".zip", ""))-MASTER_$($buildNo)"
+        $tmp = $filename.Replace(".zip", "")
+        $buildVer = "$($tmp)-MASTER_$($buildNo)"
         # set enviroment version
         $env:APPVEYOR_BUILD_VERSION = $buildVer
     }
