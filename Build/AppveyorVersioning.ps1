@@ -11,7 +11,8 @@ foreach ($line in $asi)
 {
     if ($line -like '*AssemblyFileVersion(*')
     {
-        $version = $line.Replace("[assembly: AssemblyFileVersion(", "").Replace(")]", "").Replace("`"", "").Replace(".", "_")
+        $versionDot = $line.Replace("[assembly: AssemblyFileVersion(", "").Replace(")]", "").Replace("`"", "")
+        $version = $versionDot.Replace(".", "_")
     }
 }
 write-host "Detected file version: $version"
@@ -24,12 +25,16 @@ if ($env:APPVEYOR -eq $true)
     {
         $buildNo = $env:APPVEYOR_BUILD_NUMBER
         write-host "dev branch detected"
-        $filename = "MedLaunch_v$($version)-DEVBUILD_$($buildNo).zip"
+        $filename = "MedLaunch_v$($version)-DEVBUILD-$($buildNo)"
         $buildVer = $filename.Replace(".zip", "")
         
         # set enviroment version
         Set-AppveyorBuildVariable -Name 'APPVEYOR_BUILD_VERSION' -Value $buildVer
         #$env:APPVEYOR_BUILD_VERSION = $buildVer
+        
+        ## update version
+        $newVerDev = "ML-$versionDot-DEV-$buildNo"
+        Update-AppveyorBuild -Version $newVerDev
         
         # set custom environment filename
         Set-AppveyorBuildVariable -Name 'ML_ARTIFACT_NAME' -Value $filename
@@ -39,13 +44,17 @@ if ($env:APPVEYOR -eq $true)
     {
         $buildNo = $env:APPVEYOR_BUILD_NUMBER
         write-host "master branch detected"
-        $filename = "MedLaunch_v$($version).zip"
+        $filename = "MedLaunch_v$($version)"
         $tmp = $filename.Replace(".zip", "")
         $buildVer = "$($tmp)-MASTER_$($buildNo)"
         
         # set enviroment version
         Set-AppveyorBuildVariable -Name 'APPVEYOR_BUILD_VERSION' -Value $buildVer
         #$env:APPVEYOR_BUILD_VERSION = $buildVer
+        
+        ## update version
+        $newVerMas = "ML-$versionDot-MASTER-$buildNo"
+        Update-AppveyorBuild -Version $newVerMas
         
         # set custom environment filename
         Set-AppveyorBuildVariable -Name 'ML_ARTIFACT_NAME' -Value $filename

@@ -2,6 +2,7 @@ version: 'MedLaunch-{branch}.{build}'
 branches:
   only:
   - dev
+
 configuration: Release
 shallow_clone: true
 before_build:
