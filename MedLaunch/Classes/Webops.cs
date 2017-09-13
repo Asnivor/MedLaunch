@@ -66,6 +66,11 @@ namespace MedLaunch.Classes
                 // error or timeout - run again but change the timeout value
                 Console.WriteLine(wex);
                 request.Abort();
+
+                if (wex.ToString().Contains("(503) Server Unavailable"))
+                {
+                    return "ERROR";
+                }
                 
                 Timeout += 5000;
                 responseStr = GetResponseText(address, Timeout);
