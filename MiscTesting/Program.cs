@@ -3,15 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MedLaunch.IO;
+using MedLaunch.Common;
+using MedLaunch.Common.Eventing;
+using MedLaunch.Common.IO.Compression;
+using MedLaunch.Common.Eventing.CustomEventArgs;
 
 namespace MiscTesting
 {
+
+    public class Listener
+    {
+        public void Subscribe(Archive a)
+        {
+            a.Message += new Archive.MessageHandler(MessageRevieved);
+        }
+        private void MessageRevieved(Archive a, ProgressDialogEventArgs e)
+        {
+            Console.WriteLine(e.DialogText);
+        }
+    }
+
     class Program
     {
+
         static void Main(string[] args)
         {
-            var result = Compression.ProcessArchive(@"D:\Dropbox\Dropbox\_Games\Emulation\_Roms\Sega - Master System - Mark III\Sega - Master System - Mark III.zip", new string[] { ".sms", ".7z" });
+
+            string arcPath = @"D:\Dropbox\Dropbox\_Games\Emulation\_Roms\Sega - Master System - Mark III\Sega - Master System - Mark III.zip";
+            Archive a = new Archive(arcPath);
+
+            Listener l = new Listener();
+            l.Subscribe(a);
+
+            var r = a.ProcessArchive(new string[] { ".sms", ".7z" });
+
+            var result = Archive.ProcessArchive(@"D:\Dropbox\Dropbox\_Games\Emulation\_Roms\Sega - Master System - Mark III\Sega - Master System - Mark III.zip", new string[] { ".sms", ".7z" });
 
 
             Console.WriteLine("Asni's Archive Streaming Test (zip)");
@@ -23,8 +49,8 @@ namespace MiscTesting
             Console.WriteLine("");
 
             Console.WriteLine("Starting PhysFS Test...");
-            string phy = InitTest.testPhys();
-            Console.Write(phy);
+            //string phy = InitTest.testPhys();
+            //Console.Write(phy);
             Console.WriteLine();
             Console.WriteLine();
             /*

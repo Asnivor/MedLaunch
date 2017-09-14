@@ -61,6 +61,7 @@ using MedLaunch._Debug.ScrapeDB.ReplacementDocs;
 using MedLaunch.Classes.MednaNet;
 using ucon64_wrapper;
 using System.Windows.Interactivity;
+using MedLaunch.Common.Eventing.Listeners;
 
 namespace MedLaunch
 {
@@ -6372,6 +6373,41 @@ namespace MedLaunch
             }, RootGrid);
 
             mw.ShowMaxRestoreButton = true;
+        }
+
+        private async void testarchiving_Click(object sender, RoutedEventArgs e)
+        {
+            string arcPath = @"D:\Dropbox\Dropbox\_Games\Emulation\_Roms\Sega - Master System - Mark III\Sega - Master System - Mark III.7z";
+
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel",
+                AnimateShow = false,
+                AnimateHide = false,
+            };
+
+            var controller = await this.ShowProgressAsync("Scanning test archive", "", settings: mySettings);
+            controller.SetCancelable(true);
+            await Task.Delay(100);
+            await Task.Run(() =>
+            {
+                Task.Delay(1);
+                MedLaunch.Common.IO.Compression.Archive a = new MedLaunch.Common.IO.Compression.Archive(arcPath);
+                ProgressDialogListener l = new ProgressDialogListener(controller, SignatureType.Archive);
+                l.Subscribe(a);
+                var results = a.ProcessArchive(new string[] { ".sms", ".7z" });
+
+            });
+            await controller.CloseAsync();
+
+            if (controller.IsCanceled)
+            {
+                await this.ShowMessageAsync("Archive test", "Operation Cancelled");
+            }
+            else
+            {
+                await this.ShowMessageAsync("Archive test", "Scanning Completed");
+            }
         }
     }
 

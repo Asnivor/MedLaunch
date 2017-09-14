@@ -5,11 +5,35 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MedLaunch.Common.Eventing.CustomEventArgs;
 
-namespace MedLaunch.IO
+namespace MedLaunch.IO.Compression
 {
-    public class Compression
+    public class Archive
     {
+        /* Properties */
+        public string ArchivePath { get; set; }
+
+        public delegate void MessageHandler(Archive a, ProgressDialogEventArgs e);
+        public event MessageHandler Message;
+
+        /* Constructors */
+        public Archive()
+        {
+
+        }
+
+        public Archive(string archivePath)
+        {
+            if (File.Exists(archivePath))
+                ArchivePath = archivePath;
+        }
+
+        /* Methods */
+
+
+        /* Static Methods */
+
         /// <summary>
         /// Extracts a specific file from an archive
         /// </summary>
@@ -24,7 +48,7 @@ namespace MedLaunch.IO
         }
 
         /// <summary>
-        /// Extracts files from an archive
+        /// Extracts all files from an archive
         /// </summary>
         /// <param name="archivePath"></param>
         /// <param name="internalPath"></param>
@@ -139,6 +163,81 @@ namespace MedLaunch.IO
         }
         */
 
+        public void FireMessageEvent(string message)
+        {
+            if (Message != null)
+            {
+                ProgressDialogEventArgs status = new ProgressDialogEventArgs();
+                status.DialogText = message;
+                Message(this, status);
+            }
+        }
+
+        public CompressionResults ProcessArchive(string[] allowedExtensions)
+        {
+            CompressionResults crs = new CompressionResults(ArchivePath);
+
+            // if file does not exist
+            if (!File.Exists(ArchivePath))
+                return null;
+
+            // generate random mount-point name
+            string mnt = Crypto.GetNotStrongRandomPhrase(8);
+
+            // open the archive
+            using (var pfs = new PhysFS(""))
+            {
+                // set write dir
+                //pfs.SetWriteDir(outputDirectory);
+
+                // mount the archive
+                pfs.Mount(ArchivePath, mnt, false);
+
+                // build the internal structure
+                var structure = GetArchiveStructure(pfs, mnt);
+
+                // iterate through each file
+                foreach (var s in structure)
+                {
+                    // check whether it is an allowed file
+                    bool allowed = false;
+                    foreach (var al in allowedExtensions)
+                    {
+                        if (s.ToUpper().EndsWith(al.ToUpper()))
+                        {
+                            allowed = true;
+                            break;
+                        }
+                    }
+
+                    if (allowed == false)
+                        continue;
+
+                    // get MD5 hash and build compressionresult object
+                    using (var reader = new BinaryReader(pfs.OpenRead(s)))
+                    {
+                        string hash = Crypto.GetMD5Hash(reader.BaseStream);
+                        CompressionResult cr = new CompressionResult();
+                        cr.ArchivePath = ArchivePath;
+                        cr.FileName = s;
+                        cr.InternalPath = s.TrimStart((mnt).ToCharArray()).TrimStart('/');
+                        cr.MD5 = hash;
+                        cr.CRC32 = pfs.GetHashCode().ToString();
+                        cr.CalculateDBPathString();
+
+                        crs.Results.Add(cr);
+                      
+                        FireMessageEvent("File: " + cr.FileName + " - MD5: " + cr.MD5);
+                        string newtest = cr.InternalPath;
+                       
+                            
+                    }
+                }
+
+                return crs;
+            }
+        }
+
         public static CompressionResults ProcessArchive(string archivePath, string[] allowedExtensions)
         {
             CompressionResults crs = new CompressionResults(archivePath);
@@ -226,40 +325,6 @@ namespace MedLaunch.IO
                 }
             }
             return structure;
-        }
-    }
-
-    public class CompressionResults
-    {
-        public List<CompressionResult> Results { get; set; }
-        public string ArchivePath { get; set; }
-        public string ArchiveMD5 { get; set; }
-
-        public CompressionResults(string archivePath)
-        {
-            Results = new List<CompressionResult>();
-            ArchivePath = archivePath;
-            ArchiveMD5 = Crypto.GetMD5Hash(ArchivePath);
-        }
-    }
-
-    public class CompressionResult
-    {
-        public string FileName { get; set; }
-        public string InternalPath { get; set; }
-        public string ArchivePath { get; set; }
-        public string DBPathString { get; set; }
-        public string MD5 { get; set; }
-        public string CRC32 { get; set; }
-
-        public CompressionResult CalculateDBPathString()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(ArchivePath);
-            sb.Append("*/");
-            sb.Append(InternalPath);
-            DBPathString = sb.ToString();
-            return this;
         }
     }
 }

@@ -400,6 +400,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                             <MenuItem Name="disctest" Header="Disc test" Click="disctest_Click"/>
                             <MenuItem Name="UCONtest" Header="Ucon64 Test" Click="UCONtest_Click" />
                             <MenuItem Name="UCONConvertSmd" Header="Ucon 64 test smd convert" Click="UCONConvertSmd_Click" />
+                            <MenuItem Name="testarchiving" Header="Archive test" Click="testarchiving_Click" />
                         </MenuItem>
                     </ContextMenu>
                 </Button.ContextMenu>
