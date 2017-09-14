@@ -23,4 +23,26 @@ foreach ($thing in $xml)
     }
     
 }
+
+write-host "Creating empty directories..."
+md -force "$releaseString\Data\Games"
+md -force "$releaseString\Data\Settings"
+md -force "$releaseString\Data\MednafenCFGBackups"
+md -force "$releaseString\Data\Updates"
+
+# create branch ident file
+write-host "Creating branch ident file..."
+$identFile = "$releaseString\Data\Settings\DevStatus.txt"
+$buildNo = $env:APPVEYOR_BUILD_NUMBER
+
+New-Item $identFile -ItemType file
+if ($env:APPVEYOR_REPO_BRANCH -eq "dev")
+{
+	$status = $buildNo
+}
+if ($env:APPVEYOR_REPO_BRANCH -eq "master")
+{
+	$status = "0"
+}
+$status | Set-Content $identFile
 # EOF   

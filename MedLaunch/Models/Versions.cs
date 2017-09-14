@@ -35,6 +35,27 @@ namespace MedLaunch.Models
             };
         }
 
+        public static string GetDevBuild()
+        {
+            string devStatusFile = AppDomain.CurrentDomain.BaseDirectory + @"Data\Settings\DevStatus.txt";
+            if (File.Exists(devStatusFile))
+            {
+                string line = File.ReadAllLines(devStatusFile).FirstOrDefault();
+                if (line != null && line != "0")
+                {
+                    return line;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static List<MednafenChangeHistory> GetMednafenCompatibilityMatrix()
         {
             return
