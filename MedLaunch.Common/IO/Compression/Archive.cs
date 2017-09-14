@@ -15,6 +15,7 @@ namespace MedLaunch.Common.IO.Compression
     {
         /* Properties */
         public string ArchivePath { get; set; }
+        public int AllowedFilesDetected { get; set; }
 
         public delegate void MessageHandler(Archive a, ProgressDialogEventArgs e);
         public event MessageHandler Message;
@@ -22,24 +23,110 @@ namespace MedLaunch.Common.IO.Compression
         /* Constructors */
         public Archive()
         {
-
+            AllowedFilesDetected = 0;
         }
 
         public Archive(string archivePath)
         {
             if (File.Exists(archivePath))
                 ArchivePath = archivePath;
+
+            AllowedFilesDetected = 0;
         }
 
         /* Methods */
 
-        public void FireMessageEvent(ProgressDialogEventArgs message)
+        private void FireMessageEvent(ProgressDialogEventArgs message)
         {
             if (Message != null)
             {
                 //ProgressDialogEventArgs status = new ProgressDialogEventArgs();
                // message.DialogText = message;
                 Message(this, message);
+            }
+        }
+
+        public CompressionResults ProcessArchive(string[] allowedExtensions)
+        {
+            CompressionResults crs = new CompressionResults(ArchivePath);
+            
+            // if file does not exist
+            if (!File.Exists(ArchivePath))
+                return null;
+
+            // generate random mount-point name
+            string mnt = Converters.GetNotStrongRandomPhrase(8);
+
+            // open the archive
+            using (var pfs = new PhysFS(""))
+            {
+                // set write dir
+                //pfs.SetWriteDir(outputDirectory);
+
+                // mount the archive
+                pfs.Mount(ArchivePath, mnt, false);
+
+                // build the internal structure
+                var structure = GetArchiveStructure(pfs, mnt);
+
+                List<string> allowedFiles = new List<string>();
+
+                // get all the allowed files
+                foreach (var s in structure)
+                {
+                    bool allowed = false;
+                    foreach (var al in allowedExtensions)
+                    {
+                        if (s.ToUpper().EndsWith(al.ToUpper()))
+                        {
+                            allowed = true;
+                            break;
+                        }
+                    }
+
+                    if (allowed == false)
+                        continue;
+
+                    allowedFiles.Add(s);
+                }
+
+                AllowedFilesDetected = allowedFiles.Count();
+
+                // iterate through each file
+                foreach (var s in allowedFiles)
+                {
+                    // get MD5 hash and build compressionresult object
+                    using (var reader = new BinaryReader(pfs.OpenRead(s)))
+                    {
+                        string hash = Converters.GetMD5Hash(reader.BaseStream);
+                        CompressionResult cr = new CompressionResult();
+                        cr.ArchivePath = ArchivePath;
+                        cr.FileName = s.Replace(mnt, "").TrimStart('/');
+                        //cr.InternalPath = s.TrimStart((mnt).ToCharArray()).TrimStart('/').Replace("", "");
+                        cr.InternalPath = s.Replace(mnt, "").TrimStart('/');
+                        cr.MD5 = hash;
+                        cr.CRC32 = pfs.GetHashCode().ToString();
+                        cr.CalculateDBPathString();
+
+                        crs.Results.Add(cr);
+
+                        // build status message
+                        StringBuilder sb1 = new StringBuilder();
+                        sb1.Append("Scanning: " + Path.GetFileName(ArchivePath) + "\n\n");
+                        sb1.Append("Processing: " + cr.InternalPath);
+
+                        
+
+                        ProgressDialogEventArgs eva = new ProgressDialogEventArgs();
+                        eva.DialogText = sb1.ToString();
+                        FireMessageEvent(eva);
+                        //string newtest = cr.InternalPath;
+
+
+                    }
+                }
+
+                return crs;
             }
         }
 
@@ -174,81 +261,7 @@ namespace MedLaunch.Common.IO.Compression
             }
         }
         */
-
         
-
-        public CompressionResults ProcessArchive(string[] allowedExtensions)
-        {
-            CompressionResults crs = new CompressionResults(ArchivePath);
-
-            // if file does not exist
-            if (!File.Exists(ArchivePath))
-                return null;
-
-            // generate random mount-point name
-            string mnt = Converters.GetNotStrongRandomPhrase(8);
-
-            // open the archive
-            using (var pfs = new PhysFS(""))
-            {
-                // set write dir
-                //pfs.SetWriteDir(outputDirectory);
-
-                // mount the archive
-                pfs.Mount(ArchivePath, mnt, false);
-
-                // build the internal structure
-                var structure = GetArchiveStructure(pfs, mnt);
-
-                // iterate through each file
-                foreach (var s in structure)
-                {
-                    // check whether it is an allowed file
-                    bool allowed = false;
-                    foreach (var al in allowedExtensions)
-                    {
-                        if (s.ToUpper().EndsWith(al.ToUpper()))
-                        {
-                            allowed = true;
-                            break;
-                        }
-                    }
-
-                    if (allowed == false)
-                        continue;
-
-                    // get MD5 hash and build compressionresult object
-                    using (var reader = new BinaryReader(pfs.OpenRead(s)))
-                    {
-                        string hash = Converters.GetMD5Hash(reader.BaseStream);
-                        CompressionResult cr = new CompressionResult();
-                        cr.ArchivePath = ArchivePath;
-                        cr.FileName = s;
-                        //cr.InternalPath = s.TrimStart((mnt).ToCharArray()).TrimStart('/').Replace("", "");
-                        cr.InternalPath = s.Replace(mnt, "").TrimStart('/');
-                        cr.MD5 = hash;
-                        cr.CRC32 = pfs.GetHashCode().ToString();
-                        cr.CalculateDBPathString();
-
-                        crs.Results.Add(cr);
-
-                        // build status message
-                        StringBuilder sb1 = new StringBuilder();
-                        sb1.Append("Scanning: " + Path.GetFileName(ArchivePath) + "\n\n");
-                        sb1.Append("Processing: " + cr.InternalPath);
-
-                        ProgressDialogEventArgs eva = new ProgressDialogEventArgs();
-                        eva.DialogText = sb1.ToString();
-                        FireMessageEvent(eva);
-                        //string newtest = cr.InternalPath;
-                       
-                            
-                    }
-                }
-
-                return crs;
-            }
-        }
 
         public static CompressionResults ProcessArchive(string archivePath, string[] allowedExtensions)
         {

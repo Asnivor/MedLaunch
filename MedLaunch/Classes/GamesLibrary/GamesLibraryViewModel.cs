@@ -333,7 +333,23 @@ namespace MedLaunch.Classes.GamesLibrary
             d.ESRB = game.ESRB;
             d.Players = game.Players;
             d.Year = game.Year;
-            d.Game = game.gameName;
+
+            if (game.ManualEditSet == true)
+            {
+                if (game.gameNameEdited != null && game.gameNameEdited != "")
+                {
+                    d.Game = game.gameNameEdited;
+                }
+            }
+            else
+            {
+                if (game.gameNameFromDAT != null && game.gameNameFromDAT != "")
+                    d.Game = game.gameNameFromDAT;
+                else
+                    d.Game = game.gameName;
+            }
+
+            //d.Game = game.gameName;
 
             /*
             if (game.gameNameFromDAT != null && game.gameNameFromDAT != "")
