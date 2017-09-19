@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Asnitech.Launch.Common
+namespace MedLaunch.Common
 {
     public static class RegexOps
     {

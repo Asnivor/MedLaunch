@@ -1,4 +1,4 @@
-﻿using Asnitech.Launch.Common;
+﻿using MedLaunch.Common;
 using MahApps.Metro.Controls.Dialogs;
 using MedLaunch.Classes.DAT;
 using MedLaunch.Classes.GamesLibrary;

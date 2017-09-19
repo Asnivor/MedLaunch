@@ -19,7 +19,7 @@ using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Migrations;
 using MedLaunch.Models;
 using MedLaunch.Classes;
-using Asnitech.Launch.Common;
+using MedLaunch.Common;
 using Ookii.Dialogs;
 using Ookii.Dialogs.Wpf;
 using System.ComponentModel;

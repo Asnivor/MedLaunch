@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Asnitech.Launch.Common.Converters
+namespace MedLaunch.Common.Converters
 {
     public class ObjConverter
     {
@@ -23,7 +23,7 @@ namespace Asnitech.Launch.Common.Converters
         /// <param name="searchStr"></param>
         /// <returns></returns>
         public static string[] StringToArray(string str, ConversationCase conversionCase)
-        {     
+        {
             switch (conversionCase)
             {
                 case ConversationCase.ToUpper:
@@ -38,7 +38,7 @@ namespace Asnitech.Launch.Common.Converters
                     string[] gArr4 = str.Trim().Split(' ');
                     return gArr4;
             }
-            return null;            
+            return null;
         }
 
         /// <summary>

@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Windows.Input;
 
-namespace Asnitech.Launch.Common
+namespace MedLaunch.Common
 {
+    
     /// <summary>
-    /// A command whose sole purpose is to relay its functionality to other objects by invoking delegates. The default return value for the CanExecute method is 'true'.
-    /// </summary>
+ /// A command whose sole purpose is to relay its functionality to other objects by invoking delegates. The default return value for the CanExecute method is 'true'.
+ /// </summary>
     public class RelayCommand<T> : ICommand
     {
 

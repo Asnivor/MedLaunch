@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq.Expressions;
 
-namespace Asnitech.Launch.Common
+namespace MedLaunch.Common
 {
     [Serializable]
     public abstract class ObservableObject : INotifyPropertyChanged

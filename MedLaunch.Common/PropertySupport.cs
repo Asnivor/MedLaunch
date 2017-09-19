@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Asnitech.Launch.Common
+namespace MedLaunch.Common
 {
     public static class PropertySupport
     {

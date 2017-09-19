@@ -50,7 +50,7 @@ namespace MedLaunch
         private void Init()
         {
             // make sure class libraries are built            
-            Asnitech.Launch.Common.Startup.Start();
+            MedLaunch.Common.Startup.Start();
 
             // initialise directories if they do not exist
             SetupDirectories.Go();
@@ -63,7 +63,7 @@ namespace MedLaunch
             string keyName = "ProductName";
             string keyPath = @"SOFTWARE\Classes\Installer\Products";//\1D5E3C0FEDA1E123187686FED06E995A";
 
-            var rootKey = Asnitech.Launch.Common.RegistryHelpers.GetRegistryKey(keyPath);
+            var rootKey = MedLaunch.Common.RegistryHelpers.GetRegistryKey(keyPath);
 
             // get an array of all installerproduct subkey names
             string[] subKeys = rootKey.GetSubKeyNames();
@@ -75,7 +75,7 @@ namespace MedLaunch
             {
                 string match = "Microsoft Visual C++ 2010  x86 Redistributable";
                 string newKeyPath = keyPath + @"\" + k;
-                var conString = Asnitech.Launch.Common.RegistryHelpers.GetRegistryValue(newKeyPath, keyName);
+                var conString = MedLaunch.Common.RegistryHelpers.GetRegistryValue(newKeyPath, keyName);
                 if (conString != null && conString.ToString().Contains(match))
                 {
                     isFound = true;

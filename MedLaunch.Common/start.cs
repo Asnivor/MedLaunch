@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Asnitech.Launch.Common
+namespace MedLaunch.Common
 {
     public class Startup
     {

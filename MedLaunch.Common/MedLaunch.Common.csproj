@@ -44,6 +44,8 @@
       <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net45\MahApps.Metro.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="SevenZipSharp, Version=1.0.5.0, Culture=neutral, PublicKeyToken=c8ff6ba0184838bb, processorArchitecture=MSIL">
       <HintPath>..\packages\SevenZipSharp.Net45.1.0.5\lib\net45\SevenZipSharp.dll</HintPath>
       <Private>True</Private>
@@ -75,19 +77,35 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\EnumBooleanConverter.cs" />
+    <Compile Include="Converters\NullableBool2Bool.cs" />
+    <Compile Include="Converters\NullableInt2Int.cs" />
+    <Compile Include="Converters\ObjConverter.cs" />
+    <Compile Include="Converters\RomanNumerals.cs" />
     <Compile Include="Crypto\Converters.cs" />
     <Compile Include="Eventing\CustomEventArgs\CustomEventArgs.cs" />
     <Compile Include="Eventing\Listeners\ProgressDialogListener.cs" />
     <Compile Include="Eventing\Listeners\SignatureTypes.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="IO\Compression\Archive.cs" />
     <Compile Include="IO\Compression\CompressionResult.cs" />
     <Compile Include="IO\Compression\CompressionResults.cs" />
     <Compile Include="IO\Compression\ZipArchiveExtensions.cs" />
+    <Compile Include="ObservableObject.cs" />
+    <Compile Include="PathUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertySupport.cs" />
+    <Compile Include="RegexOps.cs" />
+    <Compile Include="RegistryHelpers.cs" />
+    <Compile Include="RelayCommand.cs" />
+    <Compile Include="Search\SearchFunctions.cs" />
+    <Compile Include="Search\SearchObjects.cs" />
     <Compile Include="SQLite\Database.cs" />
     <Compile Include="SQLite\Operations.cs" />
+    <Compile Include="start.cs" />
     <Compile Include="Streams\StreamExtensions.cs" />
     <Compile Include="Streams\StreamTools.cs" />
   </ItemGroup>

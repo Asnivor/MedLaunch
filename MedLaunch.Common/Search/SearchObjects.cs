@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Asnitech.Launch.Common.Search
+namespace MedLaunch.Common.Search
 {
     public class SearchObject
     {

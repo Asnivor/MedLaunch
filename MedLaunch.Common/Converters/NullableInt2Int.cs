@@ -6,14 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace Asnitech.Launch.Common.Converters
+namespace MedLaunch.Common.Converters
 {
-    public class NullableBool2Bool
+    public class NullableInt2Int
     {
-        public static bool Convert(bool? value)
+        public static int Convert(int? value)
         {
-            bool b = false;
-            if (value == true) { b = true; }
+            int b = 0;
+            if (value == 1) { b = 1; }
             return b;
         }
     }

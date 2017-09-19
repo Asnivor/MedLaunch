@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Asnitech.Launch.Common.Converters;
+using MedLaunch.Common.Converters;
 
-namespace Asnitech.Launch.Common.Search
+namespace MedLaunch.Common.Search
 {
     public class SearchFunctions
     {
@@ -65,7 +65,7 @@ namespace Asnitech.Launch.Common.Search
                 {
                     searchObj.searchResults.Add(sr);
                     continue;
-                }                
+                }
             }
             // order list
             searchObj.searchResults.OrderByDescending(a => a.score);
