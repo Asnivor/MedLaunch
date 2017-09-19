@@ -23,7 +23,5 @@ test: off
 artifacts:
 - path: MedLaunch\bin\Release\
   name: '$(ML_ARTIFACT_NAME)'
-
-on_success:
-- cmd: >-
-    powershell.exe ".\BuildTools\AppveyorOnSuccess.ps1"
+before_deploy:
+- cmd: powershell.exe ".\BuildTools\AppveyorOnSuccess.ps1"
