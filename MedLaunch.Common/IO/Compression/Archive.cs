@@ -181,6 +181,96 @@ namespace MedLaunch.Common.IO.Compression
         }
 
         /// <summary>
+        /// Extract a single file from an archive using an archivestream and rename it
+        /// </summary>
+        /// <param name="archiveStream"></param>
+        /// <param name="internalFileName"></param>
+        /// <param name="outputDirectory"></param>
+        public static string Extract(Stream archiveStream, int index, string newFileName, string outputDirectory)
+        {
+            using (SevenZipExtractor extr = new SevenZipExtractor(archiveStream))
+            {
+                foreach (ArchiveFileInfo archiveFileInfo in extr.ArchiveFileData.Where(a => a.Index == index))
+                {
+                    if (!archiveFileInfo.IsDirectory)
+                    {
+                        using (var mem = new MemoryStream())
+                        {
+                            extr.ExtractFile(archiveFileInfo.Index, mem);
+
+                            string shortFileName = Path.GetFileName(archiveFileInfo.FileName);
+                            byte[] content = mem.ToArray();
+                            File.WriteAllBytes(outputDirectory + @"\" + newFileName, content);
+
+                            return outputDirectory + @"\" + shortFileName;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Extract a single file (as a stream) from an archive using an archivestream based on internal filename
+        /// </summary>
+        /// <param name="archiveStream"></param>
+        /// <param name="internalFileName"></param>
+        /// <param name="outputDirectory"></param>
+        public static Stream ExtractAsStream(Stream archiveStream, string internalFileName)
+        {
+            MemoryStream ms = new MemoryStream();
+
+            using (SevenZipExtractor extr = new SevenZipExtractor(archiveStream))
+            {
+                foreach (ArchiveFileInfo archiveFileInfo in extr.ArchiveFileData.Where(a => a.FileName == internalFileName))
+                {
+                    if (!archiveFileInfo.IsDirectory)
+                    {
+                        using (var mem = new MemoryStream())
+                        {
+                            extr.ExtractFile(archiveFileInfo.Index, mem);
+
+                            mem.CopyTo(ms);
+                            return ms;
+                            
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Extract a single file (as a stream) from an archive using an archivestream based on internal index
+        /// </summary>
+        /// <param name="archiveStream"></param>
+        /// <param name="internalFileName"></param>
+        /// <param name="outputDirectory"></param>
+        public static Stream ExtractAsStream(Stream archiveStream, int index)
+        {
+            MemoryStream ms = new MemoryStream();
+
+            using (SevenZipExtractor extr = new SevenZipExtractor(archiveStream))
+            {
+                foreach (ArchiveFileInfo archiveFileInfo in extr.ArchiveFileData.Where(a => a.Index == index))
+                {
+                    if (!archiveFileInfo.IsDirectory)
+                    {
+                        using (var mem = new MemoryStream())
+                        {
+                            extr.ExtractFile(archiveFileInfo.Index, mem);
+
+                            mem.CopyTo(ms);
+                            return ms;
+
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Extracts a specific file from an archive
         /// </summary>
         /// <param name="archivePath"></param>

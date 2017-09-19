@@ -5,9 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using MedLaunch.Models;
-using SharpCompress.Archives;
-using SharpCompress.Archives.SevenZip;
-using SharpCompress.Readers;
 using MedLaunch.Classes.Scanning;
 using DiscSN;
 using MedLaunch.Common.IO.Compression;
@@ -153,7 +150,7 @@ namespace MedLaunch.Classes.IO
                 {
                     // this is the SBI we want - extract it
                     fileName = "[" + s + "].7z";
-                    Archive.ExtractFile(SBIArchivePath, fileName, cueFile.FolderPath + "\\" + fileName);
+                    Archive.ExtractFile(SBIArchivePath, fileName, cueFile.FolderPath);
                 }
             }
 
@@ -170,26 +167,13 @@ namespace MedLaunch.Classes.IO
             Archive.ExtractFile(cueFile.FolderPath + "\\" + fileName, r.FileName, cueFile.FolderPath);
 
             // rename the sbi file to match the cue
-            if (!File.Exists(cueFile.FolderPath + "\\" + r.FileName))
+            if (File.Exists(cueFile.FolderPath + "\\" + r.FileName))
             {
                 File.Move(cueFile.FolderPath + "\\" + r.FileName, sbiDestPath);
             }
-
-            /*
+                        
             // delete the 7z
-            File.Delete(cueFile.FolderPath + "\\" + fileName);
-
-            var archiveInner = ArchiveFactory.Open(cueFile.FolderPath + "\\" + origname);
-            var e = archiveInner.Entries.FirstOrDefault();
-
-            // extract the sbi file to the game folder naming it correctly
-            string sbiname = e.Key;
-            e.WriteToFile(sbiDestPath, exo);
-
-            // cleanup
-            archiveInner.Dispose();
-            File.Delete(cueFile.FolderPath + "\\" + origname);
-            */
+            File.Delete(cueFile.FolderPath + "\\" + fileName);            
         }
 
         public static bool IsSbiAvailable(string psxSerial)
