@@ -163,7 +163,7 @@ namespace MedLaunch.Classes.Scanning
                             // actual rom extension - not archive extension
                             string romExtension = result.Extension;
                             // generate relative path (normal archive path)
-                            string romRelPath = relPath + "*/" + result.InternalPath;
+                            string romRelPath = relPath;
                             // get romname without extension
                             string name = result.RomName;
 
