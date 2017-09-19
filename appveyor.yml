@@ -7,10 +7,10 @@ branches:
 configuration: Release
 shallow_clone: true
 environment:
-  FTP_USER:
-	secure: uuO55CqCVyoMZ2NMlf30Qg==
-  FTP_PASS:
-	secure: q4KkytZUmTNrJN+dGMwnqA==
+	FTP_USER:
+		secure: uuO55CqCVyoMZ2NMlf30Qg==
+	FTP_PASS:
+		secure: q4KkytZUmTNrJN+dGMwnqA==
 
 before_build:
 - cmd: >-
