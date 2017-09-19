@@ -26,4 +26,4 @@ artifacts:
 
 on_success:
 - cmd: >-
-	powershell.exe ".\BuildTools\AppveyorOnSuccess.ps1"
+    powershell.exe ".\BuildTools\AppveyorOnSuccess.ps1"
