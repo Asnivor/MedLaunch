@@ -9,7 +9,7 @@ using System.Data;
 using System.IO;
 using System.Data.Entity;
 
-namespace Asnitech.SQLite
+namespace MedLaunch.Common.SQLite
 {
     public class Operations
     {
@@ -20,7 +20,7 @@ namespace Asnitech.SQLite
         }
 
         public static bool CheckDbExists(string dbPath)
-        {            
+        {
             // first check whether the database exists - return if it does not
             if (!File.Exists(dbPath))
                 return false;
@@ -89,13 +89,13 @@ namespace Asnitech.SQLite
                     List<Data> d = new List<Data>();
                     // get all data objects that have a primary key of value keys[i]
                     d = (from a in table.Data
-                        where a.PrimaryKeyValue == keys[i]
-                        select a).ToList();
+                         where a.PrimaryKeyValue == keys[i]
+                         select a).ToList();
                     // add list to the master list
                     rows.Add(d);
                     i++;
                 }
-                
+
                 // we should now have a List that contains Lists of row fields (each one being of the same row).      
                 // iterate through top level list
                 foreach (List<Data> list in rows)
@@ -103,7 +103,7 @@ namespace Asnitech.SQLite
                     using (SQLiteConnection conn = new SQLiteConnection(@"Data Source=" + AppDomain.CurrentDomain.BaseDirectory + @"Data\Settings\MedLaunch.db"))
                     {
 
-                   
+
                         // at this level we have a List (row) containing every field on that row
                         foreach (Data r in list)
                         {
@@ -114,7 +114,7 @@ namespace Asnitech.SQLite
             }
         }
 
-        
+
 
         public static Database GetDatabaseObject(string dbPath)
         {
@@ -134,7 +134,7 @@ namespace Asnitech.SQLite
                 dts.Add(dtdatatypes);
 
                 // build up class from the database
-                
+
                 List<Tab> tables = new List<Tab>();
 
                 // get all tables    
@@ -177,12 +177,12 @@ namespace Asnitech.SQLite
                     table.Columns = columns;
 
                     using (SQLiteConnection conn = new SQLiteConnection(@"Data Source=" + dbPath + "; Pooling=False; Read Only=True;"))
-                    {                        
+                    {
                         StringBuilder query = new StringBuilder();
                         // build select query with our known columns
                         query.Append("SELECT ");
                         string[] cNames = (from a in table.Columns
-                                 select a.ColName).ToArray();
+                                           select a.ColName).ToArray();
 
                         int cNamesCount = cNames.Length;
                         // set primary key field
@@ -195,9 +195,9 @@ namespace Asnitech.SQLite
                                 query.Append(", ");
                             query.Append(" ");
                             i++;
-                        }                       
-                        
-                        query.Append("FROM " + table.TableName + " ");                     
+                        }
+
+                        query.Append("FROM " + table.TableName + " ");
 
                         List<Data> DataList = new List<Data>();
 
@@ -232,17 +232,17 @@ namespace Asnitech.SQLite
                         }
                         GC.Collect();
                         GC.WaitForPendingFinalizers();
-                        table.Data = DataList;   
-                                             
+                        table.Data = DataList;
+
                     }
                     SQLiteConnection.ClearAllPools();
                     GC.Collect();
                     GC.WaitForPendingFinalizers();
                     tables.Add(table);
                 }
-                db.Tables = tables;                          
+                db.Tables = tables;
             }
             return db;
-        }       
-    }   
+        }
+    }
 }

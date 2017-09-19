@@ -984,10 +984,6 @@
       <Project>{2e332847-6df3-4bf4-92c2-42a5c6359cc1}</Project>
       <Name>Asnitech.Launch.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Asnitech.SQLite\Asnitech.SQLite.csproj">
-      <Project>{21b251c5-8c12-43cd-b256-ad55cb5d4b57}</Project>
-      <Name>Asnitech.SQLite</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MedLaunch.Common\MedLaunch.Common.csproj">
       <Project>{376fd53c-1f78-40ed-ae4b-5fd0fa1a1cb4}</Project>
       <Name>MedLaunch.Common</Name>

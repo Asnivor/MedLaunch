@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Asnitech.SQLite
+namespace MedLaunch.Common.SQLite
 {
     public class Database
     {
@@ -41,7 +41,7 @@ namespace Asnitech.SQLite
         }
         // properties
         public string ColName { get; set; }
-        public string ColType { get; set; }        
+        public string ColType { get; set; }
     }
 
     public class Data
