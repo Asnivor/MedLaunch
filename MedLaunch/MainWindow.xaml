@@ -962,6 +962,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="*" />
                                                     </Grid.RowDefinitions>
 
@@ -1013,6 +1014,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Label Grid.Column="0" Grid.Row="6" FontSize="10" Padding="2" FontWeight="Medium">Internal GameID</Label>
                                                     <Label x:Name="lblGameId" Grid.Column="1" Grid.Row="6" FontSize="10" Padding="2" FontWeight="Medium" >
+                                                        <Label.Content>
+                                                            <AccessText TextWrapping="Wrap" />
+                                                        </Label.Content>
+                                                    </Label>
+
+                                                    <Label Grid.Column="0" Grid.Row="7" FontSize="10" Padding="2" FontWeight="Medium">DB PathString:</Label>
+                                                    <Label x:Name="lblRomPath" Grid.Column="1" Grid.Row="7" FontSize="10" Padding="2" FontWeight="Medium" >
                                                         <Label.Content>
                                                             <AccessText TextWrapping="Wrap" />
                                                         </Label.Content>
