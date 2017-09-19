@@ -7,10 +7,10 @@ branches:
 configuration: Release
 shallow_clone: true
 environment:
-  FTP_ADDRESS_ONE:
-	secure: XrqsCa2vx+/jh/DEag4zyW+2bVYWrrPIIrVXoqhxCQOF3XKqQfTdRwHUGoa8HllJdfQZua+RQFGUVgswB8cuisX7f8P6GDB1mllfpDM+aq6BAeT5f41mzabR2+R8yA1m
-  FTP_ADDRESS_TWO:
-	secure: XrqsCa2vx+/jh/DEag4zyW+2bVYWrrPIIrVXoqhxCQOF3XKqQfTdRwHUGoa8HllJwh008uRwSWj0spQ5CkfpDJE/12UqKU1vUOM5YyFUeAg=
+  FTP_USER:
+	secure: uuO55CqCVyoMZ2NMlf30Qg==
+  FTP_PASS:
+	secure: q4KkytZUmTNrJN+dGMwnqA==
 
 before_build:
 - cmd: >-
