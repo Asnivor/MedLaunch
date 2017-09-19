@@ -7,6 +7,7 @@ using MedLaunch.Common;
 using MedLaunch.Common.Eventing;
 using MedLaunch.Common.IO.Compression;
 using MedLaunch.Common.Eventing.CustomEventArgs;
+using System.IO;
 
 namespace MiscTesting
 {
@@ -28,6 +29,63 @@ namespace MiscTesting
 
         static void Main(string[] args)
         {
+            /*
+            Archive aa = new Archive(@"D:\Dropbox\Dropbox\_Games\Emulation\_Roms\Sega - Master System - Mark III\test3\test3.7z");
+            var ree = aa.ProcessArchive(null);
+
+
+            Console.ReadKey();
+            */
+
+            // file md5
+            string fileHash = "";
+            using (var md5 = System.Security.Cryptography.MD5.Create())
+            {
+                using (var stream = File.OpenRead(@"D:\Dropbox\Dropbox\_Games\Emulation\_Roms\_md5test\ActRaiser (USA).sfc"))
+                {
+                    fileHash = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty);
+                }
+            }
+            Console.WriteLine("File Hash: " + fileHash);
+
+            // stream md5 - zip
+            Archive arc = new Archive(@"D:\Dropbox\Dropbox\_Games\Emulation\_Roms\_md5test\ActRaiser (USA).zip");
+            var re = arc.ProcessArchive(new string[] { ".sfc" });
+            string streamHash = re.Results.FirstOrDefault().MD5;
+            Console.WriteLine("Hash (zp): " + streamHash);
+
+            // stream md5 - 7zip
+            Archive arc7 = new Archive(@"D:\Dropbox\Dropbox\_Games\Emulation\_Roms\_md5test\ActRaiser (USA).7z");
+            var re7 = arc7.ProcessArchive(new string[] { ".sfc" });
+            string streamHash7 = re7.Results.FirstOrDefault().MD5;
+            Console.WriteLine("Hash (7z): " + streamHash7);
+            
+
+            // extract zip then calculate
+            Archive.ExtractFile(@"D:\Dropbox\Dropbox\_Games\Emulation\_Roms\_md5test\ActRaiser (USA).7z", "ActRaiser (USA).sfc", @"D:\Dropbox\Dropbox\_Games\Emulation\_Roms\_md5test\extractedzip");
+            string fileHashextz = "";
+            using (var md5 = System.Security.Cryptography.MD5.Create())
+            {
+                using (var stream = File.OpenRead(@"D:\Dropbox\Dropbox\_Games\Emulation\_Roms\_md5test\extractedzip\ActRaiser (USA).sfc"))
+                {
+                    fileHashextz = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty);
+                }
+            }
+            Console.WriteLine("Zpex Hash: " + fileHashextz);
+
+            // extract 7z then calculate
+            Archive.ExtractFile(@"D:\Dropbox\Dropbox\_Games\Emulation\_Roms\_md5test\ActRaiser (USA).7z", "ActRaiser (USA).sfc", @"D:\Dropbox\Dropbox\_Games\Emulation\_Roms\_md5test\extracted");
+            string fileHashext7 = "";
+            using (var md5 = System.Security.Cryptography.MD5.Create())
+            {
+                using (var stream = File.OpenRead(@"D:\Dropbox\Dropbox\_Games\Emulation\_Roms\_md5test\extracted\ActRaiser (USA).sfc"))
+                {
+                    fileHashext7 = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty);
+                }
+            }
+            Console.WriteLine("7zex Hash: " + fileHashext7);
+
+            Console.ReadKey();
 
             string arcPath = @"D:\Dropbox\Dropbox\_Games\Emulation\_Roms\Sega - Master System - Mark III\Sega - Master System - Mark III.zip";
             Archive a = new Archive(arcPath);
@@ -37,7 +95,7 @@ namespace MiscTesting
 
             var r = a.ProcessArchive(new string[] { ".sms", ".7z" });
 
-            var result = Archive.ProcessArchive(@"D:\Dropbox\Dropbox\_Games\Emulation\_Roms\Sega - Master System - Mark III\Sega - Master System - Mark III.zip", new string[] { ".sms", ".7z" });
+            //var result = Archive.ProcessArchive(@"D:\Dropbox\Dropbox\_Games\Emulation\_Roms\Sega - Master System - Mark III\Sega - Master System - Mark III.zip", new string[] { ".sms", ".7z" });
 
 
             Console.WriteLine("Asni's Archive Streaming Test (zip)");

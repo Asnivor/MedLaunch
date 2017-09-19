@@ -48,7 +48,9 @@ namespace MedLaunch.Models
         public bool isDiskBased { get; set; }
         public bool? isScraped { get; set; }
         public int? gdbId { get; set; }
-        public string CRC32 { get; set; }
+        public string CRC32 { get; set; } //actually md5
+        public string CRC { get; set; }
+        public string SHA1 { get; set; }
 
         public bool? ManualEditSet { get; set; }
 

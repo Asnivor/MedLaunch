@@ -62,6 +62,7 @@ using MedLaunch.Classes.MednaNet;
 using ucon64_wrapper;
 using System.Windows.Interactivity;
 using MedLaunch.Common.Eventing.Listeners;
+using MedLaunch.Common.IO.Compression;
 
 namespace MedLaunch
 {
@@ -3667,10 +3668,12 @@ namespace MedLaunch
             // extract download to current mednafen folder
             string meddir = Paths.GetPaths().mednafenExe;
 
-            Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
+            //Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
+            
             try
             {
-                arch.ExtractArchiveZipOverwrite(meddir);
+                //arch.ExtractArchiveZipOverwrite(meddir);
+                Archive.ExtractEntireZip(downloadsFolder + "\\" + fName, meddir);
             }
             catch {
                 return false;
@@ -3751,10 +3754,11 @@ namespace MedLaunch
                         // extract download to current mednafen folder
                         string meddir = Paths.GetPaths().mednafenExe;
 
-                        Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
+                        //Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
                         try
                         {
-                            arch.ExtractArchiveZipOverwrite(meddir);
+                            //arch.ExtractArchiveZipOverwrite(meddir);
+                            Archive.ExtractEntireZip(downloadsFolder + "\\" + fName, meddir);
                         }
                         catch { }
                     }
@@ -3792,10 +3796,11 @@ namespace MedLaunch
                 // extract download to current mednafen folder
                 string meddir = Paths.GetPaths().mednafenExe;
 
-                Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
+                //Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
                 try
                 {
-                    arch.ExtractArchiveZipOverwrite(meddir);
+                    //arch.ExtractArchiveZipOverwrite(meddir);
+                    Archive.ExtractEntireZip(downloadsFolder + "\\" + fName, meddir);
                 }
                 catch { }
                 
@@ -4363,6 +4368,31 @@ namespace MedLaunch
             db.CalculateYearsAndPublishersManual();
         }
 
+        /// <summary>
+        /// iterate through each database rom entry and attempt to populate CRC32 entries from local DAT files
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void popCRCTOSEC_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.AdminDATDB db = new _Debug.DATDB.AdminDATDB();
+            
+            //tosec
+            db.ImportCRC32Only(_Debug.DATDB.ProviderType.ToSec, 0);
+        }
+
+        /// <summary>
+        /// iterate through each database rom entry and attempt to populate CRC32 entries from local DAT files
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void popCRCNOINTRO_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.AdminDATDB db = new _Debug.DATDB.AdminDATDB();
+
+            // nointro first
+            db.ImportCRC32Only(_Debug.DATDB.ProviderType.NoIntro, 0);
+        }
 
         /*
         private async void btnBuildFromDat_Click(object sender, RoutedEventArgs e)
@@ -4897,7 +4927,7 @@ namespace MedLaunch
             }
         }
         */
-       
+
 
         /*
         private async void btnmatchDATyears_Click(object sender, RoutedEventArgs e)
@@ -6409,6 +6439,8 @@ namespace MedLaunch
                 await this.ShowMessageAsync("Archive test", "Scanning Completed");
             }
         }
+
+        
     }
 
 

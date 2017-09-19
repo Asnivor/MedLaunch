@@ -13,6 +13,7 @@ using System.IO;
 
 namespace MedLaunch.Classes.IO
 {
+    /*
     public class Archiving
     {
         // properties
@@ -59,7 +60,7 @@ namespace MedLaunch.Classes.IO
             MD5Hash = _hash;
         }
 
-        /* methods */
+       
         
 
 
@@ -304,4 +305,5 @@ namespace MedLaunch.Classes.IO
             return romPath;
         }
     }
+*/
 }

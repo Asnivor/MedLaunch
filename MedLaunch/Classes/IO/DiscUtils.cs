@@ -10,7 +10,7 @@ using SharpCompress.Archives.SevenZip;
 using SharpCompress.Readers;
 using MedLaunch.Classes.Scanning;
 using DiscSN;
-
+using MedLaunch.Common.IO.Compression;
 
 namespace MedLaunch.Classes.IO
 {
@@ -97,6 +97,7 @@ namespace MedLaunch.Classes.IO
         public static List<string> SBINumbers { get; set; }
         public static string SBIArchivePath { get; set; }
         public static string PS1TitlesPath { get; set; }
+        public static CompressionResults CompResults { get; set; }
 
         // constructor
         public PsxSBI()
@@ -104,12 +105,25 @@ namespace MedLaunch.Classes.IO
             SBIArchivePath = AppDomain.CurrentDomain.BaseDirectory + @"Data\System\SbiFiles.7z";
             PS1TitlesPath = AppDomain.CurrentDomain.BaseDirectory + @"Data\System\ps1titles_us_eu_jp.txt";
 
-            SBINumbers = new List<string>();            
+            SBINumbers = new List<string>();
 
             // get all availble sbi numbers from the archive
-            List<string> unprocessed = Archiving.GetSbiListFrom7z(SBIArchivePath);
+            Archive arch = new Archive(SBIArchivePath);
+            var results = arch.ProcessArchive(new string[] { ".7z" });
+            CompResults = results;
+            List<string> unprocessed = new List<string>(); //Archiving.GetSbiListFrom7z(SBIArchivePath);
+            foreach (var thing in results.Results)
+            {
+                // strip extension and braces and add to list
+                string tmp = thing.RomName.Replace(".7z", "")
+                    .Replace("[", "")
+                    .Replace("]", "");
 
-            // strip extension and braces
+                SBINumbers.Add(tmp);
+            }
+
+            /*
+            // strip extension and braces and add to list
             foreach (string s in unprocessed)
             {
                 string tmp = s.Replace(".7z", "")
@@ -118,6 +132,7 @@ namespace MedLaunch.Classes.IO
 
                 SBINumbers.Add(tmp);
             }
+            */
         }
 
         public static void InstallSBIFile(DiscGameFile cueFile)
@@ -128,30 +143,42 @@ namespace MedLaunch.Classes.IO
             if (cueFile.ExtraInfo == null || cueFile.ExtraInfo == "")
                 return;
 
-            // open master 7z
-            var archive = ArchiveFactory.Open(SBIArchivePath);
-            string origname = null;
+            string serialNo = cueFile.ExtraInfo;
+            string fileName = "";
 
-            ExtractionOptions exo = new ExtractionOptions
+            // iterate through each detected sbi number
+            foreach (string s in SBINumbers)
             {
-                Overwrite = true
-            };
-
-            foreach (SevenZipArchiveEntry entry in archive.Entries.Where(a => a.Key.Contains(serial)))
-            {
-                if (entry.IsDirectory)
-                    continue;
-
-                origname = entry.Key;
-
-                //extract to temp dir
-                entry.WriteToFile(cueFile.FolderPath + "\\" + origname, exo);
-                break;         
+                if (serialNo.Contains(s))
+                {
+                    // this is the SBI we want - extract it
+                    fileName = "[" + s + "].7z";
+                    Archive.ExtractFile(SBIArchivePath, fileName, cueFile.FolderPath + "\\" + fileName);
+                }
             }
 
-            archive.Dispose();
+            if (fileName == "")
+                return;
 
             // now extract the inner 7z and rename to match cue file
+            Archive a = new Archive(cueFile.FolderPath + "\\" + fileName);
+            var res = a.ProcessArchive(new string[] { ".sbi" });
+            var r = res.Results.FirstOrDefault();
+            if (r == null)
+                return;
+
+            Archive.ExtractFile(cueFile.FolderPath + "\\" + fileName, r.FileName, cueFile.FolderPath);
+
+            // rename the sbi file to match the cue
+            if (!File.Exists(cueFile.FolderPath + "\\" + r.FileName))
+            {
+                File.Move(cueFile.FolderPath + "\\" + r.FileName, sbiDestPath);
+            }
+
+            /*
+            // delete the 7z
+            File.Delete(cueFile.FolderPath + "\\" + fileName);
+
             var archiveInner = ArchiveFactory.Open(cueFile.FolderPath + "\\" + origname);
             var e = archiveInner.Entries.FirstOrDefault();
 
@@ -162,6 +189,7 @@ namespace MedLaunch.Classes.IO
             // cleanup
             archiveInner.Dispose();
             File.Delete(cueFile.FolderPath + "\\" + origname);
+            */
         }
 
         public static bool IsSbiAvailable(string psxSerial)

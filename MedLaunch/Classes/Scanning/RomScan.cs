@@ -26,7 +26,7 @@ namespace MedLaunch.Classes.Scanning
         public string strBase { get; set; }
         public string romFolderPath { get; set; }
         public int systemId { get; set; }
-        public List<Archiving> ArchiveFiles { get; set; }
+        //public List<Archiving> ArchiveFiles { get; set; }
         public bool IsSingleRomInArchive { get; set; }
 
         public Common.IO.Compression.Archive archive { get; set; }
@@ -36,7 +36,7 @@ namespace MedLaunch.Classes.Scanning
             allowedFiles = new List<string>();
             finalGames = new List<Game>();
             presentGames = new List<Game>();
-            ArchiveFiles = new List<Archiving>();
+            //ArchiveFiles = new List<Archiving>();
 
             archive = new Common.IO.Compression.Archive();
             
@@ -278,7 +278,11 @@ namespace MedLaunch.Classes.Scanning
 
             // lookup game in master dat - order by DATProviderId (so NoIntro first)
             string nHash = hash.ToUpper().Trim().ToString();
-            List<DATMerge> look = lookup.Where(a => a.MD5.ToUpper().Trim() == nHash).OrderBy(a => a.DatProviderId).ToList();
+            //List<DATMerge> look = lookup.Where(a => a.MD5.ToUpper().Trim() == nHash || a.CRC.ToUpper().Trim() == nHash || a.SHA1.ToUpper().Trim() == nHash).OrderBy(a => a.DatProviderId).ToList();
+            List<DATMerge> look = lookup.Where(a => 
+            (a.MD5 != null && a.MD5.ToUpper().Trim() == nHash) ||
+            (a.CRC != null && a.CRC.ToUpper().Trim() == nHash) ||
+            (a.SHA1 != null && a.SHA1.ToUpper().Trim() == nHash)).OrderBy(a => a.DatProviderId).ToList();
 
             int subSysId = GSystem.GetSubSystemId(systemId, extension);
 
@@ -339,7 +343,7 @@ namespace MedLaunch.Classes.Scanning
             else
             {
                 // matching game found - update it
-                if (chkGame.gamePath == relPath && chkGame.hidden == false && chkGame.CRC32 == hash && chkGame.subSystemId == subSysId)
+                if (chkGame.gamePath == relPath && chkGame.hidden == false && (chkGame.CRC32 == hash || chkGame.CRC == hash || chkGame.SHA1 == hash) && chkGame.subSystemId == subSysId)
                 {
                     //nothing to update - increment untouched counter
                     UntouchedStats++;
