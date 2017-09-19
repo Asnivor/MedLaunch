@@ -36,7 +36,7 @@
 ### Production Releases
 * Latest Production Version: 0.5.8.0
 * Direct Production Download: [LATEST](https://downloads.medlaunch.info/latest)
-* Compatible with Mednafen: 0.9.39.x - 0.9.47
+* Compatible with Mednafen: 0.9.39.x - 0.9.48
 
 Official production releases happen when the team are happy after testing. The frequency of these releases has decreased over time, so users should look to the dev builds to get new features and compatibility early.
 
@@ -63,7 +63,7 @@ Bugs/Suggestions/Feature Requests can be posted on the GitHub [Issue Tracker](ht
 * **Responsive UI**
 * Customizable color scheme
 * Scaleable to aid usability on a wide range of resolutions
-* **Supports versions of Mednafen 0.9.39.x - 0.9.45.x (latest)**
+* **Supports versions of Mednafen 0.9.39.x - 0.9.48.x (latest)**
 * **Nearly all Mednafen config parameters are supported and configurable through the launcher**
 * With the exception of control configuration parameters, all config settings are stored internally on per-emulated system basis
 * On game launch a {system}.cfg file is generated (so that per-system configurations can be utilized outside of MedLaunch)
