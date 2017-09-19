@@ -1,9 +1,10 @@
-﻿using Asnitech.Launch.Common;
+﻿using MedLaunch.Common;
 using MahApps.Metro.Controls.Dialogs;
 using MedLaunch.Classes.DAT;
 using MedLaunch.Classes.GamesLibrary;
 using MedLaunch.Classes.IO;
 using MedLaunch.Classes.Scraper.DAT.Models;
+using MedLaunch.Common.Eventing.Listeners;
 using MedLaunch.Models;
 using System;
 using System.Collections.Generic;
@@ -25,15 +26,20 @@ namespace MedLaunch.Classes.Scanning
         public string strBase { get; set; }
         public string romFolderPath { get; set; }
         public int systemId { get; set; }
-        public List<Archiving> ArchiveFiles { get; set; }
+        //public List<Archiving> ArchiveFiles { get; set; }
         public bool IsSingleRomInArchive { get; set; }
+
+        public Common.IO.Compression.Archive archive { get; set; }
 
         public RomScan()
         {
             allowedFiles = new List<string>();
             finalGames = new List<Game>();
             presentGames = new List<Game>();
-            ArchiveFiles = new List<Archiving>();
+            //ArchiveFiles = new List<Archiving>();
+
+            archive = new Common.IO.Compression.Archive();
+            
         }
 
         
@@ -44,6 +50,9 @@ namespace MedLaunch.Classes.Scanning
             allowedFiles = new List<string>();
             dialog = _dialog;
             systemId = _systemId;
+
+            Common.Eventing.Listeners.ProgressDialogListener l = new Common.Eventing.Listeners.ProgressDialogListener(dialog, SignatureType.Archive);
+            l.Subscribe(archive);
 
             // get path to ROM folder
             romFolderPath = GetPath(systemId);
@@ -124,41 +133,42 @@ namespace MedLaunch.Classes.Scanning
                 //bool isAllowed = false;
                 try
                 {
-                    // create an instance of the archiving class and process this archive
-                    Archiving arch = new Archiving(file, systemId);
-                    arch.ProcessArchive();
-
-                    if (Archiving.ArchiveMultiple.Count == 0)
+                    archive.ArchivePath = file;
+                    var results = archive.ProcessArchive(GSystem.GetAllowedFileExtensions(systemId).ToArray());
+                    
+                    if (archive.AllowedFilesDetected == 0)
                     {
                         // no files returned
                         return;
                     }
-
                     else
                     {
                         // check how many allowed files are in the archive
-                        int alcnt = Archiving.ArchiveMultiple.Where(i => i.IsAllowed == true).Count();
+                        int alcnt = archive.AllowedFilesDetected;
 
                         if (alcnt == 0)
                         {
                             // no allowed files
                             return;
                         }
-                        else if (alcnt == 1 && Archiving.ArchiveMultiple.Count == 1 && extension == ".zip")
+                        else if (alcnt == 1 && extension == ".zip")
                         {
                             // 1 allowed file and 1 total files in a zip file - use the zip file rather than the embedded rom
-                            foreach (var a in Archiving.ArchiveMultiple.Where(i => i.IsAllowed == true))
-                            {
-                                //ArchiveFiles.Add(a);
-                                // actual rom extension - not archive extension
-                                string romExtension = "." + (a.FileName.Split('.').Last());
-                                // generate relative path (normal archive path)
-                                string romRelPath = relPath;
-                                // get romname without extension
-                                string name = a.FileName.Replace(romExtension, "");
+                            var result = results.Results.First();
 
-                                ProcessGame(name, a.MD5Hash, romRelPath, a.FileName, romExtension);
-                            }
+                            if (result.Extension == ".zip" || result.Extension == ".7z")
+                                return;
+
+                            //ArchiveFiles.Add(a);
+                            // actual rom extension - not archive extension
+                            string romExtension = result.Extension;
+                            // generate relative path (normal archive path)
+                            string romRelPath = relPath + "*/" + result.InternalPath;
+                            // get romname without extension
+                            string name = result.RomName;
+
+                            ProcessGame(name, result.MD5, romRelPath, result.FileName, romExtension);
+                          
                         }
                         else
                         {
@@ -166,17 +176,17 @@ namespace MedLaunch.Classes.Scanning
                             // 7zip archive
                             // - Add the individual embedded rom(s)
                             IsSingleRomInArchive = false;
-                            foreach (var a in Archiving.ArchiveMultiple.Where(i => i.IsAllowed == true))
+                            foreach (var r in results.Results)
                             {
                                 //ArchiveFiles.Add(a);
                                 // actual rom extension - not archive extension
-                                string romExtension = "." + (a.FileName.Split('.').Last());
+                                string romExtension = r.Extension;
                                 // generate relative path (normal archive path + "*")
-                                string romRelPath = relPath + "*/" + a.FileName;
+                                string romRelPath = relPath + "*/" + r.InternalPath;
                                 // get romname without extension
-                                string name = a.FileName.Replace(romExtension, "");
+                                string name = r.RomName;
 
-                                ProcessGame(name, a.MD5Hash, romRelPath, a.FileName, romExtension);
+                                ProcessGame(name, r.MD5, romRelPath, r.FileName, romExtension);
                             }
                         }
 
@@ -266,9 +276,13 @@ namespace MedLaunch.Classes.Scanning
             // filter DAT by systemId
             List<DATMerge> lookup = DATMerge.FilterByMedLaunchSystemId(DAT, systemId);
 
-            // lookup game in master dat
+            // lookup game in master dat - order by DATProviderId (so NoIntro first)
             string nHash = hash.ToUpper().Trim().ToString();
-            List<DATMerge> look = lookup.Where(a => a.MD5.ToUpper().Trim() == nHash).ToList();
+            //List<DATMerge> look = lookup.Where(a => a.MD5.ToUpper().Trim() == nHash || a.CRC.ToUpper().Trim() == nHash || a.SHA1.ToUpper().Trim() == nHash).OrderBy(a => a.DatProviderId).ToList();
+            List<DATMerge> look = lookup.Where(a => 
+            (a.MD5 != null && a.MD5.ToUpper().Trim() == nHash) ||
+            (a.CRC != null && a.CRC.ToUpper().Trim() == nHash) ||
+            (a.SHA1 != null && a.SHA1.ToUpper().Trim() == nHash)).OrderBy(a => a.DatProviderId).ToList();
 
             int subSysId = GSystem.GetSubSystemId(systemId, extension);
 
@@ -280,8 +294,8 @@ namespace MedLaunch.Classes.Scanning
                 if (look != null && look.Count > 0)
                 {
                     newGame.gameNameFromDAT = look.First().GameName;
-                    newGame.Publisher = look.First().Publisher;
-                    newGame.Year = look.First().Year;
+                    //newGame.Publisher = look.First().Publisher;
+                    //newGame.Year = look.First().Year;
                     newGame.romNameFromDAT = look.First().RomName;
                     newGame.Copyright = look.First().Copyright;
                     newGame.Country = look.First().Country;
@@ -329,7 +343,7 @@ namespace MedLaunch.Classes.Scanning
             else
             {
                 // matching game found - update it
-                if (chkGame.gamePath == relPath && chkGame.hidden == false && chkGame.CRC32 == hash && chkGame.subSystemId == subSysId)
+                if (chkGame.gamePath == relPath && chkGame.hidden == false && (chkGame.CRC32 == hash || chkGame.CRC == hash || chkGame.SHA1 == hash) && chkGame.subSystemId == subSysId)
                 {
                     //nothing to update - increment untouched counter
                     UntouchedStats++;

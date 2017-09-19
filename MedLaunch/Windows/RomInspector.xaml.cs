@@ -408,7 +408,25 @@ namespace MedLaunch
         private void PopulateLibraryData()
         {
             tbLibData_gameId.Text = GameObj.gameId.ToString();
-            tbLibData_gameName.Text = GameObj.gameName;
+
+            if (GameObj.ManualEditSet == true)
+            {
+                tbLibData_gameName.Text = GameObj.gameNameEdited;
+            }
+            else
+            {
+                if (GameObj.gameNameFromDAT != null && GameObj.gameNameFromDAT != "")
+                {
+                    tbLibData_gameName.Text = GameObj.gameNameFromDAT;
+                }
+                else
+                {
+                    tbLibData_gameName.Text = GameObj.gameName;
+                }
+            }
+            
+
+
             tbLibData_Copyright.Text = GameObj.Copyright;
             tbLibData_Country.Text = GameObj.Country;
             tbLibData_Developer.Text = GameObj.Developer;
@@ -559,7 +577,7 @@ namespace MedLaunch
             GameObj.isFavorite = tbLibData_isFavorite.IsChecked.Value;
 
             // set data from all textboxes
-            GameObj.gameName = tbLibData_gameName.Text;
+            GameObj.gameNameEdited = tbLibData_gameName.Text;
             GameObj.Year = tbLibData_Year.Text;
             GameObj.Developer = tbLibData_Developer.Text;
             GameObj.Publisher = tbLibData_Publisher.Text;

@@ -16,6 +16,7 @@ namespace MedLaunch.Models
         public int gameId { get; set; }
         public string gamePath { get; set; }
         public string gameName { get; set; }
+        public string gameNameEdited { get; set; }
         public string archiveGame { get; set; }
         public string gameNameFromDAT { get; set; }
         public string romNameFromDAT { get; set; }
@@ -47,7 +48,9 @@ namespace MedLaunch.Models
         public bool isDiskBased { get; set; }
         public bool? isScraped { get; set; }
         public int? gdbId { get; set; }
-        public string CRC32 { get; set; }
+        public string CRC32 { get; set; } //actually md5
+        public string CRC { get; set; }
+        public string SHA1 { get; set; }
 
         public bool? ManualEditSet { get; set; }
 

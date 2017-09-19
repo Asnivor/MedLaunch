@@ -121,14 +121,23 @@ namespace MedLaunch.Classes
         public static List<string> ReadLog()
         {
             LogParser lp = new LogParser();
+
+            // check whether stdout.txt doesnt exist or not
             if (!File.Exists(lp.LogPath))
             {
                 EmptyLoad();
+
+                if (!File.Exists(lp.LogPath))
+                {
+                    return new List<string>();
+                }
             }
-            if (!File.Exists(lp.LogPath))
+            else
             {
-                return new List<string>();
+                // it does exist - emptyload anyways (in case the version has changed)
+                EmptyLoad();
             }
+            
 
             string[] arr = FileAndFolder.StreamAllLines(lp.LogPath); // File.ReadAllLines(lp.LogPath);
             return arr.ToList();

@@ -196,6 +196,7 @@ namespace MedLaunch.Classes
                 Label lblOtherFlags = (Label)mw.FindName("lblOtherFlags");
 
                 Label lblGameId = (Label)mw.FindName("lblGameId");
+                Label lblRomPath = (Label)mw.FindName("lblRomPath");
 
 
                 TextBlock tbOverview = (TextBlock)mw.FindName("tbOverview");
@@ -385,6 +386,9 @@ namespace MedLaunch.Classes
 
                 // gameid
                 lblGameId.Content = lsb.GameId;
+
+                // game path string
+                lblRomPath.Content = lsb.GamePath;
 
                 // system info
                 expSysInfo.Header = lsb.SystemName;

@@ -20,6 +20,8 @@ namespace MedLaunch.Classes.DAT
         public int? gid { get; set; }
         public string Language { get; set; }
         public string MD5 { get; set; }
+        public string CRC { get; set; }
+        public string SHA1 { get; set; }
         public string OtherFlags { get; set; }
         public int pid { get; set; }
         public string GameName { get; set; }
@@ -40,13 +42,15 @@ namespace MedLaunch.Classes.DAT
         /// <param name="systemId"></param>
         /// <param name="md5Hash"></param>
         /// <returns></returns>
-        public static List<DATMerge> GetDATsByHash(List<DATMerge> inputList, int systemId, string md5Hash)
+        public static List<DATMerge> GetDATsByHash(List<DATMerge> inputList, int systemId, string hash)
         {
             var pData = FilterByMedLaunchSystemId(inputList, systemId);
 
             var cData = (from g in pData
-                        where g.MD5.ToUpper().Trim() == md5Hash.ToUpper().Trim()
-                        select g).ToList();
+                        where g.MD5.ToUpper().Trim() == hash.ToUpper().Trim() ||
+                        g.CRC.ToUpper().Trim() == hash.ToUpper().Trim() ||
+                        g.SHA1.ToUpper().Trim() == hash.ToUpper().Trim()
+                         select g).ToList();
             return cData;
         }
 
@@ -168,7 +172,7 @@ namespace MedLaunch.Classes.DAT
         /// </summary>
         /// <param name="md5"></param>
         /// <returns></returns>
-        public static List<DATMerge> GetDATs(string md5)
+        public static List<DATMerge> GetDATs(string hash)
         {
             using (var context = new AsniDATDbContext())
             {
@@ -176,10 +180,11 @@ namespace MedLaunch.Classes.DAT
                              where a.MD5 != null
                              select a).ToList();
 
-                if (md5 != null)
+                if (hash != null)
                 {
                     var cData = (from g in aData
-                                 where g.MD5 != null && g.MD5.ToUpper().Trim() == md5.ToUpper().Trim()
+                                 where (g.MD5 != null && g.MD5.ToUpper().Trim() == hash.ToUpper().Trim()) ||
+                                 (g.CRC != null && g.CRC.ToUpper().Trim() == hash.ToUpper().Trim())
                                  select g);
 
 
@@ -195,18 +200,20 @@ namespace MedLaunch.Classes.DAT
         /// </summary>
         /// <param name="md5"></param>
         /// <returns></returns>
-        public static DATMerge GetDAT(string md5)
+        public static DATMerge GetDAT(string hash)
         {
             using (var context = new AsniDATDbContext())
             {
                 var aData = (from a in context.DATMerge
-                             where a.MD5 != null
+                             where a.MD5 != null || a.CRC != null | a.SHA1 != null
                              select a).ToList();
 
-                if (md5 != null)
+                if (hash != null)
                 {
                     var cData = (from g in aData
-                                 where g.MD5.ToUpper().Trim() == md5.ToUpper().Trim()
+                                 where g.MD5.ToUpper().Trim() == hash.ToUpper().Trim() ||
+                                 g.CRC.ToUpper().Trim() == hash.ToUpper().Trim() ||
+                                 g.SHA1.ToUpper().Trim() == hash.ToUpper().Trim()
                                  select g).FirstOrDefault();
                     return cData;
                 }

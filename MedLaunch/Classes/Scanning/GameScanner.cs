@@ -1,4 +1,4 @@
-﻿using Asnitech.Launch.Common;
+﻿using MedLaunch.Common;
 using MedLaunch.Models;
 using System;
 using System.Collections.Generic;
@@ -16,8 +16,6 @@ using MedLaunch.Classes.GamesLibrary;
 using MedLaunch.Classes.IO;
 using Newtonsoft.Json;
 using System.Security.Cryptography;
-using SharpCompress;
-using SharpCompress.Archives;
 using MedLaunch.Classes.DAT;
 
 namespace MedLaunch.Classes

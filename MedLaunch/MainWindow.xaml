@@ -361,6 +361,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                             <MenuItem Header="Process DAT_Game Table" Click="btnProcessDATGameTable_Click"/>
                             <MenuItem Header="Calculate Missing Names and Publishers" Click="btnCalcYears_Click"/>
                             <MenuItem Header="Calculate Missing Names and Publishers (Using ScrapeDB)" Click="btnCalcYearsManual_Click"/>
+
+                            <MenuItem Name="popCRCTOSEC" Header="Populate CRC32 hashes from tosec datfiles" Click="popCRCTOSEC_Click" />
+                            <MenuItem Name="popCRCNOINTRO" Header="Populate CRC32 hashes from nointro datfiles" Click="popCRCNOINTRO_Click" />
                         </MenuItem>
                         <!--
                         <MenuItem Header="Scraper Source Operations">
@@ -959,6 +962,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="*" />
                                                     </Grid.RowDefinitions>
 
@@ -1010,6 +1014,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                     <Label Grid.Column="0" Grid.Row="6" FontSize="10" Padding="2" FontWeight="Medium">Internal GameID</Label>
                                                     <Label x:Name="lblGameId" Grid.Column="1" Grid.Row="6" FontSize="10" Padding="2" FontWeight="Medium" >
+                                                        <Label.Content>
+                                                            <AccessText TextWrapping="Wrap" />
+                                                        </Label.Content>
+                                                    </Label>
+
+                                                    <Label Grid.Column="0" Grid.Row="7" FontSize="10" Padding="2" FontWeight="Medium">DB PathString:</Label>
+                                                    <Label x:Name="lblRomPath" Grid.Column="1" Grid.Row="7" FontSize="10" Padding="2" FontWeight="Medium" >
                                                         <Label.Content>
                                                             <AccessText TextWrapping="Wrap" />
                                                         </Label.Content>
