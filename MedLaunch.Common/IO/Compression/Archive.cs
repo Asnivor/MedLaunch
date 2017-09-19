@@ -104,6 +104,7 @@ namespace MedLaunch.Common.IO.Compression
                         cr.RomName = cr.FileName.Replace(cr.Extension, "");
 
                         //cr.CalculateDBPathString();
+                        /*
                         if (Path.GetExtension(ArchivePath).ToLower() == ".zip")
                         {
                             // calculate md5 hash
@@ -120,12 +121,10 @@ namespace MedLaunch.Common.IO.Compression
                                 }
                             }
                         }
-                        else if (Path.GetExtension(ArchivePath).ToLower() == ".7z")
-                        {
-                            // 7zip extraction too slow, use CRC32 instead
-                            cr.MD5 = cr.CRC32;
-                        }
-                        
+                        */
+
+                        // 7zip and zip extraction too slow, use CRC32 instead
+                        cr.MD5 = cr.CRC32;
 
                         crs.Results.Add(cr);
 
