@@ -40,4 +40,3 @@ deploy:
   force_update: true
 after_deploy:
 - cmd: powershell.exe ".\BuildTools\AppveyorDeploy.ps1"
-
