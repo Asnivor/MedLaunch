@@ -5,7 +5,7 @@ branches:
   - master
 
 configuration: Release
-shallow_clone: true
+shallow_clone: false
 environment:
   FTP_USER: 
     secure: uuO55CqCVyoMZ2NMlf30Qg==
