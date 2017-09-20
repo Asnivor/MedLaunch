@@ -2,7 +2,6 @@
 title: Changelog
 ---
 
-<div align="center"><!-- BEGIN LINK --><a rel="nofollow" href="https://affiliate.namecheap.com/?affId=121260"><img src="https://files.namecheap.com/graphics/linkus/728x90-4.gif" width="728" height="90" border="0" alt="Namecheap.com"></a><!-- END LINK --></div>
 # Changelog
 ------------------------------------
 #### Development Build Changes ([Dev](https://github.com/Asnivor/MedLaunch/tree/dev) branch) - [![Build status](https://ci.appveyor.com/api/projects/status/4maii9la7yb72bw8/branch/dev?svg=true)](https://ci.appveyor.com/project/Asnivor/medlaunch/branch/dev/artifacts)

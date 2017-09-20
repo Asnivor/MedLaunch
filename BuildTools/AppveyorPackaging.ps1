@@ -45,4 +45,12 @@ if ($env:APPVEYOR_REPO_BRANCH -eq "master")
 	$status = "0"
 }
 $status | Set-Content $identFile
+
+# convert changelog MD to html and save to the root of the output folder (for packaging)
+. ("$loc\MarkdownConverter.ps1")
+
+$md = "$loc\ChangeLog\default.md"
+$html = ConvertFrom-Markdown -InputObject (Get-Content $md -raw)
+$html | out-file "$releaseString\changelog.html" -force
+
 # EOF   
