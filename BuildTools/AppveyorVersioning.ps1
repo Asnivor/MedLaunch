@@ -12,7 +12,10 @@ foreach ($line in $asi)
     if ($line -like '*AssemblyFileVersion(*')
     {
         $versionDot = $line.Replace("[assembly: AssemblyFileVersion(", "").Replace(")]", "").Replace("`"", "")
+        Set-AppVeyorBuildVariable -Name 'MEDLAUNCH_VERSION_DOT' - Value $versionDot
+        
         $version = $versionDot.Replace(".", "_")
+        Set-AppVeyorBuildVariable -Name 'MEDLAUNCH_VERSION_UNDERSCORE' - Value $version
     }
 }
 write-host "Detected file version: $version"
