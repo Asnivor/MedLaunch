@@ -41,5 +41,3 @@ deploy:
   draft: true
   prerelease: false
   force_update: true
-  on:
-    branch: master
