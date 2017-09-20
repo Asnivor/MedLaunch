@@ -18,7 +18,7 @@ before_build:
     nuget restore MedLaunch.sln
 build:
   project: MedLaunch/MedLaunch.csproj
-  verbosity: minimal
+  verbosity: detailed
 before_package:
 - cmd: >-
     powershell.exe ".\BuildTools\AppveyorPackaging.ps1"
@@ -34,7 +34,7 @@ deploy:
   description: v$(MEDLAUNCH_RELEASE_DESCRIPTION)
   auth_token:
     secure: lCQYDdMEEZZKFO0qJkHddSQVHGqB8K1czFJvbBdhfV8X7F17ImQKHvKn7T4S4HM5
-  artifact: MedLaunch\bin\$(ML_ARTIFACT_NAME).zip
+  artifact: $(ML_ARTIFACT_NAME)
   draft: true
   prerelease: false
   force_update: true
