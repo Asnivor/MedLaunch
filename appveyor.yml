@@ -27,4 +27,17 @@ test: off
 artifacts:
 - path: MedLaunch\bin\Release\
   name: '$(ML_ARTIFACT_NAME)'
+deploy:
+- provider: GitHub
+  tag: $(MEDLAUNCH_VERSION_DOT)
+  release: MedLaunch v$(MEDLAUNCH_VERSION_DOT)
+  description: v$(MEDLAUNCH_RELEASE_DESCRIPTION)
+  auth_token:
+    secure: lCQYDdMEEZZKFO0qJkHddSQVHGqB8K1czFJvbBdhfV8X7F17ImQKHvKn7T4S4HM5
+  artifact: MedLaunch\bin\$(ML_ARTIFACT_NAME).zip
+  draft: true
+  prerelease: false
+  force_update: true
+after_deploy:
+- cmd: powershell.exe ".\BuildTools\AppveyorDeploy.ps1"
 
