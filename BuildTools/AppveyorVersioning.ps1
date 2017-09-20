@@ -62,30 +62,28 @@ if ($env:APPVEYOR -eq $true)
         # set custom environment filename
         Set-AppveyorBuildVariable -Name 'ML_ARTIFACT_NAME' -Value $filename
         #$env:ML_ARTIFACT_NAME=$filename
-    }
-    
-    
-    # set environment variable for release description (if a release description exists)
-    $rPath = "$loc\ReleaseNotes\$versionDot.md"
-    write-host "Looking for release info @ $rPath"
-    if ([System.IO.File]::Exists($rPath))
-    {
-        write-host "Release info document found."
-        $content = Get-Content $rPath
-        $newContent = ""
-        foreach ($l in $content)
+        
+            # set environment variable for release description (if a release description exists)
+        $rPath = "$loc\ReleaseNotes\$versionDot.md"
+        write-host "Looking for release info @ $rPath"
+        if ([System.IO.File]::Exists($rPath))
         {
-            $newContent += "$l\n"
+            write-host "Release info document found."
+            $content = Get-Content $rPath
+            $newContent = ""
+            foreach ($l in $content)
+            {
+                $newContent += "$l\n"
+            }
+            Set-AppveyorBuildVariable -Name 'MEDLAUNCH_RELEASE_DESCRIPTION' -Value $newContent
         }
-        Set-AppveyorBuildVariable -Name 'MEDLAUNCH_RELEASE_DESCRIPTION' -Value $newContent
+        else
+        {
+            write-host "Release info document NOT found."
+        }
+        
+        #write-host "Release info: `n`n$newContent"
     }
-    else
-    {
-        write-host "Release info document NOT found."
-    }
-    
-    write-host "Release info: `n`n$newContent"
-    
 }
 else
 {
