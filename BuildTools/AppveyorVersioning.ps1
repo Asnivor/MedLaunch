@@ -77,14 +77,14 @@ if ($env:APPVEYOR -eq $true)
         {
             $newContent += "$l\n"
         }
-        Set-AppveyorBuildVariable -Name 'MEDLAUNCH_RELEASE_DESCRIPTION' -Value $content
+        Set-AppveyorBuildVariable -Name 'MEDLAUNCH_RELEASE_DESCRIPTION' -Value $newContent
     }
     else
     {
         write-host "Release info document NOT found."
     }
     
-    write-host "Release info: `n`n" + $env:MEDLAUNCH_RELEASE_DESCRIPTION
+    write-host "Release info: `n`n$newContent"
     
 }
 else
