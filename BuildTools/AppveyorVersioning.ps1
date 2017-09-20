@@ -18,7 +18,7 @@ foreach ($line in $asi)
         Set-AppVeyorBuildVariable -Name 'MEDLAUNCH_VERSION_UNDERSCORE' -Value $version
     }
 }
-write-host "Detected file version: $version"
+write-host "Detected file version: $version / $versionDot"
 
 # run only if this is within appveyor
 if ($env:APPVEYOR -eq $true)
@@ -66,8 +66,8 @@ if ($env:APPVEYOR -eq $true)
     
     
     # set environment variable for release description (if a release description exists)
-    $rPath = "$loc\ReleaseNotes\" + $env:MEDLAUNCH_VERSION_DOT + ".md"
-    write-host "Looking for release info @ " + $rPath
+    $rPath = "$loc\ReleaseNotes\$versionDot.md"
+    write-host "Looking for release info @ $rPath"
     if ([System.IO.File]::Exists($rPath))
     {
         write-host "Release info document found."
