@@ -67,7 +67,7 @@ if ($env:APPVEYOR -eq $true)
     
     # set environment variable for release description (if a release description exists)
     $rPath = "$loc\ReleaseNotes\" + $env:MEDLAUNCH_VERSION_DOT + ".md"
-    if ([System.IO.File]::Exists($rPath)
+    if ([System.IO.File]::Exists($rPath))
     {
         $content = [System.IO.File]::ReadAllText($rPath)
         Set-AppveyorBuildVariable -Name 'MEDLAUNCH_RELEASE_DESCRIPTION' -Value $content
