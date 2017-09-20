@@ -43,6 +43,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BuildTools", "T:\Matt Burge
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "6840"
+		SlnRelativePath = "T:\Matt Burgess\VS\MedLaunch\BuildTools\"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
