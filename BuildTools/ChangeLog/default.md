@@ -28,7 +28,6 @@ title: Changelog
 * (BugFix)	-	ROMs within archives files now have their hash detected correctly
 * (Enhancement)	-	Multiple ROMs within archive files can now reside in nested subfolders within the archive itself
 * (Enhancement)	-	DAT lookup database (AsniDAT.db) now contains CRC32 and SHA1 hashes (along with MD5 that it had previously) - this reduces import/scan time for ROMs within archives
-* test
 
 ##### [0.5.8.0](https://medlaunch.info/releases/0-5-8-0)
 ###### 2017-08-11

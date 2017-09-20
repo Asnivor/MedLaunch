@@ -67,11 +67,19 @@ if ($env:APPVEYOR -eq $true)
     
     # set environment variable for release description (if a release description exists)
     $rPath = "$loc\ReleaseNotes\" + $env:MEDLAUNCH_VERSION_DOT + ".md"
+    write-host "Looking for release info @ " + $rPath
     if ([System.IO.File]::Exists($rPath))
     {
+        write-host "Release info document found."
         $content = [System.IO.File]::ReadAllText($rPath)
         Set-AppveyorBuildVariable -Name 'MEDLAUNCH_RELEASE_DESCRIPTION' -Value $content
     }
+    else
+    {
+        write-host "Release info document NOT found."
+    }
+    
+    write-host "Release info: `n`n" + $env:MEDLAUNCH_RELEASE_DESCRIPTION
     
 }
 else
