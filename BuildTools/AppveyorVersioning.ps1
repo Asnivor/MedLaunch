@@ -71,7 +71,12 @@ if ($env:APPVEYOR -eq $true)
     if ([System.IO.File]::Exists($rPath))
     {
         write-host "Release info document found."
-        $content = [System.IO.File]::ReadAllText($rPath)
+        $content = Get-Content $rPath
+        $newContent = ""
+        foreach ($l in $content)
+        {
+            $newContent += "$l\n"
+        }
         Set-AppveyorBuildVariable -Name 'MEDLAUNCH_RELEASE_DESCRIPTION' -Value $content
     }
     else
