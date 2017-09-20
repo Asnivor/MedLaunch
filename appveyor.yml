@@ -18,7 +18,7 @@ before_build:
     nuget restore MedLaunch.sln
 build:
   project: MedLaunch/MedLaunch.csproj
-  verbosity: detailed
+  verbosity: quiet
 before_package:
 - cmd: >-
     powershell.exe ".\BuildTools\AppveyorPackaging.ps1"
