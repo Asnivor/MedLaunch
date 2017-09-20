@@ -40,5 +40,5 @@ deploy:
   force_update: true
   on:
     branch: master
-after_deploy:
+before_deploy:
 - cmd: powershell.exe ".\BuildTools\AppveyorDeploy.ps1"
