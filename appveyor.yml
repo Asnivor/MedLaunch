@@ -27,6 +27,9 @@ test: off
 artifacts:
 - path: MedLaunch\bin\Release\
   name: '$(ML_ARTIFACT_NAME)'
+before_deploy:
+- cmd: powershell.exe ".\BuildTools\AppveyorDeploy.ps1"
+
 deploy:
 - provider: GitHub
   tag: $(MEDLAUNCH_VERSION_DOT)
@@ -40,5 +43,3 @@ deploy:
   force_update: true
   on:
     branch: master
-before_deploy:
-- cmd: powershell.exe ".\BuildTools\AppveyorDeploy.ps1"
