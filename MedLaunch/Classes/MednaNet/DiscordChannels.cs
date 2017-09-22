@@ -16,6 +16,7 @@ namespace MedLaunch.Classes.MednaNet
         {
             Data = new List<DiscordChannel>();
 
+            /*
             Data = new List<DiscordChannel>
             {
                 new DiscordChannel()
@@ -52,6 +53,8 @@ namespace MedLaunch.Classes.MednaNet
 
             };
 
+            */
+
             /*
             // temp data
             for (int i = 1; i < 6; i++)
@@ -71,7 +74,7 @@ namespace MedLaunch.Classes.MednaNet
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="paragraph"></param>
-        public void UpdateChannel(int id, string name, Paragraph paragraph)
+        public void UpdateChannel(int id, string name)
         {
             var lookup = Data.Where(a => a.ChannelId == id).FirstOrDefault();
 
@@ -88,7 +91,7 @@ namespace MedLaunch.Classes.MednaNet
             {
                 // channel already exists - update the paragraph
                 lookup.ChannelName = name;
-                lookup.Paragraph = paragraph;
+                //lookup.Paragraph = paragraph;
             }
         }
     }

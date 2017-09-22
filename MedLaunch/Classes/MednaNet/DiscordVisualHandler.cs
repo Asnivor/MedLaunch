@@ -12,6 +12,9 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using MednaNetAPIClient;
+using MedLaunch.Models;
+using MednaNetAPIClient.Models;
 
 namespace MedLaunch.Classes.MednaNet
 {
@@ -62,6 +65,9 @@ namespace MedLaunch.Classes.MednaNet
             // chat text window
             rtbDocument = (RichTextBox)mw.FindName("rtbDocument");
 
+            // set username from database
+            tbDiscordName.Text = MednaNetSettings.GetUsername();
+       
 
             // get channel radios
 
@@ -141,6 +147,8 @@ namespace MedLaunch.Classes.MednaNet
 
                 para.Inlines.Add(message);
                 para.Inlines.Add(new LineBreak());
+
+                rtbDocument.ScrollToEnd();
             }));            
         }
 
@@ -160,6 +168,28 @@ namespace MedLaunch.Classes.MednaNet
 
             // send to chat window
             PostMessage(dm);
+
+            rtbDocument.ScrollToEnd();
+        }
+
+        public void PostFromLocal(Messages message)
+        {
+            // build discordMessage object
+            DiscordMessage dm = new DiscordMessage();
+            dm.postedOn = DateTime.Now;
+            dm.name = tbDiscordName.Text;
+            dm.messageId = 0;
+            dm.message = message.message;
+            dm.channel = channels.ActiveChannel;
+
+
+            // send to API
+            //not yet implemented
+
+            // send to chat window
+            PostMessage(dm);
+
+            rtbDocument.ScrollToEnd();
         }
 
         /// <summary>
@@ -190,16 +220,30 @@ namespace MedLaunch.Classes.MednaNet
                     {
                         para.Inlines.Add(new Run(" " + discordMessage.name + "   ")
                         {
-                            Foreground = Brushes.AliceBlue
+                            Foreground = Brushes.CadetBlue
                         });
                     }
                     else if (usr.clientType == ClientType.medlaunch)
                     {
-                        para.Inlines.Add(new Run(" " + discordMessage.name + "   ")
+                        // see if this is YOUR username
+                        if (usr.UserName == tbDiscordName.Text)
                         {
-                            Foreground = Brushes.ForestGreen
-                        });
+                            para.Inlines.Add(new Run(" " + discordMessage.name + "   ")
+                            {
+                                Foreground = Brushes.Red
+                            });
+                        }
+                        else
+                        {
+                            para.Inlines.Add(new Run(" " + discordMessage.name + "   ")
+                            {
+                                Foreground = Brushes.ForestGreen
+                            });
+                        }
+
+                        
                     }
+
                     else
                     {
                         // no formatting
@@ -211,13 +255,16 @@ namespace MedLaunch.Classes.MednaNet
                     // user not listed in online users. local testing?
                     para.Inlines.Add(new Bold(new Run(" " + discordMessage.name + "   "))
                     {
-                        Foreground = Brushes.Red
+                        Foreground = Brushes.DarkGray
                     });
                 }
 
                 //para.Inlines.Add(discordMessage.message);
                 ParseMessage(para, discordMessage.message);
                 para.Inlines.Add(new LineBreak());
+
+                rtbDocument.ScrollToEnd();
+
             }));
         }
 
@@ -241,6 +288,49 @@ namespace MedLaunch.Classes.MednaNet
             // iterate through each word
             for (int i = 0; i < words.Length; i++)
             {
+                // @mention parsing
+                if (words[i].StartsWith("<@") && words[i].EndsWith(">"))
+                {
+                    // looks like this is a discord mention - trim it down and get the userid
+                    positionToReplace.Add(i);
+
+                    string mWord = words[i].Replace("<@", "").TrimEnd('>');
+
+                    var user = MednaNetAPI.Instance.Users.Where(a => a.discordId == mWord).FirstOrDefault();
+                    if (user != null)
+                    {
+                        //para.Inlines.Add("@" + user.username + " ");
+                        para.Inlines.Add(new Bold(new Run("@" + user.username + " "))
+                        {
+                            Foreground = Brushes.BlueViolet
+                        });
+
+                        continue;
+                    }                    
+                }
+
+                // #channel parsing
+                if (words[i].StartsWith("<#") && words[i].EndsWith(">"))
+                {
+                    // looks like this is a discord mention - trim it down and get the userid
+                    positionToReplace.Add(i);
+
+                    string mWord = words[i].Replace("<#", "").TrimEnd('>');
+
+                    var channel = MednaNetAPI.Instance.Channels.Where(a => a.discordId == mWord).FirstOrDefault();
+                    if (channel != null)
+                    {
+                        //para.Inlines.Add("@" + user.username + " ");
+                        para.Inlines.Add(new Bold(new Run("#" + channel.channelName + " "))
+                        {
+                            Foreground = Brushes.BlueViolet
+                        });
+
+                        continue;
+                    }
+                }
+
+                // hyperlink parsing
                 if (!IsHyperlink(words[i]))
                 {
                     // word is not a hyperlink - just post it
@@ -442,6 +532,13 @@ namespace MedLaunch.Classes.MednaNet
                 // get a copy of the DiscordUsers data object
                 var usrs = users.Users.OrderBy(a => a.UserName).ToList();
 
+                // remove old labels
+                foreach (var l in UserButtons)
+                {
+                    DiscordUserListWrapPanel.Children.Remove(l);
+                }
+                
+
                 // set online user count
                 expDiscordUsersOnline.Header = "USERS ONLINE (" + usrs.Count() + ")";
 
@@ -450,21 +547,6 @@ namespace MedLaunch.Classes.MednaNet
                 // iterate through each user
                 for (int i = 0; i < usrs.Count(); i++)
                 {
-                    // if the user button already exists, update it
-                    var cr = UserButtons.Where(a => a.Name == "btnDiscordUs" + usrs[i].UserId).FirstOrDefault();
-                    if (cr != null)
-                    {
-                        if (cr.Content.ToString() != usrs[i].UserName)
-                        {
-                            cr.Content = usrs[i].UserName;
-                            bTemp.Add(cr);
-                        }
-
-                        continue;
-                    }
-
-                    // update completed. now button creation..
-
                     // create image
                     Image img = new Image();
                     if (usrs[i].clientType == ClientType.discord)
@@ -483,7 +565,7 @@ namespace MedLaunch.Classes.MednaNet
                     tb.Margin = margin;
                     tb.VerticalAlignment = VerticalAlignment.Center;
                     tb.HorizontalAlignment = HorizontalAlignment.Left;
-                    
+
 
                     // button stackpanel
                     StackPanel stackPnl = new StackPanel();
@@ -508,16 +590,39 @@ namespace MedLaunch.Classes.MednaNet
                     {
                         l.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#7289DA"));
                     }
-                        
+
                     else if (usrs[i].clientType == ClientType.medlaunch)
                     {
                         // get the current primary color and set the user label as this
                         var color = mw.discordChannelExpander.Background;
                         l.Foreground = color;
                     }
-                        
 
+                    // if the user button already exists, update it
+                    //var cr = UserButtons.Where(a => a.Name == "btnDiscordUs" + usrs[i].UserId).FirstOrDefault();
+                    /*
+                    if (cr != null)
+                    {
+                        if (cr.Content.ToString() != usrs[i].UserName)
+                        {
+                            cr.Content = usrs[i].UserName;
+                            bTemp.Add(cr);
+                        }
+
+                        //continue;
+                    }
+                    else
+                    {
+                        // create new label
+                    }
+                    */
+
+                    // add user back
                     DiscordUserListWrapPanel.Children.Add(l);
+
+
+
+
 
                     /*
                     // create the user button
@@ -631,6 +736,38 @@ namespace MedLaunch.Classes.MednaNet
             paragraph = chan.Paragraph;
             rtbDocument.Document = new FlowDocument(paragraph);
             rtbDocument.IsDocumentEnabled = true;
+        }
+
+        public void CheckChannelSelection()
+        {
+            UIHandler ui = UIHandler.GetChildren(DiscordSelectorWrapPanel);
+            RadioButton rb = ui.RadioButtons.FirstOrDefault();
+
+            if (rb == null)
+            {
+                // no channels have been populated yet
+                return;
+            }
+
+            bool selected = false;
+
+            foreach (RadioButton r in ui.RadioButtons)
+            {
+                if (r.IsChecked == true)
+                {
+                    selected = true;
+                    break;
+                }
+            }
+
+            if (selected == false)
+            {
+                // select the first channel
+                string name = rb.Name;
+                string idStr = name.Replace("rbDiscordCh", "");
+                int id = Convert.ToInt32(idStr);
+                ChangeChannel(id);
+            }
         }
 
         // static methods

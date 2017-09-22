@@ -16,4 +16,6 @@ namespace MedLaunch.Classes.MednaNet
         public int channel { get; set; }
         public int userId { get; set; }
     }
+
+    
 }

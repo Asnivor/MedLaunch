@@ -6234,12 +6234,21 @@ namespace MedLaunch
             }
             else if (btn.Content.ToString() == "CONNECT")
             {
-                DVH.SetConnectedStatus(true);
+                // init the api
                 DVH.PostLocalOnlyMessage("Connecting to the MednaNet API...");
+                bool isConnected = MednaNetAPI.Initialize(tbDiscordName.Text);
+
+                // update username
+                MednaNetAPI.Instance.Username = tbDiscordName.Text;
+                MednaNetSettings.SetUsername(MednaNetAPI.Instance.Username);
+
+                //if (isConnected == false)
+                //  return;
+
+                DVH.SetConnectedStatus(true);
 
 
                 // select the first channel
-
                 UIHandler ui = UIHandler.GetChildren(DiscordSelectorWrapPanel);
                 RadioButton rb = ui.RadioButtons.FirstOrDefault();
 
@@ -6254,7 +6263,11 @@ namespace MedLaunch
                     // update title
                     lblDiscordChannel.Content = "MedLaunch: Discord - #" + DVH.channels.Data.Where(a => a.ChannelId == id).FirstOrDefault().ChannelName;
 
-                }            
+                }   
+                else
+                {
+                    // rb is null
+                }         
             }
             else
             {
@@ -6262,6 +6275,8 @@ namespace MedLaunch
                 DVH.PostLocalOnlyMessage("Disconnecting from the MednaNet API...");
                 lblDiscordChannel.Content = "MedLaunch: Discord";
                 expDiscordUsersOnline.Header = "USERS ONLINE (0)";
+
+                MednaNetAPI.Instance.Stop();
             }
         }
 
@@ -6272,7 +6287,8 @@ namespace MedLaunch
                 return;
 
             //DVH.PostMessage(con, DVH.channels.ActiveChannel);
-            DVH.PostFromLocal(con);
+            //DVH.PostFromLocal(con);
+            MednaNetAPI.Instance.SendMessage(con);
 
             tbDiscordMessageBox.Text = "";
         }

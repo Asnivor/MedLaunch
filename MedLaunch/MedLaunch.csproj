@@ -124,6 +124,10 @@
       <HintPath>..\packages\MahApps.Metro.SimpleChildWindow.1.4.0\lib\net45\MahApps.Metro.SimpleChildWindow.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MednaNetAPIClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ExternalAssemblies\MednaNetAPIClient.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Data.Sqlite, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Data.Sqlite.1.0.0-rc1-final\lib\net451\Microsoft.Data.Sqlite.dll</HintPath>
       <Private>True</Private>
@@ -225,6 +229,10 @@
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ExternalAssemblies\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -301,6 +309,7 @@
     <Compile Include="Classes\MednaNet\DiscordMessage.cs" />
     <Compile Include="Classes\MednaNet\DiscordUsers.cs" />
     <Compile Include="Classes\MednaNet\DiscordVisualHandler.cs" />
+    <Compile Include="Classes\MednaNet\MednaNetAPI.cs" />
     <Compile Include="Classes\Scanning\DiscScan.cs" />
     <Compile Include="Classes\Scanning\RomScan.cs" />
     <Compile Include="Classes\Scanning\SaturnGame.cs" />
@@ -316,6 +325,7 @@
     <Compile Include="Classes\InstructionSet.cs" />
     <Compile Include="Extensions\FocusExtension.cs" />
     <Compile Include="MedDataGrid.cs" />
+    <Compile Include="Models\MednaNetSettings.cs" />
     <Compile Include="Windows\AccentStyleWindow.xaml.cs">
       <DependentUpon>AccentStyleWindow.xaml</DependentUpon>
     </Compile>
@@ -1094,6 +1104,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ExternalAssemblies\DiscSN.dll" />
+    <Content Include="ExternalAssemblies\MednaNetAPIClient.dll" />
+    <Content Include="ExternalAssemblies\System.Net.Http.Formatting.dll" />
     <Content Include="ExternalAssemblies\WindowScrape.dll" />
     <Resource Include="MedLaunchIcon.ico" />
     <Resource Include="Data\Graphics\Controllers\lynx_controller.png" />

@@ -98,6 +98,14 @@ namespace MedLaunch.Classes
                     context.SaveChanges();
                 }
 
+                // create mednanet general entry
+                MednaNetSettings ms = MednaNetSettings.GetMednaNetDefaults();
+                using (var context = new MyDbContext())
+                {
+                    context.MednaNetSettings.Add(ms);
+                    context.SaveChanges();
+                }
+
                 // create Paths entry
                 Paths paths = new Paths
                 {
