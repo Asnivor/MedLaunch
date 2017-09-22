@@ -152,6 +152,40 @@ namespace MedLaunch.Classes.MednaNet
             }));            
         }
 
+        /// <summary>
+        /// Begin sending a message to the chatbox
+        /// </summary>
+        /// <param name="message"></param>
+        public async void PostMessage(List<MedLaunch.Classes.MednaNet.db.DiscordMessages> messages, int channelId)
+        {
+            // post message on another thread
+            ThreadPool.QueueUserWorkItem(o =>
+            {
+                ChatUpdater(messages, channelId);
+            });
+        }
+
+        /// <summary>
+        /// update the chatbox
+        /// </summary>
+        /// <param name="message"></param>
+        private async void ChatUpdater(List<MedLaunch.Classes.MednaNet.db.DiscordMessages> messages, int channelId)
+        {
+            await mw.Dispatcher.BeginInvoke((Action)(() =>
+            {
+                // get channel paragraph
+                var para = GetChannelParagraph(channelId);
+
+                foreach (var m in messages)
+                {
+                    para.Inlines.Add(m.MessageString);
+                    para.Inlines.Add(new LineBreak());
+                }
+
+                rtbDocument.ScrollToEnd();
+            }));
+        }
+
         public void PostFromLocal(string message)
         {
             // build discordMessage object
@@ -736,6 +770,7 @@ namespace MedLaunch.Classes.MednaNet
             paragraph = chan.Paragraph;
             rtbDocument.Document = new FlowDocument(paragraph);
             rtbDocument.IsDocumentEnabled = true;
+            rtbDocument.ScrollToEnd();
         }
 
         public void CheckChannelSelection()

@@ -305,6 +305,9 @@
     <Compile Include="Classes\GamesLibrary\MultipleFilterHandler.cs" />
     <Compile Include="Classes\GamesLibrary\StringConv.cs" />
     <Compile Include="Classes\IO\Hex.cs" />
+    <Compile Include="Classes\MednaNet\db\DiscordMessages.cs" />
+    <Compile Include="Classes\MednaNet\db\MednaLogDbContext.cs" />
+    <Compile Include="Classes\MednaNet\db\VersionInfo.cs" />
     <Compile Include="Classes\MednaNet\DiscordChannels.cs" />
     <Compile Include="Classes\MednaNet\DiscordMessage.cs" />
     <Compile Include="Classes\MednaNet\DiscordUsers.cs" />
@@ -714,6 +717,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Data\Settings\MednaNetLogging.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Data\System\AsniDAT.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -981,7 +987,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\Settings\" />
     <Folder Include="_Debug\DATDB\DATFiles\PSXDATACENTER\" />
   </ItemGroup>
   <ItemGroup>

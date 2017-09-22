@@ -9,6 +9,8 @@ using MednaNetAPIClient.Models;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
+using MedLaunch.Classes.MednaNet.db;
+using System.Collections.Concurrent;
 
 namespace MedLaunch.Classes.MednaNet
 {
@@ -22,6 +24,11 @@ namespace MedLaunch.Classes.MednaNet
 
         public bool isConnected { get; set; }
         public string LastError { get; set; }
+
+        public int MessageHistoryInMinutes { get; set; }
+
+        public ConcurrentDictionary<int, int> LastChannelMessages = new ConcurrentDictionary<int, int>();
+        public List<Messages> AllMessages = new List<Messages>();
 
         private static DispatcherTimer Timer = new DispatcherTimer();
 
@@ -55,6 +62,8 @@ namespace MedLaunch.Classes.MednaNet
 
             isConnected = false;
 
+            MessageHistoryInMinutes = -600;
+
             MessageArchive = new List<MessageLog>();
 
             Username = username;
@@ -78,6 +87,7 @@ namespace MedLaunch.Classes.MednaNet
 
         public void Start()
         {
+            isConnected = true;
             Timer.Start();
         }
 
@@ -143,6 +153,8 @@ namespace MedLaunch.Classes.MednaNet
         {
             if (isConnected == false)
                 return;
+
+            //DoPoll();
 
             if (AbortThread == false)
             {
@@ -235,11 +247,92 @@ namespace MedLaunch.Classes.MednaNet
             // Update the UI
             DVH.UpdateUsers();
 
-           
-
 
             /* Update messages */
+            
+            List<Messages> foundMessages = new List<Messages>();
 
+            // loop through each channel
+            foreach (var c in Channels)
+            {
+                // get the last received message from this channel
+                //var lookup = DiscordMessages.GetLastMessageId(c.id);    
+                int lookup = 0;     
+                var lookupA = AllMessages.Where(a => a.channel == c.id).OrderBy(b => b.id).LastOrDefault();
+                if (lookupA != null)
+                    lookup = lookupA.id;
+
+                if (lookup == 0)
+                {
+                    // no message found - get all messages using the timeframe specified
+                    try
+                    { foundMessages.AddRange((await Client.Channels.GetChannelMessagesFrom(c.id, DateTime.Now.AddMinutes(MessageHistoryInMinutes))).ToList()); }
+                    catch (Exception ex) { APIDisconnected(ex); return; }
+                }
+                else
+                {
+                    // result found - get messages from the API after this message ID
+                    try { foundMessages.AddRange((await Client.Channels.GetChannelMessagesAfterMessageId(c.id, lookup)).ToList()); }
+                    catch (Exception ex) { APIDisconnected(ex); return; }
+                }
+
+                // get the last messageId for this channel already posted to the screen
+                int lastWritten = 0;
+                if (LastChannelMessages.ContainsKey(c.id))
+                    lastWritten = LastChannelMessages[c.id];
+
+                // get the last messageId received on this channel
+                int lastId = lookup;
+                //var look2 = DiscordMessages.GetLastMessageId(c.id);
+                int look2 = 0;
+                var look2a = AllMessages.Where(a => a.channel == c.id).OrderBy(b => b.id).LastOrDefault();
+                if (look2a != null)
+                    look2 = look2a.id;
+                if (look2 > lookup)
+                    lastId = look2;
+
+                // update the dictionary
+                LastChannelMessages[c.id] = lastId;
+            }
+
+            // add foundMessages to the database
+            //DiscordMessages.SaveToDatabase(foundMessages);
+
+            // add foundMessages to AllMessages
+            AllMessages.AddRange(foundMessages);
+            AllMessages.Distinct();
+
+            // now post new messages based on the currently selected channel
+            foreach (var c in Channels)
+            {
+                int last = LastChannelMessages[c.id];
+                //var newMessages = DiscordMessages.GetAllMessages().Where(a => a.MessageId > last).OrderBy(b => b.MessageId).ToList();
+                var newMessages = AllMessages.Where(a => a.id > last).OrderBy(b => b.id).ToList().OrderBy(d => d.id).ToList();
+
+                foreach (var me in newMessages)
+                {
+                    // create discordmessage format
+                    DiscordMessage d = new DiscordMessage();
+                    d.channel = me.channel;
+                    d.code = me.code;
+                    d.message = me.message;
+                    d.messageId = me.id;
+                    d.name = me.name;
+                    d.postedOn = me.postedOn;
+
+                    // write the message to the relevant local channel
+                    MednaNetAPI.Instance.DVH.PostMessage(d);
+                    //DVH.PostMessage(me, c.id);
+                }
+                
+            }
+
+            
+            AbortThread = false;
+            isPolling = false;
+            Timer.Start();
+
+            /*
             foreach (var c in Channels)
             {
                 // get last message ID recorded for this channel
@@ -300,21 +393,31 @@ namespace MedLaunch.Classes.MednaNet
             AbortThread = false;
             isPolling = false;
             Timer.Start();
+
+            */
         }
 
-        
+
+
+
 
         public static bool Initialize(string username)
         {
             if (MednaNetAPI.Instance == null)
             {
                 Instance = new MednaNetAPI(username);
-                return true;
+            }
+            else
+            {
+                MednaNetAPI.Instance.LoadClient();
+                MednaNetAPI.Instance.Start();
             }
 
-            MednaNetAPI.Instance.Start();
+            //MednaNetAPI.Instance.isConnected = false;
+            
 
-            return true;
+            if (Instance.isConnected == true) { return true; }
+            else { return false; }
         }
 
         public void Dispose()

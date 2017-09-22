@@ -6234,9 +6234,18 @@ namespace MedLaunch
             }
             else if (btn.Content.ToString() == "CONNECT")
             {
+                DVH.SetConnectedStatus(true);
+
                 // init the api
                 DVH.PostLocalOnlyMessage("Connecting to the MednaNet API...");
-                MednaNetAPI.Initialize(tbDiscordName.Text);
+                bool connect = MednaNetAPI.Initialize(tbDiscordName.Text);
+
+                if (connect == false)
+                {
+                    MednaNetAPI.Instance.APIDisconnected(new Exception("Could not connect to the MednaNet API"));
+                    return;
+                }
+                    
 
                 // update username
                 MednaNetAPI.Instance.Username = tbDiscordName.Text;
@@ -6245,7 +6254,7 @@ namespace MedLaunch
                 //if (isConnected == false)
                 //  return;
 
-                DVH.SetConnectedStatus(true);
+                
 
 
                 // select the first channel
