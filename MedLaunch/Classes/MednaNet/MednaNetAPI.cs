@@ -17,6 +17,12 @@ namespace MedLaunch.Classes.MednaNet
         public static MednaNetAPI Instance { get; private set; }
         readonly Thread UpdateThread;
 
+        public bool isPolling = false;
+        public bool ManualQueryInProgress = false;
+
+        public bool isConnected { get; set; }
+        public string LastError { get; set; }
+
         private static DispatcherTimer Timer = new DispatcherTimer();
 
         public static bool AbortThread { private get; set; }
@@ -47,6 +53,8 @@ namespace MedLaunch.Classes.MednaNet
             MW = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             DVH = MW.DVH;
 
+            isConnected = false;
+
             MessageArchive = new List<MessageLog>();
 
             Username = username;
@@ -55,14 +63,12 @@ namespace MedLaunch.Classes.MednaNet
 
             AbortThread = true;
 
-            // instantiate client
-            LoadClient();
-
             // setup the timer
             Timer.Tick += new EventHandler(Timer_Tick);
             Timer.Interval = new TimeSpan(0, 0, 2);
-            
 
+            // instantiate client
+            LoadClient();
         }
 
         public void Stop()
@@ -73,6 +79,15 @@ namespace MedLaunch.Classes.MednaNet
         public void Start()
         {
             Timer.Start();
+        }
+
+        public void APIDisconnected(Exception exception)
+        {
+            isConnected = false;
+            LastError = exception.Message;
+            DVH.SetConnectedStatus(false);
+            DVH.PostLocalOnlyMessage("MednaNet has disconnected. Reason: " + LastError);
+            DVH.PostLocalOnlyMessage("Please try reconnecting...");
         }
 
         private async void LoadClient()
@@ -101,17 +116,22 @@ namespace MedLaunch.Classes.MednaNet
             // get the current install object from the API
             if (installKeyPresent == true)
             {
-                CurrentInstall = await Client.Install.GetCurrentInstall(InstallKey);
+                try { CurrentInstall = await Client.Install.GetCurrentInstall(InstallKey); }
+                catch (Exception ex) { APIDisconnected(ex); return; }                
             }
                 
 
             if (installKeyPresent == false)
             {
-                CurrentInstall = await Client.Install.GetCurrentInstall("");
+                try { CurrentInstall = await Client.Install.GetCurrentInstall(""); }
+                catch (Exception ex) { APIDisconnected(ex); return; }
+                
 
                 InstallKey = CurrentInstall.code;
                 MednaNetSettings.SetInstallKey(InstallKey);
             }
+
+            isConnected = true;
 
             DoPoll();
 
@@ -121,11 +141,14 @@ namespace MedLaunch.Classes.MednaNet
 
         private void Timer_Tick(object sender, EventArgs e)
         {
+            if (isConnected == false)
+                return;
+
             if (AbortThread == false)
             {
                 DoPoll();
             }
-            
+
             //MessageBox.Show("tick");
         }
 
@@ -136,7 +159,9 @@ namespace MedLaunch.Classes.MednaNet
             if (Username != CurrentInstall.username)
             {
                 CurrentInstall.username = Username;
-                await Client.Install.UpdateUsername(CurrentInstall);
+
+                try { await Client.Install.UpdateUsername(CurrentInstall); }
+                catch (Exception ex) { APIDisconnected(ex); return; }                
 
                 MednaNetSettings.SetUsername(user);
             }
@@ -145,14 +170,20 @@ namespace MedLaunch.Classes.MednaNet
         public async void DoPoll()
         {
             AbortThread = true;
+            isPolling = true;
             Timer.Stop();
+
+            if (isConnected == false)
+                return;
 
             /* Set Username */
             // if the specified local username differs from API, set it
             if (Username != CurrentInstall.username)
             {
                 CurrentInstall.username = Username;
-                await Client.Install.UpdateUsername(CurrentInstall);
+
+                try { await Client.Install.UpdateUsername(CurrentInstall); }
+                catch (Exception ex) { APIDisconnected(ex); return; }
 
                 MednaNetSettings.SetUsername(Username);
             }
@@ -160,7 +191,9 @@ namespace MedLaunch.Classes.MednaNet
 
 
             /* Update Channels */
-            Channels = await Client.Channels.GetChannels();
+            try { Channels = await Client.Channels.GetChannels(); }
+            catch (Exception ex) { APIDisconnected(ex); return; }
+            
             // update channel list
             foreach (var c in Channels.OrderBy(a => a.discordId))
             {
@@ -178,8 +211,9 @@ namespace MedLaunch.Classes.MednaNet
 
             /* Update Users */
 
-            // query API
-            Users = await Client.Users.GetAllUsers();
+            // query API            
+            try { Users = await Client.Users.GetAllUsers(); }
+            catch (Exception ex) { APIDisconnected(ex); return; }
 
             // update user list
             foreach (var u in Users)
@@ -187,6 +221,7 @@ namespace MedLaunch.Classes.MednaNet
                 if (u.discordId == null) // && u.isOnline == false)
                 {
                     //continue;
+                    
                 }
                     
 
@@ -212,41 +247,58 @@ namespace MedLaunch.Classes.MednaNet
 
                 if (lookup == null)
                 {
-                    // no messages found locally for this channel, get all messages from the last day
-                    var messages = await Client.Channels.GetChannelMessagesFrom(c.id, DateTime.Now.AddMinutes(-60));
-                    // add to new messages
-                    foreach (var m in messages.OrderBy(a => a.id))
+                    // no messages found locally for this channel, get all messages from the last day                    
+                    try
                     {
-                        // check that is isnt one that we have posted ourself
-                        var allZeros = from a in MednaNetAPI.Instance.MessageArchive
-                                       where a.APIMessage.channel == c.id && a.APIMessage.id == 0 && a.APIMessage.message == m.message && a.HasBeenParsed == true
-                                        select a;
+                        var messages = await Client.Channels.GetChannelMessagesFrom(c.id, DateTime.Now.AddMinutes(-600));
 
-                        if (allZeros.Count() > 0)
+                        // add to new messages
+                        foreach (var m in messages.OrderBy(a => a.id))
                         {
-                            // message found, do nothing
-                        }
-                        else
-                        {
-                            MessageLog.AddMessage(m);
+                            if (m.channel == 1)
+                            {
+
+                            }
+
+                            // check that is isnt one that we have posted ourself
+                            var allZeros = from a in MednaNetAPI.Instance.MessageArchive
+                                           where a.APIMessage.channel == c.id && a.APIMessage.id == 0 && a.APIMessage.message == m.message && a.HasBeenParsed == true
+                                           select a;
+
+                            if (allZeros.Count() > 0)
+                            {
+                                // message found, do nothing
+                            }
+                            else
+                            {
+                                MessageLog.AddMessage(m);
+                            }
                         }
                     }
+                    catch (Exception ex) { APIDisconnected(ex); return; }
+
+                    
                 }
                 else
                 {
                     // query the API for newer messages
-                    var messages = await Client.Channels.GetChannelMessagesAfterMessageId(c.id, lookup.id);
-                    // add to new messages
-                    foreach (var m in messages)
+                    try
                     {
-                        MessageLog.AddMessage(m);
+                        var messages = await Client.Channels.GetChannelMessagesAfterMessageId(c.id, lookup.id);
+                        // add to new messages
+                        foreach (var m in messages)
+                        {
+                            MessageLog.AddMessage(m);
+                        }
                     }
+                    catch (Exception ex) { APIDisconnected(ex); return; }                    
                 }
             }
 
             // process new messages
             MessageLog.PostNewMessages();
             AbortThread = false;
+            isPolling = false;
             Timer.Start();
         }
 
@@ -280,40 +332,27 @@ namespace MedLaunch.Classes.MednaNet
         public async void SendMessage(string message)
         {
             DateTime dt = DateTime.Now;
-            /*
-            // create a placeholder in the MessageArchive
-            Messages place = new Messages
-            {
-                channel = DVH.channels.ActiveChannel,
-                code = InstallKey,
-                message = message,
-                name = "",
-                postedOn = dt,
-                id = 0
-            };
-
-            MessageLog.AddMessage(place, true);
-
-            // post locally first
-            DVH.PostFromLocal(message);
-
-    */
 
             // create new API message
-            Messages newMessage = await Client.Channels.CreateMessage(DVH.channels.ActiveChannel, new Messages
+            try
             {
-                channel = DVH.channels.ActiveChannel,
-                code = InstallKey,
-                message = message,
-                name = "",
-                postedOn = dt
-            });
+                Messages newMessage = await Client.Channels.CreateMessage(DVH.channels.ActiveChannel, new Messages
+                {
+                    channel = DVH.channels.ActiveChannel,
+                    code = InstallKey,
+                    message = message,
+                    name = "",
+                    postedOn = dt
+                });
+            }
+            catch (Exception ex) { APIDisconnected(ex); return; }
             
 
-            // add to the archive
-            //MessageLog.AddMessage(newMessage);
-
+            /*
+            Timer.Stop();
             
+            Timer.Start();
+            */
         }
     }
 

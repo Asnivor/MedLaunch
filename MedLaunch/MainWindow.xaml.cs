@@ -6236,7 +6236,7 @@ namespace MedLaunch
             {
                 // init the api
                 DVH.PostLocalOnlyMessage("Connecting to the MednaNet API...");
-                bool isConnected = MednaNetAPI.Initialize(tbDiscordName.Text);
+                MednaNetAPI.Initialize(tbDiscordName.Text);
 
                 // update username
                 MednaNetAPI.Instance.Username = tbDiscordName.Text;
