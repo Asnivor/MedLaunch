@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiscTesting", "MiscTesting\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedLaunch.Common", "MedLaunch.Common\MedLaunch.Common.csproj", "{376FD53C-1F78-40ED-AE4B-5FD0FA1A1CB4}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BuildTools", "T:\Matt Burgess\VS\MedLaunch\BuildTools\", "{837EC310-C73E-4562-9955-C4F0ECCA9013}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BuildTools", "BuildTools\", "{837EC310-C73E-4562-9955-C4F0ECCA9013}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_6840"

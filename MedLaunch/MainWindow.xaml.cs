@@ -6238,24 +6238,19 @@ namespace MedLaunch
 
                 // init the api
                 DVH.PostLocalOnlyMessage("Connecting to the MednaNet API...");
-                bool connect = MednaNetAPI.Initialize(tbDiscordName.Text);
+                
+                DiscordHandler.Initialize();
 
-                if (connect == false)
+                /*
+                if (DiscordHandler.Instance.IsConnected == false)
                 {
-                    MednaNetAPI.Instance.APIDisconnected(new Exception("Could not connect to the MednaNet API"));
+                    DiscordHandler.Instance.APIDisconnected(new Exception("Could not connect to the MednaNet API"));
                     return;
-                }
-                    
+                } */
 
                 // update username
-                MednaNetAPI.Instance.Username = tbDiscordName.Text;
-                MednaNetSettings.SetUsername(MednaNetAPI.Instance.Username);
-
-                //if (isConnected == false)
-                //  return;
-
-                
-
+                //DiscordHandler.Instance.Username = tbDiscordName.Text;
+                //MednaNetSettings.SetUsername(MednaNetAPI.Instance.Username);
 
                 // select the first channel
                 UIHandler ui = UIHandler.GetChildren(DiscordSelectorWrapPanel);
@@ -6285,7 +6280,7 @@ namespace MedLaunch
                 lblDiscordChannel.Content = "MedLaunch: Discord";
                 expDiscordUsersOnline.Header = "USERS ONLINE (0)";
 
-                MednaNetAPI.Instance.Stop();
+                //MednaNetAPI.Instance.Stop();
             }
         }
 

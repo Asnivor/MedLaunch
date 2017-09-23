@@ -309,6 +309,7 @@
     <Compile Include="Classes\MednaNet\db\MednaLogDbContext.cs" />
     <Compile Include="Classes\MednaNet\db\VersionInfo.cs" />
     <Compile Include="Classes\MednaNet\DiscordChannels.cs" />
+    <Compile Include="Classes\MednaNet\DiscordHandler.cs" />
     <Compile Include="Classes\MednaNet\DiscordMessage.cs" />
     <Compile Include="Classes\MednaNet\DiscordUsers.cs" />
     <Compile Include="Classes\MednaNet\DiscordVisualHandler.cs" />

@@ -149,8 +149,9 @@ namespace MedLaunch.Classes.MednaNet.db
                 d.LocalTimeReceived = DateTime.Now;
                 d.MessageId = m.id;
                 d.MessageString = m.message;
-                d.NickName = m.name;
-                d.UserId = 0;                       // waiting for api class update
+                d.NickName = m.user.username;
+                d.UserId = m.user.id;
+                //d.UserId = 0;                       // waiting for api class update
 
                 newList.Add(d);
             }

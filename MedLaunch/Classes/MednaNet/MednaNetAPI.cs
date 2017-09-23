@@ -52,7 +52,7 @@ namespace MedLaunch.Classes.MednaNet
 
         public IEnumerable<Channels> Channels { get; set; }
         public List<Users> Users { get; set; }
-
+        
         private int CurrentChannel = 0;
 
         public MednaNetAPI(string username)
@@ -317,7 +317,7 @@ namespace MedLaunch.Classes.MednaNet
                     d.code = me.code;
                     d.message = me.message;
                     d.messageId = me.id;
-                    d.name = me.name;
+                    //d.name = me.name;
                     d.postedOn = me.postedOn;
 
                     // write the message to the relevant local channel
@@ -444,7 +444,7 @@ namespace MedLaunch.Classes.MednaNet
                     channel = DVH.channels.ActiveChannel,
                     code = InstallKey,
                     message = message,
-                    name = "",
+                    //name = "",
                     postedOn = dt
                 });
             }
@@ -539,7 +539,7 @@ namespace MedLaunch.Classes.MednaNet
                 d.code = entry.APIMessage.code;
                 d.message = entry.APIMessage.message;
                 d.messageId = entry.APIMessage.id;
-                d.name = entry.APIMessage.name;
+                //d.name = entry.APIMessage.name;
                 d.postedOn = entry.APIMessage.postedOn;
 
                 // write the message to the relevant local channel
