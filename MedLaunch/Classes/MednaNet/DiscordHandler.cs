@@ -283,7 +283,11 @@ namespace MedLaunch.Classes.MednaNet
                         if (t != null)
                             LastChannelMessages[c.id] = t.id;
 
-                        DVH.WriteToTextBox(inc.OrderBy(a => a.id).ToList());             
+                        // write to textbox
+                        DVH.WriteToTextBox(inc.OrderBy(a => a.id).ToList());
+
+                        // save to database
+                        SaveToLoggingDatabase(inc);            
                     }
                     else
                     {
@@ -293,7 +297,11 @@ namespace MedLaunch.Classes.MednaNet
                         if (t != null)
                             LastChannelMessages[c.id] = t.id;
 
+                        // write to textbox
                         DVH.WriteToTextBox(inc.OrderBy(a => a.id).ToList());
+
+                        // save to database
+                        SaveToLoggingDatabase(inc);
                     }
 
                     MessagesIsPolling = false;
@@ -303,6 +311,58 @@ namespace MedLaunch.Classes.MednaNet
 
             MessagesIsPolling = false;
         }
+
+        public void SaveToLoggingDatabase(List<Messages> messages)
+        {
+            var lookup = db.DiscordMessages.GetAllMessages();
+
+            using (var db = new MednaLogDbContext())
+            {
+                List<DiscordMessages> mes = new List<DiscordMessages>();
+
+                foreach (var m in messages)
+                {
+                    DiscordMessages me = new DiscordMessages();
+                    me.APITimeReceived = m.postedOn;
+                    me.ChannelId = m.channel;
+                    me.LocalTimeReceived = DateTime.Now;
+                    me.MessageId = m.id;
+                    me.MessageString = m.message;
+                    me.NickName = m.user.username;
+                    me.UserId = m.user.id;
+                    if (m.user.discordId == null || m.user.discordId == "")
+                        me.IsAPIUser = true;
+                    else
+                        me.IsAPIUser = false;
+
+                    mes.Add(me);
+                }
+
+                List<DiscordMessages> toAdd = new List<DiscordMessages>();
+                List<DiscordMessages> toUpdate = new List<DiscordMessages>();
+
+                foreach (var v in mes)
+                {
+                    var l = (from a in lookup
+                            where a.MessageId == v.MessageId
+                            select a).ToList().FirstOrDefault();
+
+                    if (l == null)
+                        toAdd.Add(v);
+                    else
+                        toUpdate.Add(v);
+                }
+
+                db.DiscordMessages.AddRange(toAdd);
+                db.DiscordMessages.UpdateRange(toUpdate);
+                db.SaveChanges();
+            }
+        }
+
+        public List<Messages> GetFromDatabase(int daysHistory)
+        {
+            var data = DiscordMessages.GetAllMessages().Where(a => a.APITimeReceived > DateTime.Now.AddDays(-daysHistory));
+        } 
 
         /// <summary>
         /// checks whether the local Username differs from the CurrentInstall username (i.e., has been changed)
