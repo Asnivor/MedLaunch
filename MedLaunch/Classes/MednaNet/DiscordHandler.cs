@@ -257,10 +257,7 @@ namespace MedLaunch.Classes.MednaNet
         /// Message updating logic
         /// </summary>
         private async void GetMessagesAsync()
-        {
-            
-                
-
+        {   
             MessagesIsPolling = true;
 
             try
@@ -275,23 +272,18 @@ namespace MedLaunch.Classes.MednaNet
                     {
                         lastId = LastChannelMessages[c.id];
                     }
-
-                    List<Messages> incoming = new List<Messages>();
                         
                     // get messages frm API
                     if (lastId == 0)
                     {
                         // no local messageId - get all messages using the timeframe specified
-                        var inc = (await Client.Channels.GetChannelMessagesFrom(c.id, DateTime.Now.AddMinutes(-1000))).ToList();
+                        var inc = (await Client.Channels.GetChannelMessagesFrom(c.id, DateTime.Now.AddMinutes(-3000))).ToList();
                         
                         var t = inc.OrderBy(a => a.id).ToList().LastOrDefault();
                         if (t != null)
                             LastChannelMessages[c.id] = t.id;
 
-                        foreach (var m in inc)
-                        {
-                            DVH.PostMessage(m);
-                        }                 
+                        DVH.WriteToTextBox(inc.OrderBy(a => a.id).ToList());             
                     }
                     else
                     {
@@ -301,25 +293,10 @@ namespace MedLaunch.Classes.MednaNet
                         if (t != null)
                             LastChannelMessages[c.id] = t.id;
 
-                        foreach (var m in inc)
-                        {
-                            DVH.PostMessage(m);
-                        }
+                        DVH.WriteToTextBox(inc.OrderBy(a => a.id).ToList());
                     }
 
                     MessagesIsPolling = false;
-
-                    /*
-
-                    // order by messageId
-                    incoming = incoming.OrderBy(a => a.id).ToList();
-
-                    // update channel paragraph
-                    for (int i = 0; i < incoming.Count(); i++)
-                    {
-                        DVH.PostMessage(incoming[i]);
-                    }
-                    */
                 }
             }
             catch (Exception ex) { APIDisconnected(ex); return; }

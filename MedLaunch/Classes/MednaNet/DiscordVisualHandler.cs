@@ -315,6 +315,19 @@ namespace MedLaunch.Classes.MednaNet
             // post message on another thread
             ThreadPool.QueueUserWorkItem(o =>
             {
+                ChatUpdater(new List<Messages> { messages });
+            });
+        }
+
+        /// <summary>
+        /// Begin sending a message to the chatbox
+        /// </summary>
+        /// <param name="message"></param>
+        public async void PostMessage(List<MednaNetAPIClient.Models.Messages> messages)
+        {
+            // post message on another thread
+            ThreadPool.QueueUserWorkItem(o =>
+            {
                 ChatUpdater(messages);
             });
         }
@@ -323,65 +336,154 @@ namespace MedLaunch.Classes.MednaNet
         /// update the chatbox
         /// </summary>
         /// <param name="message"></param>
-        private async void ChatUpdater(MednaNetAPIClient.Models.Messages discordMessage)
+        private async void ChatUpdater(List<MednaNetAPIClient.Models.Messages> discordMessages)
         {
             await mw.Dispatcher.BeginInvoke((Action)(() =>
+            {
+                var discordMessages2 = discordMessages.OrderBy(a => a.id).ToList();
+
+                foreach (var discordMessage in discordMessages2)
+                {
+                    // get channel paragraph
+                    var para = GetChannelParagraph(discordMessage.channel);
+
+                    if (discordMessage.message.Contains('\n'))
+                    {
+                        //para.Inlines.Add(new Run(" " + "\t\t\t\t"));
+                        //discordMessage.message = discordMessage.message.Replace('\n', '\t');
+                    }
+
+                    else
+                    {
+                        // timestamp
+                        string stamp = discordMessage.postedOn.ToShortTimeString();
+                        para.Inlines.Add(new Run(" " + stamp + " ")
+                        {
+                            Foreground = Brushes.Silver
+                        });
+
+                        // username formatting
+                        ClientType ct = new ClientType();
+                        if (discordMessage.user.discordId == null || discordMessage.user.discordId == "")
+                            ct = ClientType.medlaunch;
+                        else
+                            ct = ClientType.discord;
+
+
+                        if (ct == ClientType.discord)
+                        {
+                            para.Inlines.Add(new Run(" " + discordMessage.user.username + "   ")
+                            {
+                                Foreground = Brushes.CadetBlue
+                            });
+                        }
+                        else if (ct == ClientType.medlaunch)
+                        {
+                            // see if this is YOUR username
+                            if (discordMessage.user.username == tbDiscordName.Text)
+                            {
+                                para.Inlines.Add(new Run(" " + discordMessage.user.username + "   ")
+                                {
+                                    Foreground = Brushes.Red
+                                });
+                            }
+                            else
+                            {
+                                para.Inlines.Add(new Run(" " + discordMessage.user.username + "   ")
+                                {
+                                    Foreground = Brushes.ForestGreen
+                                });
+                            }
+                        }
+                        else
+                        {
+                            // no formatting
+                            para.Inlines.Add(new Run(" " + discordMessage.user.username + "   "));
+                        }
+                    }
+                  
+
+                    
+
+                    ParseMessage(para, discordMessage.message);
+                    para.Inlines.Add(new LineBreak());
+
+                    rtbDocument.ScrollToEnd();
+                }
+            }));
+        }
+
+        public void WriteToTextBox(List<Messages> discordMessages)
+        {
+            var discordMessages2 = discordMessages.OrderBy(a => a.id).ToList();
+
+            foreach (var discordMessage in discordMessages2)
             {
                 // get channel paragraph
                 var para = GetChannelParagraph(discordMessage.channel);
 
-                // timestamp
-                string stamp = discordMessage.postedOn.ToShortTimeString();
-                para.Inlines.Add(new Run(" " + stamp + " ")
+                if (discordMessage.message.Contains('\n'))
                 {
-                    Foreground = Brushes.Silver
-                });
-
-                // username formatting
-                ClientType ct = new ClientType();
-                if (discordMessage.user.discordId == null || discordMessage.user.discordId == "")
-                    ct = ClientType.medlaunch;
-                else
-                    ct = ClientType.discord;
-
-
-                if (ct == ClientType.discord)
-                {
-                    para.Inlines.Add(new Run(" " + discordMessage.user.username + "   ")
-                    {
-                        Foreground = Brushes.CadetBlue
-                    });
+                    // new line characters
+                    discordMessage.message = discordMessage.message.Replace(Environment.NewLine, "\n\t\t");
+                    //para.Inlines.Add(new Run(" " + "\t\t\t\t"));
+                    //discordMessage.message = discordMessage.message.Replace('\n', '\t');
                 }
-                else if (ct == ClientType.medlaunch)
+
+                else
                 {
-                    // see if this is YOUR username
-                    if (discordMessage.user.username == tbDiscordName.Text)
+                    // timestamp
+                    string stamp = discordMessage.postedOn.ToShortTimeString();
+                    para.Inlines.Add(new Run(" " + stamp + " ")
+                    {
+                        Foreground = Brushes.Silver
+                    });
+
+                    // username formatting
+                    ClientType ct = new ClientType();
+                    if (discordMessage.user.discordId == null || discordMessage.user.discordId == "")
+                        ct = ClientType.medlaunch;
+                    else
+                        ct = ClientType.discord;
+
+
+                    if (ct == ClientType.discord)
                     {
                         para.Inlines.Add(new Run(" " + discordMessage.user.username + "   ")
                         {
-                            Foreground = Brushes.Red
+                            Foreground = Brushes.CadetBlue
                         });
+                    }
+                    else if (ct == ClientType.medlaunch)
+                    {
+                        // see if this is YOUR username
+                        if (discordMessage.user.username == tbDiscordName.Text)
+                        {
+                            para.Inlines.Add(new Run(" " + discordMessage.user.username + "   ")
+                            {
+                                Foreground = Brushes.Red
+                            });
+                        }
+                        else
+                        {
+                            para.Inlines.Add(new Run(" " + discordMessage.user.username + "   ")
+                            {
+                                Foreground = Brushes.ForestGreen
+                            });
+                        }
                     }
                     else
                     {
-                        para.Inlines.Add(new Run(" " + discordMessage.user.username + "   ")
-                        {
-                            Foreground = Brushes.ForestGreen
-                        });
-                    }  
+                        // no formatting
+                        para.Inlines.Add(new Run(" " + discordMessage.user.username + "   "));
+                    }
                 }
-                else
-                {
-                    // no formatting
-                    para.Inlines.Add(new Run(" " + discordMessage.user.username + "   "));
-                }
-                
+
                 ParseMessage(para, discordMessage.message);
                 para.Inlines.Add(new LineBreak());
 
                 rtbDocument.ScrollToEnd();
-
-            }));
+            }
         }
 
         public void ParseMessage(Paragraph para, string message)
