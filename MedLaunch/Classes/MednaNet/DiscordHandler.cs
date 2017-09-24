@@ -28,14 +28,19 @@ namespace MedLaunch.Classes.MednaNet
         public string EndPointAddress { get; set; }
         public string EndPointPort { get; set; }
 
+        public int HistoryInMinutes = -100000;
+
         public bool IsConnected { get; set; }
 
         public bool UsersIsPolling { get; set; }
         public bool ChannelsIsPolling { get; set; }
         public bool MessagesIsPolling { get; set; }
+        public bool MessageDBSync { get; set; }
 
-        public IEnumerable<Channels> Channels { get; set; }
-        public IEnumerable<Users> Users { get; set; }
+        public List<Channels> Channels { get; set; }
+        public List<Users> Users { get; set; }
+        public List<DiscordMessages> MessageList { get; set; }
+        public Dictionary<int, int> LastChannelMessages { get; set; }
 
         public Client Client { get; set; }
         public Installs CurrentInstall = null;
@@ -62,16 +67,24 @@ namespace MedLaunch.Classes.MednaNet
 
             // get visual handler reference
             DVH = MW.DVH;
+
+            Channels = new List<MednaNetAPIClient.Models.Channels>();
+            Users = new List<MednaNetAPIClient.Models.Users>();
+            MessageList = new List<DiscordMessages>();
+
+            LastChannelMessages = new Dictionary<int, int>();
+
             
             // setup polling bools
             UsersIsPolling = false;
             ChannelsIsPolling = false;
             MessagesIsPolling = false;
+            MessageDBSync = false;
             IsConnected = false;
 
             // setup the timer
             Timer.Tick += new EventHandler(Timer_Tick);
-            Timer.Interval = new TimeSpan(0, 0, 2);
+            Timer.Interval = new TimeSpan(0, 0, 5);
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -132,6 +145,7 @@ namespace MedLaunch.Classes.MednaNet
             }
 
             DiscordHandler.Timer.Start();
+            Instance.IsConnected = true;
 
         }
 
@@ -142,7 +156,19 @@ namespace MedLaunch.Classes.MednaNet
 
             GetUsersAsync();
             GetChannelsAsync();
+            ChangeUsernameAsync();
+
+            // allow only one poll of this type at a time
+
+            if (MessagesIsPolling == false)
+            {
+
+                
+            }
+
             GetMessagesAsync();
+
+
         }
 
         public void APIDisconnected(Exception exception)
@@ -203,7 +229,7 @@ namespace MedLaunch.Classes.MednaNet
             try
             {
                 // get channels from MednaNet API
-                Channels = await Client.Channels.GetChannels();
+                Channels = (await Client.Channels.GetChannels()).ToList();
 
                 // update visual handler once await has completed
                 ChannelsIsPolling = false;
@@ -213,6 +239,9 @@ namespace MedLaunch.Classes.MednaNet
                 {
                     DVH.channels.UpdateChannel(c.id, c.channelName);
                 }
+
+                // add invisible channel with ID 0 (for initial display)
+                DVH.channels.UpdateChannel(0, "initChannel");
 
                 // Update the UI
                 DVH.UpdateChannelButtons();
@@ -224,9 +253,78 @@ namespace MedLaunch.Classes.MednaNet
             catch (Exception ex) { APIDisconnected(ex); return; }
         }
 
+        /// <summary>
+        /// Message updating logic
+        /// </summary>
         private async void GetMessagesAsync()
         {
+            
+                
 
+            MessagesIsPolling = true;
+
+            try
+            {
+                // get messages for all channels
+                foreach (var c in Channels)
+                {
+                    // get last id from channel message ids dictionary
+                    int lastId = 0;
+
+                    if (LastChannelMessages.ContainsKey(c.id))
+                    {
+                        lastId = LastChannelMessages[c.id];
+                    }
+
+                    List<Messages> incoming = new List<Messages>();
+                        
+                    // get messages frm API
+                    if (lastId == 0)
+                    {
+                        // no local messageId - get all messages using the timeframe specified
+                        var inc = (await Client.Channels.GetChannelMessagesFrom(c.id, DateTime.Now.AddMinutes(-1000))).ToList();
+                        
+                        var t = inc.OrderBy(a => a.id).ToList().LastOrDefault();
+                        if (t != null)
+                            LastChannelMessages[c.id] = t.id;
+
+                        foreach (var m in inc)
+                        {
+                            DVH.PostMessage(m);
+                        }                 
+                    }
+                    else
+                    {
+                        var inc = (await Client.Channels.GetChannelMessagesAfterMessageId(c.id, lastId)).ToList();
+                        MessagesIsPolling = false;
+                        var t = inc.OrderBy(a => a.id).ToList().LastOrDefault();
+                        if (t != null)
+                            LastChannelMessages[c.id] = t.id;
+
+                        foreach (var m in inc)
+                        {
+                            DVH.PostMessage(m);
+                        }
+                    }
+
+                    MessagesIsPolling = false;
+
+                    /*
+
+                    // order by messageId
+                    incoming = incoming.OrderBy(a => a.id).ToList();
+
+                    // update channel paragraph
+                    for (int i = 0; i < incoming.Count(); i++)
+                    {
+                        DVH.PostMessage(incoming[i]);
+                    }
+                    */
+                }
+            }
+            catch (Exception ex) { APIDisconnected(ex); return; }
+
+            MessagesIsPolling = false;
         }
 
         /// <summary>
@@ -247,6 +345,74 @@ namespace MedLaunch.Classes.MednaNet
                 MednaNetSettings.SetUsername(Username);
             }
         }
-        
+
+
+        /// <summary>
+        /// keeps the sqlite log DB in sync with the local in-memory object
+        /// </summary>
+        private async Task SyncMessageListAsync()
+        {
+            // allow only one poll of this type at a time
+            if (MessageDBSync == true)
+                return;
+
+            MessageDBSync = true;
+
+            try
+            {
+                // get channels from MednaNet API
+                Channels = (await Client.Channels.GetChannels()).ToList();
+
+                // update visual handler once await has completed
+                MessageDBSync = false;
+
+                // update channel list
+                foreach (var c in Channels.OrderBy(a => a.discordId).ToList())
+                {
+                    DVH.channels.UpdateChannel(c.id, c.channelName);
+                }
+
+                // Update the UI
+                DVH.UpdateChannelButtons();
+
+                // make sure at least one channel is selected
+                DVH.CheckChannelSelection();
+
+            }
+            catch (Exception ex) { APIDisconnected(ex); return; }
+        }
+
+
+        public async void SendMessage(string message)
+        {
+            DateTime dt = DateTime.Now;
+
+            // create new API message
+            try
+            {
+                Messages newMessage = await Client.Channels.CreateMessage(DVH.channels.ActiveChannel, new Messages
+                {
+                    channel = DVH.channels.ActiveChannel,
+                    code = InstallKey,
+                    message = message,
+                    //name = "",
+                    postedOn = dt,
+                    user = new MednaNetAPIClient.Models.Users
+                    {
+                        
+                    },
+                    
+                });
+            }
+            catch (Exception ex) { APIDisconnected(ex); return; }
+
+
+            /*
+            Timer.Stop();
+            
+            Timer.Start();
+            */
+        }
+
     }
 }

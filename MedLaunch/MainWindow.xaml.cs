@@ -6292,7 +6292,7 @@ namespace MedLaunch
 
             //DVH.PostMessage(con, DVH.channels.ActiveChannel);
             //DVH.PostFromLocal(con);
-            MednaNetAPI.Instance.SendMessage(con);
+            DiscordHandler.Instance.SendMessage(con);
 
             tbDiscordMessageBox.Text = "";
         }

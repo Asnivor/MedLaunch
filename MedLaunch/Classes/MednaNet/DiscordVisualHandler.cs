@@ -37,6 +37,8 @@ namespace MedLaunch.Classes.MednaNet
 
         private Paragraph paragraph { get; set; }
 
+        private Paragraph initialParagraph { get; set; }
+
         public DiscordChannels channels { get; set; }
         public DiscordUsers users { get; set; }
 
@@ -90,6 +92,7 @@ namespace MedLaunch.Classes.MednaNet
             paragraph = new Paragraph();
             rtbDocument.Document = new FlowDocument(paragraph);
             rtbDocument.IsDocumentEnabled = true;
+            initialParagraph = paragraph;
 
             UpdateChannelButtons();
             UpdateUsers();
@@ -226,6 +229,7 @@ namespace MedLaunch.Classes.MednaNet
             rtbDocument.ScrollToEnd();
         }
 
+
         /// <summary>
         /// update the chatbox
         /// </summary>
@@ -275,7 +279,7 @@ namespace MedLaunch.Classes.MednaNet
                             });
                         }
 
-                        
+
                     }
 
                     else
@@ -294,6 +298,84 @@ namespace MedLaunch.Classes.MednaNet
                 }
 
                 //para.Inlines.Add(discordMessage.message);
+                ParseMessage(para, discordMessage.message);
+                para.Inlines.Add(new LineBreak());
+
+                rtbDocument.ScrollToEnd();
+
+            }));
+        }
+
+        /// <summary>
+        /// Begin sending a message to the chatbox
+        /// </summary>
+        /// <param name="message"></param>
+        public async void PostMessage(MednaNetAPIClient.Models.Messages messages)
+        {
+            // post message on another thread
+            ThreadPool.QueueUserWorkItem(o =>
+            {
+                ChatUpdater(messages);
+            });
+        }
+
+        /// <summary>
+        /// update the chatbox
+        /// </summary>
+        /// <param name="message"></param>
+        private async void ChatUpdater(MednaNetAPIClient.Models.Messages discordMessage)
+        {
+            await mw.Dispatcher.BeginInvoke((Action)(() =>
+            {
+                // get channel paragraph
+                var para = GetChannelParagraph(discordMessage.channel);
+
+                // timestamp
+                string stamp = discordMessage.postedOn.ToShortTimeString();
+                para.Inlines.Add(new Run(" " + stamp + " ")
+                {
+                    Foreground = Brushes.Silver
+                });
+
+                // username formatting
+                ClientType ct = new ClientType();
+                if (discordMessage.user.discordId == null || discordMessage.user.discordId == "")
+                    ct = ClientType.medlaunch;
+                else
+                    ct = ClientType.discord;
+
+
+                if (ct == ClientType.discord)
+                {
+                    para.Inlines.Add(new Run(" " + discordMessage.user.username + "   ")
+                    {
+                        Foreground = Brushes.CadetBlue
+                    });
+                }
+                else if (ct == ClientType.medlaunch)
+                {
+                    // see if this is YOUR username
+                    if (discordMessage.user.username == tbDiscordName.Text)
+                    {
+                        para.Inlines.Add(new Run(" " + discordMessage.user.username + "   ")
+                        {
+                            Foreground = Brushes.Red
+                        });
+                    }
+                    else
+                    {
+                        para.Inlines.Add(new Run(" " + discordMessage.user.username + "   ")
+                        {
+                            Foreground = Brushes.ForestGreen
+                        });
+                    }  
+                }
+                else
+                {
+                    // no formatting
+                    para.Inlines.Add(new Run(" " + discordMessage.user.username + "   "));
+                }
+                
                 ParseMessage(para, discordMessage.message);
                 para.Inlines.Add(new LineBreak());
 
@@ -330,7 +412,7 @@ namespace MedLaunch.Classes.MednaNet
 
                     string mWord = words[i].Replace("<@", "").TrimEnd('>');
 
-                    var user = MednaNetAPI.Instance.Users.Where(a => a.discordId == mWord).FirstOrDefault();
+                    var user = DiscordHandler.Instance.Users.Where(a => a.discordId == mWord).FirstOrDefault();
                     if (user != null)
                     {
                         //para.Inlines.Add("@" + user.username + " ");
@@ -351,7 +433,7 @@ namespace MedLaunch.Classes.MednaNet
 
                     string mWord = words[i].Replace("<#", "").TrimEnd('>');
 
-                    var channel = MednaNetAPI.Instance.Channels.Where(a => a.discordId == mWord).FirstOrDefault();
+                    var channel = DiscordHandler.Instance.Channels.Where(a => a.discordId == mWord).FirstOrDefault();
                     if (channel != null)
                     {
                         //para.Inlines.Add("@" + user.username + " ");
@@ -472,13 +554,22 @@ namespace MedLaunch.Classes.MednaNet
         /// <param name="message"></param>
         public void PostLocalOnlyMessage(string message)
         {
+            // post to initParagraph first
+            initialParagraph.Inlines.Add(new Bold(new Italic(new Run("MedLaunch (local): " + message)))
+            {
+                Foreground = Brushes.DarkOliveGreen
+            });
+            initialParagraph.Inlines.Add(new LineBreak());
+
+            rtbDocument.Document = new FlowDocument(initialParagraph);
+
             // post to all paragraphs
             RefreshChannels();
             for (int i = 0; i < channels.Data.Count(); i++)
             {
                 channels.Data[i].Paragraph.Inlines.Add(new Bold(new Italic(new Run("MedLaunch (local): " + message)))
                 {
-                    Foreground = Brushes.Red
+                    Foreground = Brushes.DarkOliveGreen
                 });
 
                 channels.Data[i].Paragraph.Inlines.Add(new LineBreak());
@@ -699,6 +790,10 @@ namespace MedLaunch.Classes.MednaNet
                 // iterate through each channel
                 for (int i = 0; i < chans.Count(); i++)
                 {
+                    // dont display button for channel with id 0
+                    if (chans[i].ChannelId == 0)
+                        continue;
+
                     // if the channel button already exists, update it
                     var cr = ChannelRadios.Where(a => a.Name == "rbDiscordCh" + chans[i].ChannelId).FirstOrDefault();
                     if (cr != null)
@@ -762,7 +857,15 @@ namespace MedLaunch.Classes.MednaNet
         {
             var chan = channels.Data.Where(a => a.ChannelId == channelId).FirstOrDefault();
             if (chan == null)
+            {
+                rtbDocument.Document = new FlowDocument(new Paragraph());
+                rtbDocument.IsDocumentEnabled = true;
+                rtbDocument.ScrollToEnd();
+                channels.ActiveChannel = 0;
+
                 return;
+            }
+
 
             channels.ActiveChannel = channelId;
 
@@ -781,6 +884,7 @@ namespace MedLaunch.Classes.MednaNet
             if (rb == null)
             {
                 // no channels have been populated yet
+                ChangeChannel(0);
                 return;
             }
 
