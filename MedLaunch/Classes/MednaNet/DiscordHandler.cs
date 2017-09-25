@@ -287,7 +287,7 @@ namespace MedLaunch.Classes.MednaNet
                         DVH.WriteToTextBox(inc.OrderBy(a => a.id).ToList());
 
                         // save to database
-                        SaveToLoggingDatabase(inc);            
+                        //SaveToLoggingDatabase(inc);            
                     }
                     else
                     {
@@ -301,7 +301,7 @@ namespace MedLaunch.Classes.MednaNet
                         DVH.WriteToTextBox(inc.OrderBy(a => a.id).ToList());
 
                         // save to database
-                        SaveToLoggingDatabase(inc);
+                        //SaveToLoggingDatabase(inc);
                     }
 
                     MessagesIsPolling = false;
@@ -312,6 +312,7 @@ namespace MedLaunch.Classes.MednaNet
             MessagesIsPolling = false;
         }
 
+        /*
         public void SaveToLoggingDatabase(List<Messages> messages)
         {
             var lookup = db.DiscordMessages.GetAllMessages();
@@ -358,11 +359,14 @@ namespace MedLaunch.Classes.MednaNet
                 db.SaveChanges();
             }
         }
+        
 
         public List<Messages> GetFromDatabase(int daysHistory)
         {
             var data = DiscordMessages.GetAllMessages().Where(a => a.APITimeReceived > DateTime.Now.AddDays(-daysHistory));
         } 
+
+        */
 
         /// <summary>
         /// checks whether the local Username differs from the CurrentInstall username (i.e., has been changed)

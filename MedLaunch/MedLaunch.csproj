@@ -718,9 +718,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Data\Settings\MednaNetLogging.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Data\Settings\MednaNetLogging.db" />
     <None Include="Data\System\AsniDAT.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -8,6 +8,7 @@ using Microsoft.Data.Sqlite;
 
 namespace MedLaunch.Classes.MednaNet.db
 {
+    /*
     public class MednaLogDbContext : DbContext
     {
         public DbSet<MedLaunch.Classes.MednaNet.db.VersionInfo> VersionInfo { get; set; }
@@ -28,4 +29,5 @@ namespace MedLaunch.Classes.MednaNet.db
             ob.UseSqlite(sq1);
         }
     }
+    */
 }
