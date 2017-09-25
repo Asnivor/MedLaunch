@@ -27,6 +27,7 @@ title: Changelog
 * (BugFix)	-	ROMs within archives files now have their hash detected correctly
 * (Enhancement)	-	Multiple ROMs within archive files can now reside in nested subfolders within the archive itself
 * (Enhancement)	-	DAT lookup database (AsniDAT.db) now contains CRC32 and SHA1 hashes (along with MD5 that it had previously) - this reduces import/scan time for ROMs within archives
+* (Enhancement)	-	Major disc-scanning improvements, just point MedLaunch at the root folder for that system (psx, saturn etc.), and it will parse and import all games (and create .m3u files if they are needed). With multi-disc games, all the files for the game must be in the same folder or subfolder
 
 ##### [0.5.8.0](https://medlaunch.info/releases/0-5-8-0)
 ###### 2017-08-11
