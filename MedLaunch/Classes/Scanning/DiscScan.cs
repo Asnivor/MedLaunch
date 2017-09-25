@@ -18,60 +18,424 @@ using System.Windows;
 namespace MedLaunch.Classes.Scanning
 {
     public class DiscScan : GameScanner
-    {
-        /*
-        public List<SaturnGame> SatGamesList { get; set; }
-        public List<PsxDc> PsxGamesList { get; set; }
-        public List<PsxName> PsxNames { get; set; }
-        */
-        
+    {       
 
         public App _App { get; set; }
 
         public DiscScan()
         {
-            _App = (App)Application.Current;
-
-            // populate GlobalDAT
-
-            /*
-            // populate SatGamesList
-            string satJson = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"Data\System\SaturnGames.json");
-            SatGamesList = JsonConvert.DeserializeObject<List<SaturnGame>>(satJson);
-
-            // populate PsxGamesList
-            string psxJson = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"Data\System\DAT\PSXDATACENTER\PSXDC.json");
-            PsxGamesList = JsonConvert.DeserializeObject<List<PsxDc>>(psxJson);
-
-            // get psxnames
-            string[] names = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"Data\System\ps1titles_us_eu_jp.txt");
-            PsxNames = new List<PsxName>();
-            foreach (string n in names)
-            {
-                if (n.StartsWith("//") || n == "" || n == " ")
-                    continue;
-
-                string[] arr = n.Split(' ');
-                string ser = arr[0];
-                StringBuilder sb = new StringBuilder();
-                for (int i = 1; i < arr.Length; i++)
-                {
-                    sb.Append(arr[i]);
-                    sb.Append(" ");
-                }
-                string nam = sb.ToString().Trim();
-                PsxName na = new PsxName();
-                na.serial = ser;
-                na.name = nam;
-                PsxNames.Add(na);
-            }
-            */
+            _App = (App)Application.Current;            
         }
+
+        // Start Disc scan and import process for specific system
+        public void BeginDiscImportImproved(int systemId, ProgressDialogController dialog)
+        {
+            // get path to root DISC folder
+            string discFolderPath = GetPath(systemId);
+
+            // get allowed file types for this particular system
+            HashSet<string> exts = GSystem.GetAllowedFileExtensions(systemId);
+
+            // get a list of games for this system currently already in the database
+            List<Game> presentGames = (from g in Games
+                                       where g.systemId == systemId
+                                       select g).ToList();
+
+            // check whether presentGames paths are valid - mark as hidden if not
+            foreach (var g in presentGames.Where(a => a.hidden == false))
+            {
+                if (!File.Exists(g.gamePath))
+                {
+                    g.hidden = true;
+                    DisksToUpdate.Add(g);
+                    HiddenStats++;
+                }
+            }
+
+            /* all individual disc game files MUST reside in the same folder, but that folder can be anywhere under the root path */
+
+            // get all subfolders within the system folder
+            if (!Directory.Exists(discFolderPath))
+            {
+                return;
+            }
+
+            // get all the sub-directories
+            List<string> subs = Directory.GetDirectories(discFolderPath).ToList();
+
+            // add the root directory
+            subs.Add(discFolderPath);
+            subs.Reverse();
+
+            int foldersFound = subs.Count;
+            string strBase = "\nScanning Disc Folders: ";
+
+            // iterate through each directory (there could be any number of games in each one)
+            for (int i = 0; i < subs.Count; i++)
+            {
+                dialog.SetMessage(strBase + (i + 1) + " of " + subs.Count);
+
+                if (dialog.IsCanceled == true)
+                    return;
+
+                var discGames = DetermineAllGamesInFolder(subs[i], systemId);
+
+                foreach (var discGame in discGames)
+                {
+                    InsertOrUpdateDisk(discGame, systemId);
+                }                
+            }
+        }
+
+        /// <summary>
+        /// Examine a folder and return a List<List<DiscGameFile> List ( may contain singles or multiples depending on logic)
+        /// </summary>
+        /// <param name="folderPath"></param>
+        /// <param name="sysId"></param>
+        /// <returns></returns>
+        public static List<DiscGameFile> DetermineAllGamesInFolder(string folderPath, int sysId)
+        {
+            // master list to hold the different games found
+            List<DiscGameFile> DetectedGames = new List<DiscGameFile>(); 
+
+            //List<DiscGameFile> list = new List<DiscGameFile>();
+            //DiscGameFile gdf = new DiscGameFile();
+
+            // get all files in the folder (that have extensions we are interested in)
+            List<string> cueFiles = (from a in FileAndFolder.GetFiles(folderPath, false)
+                                     where a.ToLower().Contains(".m3u") ||
+                                     a.ToLower().Contains(".cue") ||
+                                     a.ToLower().Contains(".ccd") ||
+                                     a.ToLower().Contains(".toc")
+                                     select a).ToList();
+
+            var cueFTemp = cueFiles.ToList();
+
+            // deal with m3u's first
+            foreach (string s in cueFTemp.Where(a => a.ToLower().EndsWith(".m3u")))
+            {
+                bool m3uValid = true;
+
+                // interogate the m3u to get referenced cue files
+                DiscGameFile d = new DiscGameFile(s, sysId);
+                var result = ParseTrackSheet(d, CueType.m3u, sysId);
+
+                // check that the referenced cue files are present
+                foreach (var thing in result)
+                {
+                    if (!File.Exists(thing.FullPath))
+                    {
+                        // cuefile could not be found
+                        m3uValid = false;
+                        break;
+                    } 
+
+                    else
+                    {
+                        // file is found - check that the referenced img file exists
+                        if (!IsTrackSheetValid(thing, sysId))
+                        {
+                            m3uValid = false;
+
+                            // remove the cuefiles as well as they are faulty
+                            cueFiles.Remove(thing.FullPath);
+                        }
+                    }
+                }
+
+                if (m3uValid == false)
+                {
+                    // problem with this m3u - remove from cueFiles
+                    cueFiles.Remove(d.FullPath);
+                    continue;
+                }
+
+                // if we get this far, all the referenced cue files in the m3u are valid - remove them from cuefiles
+                foreach (var thing in result)
+                {
+                    cueFiles.Remove(thing.FullPath);
+                }
+
+                // now add to detected games
+                DetectedGames.Add(d);
+
+                // remove from cueFiles
+                cueFiles.Remove(d.FullPath);
+            }
+
+            /* now cueFiles should only have cues remaining that are not referenced by M3U */
+            cueFTemp = cueFiles.ToList();
+
+            // separate the potential multi-disc games
+            List<string> multiGames = new List<string>();
+            List<string> singleGames = new List<string>();
+
+            foreach (string s in cueFiles)
+            {
+                bool isSingle = true;
+
+                for (int disc = 1; disc < 10; disc++)
+                {
+                    if (s.ToLower().Contains("disc " + disc) ||
+                    s.ToLower().Contains("cd " + disc) ||
+                    s.ToLower().Contains("d" + disc) ||
+                    s.ToLower().Contains("c" + disc) ||
+                    s.ToLower().Contains("cd" + disc) ||
+                    s.ToLower().Contains("disk" + disc) ||
+                    s.ToLower().Contains("disk " + disc) ||
+                    s.ToLower().Contains("cd" + disc) ||
+                    s.ToLower().Contains("disc" + disc))
+                    {
+                        // add to multiGames to sort out later
+                        multiGames.Add(s);
+                        // remove from cueFTemp
+                        cueFTemp.Remove(s);
+
+                        isSingle = false;
+                        break;
+                    }
+                }
+                
+                if (isSingle == true)
+                {
+                    singleGames.Add(s);
+                }                
+            }
+
+            // process the single (one-disc) games now
+            Dictionary<string, List<string>> dupeList = new Dictionary<string, List<string>>();
+            List<string> parsedSingles = new List<string>();
+
+            foreach (var s in singleGames)
+            {
+                string nameWithoutExtension = Path.GetFileNameWithoutExtension(s);
+
+                if (dupeList.ContainsKey(nameWithoutExtension))
+                {
+                    // duplicate found
+                    var r = dupeList[nameWithoutExtension];
+                    r.Add(s);
+                    dupeList[nameWithoutExtension] = r;
+                }
+                else
+                {
+                    // no dupe found
+                    dupeList.Add(nameWithoutExtension, new List<string> { s });
+                }
+            }
+
+            // iterate through the new dictionary
+            foreach (var d in dupeList)
+            {
+                if (d.Value.Count == 1)
+                {
+                    // no dupes detected - game can be added
+                    DiscGameFile dg = new DiscGameFile(d.Value.First(), sysId);
+                    // check that cue is valid
+                    if (IsTrackSheetValid(dg, sysId))
+                    {
+                        DetectedGames.Add(dg);
+                    }
+
+                    cueFTemp.Remove(d.Value.First());
+                }
+                else
+                {
+                    // dupes detected
+                    List<DiscGameFile> newDupes = new List<DiscGameFile>();
+
+                    // check each duplicate is valid
+                    foreach (var du in d.Value)
+                    {
+                        DiscGameFile dgf2 = new DiscGameFile(du, sysId);
+
+                        if (IsTrackSheetValid(dgf2, sysId))
+                        {
+                            newDupes.Add(dgf2);
+                        }
+                    }
+
+                    if (newDupes.Count() == 1)
+                    {
+                        DetectedGames.Add(newDupes.First());
+                        cueFTemp.Remove(newDupes.First().FullPath);
+                    }
+                    else if (newDupes.Count > 1)
+                    {
+                        // prioritize .ccd
+                        var look = newDupes.Where(a => a.Extension.ToLower() == ".ccd").FirstOrDefault();
+
+                        if (look != null)
+                        {
+                            DetectedGames.Add(look);
+                            cueFTemp.Remove(look.FullPath);
+                        }
+                        else
+                        {
+                            DetectedGames.Add(newDupes.First());
+                            cueFTemp.Remove(newDupes.First().FullPath);
+                        }
+                    }
+                }
+            }
+
+            // all one disc games in this folder should be processed now - on to multi-disc games
+            List<string[]> gamesWordSplit = new List<string[]>();
+            int maxLength = 0;
+            foreach (var s in multiGames)
+            {
+                string[] work = s.Split(' ');
+                gamesWordSplit.Add(work);
+                if (work.Length >= maxLength)
+                    maxLength = work.Length;
+            }
+
+            Dictionary<string, List<string>> matching = new Dictionary<string, List<string>>();
+
+            // work backwards from the max word length (minus 1 - removing the last word)
+            for (int i = maxLength; i > -1; i--)
+            {
+                // build the test string
+                foreach (var str in gamesWordSplit)
+                {
+                    // get full string
+                    StringBuilder sb1 = new StringBuilder();
+                    for (int arry = 0; arry < str.Length; arry++)
+                    {
+                        if (arry > 0)
+                            sb1.Append(" ");
+
+                        sb1.Append(str[arry]);
+                    }
+                    string full = sb1.ToString();
+
+                    if (i == str.Length)
+                        continue;
+
+                    StringBuilder sb = new StringBuilder();
+                    for (int arry = 0; arry < i; arry++)
+                    {
+                        if (arry > 0)
+                            sb.Append(" ");
+
+                        sb.Append(str[arry]);
+                    }
+                    string part = sb.ToString();
+
+                    if (matching.ContainsKey(part))
+                    {
+                        // match found
+                        List<string> tmp = matching[part];
+                        tmp.Add(full);
+                        matching[part] = tmp.Distinct().ToList();
+                    }
+                    else
+                    {
+                        // check whether full name already exists in another value
+                        bool found = false;
+                        foreach (var v in matching)
+                        {
+                            var lookup = v.Value.Where(a => a == full).ToList().FirstOrDefault();
+                            if (lookup != null)
+                                found = true;
+                        }
+
+                        if (found == false)
+                        {
+                            // no match found - create new entry
+                            List<string> tmp = new List<string> { full };
+                            matching[part] = tmp;
+                        }
+                    }                    
+                }
+            }
+
+            // matching should now contain multidisc games divided up            
+            foreach (var strGame in matching)
+            {
+                List<DiscGameFile> dgList = new List<DiscGameFile>();
+
+                List<string> paths = strGame.Value;
+                var dist = (from a in paths
+                            select a).OrderBy(a => a).Distinct().ToList();
+
+                // create a discgamefile for each cue
+                foreach (var s in dist)
+                {
+                    DiscGameFile dgf3 = new DiscGameFile(s, sysId);
+
+                    // check whether referenced image files are valid
+                    if (IsTrackSheetValid(dgf3, sysId))
+                        dgList.Add(dgf3);
+                }
+
+                if (dgList.Count < 2)
+                {
+                    // 1 or less discs found - skip it
+                    continue;
+                }
+
+                Dictionary<string, List<DiscGameFile>> dupes = new Dictionary<string, List<DiscGameFile>>();
+                foreach (var g in dgList)
+                {
+                    if (dupes.ContainsKey(Path.GetFileNameWithoutExtension(g.FileName)))
+                    {
+                        var t = dupes[Path.GetFileNameWithoutExtension(g.FileName)];
+                        t.Add(g);
+                        dupes[Path.GetFileNameWithoutExtension(g.FileName)] = t;
+                    }
+                    else
+                    {
+                        dupes[Path.GetFileNameWithoutExtension(g.FileName)] = new List<DiscGameFile> { g };
+                    }
+                }
+
+
+
+                // dupes should now tell us about the duplicates
+                dgList = new List<DiscGameFile>();
+                foreach (var k in dupes)
+                {
+                    if (k.Value.Count() == 1)
+                    {
+                        // one result
+                        dgList.Add(k.Value.First());
+                    }
+                    else if (k.Value.Count() > 1)
+                    {
+                        // duplicates found - prioritze ccd
+                        var look = k.Value.Where(a => a.Extension.ToLower() == ".ccd").FirstOrDefault();
+
+                        if (look != null)
+                            dgList.Add(look);
+
+                        else
+                        {
+                            dgList.Add(k.Value.First());
+                        }
+                    }
+                }
+
+                // dglist should now have all required disc files to create an M3U.
+                List<DiscGameFile> newDGList = dgList.OrderBy(a => a.FileName).ToList();
+
+                // create m3u
+                string m3uPath = newDGList.First().FolderPath + "\\" + newDGList.First().GameName + ".m3u";
+                CreateM3uPlaylist(newDGList, m3uPath, true);
+
+                // add m3u to detected games
+                DetectedGames.Add(new DiscGameFile(newDGList.First().FolderPath + "\\" + newDGList.First().GameName + ".m3u", sysId));
+            }
+
+            return DetectedGames;          
+        }
+
+        
 
         // Start Disc scan and import process for specific system
         public void BeginDiscImport(int systemId, ProgressDialogController dialog)
         {            
-            // get path to ROM folder
+            // get path to root DISC folder
             string discFolderPath = GetPath(systemId);
             //MessageBoxResult result2 = MessageBox.Show(romFolderPath);
             // get allowed file types for this particular system
@@ -81,7 +445,6 @@ namespace MedLaunch.Classes.Scanning
             List<Game> presentGames = (from g in Games
                                        where g.systemId == systemId
                                        select g).ToList();
-
             
             // check whether presentGames paths are valid - mark as hidden if not
             foreach (var g in presentGames.Where(a => a.hidden == false))
@@ -97,57 +460,60 @@ namespace MedLaunch.Classes.Scanning
 
             /* disc games at the moment MUST reside in 1st level subfolders within the system folder */
 
-            // get all subfolders within the system folder
-            if (!Directory.Exists(discFolderPath))
-            {
-                return;                
-            }
-                
-            List<string> subs = Directory.GetDirectories(discFolderPath).ToList();
-            if (subs.Count == 0)
+        // get all subfolders within the system folder
+        
+        if (!Directory.Exists(discFolderPath))
+        {
+            return;                
+        }
+
+        List<string> subs = Directory.GetDirectories(discFolderPath).ToList();
+        if (subs.Count == 0)
+            return;
+
+        int foldersFound = subs.Count;
+        string strBase = "\nScanning Game Directory: ";
+
+        // iterate through each sub-directory (should be one game in each)
+        for (int i = 0; i < subs.Count; i++)
+        {
+            //string uiUpdate = strBase + "\nGames Found: " + gamesFound;
+            //dialog.SetMessage(uiUpdate);
+            dialog.SetMessage(strBase + (i + 1) + " of " + subs.Count);
+
+            if (dialog.IsCanceled == true)
                 return;
 
-            int foldersFound = subs.Count;
-            string strBase = "\nScanning Game Directory: ";
+            List<DiscGameFile> game = DetermineDiscFileFromSubFolder(subs[i], systemId);
 
-            // iterate through each sub-directory (should be one game in each)
-            for (int i = 0; i < subs.Count; i++)
+            // if none found skip
+            if (game.Count == 0)
+                continue;
+
+            // if a single sheet file in the List, add this to library
+            if (game.Count == 1)
             {
-                //string uiUpdate = strBase + "\nGames Found: " + gamesFound;
-                //dialog.SetMessage(uiUpdate);
-                dialog.SetMessage(strBase + (i + 1) + " of " + subs.Count);
-
-                if (dialog.IsCanceled == true)
-                    return;
-
-                List<DiscGameFile> game = DetermineDiscFileFromSubFolder(subs[i], systemId);
-
-                // if none found skip
-                if (game.Count == 0)
-                    continue;
-
-                // if a single sheet file in the List, add this to library
-                if (game.Count == 1)
-                {
-                    InsertOrUpdateDisk(game.First(), systemId);
-                    continue;
-                }
-
-                // if multiple, create m3u file
-                if (game.Count > 0)
-                {
-                    
-                    string t = game.First().FolderPath + "\\" + game.First().GameName;
-                    CreateM3uPlaylist(game.OrderBy(a => a.FileName).ToList(), game.First().FolderPath + "\\" + game.First().GameName + ".m3u", true);
-                    // create a new discgamefile for the m3u and add it to library
-                    InsertOrUpdateDisk(new DiscGameFile(game.First().FolderPath + "\\" + game.First().GameName + ".m3u", systemId), systemId);
-                    continue;
-                }
+                InsertOrUpdateDisk(game.First(), systemId);
+                continue;
             }
 
-            //GameListBuilder.UpdateFlag();
+            // if multiple, create m3u file
+            if (game.Count > 0)
+            {
 
+                string t = game.First().FolderPath + "\\" + game.First().GameName;
+                CreateM3uPlaylist(game.OrderBy(a => a.FileName).ToList(), game.First().FolderPath + "\\" + game.First().GameName + ".m3u", true);
+                // create a new discgamefile for the m3u and add it to library
+                InsertOrUpdateDisk(new DiscGameFile(game.First().FolderPath + "\\" + game.First().GameName + ".m3u", systemId), systemId);
+                continue;
+            }
         }
+
+        //GameListBuilder.UpdateFlag();
+
+    }
+
+    
 
         /// <summary>
         /// Manually choose a disc game and import into database/library
@@ -725,7 +1091,6 @@ namespace MedLaunch.Classes.Scanning
                         DiscGameFile dgf = new DiscGameFile(trackSheet.FolderPath + "\\" + l, systemId);
                         // add it to working list
                         working.Add(dgf);
-                        break;
                     }
                     break;
             }
@@ -769,6 +1134,22 @@ namespace MedLaunch.Classes.Scanning
             }
 
             return bin;
+        }
+
+        public static bool IsTrackSheetValid(DiscGameFile trackSheet, int systemId)
+        {
+            var impliedFiles = ParseTrackSheetForImageFiles(trackSheet, systemId);
+
+            if (impliedFiles.Count == 0)
+                return false;
+
+            foreach (var i in impliedFiles)
+            {
+                if (!File.Exists(i.FullPath))
+                    return false;
+            }
+
+            return true;
         }
 
         public static List<DiscGameFile> ParseTrackSheetForImageFiles(DiscGameFile trackSheet, int systemId)

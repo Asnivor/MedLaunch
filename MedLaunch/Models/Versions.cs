@@ -26,12 +26,64 @@ namespace MedLaunch.Models
             LatestCompatMednafenDownloadURL = Versions.GetMednafenCompatibilityMatrix().First().DownloadURL;
         }
 
+        public static List<string> GetDevReleases()
+        {
+            return new List<string>
+            {
+                "0.5.11.0",
+                "0.5.12.0"
+            };
+        }
+
+        public static string GetDevBuild()
+        {
+            string devStatusFile = AppDomain.CurrentDomain.BaseDirectory + @"Data\Settings\DevStatus.txt";
+            if (File.Exists(devStatusFile))
+            {
+                string line = File.ReadAllLines(devStatusFile).FirstOrDefault();
+                if (line != null && line != "0")
+                {
+                    return line;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static List<MednafenChangeHistory> GetMednafenCompatibilityMatrix()
         {
             return
                 new List<MednafenChangeHistory>
                 {
-                    // 0.9.46.1
+                    // 0.9.48
+                    new MednafenChangeHistory
+                    {
+                        Version = "0.9.48",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-0.9.48-win64.zip",
+                        Changes = new List<VersionChange>
+                        {
+
+                        }
+                    },
+
+                    // 0.9.47
+                    new MednafenChangeHistory
+                    {
+                        Version = "0.9.47",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-0.9.47-win64.zip",
+                        Changes = new List<VersionChange>
+                        {
+
+                        }
+                    },
+
+                    // 0.9.46
                     new MednafenChangeHistory
                     {
                         Version = "0.9.46",

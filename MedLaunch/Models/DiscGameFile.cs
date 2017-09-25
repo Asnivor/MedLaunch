@@ -25,11 +25,70 @@ namespace MedLaunch.Models
             // Set Extension
             Extension = System.IO.Path.GetExtension(FullPath).ToLower();
 
-            // Set GameName from parent directory
-            GameName = System.IO.Directory.GetParent(FullPath).Name;
+            // Set GameName 
+            GameName = GetGameName(FileName);
 
             // Set SystemId
             SystemId = systemId;
+        }
+
+        public static string GetGameName(string filename)
+        {
+            string filenameWithoutExt = System.IO.Path.GetFileNameWithoutExtension(filename);
+            string tolow = filenameWithoutExt.ToLower();
+
+            List<string> checks = new List<string>();
+
+            string[] splitass = new string[]
+            {
+                "cd",
+                "disc",
+                "disk",
+                "cd ",
+                "disc ",
+                "disk ",
+                "d",
+                "c",                                
+                "cd",
+                "disc",
+                "disk",
+                "cd ",
+                "disc ",
+                "disk ",
+
+                "CD",
+                "DISC",
+                "DISK",
+                "CD ",
+                "DISC ",
+                "DISK ",
+                "D",
+                "C",
+            };
+
+            for (int i = 1; i < 10; i++)
+            {
+                foreach (var s in splitass)
+                {
+                    checks.Add(s + i);
+                }
+            }
+
+            foreach (var delim in checks)
+            {
+                if (filenameWithoutExt.Contains(delim))
+                {
+                    return StripBullshit(filename, delim).TrimEnd(']').TrimEnd(')').Trim();            
+                }
+            }
+
+            return filenameWithoutExt;
+        }
+
+        public static string StripBullshit(string name, string splitString)
+        {
+            string[] chars = new string[] { splitString };
+            return name.Split(chars, StringSplitOptions.None).First().Trim();
         }
 
         public DiscGameFile(string fullFilePath, int systemId, bool isSingleDisk)
@@ -47,11 +106,14 @@ namespace MedLaunch.Models
             Extension = System.IO.Path.GetExtension(FullPath).ToLower();
 
             // Set GameName from filename
-            GameName = System.IO.Path.GetFileNameWithoutExtension(FullPath);
+            GameName = GameName = GetGameName(FileName);
 
             // Set SystemId
             SystemId = systemId;
         }
+       
+
+        
 
         // methods
 

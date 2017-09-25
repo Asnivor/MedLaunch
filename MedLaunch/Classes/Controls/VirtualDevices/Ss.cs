@@ -177,5 +177,40 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
             DeviceDefinition.PopulateConfig(device);
             return device;
         }
+
+        public static DeviceDefinition Gun(int VirtualPort)
+        {
+            DeviceDefinition device = new DeviceDefinition();
+            device.DeviceName = "SS Light Gun";
+            device.CommandStart = "ss.input.port" + VirtualPort;
+            device.VirtualPort = VirtualPort;
+            device.MapList = new List<Mapping>
+            {
+                new Mapping { Description = "Offscreen Shot(Simulated)", MednafenCommand = device.CommandStart +".gun.offscreen_shot" },
+                new Mapping { Description = "START", MednafenCommand = device.CommandStart +".gun.start" },
+                new Mapping { Description = "Trigger", MednafenCommand = device.CommandStart +".gun.trigger" },
+                new Mapping { Description = "X Axis", MednafenCommand = device.CommandStart +".gun.x_axis" },
+                new Mapping { Description = "Y Axis", MednafenCommand = device.CommandStart +".gun.y_axis" },
+            };
+            DeviceDefinition.PopulateConfig(device);
+            return device;
+        }
+
+        public static DeviceDefinition Mouse(int VirtualPort)
+        {
+            DeviceDefinition device = new DeviceDefinition();
+            device.DeviceName = "SS Mouse";
+            device.CommandStart = "ss.input.port" + VirtualPort;
+            device.VirtualPort = VirtualPort;
+            device.MapList = new List<Mapping>
+            {
+                new Mapping { Description = "Left Button", MednafenCommand = device.CommandStart +".mouse.left" },
+                new Mapping { Description = "Middle Button", MednafenCommand = device.CommandStart +".mouse.middle" },
+                new Mapping { Description = "Right Button", MednafenCommand = device.CommandStart +".mouse.right" },
+                new Mapping { Description = "Start", MednafenCommand = device.CommandStart +".mouse.start" },
+            };
+            DeviceDefinition.PopulateConfig(device);
+            return device;
+        }
     }
 }

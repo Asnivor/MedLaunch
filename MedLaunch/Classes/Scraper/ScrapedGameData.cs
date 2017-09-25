@@ -19,7 +19,11 @@ namespace MedLaunch.Classes.Scraper
         public string Players { get; set; }
         public string Released { get; set; }
         public string Platform { get; set; }
-    }
 
-    
+        public ScrapedGameData()
+        {
+            AlternateTitles = new List<string>();
+            Genres = new List<string>();
+        }
+    }
 }

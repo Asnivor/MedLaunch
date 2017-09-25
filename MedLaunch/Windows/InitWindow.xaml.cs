@@ -17,13 +17,16 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using MedLaunch.Classes;
 using MedLaunch.Models;
-using Asnitech.SQLite;
+using MedLaunch.Common.SQLite;
 using Newtonsoft.Json;
 using System.Data.SQLite;
 using System.Threading;
 using System.Reflection;
 using MedLaunch.Extensions;
 using MedLaunch.Classes.GamesLibrary;
+using MedLaunch.Classes.Scraper;
+using Microsoft.Win32;
+using System.IO;
 
 namespace MedLaunch
 {
@@ -35,8 +38,6 @@ namespace MedLaunch
         public InitWindow()
         {
             InitializeComponent();
-            
-
         }
 
         private const int GWL_STYLE = -16;
@@ -48,12 +49,69 @@ namespace MedLaunch
 
         private void Init()
         {
-            // make sure class libraries are built
-            
-            Asnitech.Launch.Common.Startup.Start();
+            // make sure class libraries are built            
+            MedLaunch.Common.Startup.Start();
 
             // initialise directories if they do not exist
             SetupDirectories.Go();
+
+            /* check that pre-reqs are installed */
+            UpdateStatus("Scanning for pre-requisites...", true);
+
+            UpdateStatus("Visual C++ 2010 x86 redist... ", true);
+            // Visual c++ 2010 x86 (for SlimDX.dll)
+            string keyName = "ProductName";
+            string keyPath = @"SOFTWARE\Classes\Installer\Products";//\1D5E3C0FEDA1E123187686FED06E995A";
+
+            var rootKey = MedLaunch.Common.RegistryHelpers.GetRegistryKey(keyPath);
+
+            // get an array of all installerproduct subkey names
+            string[] subKeys = rootKey.GetSubKeyNames();
+
+            bool isFound = false;
+
+            // iterate through each subkey and see if vcredist x86 is installed
+            foreach (string k in subKeys)
+            {
+                string match = "Microsoft Visual C++ 2010  x86 Redistributable";
+                string newKeyPath = keyPath + @"\" + k;
+                var conString = MedLaunch.Common.RegistryHelpers.GetRegistryValue(newKeyPath, keyName);
+                if (conString != null && conString.ToString().Contains(match))
+                {
+                    isFound = true;
+                    break;
+                }                    
+            }
+
+            if (isFound == true)
+            {
+                // it appears vcredist is installed
+                UpdateStatus("...OK", true);
+            }
+            else
+            {
+                // doesnt appear to be installed
+                UpdateStatus("...NOT FOUND", true);
+                MessageBoxResult r = MessageBox.Show("MedLaunch requires the Microsoft Visual C++ 2010 (x86) Redistributable to be installed and this was NOT detected on your system.\n\nClicking YES will install this before proceeding.\nClicking NO will terminate MedLaunch.", "vcredist_x86.exe not installed", MessageBoxButton.YesNo);
+                if (r == MessageBoxResult.Yes)
+                {
+                    // install
+                    UpdateStatus("Installing vcredist_x86.exe...", true);
+                    string currDir = Directory.GetCurrentDirectory();
+                    string installerPath = currDir + @"\Data\Installers\vcredist_x86.exe";
+
+                    var p = new System.Diagnostics.Process();
+                    p.StartInfo.FileName = installerPath;
+                    p.StartInfo.Arguments = "/passive /norestart";
+                    p.Start();
+                    p.WaitForExit();
+                }
+                else
+                {
+                    // exit medlaunch
+                    Environment.Exit(0);
+                }
+            }
 
             // Check whether database exists
             UpdateStatus("Checking whether there is an existing database present", true);
@@ -132,19 +190,8 @@ namespace MedLaunch
                         }
 
                     }
-                    /*
-                    while (i < 3)
-                    {
-                        // if anything but the 4th number (private build) is greater in the appVersion - database needs to be upgraded
-                        if (Convert.ToInt32(appVersionArr[i]) > Convert.ToInt32(dbVersionArr[i]))
-                        {
-                            // database upgrade needed
-                            upgradeNeeded = true;
-                            break;
-                        }
-                        i++;
-                    }
-                    */
+                    
+                    
                     if (upgradeNeeded == true)
                     {
                         // unhide the init window
@@ -269,6 +316,8 @@ namespace MedLaunch
                 List<Paths> _paths = new List<Paths>();
                 List<Versions> _versions = new List<Versions>();
 
+                List<MednaNetSettings> _mednaNet = new List<MednaNetSettings>();
+
                 /* Process each one */
 
                 foreach (Tab table in dbData.Tables)
@@ -304,6 +353,7 @@ namespace MedLaunch
                             ConfigBaseSettings.SaveToDatabase(_configBaseSettings);
                             
                             break;
+
                         case "ConfigNetplaySettings":
                             List<List<Data>> cfnpsRows = ReturnRows(dbData.Tables, tableName);
                             foreach (List<Data> row in cfnpsRows)
@@ -330,6 +380,7 @@ namespace MedLaunch
                             ConfigNetplaySettings.SaveToDatabase(_configNetplaySettings);
                             
                             break;
+
                         case "ConfigServerSettings":
                             List<List<Data>> cfssRows = ReturnRows(dbData.Tables, tableName);
                             foreach (List<Data> row in cfssRows)
@@ -356,88 +407,7 @@ namespace MedLaunch
                             ConfigServerSettings.SaveToDatabase(_configServerSettings);
                            
                             break;
-                            /*
-                        case "GDBGameData":
-                            List<List<Data>> gdbgdRows = ReturnRows(dbData.Tables, tableName);
-                            foreach (List<Data> row in gdbgdRows)
-                            {
-                                // get the primary key value for this row
-                                var rArr = row.ToArray();
-                                Data data = rArr[0];
-                                int primaryKey = Convert.ToInt32(data.PrimaryKeyValue);
-                                //GDBGameData settings = new GDBGameData();
-                                // get the whole record from the database
-                                GDBGameData settings = GDBGameData.GetGame(primaryKey);
-                                if (settings == null) { settings = new GDBGameData(); }
-                                foreach (Data item in row)
-                                {
-                                    string name = item.ColName;
-                                    string type = item.ColType;
-                                    string value = item.Value;
-                                    PropertyInfo p1 = settings.GetType().GetProperty(name);
-                                    SetPropertyValue(settings, p1, type, value);
-                                }
-                                _gDBGameDatas.Add(settings);
-                            }
-                            UpdateStatus("Init Database Update: Scraped Game Data", true);
-                            GDBGameData.SaveToDatabase(_gDBGameDatas);
-                            
-                            break;
-                        case "GDBLink":
-                            List<List<Data>> gdblinkRows = ReturnRows(dbData.Tables, tableName);
-                            foreach (List<Data> row in gdblinkRows)
-                            {
-                                // get the primary key value for this row
-                                var rArr = row.ToArray();
-                                Data data = rArr[0];
-                                int primaryKey = Convert.ToInt32(data.PrimaryKeyValue);
-                                //GDBLink settings = new GDBLink();
-                                // get the whole record from the database
-                                GDBLink settings = GDBLink.GetLink(primaryKey);
-                                if (settings == null) { settings = new GDBLink(); }
-                                foreach (Data item in row)
-                                {                                    
-                                    string name = item.ColName;
-                                    string type = item.ColType;
-                                    string value = item.Value;
-                                    PropertyInfo p1 = settings.GetType().GetProperty(name);
-                                    SetPropertyValue(settings, p1, type, value);
-                                }
-                                _gDBLinks.Add(settings);
-                            }
-                            UpdateStatus("Init Database Update: TheGamesDB Link Table", true);
-                            GDBLink.SaveToDatabase(_gDBLinks);
-                            
-                            break;
-                            */
-                            /*
-                        case "GDBPlatformGame":
-                            List<List<Data>> gdbpgRows = ReturnRows(dbData.Tables, tableName);
-                            foreach (List<Data> row in gdbpgRows)
-                            {
-                                // get the primary key value for this row
-                                var rArr = row.ToArray();
-                                Data data = rArr[0];
-                                int primaryKey = Convert.ToInt32(data.PrimaryKeyValue);
-                                //GDBPlatformGame settings = new GDBPlatformGame();
-                                // get the whole record from the database
-                                ScraperMaster settings = GDBPlatformGame.GetGame(primaryKey);
-                                if (settings == null) { settings = new GDBPlatformGame(); }
-                                foreach (Data item in row)
-                                {
-                                    string name = item.ColName;
-                                    string type = item.ColType;
-                                    string value = item.Value;
-                                    PropertyInfo p1 = settings.GetType().GetProperty(name);
-                                    SetPropertyValue(settings, p1, type, value);
-                                }
-                                _gDBPlatformGames.Add(settings);
-                            }
-                            UpdateStatus("Init Database Update: TheGamesDB Game List", true);
-                            GDBPlatformGame.SaveToDatabase(_gDBPlatformGames);
-                            
-                            break;
-                            */
+                         
                         case "Game":
                             List<List<Data>> gameRows = ReturnRows(dbData.Tables, tableName);
                             foreach (List<Data> row in gameRows)
@@ -464,6 +434,7 @@ namespace MedLaunch
                             Game.SaveToDatabase(_games, true);
                            
                             break;
+
                         case "GlobalSettings":
                             List<List<Data>> gsRows = ReturnRows(dbData.Tables, tableName);
                             foreach (List<Data> row in gsRows)
@@ -490,6 +461,33 @@ namespace MedLaunch
                             GlobalSettings.SaveToDatabase(_globalSettings);
                             
                             break;
+
+                        case "MednaNetSettings":
+                            List<List<Data>> msRows = ReturnRows(dbData.Tables, tableName);
+                            foreach (List<Data> row in msRows)
+                            {
+                                // get the primary key value for this row
+                                var rArr = row.ToArray();
+                                Data data = rArr[0];
+                                int primaryKey = Convert.ToInt32(data.PrimaryKeyValue);
+                                // get the whole record from the database
+                                MednaNetSettings settingsM = MednaNetSettings.GetGlobals();
+                                if (settingsM == null) { settingsM = new MednaNetSettings(); }
+                                foreach (Data item in row)
+                                {
+                                    string name = item.ColName;
+                                    string type = item.ColType;
+                                    string value = item.Value;
+                                    PropertyInfo p1 = settingsM.GetType().GetProperty(name);
+                                    SetPropertyValue(settingsM, p1, type, value);
+                                }
+                                _mednaNet.Add(settingsM);
+                            }
+                            UpdateStatus("Init Database Update: Global Settings", true);
+                            MednaNetSettings.SetGlobals(_mednaNet.FirstOrDefault());
+
+                            break;
+
                         case "Paths":
                             List<List<Data>> pathRows = ReturnRows(dbData.Tables, tableName);
                             foreach (List<Data> row in pathRows)
@@ -515,6 +513,7 @@ namespace MedLaunch
                             UpdateStatus("Init Database Update: Paths", true);
                             Paths.SaveToDatabase(_paths);
                             break;
+
                         case "Versions":
                             List<List<Data>> verRows = ReturnRows(dbData.Tables, tableName);
                             foreach (List<Data> row in verRows)
@@ -541,9 +540,64 @@ namespace MedLaunch
 
                 // Now we should be done - proceed with main application
 
-                // start re-linking routine
+                // start re-linking routine (copy flatfile scraped text into database if game manual edit is not enabled)
                 UpdateStatus("Re-Linking orphaned scraped data...", true);
-                //GameListBuilder.ReLinkData();
+
+                List<Game> gToUpdate = new List<Game>();
+
+                // get all games from database where manual editing is not enabled and it has a gdbid set
+                var games = Game.GetGames().Where(a => a.ManualEditSet != true && (a.gdbId != null && a.gdbId > 0)).ToList();
+
+                UpdateStatus("Processing " + games.Count().ToString() + " detected games", true);
+                UpdateStatus("Please wait....", true);
+
+                // iterate through each game
+                foreach (Game g in games)
+                {
+                    // attempt to load xml data from disk
+                    ScrapedGameObject o = ScrapeDB.GetScrapedGameObject(g.gameId, g.gdbId.Value);
+
+                    // populate fields
+                    StringBuilder sbAT = new StringBuilder();
+                    if (o.Data.AlternateTitles == null)
+                        o.Data.AlternateTitles = new List<string>();
+
+                    for (int i = 0; i < o.Data.AlternateTitles.Count(); i++)
+                    {
+                        sbAT.Append(o.Data.AlternateTitles[i]);
+                        if (i > 0 && i < (o.Data.AlternateTitles.Count() - 1))
+                            sbAT.Append(", ");
+                    }
+                    g.AlternateTitles = sbAT.ToString();
+
+                    StringBuilder sbGN = new StringBuilder();
+                    if (o.Data.Genres == null)
+                        o.Data.Genres = new List<string>();
+
+                    for (int i = 0; i < o.Data.Genres.Count(); i++)
+                    {
+                        sbGN.Append(o.Data.Genres[i]);
+                        if (i > 0 && i < (o.Data.Genres.Count() - 1))
+                            sbGN.Append(", ");
+                    }
+                    g.Genres = sbGN.ToString();
+
+                    g.Coop = o.Data.Coop;
+                    g.Developer = o.Data.Developer;
+                    g.Publisher = o.Data.Publisher;
+                    g.Overview = o.Data.Overview;
+                    g.Players = o.Data.Players;
+                    g.Year = o.Data.Released;
+                    g.ESRB = o.Data.ESRB;
+                    g.gameName = o.Data.Title;
+
+                    // add game to be updated
+                    gToUpdate.Add(g);
+                }
+
+                // update all games
+                Game.SaveToDatabase(gToUpdate);
+
             }     
         }
 
@@ -560,12 +614,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?) && value != "")
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))
@@ -611,12 +665,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?) && value != "")
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))
@@ -662,12 +716,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?) && value != "")
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))
@@ -714,12 +768,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))
@@ -768,12 +822,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))
@@ -820,12 +874,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?) && value != "")
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))
@@ -871,12 +925,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?) && value != "")
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))
@@ -913,6 +967,7 @@ namespace MedLaunch
                 }
             }
         }
+
         private static void SetPropertyValue(GlobalSettings settings, PropertyInfo p, string type, string value)
         {
             if (p.PropertyType == typeof(string))
@@ -922,12 +977,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?) && value != "")
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))
@@ -964,6 +1019,59 @@ namespace MedLaunch
                 }
             }
         }
+
+        private static void SetPropertyValue(MednaNetSettings settings, PropertyInfo p, string type, string value)
+        {
+            if (p.PropertyType == typeof(string))
+            {
+                var v = Convert.ToString(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(double))
+            {
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(double?) && value != "")
+            {
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(int))
+            {
+                var v = Convert.ToInt32(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(int?) && value != "")
+            {
+                var v = Convert.ToInt32(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(bool))
+            {
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(bool?) && value != "")
+            {
+                var v = Convert.ToBoolean(Convert.ToInt32(value));
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime))
+            {
+                var v = Convert.ToDateTime(value);
+                p.SetValue(settings, v, null);
+            }
+            if (p.PropertyType == typeof(DateTime?))
+            {
+                if (value != "")
+                {
+                    var v = Convert.ToDateTime(value);
+                    p.SetValue(settings, v, null);
+                }
+            }
+        }
+
         private static void SetPropertyValue(Paths settings, PropertyInfo p, string type, string value)
         {
             if (p.PropertyType == typeof(string))
@@ -973,12 +1081,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?) && value != "")
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))
@@ -1024,12 +1132,12 @@ namespace MedLaunch
             }
             if (p.PropertyType == typeof(double))
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(double?) && value != "")
             {
-                var v = Convert.ToDouble(value);
+                var v = Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
                 p.SetValue(settings, v, null);
             }
             if (p.PropertyType == typeof(int))

@@ -11,7 +11,6 @@ using System.Windows;
 
 namespace MedLaunch
 {
-    
     public class MedDataGrid : DataGrid
     {
         public MedDataGrid()

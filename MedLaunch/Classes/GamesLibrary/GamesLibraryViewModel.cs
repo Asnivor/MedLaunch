@@ -225,7 +225,7 @@ namespace MedLaunch.Classes.GamesLibrary
 
         public void UpdateEntries(List<Game> games)
         {
-            List<LibraryDataGDBLink> links = LibraryDataGDBLink.GetLibraryData().ToList();
+            //List<LibraryDataGDBLink> links = LibraryDataGDBLink.GetLibraryData().ToList();
 
             foreach (var game in games)
             {
@@ -237,7 +237,7 @@ namespace MedLaunch.Classes.GamesLibrary
                 using (_App.GamesLibrary.LibraryView.DeferRefresh())
                 {
                     DataCollection.Remove(g);
-                    GamesLibraryModel glm = CreateModelFromGame(game, links);
+                    GamesLibraryModel glm = CreateModelFromGame(game);//, links);
                     DataCollection.Add(glm);
                 }
 
@@ -249,11 +249,11 @@ namespace MedLaunch.Classes.GamesLibrary
 
         public void AddEntries(List<Game> games)
         {
-            List<LibraryDataGDBLink> links = LibraryDataGDBLink.GetLibraryData().ToList();
+            //List<LibraryDataGDBLink> links = LibraryDataGDBLink.GetLibraryData().ToList();
 
             foreach (var game in games)
             {
-                GamesLibraryModel glm = CreateModelFromGame(game, links);
+                GamesLibraryModel glm = CreateModelFromGame(game);//, links);
 
                 DataCollection.Add(glm);
             }
@@ -261,7 +261,7 @@ namespace MedLaunch.Classes.GamesLibrary
 
         public void AddUpdateEntry(Game game)
         {
-            List<LibraryDataGDBLink> links = LibraryDataGDBLink.GetLibraryData().ToList();
+            //List<LibraryDataGDBLink> links = LibraryDataGDBLink.GetLibraryData().ToList();
 
             if (game != null)
             {
@@ -273,7 +273,7 @@ namespace MedLaunch.Classes.GamesLibrary
                 if (search == null)
                 {
                     // game does not exist in the view - add it
-                    GamesLibraryModel glm = CreateModelFromGame(game, links);
+                    GamesLibraryModel glm = CreateModelFromGame(game);//, links);
                     DataCollection.Add(glm);
                 }
                 else
@@ -284,10 +284,12 @@ namespace MedLaunch.Classes.GamesLibrary
             }          
         }
 
-        public static GamesLibraryModel CreateModelFromGame(Game game, List<LibraryDataGDBLink> links)
+        public static GamesLibraryModel CreateModelFromGame(Game game)//, List<LibraryDataGDBLink> links)
         {
+            /*
             if (links == null)
                 links = LibraryDataGDBLink.GetLibraryData().ToList();
+                */
 
             GamesLibraryModel d = new GamesLibraryModel();
             d.ID = game.gameId;
@@ -302,8 +304,8 @@ namespace MedLaunch.Classes.GamesLibrary
             {
                 d.System = GSystem.GetSystemName(game.systemId);
             }
-            
 
+            
 
             d.LastPlayed = DbEF.FormatDate(game.gameLastPlayed);
             d.Favorite = game.isFavorite;
@@ -312,12 +314,14 @@ namespace MedLaunch.Classes.GamesLibrary
 
             if (game.romNameFromDAT != null)
             {
+                /*
                 if (game.romNameFromDAT.Contains("(USA)"))
                     d.Country = "USA";
                 if (game.romNameFromDAT.Contains("(Europe)"))
                     d.Country = "EUR";
                 if (game.romNameFromDAT.Contains("(Japan)"))
                     d.Country = "JPN";
+                    */
             }
 
             d.Flags = game.OtherFlags;
@@ -325,15 +329,39 @@ namespace MedLaunch.Classes.GamesLibrary
             d.Publisher = game.Publisher;
             d.Developer = game.Developer;
             d.Year = game.Year;
+            d.Coop = game.Coop;
+            d.ESRB = game.ESRB;
+            d.Players = game.Players;
+            d.Year = game.Year;
 
+            if (game.ManualEditSet == true)
+            {
+                if (game.gameNameEdited != null && game.gameNameEdited != "")
+                {
+                    d.Game = game.gameNameEdited;
+                }
+            }
+            else
+            {
+                if (game.gameNameFromDAT != null && game.gameNameFromDAT != "")
+                    d.Game = game.gameNameFromDAT;
+                else
+                    d.Game = game.gameName;
+            }
+
+            //d.Game = game.gameName;
+
+            /*
             if (game.gameNameFromDAT != null && game.gameNameFromDAT != "")
                 d.Game = game.gameNameFromDAT;
             else
                 d.Game = game.gameName;
+                */
 
             //d.DatName = game.gameNameFromDAT;
             d.DatRom = game.romNameFromDAT;
 
+            /*
             if (game.gdbId != null && game.gdbId > 0)
             {
                 var link = links.Where(x => x.GDBId == game.gdbId).SingleOrDefault(); // LibraryDataGDBLink.GetLibraryData(game.gdbId.Value);
@@ -351,6 +379,31 @@ namespace MedLaunch.Classes.GamesLibrary
                     d.ESRB = link.ESRB;
                 }
             }
+            */
+            //d.Year = "2914";
+
+            // last minute region detection
+            if ((d.Country == null || d.Country.Trim() == "") && d.Game != null)
+            {                
+                if (d.Game.Contains("(Japan)"))
+                    d.Country = "Japan";
+                if (d.Game.Contains("(Europe)"))
+                    d.Country = "Europe";
+                if (d.Game.Contains("(USA)"))
+                    d.Country = "USA";
+                if (d.Game.Contains("(Usa, Europe)"))
+                    d.Country = "USA, Europe";
+
+                // goodtools
+                if (d.Game.Contains("(W)"))
+                    d.Country = "World";
+                if (d.Game.Contains("(U)"))
+                    d.Country = "USA";
+                if (d.Game.Contains("(As)"))
+                    d.Country = "Asia";
+                if (d.Game.Contains("(E)"))
+                    d.Country = "Europe";
+            }
 
             return d;
         }
@@ -367,14 +420,14 @@ namespace MedLaunch.Classes.GamesLibrary
             {
                 DataCollection.Clear();
 
-                List<LibraryDataGDBLink> links = LibraryDataGDBLink.GetLibraryData().ToList();
+                //List<LibraryDataGDBLink> links = LibraryDataGDBLink.GetLibraryData().ToList();
 
                 var games = (from g in cnt.Game
                                 where g.hidden != true
                                 select g).ToList();
                 foreach (var game in games)
                 {
-                    var g = CreateModelFromGame(game, links);
+                    var g = CreateModelFromGame(game);//, links);
                     if (g != null)
                         DataCollection.Add(g);
                 }

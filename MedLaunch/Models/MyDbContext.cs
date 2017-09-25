@@ -35,8 +35,10 @@ namespace MedLaunch.Models
           */
         public DbSet<LibraryDataGDBLink> LibraryDataGDBLink { get; set; }                       // table that links GDB ids with basic scraped data (for display in the games library datagrid)
 
-          
-        
+        public DbSet<MednaNetSettings> MednaNetSettings { get; set; }                           // table that contains settings for the mednanet api
+
+
+
 
         //public DbSet<MobyPlatformGame> MobyPlatformGame { get; set; }                           // basic list of all moby games per platform
 
@@ -60,10 +62,7 @@ namespace MedLaunch.Models
 
             modelBuilder.Entity<Paths>()
                 .HasKey(c => c.pathId);
-            /*
-            modelBuilder.Entity<GameSystem>()
-                .HasKey(c => c.systemId);
-*/
+
             modelBuilder.Entity<Game>()
                 .HasKey(c => c.gameId);
 
@@ -72,22 +71,12 @@ namespace MedLaunch.Models
 
             modelBuilder.Entity<GDBPlatformGame>()
                 .HasKey(c => c.id);
-            /*
-            modelBuilder.Entity<GDBGameData>()
-                .HasKey(c => c.GdbId);
-                */
-            /*
-            modelBuilder.Entity<GDBLink>()
-                .HasKey(c => c.Id);
-
-            
-*/
-            /*
-            modelBuilder.Entity<MobyPlatformGame>()
-                .HasKey(c => c.Id); */
 
             modelBuilder.Entity<LibraryDataGDBLink>()
                       .HasKey(c => c.GDBId);
+
+            modelBuilder.Entity<MednaNetSettings>()
+                      .HasKey(c => c.Id);
         }
 
 

@@ -33,13 +33,26 @@
 
 **MedLaunch** is a .NET (Windows only) front-end for the excellent [Mednafen](http://mednafen.fobby.net/) multi-system emulator.
 
-Latest Version: 0.5.8.0
+### Production Releases
+* Latest Production Version: 0.5.8.0
+* Direct Production Download: [LATEST](https://downloads.medlaunch.info/latest)
+* Compatible with Mednafen: 0.9.39.x - 0.9.48
 
-Direct Download: [LATEST](https://downloads.medlaunch.info/latest)
+Official production releases happen when the team are happy after testing. The frequency of these releases has decreased over time, so users should look to the dev builds to get new features and compatibility early.
 
-Compatible with Mednafen: 0.9.39.x - 0.9.46
+### Development Releases
+A rolling development version of MedLaunch is now automatically built and released everytime a change is pushed to the dev branch on GitHub.
 
-Documentation: Please see the [REQUIREMENTS](https://medlaunch.info/documentation/en/introduction/requirements) and [QUICK SETUP GUIDE](https://medlaunch.info/documentation/en/introduction/quick-setup-guide) documentation portal pages. 
+* The latest development build can always be found [HERE](https://ci.appveyor.com/project/asnivor/medlaunch/build/artifacts)
+* [![Build status](https://ci.appveyor.com/api/projects/status/4maii9la7yb72bw8/branch/dev?svg=true)](https://ci.appveyor.com/project/Asnivor/medlaunch/branch/dev)
+
+The development releases should usually be stable, but it is advisable to backup your MedLaunch directory before upgrading.
+
+**Note: Development builds do NOT currently appear within GitHub releases and are NOT available through the MedLaunch internal updater**.
+
+### Documentation
+
+Please see the [REQUIREMENTS](https://medlaunch.info/documentation/en/introduction/requirements) and [QUICK SETUP GUIDE](https://medlaunch.info/documentation/en/introduction/quick-setup-guide) documentation portal pages.
 
 Bugs/Suggestions/Feature Requests can be posted on the GitHub [Issue Tracker](https://github.com/Asnivor/MedLaunch/issues), or connect to our [Discord Server](https://discord.gg/nsbanNa) and let us know there.
 
@@ -48,24 +61,23 @@ Bugs/Suggestions/Feature Requests can be posted on the GitHub [Issue Tracker](ht
 * **Local (SQLite) auto-generated database where all settings are saved**
 * **Can import existing mednafen configuration options**
 * **Responsive UI**
-  * Customizable color scheme
-  * Scaleable to aid usability on a wide range of resolutions
-* **Supports versions of Mednafen 0.9.39.x - 0.9.45.x (latest)**
+* Customizable color scheme
+* Scaleable to aid usability on a wide range of resolutions
+* **Supports versions of Mednafen 0.9.39.x - 0.9.48.x (latest)**
 * **Nearly all Mednafen config parameters are supported and configurable through the launcher**
-  * With the exception of control configuration parameters, all config settings are stored internally on per-emulated system basis
-  * On game launch a {system}.cfg file is generated (so that per-system configurations can be utilized outside of MedLaunch)
+* With the exception of control configuration parameters, all config settings are stored internally on per-emulated system basis
+* On game launch a {system}.cfg file is generated (so that per-system configurations can be utilized outside of MedLaunch)
 * **Built-in update checking (with manual ability to grab the latest MedLaunch and supported Mednafen x64 binaries)**
 * **Customizable games library**
-  * Hide/show individual mednafen emulated systems and games library columns
-  * Multi-column sorting and dynamic search
-  * Library sorting and column sizing/positioning state saved on a per-filter basis
-  * Sidebar that shows game information, boxart, screenshots, manuals etc. (once the game has been scraped)
+* Hide/show individual mednafen emulated systems and games library columns
+* Multi-column sorting and dynamic search
+* Library sorting and column sizing/positioning state saved on a per-filter basis
+* Sidebar that shows game information, boxart, screenshots, manuals etc. (once the game has been scraped)
 * **Auto scan and import of ROM based games**
-  * Imports all standard ROM formats that mednafen supports
-  * Extended archive support - will import single or multiple ROMs from within .zip or .7z files
+* Imports all standard ROM formats that mednafen supports
+* Extended archive support - will import single or multiple ROMs from within .zip or .7z files
 * **Auto scan and import of Disc based games (PSX, Saturn, PCFX & PCE-CD)**
-  * All disc cue/image files must reside in game-specific sub-folders below the designated system game folder
-  * Games that do not adhere to this file/folder structure can be imported manually
+  * Multi-disc games must have their files residing in the same directory or sub-directory
   * Auto-generation of .m3u playlist files for multi-disc games
 * **DAT data lookup on import**
   * MedLaunch ships with a DAT database that combines NoIntro, Tosec, PsxDataCenter & Satakore information that enables detailed information (Country, Year, Publisher etc) to be populated in the games library upon import
@@ -91,9 +103,9 @@ This upcoming changes (and many others) can be found in the current roadmap [her
 
 ### Requirements
 * [Microsoft .NET Framework 4.5.2](https://www.microsoft.com/en-gb/download/details.aspx?id=42643)
+* Microsoft Visual C++ 2010 x86 Redistributable (MedLaunch will prompt you to auto-install this if you do not have it)
 * At least [Mednafen version 0.9.39.x](https://mednafen.github.io/releases/) - 64-bit version required for Saturn games
-* Windows 7 and above (may work on Vista but has not been tested)
-* x64 (has not been tested on x86 but should still work on it)
+* Tested on Windows 7 (SP1)/8/8.1/10. It may work on Vista but has not been tested but will certainly NOT run on XP
 
 ### Download
 You can always get the latest release build of MedLaunch on the [GitHub Releases](https://github.com/Asnivor/MedLaunch/releases/latest) page. I am actively working on code in the [Dev Branch](https://github.com/Asnivor/MedLaunch/tree/dev) and you can see the active changes for the next release on the [ChangeLog](https://medlaunch.info/changelog). These pre-release changes will be released when I am happy with them, so please do not ask for builds ahead of the official releases. You can of course get yourself a copy of Visual Studio Community installed and build it yourself from the Master branch.

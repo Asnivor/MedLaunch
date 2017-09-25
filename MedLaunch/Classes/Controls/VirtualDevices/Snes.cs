@@ -36,5 +36,40 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
             DeviceDefinition.PopulateConfig(device);
             return device;
         }
+
+        public static DeviceDefinition Superscope(int VirtualPort)
+        {
+            DeviceDefinition device = new DeviceDefinition();
+            device.DeviceName = "SNES Super Scope";
+            device.CommandStart = "snes.input.port" + VirtualPort;
+            device.VirtualPort = VirtualPort;
+            device.MapList = new List<Mapping>
+            {
+                new Mapping { Description = "Cursor", MednafenCommand = device.CommandStart +".superscope.cursor" },
+                new Mapping { Description = "Offscreen Shot(Simulated)", MednafenCommand = device.CommandStart +".superscope.offscreen_shot" },
+                new Mapping { Description = "Pause", MednafenCommand = device.CommandStart +".superscope.pause" },
+                new Mapping { Description = "Trigger", MednafenCommand = device.CommandStart +".superscope.trigger" },
+                new Mapping { Description = "Turbo", MednafenCommand = device.CommandStart +".superscope.turbo" },
+                new Mapping { Description = "X Axis", MednafenCommand = device.CommandStart +".superscope.x_axis" },
+                new Mapping { Description = "Y Axis", MednafenCommand = device.CommandStart +".superscope.y_axis" },
+            };
+            DeviceDefinition.PopulateConfig(device);
+            return device;
+        }
+
+        public static DeviceDefinition Mouse(int VirtualPort)
+        {
+            DeviceDefinition device = new DeviceDefinition();
+            device.DeviceName = "SNES Mouse";
+            device.CommandStart = "snes.input.port" + VirtualPort;
+            device.VirtualPort = VirtualPort;
+            device.MapList = new List<Mapping>
+            {
+                new Mapping { Description = "Left Button", MednafenCommand = device.CommandStart +".mouse.left" },
+                new Mapping { Description = "Right Button", MednafenCommand = device.CommandStart +".mouse.right" },
+            };
+            DeviceDefinition.PopulateConfig(device);
+            return device;
+        }
     }
 }

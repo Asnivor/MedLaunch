@@ -298,12 +298,26 @@ namespace MedLaunch.Classes
                     Slider slFanrtsPerHost = (Slider)mw.FindName("slFanrtsPerHost");
                     Slider slScreenshotsPerHost = (Slider)mw.FindName("slScreenshotsPerHost");
                     ComboBox comboImageTooltipSize = (ComboBox)mw.FindName("comboImageTooltipSize");
+                    ComboBox cbFormatGameTitles = (ComboBox)mw.FindName("cbFormatGameTitles");
 
                     gs.maxFanarts = slFanrtsPerHost.Value;
                     gs.maxScreenshots = slScreenshotsPerHost.Value;
-                    gs.imageToolTipPercentage = Convert.ToDouble(comboImageTooltipSize.SelectedValue);
+                    gs.imageToolTipPercentage = Convert.ToDouble(comboImageTooltipSize.SelectedValue, System.Globalization.CultureInfo.InvariantCulture);
+                    gs.changeTitleCase = Convert.ToInt32(cbFormatGameTitles.SelectedValue);
 
                     GlobalSettings.SetGlobals(gs);
+                    break;
+
+                case SettingGroup.MednaNetSettings:
+                    MednaNetSettings ms = MednaNetSettings.GetGlobals();
+
+                    Slider slDiscordChatHistory = (Slider)mw.FindName("slDiscordChatHistory");
+                    Slider slApiPollingFrequency = (Slider)mw.FindName("slApiPollingFrequency");
+
+                    ms.ChatHistoryInMinutes = Convert.ToInt32(slDiscordChatHistory.Value, System.Globalization.CultureInfo.InvariantCulture);
+                    ms.PollTimerIntervalInSeconds = Convert.ToInt32(slApiPollingFrequency.Value, System.Globalization.CultureInfo.InvariantCulture);
+
+                    MednaNetSettings.SetGlobals(ms);
                     break;
 
                 case SettingGroup.MednafenPaths:
@@ -356,6 +370,7 @@ namespace MedLaunch.Classes
         ServerSettings,
         MednafenPaths,
         BiosPaths,
-        GlobalSettings
+        GlobalSettings,
+        MednaNetSettings
     }
 }

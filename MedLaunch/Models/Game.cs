@@ -3,6 +3,7 @@ using MedLaunch.Classes.GamesLibrary;
 using Microsoft.Data.Entity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace MedLaunch.Models
         public int gameId { get; set; }
         public string gamePath { get; set; }
         public string gameName { get; set; }
+        public string gameNameEdited { get; set; }
         public string archiveGame { get; set; }
         public string gameNameFromDAT { get; set; }
         public string romNameFromDAT { get; set; }
@@ -26,6 +28,12 @@ namespace MedLaunch.Models
         public string Publisher { get; set; }
         public string Developer { get; set; }
         public string Year { get; set; }
+        public string AlternateTitles { get; set; }
+        public string Genres { get; set; }
+        public string Coop { get; set; }
+        public string ESRB { get; set; }
+        public string Players { get; set; }
+        public string Overview { get; set; }
         public DateTime gameLastPlayed { get; set; }
         public DateTime gameLastFinished { get; set; }
         public int timesPlayed { get; set; }
@@ -40,7 +48,49 @@ namespace MedLaunch.Models
         public bool isDiskBased { get; set; }
         public bool? isScraped { get; set; }
         public int? gdbId { get; set; }
-        public string CRC32 { get; set; }
+        public string CRC32 { get; set; } //actually md5
+        public string CRC { get; set; }
+        public string SHA1 { get; set; }
+
+        public bool? ManualEditSet { get; set; }
+
+        public static void SetManualEdit(int gameId)
+        {
+            using (var romaContext = new MyDbContext())
+            {
+                Game rom = (from r in romaContext.Game
+                            where r.gameId == gameId
+                            select r).SingleOrDefault();
+
+                if (rom != null)
+                {
+                    rom.ManualEditSet = true;
+                }
+
+                // update ROM
+                UpdateRom(rom);
+                romaContext.Dispose();
+            }
+        }
+
+        public static void UnSetManualEdit(int gameId)
+        {
+            using (var romaContext = new MyDbContext())
+            {
+                Game rom = (from r in romaContext.Game
+                            where r.gameId == gameId
+                            select r).SingleOrDefault();
+
+                if (rom != null)
+                {
+                    rom.ManualEditSet = false;
+                }
+
+                // update ROM
+                UpdateRom(rom);
+                romaContext.Dispose();
+            }
+        }
 
         public static Game GetGame(int gameId)
         {
@@ -428,6 +478,69 @@ namespace MedLaunch.Models
             SetGame(game);
             // GameListBuilder.UpdateFlag();
             GamesLibraryVisualHandler.DoGameUpdate(new List<Game> { game });
+        }
+
+        public static List<Game> DeleteGamesFromDisk(List<Game> Games)
+        {
+            // display warning
+            string message = "WARNING: The clicking OK will perminently delete the following games from disk\nThis CANNOT be undone:\n\n";
+            string notmessage = "The following games cannot be deleted (possibly they are CD games, 7zip archives or zip archives with multiple ROMs in):\n\n";
+            List<Game> toDelete = new List<Game>();
+            foreach (var game in Games)
+            {
+                if (game.gamePath.Contains("*/") || game.gamePath.ToLower().Contains(".cue") || game.gamePath.ToLower().Contains(".toc") || game.gamePath.ToLower().Contains(".ccd") || game.gamePath.ToLower().Contains(".m3u"))
+                {
+                    // game cannot be deleted
+                    notmessage += game.gameName + "- (" + game.gamePath + ")\n";
+                }
+                else
+                {
+                    // game can be deleted
+                    message += game.gameName + "- (" + game.gamePath + ")\n";
+                    toDelete.Add(game);
+                }
+                
+            }
+
+            MessageBoxResult result = MessageBox.Show(message + "\n\n" + notmessage, "HERE BE DRAGONS!", MessageBoxButton.OKCancel, MessageBoxImage.Stop);
+            if (result == MessageBoxResult.OK)
+            {
+                // delete the games
+                foreach (var g in toDelete)
+                {
+                    if (File.Exists(ReturnActualGamePath(g)))
+                    {
+                        File.Delete(ReturnActualGamePath(g));
+                    }
+                }
+                return toDelete;
+            }
+            else
+            {
+                // do nothing
+                return new List<Game>();
+            }
+        }
+
+        public static string ReturnActualGamePath(Game game)
+        {
+            string path = string.Empty;
+            string extension = string.Empty;
+            string folderpath = Paths.GetSystemPath(game.systemId);
+
+            // check whether relative or absolute path has been set in the database for this game
+            if (game.gamePath.StartsWith("."))
+            {
+                // path is relative (rom autoimported from defined path) - build path
+                path = folderpath + game.gamePath;
+            }
+            else
+            {
+                // rom or disk has been manually added with full path - return just full path
+                path = game.gamePath;
+            }
+
+            return path;
         }
     }    
 }

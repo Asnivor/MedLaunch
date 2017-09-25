@@ -31,6 +31,8 @@ namespace MedLaunch.Models
         public bool? enableConfigToolTips { get; set; }             // enable tooltip popups on Mednafen config controls
         public bool? enableClearCacheOnExit { get; set; }           // clears the Data\\Cache folder on application exit
 
+        public int changeTitleCase { get; set; }                    // 0 - no change, 1 - CamelCase, 2 - All Caps
+
         // games library expander states
         public bool glGameStats { get; set; }
         public bool glGameInfo { get; set; }
@@ -199,6 +201,8 @@ namespace MedLaunch.Models
                 showGLPublisher = true,
                 showGLYear = true,
 
+                changeTitleCase = 0,
+
                 glFil01 = "3FFF",
                 glFil02 = "3FFF",
                 glFil03 = "3FFF",
@@ -248,6 +252,12 @@ namespace MedLaunch.Models
                 rememberSysWinPositions = false
             };
             return gs;
+        }
+
+        public static int GetChangeTitleCase()
+        {
+            var gs = GetGlobals();
+            return gs.changeTitleCase;
         }
 
         public static double GetBGImageOpacity()
@@ -464,7 +474,7 @@ namespace MedLaunch.Models
             CheckBox chkAllowManuals, CheckBox chkAllowMedia, CheckBox chkSecondaryScraperBackup, RadioButton rbGDB, RadioButton rbMoby, Slider slScreenshotsPerHost, Slider slFanrtsPerHost,
             CheckBox chkAllowUpdateCheck, CheckBox chkBackupMednafenConfig, CheckBox chkSaveSysConfigs, ComboBox comboImageTooltipSize, CheckBox chkLoadConfigsOnStart, CheckBox chkEnableConfigToolTips,
             CheckBox chkshowGLYear, CheckBox chkshowGLESRB, CheckBox chkshowGLCoop, CheckBox chkshowGLDeveloper, CheckBox chkshowGLPublisher, CheckBox chkshowGLPlayers, CheckBox chkEnableClearCacheOnExit, 
-            CheckBox chkrememberSysWinPositions, CheckBox chkHideCountryFilter)
+            CheckBox chkrememberSysWinPositions, CheckBox chkHideCountryFilter, ComboBox cbFormatGameTitles)
         {
             GlobalSettings gs = GetGlobals();
             // update all checkboxes
@@ -491,6 +501,8 @@ namespace MedLaunch.Models
             chkEnableClearCacheOnExit.IsChecked = gs.enableClearCacheOnExit;
 
             comboImageTooltipSize.SelectedValue = gs.imageToolTipPercentage;
+
+            cbFormatGameTitles.SelectedValue = gs.changeTitleCase;
 
             //chkAllBaseSettings.IsChecked = gs.showAllBaseSettings;
             //MessageBox.Show(gs.guiZoom.ToString());

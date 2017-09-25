@@ -5,12 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using MedLaunch.Models;
-using SharpCompress.Archives;
-using SharpCompress.Archives.SevenZip;
-using SharpCompress.Readers;
 using MedLaunch.Classes.Scanning;
-using BizHawk.Emulation.DiscSystem;
-
+using DiscSN;
+using MedLaunch.Common.IO.Compression;
 
 namespace MedLaunch.Classes.IO
 {
@@ -23,82 +20,21 @@ namespace MedLaunch.Classes.IO
         /// <returns></returns>
         public static string GetPSXSerial(string path)
         {
-            //path = @"G:\_Emulation\PSX\iso\Metal Gear Solid - Integral (J) [SLPM-86247]\Metal Gear Solid - Integral (J) (Disc 1) [SLPM-86247].cue";
-
-            int lba = 23;
-            Disc disc = Disc.LoadAutomagic(path);
-
-            if (disc == null)
+            string serial = "";
+            try
             {
-                // unable to mount disc - return null
+                serial = SerialNumber.GetPSXSerial(path);
+            }
+            catch
+            {
+                // exceptions
                 return null;
             }
 
-            var discView = EDiscStreamView.DiscStreamView_Mode1_2048;
-            if (disc.TOC.Session1Format == SessionFormat.Type20_CDXA)
-                discView = EDiscStreamView.DiscStreamView_Mode2_Form1_2048;
-
-            var iso = new ISOFile();
-            bool isIso = iso.Parse(new DiscStream(disc, discView, 0));
-
-            if (isIso)
-            {
-                var appId = System.Text.Encoding.ASCII.GetString(iso.VolumeDescriptors[0].ApplicationIdentifier).TrimEnd('\0', ' ');
-
-                var desc = iso.Root.Children;
-                
-                ISONode ifn = null;
-
-                foreach (var i in desc)
-                {
-                    if (i.Key.Contains("SYSTEM.CNF"))
-                        ifn = i.Value;                        
-                }
-
-                if (ifn == null)
-                {
-                    lba = 23;
-                }
-                else
-                {
-                    lba = Convert.ToInt32(ifn.Offset);
-                }                
-            }
-            else
-            {
-                lba = 23;
-            }
-            
-              
-            DiscIdentifier di = new DiscIdentifier(disc);
-
-            // start by checking sector 23 (as most discs seem to have system.cfg there
-            byte[] data =  di.GetPSXSerialNumber(lba);
-            // take first 32 bytes
-            byte[] data32 = data.ToList().Take(46).ToArray();
-
-            string sS = System.Text.Encoding.Default.GetString(data32);
-
-            if (!sS.Contains("cdrom:"))
-            {
+            if (serial == "")
                 return null;
-            }
-            
-            // get the actual serial number from the returned string
-            string[] arr = sS.Split(new string[] { "cdrom:" }, StringSplitOptions.None);
-            string[] arr2 = arr[1].Split(new string[] { ";1" }, StringSplitOptions.None);
-            string serial = arr2[0].Replace("_", "-").Replace(".", "");
-            if (serial.Contains("\\"))
-                serial = serial.Split('\\').Last();
-            else
-                serial = serial.TrimStart('\\').TrimStart('\\');
 
-            // try and remove any nonsense after the serial
-            string[] sarr2 = serial.Split('\r');
-            if (sarr2.Length > 1)
-                serial = sarr2.First();
-
-            return serial;            
+            return serial;
         }
 
         public static SaturnGame GetSSData(string path)
@@ -158,6 +94,7 @@ namespace MedLaunch.Classes.IO
         public static List<string> SBINumbers { get; set; }
         public static string SBIArchivePath { get; set; }
         public static string PS1TitlesPath { get; set; }
+        public static CompressionResults CompResults { get; set; }
 
         // constructor
         public PsxSBI()
@@ -165,12 +102,25 @@ namespace MedLaunch.Classes.IO
             SBIArchivePath = AppDomain.CurrentDomain.BaseDirectory + @"Data\System\SbiFiles.7z";
             PS1TitlesPath = AppDomain.CurrentDomain.BaseDirectory + @"Data\System\ps1titles_us_eu_jp.txt";
 
-            SBINumbers = new List<string>();            
+            SBINumbers = new List<string>();
 
             // get all availble sbi numbers from the archive
-            List<string> unprocessed = Archiving.GetSbiListFrom7z(SBIArchivePath);
+            Archive arch = new Archive(SBIArchivePath);
+            var results = arch.ProcessArchive(new string[] { ".7z" });
+            CompResults = results;
+            List<string> unprocessed = new List<string>(); //Archiving.GetSbiListFrom7z(SBIArchivePath);
+            foreach (var thing in results.Results)
+            {
+                // strip extension and braces and add to list
+                string tmp = thing.RomName.Replace(".7z", "")
+                    .Replace("[", "")
+                    .Replace("]", "");
 
-            // strip extension and braces
+                SBINumbers.Add(tmp);
+            }
+
+            /*
+            // strip extension and braces and add to list
             foreach (string s in unprocessed)
             {
                 string tmp = s.Replace(".7z", "")
@@ -179,6 +129,7 @@ namespace MedLaunch.Classes.IO
 
                 SBINumbers.Add(tmp);
             }
+            */
         }
 
         public static void InstallSBIFile(DiscGameFile cueFile)
@@ -189,40 +140,40 @@ namespace MedLaunch.Classes.IO
             if (cueFile.ExtraInfo == null || cueFile.ExtraInfo == "")
                 return;
 
-            // open master 7z
-            var archive = ArchiveFactory.Open(SBIArchivePath);
-            string origname = null;
+            string serialNo = cueFile.ExtraInfo;
+            string fileName = "";
 
-            ExtractionOptions exo = new ExtractionOptions
+            // iterate through each detected sbi number
+            foreach (string s in SBINumbers)
             {
-                Overwrite = true
-            };
-
-            foreach (SevenZipArchiveEntry entry in archive.Entries.Where(a => a.Key.Contains(serial)))
-            {
-                if (entry.IsDirectory)
-                    continue;
-
-                origname = entry.Key;
-
-                //extract to temp dir
-                entry.WriteToFile(cueFile.FolderPath + "\\" + origname, exo);
-                break;         
+                if (serialNo.Contains(s))
+                {
+                    // this is the SBI we want - extract it
+                    fileName = "[" + s + "].7z";
+                    Archive.ExtractFile(SBIArchivePath, fileName, cueFile.FolderPath);
+                }
             }
 
-            archive.Dispose();
+            if (fileName == "")
+                return;
 
             // now extract the inner 7z and rename to match cue file
-            var archiveInner = ArchiveFactory.Open(cueFile.FolderPath + "\\" + origname);
-            var e = archiveInner.Entries.FirstOrDefault();
+            Archive a = new Archive(cueFile.FolderPath + "\\" + fileName);
+            var res = a.ProcessArchive(new string[] { ".sbi" });
+            var r = res.Results.FirstOrDefault();
+            if (r == null)
+                return;
 
-            // extract the sbi file to the game folder naming it correctly
-            string sbiname = e.Key;
-            e.WriteToFile(sbiDestPath, exo);
+            Archive.ExtractFile(cueFile.FolderPath + "\\" + fileName, r.FileName, cueFile.FolderPath);
 
-            // cleanup
-            archiveInner.Dispose();
-            File.Delete(cueFile.FolderPath + "\\" + origname);
+            // rename the sbi file to match the cue
+            if (File.Exists(cueFile.FolderPath + "\\" + r.FileName))
+            {
+                File.Move(cueFile.FolderPath + "\\" + r.FileName, sbiDestPath);
+            }
+                        
+            // delete the 7z
+            File.Delete(cueFile.FolderPath + "\\" + fileName);            
         }
 
         public static bool IsSbiAvailable(string psxSerial)

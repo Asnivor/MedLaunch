@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using Asnitech.Launch.Common;
+using MedLaunch.Common;
 using System.IO;
 using MedLaunch.Classes.IO;
 using Microsoft.Win32;
@@ -18,6 +18,7 @@ using WindowScrape.Constants;
 using WindowScrape.Static;
 using WindowScrape.Types;
 using MedLaunch.Classes.Scanning;
+using MedLaunch.Common.IO.Compression;
 
 namespace MedLaunch.Classes
 {
@@ -27,6 +28,8 @@ namespace MedLaunch.Classes
         {}
 
         private MyDbContext db;
+
+        public MainWindow mw { get; set; }
 
         // Constructor
         public GameLauncher(int gameId)
@@ -334,6 +337,44 @@ namespace MedLaunch.Classes
 
         public void RunGame(string cmdArguments, int systemId)
         {
+            /*
+            // check mednafen.exe instruction set
+            InstructionSet medInst = InstructionSetDetector.GetExeInstructionSet(BuildMednafenPath(MednafenFolder));
+            // get operating system type            
+            InstructionSet osInst = InstructionSetDetector.GetOperatingSystemInstructionSet();
+
+            if (osInst == InstructionSet.x86)
+            {
+                if (medInst == InstructionSet.x64)
+                {
+                    MessageBox.Show("You are targetting a 64-bit version of Mednafen on a 32-bit operating system. This will not work.\n\nPlease target a 32-bit (x86) version of Mednafen", "Warning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+
+                if (systemId == 13 && medInst == InstructionSet.x86)
+                {
+                    MessageBox.Show("You are trying to emulate a Sega Saturn game using a 32-bit Mednafen build on a 32-bit operating system. This will not work.\n\nYou are unable to emulate Saturn games on this machine", "Warning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+
+                if (systemId == 13)
+                {
+                    MessageBox.Show("You are trying to emulate a Sega Saturn game using a 32-bit operating system. This will not work.\n\nYou are unable to emulate Saturn games on this machine", "Warning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+            }
+
+            if (osInst == InstructionSet.x64)
+            {
+                if (systemId == 13 && medInst == InstructionSet.x86)
+                {
+                    MessageBox.Show("You are trying to emulate a Sega Saturn game using a 32-bit Mednafen build. This will not work.\n\nPlease target a 64-bit (x64) version of Mednafen", "Warning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+            }
+
+            */
+
             int procId;
 
             bool rememberWinPos = GlobalSettings.GetGlobals().rememberSysWinPositions.Value;
@@ -654,7 +695,7 @@ namespace MedLaunch.Classes
             return MednafenFolder + ".\\mednafen.exe";
         }
 
-        private string BuildFullGamePath(string GamesFolder, string GamePath)
+        public string BuildFullGamePath(string GamesFolder, string GamePath)
         {
             string path = string.Empty;
             string extension = string.Empty;
@@ -663,7 +704,7 @@ namespace MedLaunch.Classes
             if (RomPath.StartsWith("."))
             {
                 // path is relative (rom autoimported from defined path) - build path
-                path = GamesFolder + GamePath;
+                path = GamesFolder + GamePath.TrimStart('.');
             }
             else
             {
@@ -684,7 +725,7 @@ namespace MedLaunch.Classes
                 string archiveFile = arr[1];
 
                 // copy specific rom from archive to cache folder and get cache rom path
-                string cacheRom = Archiving.SetupArchiveChild(archivePath, archiveFile, cacheDir);
+                string cacheRom = Archive.ExtractFile(archivePath, archiveFile, cacheDir); //Archiving.SetupArchiveChild(archivePath, archiveFile, cacheDir);
 
                 if (cacheRom != string.Empty)
                 {
@@ -697,24 +738,44 @@ namespace MedLaunch.Classes
                 // This is a standard archive with no defined link
                 extension = System.IO.Path.GetExtension(path).ToLower();
 
-                if (extension == ".7z")
+                if (extension == ".zip") //zip
+                {
+                    // this should be a zip file with a single rom inside - pass directly to mednafen as is
+                    return path;
+                }
+
+                else if (extension == ".7z")
                 {
                     /* archive detected - extract contents to cache directory and modify path variable accordingly
                      * this is a legacy option really - in case people have a single rom in a .7z file in their library that 
                      * has not been directly referenced in the gamepath */
 
                     // inspect the archive
-                    Archiving arch = new Archiving(path, SystemId);
-                    arch.ProcessArchive();
+                    Archive arch = new Archive(path);
+                    var res = arch.ProcessArchive(null);
 
-                    // get filename
-                    string filename = arch.FileName;
+                    // iterate through
+                    List<CompressionResult> resList = new List<CompressionResult>();
+                    foreach (var v in res.Results)
+                    {
+                        if (GSystem.IsFileAllowed(v.RomName, SystemId))
+                        {
+                            resList.Add(v);
+                        }
+                    }
 
-                    // get filesize
-                    long filesize = arch.FileSize;
+                    if (resList.Count == 0)
+                        return path;
 
+                    // there should only be one result - take the first one
+                    var resFinal = resList.FirstOrDefault();
+
+                    // extract the rom to the cache
+                    string cacheFile = Archive.ExtractFile(path, resFinal.InternalPath, cacheDir);
+
+                    /*
                     // check whether file already exists in cache
-                    string cacheFile = cacheDir + "\\" + filename;
+                    string cacheFile = cacheDir + "\\" + resFinal.FileName;
                     if (File.Exists(cacheFile))
                     {
                         // file exists - check size
@@ -730,12 +791,13 @@ namespace MedLaunch.Classes
                         // extract contents of archive to cache folder
                         arch.ExtractArchive(cacheDir);
                     }
+                    */
 
                     // return the new path to the rom
                     return cacheFile;
                 }
 
-                else //zip
+                else if (extension == ".zip") //zip
                 {
                     // this should be a zip file with a single rom inside - pass directly to mednafen as is
                     return path;

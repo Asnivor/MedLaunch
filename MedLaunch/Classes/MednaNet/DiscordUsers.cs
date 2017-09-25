@@ -14,6 +14,7 @@ namespace MedLaunch.Classes.MednaNet
         {
             Users = new List<DiscordUser>();
 
+            /*
             // temp data
             Users = new List<DiscordUser>
             {
@@ -95,6 +96,7 @@ namespace MedLaunch.Classes.MednaNet
                     IsOnline = true
                 },
             };
+            */
         }
 
         public void UpdateUser(int userId, string userName, ClientType clientType, bool isOnline)

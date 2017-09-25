@@ -27,7 +27,8 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="36" />
                                     <RowDefinition Height="36" />
-                                    <RowDefinition Height="36" />   
+                                    <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
                         </Grid.RowDefinitions>
 
                                 <Image Source="/MedLaunch;component/Data/Graphics/Controllers/md-controller-3button.png" Margin="5">
@@ -107,6 +108,35 @@
                         </ComboBox>
 
                         <Button Name="btnMd2ButtonGamepadConfigure" Margin="5" Grid.Column="3" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center" Grid.Row="2">Configure</Button>
+
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/md-controller-megamouse.png" Margin="5" Grid.Row="3">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+                        <Label Margin="5" Grid.Column="1" VerticalAlignment="Center" Height="25" Grid.Row="3">
+                            Mega Mouse
+                        </Label>
+
+                        <ComboBox Name="cmbMdMegaMouse" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Height="25" VerticalAlignment="Center" Grid.Row="3">
+                            <ComboBoxItem>Virtual Port 1</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 2</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 3</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 4</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 5</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 6</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 7</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 8</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnMdMegaMouseConfigure" Margin="5" Grid.Column="3" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center" Grid.Row="3">Configure</Button>
 
                     </Grid>                            
                         </WrapPanel>

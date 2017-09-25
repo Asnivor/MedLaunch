@@ -54,6 +54,10 @@ namespace MedLaunch.Classes.Scraper
 
         public static void DoScrape(ProgressDialogController controller, Game game, string countString, ScraperSearch gs, bool rescrape)
         {
+            // ignore if manual editing is set
+            if (game.ManualEditSet == true)
+                return;
+
             string gameName = game.gameName;
             int systemId = game.systemId;
             int gameId = game.gameId;
@@ -299,6 +303,79 @@ namespace MedLaunch.Classes.Scraper
             //CreateDatabaseLink(GameId, gameObject.GdbId);
             
             
+        }
+
+        /// <summary>
+        /// Game scraping logic
+        /// </summary>
+        /// <param name="controller"></param>
+        public ScrapedGameObjectWeb ScrapeGameInspector(ProgressDialogController controller)
+        {
+            string message = "";
+
+            // create data object for results that are returned
+            //ScrapeDB glsc = new ScrapeDB();
+            ScrapedGameData gameData = new ScrapedGameData();
+            ScrapedGameObjectWeb gameObject = new ScrapedGameObjectWeb();
+            gameObject.Data = gameData;
+            gameObject.GdbId = MasterRecord.gid;
+
+            // check for manuals
+            if (_GlobalSettings.scrapeManuals == true)
+            {
+                if (gameObject.Manuals == null)
+                    gameObject.Manuals = new List<string>();
+
+                gameObject.Manuals = MasterRecord.Game_Docs;
+            }
+
+
+            // enumerate globalsettings
+            switch (_GlobalSettings.primaryScraper)
+            {
+                case 1:
+                    // gamesdb.net is primary scraper
+                    GDBScraper.ScrapeGame(gameObject, ScraperOrder.Primary, controller, MasterRecord, message);
+                    if (_GlobalSettings.enabledSecondaryScraper == true)
+                        MobyScraper.ScrapeGame(gameObject, ScraperOrder.Secondary, controller, MasterRecord, message);
+                    break;
+                case 2:
+                    // moby is primary scraper
+                    MobyScraper.ScrapeGame(gameObject, ScraperOrder.Primary, controller, MasterRecord, message);
+                    if (_GlobalSettings.enabledSecondaryScraper == true)
+                        GDBScraper.ScrapeGame(gameObject, ScraperOrder.Secondary, controller, MasterRecord, message);
+                    break;
+            }
+
+            if (controller.IsCanceled == true)
+            {
+                controller.CloseAsync();
+                return null;
+            }
+
+            // gameObject should now be populated - create folder structure on disk if it does not already exist
+            controller.SetMessage(message + "Determining local folder structure");
+            ScrapeDB.CreateFolderStructure(gameObject.GdbId);
+
+            // save the object to json
+            controller.SetMessage(message + "Saving game information");
+            ScrapeDB.SaveJson(gameObject);
+
+            // Download all the files
+            if (_GlobalSettings.scrapeBanners == true || _GlobalSettings.scrapeBoxart == true || _GlobalSettings.scrapeFanart == true || _GlobalSettings.scrapeManuals == true ||
+                _GlobalSettings.scrapeMedia == true || _GlobalSettings.scrapeScreenshots == true)
+            {
+                controller.SetMessage(message + "Downloading media");
+                ContentDownloadManager(gameObject, controller, message + "Downloading media...\n");
+            }
+
+
+            // Return data
+            return gameObject;
+            //PopulateLibraryData(GameId, gameObject.GdbId);
+            //CreateDatabaseLink(GameId, gameObject.GdbId);
+
+
         }
 
         public void ScrapeGame(ProgressDialogController controller)
@@ -561,8 +638,41 @@ namespace MedLaunch.Classes.Scraper
 
             // set isScraped flag in Game table
             Game ga = Game.GetGame(gameId);
+
+            // ignore if manual editing is set
+            if (ga.ManualEditSet == true)
+                return;
+
             ga.isScraped = true;
             ga.gdbId = gdbId;
+
+            // populate new extended fields
+            ga.Coop = o.Data.Coop;
+            ga.Developer = o.Data.Developer;
+            ga.ESRB = o.Data.ESRB;
+            ga.Overview = o.Data.Overview;
+            ga.Players = o.Data.Players;
+            ga.Publisher = o.Data.Publisher;
+            ga.Year = o.Data.Released;
+
+            StringBuilder sbAT = new StringBuilder();
+            for (int i = 0; i < o.Data.AlternateTitles.Count(); i++)
+            {
+                sbAT.Append(o.Data.AlternateTitles[i]);
+                if (i < (o.Data.AlternateTitles.Count() - 1))
+                    sbAT.Append(", ");
+            }
+            ga.AlternateTitles = sbAT.ToString();
+
+            StringBuilder sbGE = new StringBuilder();
+            for (int i = 0; i < o.Data.AlternateTitles.Count(); i++)
+            {
+                sbGE.Append(o.Data.AlternateTitles[i]);
+                if (i < (o.Data.AlternateTitles.Count() - 1))
+                    sbGE.Append(", ");
+            }
+            ga.AlternateTitles = sbGE.ToString();
+
             Game.SetGame(ga);
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace MedLaunch._Debug.DATDB
 {
@@ -39,7 +40,7 @@ namespace MedLaunch._Debug.DATDB
             using (var context = new AsniDATAdminDbContext())
             {
                 var cData = (from g in context.DAT_Rom
-                             select g);
+                             select g).AsNoTracking();
                 return cData.ToList();
             }
         }
@@ -109,46 +110,52 @@ namespace MedLaunch._Debug.DATDB
             // create temp objects pre-database actions
             List<DAT_Rom> toAdd = new List<DAT_Rom>();
             List<DAT_Rom> toUpdate = new List<DAT_Rom>();
+            
+            // iterate through each incoming rom
+            foreach (var r in roms)
+            {
+                // attempt rom lookup in current
+                DAT_Rom l = (from a in current
+                                where a.md5 == r.md5 && a.pid == r.pid
+                                select a).ToList().FirstOrDefault();
+
+                if (l == null)
+                {
+                    // no entry found
+                    toAdd.Add(r);
+                }
+                else
+                {
+                    // entry found - update required fields
+                    DAT_Rom dr = r;
+                    dr.gid = l.gid;
+                    dr.rid = l.rid;
+
+                    toUpdate.Add(dr);
+                }
+            }
+
 
             using (var db = new AsniDATAdminDbContext())
             {
-                // iterate through each incoming rom
-                foreach (var r in roms)
-                {
-                    // attempt rom lookup in current
-                    DAT_Rom l = (from a in current
-                                 where a.md5 == r.md5 && a.pid == r.pid
-                                 select a).SingleOrDefault();
-
-                    if (l == null)
-                    {
-                        // no entry found
-                        toAdd.Add(r);
-                    }
-                    else
-                    {
-                        // entry found - update required fields
-                        DAT_Rom dr = r;
-                        dr.gid = l.gid;
-                        dr.rid = l.rid;
-
-                        toUpdate.Add(dr);
-                    }
-                }
+                // check for duplicate keys
+                var distinctToAdd = toAdd.GroupBy(x => x.rid).Select(g => g.OrderByDescending(x => x.rid).First());
+                var distinctToUpdate = toUpdate.GroupBy(x => x.rid).Select(g => g.OrderByDescending(x => x.rid).First());
 
                 // update existing entries
-                db.DAT_Rom.UpdateRange(toUpdate);
+                db.DAT_Rom.UpdateRange(distinctToUpdate);
                 // add new entries
-                db.DAT_Rom.AddRange(toAdd);
+                db.DAT_Rom.AddRange(distinctToAdd);
 
                 db.SaveChanges();
 
-                added = toAdd.Count();
-                updated = toUpdate.Count();
+                added = distinctToAdd.Count();
+                updated = distinctToUpdate.Count();
 
-                return new int[] { added, updated};
+                return new int[] { added, updated };
             }
-        }
+
+       }
 
     }
 }

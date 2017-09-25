@@ -197,6 +197,9 @@ namespace MedLaunch.Classes.TheGamesDB
             wo.Timeout = 30000;
             string result = wo.ApiCall();
 
+            if (result == "ERROR")
+                return null;
+
             // save to xml locally
             //GamesLibraryScrapedContent glsc = new Classes.GamesLibraryScrapedContent();
             //glsc.CreateFolderStructure(ID);

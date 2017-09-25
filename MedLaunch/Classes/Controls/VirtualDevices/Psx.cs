@@ -168,5 +168,58 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
             DeviceDefinition.PopulateConfig(device);
             return device;
         }
+
+        public static DeviceDefinition GunCon(int VirtualPort)
+        {
+            DeviceDefinition device = new DeviceDefinition();
+            device.DeviceName = "PSX GunCon Controller";
+            device.CommandStart = "psx.input.port" + VirtualPort;
+            device.VirtualPort = VirtualPort;
+            device.MapList = new List<Mapping>
+            {
+                new Mapping { Description = "A", MednafenCommand = device.CommandStart +".guncon.a" },
+                new Mapping { Description = "B", MednafenCommand = device.CommandStart +".guncon.b" },
+                new Mapping { Description = "Offscreen Shot(Simulated)", MednafenCommand = device.CommandStart +".guncon.offscreen_shot" },
+                new Mapping { Description = "Trigger", MednafenCommand = device.CommandStart +".guncon.trigger" },
+                new Mapping { Description = "X Axis", MednafenCommand = device.CommandStart +".guncon.x_axis" },
+                new Mapping { Description = "Y Axis", MednafenCommand = device.CommandStart +".guncon.y_axis" },
+            };
+            DeviceDefinition.PopulateConfig(device);
+            return device;
+        }
+
+        public static DeviceDefinition Justifier(int VirtualPort)
+        {
+            DeviceDefinition device = new DeviceDefinition();
+            device.DeviceName = "PSX Konami Justifier";
+            device.CommandStart = "psx.input.port" + VirtualPort;
+            device.VirtualPort = VirtualPort;
+            device.MapList = new List<Mapping>
+            {
+                new Mapping { Description = "O", MednafenCommand = device.CommandStart +".justifier.o" },                
+                new Mapping { Description = "Offscreen Shot(Simulated)", MednafenCommand = device.CommandStart +".guncon.offscreen_shot" },
+                new Mapping { Description = "Start", MednafenCommand = device.CommandStart +".justifier.start" },
+                new Mapping { Description = "Trigger", MednafenCommand = device.CommandStart +".justifier.trigger" },
+                new Mapping { Description = "X Axis", MednafenCommand = device.CommandStart +".justifier.x_axis" },
+                new Mapping { Description = "Y Axis", MednafenCommand = device.CommandStart +".justifier.y_axis" },
+            };
+            DeviceDefinition.PopulateConfig(device);
+            return device;
+        }
+
+        public static DeviceDefinition Mouse(int VirtualPort)
+        {
+            DeviceDefinition device = new DeviceDefinition();
+            device.DeviceName = "PSX Mouse";
+            device.CommandStart = "psx.input.port" + VirtualPort;
+            device.VirtualPort = VirtualPort;
+            device.MapList = new List<Mapping>
+            {
+                new Mapping { Description = "Left Button", MednafenCommand = device.CommandStart +".mouse.left" },
+                new Mapping { Description = "Right Button", MednafenCommand = device.CommandStart +".mouse.right" },
+            };
+            DeviceDefinition.PopulateConfig(device);
+            return device;
+        }
     }
 }

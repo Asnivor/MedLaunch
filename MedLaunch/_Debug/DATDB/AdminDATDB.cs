@@ -434,7 +434,7 @@ namespace MedLaunch._Debug.DATDB
 
                     controller.SetMessage(output + "Number of games to process: " + numGames + "\nFixed: " + gWorking.Count() + "\nSkipped: " + skipped);
 
-                    bool updateNeeded = false;
+                    //bool updateNeeded = false;
 
                     // lookup names for this game
                     var searchAll = (from a in scrapes
@@ -452,7 +452,7 @@ namespace MedLaunch._Debug.DATDB
                         if (yearSearch != null)
                         {
                             g.year = yearSearch.GDBYear;
-                            updateNeeded = true;
+                            //updateNeeded = true;
                             gWorking.Add(g);
                         } 
                         else
@@ -487,6 +487,79 @@ namespace MedLaunch._Debug.DATDB
             }
 
         }
+
+        public async void ImportCRC32Only(ProviderType providerType, int platformId)
+        {
+            string providerName = "All Platforms";
+            if (platformId > 0)
+                providerName = DAT_Provider.GetProviders().Where(a => a.datProviderId == platformId).FirstOrDefault().providerName;
+
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel Import",
+                AnimateShow = false,
+                AnimateHide = false
+            };
+
+            string output = "Scanning local DAT files for CRC32:  " + providerName + "\n";
+
+            var controller = await mw.ShowProgressAsync("DAT Importer", output, true, settings: mySettings);
+            controller.SetCancelable(true);
+            controller.SetIndeterminate();
+            await Task.Delay(1000);
+
+            // start import
+            await Task.Run(() =>
+            {
+                // setup working list object
+                List<DAT_Rom> roms = new List<DAT_Rom>();
+
+                // populate roms based on provider
+                switch (providerType)
+                {
+                    case ProviderType.NoIntro:
+                        Platforms.NOINTRO.Models.NoIntroCollection nointro = new Platforms.NOINTRO.Models.NoIntroCollection(platformId);
+                        roms = nointro.Data;
+                        break;
+
+                    case ProviderType.ToSec:
+                        Platforms.TOSEC.Models.ToSecCollection tosec = new Platforms.TOSEC.Models.ToSecCollection(platformId);
+                        roms = tosec.Data;
+                        break;
+
+                    case ProviderType.ReDump:
+                        break;
+
+                    case ProviderType.PsxDataCenter:
+                        Platforms.PSXDATACENTER.Models.PsxDataCenterCollection psxdc = new Platforms.PSXDATACENTER.Models.PsxDataCenterCollection();
+                        roms = psxdc.Data;
+                        break;
+
+                    case ProviderType.Satakore:
+                        Platforms.SATAKORE.Models.SatakoreCollection saturn = new Platforms.SATAKORE.Models.SatakoreCollection();
+                        roms = saturn.Data;
+                        break;
+                }
+
+                controller.SetMessage(output + roms.Count + " Separate ROM files scraped. Starting database import procedure");
+
+                int[] result = DAT_Rom.SaveToDatabase(roms);
+                output = "ROMs Added: " + result[0] + "\nROMs Updated/Skipped: " + result[1];
+            });
+
+            await controller.CloseAsync();
+
+            if (controller.IsCanceled)
+            {
+                await mw.ShowMessageAsync("DAT Builder", "Import Cancelled");
+            }
+            else
+            {
+                await mw.ShowMessageAsync("DAT Builder", "Import Completed\n\n" + output);
+            }
+
+        }
+
 
         /// <summary>
         /// Sanitise a game name string

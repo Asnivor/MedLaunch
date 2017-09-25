@@ -48,7 +48,20 @@ namespace MedLaunch
             int portNum = Convert.ToInt32(selectedString.Replace("Virtual Port ", ""));
 
             // Get device definition for this controller
-            DeviceDefinition dev = Nes.GamePad(portNum);
+            DeviceDefinition dev = new DeviceDefinition();
+
+            switch (name)
+            {
+                case "NesGamepad":
+                    dev = Nes.GamePad(portNum);
+                    break;
+                case "NesZapper":
+                    dev = Nes.Zapper(portNum);
+                    break;
+                default:
+                    return;
+            }
+
             mw.ControllerDefinition = dev;
 
             // launch controller configuration window

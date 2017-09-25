@@ -19,7 +19,7 @@ using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Migrations;
 using MedLaunch.Models;
 using MedLaunch.Classes;
-using Asnitech.Launch.Common;
+using MedLaunch.Common;
 using Ookii.Dialogs;
 using Ookii.Dialogs.Wpf;
 using System.ComponentModel;
@@ -59,6 +59,10 @@ using MedLaunch.Classes.Scraper.PSXDATACENTER;
 using System.Windows.Threading;
 using MedLaunch._Debug.ScrapeDB.ReplacementDocs;
 using MedLaunch.Classes.MednaNet;
+using ucon64_wrapper;
+using System.Windows.Interactivity;
+using MedLaunch.Common.Eventing.Listeners;
+using MedLaunch.Common.IO.Compression;
 
 namespace MedLaunch
 {
@@ -70,6 +74,9 @@ namespace MedLaunch
         public ObservableCollection<GamesLibraryModel> dg { get; set; }
         public bool SettingsDirtyFlag { get; set; }
         public string LaunchString { get; set; }
+
+        public Game InspGame { get; set; }  // initial game data when opening the game inspection window
+        public Game InspGameScrape { get; set; }    // game object returned after scraping within the inspection window
 
         public string[] DiscArray { get; set; }
         public int DiscSelected { get; set; }
@@ -91,6 +98,8 @@ namespace MedLaunch
 
         public DiscordVisualHandler DVH { get; set; }
 
+        public int CaseConvert { get; set; }
+
         /// <summary>
         /// public instance of the mahapps progressdialogcontroller
         /// </summary>
@@ -102,6 +111,8 @@ namespace MedLaunch
         public MainWindow()
         {            
             InitializeComponent();
+
+            
 
             DownloadComplete = false;
 
@@ -143,10 +154,23 @@ namespace MedLaunch
             // get application version
             string appVersion = Versions.ReturnApplicationVersion();
 
+            string devBuildNo = Versions.GetDevBuild();
+            /*
+            foreach (string de in Versions.GetDevReleases())
+            {
+                if (de == appVersion)
+                    isDevBuild = true;
+            }
+            */
+
             // set title
             string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
-            this.Title = "MedLaunch (v" + appVersion + ") - Windows Front-End for Mednafen"; 
-            
+
+            if (devBuildNo == null)
+                this.Title = "MedLaunch (v" + appVersion + ") - Windows Front-End for Mednafen"; 
+            else
+                this.Title = "MedLaunch (v" + appVersion + ") - DevBuild-" + devBuildNo + " - Windows Front-End for Mednafen";
+
             rightMenuLabel.Text = "(Compatible Mednafen v" + Versions.GetMednafenCompatibilityMatrix().Last().Version + " - v" + Versions.GetMednafenCompatibilityMatrix().First().Version + ")";
 
             // Startup checks
@@ -164,11 +188,13 @@ namespace MedLaunch
             GlobalSettings.LoadGlobalSettings(chkEnableNetplay, chkEnableSnes_faust, chkEnablePce_fast, gui_zoom_combo, chkMinToTaskbar, chkHideSidebar,
                chkAllowBanners, chkAllowBoxart, chkAllowScreenshots, chkAllowFanart, chkPreferGenesis, chkAllowManuals, chkAllowMedia, chkSecondaryScraperBackup,
                rbGDB, rbMoby, slScreenshotsPerHost, slFanrtsPerHost, chkAllowUpdateCheck, chkBackupMednafenConfig, chkSaveSysConfigs, comboImageTooltipSize, chkLoadConfigsOnStart, chkEnableConfigToolTips,
-               chkshowGLYear, chkshowGLESRB, chkshowGLCoop, chkshowGLDeveloper, chkshowGLPublisher, chkshowGLPlayers, chkEnableClearCacheOnExit, chkrememberSysWinPositions, chkHideCountryFilter);
+               chkshowGLYear, chkshowGLESRB, chkshowGLCoop, chkshowGLDeveloper, chkshowGLPublisher, chkshowGLPlayers, chkEnableClearCacheOnExit, chkrememberSysWinPositions, chkHideCountryFilter, cbFormatGameTitles);
             //gui_zoom.Value = Convert.ToDouble(gui_zoom_combo.SelectedValue);
             GlobalSettings gs = GlobalSettings.GetGlobals();
             mainScaleTransform.ScaleX = Convert.ToDouble(gs.guiZoom);
             mainScaleTransform.ScaleY = Convert.ToDouble(gs.guiZoom);
+
+            CaseConvert = gs.changeTitleCase;
 
             // load netplay settings for netplay page
             ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
@@ -179,6 +205,9 @@ namespace MedLaunch
             
             SettingsVisualHandler.PopulateServers(lvServers);
             SettingsVisualHandler.ServerSettingsInitialButtonHide();
+
+            // load mednanet settings
+            MednaNetSettings.PopulateUISettings(this);
 
             // Config Tab
 
@@ -323,10 +352,16 @@ namespace MedLaunch
         }
         private void gui_zoom_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            double value = Convert.ToDouble((sender as ComboBox).SelectedValue);
+            var val = (sender as ComboBox).SelectedValue;
+            double value = 0;
+            if (val != null)
+            {
+                value = double.Parse(val.ToString(), System.Globalization.CultureInfo.InvariantCulture); //Convert.ToDouble((sender as ComboBox).SelectedValue);
+            }
+
             //MessageBox.Show(value.ToString());
             //gui_zoom.Value = value;
-            if (Convert.ToDouble(value) > 0)
+            if (value > 0)
             {
                 GlobalSettings.UpdateGuiZoom(value);
             }
@@ -823,7 +858,7 @@ namespace MedLaunch
 
                        
                         // Start ROM scan for this system
-                        ds.BeginDiscImport(s.systemId, controller);
+                        ds.BeginDiscImportImproved(s.systemId, controller);
                        
 
                         //output += ".....Completed\n\n";
@@ -1900,8 +1935,11 @@ namespace MedLaunch
         // Path Page button clicks
         private void btnPathMednafen_Click(object sender, RoutedEventArgs e)
         {
+            //System.Windows.Forms.FolderBrowserDialog path = new System.Windows.Forms.FolderBrowserDialog();
+            
             VistaFolderBrowserDialog path = new VistaFolderBrowserDialog();
             path.ShowNewFolderButton = true;
+            
             path.Description = "Select Mednafen Directory";
             path.ShowDialog();
 
@@ -2239,6 +2277,72 @@ namespace MedLaunch
 
             // refresh library view
             //GameListBuilder.UpdateFlag();
+            GamesLibraryVisualHandler.RefreshGamesLibrary();
+        }
+
+        private void DeleteRomFromDisk_Click(object sender, RoutedEventArgs e)
+        {
+            GamesLibraryModel drv = (GamesLibraryModel)dgGameList.SelectedItem;
+            int romId = drv.ID;
+            Game game = Game.GetGame(romId);
+
+            var g = Game.DeleteGamesFromDisk(new List<Game> { game });
+
+            if (g.Count() > 0)
+            {
+                // delete from library
+                Game.DeleteGame(g.First());
+            }
+
+            // refresh library view
+            //GameListBuilder.UpdateFlag();
+            GamesLibraryVisualHandler.RefreshGamesLibrary();
+        }
+
+        private void DeleteRomsFromDisk_Click(object sender, RoutedEventArgs e)
+        {
+            int numRows = dgGameList.SelectedItems.Count;
+
+            if (numRows == 0)
+                return;
+            else if (numRows == 1)
+            {
+                GamesLibraryModel drv = (GamesLibraryModel)dgGameList.SelectedItem;
+                int romId = drv.ID;
+                Game game = Game.GetGame(romId);
+                var g = Game.DeleteGamesFromDisk(new List<Game> { game });
+                if (g.Count() > 0)
+                {
+                    // delete from library
+                    Game.DeleteGame(g.First());
+                }
+            }
+            else
+            {
+                var rs = dgGameList.SelectedItems;
+                List<GamesLibraryModel> rows = new List<GamesLibraryModel>();
+                foreach (GamesLibraryModel row in rs)
+                {
+                    rows.Add(row);
+                }
+
+                List<Game> games = new List<Game>();
+
+                foreach (GamesLibraryModel row in rows)
+                {
+                    int id = row.ID;
+                    Game game = Game.GetGame(id);
+                    games.Add(game);
+                }
+                var r = Game.DeleteGamesFromDisk(games);
+                if (r.Count > 0)
+                {
+                    Game.DeleteGames(r);
+                }
+            }
+
+            // refresh library view
+            // GameListBuilder.UpdateFlag();
             GamesLibraryVisualHandler.RefreshGamesLibrary();
         }
 
@@ -2938,7 +3042,7 @@ namespace MedLaunch
                 GlobalSettings gs = GlobalSettings.GetGlobals();
                 gs.maxFanarts = slFanrtsPerHost.Value;
                 gs.maxScreenshots = slScreenshotsPerHost.Value;
-                gs.imageToolTipPercentage = Convert.ToDouble(comboImageTooltipSize.SelectedValue);
+                gs.imageToolTipPercentage = Convert.ToDouble(comboImageTooltipSize.SelectedValue, System.Globalization.CultureInfo.InvariantCulture);
                 GlobalSettings.SetGlobals(gs);
             });
 
@@ -3567,10 +3671,12 @@ namespace MedLaunch
             // extract download to current mednafen folder
             string meddir = Paths.GetPaths().mednafenExe;
 
-            Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
+            //Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
+            
             try
             {
-                arch.ExtractArchiveZipOverwrite(meddir);
+                //arch.ExtractArchiveZipOverwrite(meddir);
+                Archive.ExtractEntireZip(downloadsFolder + "\\" + fName, meddir);
             }
             catch {
                 return false;
@@ -3651,10 +3757,11 @@ namespace MedLaunch
                         // extract download to current mednafen folder
                         string meddir = Paths.GetPaths().mednafenExe;
 
-                        Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
+                        //Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
                         try
                         {
-                            arch.ExtractArchiveZipOverwrite(meddir);
+                            //arch.ExtractArchiveZipOverwrite(meddir);
+                            Archive.ExtractEntireZip(downloadsFolder + "\\" + fName, meddir);
                         }
                         catch { }
                     }
@@ -3692,10 +3799,11 @@ namespace MedLaunch
                 // extract download to current mednafen folder
                 string meddir = Paths.GetPaths().mednafenExe;
 
-                Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
+                //Archiving arch = new Archiving(downloadsFolder + "\\" + fName);
                 try
                 {
-                    arch.ExtractArchiveZipOverwrite(meddir);
+                    //arch.ExtractArchiveZipOverwrite(meddir);
+                    Archive.ExtractEntireZip(downloadsFolder + "\\" + fName, meddir);
                 }
                 catch { }
                 
@@ -4263,6 +4371,31 @@ namespace MedLaunch
             db.CalculateYearsAndPublishersManual();
         }
 
+        /// <summary>
+        /// iterate through each database rom entry and attempt to populate CRC32 entries from local DAT files
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void popCRCTOSEC_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.AdminDATDB db = new _Debug.DATDB.AdminDATDB();
+            
+            //tosec
+            db.ImportCRC32Only(_Debug.DATDB.ProviderType.ToSec, 0);
+        }
+
+        /// <summary>
+        /// iterate through each database rom entry and attempt to populate CRC32 entries from local DAT files
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void popCRCNOINTRO_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.DATDB.AdminDATDB db = new _Debug.DATDB.AdminDATDB();
+
+            // nointro first
+            db.ImportCRC32Only(_Debug.DATDB.ProviderType.NoIntro, 0);
+        }
 
         /*
         private async void btnBuildFromDat_Click(object sender, RoutedEventArgs e)
@@ -4797,7 +4930,7 @@ namespace MedLaunch
             }
         }
         */
-       
+
 
         /*
         private async void btnmatchDATyears_Click(object sender, RoutedEventArgs e)
@@ -5482,6 +5615,12 @@ namespace MedLaunch
                 ConfigsVisualHandler.SaveSettings(SettingGroup.GlobalSettings);
         }
 
+        private void tbSettings_MednaNet_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (SettingsDirtyFlag == true)
+                ConfigsVisualHandler.SaveSettings(SettingGroup.MednaNetSettings);
+        }
+
         private void tbSettings_BiosPaths_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (SettingsDirtyFlag == true)
@@ -5491,7 +5630,15 @@ namespace MedLaunch
         private void comboSettings_Global_DropDownClosed(object sender, EventArgs e)
         {
             if (SettingsDirtyFlag == true)
+            {
                 ConfigsVisualHandler.SaveSettings(SettingGroup.GlobalSettings);
+                var cbs = sender as ComboBox;
+                if (cbs.Name == "cbFormatGameTitles")
+                {
+                    CaseConvert = Convert.ToInt32(cbs.SelectedValue);
+                }
+            }
+                
         }
 
         private void slSettings_Global_PreviewMouseUp(object sender, MouseButtonEventArgs e)
@@ -5577,7 +5724,7 @@ namespace MedLaunch
                 tbGameKey.Text = row.Gamekey;
                 if (row.Port > 0)
                 {
-                    slServerPort.Value = Convert.ToDouble(row.Port);
+                    slServerPort.Value = Convert.ToDouble(row.Port, System.Globalization.CultureInfo.InvariantCulture);
                 }
                 
             }
@@ -6097,11 +6244,24 @@ namespace MedLaunch
             else if (btn.Content.ToString() == "CONNECT")
             {
                 DVH.SetConnectedStatus(true);
-                DVH.PostLocalOnlyMessage("Connecting to the MednaNet API...");
 
+                // init the api
+                DVH.PostLocalOnlyMessage("Connecting to the MednaNet API...");
+                
+                DiscordHandler.Initialize();
+
+                /*
+                if (DiscordHandler.Instance.IsConnected == false)
+                {
+                    DiscordHandler.Instance.APIDisconnected(new Exception("Could not connect to the MednaNet API"));
+                    return;
+                } */
+
+                // update username
+                //DiscordHandler.Instance.Username = tbDiscordName.Text;
+                //MednaNetSettings.SetUsername(MednaNetAPI.Instance.Username);
 
                 // select the first channel
-
                 UIHandler ui = UIHandler.GetChildren(DiscordSelectorWrapPanel);
                 RadioButton rb = ui.RadioButtons.FirstOrDefault();
 
@@ -6116,7 +6276,11 @@ namespace MedLaunch
                     // update title
                     lblDiscordChannel.Content = "MedLaunch: Discord - #" + DVH.channels.Data.Where(a => a.ChannelId == id).FirstOrDefault().ChannelName;
 
-                }            
+                }   
+                else
+                {
+                    // rb is null
+                }         
             }
             else
             {
@@ -6124,6 +6288,8 @@ namespace MedLaunch
                 DVH.PostLocalOnlyMessage("Disconnecting from the MednaNet API...");
                 lblDiscordChannel.Content = "MedLaunch: Discord";
                 expDiscordUsersOnline.Header = "USERS ONLINE (0)";
+
+                //MednaNetAPI.Instance.Stop();
             }
         }
 
@@ -6134,7 +6300,8 @@ namespace MedLaunch
                 return;
 
             //DVH.PostMessage(con, DVH.channels.ActiveChannel);
-            DVH.PostFromLocal(con);
+            //DVH.PostFromLocal(con);
+            DiscordHandler.Instance.SendMessage(con);
 
             tbDiscordMessageBox.Text = "";
         }
@@ -6209,11 +6376,262 @@ namespace MedLaunch
 
             RootGrid.Background = ib;
         }
+
+        private void UCONtest_Click(object sender, RoutedEventArgs e)
+        {
+            UconWrapper u = new UconWrapper(System.AppDomain.CurrentDomain.BaseDirectory + @"\ucon64-bin\ucon64.exe");
+            string gamePath = @"G:\_Emulation\Sega Megadrive - 32x - SegaCD\roms\Megadrive\long folder test long folder test long folder testlong folder test long folder test long folder test\Animaniacs (E).zip";
+            //string result = u.DoTestScan(gamePath, SystemType.Genesis);
+            var result = u.ScanGame(gamePath, SystemType.Genesis);
+
+            if (result.Data.IsChecksumValid == true && result.Data.IsInterleaved == true)
+            {
+                // checksum is valid and rom needs interleaving
+                u.OutputFolder = System.AppDomain.CurrentDomain.BaseDirectory + @"\Data\Cache";
+            }
+        }
+
+        private void UCONConvertSmd_Click(object sender, RoutedEventArgs e)
+        {
+            UconWrapper u = new UconWrapper(System.AppDomain.CurrentDomain.BaseDirectory + @"\ucon64-bin\ucon64.exe");
+            //string gamePath = @"G:\_Emulation\Sega Megadrive - 32x - SegaCD\roms\Megadrive\long folder test long folder test long folder testlong folder test long folder test long folder test\Animaniacs (E).zip";
+            string gamePath = @"G:\_Emulation\Sega Megadrive - 32x - SegaCD\roms\Megadrive\test\Alex Kidd in the Enchanted Castle (J).smd";
+            u.OutputFolder = System.AppDomain.CurrentDomain.BaseDirectory + @"\Data\Cache";
+            var result = u.ProcessSMD(gamePath);
+            if (result == null)
+            {
+                MessageBox.Show("checksum invalid - skipping rom");
+                return;
+            }
+            else
+            {
+                // either rom has been converted, or it is compatible
+                MessageBox.Show("Final Rom Path: " + result.ConvertedPath);
+            }
+        }
+
+        private async void examineRom_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            Grid RootGrid = (Grid)mw.FindName("RootGrid");
+
+            var h = RootGrid.ActualHeight; // mw.ActualHeight; // RootGrid.ActualHeight;
+            var w = RootGrid.ActualWidth; // mw.ActualWidth; // RootGrid.ActualWidth;
+
+            mw.ShowMaxRestoreButton = false;
+
+            await mw.ShowChildWindowAsync(new RomInspector()
+            {
+                IsModal = true,
+                AllowMove = false,
+                Title = "Library Editor/Inspector",
+                CloseOnOverlay = false,
+                ShowCloseButton = true,
+                ChildWindowHeight = h,
+                ChildWindowWidth = w
+            }, RootGrid);
+
+            mw.ShowMaxRestoreButton = true;
+        }
+
+        private async void testarchiving_Click(object sender, RoutedEventArgs e)
+        {
+            string arcPath = @"D:\Dropbox\Dropbox\_Games\Emulation\_Roms\Sega - Master System - Mark III\Sega - Master System - Mark III.7z";
+
+            var mySettings = new MetroDialogSettings()
+            {
+                NegativeButtonText = "Cancel",
+                AnimateShow = false,
+                AnimateHide = false,
+            };
+
+            var controller = await this.ShowProgressAsync("Scanning test archive", "", settings: mySettings);
+            controller.SetCancelable(true);
+            await Task.Delay(100);
+            await Task.Run(() =>
+            {
+                Task.Delay(1);
+                MedLaunch.Common.IO.Compression.Archive a = new MedLaunch.Common.IO.Compression.Archive(arcPath);
+                ProgressDialogListener l = new ProgressDialogListener(controller, SignatureType.Archive);
+                l.Subscribe(a);
+                var results = a.ProcessArchive(new string[] { ".sms", ".7z" });
+
+            });
+            await controller.CloseAsync();
+
+            if (controller.IsCanceled)
+            {
+                await this.ShowMessageAsync("Archive test", "Operation Cancelled");
+            }
+            else
+            {
+                await this.ShowMessageAsync("Archive test", "Scanning Completed");
+            }
+        }
+
+        
     }
 
 
 
 
+    public class CaseConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            if (value is String)
+            {
+                if (mw.CaseConvert == 0)
+                    return value.ToString();
+                if (mw.CaseConvert == 2)
+                    return value.ToString().ToUpper();
+                if (mw.CaseConvert == 1)
+                {
+                    // title case logic
+                    string s = value.ToString().Replace("  ", " ").Trim();
+                    string tc = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(s.ToLower());
+
+                    /* some more logic */
+                    // numerals
+                    tc = tc.Replace("Iii", "II")
+                        .Replace("Ii", "II")
+                        .Replace("Iiv", "IIV")
+                        .Replace("Iv", "IV")
+                        .Replace("Viii", "VIII")
+                        .Replace("Vii", "VII")
+                        .Replace("Vi", "VI")
+                        .Replace("Iix", "IIX")
+                        .Replace("Ix", "IX")
+                        .Replace("Xiii", "XIII")
+                        .Replace("Xii", "XII")
+                        .Replace("Xi", "XII");
+
+                    // known upper case phrases
+                    tc = tc.Replace("Wwf", "WWF")
+                        .Replace("Cg", "CG")
+                        .Replace("VIr", "Vir")
+                        .Replace("Nhl", "NHL")
+                        .Replace("Nba", "NBA")
+                        .Replace("Nfl", "NFL");
+
+                    // playstation codes
+                    tc = tc.Replace("Slus", "SLUS")
+                        .Replace("Scus", "SCUS")
+                        .Replace("Sles", "SLES")
+                        .Replace("Sces", "SCES")
+                        .Replace("Slps", "SLPS")
+                        .Replace("Scps", "SCPS")
+                        .Replace("Slpm", "SLPM")
+                        .Replace("Sips", "SIPS");
+
+
+
+                    return tc;
+                }
+            }
+
+            return string.Empty;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
+    public class DateConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            if (value is String)
+            {
+                string input = value.ToString().Trim();
+
+                // does string have 4 characters only (ie a possible year string, 1990, 200x etc)
+                if (input.Length == 4)
+                {
+                    // is the first character a number
+                    int n;
+                    bool isNumeric = int.TryParse(input[0].ToString(), out n);
+                    if (isNumeric)
+                    {
+                        return input;
+                    }
+                    else
+                        return string.Empty;
+                }
+
+                // dates spit by delimeters
+                char[] chrs = { '/', '_', '-', '.', ' ' };
+                string final = "";
+                foreach (var c in chrs)
+                {
+                    if (final != "")
+                        break;
+
+                    if (input.Contains(c))
+                    {
+                        string[] arr = input.Split(c);
+                        foreach (var s in arr)
+                        {
+                            if (s.Length == 4)
+                            {
+                                // this is probably the date
+                                // is the first character a number
+                                int n;
+                                bool isNumeric = int.TryParse(s[0].ToString(), out n);
+                                if (isNumeric)
+                                {
+                                    final = s;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (final != "")
+                    return final;
+
+                // if we get this far its probably not a correct year.
+                return string.Empty;
+            }
+
+            return string.Empty;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class CountryConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            if (value is String)
+            {
+                string input = value.ToString().Trim();
+
+                return StringConv.ConvertCountryString(input);
+            }
+
+            return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
 
     /*
@@ -6353,6 +6771,30 @@ namespace MedLaunch
         }
 
         #endregion
+    }
+
+    // Used on sub-controls of an expander to bubble the mouse wheel scroll event up 
+    public sealed class BubbleScrollEvent : Behavior<UIElement>
+    {
+        protected override void OnAttached()
+        {
+            base.OnAttached();
+            AssociatedObject.PreviewMouseWheel += AssociatedObject_PreviewMouseWheel;
+        }
+
+        protected override void OnDetaching()
+        {
+            AssociatedObject.PreviewMouseWheel -= AssociatedObject_PreviewMouseWheel;
+            base.OnDetaching();
+        }
+
+        void AssociatedObject_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            e.Handled = true;
+            var e2 = new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta);
+            e2.RoutedEvent = UIElement.MouseWheelEvent;
+            AssociatedObject.RaiseEvent(e2);
+        }
     }
 
 }

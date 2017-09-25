@@ -1,0 +1,1 @@
+This is legacy and is kept here (for now) just to service very old MedLaunch clients who are checking for updates.

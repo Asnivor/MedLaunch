@@ -16,7 +16,8 @@
 							   ShowCloseButton="False"
                                IsModal="True"
                                TextOptions.TextFormattingMode="Display"
-                               Closing="ChildWindow_Closing">
+                               Closing="ChildWindow_Closing"
+                               IsOpen="True">
 
     <simpleChildWindow:ChildWindow.Icon>
         <Rectangle Width="22"
@@ -58,6 +59,8 @@
         <Label HorizontalAlignment="Center" Grid.Row="2">
             (Right-click in the textboxes below to insert pre-defined mouse controls)
         </Label>
+
+        
 
         <ScrollViewer MaxHeight="500" VerticalAlignment="Top" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Grid.Row="3">          
         

@@ -17,6 +17,8 @@ namespace MedLaunch.Models
         public string GamePath { get; set; }
         public bool IsFavorite { get; set; }
 
+        public bool ManEdit { get; set; }
+
         public DateTime LastPlayed { get; set; }
         public DateTime LastFinished { get; set; }
         public Double TotalPlayTime { get; set; }
@@ -25,7 +27,25 @@ namespace MedLaunch.Models
         public int SystemId { get; set; }
         public string SystemCode { get; set; }
         public string SystemName { get; set; }
-        public string SystemDescription { get; set; }        
+        public string SystemDescription { get; set; }
+
+        public int gdbid { get; set; }
+
+        public string AlternateTitles { get; set; }
+        public string Genres { get; set; }
+        public string Coop { get; set; }
+        public string Developer { get; set; }
+        public string ESRB { get; set; }
+        public string Overview { get; set; }
+        public string Players { get; set; }
+        public string Publisher { get; set; }
+        public string Year { get; set; }
+
+        public string Copyright { get; set; }
+        public string Country { get; set; }
+        public string DevelopmentStatus { get; set; }
+        public string Language { get; set; }
+        public string OtherFlags { get; set; }
 
         // Constructor
         public LibrarySidebar(int gameId)
@@ -57,7 +77,33 @@ namespace MedLaunch.Models
             SystemName = GSystem.GetSystemName(SystemId);
             SystemDescription = GSystem.GetSystemDesc(SystemId);
 
+            if (game.gdbId != null)
+                gdbid = game.gdbId.Value;
 
+            AlternateTitles = game.AlternateTitles;
+            Genres = game.Genres;
+            Coop = game.Coop;
+            Developer = game.Developer;
+            ESRB = game.ESRB;
+            Overview = game.Overview;
+            Players = game.Players;
+            Publisher = game.Publisher;
+            Year = game.Year;
+
+            Copyright = game.Copyright;
+            Country = game.Country;
+            DevelopmentStatus = game.DevelopmentStatus;
+            Language = game.Language;
+            OtherFlags = game.OtherFlags;
+
+            if (game.ManualEditSet == true)
+            {
+                ManEdit = true;
+            }
+            else
+            {
+                ManEdit = false;
+            }
         }
 
         

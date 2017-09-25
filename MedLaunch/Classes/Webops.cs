@@ -26,7 +26,7 @@ namespace MedLaunch.Classes
         public string GetResponseText(string address, int timeout)
         {
             var request = (HttpWebRequest)WebRequest.Create(address) as HttpWebRequest;
-            request.Timeout = 30000;
+            request.Timeout = 10000;
             request.Proxy = null;
             request.KeepAlive = false;
             request.ServicePoint.ConnectionLeaseTimeout = 30000;
@@ -66,10 +66,15 @@ namespace MedLaunch.Classes
                 // error or timeout - run again but change the timeout value
                 Console.WriteLine(wex);
                 request.Abort();
+
+                if (wex.ToString().Contains("(503) Server Unavailable"))
+                {
+                    return "ERROR";
+                }
                 
                 Timeout += 5000;
                 responseStr = GetResponseText(address, Timeout);
-                if (Timeout > 60000)
+                if (Timeout > 30000)
                 {
                     return responseStr;
                 }

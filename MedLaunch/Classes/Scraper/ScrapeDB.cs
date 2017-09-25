@@ -82,6 +82,10 @@ namespace MedLaunch.Classes.Scraper
                 finally
                 {
                     sgo.Data = sgoweb.Data;
+                    if (sgo.Data.AlternateTitles == null)
+                        sgo.Data.AlternateTitles = new List<string>();
+                    if (sgo.Data.Genres == null)
+                        sgo.Data.AlternateTitles = new List<string>();
                 }
             }
             else { sgo.Data = new ScrapedGameData(); }

@@ -17,12 +17,15 @@ using System.Windows.Data;
 using MedLaunch.Classes.Scraper;
 using System.Windows.Threading;
 using System.Threading;
+using System.Globalization;
+using MahApps.Metro.Controls;
+using System.Windows.Media;
 
 namespace MedLaunch.Classes
 {
     public static class GamesLibraryVisualHandler
     {
-
+        
         public static string ConvertDateString(DateTime dt)
         {
             string lp;
@@ -66,6 +69,7 @@ namespace MedLaunch.Classes
             {
                 img.Visibility = Visibility.Collapsed;
             }
+            
         }
 
         // update sidebar async handler
@@ -179,8 +183,31 @@ namespace MedLaunch.Classes
                 Label lblPublisherTitle = (Label)mw.FindName("lblPublisherTitle");
                 Label lblESRBTitle = (Label)mw.FindName("lblESRBTitle");
 
+                Label lblCopyrightTitle = (Label)mw.FindName("lblCopyrightTitle");
+                Label lblCountryTitle = (Label)mw.FindName("lblCountryTitle");
+                Label lblLanguageTitle = (Label)mw.FindName("lblLanguageTitle");
+                Label lblDevelopmentStatusTitle = (Label)mw.FindName("lblDevelopmentStatusTitle");
+                Label lblOtherFlagsTitle = (Label)mw.FindName("lblOtherFlagsTitle");
+
+                Label lblCopyright = (Label)mw.FindName("lblCopyright");
+                Label lblCountry = (Label)mw.FindName("lblCountry");
+                Label lblLanguage = (Label)mw.FindName("lblLanguage");
+                Label lblDevelopmentStatus = (Label)mw.FindName("lblDevelopmentStatus");
+                Label lblOtherFlags = (Label)mw.FindName("lblOtherFlags");
+
+                Label lblGameId = (Label)mw.FindName("lblGameId");
+                Label lblRomPath = (Label)mw.FindName("lblRomPath");
+
+
                 TextBlock tbOverview = (TextBlock)mw.FindName("tbOverview");
 
+                Label lblManualEditStatus = (Label)mw.FindName("lblManualEditStatus");
+                Label lblManualEditStatusTitle = (Label)mw.FindName("lblManualEditStatusTitle");
+
+                Button btnScrapingPickGame = (Button)mw.FindName("btnScrapingPickGame");
+                Button btnScrapingReScrape = (Button)mw.FindName("btnScrapingReScrape");
+                Button btnBrowseDataFolder = (Button)mw.FindName("btnBrowseDataFolder");
+                Button btnScrapingUnlinkGame = (Button)mw.FindName("btnScrapingUnlinkGame");
 
                 // listview
                 ListView Screenshots = (ListView)mw.FindName("Screenshots");
@@ -214,7 +241,21 @@ namespace MedLaunch.Classes
                 lblDeveloper,
                 lblDeveloperTitle,
                 lblPublisher,
-                lblPublisherTitle
+                lblPublisherTitle,
+                lblCopyright,
+                lblCopyrightTitle,
+                lblCountry,
+                lblCountryTitle,
+                lblLanguage,
+                lblLanguageTitle,
+                lblDevelopmentStatus,
+                lblDevelopmentStatusTitle,
+                lblOtherFlags,
+                lblOtherFlagsTitle,
+                lblESRB,
+                lblESRBTitle,
+                lblManualEditStatus,
+                lblManualEditStatusTitle
             };
 
                 // screenshots
@@ -343,6 +384,12 @@ namespace MedLaunch.Classes
                 // Total game time
                 lblTotalTime.Content = FormatMinutesToString(lsb.TotalPlayTime);
 
+                // gameid
+                lblGameId.Content = lsb.GameId;
+
+                // game path string
+                lblRomPath.Content = lsb.GamePath;
+
                 // system info
                 expSysInfo.Header = lsb.SystemName;
                 tblockSysImage.Text = lsb.SystemDescription;
@@ -352,30 +399,142 @@ namespace MedLaunch.Classes
                 s.EndInit();
                 sysImage.Source = s;
 
+                // manual edit
+                if (lsb.ManEdit == true)
+                {
+                    lblManualEditStatus.Foreground = new SolidColorBrush(Colors.Red);
+                    btnScrapingPickGame.Visibility = Visibility.Collapsed;
+                    btnScrapingReScrape.Visibility = Visibility.Collapsed;
+                    btnScrapingUnlinkGame.Visibility = Visibility.Collapsed;
+
+                }
+                else
+                {
+                    lblManualEditStatus.Foreground = new SolidColorBrush(Colors.Green);
+                    btnScrapingPickGame.Visibility = Visibility.Visible;
+                    btnScrapingReScrape.Visibility = Visibility.Visible;
+                    btnScrapingUnlinkGame.Visibility = Visibility.Visible;
+                }
+
+                if (lsb.gdbid > 0)
+                {
+                    btnBrowseDataFolder.Visibility = Visibility.Visible;
+                }                    
+                else
+                {
+                    btnBrowseDataFolder.Visibility = Visibility.Collapsed;
+                }
+                    
+
+                // populate all labels
+                bool gdbFieldsPopulated = false;
+                foreach (Label l in gdbLabels)
+                {
+                    if (l.Name.EndsWith("Title"))
+                        continue;
+
+                    string name = l.Name.Replace("lbl", "");
+                    string data = "";
+
+                    switch (name)
+                    {
+                        case "ManualEditStatus":
+                            if (lsb.ManEdit == true)
+                                data = "ON";
+                            else
+                                data = "OFF";
+                            break;
+                        case "AltNames": data = lsb.AlternateTitles; break;
+                        case "ReleaseDate": data = lsb.Year; break;
+                        case "Players": data = lsb.Players; break;
+                        case "Coop": data = lsb.Coop; break;
+                        case "Genres": data = lsb.Genres; break;
+                        case "Developer": data = lsb.Developer; break;
+                        case "Publisher": data = lsb.Publisher; break;
+                        case "ESRB": data = lsb.ESRB; break;
+                        case "Copyright": data = lsb.Copyright; break;
+                        case "Country": data = lsb.Country; break;
+                        case "Language": data = lsb.Language; break;
+                        case "DevelopmentStatus": data = lsb.DevelopmentStatus; break;
+                        case "OtherFlags": data = lsb.OtherFlags; break;
+                    }
+
+                    Label tmp = (Label)mw.FindName("lbl" + name + "Title");
+
+                    if (data == null || data.Trim() == "")
+                    {
+                        l.Visibility = Visibility.Collapsed;
+                        if (tmp != null)
+                            tmp.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        l.Visibility = Visibility.Visible;
+                        l.Content = data;
+                        if (tmp != null)
+                            tmp.Visibility = Visibility.Visible;
+
+                        gdbFieldsPopulated = true;
+                    }
+                }
+
+                expGameInformation.Header = "Information";
+                if (gdbFieldsPopulated == false)
+                {
+                    brdSidebarGameInformation.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    brdSidebarGameInformation.Visibility = Visibility.Visible;
+                }
+
+                if (lsb.Overview == null || lsb.Overview == "")
+                {
+                    brdSidebarOverview.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    brdSidebarOverview.Visibility = Visibility.Visible;
+                }
+
+                // Game Title
+                if (lsb.GameName == null || lsb.GameName == "")
+                {
+                    expGameInformation.Header = "Information";
+                }
+                else
+                {
+                    // Expander title
+                    expGameInformation.Header = lsb.GameName; //o.Data.Title;
+                }
+
+
                 // Game info (scraped)
                 // get the link table record
 
                 ScrapeDB gd = new ScrapeDB();
+                //Game game = Game.GetGame(gameId);
 
-                Game game = Game.GetGame(gameId);
 
-
-                if (game.gdbId == null || game.gdbId == 0)
+                if (lsb.gdbid == 0)
                 {
-                    // no gdb data has been scraped - hide controls
+                    // no gdb data has been scraped - hide images
                     foreach (Image i in gdbImages)
                     {
                         i.Visibility = Visibility.Collapsed;
                     }
+                    /*
                     foreach (Label l in gdbLabels)
                     {
                         l.Visibility = Visibility.Collapsed;
                     }
-                    expGameInformation.Header = "Scraped Information";
-                    brdSidebarGameInformation.Visibility = Visibility.Collapsed;
+                    */
+                    
+                    
                     brdSidebarScreenshots.Visibility = Visibility.Collapsed;
                     brdSidebarFanArt.Visibility = Visibility.Collapsed;
-                    brdSidebarOverview.Visibility = Visibility.Collapsed;
+                    
+
                     brdManuals.Visibility = Visibility.Collapsed;
 
                     // set the sidebar width (as it will be wrong if the sidebar was previously hidden)
@@ -384,7 +543,7 @@ namespace MedLaunch.Classes
                 }
                 else
                 {
-                    ScrapedGameObject o = ScrapeDB.GetScrapedGameObject(gameId, game.gdbId.Value);
+                    ScrapedGameObject o = ScrapeDB.GetScrapedGameObject(gameId, lsb.gdbid);
 
                     // link is there - SET DATA and control states
                     bool isGameInfoData = false;                            //GameInfo Expander
@@ -392,16 +551,8 @@ namespace MedLaunch.Classes
                     bool isFanrtsData = false;                              //Fanrt expander
                     bool isManualsData = false;                             //manuals expander
 
-                    // Game Title
-                    if (o.Data.Title == null || o.Data.Title == "")
-                    {
-                        expGameInformation.Header = "Scraped Information";
-                    }
-                    else
-                    {
-                        // Expander title
-                        expGameInformation.Header = o.Data.Title;
-                    }
+                    if (isGameInfoData) { };
+                    
 
                     // Back Cover Image
                     if (o.BackCovers == null || o.BackCovers.Count == 0)
@@ -464,6 +615,7 @@ namespace MedLaunch.Classes
                         imgMedia.Visibility = Visibility.Visible;
                     }
 
+                    /*
                     // Alternate Game Titles
                     if (o.Data.AlternateTitles == null || o.Data.AlternateTitles.Count == 0)
                     {
@@ -576,8 +728,10 @@ namespace MedLaunch.Classes
                         lblPlayersTitle.Visibility = Visibility.Visible;
                     }
 
+                    */
+
                     // game overview (description)
-                    if (o.Data.Overview == null || o.Data.Overview == "")
+                    if (lsb.Overview == null || lsb.Overview == "")
                     {
                         tbOverview.Text = null;
                         brdSidebarOverview.Visibility = Visibility.Collapsed;
@@ -585,7 +739,7 @@ namespace MedLaunch.Classes
                     else
                     {
                         isGameInfoData = true;
-                        tbOverview.Text = o.Data.Overview;
+                        tbOverview.Text = lsb.Overview;
                         brdSidebarOverview.Visibility = Visibility.Visible;
                     }
 
@@ -686,10 +840,12 @@ namespace MedLaunch.Classes
                     }
 
                     // set border visibilities
+                    /*
                     if (isGameInfoData == false)
                         brdSidebarGameInformation.Visibility = Visibility.Collapsed;
                     else
                         brdSidebarGameInformation.Visibility = Visibility.Visible;
+                        */
                     if (isFanrtsData == false)
                         brdSidebarFanArt.Visibility = Visibility.Collapsed;
                     else
@@ -1243,6 +1399,7 @@ namespace MedLaunch.Classes
                 else
                 {
                     DataGridCheckBoxColumn cc = (DataGridCheckBoxColumn)mw.FindName("glCol" + i.ToString());
+                    //DataGridTemplateColumn cc = (DataGridTemplateColumn)mw.FindName("glCol" + i.ToString());
                     if (value / testValue == 1)
                     {
                         // column should be visible
@@ -1308,13 +1465,12 @@ namespace MedLaunch.Classes
             RadioButton rb = rbs.Where(a => a.IsChecked == true).FirstOrDefault();
 
             if (rb == null)
-            {
                 return CountryFilter.ALL;
-            }                
+                          
 
-            for (int i = 0; i < rbs.Length; i++)
+            foreach (var r in rbs)
             {
-                string name = rbs[i].Name.Replace("srcFilterAll", "");
+                string name = r.Name.Replace("srcFilterAll", "");
 
                 switch (name)
                 {
@@ -1333,16 +1489,19 @@ namespace MedLaunch.Classes
 
         public static void DoFullUpdate()
         {
-            App _App = (App)Application.Current;            
-
-            Application.Current.Dispatcher.Invoke((Action)(() =>
+            App _App = (App)Application.Current;
+            if (_App.GamesLibrary != null)
             {
-                var currentItem = _App.GamesLibrary.LibraryView.View.CurrentItem;
-                int currentPos = _App.GamesLibrary.LibraryView.View.CurrentPosition;
-                _App.GamesLibrary.Update();
-                // reselect current item
-                _App.GamesLibrary.LibraryView.View.MoveCurrentTo(currentItem);
-            }));
+                Application.Current.Dispatcher.Invoke((Action)(() =>
+                {
+                    var currentItem = _App.GamesLibrary.LibraryView.View.CurrentItem;
+                    int currentPos = _App.GamesLibrary.LibraryView.View.CurrentPosition;
+                    _App.GamesLibrary.Update();
+                    // reselect current item
+                    _App.GamesLibrary.LibraryView.View.MoveCurrentTo(currentItem);
+                }));
+            }
+                
         }
 
         public static void DoGameDelete(List<Game> games)
@@ -1350,7 +1509,8 @@ namespace MedLaunch.Classes
             Application.Current.Dispatcher.Invoke((Action)(() =>
             {
                 App _App = (App)Application.Current;
-                _App.GamesLibrary.RemoveEntries(games);
+                if (_App.GamesLibrary != null)
+                    _App.GamesLibrary.RemoveEntries(games);
             }));
         }
 
@@ -1359,7 +1519,8 @@ namespace MedLaunch.Classes
             Application.Current.Dispatcher.Invoke((Action)(() =>
             {
                 App _App = (App)Application.Current;
-                _App.GamesLibrary.AddEntries(games);
+                if (_App.GamesLibrary != null)
+                    _App.GamesLibrary.AddEntries(games);
             }));
         }
 
@@ -1371,7 +1532,8 @@ namespace MedLaunch.Classes
             Application.Current.Dispatcher.Invoke((Action)(() =>
             {
                 App _App = (App)Application.Current;
-                _App.GamesLibrary.UpdateEntries(games);
+                if (_App.GamesLibrary != null)
+                 _App.GamesLibrary.UpdateEntries(games);
             }));
            
         }

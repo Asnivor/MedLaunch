@@ -30,6 +30,9 @@
                                     <RowDefinition Height="36" />
                             <RowDefinition Height="36" />
                             <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
                         </Grid.RowDefinitions>
 
                                 <Image Source="/MedLaunch;component/Data/Graphics/Controllers/psx-controller.png" Margin="5">
@@ -180,6 +183,95 @@
                         </ComboBox>
 
                         <Button Name="btnPsxDancepadConfigure" Margin="5" Grid.Column="3" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center" Grid.Row="4">Configure</Button>
+
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/psx-gcon.png" Margin="5" Grid.Row="5">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+
+                        <Label Margin="5" Grid.Column="1" VerticalAlignment="Center" Height="25" Grid.Row="5">
+                            GunCon
+                        </Label>
+
+                        <ComboBox Name="cmbPsxGunCon" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Height="25" VerticalAlignment="Center" Grid.Row="5">
+                            <ComboBoxItem>Virtual Port 1</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 2</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 3</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 4</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 5</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 6</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 7</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 8</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnPsxGunConConfigure" Margin="5" Grid.Column="3" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center" Grid.Row="5">Configure</Button>
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/psx-justifier.png" Margin="5" Grid.Row="6">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+
+                        <Label Margin="5" Grid.Column="1" VerticalAlignment="Center" Height="25" Grid.Row="6">
+                            Konami Justifier
+                        </Label>
+
+                        <ComboBox Name="cmbPsxJustifier" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Height="25" VerticalAlignment="Center" Grid.Row="6">
+                            <ComboBoxItem>Virtual Port 1</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 2</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 3</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 4</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 5</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 6</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 7</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 8</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnPsxJustifierConfigure" Margin="5" Grid.Column="3" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center" Grid.Row="6">Configure</Button>
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/psx-mouse.png" Margin="5" Grid.Row="7">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+
+                        <Label Margin="5" Grid.Column="1" VerticalAlignment="Center" Height="25" Grid.Row="7">
+                            Mouse
+                        </Label>
+
+                        <ComboBox Name="cmbPsxMouse" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Height="25" VerticalAlignment="Center" Grid.Row="7">
+                            <ComboBoxItem>Virtual Port 1</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 2</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 3</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 4</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 5</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 6</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 7</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 8</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnPsxMouseConfigure" Margin="5" Grid.Column="3" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center" Grid.Row="7">Configure</Button>
+
 
                     </Grid>                            
                         </WrapPanel>

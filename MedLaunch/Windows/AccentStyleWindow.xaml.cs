@@ -229,8 +229,19 @@ namespace MedLaunch
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // textbox content has changed but we actually want to get the double value from the slider
+            double val = slOpac.Value;
+            /*
             var tb = (TextBox)sender;
-            ImgOpacity = Convert.ToDouble(tb.Text);
+            string text = tb.Text;
+            double d = 0.1;
+            if (text != "")
+            {
+                d = double.Parse(text);
+            }        
+            */
+
+            ImgOpacity = val; // d;
         }
     }
 }
