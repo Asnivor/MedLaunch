@@ -57,7 +57,7 @@ namespace MedLaunch
 
             /* check that pre-reqs are installed */
 
-            /*
+           
             UpdateStatus("Scanning for pre-requisites...", true);
 
             UpdateStatus("Visual C++ 2010 x86 redist... ", true);
@@ -115,7 +115,7 @@ namespace MedLaunch
                 }
             }
 
-            */
+            
 
             // Check whether database exists
             UpdateStatus("Checking whether there is an existing database present", true);
