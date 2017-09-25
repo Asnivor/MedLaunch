@@ -319,7 +319,7 @@ namespace MedLaunch.Common.IO.Compression
         }        
 
         /// <summary>
-        /// extract entire zip archive using builtin .NET classes
+        /// extract entire zip archive using sevenzipsharp
         /// </summary>
         /// <param name="archivePath"></param>
         /// <param name="outputDirectory"></param>
@@ -329,10 +329,17 @@ namespace MedLaunch.Common.IO.Compression
         {
             try
             {
+                using (SevenZipExtractor archive = new SevenZipExtractor(archivePath))
+                {
+                    archive.ExtractArchive(outputDirectory);
+                }
+
+                /*
                 using (ZipArchive archive = ZipFile.Open(archivePath, ZipArchiveMode.Read))
                 {
                     archive.ExtractToDirectory(outputDirectory, true);
                 }
+                */
             }
             catch
             {
