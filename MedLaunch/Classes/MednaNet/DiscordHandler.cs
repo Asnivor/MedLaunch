@@ -463,7 +463,7 @@ namespace MedLaunch.Classes.MednaNet
                 });
 
                 // post locally (not wait for next poll)
-                //LocalPost(newMessage);
+                LocalPost(newMessage);
 
             }
             catch (Exception ex) { APIDisconnected(ex); return; }

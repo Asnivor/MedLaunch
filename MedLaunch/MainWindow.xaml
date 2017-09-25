@@ -429,7 +429,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
         </Grid.Background>
 -->
 
-        <TabControl SelectionChanged="TabControl_SelectionChanged" >
+        <TabControl SelectionChanged="TabControl_SelectionChanged" Background="Transparent">
             <TabItem Header="Games" Style="{StaticResource MetroTabItemCustom}">
                 <Grid x:Name="grdGameLibrary">
                     <Grid.ColumnDefinitions>
