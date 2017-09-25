@@ -77,8 +77,7 @@ Bugs/Suggestions/Feature Requests can be posted on the GitHub [Issue Tracker](ht
 * Imports all standard ROM formats that mednafen supports
 * Extended archive support - will import single or multiple ROMs from within .zip or .7z files
 * **Auto scan and import of Disc based games (PSX, Saturn, PCFX & PCE-CD)**
-  * All disc cue/image files must reside in game-specific sub-folders below the designated system game folder
-  * Games that do not adhere to this file/folder structure can be imported manually
+  * Multi-disc games must have their files residing in the same directory or sub-directory
   * Auto-generation of .m3u playlist files for multi-disc games
 * **DAT data lookup on import**
   * MedLaunch ships with a DAT database that combines NoIntro, Tosec, PsxDataCenter & Satakore information that enables detailed information (Country, Year, Publisher etc) to be populated in the games library upon import

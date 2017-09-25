@@ -6,6 +6,10 @@ title: Changelog
 ------------------------------------
 #### Development Build Changes ([Dev](https://github.com/Asnivor/MedLaunch/tree/dev) branch) - [![Build status](https://ci.appveyor.com/api/projects/status/4maii9la7yb72bw8/branch/dev?svg=true)](https://ci.appveyor.com/project/Asnivor/medlaunch/branch/dev/artifacts)
 ------------------------------------
+* None as yet
+
+##### [0.5.18.1](https://medlaunch.info/releases/0-5-18-1)
+###### 2017-09-25
 * (BugFix)	-	New version downloads don't stall at 100% anymore (but obviously you will still have to manually update until you are running this version)
 * (Enhancement)	-	Added setting to reformat game title case when displayed in the library. Options - no change, Title (Camel) Case, All Caps
 * (Enhancement)	-	Context menu option to delete ROM(s) from disk - currently only ROM games that are either uncompressed, or are the only ROM file within a zip file (disc-based games and 7zipped ROMs not supported)
@@ -28,6 +32,7 @@ title: Changelog
 * (Enhancement)	-	Multiple ROMs within archive files can now reside in nested subfolders within the archive itself
 * (Enhancement)	-	DAT lookup database (AsniDAT.db) now contains CRC32 and SHA1 hashes (along with MD5 that it had previously) - this reduces import/scan time for ROMs within archives
 * (Enhancement)	-	Major disc-scanning improvements, just point MedLaunch at the root folder for that system (psx, saturn etc.), and it will parse and import all games (and create .m3u files if they are needed). With multi-disc games, all the files for the game must be in the same folder or subfolder
+* (BugFix)	-	Fixed issue in DevBuild where mednafen update wasnt extracting all the files from the downloaded archive
 
 ##### [0.5.8.0](https://medlaunch.info/releases/0-5-8-0)
 ###### 2017-08-11

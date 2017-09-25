@@ -38,7 +38,7 @@ title: Home
 **MedLaunch** is a .NET (Windows only) front-end for the excellent [Mednafen](http://mednafen.fobby.net/) multi-system emulator.
 
 ### Production Releases
-* Latest Production Version: 0.5.8.0 
+* Latest Production Version: 0.5.18.1 
 * [![Build status](https://ci.appveyor.com/api/projects/status/4maii9la7yb72bw8/branch/master?svg=true&passingText=Latest%20MASTER%20Build%20-%20OK&failingText=Lastest%20MASTER%20Build%20-%20FAILED&pendingText=Latest%20MASTER%20Build%20-%20IN%20PROGRESS)](https://ci.appveyor.com/project/Asnivor/medlaunch/branch/master)
 * Direct Production Download: [LATEST](https://downloads.medlaunch.info/latest)
 * Compatible with Mednafen: 0.9.39.x - 0.9.48
@@ -77,8 +77,7 @@ The development releases should usually be stable, but it is advisable to backup
  * Imports all standard ROM formats that mednafen supports
  * Extended archive support - will import single or multiple ROMs from within .zip or .7z files
 * **Auto scan and import of Disc based games (PSX, Saturn, PCFX & PCE-CD)**
- * All disc cue/image files must reside in game-specific sub-folders below the designated system game folder
- * Games that do not adhere to this file/folder structure can be imported manually
+ * Multi-disc games must have their files residing in the same directory or sub-directory
  * Auto-generation of .m3u playlist files for multi-disc games
 * **DAT data lookup on import**
  * MedLaunch ships with a DAT database that combines NoIntro, Tosec, PsxDataCenter & Satakore information that enables detailed information (Country, Year, Publisher etc) to be populated in the games library upon import
@@ -102,7 +101,7 @@ The development releases should usually be stable, but it is advisable to backup
 
 ### Requirements
 * [Microsoft .NET Framework 4.5.2](https://www.microsoft.com/en-gb/download/details.aspx?id=42643)
-* At least [Mednafen versions 0.9.39.x through 0.9.46.x](https://mednafen.github.io/releases/) - 64-bit version required for Saturn games
+* At least [Mednafen version 0.9.39.1](https://mednafen.github.io/releases/) - 64-bit version required for Saturn games
 * Windows 7 and above (may work on Vista but has not been tested)
 * x64 (has not been tested on x86 but should still work on it)
 
