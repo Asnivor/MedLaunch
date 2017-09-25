@@ -80,6 +80,9 @@ namespace MedLaunch.Classes
                     case "ScrapingSettings":
                         ScrapingSettings.Add(b);
                         break;
+                    case "MednaNet":
+                        MednaNet.Add(b);
+                        break;
                     default:
                         // do nothing
                         break;
@@ -217,6 +220,7 @@ namespace MedLaunch.Classes
         public List<Border> MedLaunch { get; set; }
         public List<Border> Library { get; set; }
         public List<Border> ScrapingSettings { get; set; }
+        public List<Border> MednaNet { get; set; }
     }
 
     public class ServersListView

@@ -308,6 +308,18 @@ namespace MedLaunch.Classes
                     GlobalSettings.SetGlobals(gs);
                     break;
 
+                case SettingGroup.MednaNetSettings:
+                    MednaNetSettings ms = MednaNetSettings.GetGlobals();
+
+                    Slider slDiscordChatHistory = (Slider)mw.FindName("slDiscordChatHistory");
+                    Slider slApiPollingFrequency = (Slider)mw.FindName("slApiPollingFrequency");
+
+                    ms.ChatHistoryInMinutes = Convert.ToInt32(slDiscordChatHistory.Value, System.Globalization.CultureInfo.InvariantCulture);
+                    ms.PollTimerIntervalInSeconds = Convert.ToInt32(slApiPollingFrequency.Value, System.Globalization.CultureInfo.InvariantCulture);
+
+                    MednaNetSettings.SetGlobals(ms);
+                    break;
+
                 case SettingGroup.MednafenPaths:
                     ConfigBaseSettings.SaveMednafenPaths();
                     break;
@@ -358,6 +370,7 @@ namespace MedLaunch.Classes
         ServerSettings,
         MednafenPaths,
         BiosPaths,
-        GlobalSettings
+        GlobalSettings,
+        MednaNetSettings
     }
 }

@@ -206,6 +206,9 @@ namespace MedLaunch
             SettingsVisualHandler.PopulateServers(lvServers);
             SettingsVisualHandler.ServerSettingsInitialButtonHide();
 
+            // load mednanet settings
+            MednaNetSettings.PopulateUISettings(this);
+
             // Config Tab
 
             // Set radiobutton states
@@ -5610,6 +5613,12 @@ namespace MedLaunch
         {
             if (SettingsDirtyFlag == true)
                 ConfigsVisualHandler.SaveSettings(SettingGroup.GlobalSettings);
+        }
+
+        private void tbSettings_MednaNet_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (SettingsDirtyFlag == true)
+                ConfigsVisualHandler.SaveSettings(SettingGroup.MednaNetSettings);
         }
 
         private void tbSettings_BiosPaths_TextChanged(object sender, TextChangedEventArgs e)

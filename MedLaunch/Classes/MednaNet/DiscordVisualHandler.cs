@@ -425,7 +425,7 @@ namespace MedLaunch.Classes.MednaNet
                 if (discordMessage.message.Contains('\n'))
                 {
                     // new line characters
-                    discordMessage.message = discordMessage.message.Replace(Environment.NewLine, "\n\t\t");
+                    discordMessage.message = "\n\t\t" + discordMessage.message.Replace(Environment.NewLine, "\n\t\t");
                     //para.Inlines.Add(new Run(" " + "\t\t\t\t"));
                     //discordMessage.message = discordMessage.message.Replace('\n', '\t');
                 }

@@ -22,13 +22,14 @@ namespace MedLaunch.Classes.MednaNet
         public DiscordVisualHandler DVH { get; set; }
 
         public static DispatcherTimer Timer = new DispatcherTimer();
+        public int TimerIntervalInSeconds { get; set; }
 
         public string Username { get; set; }
         public string InstallKey { get; set; }
         public string EndPointAddress { get; set; }
         public string EndPointPort { get; set; }
 
-        public int HistoryInMinutes = -100000;
+        public int HistoryInMinutes { get; set; }
 
         public bool IsConnected { get; set; }
 
@@ -83,8 +84,9 @@ namespace MedLaunch.Classes.MednaNet
             IsConnected = false;
 
             // setup the timer
+            TimerIntervalInSeconds = MednaNetSettings.GetPollTimerInterval();
             Timer.Tick += new EventHandler(Timer_Tick);
-            Timer.Interval = new TimeSpan(0, 0, 5);
+            //Timer.Interval = new TimeSpan(0, 0, 5);
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -143,6 +145,10 @@ namespace MedLaunch.Classes.MednaNet
 
                 Instance.IsConnected = true;                
             }
+
+            Instance.HistoryInMinutes = MednaNetSettings.GetChatHistoryInMinutes();
+
+            Timer.Interval = new TimeSpan(0, 0, Instance.TimerIntervalInSeconds);
 
             DiscordHandler.Timer.Start();
             Instance.IsConnected = true;
@@ -257,7 +263,10 @@ namespace MedLaunch.Classes.MednaNet
         /// Message updating logic
         /// </summary>
         private async void GetMessagesAsync()
-        {   
+        {
+            if (MessagesIsPolling == true)
+                return;
+
             MessagesIsPolling = true;
 
             try
@@ -423,6 +432,15 @@ namespace MedLaunch.Classes.MednaNet
             catch (Exception ex) { APIDisconnected(ex); return; }
         }
 
+        private void LocalPost(Messages msg)
+        {
+            // post return message straight away to the channel
+            LastChannelMessages[msg.channel] = msg.id;
+
+            // write to textbox
+            DVH.WriteToTextBox(new List<Messages> { msg });
+        }
+
 
         public async void SendMessage(string message)
         {
@@ -435,15 +453,18 @@ namespace MedLaunch.Classes.MednaNet
                 {
                     channel = DVH.channels.ActiveChannel,
                     code = InstallKey,
-                    message = message,
-                    //name = "",
+                    message = message,  
                     postedOn = dt,
                     user = new MednaNetAPIClient.Models.Users
                     {
-                        
-                    },
+                         username = Username,
+                    }
                     
                 });
+
+                // post locally (not wait for next poll)
+                //LocalPost(newMessage);
+
             }
             catch (Exception ex) { APIDisconnected(ex); return; }
 
