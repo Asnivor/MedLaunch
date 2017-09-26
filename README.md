@@ -34,7 +34,7 @@
 **MedLaunch** is a .NET (Windows only) front-end for the excellent [Mednafen](http://mednafen.fobby.net/) multi-system emulator.
 
 ### Production Releases
-* Latest Production Version: 0.5.8.0
+* Latest Production Version: 0.5.18.1
 * Direct Production Download: [LATEST](https://downloads.medlaunch.info/latest)
 * Compatible with Mednafen: 0.9.39.x - 0.9.48
 
@@ -77,7 +77,6 @@ Bugs/Suggestions/Feature Requests can be posted on the GitHub [Issue Tracker](ht
 * Imports all standard ROM formats that mednafen supports
 * Extended archive support - will import single or multiple ROMs from within .zip or .7z files
 * **Auto scan and import of Disc based games (PSX, Saturn, PCFX & PCE-CD)**
-  * Multi-disc games must have their files residing in the same directory or sub-directory
   * Auto-generation of .m3u playlist files for multi-disc games
 * **DAT data lookup on import**
   * MedLaunch ships with a DAT database that combines NoIntro, Tosec, PsxDataCenter & Satakore information that enables detailed information (Country, Year, Publisher etc) to be populated in the games library upon import
