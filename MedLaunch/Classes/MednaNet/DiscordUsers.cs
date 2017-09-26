@@ -99,7 +99,7 @@ namespace MedLaunch.Classes.MednaNet
             */
         }
 
-        public void UpdateUser(int userId, string userName, ClientType clientType, bool isOnline)
+        public void UpdateUser(string userId, string userName, ClientType clientType, bool isOnline)
         {
             var lookup = Users.Where(a => a.UserId == userId).FirstOrDefault();
 
@@ -125,7 +125,7 @@ namespace MedLaunch.Classes.MednaNet
 
     public class DiscordUser
     {
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public string UserName { get; set; }
         public ClientType clientType { get; set; }
         public bool IsOnline { get; set; }

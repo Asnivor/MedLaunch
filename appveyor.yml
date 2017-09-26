@@ -4,6 +4,7 @@ branches:
   - dev
   - master
 
+skip_tags: true
 configuration: Release
 shallow_clone: false
 environment:

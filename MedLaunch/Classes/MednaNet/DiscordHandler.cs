@@ -212,7 +212,7 @@ namespace MedLaunch.Classes.MednaNet
                     if (u.discordId == null)
                         ct = ClientType.medlaunch;
 
-                    DVH.users.UpdateUser(u.id, u.username, ct, true);
+                    DVH.users.UpdateUser(u.userId, u.username, ct, true);
                 }
 
                 DVH.UpdateUsers();
