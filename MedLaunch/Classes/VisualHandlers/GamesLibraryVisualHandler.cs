@@ -47,9 +47,9 @@ namespace MedLaunch.Classes
             //mw.sidebarColumn.Width = new GridLength(0);
 
             ScrollViewer sv = (ScrollViewer)mw.FindName("srcSidebar");
-            sv.Visibility = Visibility.Collapsed;
+            //sv.Visibility = Visibility.Collapsed;
             ColumnDefinition cd = (ColumnDefinition)mw.FindName("sidebarColumn");
-            cd.Width = new GridLength(0);
+            //cd.Width = new GridLength(0);
 
             // hide individual images as well.
             // lists of gamesdb related controls
