@@ -38,4 +38,4 @@ deploy:
   prerelease: false
   force_update: true
   on:
-    branch: master, dev
+    branch: master
