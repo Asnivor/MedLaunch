@@ -11252,6 +11252,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                         <RichTextBox x:Name="rtbDocument" ScrollViewer.VerticalScrollBarVisibility="Auto" IsUndoEnabled="False" IsReadOnly="True" BorderThickness="0" 
                                          IsDocumentEnabled="True"  Grid.Row="0" Grid.ColumnSpan="2" FontFamily="Tahoma"
                                          VerticalAlignment="Stretch" Padding="20 0 20 20">
+                            <RichTextBox.Background>
+                                <SolidColorBrush Opacity="0.6" />
+                            </RichTextBox.Background>
                             <FlowDocument/>
                         </RichTextBox>
 
