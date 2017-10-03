@@ -730,7 +730,7 @@ namespace MedLaunch.Classes
 
                 if (cacheRom != string.Empty)
                 {
-                    return cacheRom;
+                    return ParseSMD(cacheRom, cacheDir);
                 }
 
             }
@@ -742,6 +742,18 @@ namespace MedLaunch.Classes
                 if (extension == ".zip") //zip
                 {
                     // this should be a zip file with a single rom inside - pass directly to mednafen as is
+                    using (System.IO.Compression.ZipArchive ar = System.IO.Compression.ZipFile.OpenRead(path))
+                    {
+                        foreach (System.IO.Compression.ZipArchiveEntry entry in ar.Entries)
+                        {
+                            if (entry.FullName.EndsWith(".smd", StringComparison.OrdinalIgnoreCase))
+                            {
+                                entry.Archive.ExtractToDirectory(cacheDir, true);
+                                return ParseSMD(Path.Combine(cacheDir, entry.FullName), cacheDir);
+                            }
+                        }
+                    }
+
                     return path;
                 }
 
@@ -795,25 +807,38 @@ namespace MedLaunch.Classes
                     */
 
                     // return the new path to the rom
-                    return cacheFile;
+                    return ParseSMD(cacheFile, cacheDir);
                 }
 
                 else if (extension == ".zip") //zip
                 {
-                    // this should be a zip file with a single rom inside - pass directly to mednafen as is
+                    // this should be a zip file with a single rom inside - pass directly to mednafen as is (unless its an smd file)
+
+                    using (System.IO.Compression.ZipArchive ar = System.IO.Compression.ZipFile.OpenRead(path))
+                    {
+                        foreach (System.IO.Compression.ZipArchiveEntry entry in ar.Entries)
+                        {
+                            if (entry.FullName.EndsWith(".smd", StringComparison.OrdinalIgnoreCase))
+                            {
+                                entry.Archive.ExtractToDirectory(cacheDir, true);
+                                return ParseSMD(Path.Combine(cacheDir, entry.FullName), cacheDir);
+                            }
+                        }
+                    }
+
                     return path;
                 }
             }
             
 
-            return path;
+            return ParseSMD(path, cacheDir);
         }
 
         public string ParseSMD(string inputFile, string outputDir)
         {
             if (!File.Exists(inputFile))
                 return null;
-
+            
             string ext = System.IO.Path.GetExtension(inputFile).ToLower();
 
             // return original file if not an smd
@@ -826,7 +851,7 @@ namespace MedLaunch.Classes
 
             var uResult = u.ScanGame(inputFile, SystemType.Genesis);
 
-            if (uResult.Data.IsChecksumValid == true && uResult.Data.IsInterleaved.Value == true)
+            if (uResult.Data.IsInterleaved.Value == true)
             {
                 // we can process this smd and de-interleave it
                 u.ConvertSMDToBin(uResult);
