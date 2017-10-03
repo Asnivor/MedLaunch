@@ -80,9 +80,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DiscSN, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DiscTools, Version=1.0.23.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>ExternalAssemblies\DiscSN.dll</HintPath>
+      <HintPath>ExternalAssemblies\DiscTools.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
@@ -1115,7 +1115,7 @@
     <Content Include="Data\Installers\vcredist_x86.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ExternalAssemblies\DiscSN.dll" />
+    <Content Include="ExternalAssemblies\DiscTools.dll" />
     <Content Include="ExternalAssemblies\MednaNetAPIClient.dll" />
     <Content Include="ExternalAssemblies\System.Net.Http.Formatting.dll" />
     <Content Include="ExternalAssemblies\WindowScrape.dll" />

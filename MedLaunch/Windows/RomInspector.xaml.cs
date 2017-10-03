@@ -98,23 +98,23 @@ namespace MedLaunch
                     var file = DiscScan.ParseTrackSheetForImageFiles(dgf, g.systemId).FirstOrDefault();
                     if (file != null)
                     {
-                        var satInfo = MedDiscUtils.GetSSData(file.FullPath);
+                        var satInfo = MedDiscUtils.GetSaturnInfo(file.FullPath);
                         string outp = "Initialising MedLaunch Sega Saturn DISC Interogator\n*******************************************\n\n";
-                        outp += satInfo.Title + "\n";
-                        outp += satInfo.SerialNumber + "\n";
-                        outp += satInfo.Date + "\n";
-                        outp += satInfo.Country + "\n";
-                        outp += satInfo.JpnTitle + "\n";
-                        outp += satInfo.PeriphCode + "\n";
-                        outp += satInfo.CountryCode + "\n";
+                        outp += satInfo.Data.GameTitle + "\n";
+                        outp += satInfo.Data.SerialNumber + "\n";
+                        outp += satInfo.Data.InternalDate + "\n";
+                        outp += satInfo.Data.AreaCodes + "\n";
+                        //outp += satInfo.JpnTitle + "\n";
+                        outp += satInfo.Data.PeripheralCodes + "\n";
+                       // outp += satInfo.CountryCode + "\n";
 
                         tbInsResult.Text = outp;
 
                         // pop tbs
-                        tbIntGame.Text = satInfo.Title;
-                        tbIntRegion.Text = satInfo.Country;
-                        tbIntYear.Text = satInfo.Date;
-                        tbIntVersion.Text = satInfo.SerialNumber;
+                        tbIntGame.Text = satInfo.Data.GameTitle;
+                        tbIntRegion.Text = satInfo.Data.AreaCodes;
+                        tbIntYear.Text = satInfo.Data.InternalDate;
+                        tbIntVersion.Text = satInfo.Data.SerialNumber;
                     }
                 }
                 else if (g.systemId == 9)

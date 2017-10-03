@@ -650,21 +650,21 @@ namespace MedLaunch.Classes.Scanning
                     {                        
                         lookupGame = (from g in Games
                                       where (g.systemId == sysId && g.gameName == f.GameName) || g.disks == f.ExtraInfo
-                                      select g).SingleOrDefault();
+                                      select g).FirstOrDefault();
                     }
                     else
                     {
 
                         lookupGame = (from g in Games
                                       where (g.systemId == sysId && g.gameName == f.GameName)
-                                      select g).SingleOrDefault();
+                                      select g).FirstOrDefault();
                     }  
                     break;
 
                 default:            // everything else
                     lookupGame = (from g in Games
                                   where (g.systemId == sysId && g.gameName == f.GameName)
-                                  select g).SingleOrDefault();
+                                  select g).FirstOrDefault();
                     break;
             }
 
@@ -797,35 +797,48 @@ namespace MedLaunch.Classes.Scanning
             {
                 firstCue = ParseTrackSheet(f, CueType.m3u, sysId)[0].FullPath;
             }
-            
+
+            // determine game info
+            var discInspect = MedDiscUtils.ScanDiscGame(firstCue);
+
+            if (discInspect == null)
+                return null;
+
+            string serial = string.Empty;
+            int determinedSysId = sysId;
+
+            switch (discInspect.DetectedDiscType)
+            {
+                case DiscTools.DetectedDiscType.PCEngineCD:
+                    determinedSysId = 18;
+                    break;
+                case DiscTools.DetectedDiscType.PCFX:
+                    determinedSysId = 8;
+                    break;
+                case DiscTools.DetectedDiscType.SegaSaturn:
+                    determinedSysId = 13;
+                    break;
+                case DiscTools.DetectedDiscType.SonyPSX:
+                    determinedSysId = 9;
+                    break;
+                default:
+                    return null;
+            }
+
 
             // lookup serial number from disc image
-            string serial = string.Empty;
+            if (discInspect.Data.SerialNumber == null)
+                serial = "";
+            else
+                serial = discInspect.Data.SerialNumber.ToUpper().Trim();
 
-            if (sysId == 9) //psx
-            {
-                serial = MedDiscUtils.GetPSXSerial(firstCue);
-                if (serial == null)
-                    serial = "";
-                f.ExtraInfo = serial;
-            }
-            if (sysId == 13) //ss
-            {
-                var ssInfo = MedDiscUtils.GetSSData(firstImage);
-                if (ssInfo.SerialNumber != null && ssInfo.SerialNumber != "")
-                    f.ExtraInfo = ssInfo.SerialNumber; // + "*/";
-                /*
-                if (ssInfo.Version != null && ssInfo.Version != "")
-                    f.ExtraInfo += ssInfo.Version;
-                    */
-                
-            }
-
+            f.ExtraInfo = serial;
+            
             // check whether game already exists in the database
-            Game chkGame = ReturnMatchingGame(f, sysId);
+            Game chkGame = ReturnMatchingGame(f, determinedSysId);
 
             // create a game file and process all details
-            Game newGame = PopulateGameFile(f, sysId, chkGame);
+            Game newGame = PopulateGameFile(f, determinedSysId, chkGame);
 
             return newGame;
             

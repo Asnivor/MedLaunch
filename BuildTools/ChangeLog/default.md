@@ -9,6 +9,7 @@ title: Changelog
 * (BugFix)	-	Fixed UI transparency issue
 * (BugFix)	-	Fixed issues with games library sidebar text 'jumping' when changing the selected game
 * (Enhancement)	-	Some non-system related mednafen key bindings can now be set within MedLaunch
+* (Enhancement)	-	Added detection of system for discs (discs will be added to the correct system on import, even if they are in the wrong folder)
 
 ##### [0.5.18.1](https://medlaunch.info/releases/0-5-18-1)
 ###### 2017-09-25
