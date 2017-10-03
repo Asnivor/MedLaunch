@@ -10249,6 +10249,15 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                         </TextBlock>
                                     </Button>
 
+                                    <Separator Margin="0,10,0,10" />
+
+                                    <Button Style="{StaticResource MenuButton}"  x:Name="btnControlCommandBindings"  Click="btnControlCommandBindings_Click"
+                                ToolTip="Setup keyboard/joypad bindings for misc (non-system) mednafen commands">
+                                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center">
+                                Misc Command Bindings
+                                        </TextBlock>
+                                    </Button>
+
                                 </WrapPanel>
                             </Expander>
                         </Border>

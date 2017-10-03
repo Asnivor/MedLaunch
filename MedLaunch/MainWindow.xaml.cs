@@ -5874,6 +5874,25 @@ namespace MedLaunch
         }
 
         /// <summary>
+        /// Set non-system specific command bindings
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void btnControlCommandBindings_Click(object sender, RoutedEventArgs e)
+        {
+            // launch controller configuration window
+            await this.ShowChildWindowAsync(new ConfigureMiscBindings()
+            {
+                IsModal = true,
+                AllowMove = false,
+                Title = "Misc Binding Configuration",
+                CloseOnOverlay = false,
+                CloseByEscape = false,
+                ShowCloseButton = false
+            }, RootGrid);
+        }
+
+        /// <summary>
         /// Country filter buttons to the right of the games library dynamic search
         /// </summary>
         /// <param name="sender"></param>

@@ -285,6 +285,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Controls\VirtualDevices\MiscBindings.cs" />
     <Compile Include="Classes\DAT\AsniDATDbContext.cs" />
     <Compile Include="Classes\DAT\DATMerge.cs" />
     <Compile Include="Classes\DAT\DAT_Game.cs" />
@@ -392,6 +393,9 @@
     <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\Models\ToSecCollection.cs" />
     <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\Models\ToSecObject.cs" />
     <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\StringConverterToSec.cs" />
+    <Compile Include="Windows\ConfigureMiscBindings.xaml.cs">
+      <DependentUpon>ConfigureMiscBindings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ScraperGamePicker.xaml.cs">
       <DependentUpon>ScraperGamePicker.xaml</DependentUpon>
     </Compile>
@@ -564,6 +568,10 @@
     <Page Include="Windows\AccentStyleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ConfigureMiscBindings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\ConfigureController.xaml">
       <SubType>Designer</SubType>

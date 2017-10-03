@@ -19,6 +19,7 @@ using WindowScrape.Static;
 using WindowScrape.Types;
 using MedLaunch.Classes.Scanning;
 using MedLaunch.Common.IO.Compression;
+using ucon64_wrapper;
 
 namespace MedLaunch.Classes
 {
@@ -806,6 +807,33 @@ namespace MedLaunch.Classes
             
 
             return path;
+        }
+
+        public string ParseSMD(string inputFile, string outputDir)
+        {
+            if (!File.Exists(inputFile))
+                return null;
+
+            string ext = System.IO.Path.GetExtension(inputFile).ToLower();
+
+            // return original file if not an smd
+            if (ext.ToLower() != ".smd")
+                return inputFile;
+
+            // test to see if file is interleaved
+            UconWrapper u = new UconWrapper(System.AppDomain.CurrentDomain.BaseDirectory + @"\ucon64-bin\ucon64.exe");
+            u.OutputFolder = outputDir;
+
+            var uResult = u.ScanGame(inputFile, SystemType.Genesis);
+
+            if (uResult.Data.IsChecksumValid == true && uResult.Data.IsInterleaved.Value == true)
+            {
+                // we can process this smd and de-interleave it
+                u.ConvertSMDToBin(uResult);
+                return uResult.ConvertedPath;
+            }
+
+            return inputFile;
         }
 
         private static string GetRomFolder(int systemId, MyDbContext db)
