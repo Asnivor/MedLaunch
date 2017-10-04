@@ -628,10 +628,18 @@ namespace MedLaunch.Classes.Scraper
 
         public ICollection<ScraperMaster> SearchGameLocal(string gameName, int systemId, int gameId)
         {
+            
+
             SearchString = gameName;
             LocalIterationCount = 0;
             WorkingSearchCollection = new List<ScraperMaster>();
             SearchCollection = new List<ScraperMaster>();
+
+            if (gameName == null || gameName.Trim() == "")
+                return SearchCollection;
+
+            if (systemId == 0 || gameId == 0)
+                return SearchCollection;
 
             if (SearchString.Contains("[PD]") || SearchString.Contains("(PD)") || SearchString.Contains("SC-3000") || SearchString.Contains("BIOS"))
             {
