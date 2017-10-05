@@ -320,6 +320,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                    FontSize="13"
                    FontFamily="{DynamicResource HeaderFontFamily}" />
 
+            <Button Name="tvview" Content="TV VIEW" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}" 
+                    Click="tvview_Click"/>
+
             <Button Content="Debug" ContextMenuService.IsEnabled="False" Click="TopMenu_Click" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
                 <Button.ContextMenu>
                     <ContextMenu>

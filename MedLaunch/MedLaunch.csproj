@@ -405,6 +405,9 @@
     <Compile Include="Windows\DiscSelection.xaml.cs">
       <DependentUpon>DiscSelection.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\TVView.xaml.cs">
+      <DependentUpon>TVView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="_Debug\DATDB\AdminDATDB.cs" />
     <Compile Include="_Debug\DATDB\AsniDATAdminDbContext.cs" />
     <Compile Include="_Debug\DATDB\DAT_Game.cs" />
@@ -702,6 +705,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\Control\NesCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\TVView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

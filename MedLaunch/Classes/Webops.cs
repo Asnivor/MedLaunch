@@ -69,9 +69,14 @@ namespace MedLaunch.Classes
 
                 if (wex.ToString().Contains("(503) Server Unavailable"))
                 {
-                    return "ERROR";
+                    return "ERROR - Server Error";
                 }
-                
+
+                if (wex.ToString().Contains("(404) Not Found"))
+                {
+                    return "ERROR - Not Found";
+                }
+
                 Timeout += 5000;
                 responseStr = GetResponseText(address, Timeout);
                 if (Timeout > 30000)

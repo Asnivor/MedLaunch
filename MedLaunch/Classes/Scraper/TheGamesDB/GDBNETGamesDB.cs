@@ -194,7 +194,7 @@ namespace MedLaunch.Classes.TheGamesDB
         {
             WebOps wo = new WebOps();
             wo.Params = "/GetGame.php?id=" + ID;
-            wo.Timeout = 30000;
+            wo.Timeout = 5000;
             string result = wo.ApiCall();
 
             if (result == "ERROR")

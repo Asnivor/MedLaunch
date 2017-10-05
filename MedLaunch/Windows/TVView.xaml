@@ -1,0 +1,59 @@
+﻿<Controls:MetroWindow x:Class="MedLaunch.Windows.TVView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:MedLaunch"
+                      xmlns:gl="clr-namespace:MedLaunch.Classes.GamesLibrary"
+                      xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
+        xmlns:exts="clr-namespace:MedLaunch.Extensions"
+                      xmlns:diag="clr-namespace:System.Diagnostics;assembly=mscorlib"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
+xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Microsoft.Expression.Interactions"          
+        TextOptions.TextFormattingMode="Display"
+        mc:Ignorable="d"
+        Title="MedLaunch TV-VIEW" Height="300" Width="300" WindowStyle="None" ResizeMode="NoResize"  
+    WindowState="Maximized">
+    <Grid>
+
+        <TabControl>
+            <TabControl.Template>
+                <ControlTemplate TargetType="TabControl">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Hidden" >
+                            <TabPanel x:Name="HeaderPanel"
+                          Panel.ZIndex ="1" 
+                          KeyboardNavigation.TabIndex="1"
+                          Grid.Column="0"
+                          Grid.Row="0"
+                          Margin="2,2,2,0"
+                          IsItemsHost="true"/>
+                        </ScrollViewer>
+                        <ContentPresenter x:Name="PART_SelectedContentHost"
+                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                      Margin="{TemplateBinding Padding}"
+                                      ContentSource="SelectedContent" Grid.Row="1"/>
+                    </Grid>
+                </ControlTemplate>
+            </TabControl.Template>
+            <TabItem Header="TabItem1">TabItem1 Content</TabItem>
+            <TabItem Header="TabItem2">TabItem2 Content</TabItem>
+            <TabItem Header="TabItem3">TabItem3 Content</TabItem>
+            <TabItem Header="TabItem4">TabItem4 Content</TabItem>
+            <TabItem Header="TabItem5">TabItem5 Content</TabItem>
+            <TabItem Header="TabItem6">TabItem6 Content</TabItem>
+            <TabItem Header="TabItem7">TabItem7 Content</TabItem>
+            <TabItem Header="TabItem8">TabItem8 Content</TabItem>
+            <TabItem Header="TabItem9">TabItem9 Content</TabItem>
+            <TabItem Header="TabItem10">TabItem10 Content</TabItem>
+        </TabControl>
+
+    </Grid>
+</Controls:MetroWindow>

@@ -63,6 +63,7 @@ using ucon64_wrapper;
 using System.Windows.Interactivity;
 using MedLaunch.Common.Eventing.Listeners;
 using MedLaunch.Common.IO.Compression;
+using MedLaunch.Windows;
 
 namespace MedLaunch
 {
@@ -6488,7 +6489,11 @@ namespace MedLaunch
             }
         }
 
-        
+        private void tvview_Click(object sender, RoutedEventArgs e)
+        {
+            TVView win = new TVView();
+            win.Show();
+        }
     }
 
 
