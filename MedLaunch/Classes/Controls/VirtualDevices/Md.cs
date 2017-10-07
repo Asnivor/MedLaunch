@@ -67,6 +67,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 new Mapping { Description = "LEFT ←", MednafenCommand = device.CommandStart +".gamepad6.left" },
                 new Mapping { Description = "RIGHT →", MednafenCommand = device.CommandStart +".gamepad6.right" },
                 new Mapping { Description = "START", MednafenCommand = device.CommandStart +".gamepad6.start" },
+                new Mapping { Description = "Mode", MednafenCommand = device.CommandStart +".gamepad6.mode" },
                 new Mapping { Description = "A", MednafenCommand = device.CommandStart +".gamepad6.a" },
                 new Mapping { Description = "B", MednafenCommand = device.CommandStart +".gamepad6.b" },
                 new Mapping { Description = "C", MednafenCommand = device.CommandStart +".gamepad6.c" },
