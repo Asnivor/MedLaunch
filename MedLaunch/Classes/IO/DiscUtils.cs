@@ -6,13 +6,29 @@ using System.Threading.Tasks;
 using System.IO;
 using MedLaunch.Models;
 using MedLaunch.Classes.Scanning;
-using DiscSN;
+using DiscTools;
 using MedLaunch.Common.IO.Compression;
 
 namespace MedLaunch.Classes.IO
 {
     public class MedDiscUtils
     {
+        public static DiscInspector ScanDiscGame(string path)
+        {
+            try
+            {
+                DiscInspector d = DiscInspector.ScanDisc(path);
+                if (d != null)
+                    return d;
+            }
+            catch
+            {
+                return null;
+            }
+
+            return null;
+        }
+
         /// <summary>
         /// returns the PSX serial - Bizhawk DiscSystem requires either cue, ccd or iso (not bin or img)
         /// </summary>
@@ -20,23 +36,41 @@ namespace MedLaunch.Classes.IO
         /// <returns></returns>
         public static string GetPSXSerial(string path)
         {
-            string serial = "";
             try
             {
-                serial = SerialNumber.GetPSXSerial(path);
+                DiscInspector d = DiscInspector.ScanPSX(path);
+
+                if (d != null)
+                {
+                    if (d.Data.SerialNumber != null)
+                        return d.Data.SerialNumber.ToUpper();
+                }
             }
             catch
             {
-                // exceptions
                 return null;
             }
 
-            if (serial == "")
-                return null;
-
-            return serial;
+            return null;            
         }
 
+        public static DiscInspector GetSaturnInfo(string path)
+        {
+            try
+            {
+                DiscInspector d = DiscInspector.ScanSaturn(path);
+                if (d != null)
+                    return d;
+            }
+            catch
+            {
+                return null;
+            }
+
+            return null;
+        }
+
+        /*
         public static SaturnGame GetSSData(string path)
         {
             SaturnGame sg = new SaturnGame();
@@ -87,6 +121,8 @@ namespace MedLaunch.Classes.IO
 
             return sg;
         }
+
+        */
     }
 
     public class PsxSBI

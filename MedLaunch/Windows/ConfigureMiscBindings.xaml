@@ -1,0 +1,270 @@
+﻿<simpleChildWindow:ChildWindow x:Class="MedLaunch.ConfigureMiscBindings"
+							   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+							   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+							   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+							   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+							   xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
+                               xmlns:diag="clr-namespace:System.Diagnostics;assembly=mscorlib"
+                               xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+							   mc:Ignorable="d"
+							   d:DesignHeight="800"
+							   d:DesignWidth="600"
+							   CloseOnOverlay="True"
+							   GlowBrush="{DynamicResource AccentColorBrush}"
+							   BorderBrush="{DynamicResource AccentColorBrush}"
+							   BorderThickness="1"
+							   ShowCloseButton="False"
+                               IsModal="True"
+                               TextOptions.TextFormattingMode="Display"
+                               Closing="ChildWindow_Closing"
+                               IsOpen="True">
+
+    <simpleChildWindow:ChildWindow.Icon>
+        <Rectangle Width="22"
+				   Height="22"
+				   Fill="{DynamicResource IdealForegroundColorBrush}">
+            <Rectangle.OpacityMask>
+                <VisualBrush Stretch="Uniform"
+							 Visual="{DynamicResource appbar_cog}" />
+            </Rectangle.OpacityMask>
+        </Rectangle>
+    </simpleChildWindow:ChildWindow.Icon>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Name="titleTextBlock" Grid.Row="1" Grid.ColumnSpan="2"
+				   Margin="5"
+				   FontSize="23"
+				   FontWeight="Thin"
+                   HorizontalAlignment="Center"/>
+
+        <Image Name="img" HorizontalAlignment="Center" Height="80" Grid.Row="0" Stretch="Uniform" Margin="5">
+            <Image.ToolTip>
+                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                        <Image Source="{Binding Source}" Stretch="None" />
+                    </Border>
+                </ToolTip>
+            </Image.ToolTip>
+        </Image>
+
+        <Label HorizontalAlignment="Center" Grid.Row="2">
+            (Right-click in the textboxes below to insert pre-defined mouse controls)
+        </Label>
+
+        
+
+        <ScrollViewer MaxHeight="500" VerticalAlignment="Top" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Grid.Row="3">          
+        
+
+        <Grid Name="DynamicDataGrid"  Margin="100,0,100,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            
+            <!-- dynamically generated content goes here -->
+            
+        </Grid>
+
+        </ScrollViewer>
+
+        <UniformGrid Columns="3" Grid.Row="4">
+            <Button
+				Margin="5"
+				IsDefault="True"
+				VerticalAlignment="Bottom"
+				FontSize="20"
+				FontWeight="Thin"
+				Content="OK"
+				Click="btnSelect_Click" 
+                x:Name="btnSelect"/>
+
+            <Button
+				Margin="5"
+				IsDefault="True"
+				VerticalAlignment="Bottom"
+				FontSize="20"
+				FontWeight="Thin"
+				Content="Undo All Changes"
+				Click="btnReset_Click" 
+                x:Name="btnReset"/>
+
+            <Button
+				Margin="5"
+				IsDefault="True"
+				VerticalAlignment="Bottom"
+				FontSize="20"
+				FontWeight="Thin"
+				Content="Cancel"
+				Click="btnCancel_Click" 
+                x:Name="btnCancel"/>
+        </UniformGrid>
+        
+    </Grid>
+</simpleChildWindow:ChildWindow>

@@ -212,7 +212,7 @@ namespace MedLaunch.Classes.MednaNet
                     if (u.discordId == null)
                         ct = ClientType.medlaunch;
 
-                    DVH.users.UpdateUser(u.id, u.username, ct, true);
+                    DVH.users.UpdateUser(u.userId, u.username, ct, true);
                 }
 
                 DVH.UpdateUsers();
@@ -463,7 +463,7 @@ namespace MedLaunch.Classes.MednaNet
                 });
 
                 // post locally (not wait for next poll)
-                //LocalPost(newMessage);
+                LocalPost(newMessage);
 
             }
             catch (Exception ex) { APIDisconnected(ex); return; }

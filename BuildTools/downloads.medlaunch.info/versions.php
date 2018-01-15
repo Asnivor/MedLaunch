@@ -3,6 +3,14 @@
 // build data array
 $downloads_array = array(
     array(
+		'2018-01-15',
+		'0_5_18_5',
+		'https://github.com/Asnivor/MedLaunch/releases/download/0.5.18.5/MedLaunch_v0_5_18_5.zip',
+		'<a href="http://mednafen.fobby.net/releases/files/mednafen-0.9.39.2-win64.zip" class="btn btn-info btn-sm">0.9.39.x</a> - <a href="https://mednafen.github.io/releases/files/mednafen-0.9.48-win64.zip" class="btn btn-info btn-sm">0.9.48.x</a>',
+                '1'
+	),
+    
+    array(
 		'2017-09-25',
 		'0_5_18_1',
 		'https://github.com/Asnivor/MedLaunch/releases/download/0.5.18.1/MedLaunch_v0_5_18_1.zip',

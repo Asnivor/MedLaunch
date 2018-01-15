@@ -91,6 +91,8 @@ namespace MedLaunch
 
 
             /* is the OS x64 or x86? */
+
+            
             // determine windows install drive letter
             string letter = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System));
 
@@ -106,7 +108,8 @@ namespace MedLaunch
                 IsX86 = true;
             }
 
-
+    
+            IsX86 = false;
             var splashScreen = new SplashScreen(@"Data\Graphics\mediconsplash-new.png");
             splashScreen.Show(false);
             Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
@@ -136,7 +139,7 @@ namespace MedLaunch
 
             // instantiate ScrapeDB
             //ScrapedData = new ScrapeDB();
-            ScrapeDB sdb = new ScrapeDB();
+            //ScrapeDB sdb = new ScrapeDB();
 
             
 

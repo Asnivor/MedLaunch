@@ -80,9 +80,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DiscSN, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DiscTools, Version=1.0.23.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>ExternalAssemblies\DiscSN.dll</HintPath>
+      <HintPath>ExternalAssemblies\DiscTools.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
@@ -285,6 +285,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Controls\VirtualDevices\MiscBindings.cs" />
     <Compile Include="Classes\DAT\AsniDATDbContext.cs" />
     <Compile Include="Classes\DAT\DATMerge.cs" />
     <Compile Include="Classes\DAT\DAT_Game.cs" />
@@ -392,6 +393,9 @@
     <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\Models\ToSecCollection.cs" />
     <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\Models\ToSecObject.cs" />
     <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\StringConverterToSec.cs" />
+    <Compile Include="Windows\ConfigureMiscBindings.xaml.cs">
+      <DependentUpon>ConfigureMiscBindings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ScraperGamePicker.xaml.cs">
       <DependentUpon>ScraperGamePicker.xaml</DependentUpon>
     </Compile>
@@ -400,6 +404,9 @@
     </Compile>
     <Compile Include="Windows\DiscSelection.xaml.cs">
       <DependentUpon>DiscSelection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TVView.xaml.cs">
+      <DependentUpon>TVView.xaml</DependentUpon>
     </Compile>
     <Compile Include="_Debug\DATDB\AdminDATDB.cs" />
     <Compile Include="_Debug\DATDB\AsniDATAdminDbContext.cs" />
@@ -565,6 +572,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\ConfigureMiscBindings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\ConfigureController.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -694,6 +705,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\Control\NesCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\TVView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1107,7 +1122,7 @@
     <Content Include="Data\Installers\vcredist_x86.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ExternalAssemblies\DiscSN.dll" />
+    <Content Include="ExternalAssemblies\DiscTools.dll" />
     <Content Include="ExternalAssemblies\MednaNetAPIClient.dll" />
     <Content Include="ExternalAssemblies\System.Net.Http.Formatting.dll" />
     <Content Include="ExternalAssemblies\WindowScrape.dll" />

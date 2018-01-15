@@ -1,9 +1,5 @@
 version: 'MedLaunch-{branch}.{build}'
-branches:
-  only:
-  - dev
-  - master
-
+skip_tags: true
 configuration: Release
 shallow_clone: false
 environment:

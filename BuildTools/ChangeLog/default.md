@@ -8,6 +8,15 @@ title: Changelog
 ------------------------------------
 * None as yet
 
+##### [0.5.18.5](https://medlaunch.info/releases/0-5-18-5)
+###### 2018-01-15
+* (BugFix)	-	Fixed UI transparency issue
+* (BugFix)	-	Fixed issues with games library sidebar text 'jumping' when changing the selected game
+* (Enhancement)	-	Some non-system related mednafen key bindings can now be set within MedLaunch
+* (Enhancement)	-	Added detection of system for discs (discs will be added to the correct system on import, even if they are in the wrong folder)
+* (Enhancement)	-	Megadrive *.smd interleaved format games can now be imported. On game launch, if interleaving is detected, the ROM will be converted into the cache folder and launched from there (this is still experimental - its easier to ditch your old *.smd roms and get something newer)
+* (BugFix)	-	MegaDrive 6-button pad was missing the 'mode' button in control configuration
+
 ##### [0.5.18.1](https://medlaunch.info/releases/0-5-18-1)
 ###### 2017-09-25
 * (BugFix)	-	New version downloads don't stall at 100% anymore (but obviously you will still have to manually update until you are running this version)

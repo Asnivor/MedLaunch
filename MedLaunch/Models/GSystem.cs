@@ -315,7 +315,7 @@ namespace MedLaunch.Models
 
                 new GSystem { systemId = 4, theGamesDBPlatformId = new List<int>  { 36, 18 }, systemCode = "md", systemName = "Sega Mega Drive/Genesis",
                 MobyPlatformName = new List<string> { "genesis" },
-                    supportedFileExtensions = ".bin,.gen,.rom,.md", supportedArchiveExtensions = ".zip,.7z",
+                    supportedFileExtensions = ".bin,.gen,.rom,.md,.smd", supportedArchiveExtensions = ".zip,.7z",
                         systemDescription = "The Sega Genesis is a fourth-generation video game console developed and produced by Sega. It was originally released in Japan in 1988 as Mega Drive, then in North America in 1989 as Sega Genesis, and in Europe, Australia and other PAL regions in 1990 as Mega Drive." },
 
                 new GSystem { systemId = 5, theGamesDBPlatformId = new List<int>  { 20 }, systemCode = "gg", systemName = "Sega Game Gear",

@@ -38,7 +38,7 @@ title: Home
 **MedLaunch** is a .NET (Windows only) front-end for the excellent [Mednafen](http://mednafen.fobby.net/) multi-system emulator.
 
 ### Production Releases
-* Latest Production Version: 0.5.18.1 
+* Latest Production Version: 0.5.18.5 
 * [![Build status](https://ci.appveyor.com/api/projects/status/4maii9la7yb72bw8/branch/master?svg=true&passingText=Latest%20MASTER%20Build%20-%20OK&failingText=Lastest%20MASTER%20Build%20-%20FAILED&pendingText=Latest%20MASTER%20Build%20-%20IN%20PROGRESS)](https://ci.appveyor.com/project/Asnivor/medlaunch/branch/master)
 * Direct Production Download: [LATEST](https://downloads.medlaunch.info/latest)
 * Compatible with Mednafen: 0.9.39.x - 0.9.48

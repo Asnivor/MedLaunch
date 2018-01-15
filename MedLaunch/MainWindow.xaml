@@ -320,6 +320,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                    FontSize="13"
                    FontFamily="{DynamicResource HeaderFontFamily}" />
 
+            <Button Name="tvview" Content="TV VIEW" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}" 
+                    Click="tvview_Click"/>
+
             <Button Content="Debug" ContextMenuService.IsEnabled="False" Click="TopMenu_Click" Visibility="{Binding Source={x:Static diag:Debugger.IsAttached}, Converter={StaticResource BoolToVisibilityConverter}}">
                 <Button.ContextMenu>
                     <ContextMenu>
@@ -429,7 +432,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
         </Grid.Background>
 -->
 
-        <TabControl SelectionChanged="TabControl_SelectionChanged" >
+        <TabControl SelectionChanged="TabControl_SelectionChanged" Background="Transparent">
             <TabItem Header="Games" Style="{StaticResource MetroTabItemCustom}">
                 <Grid x:Name="grdGameLibrary">
                     <Grid.ColumnDefinitions>
@@ -10249,6 +10252,15 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                         </TextBlock>
                                     </Button>
 
+                                    <Separator Margin="0,10,0,10" />
+
+                                    <Button Style="{StaticResource MenuButton}"  x:Name="btnControlCommandBindings"  Click="btnControlCommandBindings_Click"
+                                ToolTip="Setup keyboard/joypad bindings for misc (non-system) mednafen commands">
+                                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center">
+                                Misc Command Bindings
+                                        </TextBlock>
+                                    </Button>
+
                                 </WrapPanel>
                             </Expander>
                         </Border>
@@ -11252,6 +11264,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                         <RichTextBox x:Name="rtbDocument" ScrollViewer.VerticalScrollBarVisibility="Auto" IsUndoEnabled="False" IsReadOnly="True" BorderThickness="0" 
                                          IsDocumentEnabled="True"  Grid.Row="0" Grid.ColumnSpan="2" FontFamily="Tahoma"
                                          VerticalAlignment="Stretch" Padding="20 0 20 20">
+                            <RichTextBox.Background>
+                                <SolidColorBrush Opacity="0.6" />
+                            </RichTextBox.Background>
                             <FlowDocument/>
                         </RichTextBox>
 

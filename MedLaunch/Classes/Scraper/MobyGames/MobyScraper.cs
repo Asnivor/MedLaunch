@@ -92,6 +92,14 @@ namespace MedLaunch.Classes
             string param = masterrecord.MOBYPlatformAlias + "/" + masterrecord.MOBYAlias;
             string initialPage = ReturnWebpage(baseurl, param, 10000);
 
+            // response error checking
+            switch (initialPage)
+            {
+                case "ERROR - Server Error":
+                case "ERROR - Not Found":
+                    return o;
+            }
+
             GlobalSettings gs = GlobalSettings.GetGlobals();
 
             // convert page string to htmldoc

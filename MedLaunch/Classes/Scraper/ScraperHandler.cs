@@ -58,6 +58,15 @@ namespace MedLaunch.Classes.Scraper
             if (game.ManualEditSet == true)
                 return;
 
+            if (gs == null)
+                return;
+
+            if (game == null)
+                return;
+
+            if (controller == null)
+                return;
+
             string gameName = game.gameName;
             int systemId = game.systemId;
             int gameId = game.gameId;
@@ -181,8 +190,7 @@ namespace MedLaunch.Classes.Scraper
 
                     if (controller.IsCanceled)
                     {
-                        controller.CloseAsync();
-                        return;
+                        break;
                     }
 
                     iter++;
@@ -277,8 +285,13 @@ namespace MedLaunch.Classes.Scraper
 
             if (controller.IsCanceled == true)
             {
-                controller.CloseAsync();
-                return;
+                try
+                {
+                    controller.CloseAsync();
+                    return;
+                }
+                catch { return; }
+                
             }
 
             // gameObject should now be populated - create folder structure on disk if it does not already exist
