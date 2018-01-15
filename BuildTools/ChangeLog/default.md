@@ -6,6 +6,10 @@ title: Changelog
 ------------------------------------
 #### Development Build Changes ([Dev](https://github.com/Asnivor/MedLaunch/tree/dev) branch) - [![Build status](https://ci.appveyor.com/api/projects/status/4maii9la7yb72bw8/branch/dev?svg=true)](https://ci.appveyor.com/project/Asnivor/medlaunch/branch/dev/artifacts)
 ------------------------------------
+* None as yet
+
+##### [0.5.18.5](https://medlaunch.info/releases/0-5-18-5)
+###### 2018-01-15
 * (BugFix)	-	Fixed UI transparency issue
 * (BugFix)	-	Fixed issues with games library sidebar text 'jumping' when changing the selected game
 * (Enhancement)	-	Some non-system related mednafen key bindings can now be set within MedLaunch
