@@ -7,6 +7,7 @@ title: Changelog
 #### Development Build Changes ([Dev](https://github.com/Asnivor/MedLaunch/tree/dev) branch) - [![Build status](https://ci.appveyor.com/api/projects/status/4maii9la7yb72bw8/branch/dev?svg=true)](https://ci.appveyor.com/project/Asnivor/medlaunch/branch/dev/artifacts)
 ------------------------------------
 * (Enhancement)	- Background image - added 'stretch and maintain aspect' and 'original size' options ([#196](https://github.com/Asnivor/MedLaunch/issues/196))
+* (BugFix) - Controller and Misc Binding configuration windows now instantiate based on the current MedLaunch window height (so that buttons at the bottom of the window should never be cut off) ([#197](https://github.com/Asnivor/MedLaunch/issues/197))
 
 ##### [0.5.18.5](https://medlaunch.info/releases/0-5-18-5)
 ###### 2018-01-15

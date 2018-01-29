@@ -256,6 +256,12 @@ namespace MedLaunch
             {
                 img.Source = b;
             }
+
+            // set childwindow size - this should be a little less than the actual window size
+            this.ChildWindowHeight = mw.ActualHeight - 100;
+
+            // now set the dynamic data scrollbar max height
+            scrData.MaxHeight = this.ChildWindowHeight - 230;
         }
 
         private async void btnConfigureSingle_Click(object sender, RoutedEventArgs e)

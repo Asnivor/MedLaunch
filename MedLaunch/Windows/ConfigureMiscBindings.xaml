@@ -60,9 +60,9 @@
             (Right-click in the textboxes below to insert pre-defined mouse controls)
         </Label>
 
-        
 
-        <ScrollViewer MaxHeight="500" VerticalAlignment="Top" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Grid.Row="3">          
+
+        <ScrollViewer Name="scrData" VerticalAlignment="Top" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Grid.Row="3">          
         
 
         <Grid Name="DynamicDataGrid"  Margin="100,0,100,0">
