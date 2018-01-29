@@ -302,19 +302,42 @@ namespace MedLaunch.Classes
                     // non-mednafen config settings or settings that must be added as a - param
                     continue;
                 }
-
-                string k = t.Key.Replace("__", ".");
-
-                // is the parameter illegal (ie. in the list of illegal config parameters)
-                if (IsParameterLegal(k) == false)
+                else if (t.Key.Contains("shared_memcards"))
                 {
-                    // illegal - break out of the loop and continue to next parameter
-                    continue;
+                    if (systemCode == "psx")
+                    {
+
+                        sb.Append("filesys.fname_sav");
+                        sb.Append(" ");
+
+                        // psx
+                        if (v == "1")
+                        {
+                            sb.Append("%s.%X");
+                        }
+                        else
+                        {
+                            sb.Append("%F.%M%x");
+                        }
+
+                        sb.Append("\r\n");
+                    }
                 }
-                sb.Append(k);
-                sb.Append(" ");
-                sb.Append(v);
-                sb.Append("\r\n");
+                else
+                {
+                    string k = t.Key.Replace("__", ".");
+
+                    // is the parameter illegal (ie. in the list of illegal config parameters)
+                    if (IsParameterLegal(k) == false)
+                    {
+                        // illegal - break out of the loop and continue to next parameter
+                        continue;
+                    }
+                    sb.Append(k);
+                    sb.Append(" ");
+                    sb.Append(v);
+                    sb.Append("\r\n");
+                }
             }
 
             // save to disk
@@ -480,9 +503,31 @@ namespace MedLaunch.Classes
                 }
 
 
-                if (thing.Key == "ConfigId" || thing.Key == "UpdatedTime" || thing.Key == "isEnabled" || thing.Key == "systemIdent" || thing.Key.Contains("__enable"))
+                if (thing.Key == "ConfigId" || thing.Key == "UpdatedTime" || thing.Key == "isEnabled" || 
+                    thing.Key == "systemIdent" || thing.Key.Contains("__enable"))
                 {
                     // non-mednafen config settings or settings that must be added as a - param
+                }
+                else if (thing.Key.Contains("shared_memcards"))
+                {
+                    if (SystemId == 9)
+                    {
+                        ConfigKeyValue ckvSharedMem = new ConfigKeyValue();
+
+                        ckvSharedMem.Key = "filesys.fname_sav";
+
+                        // psx
+                        if (v == "1")
+                        {
+                            ckvSharedMem.Value = "%s.%X";
+                        }
+                        else
+                        {
+                            ckvSharedMem.Value = "%F.%M%x";
+                        }
+
+                        activeCmds.Add(ckvSharedMem);
+                    }
                 }
                 else
                 {                    
@@ -596,6 +641,9 @@ namespace MedLaunch.Classes
                 // force pce_fast
                 baseStr += "-force_module pce_fast" + sep;
             }
+
+            // shared memcard
+
 
             // perform mednafen version check and replace/remove config options that are not viable
             baseStr = Versions.GetCompatLaunchString(baseStr);

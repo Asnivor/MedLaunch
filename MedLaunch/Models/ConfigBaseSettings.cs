@@ -716,6 +716,8 @@ namespace MedLaunch.Models
         public double? psx__shader__goat__tp { get; set; }              // 0.00 through 1.00
         public double? psx__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
 
+        public bool? psx_shared_memcards { get; set; }
+
         // SNES (Faust)
 
         public bool? snes_faust__correct_aspect { get; set; }
@@ -1578,6 +1580,8 @@ namespace MedLaunch.Models
                 psx__shader__goat__slen = true,
                 psx__shader__goat__tp = 0.50,
                 psx__shader__goat__vdiv = 0.50,
+
+                psx_shared_memcards = false,
 
                 // snes faust
                 snes_faust__correct_aspect = true,

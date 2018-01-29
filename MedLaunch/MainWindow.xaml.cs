@@ -6504,6 +6504,16 @@ namespace MedLaunch
             TVView win = new TVView();
             win.Show();
         }
+
+        private void cfg_psx_shared_memcards_Checked(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult res = MessageBox.Show("Only use this option if you understand the risks.\nMednafen writes and reads memcard data during Save/Load state operations. This can cause memory card save corruption in some cases", "WARNING!",
+                MessageBoxButton.OKCancel);
+            if (res == MessageBoxResult.Cancel)
+            {
+                cfg_psx_shared_memcards.IsChecked = false;
+            }
+        }
     }
 
 

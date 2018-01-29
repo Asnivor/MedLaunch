@@ -9096,6 +9096,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                             <CheckBox x:Name="cfg_psx__h_overscan">Show Horizontal Overscan Area</CheckBox>
                                             <CheckBox x:Name="cfg_psx__region_autodetect">Attempt Region Auto-Detection</CheckBox>
 
+                                            <CheckBox x:Name="cfg_psx_shared_memcards" ToolTip="WARNING: This doesn't play well with savestates. Use at your own risk!"
+                                                      Checked="cfg_psx_shared_memcards_Checked">
+                                                Enable Shared Memory Card(s)
+                                            </CheckBox>
+
                                             <Grid Margin="0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
