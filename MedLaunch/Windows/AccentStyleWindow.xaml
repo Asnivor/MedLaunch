@@ -67,6 +67,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Image Name="imgBgImage" StretchDirection="DownOnly" Width="90" Height="90" Stretch="UniformToFill" Grid.Column="0"
@@ -81,17 +82,34 @@
                     </TextBox>
                 </StackPanel>
 
-                <RadioButton Name="rbDtStretch" GroupName="displayType" Grid.Column="1" Grid.Row="1" Click="rbDtStretch_Click">Stretch to Fit</RadioButton>
-                <RadioButton Name="rbDtTile" GroupName="displayType" Grid.Column="2" Grid.Row="1" Click="rbDtTile_Click">Tile</RadioButton>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1">
+                    <Label>
+                        Image Scaling
+                    </Label>
 
-                <DockPanel Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="5">
+                    <ComboBox x:Name="displayTypeSelector"
+                              SelectionChanged="displayTypeSelector_SelectionChanged" HorizontalAlignment="Stretch" Width="172" >
+                        <ComboBoxItem>Stretch to Fit</ComboBoxItem>
+                        <ComboBoxItem>Tile</ComboBoxItem>
+                        <ComboBoxItem>Stretch and Maintain Aspect</ComboBoxItem>
+                        <ComboBoxItem>Original Size</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+
+                <!--
+
+                <RadioButton Name="rbDtStretch" GroupName="displayType" Grid.Column="1" Grid.Row="2" Click="rbDtStretch_Click">Stretch to Fit</RadioButton>
+                <RadioButton Name="rbDtTile" GroupName="displayType" Grid.Column="2" Grid.Row="2" Click="rbDtTile_Click">Tile</RadioButton>
+                -->
+
+                <DockPanel Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Margin="5">
                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Opacity</Label>
                     <TextBox Text="{Binding ElementName=slOpac, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" TextChanged="TextBox_TextChanged" />
                     <Slider Maximum="1" Minimum="0.05" TickPlacement="BottomRight" TickFrequency="0.05" IsSnapToTickEnabled="True" 
                                         Name="slOpac" />
                 </DockPanel>
 
-                <Button Name="btnResetToBeetle" Click="btnResetToBeetle_Click" Content="Reset to Beetle" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2"/>
+                <Button Name="btnResetToBeetle" Click="btnResetToBeetle_Click" Content="Reset to Beetle" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"/>
 
             </Grid>
         </GroupBox>
@@ -106,9 +124,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-
                 
-
                 <UniformGrid Grid.Row="2" Margin="5" Columns="1">
                     <ComboBox x:Name="AccentSelector"
                               Margin="5"

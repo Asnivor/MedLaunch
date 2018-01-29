@@ -6370,9 +6370,6 @@ namespace MedLaunch
 
             RootGrid.Background = null;
 
-            
-            
-
             ImageBrush ib = new ImageBrush();
 
             if (!File.Exists(GlobalSettings.GetFullBGImagePath(path)))
@@ -6386,12 +6383,25 @@ namespace MedLaunch
 
             ib.Opacity = opac;
 
+            // tile image
             if (type == 1)
             {
                 ib.TileMode = TileMode.Tile;
                 Rect r = new Rect(new Size(32, 32));
                 ib.Viewport = r;
                 ib.ViewportUnits = BrushMappingMode.Absolute;
+            }
+
+            // stretch but maintain aspect
+            if (type == 2)
+            {
+                ib.Stretch = Stretch.Uniform;
+            }
+
+            // original size image
+            if (type == 3)
+            {
+                ib.Stretch = Stretch.None;
             }
 
             RootGrid.Background = ib;

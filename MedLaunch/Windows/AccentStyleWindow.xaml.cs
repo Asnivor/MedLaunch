@@ -52,10 +52,14 @@ namespace MedLaunch
 
             // image display type
             ImageDisplayType = GlobalSettings.getBgImageDisplayType();
+            /*
             if (ImageDisplayType == 0)
                 rbDtStretch.IsChecked = true;
             if (ImageDisplayType == 1)
                 rbDtTile.IsChecked = true;
+                */
+
+            displayTypeSelector.SelectedIndex = ImageDisplayType;
 
             // opacity
             ImgOpacity = GlobalSettings.GetBGImageOpacity();
@@ -152,7 +156,8 @@ namespace MedLaunch
             DisplayImage();
             ImgOpacity = 0.1;
             slOpac.Value = ImgOpacity;
-            rbDtStretch.IsChecked = true;
+            //rbDtStretch.IsChecked = true;
+            displayTypeSelector.SelectedIndex = 0;
             ImageDisplayType = 0;
             tbImagePath.Text = ImgPath;
 
@@ -199,7 +204,7 @@ namespace MedLaunch
         }
 
 
-
+        /*
         private void rbDtStretch_Click(object sender, RoutedEventArgs e)
         {
             ImageDisplayType = 0;
@@ -209,6 +214,7 @@ namespace MedLaunch
         {
             ImageDisplayType = 1;
         }
+        */
 
         private void btnResetToBeetle_Click(object sender, RoutedEventArgs e)
         {
@@ -242,6 +248,33 @@ namespace MedLaunch
             */
 
             ImgOpacity = val; // d;
+        }
+
+        private void displayTypeSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            var sel = comboBox.SelectedIndex;
+            switch (sel)
+            {
+                // Nothing selected
+                case -1:
+                // stretch
+                case 0:
+                    ImageDisplayType = 0;
+                    break;
+                // tile
+                case 1:
+                    ImageDisplayType = 1;
+                    break;
+                // stretch and maintain aspect
+                case 2:
+                    ImageDisplayType = 2;
+                    break;
+                // original size
+                case 3:
+                    ImageDisplayType = 3;
+                    break;
+            }
         }
     }
 }
