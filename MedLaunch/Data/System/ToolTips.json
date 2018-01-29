@@ -1372,12 +1372,20 @@
     "Description": "Input device for Virtual Port 1\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
   },
   {
+    "Command": "ss.input.port1.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
+  },
+  {
     "Command": "ss.input.port1.gun_chairs",
     "Description": "Crosshairs color for lightgun on virtual port 1.\n\nA value of 0x1000000 disables crosshair drawing."
   },
   {
     "Command": "ss.input.port10",
     "Description": "Input device for Virtual Port 10\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port10.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
   },
   {
     "Command": "ss.input.port10.gun_chairs",
@@ -1388,12 +1396,20 @@
     "Description": "Input device for Virtual Port 11\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
   },
   {
+    "Command": "ss.input.port11.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
+  },
+  {
     "Command": "ss.input.port11.gun_chairs",
     "Description": "Crosshairs color for lightgun on virtual port 11.\n\nA value of 0x1000000 disables crosshair drawing."
   },
   {
     "Command": "ss.input.port12",
     "Description": "Input device for Virtual Port 12\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port12.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
   },
   {
     "Command": "ss.input.port12.gun_chairs",
@@ -1404,12 +1420,20 @@
     "Description": "Input device for Virtual Port 2\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
   },
   {
+    "Command": "ss.input.port2.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
+  },
+  {
     "Command": "ss.input.port2.gun_chairs",
     "Description": "Crosshairs color for lightgun on virtual port 2.\n\nA value of 0x1000000 disables crosshair drawing."
   },
   {
     "Command": "ss.input.port3",
     "Description": "Input device for Virtual Port 3\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port3.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
   },
   {
     "Command": "ss.input.port3.gun_chairs",
@@ -1420,12 +1444,20 @@
     "Description": "Input device for Virtual Port 4\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
   },
   {
+    "Command": "ss.input.port4.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
+  },
+  {
     "Command": "ss.input.port4.gun_chairs",
     "Description": "Crosshairs color for lightgun on virtual port 4.\n\nA value of 0x1000000 disables crosshair drawing."
   },
   {
     "Command": "ss.input.port5",
     "Description": "Input device for Virtual Port 5\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port5.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
   },
   {
     "Command": "ss.input.port5.gun_chairs",
@@ -1436,12 +1468,20 @@
     "Description": "Input device for Virtual Port 6\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
   },
   {
+    "Command": "ss.input.port6.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
+  },
+  {
     "Command": "ss.input.port6.gun_chairs",
     "Description": "Crosshairs color for lightgun on virtual port 6.\n\nA value of 0x1000000 disables crosshair drawing."
   },
   {
     "Command": "ss.input.port7",
     "Description": "Input device for Virtual Port 7\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port7.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
   },
   {
     "Command": "ss.input.port7.gun_chairs",
@@ -1452,12 +1492,20 @@
     "Description": "Input device for Virtual Port 8\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
   },
   {
+    "Command": "ss.input.port8.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
+  },
+  {
     "Command": "ss.input.port8.gun_chairs",
     "Description": "Crosshairs color for lightgun on virtual port 8.\n\nA value of 0x1000000 disables crosshair drawing."
   },
   {
     "Command": "ss.input.port9",
     "Description": "Input device for Virtual Port 9\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port9.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
   },
   {
     "Command": "ss.input.port9.gun_chairs",
