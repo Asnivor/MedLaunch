@@ -4,25 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using MedLaunch.Common;
 using System.IO;
 using MedLaunch.Classes.IO;
 using Microsoft.Win32;
 using System.Threading;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
-using WindowScrape;
-using WindowScrape.Constants;
 using WindowScrape.Static;
-using WindowScrape.Types;
 using MedLaunch.Classes.Scanning;
 using MedLaunch.Common.IO.Compression;
 using ucon64_wrapper;
 
 namespace MedLaunch.Classes
 {
+    /// <summary>
+    /// The main class for launching games
+    /// </summary>
     public class GameLauncher
     {
         public GameLauncher()

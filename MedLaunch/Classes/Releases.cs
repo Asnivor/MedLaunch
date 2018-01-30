@@ -7,7 +7,9 @@ using Newtonsoft.Json;
 
 namespace Medlaunch.Classes
 {
-    
+    /// <summary>
+    /// Release class (possibly not needed anymore)
+    /// </summary>
     public class Release
     {
         public string Version { get; set; }

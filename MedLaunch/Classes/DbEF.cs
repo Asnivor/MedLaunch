@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MedLaunch.Models;
 using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Migrations;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using System.Windows.Media;
-using MedLaunch.Classes.GamesLibrary;
-using System.Windows;
 using System.Text.RegularExpressions;
 
 namespace MedLaunch.Classes
 {
+    /// <summary>
+    /// Database initialisation routines
+    /// </summary>
     class DbEF
     {
         public static object GamesListView { get; private set; }
