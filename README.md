@@ -4,6 +4,7 @@
 
 ## A Windows Front-End for Mednafen
 
+[![Build status](https://ci.appveyor.com/api/projects/status/4maii9la7yb72bw8/branch/master?svg=true&passingText=Latest%20MASTER%20Build%20-%20OK&failingText=Lastest%20MASTER%20Build%20-%20FAILED&pendingText=Latest%20MASTER%20Build%20-%20IN%20PROGRESS)](https://ci.appveyor.com/project/Asnivor/medlaunch/branch/master) [![Build status](https://ci.appveyor.com/api/projects/status/4maii9la7yb72bw8/branch/dev?svg=true&passingText=Latest%20DEV%20Build%20-%20OK&failingText=Lastest%20DEV%20Build%20-%20FAILED&pendingText=Latest%20DEV%20Build%20-%20IN%20PROGRESS)](https://ci.appveyor.com/project/Asnivor/medlaunch/branch/dev) [![Percentage of issues still open](http://isitmaintained.com/badge/open/Asnivor/MedLaunch.svg)](http://isitmaintained.com/project/Asnivor/MedLaunch "Percentage of issues still open") [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/Asnivor/MedLaunch.svg)](http://isitmaintained.com/project/Asnivor/MedLaunch "Average time to resolve an issue")
 
 <a href="https://medlaunch.info/user/pages/03.screenshots/games01.png"><img src="https://medlaunch.info/user/pages/03.screenshots/games01.png" width="150" /></a>
 <a href="https://medlaunch.info/user/pages/03.screenshots/games02.png"><img src="https://medlaunch.info/user/pages/03.screenshots/games02.png" width="150" /></a>
