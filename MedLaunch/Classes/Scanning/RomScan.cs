@@ -154,7 +154,10 @@ namespace MedLaunch.Classes.Scanning
                         else if (alcnt == 1 && extension == ".zip")
                         {
                             // 1 allowed file and 1 total files in a zip file - use the zip file rather than the embedded rom
-                            var result = results.Results.First();
+                            var result = results.Results.FirstOrDefault();
+
+                            if (result == null)
+                                return;
 
                             if (result.Extension == ".zip" || result.Extension == ".7z")
                                 return;
