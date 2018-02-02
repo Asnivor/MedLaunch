@@ -563,6 +563,10 @@
     <Compile Include="_Debug\ScrapeDB\MasterView.cs" />
     <Compile Include="_Debug\ScrapeDB\MOBY_Game.cs" />
     <Compile Include="_Debug\ScrapeDB\MOBY_Platform.cs" />
+    <Compile Include="_Debug\skeletonKey\AdminSkeletonKey.cs" />
+    <Compile Include="_Debug\skeletonKey\SK_Game.cs" />
+    <Compile Include="_Debug\skeletonKey\skeletonKeyAdminDbContext.cs" />
+    <Compile Include="_Debug\skeletonKey\SK_System.cs" />
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -857,6 +861,27 @@
     <None Include="Data\System\ToolTips.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="_Debug\skeletonKey\DATFiles\Atari - Lynx.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Bandai - WonderSwan Color.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Bandai - WonderSwan.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\NEC - PC Engine - TurboGrafx 16.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\NEC - PC Engine CD - TurboGrafx CD.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\NEC - PC Engine SuperGrafx.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\NEC - PC-FX.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Nintendo - Famicom.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Nintendo - Game Boy Advance.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Nintendo - Game Boy Color.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Nintendo - Game Boy.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Nintendo - Nintendo Entertainment System.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Nintendo - Super Nintendo Entertainment System.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Nintendo - Virtual Boy.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Sega - Game Gear.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Sega - Master System - Mark III.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Sega - Mega Drive - Genesis.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Sega - Saturn.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\SNK - Neo Geo Pocket Color.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\SNK - Neo Geo Pocket.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Sony - Playstation.7z" />
     <Resource Include="Fonts\Arvo-Bold.ttf" />
     <Resource Include="Fonts\Arvo-BoldItalic.ttf" />
     <Resource Include="Fonts\Arvo-Italic.ttf" />
@@ -1000,6 +1025,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Classes\skeletonKey\" />
     <Folder Include="_Debug\DATDB\DATFiles\PSXDATACENTER\" />
   </ItemGroup>
   <ItemGroup>

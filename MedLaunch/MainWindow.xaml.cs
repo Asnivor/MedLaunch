@@ -1177,6 +1177,18 @@ namespace MedLaunch
 
         #endregion
 
+        /// <summary>
+        /// Imports skeleton key data into database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dbgImportSkeleton_Click(object sender, RoutedEventArgs e)
+        {
+            _Debug.skeletonKey.AdminSkeletonKey sdb = new _Debug.skeletonKey.AdminSkeletonKey();
+            sdb.EntryPoint();
+        }
+
+
         private void dbgImportPlatGames_Click(object sender, RoutedEventArgs e)
         {
             _Debug.ScrapeDB.AdminScrapeDb adb = new _Debug.ScrapeDB.AdminScrapeDb();
@@ -3542,7 +3554,7 @@ namespace MedLaunch
                     tbName = "cfg_gba__bios";
                     break;
                 case "PceGe":
-                    tbName = "cfg_pce__gecdbioss";
+                    tbName = "cfg_pce__gecdbios";
                     break;
                 case "PceCd":
                     tbName = "cfg_pce__cdbios";
@@ -5769,6 +5781,8 @@ namespace MedLaunch
         get { return Visibility.Collapsed; }
 #endif
         }
+
+        
     }
 
 

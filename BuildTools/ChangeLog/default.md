@@ -10,6 +10,7 @@ title: Changelog
 * (BugFix) - Controller and Misc Binding configuration windows now instantiate based on the current MedLaunch window height (so that buttons at the bottom of the window should never be cut off) ([#197](https://github.com/Asnivor/MedLaunch/issues/197))
 * (Enhancement) - Added shared memcard option for PSX ([#194](https://github.com/Asnivor/MedLaunch/issues/194)) - Caveat: this may not play nice with savestates, use with caution
 * (BugFix) - Added better error handling when inspecting corrupt archive files ([#198](https://github.com/Asnivor/MedLaunch/issues/198))
+* (BugFix) - Fixed code typo that was causing an exception when choosing pce gecdbios ([#200](https://github.com/Asnivor/MedLaunch/issues/200))
 
 ##### [0.5.18.5](https://medlaunch.info/releases/0-5-18-5)
 ###### 2018-01-15

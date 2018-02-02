@@ -341,6 +341,11 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                         </MenuItem>
 
+                        <MenuItem Header="SkeletonKey DB (Admin)">
+                            <MenuItem Name="dbgImportSkeleton" Header="Import skeletonKey data from DAT directory (to DB)" Click="dbgImportSkeleton_Click"/>
+
+                        </MenuItem>
+
                         <MenuItem Header="DATDB (Admin)">
                             <MenuItem Header="ToSec">
                                 <MenuItem Header="Import All ToSec DATS" Click="btnToSecImportAll_Click"/>
