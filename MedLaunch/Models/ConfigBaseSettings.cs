@@ -67,6 +67,7 @@ namespace MedLaunch.Models
         public bool? video__frameskip { get; set; }
         public bool? video__fs { get; set; }
         public bool? video__glvsync { get; set; }
+        public int? video__fs__display { get; set; }              // -1 through 32767
 
         // generic system specific settings -   <system>.setting
         public bool? __enable { get; set; }
@@ -85,6 +86,8 @@ namespace MedLaunch.Models
         public int? __yres { get; set; }                            // 0 through 65536
         public double? __yscale { get; set; }                       // 0.01 through 256
         public double? __yscalefs { get; set; }                     // 0.01 through 256
+
+        
 
         // system specific settings
 
@@ -948,6 +951,8 @@ namespace MedLaunch.Models
                 video__fs = false,                                  // control placed
                 video__glvsync = true,                              // control placed
 
+                video__fs__display = -1,                          // -1 through 32767
+
                 // generic system specific settings
                 __enable = true,
                 __forcemono = false,                                // control placed
@@ -965,6 +970,8 @@ namespace MedLaunch.Models
                 __yres = 0,                                         // control placed
                 __yscale = 1,                                       // control placed
                 __yscalefs = 1,                                      // control placed
+
+                
 
                 // system specific settings
 

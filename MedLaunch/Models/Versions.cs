@@ -21,7 +21,12 @@ namespace MedLaunch.Models
         // constructors
         public Versions()
         {
-            CurrentMednafenVersion = LogParser.Instance.GetMednafenVersion(true).FullVersionString;
+            Paths p = Paths.GetPaths();
+            if (p != null && p.mednafenExe != null && Directory.Exists(p.mednafenExe))
+            {
+                CurrentMednafenVersion = LogParser.Instance.GetMednafenVersion(true).FullVersionString;
+            }
+            
             LatestCompatMednafenVersion = Versions.GetMednafenCompatibilityMatrix().First().Version;
             LatestCompatMednafenDownloadURL = Versions.GetMednafenCompatibilityMatrix().First().DownloadURL;
         }
@@ -68,7 +73,7 @@ namespace MedLaunch.Models
                         DownloadURL = "https://mednafen.github.io/releases/files/mednafen-0.9.48-win64.zip",
                         Changes = new List<VersionChange>
                         {
-
+                            
                         }
                     },
 
@@ -79,7 +84,7 @@ namespace MedLaunch.Models
                         DownloadURL = "https://mednafen.github.io/releases/files/mednafen-0.9.48-win64.zip",
                         Changes = new List<VersionChange>
                         {
-
+                            new VersionChange { Description = "Display to use with fullscreen", ChangeMethod = ChangeType.ToRemove, Item = "video.fs.display" },
                         }
                     },
 

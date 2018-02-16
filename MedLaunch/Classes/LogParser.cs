@@ -96,14 +96,7 @@ namespace MedLaunch.Classes
 
         public LogParser()
         {
-            IsDirty = false;
-
-            Paths paths = Paths.GetPaths();
-            if (paths != null)
-            {
-                LogPath = paths.mednafenExe + @"\stdout.txt";
-                MednafenEXE = paths.mednafenExe + @"\mednafen.exe";
-            }
+            IsDirty = false;           
 
         }
 
@@ -114,6 +107,13 @@ namespace MedLaunch.Classes
         /// </summary>
         public void ParseData()
         {
+            Paths paths = Paths.GetPaths();
+            if (paths != null)
+            {
+                LogPath = paths.mednafenExe + @"\stdout.txt";
+                MednafenEXE = paths.mednafenExe + @"\mednafen.exe";
+            }
+
             if (!IsDirty)
                 return;
 
@@ -328,6 +328,13 @@ namespace MedLaunch.Classes
         /// <returns></returns>
         public MednafenVersionDescriptor GetMednafenVersion(bool forceUpdate)
         {
+            if (MedVersionDesc == null)
+            {
+                ParseDataForce();
+                return MedVersionDesc;
+            }
+                
+
             if (IsDirty)
                 ParseDataForce();
             else if (forceUpdate)

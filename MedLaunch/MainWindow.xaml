@@ -2617,6 +2617,37 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
 
                                             <CheckBox Name="cfg_video__fs">Full Screen</CheckBox>
+
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Name="cfglbl_video__fs__display" Grid.Row="1">Fullscreen Display</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_video__fs__display" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="-1">Same as Window</ComboBoxItem>
+                                                    <ComboBoxItem Tag="0">Display 0</ComboBoxItem>
+                                                    <ComboBoxItem Tag="1">Display 1</ComboBoxItem>
+                                                    <ComboBoxItem Tag="2">Display 2</ComboBoxItem>
+                                                    <ComboBoxItem Tag="3">Display 3</ComboBoxItem>
+                                                    <ComboBoxItem Tag="4">Display 4</ComboBoxItem>
+                                                    <ComboBoxItem Tag="5">Display 5</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6">Display 6</ComboBoxItem>
+                                                    <ComboBoxItem Tag="7">Display 7</ComboBoxItem>
+                                                    <ComboBoxItem Tag="8">Display 8</ComboBoxItem>
+                                                    <ComboBoxItem Tag="9">Display 9</ComboBoxItem>
+                                                    <ComboBoxItem Tag="10">Display 10</ComboBoxItem>
+                                                </ComboBox>
+
+                                            </Grid>
+
                                             <CheckBox Name="cfg_video__frameskip">Frame Skip</CheckBox>
                                             <CheckBox Name="cfg_video__glvsync">OpenGL Sync</CheckBox>
                                             <CheckBox Name="cfg_video__blit_timesync">Frame Blit Sync</CheckBox>
