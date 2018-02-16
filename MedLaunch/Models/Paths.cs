@@ -226,11 +226,14 @@ namespace MedLaunch.Models
             // get mednafen path from database
             string medFolderPath = Paths.GetPaths().mednafenExe;
             string medConfigFile = medFolderPath + @"\mednafen-09x.cfg";
-            
+            string medConfigFileNew = medFolderPath + @"\mednafen.cfg";
+
             // check for existence of config file (if it is not there, mednafen needs initialising)
-            if (!File.Exists(medConfigFile))
+            if (!File.Exists(medConfigFile) && !File.Exists(medConfigFileNew))
             {
-                
+                LogParser.Instance.ParseDataForce();
+
+                /*
 
                 System.Diagnostics.Process mProc = new System.Diagnostics.Process();
                 mProc.StartInfo.UseShellExecute = true;
@@ -240,6 +243,8 @@ namespace MedLaunch.Models
                 mProc.StartInfo.Arguments = "init";
                 mProc.Start();
                 mProc.WaitForExit();
+
+    */
             }
         }
 

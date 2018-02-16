@@ -318,7 +318,7 @@ namespace MedLaunch
             SetBackgroundImage();
 
             // Run an emptyload of the log parser (running mednafen once if neccesary to generate log files)
-            LogParser.EmptyLoad();
+            LogParser.Instance.ParseDataForce();
         }
 
         #endregion
@@ -4850,8 +4850,50 @@ namespace MedLaunch
             // update header if there is a newer mednafen version available
             string[] CurrVersionArr = ver.CurrentMednafenVersion.Split('.');
             string[] newVersionArr = ver.LatestCompatMednafenVersion.Split('.');
+
+            var CurMedVerDesc = LogParser.Instance.MedVersionDesc;
+            var NewMedVerDesc = MednafenVersionDescriptor.ReturnVersionDescriptor(ver.LatestCompatMednafenVersion);
+            
             bool upgradeNeeded = false;
 
+            if (CurMedVerDesc.IsValid && NewMedVerDesc.IsValid)
+            {
+                while (!upgradeNeeded)
+                {
+                    if (NewMedVerDesc.MajorINT > CurMedVerDesc.MajorINT)
+                    {
+                        upgradeNeeded = true;
+                    }
+                    else if (NewMedVerDesc.MinorINT > CurMedVerDesc.MinorINT)
+                    {
+                        upgradeNeeded = true;
+                    }
+                    else if (NewMedVerDesc.BuildINT > CurMedVerDesc.BuildINT)
+                    {
+                        upgradeNeeded = true;
+                    }
+                    else
+                    {
+                        // test the 4th value if it actually exists
+                        if (NewMedVerDesc.IsNewFormat)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            if (!CurMedVerDesc.IsNewFormat)
+                            {
+                                if (NewMedVerDesc.RevisionINT > CurMedVerDesc.RevisionINT)
+                                {
+                                    upgradeNeeded = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            /*
             for (int v = 0; v < 4; v++)
             {
                 int currV = 0;
@@ -4882,8 +4924,8 @@ namespace MedLaunch
                     upgradeNeeded = true;
                     break;
                 }
-
             }
+            */
 
             if (upgradeNeeded == true)
             {

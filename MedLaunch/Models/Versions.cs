@@ -21,7 +21,7 @@ namespace MedLaunch.Models
         // constructors
         public Versions()
         {
-            CurrentMednafenVersion = LogParser.GetMednafenVersion();
+            CurrentMednafenVersion = LogParser.Instance.GetMednafenVersion(true).FullVersionString;
             LatestCompatMednafenVersion = Versions.GetMednafenCompatibilityMatrix().First().Version;
             LatestCompatMednafenDownloadURL = Versions.GetMednafenCompatibilityMatrix().First().DownloadURL;
         }
@@ -61,6 +61,17 @@ namespace MedLaunch.Models
             return
                 new List<MednafenChangeHistory>
                 {
+                    // 1.21.0-UNSTABLE
+                    new MednafenChangeHistory
+                    {
+                        Version = "1.21.0-UNSTABLE",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-0.9.48-win64.zip",
+                        Changes = new List<VersionChange>
+                        {
+
+                        }
+                    },
+
                     // 0.9.48
                     new MednafenChangeHistory
                     {
@@ -410,7 +421,7 @@ namespace MedLaunch.Models
                 return false;
             }
 
-            string version = LogParser.GetMednafenVersion();
+            string version = LogParser.Instance.GetMednafenVersion(true).FullVersionString;
 
             if (version == null || version == "")
             {
@@ -468,6 +479,183 @@ namespace MedLaunch.Models
             
         }
         
+    }
+
+    public class MednafenVersionDescriptor
+    {
+        /// <summary>
+        /// The full version string passed in
+        /// </summary>
+        public string FullVersionString { get; set; }
+
+        /// <summary>
+        /// Major
+        /// </summary>
+        public int? MajorINT { get; set; }
+        public string MajorSTR { get; set; }
+        /// <summary>
+        /// Minor
+        /// </summary>
+        public int? MinorINT { get; set; }
+        public string MinorSTR { get; set; }
+        /// <summary>
+        /// Build
+        /// </summary>
+        public int? BuildINT { get; set; }
+        public string BuildSTR { get; set; }
+        /// <summary>
+        /// Revision (as of mednafen >= 1.12.0 this no longer exists)
+        /// </summary>
+        public int? RevisionINT { get; set; }
+        public string RevisionSTR { get; set; }
+
+        /// <summary>
+        /// Signs whether version is mednafen 1.12.0 or above
+        /// </summary>
+        public bool IsNewFormat { get; set; }
+
+        /// <summary>
+        /// Signs that the version string was parsed successfully
+        /// </summary>
+        public bool IsValid { get; set; }
+
+        /// <summary>
+        /// Creates a version descriptor object from a string
+        /// </summary>
+        /// <param name="versionString"></param>
+        public static MednafenVersionDescriptor ReturnVersionDescriptor(string versionString)
+        {
+            MednafenVersionDescriptor vd = new MednafenVersionDescriptor();
+
+            vd.FullVersionString = versionString.Trim();
+
+            // attempt splitting the string by '.'
+            string[] arr = versionString.Split('.');
+
+            int count = arr.Length;
+
+            vd.IsValid = true;
+
+            switch (count)
+            {
+                // new version format
+                case 3:
+                    // get each version int, string
+                    for (int i = 0; i < count; i++)
+                    {
+                        var result = ParseVersionInt(arr[i]);
+
+                        if (result.Key == null)
+                        {
+                            vd.IsValid = false;
+                        }
+
+                        switch (i)
+                        {
+                            case 0:
+                                vd.MajorINT = result.Key;
+                                vd.MajorSTR = result.Value;
+                                break;
+                            case 1:
+                                vd.MinorINT = result.Key;
+                                vd.MinorSTR = result.Value;
+                                break;
+                            case 2:
+                                vd.BuildINT = result.Key;
+                                vd.BuildSTR = result.Value;
+                                break;
+                        }
+                    }
+
+                    vd.IsNewFormat = true;
+                    break;
+                    
+                // old version format
+                case 4:
+                    // get each version int, string
+                    for (int i = 0; i < count; i++)
+                    {
+                        var result = ParseVersionInt(arr[i]);
+
+                        if (result.Key == null)
+                        {
+                            vd.IsValid = false;
+                        }
+
+                        switch (i)
+                        {
+                            case 0:
+                                vd.MajorINT = result.Key;
+                                vd.MajorSTR = result.Value;
+                                break;
+                            case 1:
+                                vd.MinorINT = result.Key;
+                                vd.MinorSTR = result.Value;
+                                break;
+                            case 2:
+                                vd.BuildINT = result.Key;
+                                vd.BuildSTR = result.Value;
+                                break;
+                            case 3:
+                                vd.RevisionINT = result.Key;
+                                vd.RevisionSTR = result.Value;
+                                break;
+                        }
+                    }
+
+                    vd.IsNewFormat = false;                    
+                    break;
+
+                // not valid - no more processing should take place
+                default:
+                    vd.IsValid = false;
+                    return vd;
+            }
+
+            return vd;
+        }
+
+        private static KeyValuePair<int?, string> ParseVersionInt(string ver)
+        {
+            // attempt to parse the string
+            int i;
+            bool result = int.TryParse(ver, out i);
+
+            if (!result)
+            {
+                // parsing was not successful - attempt to split string again
+                // (often mednafen with have a 0-UNSTABLE)
+                string[] arr = ver.Split('-');
+
+                int count = arr.Length;
+
+                if (count > 1)
+                {
+                    // test the first element
+                    bool res = int.TryParse(arr[0], out i);
+
+                    if (res)
+                    {
+                        // an int was parsed from the first element
+                        // use this as the int, and use the second as the string
+                        return new KeyValuePair<int?, string>(i, arr[1]);
+                    }
+
+                    // parsing was not successful - just return a null it value and the string
+                    return new KeyValuePair<int?, string>(null, ver);
+                }
+                else
+                {
+                    // could not parse
+                    return new KeyValuePair<int?, string>(null, ver);
+                }
+            }
+            else
+            {
+                // parsing was successful
+                return new KeyValuePair<int?, string>(i, ver);
+            }
+        }
     }
 
     public class MednafenChangeHistory

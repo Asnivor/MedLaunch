@@ -72,7 +72,7 @@ namespace MedLaunch.Classes.Controls
 
             Devices = new List<GamePad>();
 
-            ContInfoFromLog = LogParser.GetDirectInputControllerIds();
+            ContInfoFromLog = LogParser.Instance.GetAttachedControllers(false).Where(a => a.Type == ControllerType.DirectInput).ToArray();
 
 
             List<xinput_id> xids = new List<xinput_id>();

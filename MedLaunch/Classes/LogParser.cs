@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Management;
+using System.Threading;
 
 namespace MedLaunch.Classes
 {
@@ -12,6 +14,13 @@ namespace MedLaunch.Classes
     {
         public string Name { get; set; }
         public string ID { get; set; }
+        public ControllerType Type { get; set; }
+    }
+
+    public enum ControllerType
+    {
+        DirectInput,
+        XInput
     }
 
     /// <summary>
@@ -19,23 +28,330 @@ namespace MedLaunch.Classes
     /// </summary>
     public class LogParser
     {
-        // properties
+        #region Static Instance
+
+        /// <summary>
+        /// Static instance of the logparser object
+        /// </summary>
+        public static LogParser Instance { get; set; }
+
+        /// <summary>
+        /// Initialises the single instance of logparser
+        /// </summary>
+        public static void Init()
+        {
+            Instance = new LogParser();
+        }
+
+        #endregion
+
+
+        #region Properties
+
+        /// <summary>
+        /// The full path to stdout.txt
+        /// </summary>
         public string LogPath { get; set; }
+
+        /// <summary>
+        /// The full path to mednafen.exe
+        /// </summary>
         public string MednafenEXE { get; set; }
 
+        /// <summary>
+        /// If set to TRUE, data will be retrieved (either from console or stdout.txt) when a
+        /// method call is made
+        /// If FALSE then state data will be returned
+        /// </summary>
+        public bool IsDirty { get; set; }
 
-        // constructor
+        public bool IsNewFormat = true;
+
+        /// <summary>
+        /// Contains the full output returned when querying mednafen
+        /// </summary>
+        public string Output { get; set; }
+
+        /// <summary>
+        /// The version string of the currently targeted mednafen
+        /// </summary>
+        public string VersionString { get; set; }
+
+        /// <summary>
+        /// Object that holds the current mednafen version info
+        /// </summary>
+        private MednafenVersionDescriptor medVersionDesc;
+        public MednafenVersionDescriptor MedVersionDesc
+        {
+            get { return medVersionDesc; }
+            set { medVersionDesc = value; }
+        }
+
+
+        List<ControllerInfo> Controllers = new List<ControllerInfo>();
+
+        #endregion
+
+        #region Construction
+
         public LogParser()
         {
+            IsDirty = false;
+
             Paths paths = Paths.GetPaths();
             if (paths != null)
             {
                 LogPath = paths.mednafenExe + @"\stdout.txt";
                 MednafenEXE = paths.mednafenExe + @"\mednafen.exe";
             }
-            
+
         }
 
+        #endregion
+
+        /// <summary>
+        /// Attempts to parse data from either stdout or console
+        /// </summary>
+        public void ParseData()
+        {
+            if (!IsDirty)
+                return;
+
+            // With mednafen >= 1.21.0 we can now call mednafen from an existing console and get
+            // the required output from the console itself - try this method first
+            // if no data is returned check stdout.txt
+            if (File.Exists(MednafenEXE))
+            {
+                // first try new method
+                string args = string.Empty;
+                if (IsNewFormat)
+                    args = "\"" + MednafenEXE + "\" -MEDNAFEN_NOPOPUPS EmptyTriggerConsole";
+                else
+                    args = "\"" + MednafenEXE + "\" EmptyTriggerConsole";
+
+                var conProcess = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = "cmd.exe",
+                        //Arguments = args,
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        RedirectStandardInput = true,
+                        CreateNoWindow = true
+            }
+                };
+
+                conProcess.Start();
+
+                int procId = conProcess.Id;
+
+                conProcess.StandardInput.WriteLine(args);
+                conProcess.StandardInput.Flush();
+                conProcess.StandardInput.Close();
+
+                ManagementObjectSearcher searcher = new ManagementObjectSearcher
+          ("Select * From Win32_Process Where ParentProcessID=" + procId);
+
+                ManagementObjectCollection moc = searcher.Get();
+
+                for (int i = 0; i < 10; i++)
+                {                    
+                    moc = searcher.Get();
+                    if (moc.Count < 1)
+                        Thread.Sleep(50);
+                    else
+                        break;                    
+                }
+
+                Thread.Sleep(500);
+
+                foreach (ManagementObject mo in moc)
+                {
+                    try
+                    {
+                        Process p = Process.GetProcessById(Convert.ToInt32(mo["ProcessID"]));
+                        p.Kill();
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        // process already exited
+                        var e = ex;
+                    }
+                }
+
+                Output = string.Empty;
+
+                while (!conProcess.StandardOutput.EndOfStream)
+                {
+                    string line = conProcess.StandardOutput.ReadLine();
+                    Output += line;
+                    Output += "\n";
+                }
+
+                if (!Output.Contains("Starting Mednafen"))
+                {
+                    // no output detected - try old method
+                    Output = string.Empty;
+
+                    var winProcess = new Process
+                    {
+                        StartInfo = new ProcessStartInfo
+                        {
+                            FileName = MednafenEXE,
+                            Arguments = "EmptyTriggerWindow",
+                            WindowStyle = ProcessWindowStyle.Hidden,
+                        }
+                    };
+
+                    winProcess.Start();
+                    bool med = winProcess.WaitForExit(1500);
+
+                    if (med == false)
+                    {
+                        winProcess.Kill();
+                    }
+
+                    // attempt to read from stdout.txt
+                    // check whether stdout.txt doesnt exist or not
+                    if (!File.Exists(LogPath))
+                    {
+                        Thread.Sleep(500);
+                        ParseData();
+                        Thread.Sleep(500);
+
+                        if (!File.Exists(LogPath))
+                        {
+                            Output = string.Empty;
+                        }
+                        else
+                        {
+                            Output = File.ReadAllText(LogPath);
+                        }
+                    }
+                    else
+                    {
+                        var ar = FileAndFolder.StreamAllLines(LogPath);
+                        foreach (var a in ar)
+                        {
+                            Output += a + "\n";
+                        }
+                        //Output = File.ReadAllText(LogPath);
+                    }
+                }
+
+                // attempt to parse the output
+                List<string> list = Output.Replace("\r", "\n").Split('\n').ToList();
+
+                if (list.Count() < 1 || list == null)
+                {
+                    // no data
+                    return;
+                }
+
+                // get version info
+                string versionLine = (from a in list
+                                      where a.Contains(" Mednafen ")
+                                      select a).FirstOrDefault();
+
+                if (versionLine != null && versionLine.Trim() != "")
+                {
+                    // split line
+                    string[] spl = versionLine.Split(new string[] { "Mednafen " }, StringSplitOptions.None);
+
+                    // get the last item in the array (the version number)
+                    VersionString = spl.Last().Trim();
+
+                    // process version number
+                    MedVersionDesc = MednafenVersionDescriptor.ReturnVersionDescriptor(VersionString);
+                }
+
+                // check whether this is a new type of mednafen or not
+                if (!MedVersionDesc.IsNewFormat)
+                {
+                    // we need to run the detection again for the benefit of the joysticks
+                    // (without the -MEDNAFEN_NOPOPUPS param)
+                    IsNewFormat = false;
+                    ParseDataForce();
+                }
+                else
+                {
+                    // get joystick IDs
+                    Controllers.Clear();
+                    var lines = list.Where(a => a.Contains("ID: ")).ToList();
+
+                    foreach (var l in lines)
+                    {
+                        ControllerInfo ci = new ControllerInfo();
+
+                        if (l.ToLower().Contains("xinput") ||
+                            l.ToLower().Contains("XBOX 360"))
+                        {
+                            // mednafen has probably detected this as an xinput controller
+                            ci.Type = ControllerType.XInput;
+                        }
+                        else
+                        {
+                            // mednafen has probably detected this as a directinput controller
+                            ci.Type = ControllerType.DirectInput;
+                        }
+
+                        // split the string up
+                        string[] arr = l.TrimStart().Replace("ID: ", "").Split(new string[] { " - " }, StringSplitOptions.None);
+                        string ID = arr[0].TrimStart('0').TrimStart('x');
+                        string Name = arr[1].Trim();
+
+                        ci.ID = ID;
+                        ci.Name = Name;
+
+                        Controllers.Add(ci);
+                    }
+                }
+
+                IsDirty = false;
+            }
+        }
+
+        /// <summary>
+        /// Attempts to parse data from either stdout or console (ignores the dirty flag)
+        /// </summary>
+        public void ParseDataForce()
+        {
+            IsDirty = true;
+            ParseData();
+        }
+
+        /// <summary>
+        /// Returns mednafen version info
+        /// </summary>
+        /// <param name="forceUpdate"></param>
+        /// <returns></returns>
+        public MednafenVersionDescriptor GetMednafenVersion(bool forceUpdate)
+        {
+            if (IsDirty)
+                ParseDataForce();
+            else if (forceUpdate)
+                ParseDataForce();
+            else
+                ParseData();
+
+            return MedVersionDesc;
+        }
+
+        /// <summary>
+        /// Returns attached controllers
+        /// </summary>
+        /// <param name="forceUpdate"></param>
+        /// <returns></returns>
+        public List<ControllerInfo> GetAttachedControllers(bool forceUpdate)
+        {
+            if (IsDirty || forceUpdate)
+                ParseData();
+
+            return Controllers;
+        }
+
+        /*
         // methods
         public static ControllerInfo[] GetXInputControllerIds()
         {
@@ -90,8 +406,8 @@ namespace MedLaunch.Classes
 
             return list.ToArray();
         }
-
-
+        */
+        /*
         /// <summary>
         /// Return the current Mednafen version
         /// </summary>
@@ -153,12 +469,18 @@ namespace MedLaunch.Classes
             {
                 Process medproc = new Process();
                 medproc.StartInfo.FileName = lp.MednafenEXE;
+#if DEBUG
+                medproc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+#else
                 medproc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                medproc.StartInfo.Arguments = "SDL.dll";
+#endif
+                medproc.StartInfo.Arguments = "EmptyTrigger";
                 medproc.Start();
                 medproc.WaitForExit();
             }
             
         }
+
+    */
     }
 }
