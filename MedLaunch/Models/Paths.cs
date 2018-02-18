@@ -231,7 +231,7 @@ namespace MedLaunch.Models
             // check for existence of config file (if it is not there, mednafen needs initialising)
             if (!File.Exists(medConfigFile) && !File.Exists(medConfigFileNew))
             {
-                LogParser.Instance.ParseDataForce();
+                LogParser.Instance.ParseData();
 
                 /*
 

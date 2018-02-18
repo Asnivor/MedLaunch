@@ -24,7 +24,7 @@ namespace MedLaunch.Models
             Paths p = Paths.GetPaths();
             if (p != null && p.mednafenExe != null && Directory.Exists(p.mednafenExe))
             {
-                CurrentMednafenVersion = LogParser.Instance.GetMednafenVersion(true).FullVersionString;
+                CurrentMednafenVersion = LogParser.Instance.GetMednafenVersion(false).FullVersionString;
             }
             
             LatestCompatMednafenVersion = Versions.GetMednafenCompatibilityMatrix().First().Version;

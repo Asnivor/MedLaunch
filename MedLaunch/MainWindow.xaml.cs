@@ -318,7 +318,7 @@ namespace MedLaunch
             SetBackgroundImage();
 
             // Run an emptyload of the log parser (running mednafen once if neccesary to generate log files)
-            LogParser.Instance.ParseDataForce();
+            LogParser.Instance.ParseData();
         }
 
         #endregion

@@ -65,6 +65,11 @@ namespace MedLaunch.Classes
         /// </summary>
         public bool IsDirty { get; set; }
 
+        /// <summary>
+        /// Set to true when medlaunch starts
+        /// </summary>
+        public bool IsInit = true;
+
         public bool IsNewFormat = true;
 
         /// <summary>
@@ -107,6 +112,14 @@ namespace MedLaunch.Classes
         /// </summary>
         public void ParseData()
         {
+            // check whether this is the first parse or not (so it has to be forced)
+            if (IsInit)
+            {
+                IsDirty = true;
+                IsInit = false;
+            }
+                
+
             Paths paths = Paths.GetPaths();
             if (paths != null)
             {
@@ -123,11 +136,7 @@ namespace MedLaunch.Classes
             if (File.Exists(MednafenEXE))
             {
                 // first try new method
-                string args = string.Empty;
-                if (IsNewFormat)
-                    args = "\"" + MednafenEXE + "\" -MEDNAFEN_NOPOPUPS EmptyTriggerConsole";
-                else
-                    args = "\"" + MednafenEXE + "\" EmptyTriggerConsole";
+                string args = "\"" + MednafenEXE + "\" EmptyTriggerConsole";
 
                 var conProcess = new Process
                 {
@@ -138,48 +147,20 @@ namespace MedLaunch.Classes
                         UseShellExecute = false,
                         RedirectStandardOutput = true,
                         RedirectStandardInput = true,
-                        CreateNoWindow = true
+                        CreateNoWindow = false
             }
                 };
 
-                conProcess.Start();
+                // set the environment variable to hide popups
+                conProcess.StartInfo.EnvironmentVariables["MEDNAFEN_NOPOPUPS"] = "1";
 
+                conProcess.Start();
                 int procId = conProcess.Id;
 
                 conProcess.StandardInput.WriteLine(args);
                 conProcess.StandardInput.Flush();
                 conProcess.StandardInput.Close();
-
-                ManagementObjectSearcher searcher = new ManagementObjectSearcher
-          ("Select * From Win32_Process Where ParentProcessID=" + procId);
-
-                ManagementObjectCollection moc = searcher.Get();
-
-                for (int i = 0; i < 10; i++)
-                {                    
-                    moc = searcher.Get();
-                    if (moc.Count < 1)
-                        Thread.Sleep(50);
-                    else
-                        break;                    
-                }
-
-                Thread.Sleep(500);
-
-                foreach (ManagementObject mo in moc)
-                {
-                    try
-                    {
-                        Process p = Process.GetProcessById(Convert.ToInt32(mo["ProcessID"]));
-                        p.Kill();
-                    }
-                    catch (ArgumentException ex)
-                    {
-                        // process already exited
-                        var e = ex;
-                    }
-                }
-
+                
                 Output = string.Empty;
 
                 while (!conProcess.StandardOutput.EndOfStream)
@@ -200,25 +181,23 @@ namespace MedLaunch.Classes
                         {
                             FileName = MednafenEXE,
                             Arguments = "EmptyTriggerWindow",
-                            WindowStyle = ProcessWindowStyle.Hidden,
+                            WindowStyle = ProcessWindowStyle.Normal,
                         }
                     };
 
-                    winProcess.Start();
-                    bool med = winProcess.WaitForExit(1500);
+                    // set the environment variable to hide popups
+                    winProcess.StartInfo.EnvironmentVariables["MEDNAFEN_NOPOPUPS"] = "1";
 
-                    if (med == false)
-                    {
-                        winProcess.Kill();
-                    }
+                    winProcess.Start();
+                    winProcess.WaitForExit();
 
                     // attempt to read from stdout.txt
                     // check whether stdout.txt doesnt exist or not
                     if (!File.Exists(LogPath))
                     {
-                        Thread.Sleep(500);
+                        Thread.Sleep(10);
                         ParseData();
-                        Thread.Sleep(500);
+                        Thread.Sleep(10);
 
                         if (!File.Exists(LogPath))
                         {
@@ -226,7 +205,11 @@ namespace MedLaunch.Classes
                         }
                         else
                         {
-                            Output = File.ReadAllText(LogPath);
+                            var ar = FileAndFolder.StreamAllLines(LogPath);
+                            foreach (var a in ar)
+                            {
+                                Output += a + "\n";
+                            }
                         }
                     }
                     else
@@ -236,7 +219,6 @@ namespace MedLaunch.Classes
                         {
                             Output += a + "\n";
                         }
-                        //Output = File.ReadAllText(LogPath);
                     }
                 }
 
@@ -272,7 +254,7 @@ namespace MedLaunch.Classes
                     // we need to run the detection again for the benefit of the joysticks
                     // (without the -MEDNAFEN_NOPOPUPS param)
                     IsNewFormat = false;
-                    ParseDataForce();
+                    ParseData();
                 }
                 else
                 {
@@ -312,6 +294,7 @@ namespace MedLaunch.Classes
             }
         }
 
+        /*
         /// <summary>
         /// Attempts to parse data from either stdout or console (ignores the dirty flag)
         /// </summary>
@@ -320,6 +303,7 @@ namespace MedLaunch.Classes
             IsDirty = true;
             ParseData();
         }
+        */
 
         /// <summary>
         /// Returns mednafen version info
@@ -330,17 +314,27 @@ namespace MedLaunch.Classes
         {
             if (MedVersionDesc == null)
             {
-                ParseDataForce();
+                IsDirty = true;
+                ParseData();
                 return MedVersionDesc;
             }
-                
 
             if (IsDirty)
-                ParseDataForce();
-            else if (forceUpdate)
-                ParseDataForce();
-            else
+            {
+                IsDirty = true;
                 ParseData();
+            }
+            else if (forceUpdate)
+            {
+                IsDirty = true;
+                ParseData();
+            }
+            else
+            {
+                IsDirty = false;
+                ParseData();
+            }
+                
 
             return MedVersionDesc;
         }
