@@ -643,7 +643,7 @@ namespace MedLaunch.Classes
 
 
             // perform mednafen version check and replace/remove config options that are not viable
-            baseStr = Versions.GetCompatLaunchString(baseStr);
+            baseStr = VersionChecker.GetCompatLaunchString(baseStr);
 
             // add gamepath to command line
             baseStr += "\"" + BuildFullGamePath(RomFolder, RomPath) + "\"";

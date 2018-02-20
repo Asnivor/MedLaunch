@@ -116,6 +116,9 @@ namespace MedLaunch
             // Init the logparser instance
             Classes.LogParser.Init();
 
+            // Init the versions instance
+            Classes.VersionChecker.Init();
+
             // show the initialisation window and begin checks
             ShowInitWindow();
             Thread.Sleep(1000);

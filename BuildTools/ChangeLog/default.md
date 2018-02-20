@@ -14,6 +14,7 @@ title: Changelog
 
 * ## Mednafen 1.21.x support ##
 * * Updated LogParser to handle new Mednafen version numbering and changes in stdout.txt behaviour
+* * MedLaunch will now get version and attached gamepad/joystick info from the console (rather than stdout.txt) if the mednafen version is new enough
 * * Added setting "video.fs.display" for all cores
 
 ##### [0.5.18.5](https://medlaunch.info/releases/0-5-18-5)

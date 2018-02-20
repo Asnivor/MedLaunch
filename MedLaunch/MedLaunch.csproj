@@ -328,6 +328,7 @@
     <Compile Include="Classes\Scraper\ScraperSearch.cs" />
     <Compile Include="Classes\uConOps.cs" />
     <Compile Include="Classes\InstructionSet.cs" />
+    <Compile Include="Classes\VersionChecker.cs" />
     <Compile Include="Extensions\FocusExtension.cs" />
     <Compile Include="MedDataGrid.cs" />
     <Compile Include="Models\MednaNetSettings.cs" />

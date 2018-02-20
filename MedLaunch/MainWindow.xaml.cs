@@ -174,8 +174,8 @@ namespace MedLaunch
             }
 
             // get application version
-            string appVersion = Versions.ReturnApplicationVersion();
-            string devBuildNo = Versions.GetDevBuild();
+            string appVersion = VersionChecker.ReturnApplicationVersion();
+            string devBuildNo = VersionChecker.GetDevBuild();
             
             // set window title
             string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
@@ -185,7 +185,7 @@ namespace MedLaunch
             else
                 this.Title = "MedLaunch (v" + appVersion + ") - DevBuild-" + devBuildNo + " - Windows Front-End for Mednafen";
 
-            rightMenuLabel.Text = "(Compatible Mednafen v" + Versions.GetMednafenCompatibilityMatrix().Last().Version + " - v" + Versions.GetMednafenCompatibilityMatrix().First().Version + ")";
+            rightMenuLabel.Text = "(Compatible Mednafen v" + VersionChecker.GetMednafenCompatibilityMatrix().Last().Version + " - v" + VersionChecker.GetMednafenCompatibilityMatrix().First().Version + ")";
 
             /*
              *  Startup checks
@@ -2259,7 +2259,7 @@ namespace MedLaunch
             int romId = drv.ID;
 
 
-            bool b = Versions.MednafenVersionCheck(true);
+            bool b = VersionChecker.MednafenVersionCheck(true);
 
             if (b == false)
             {
@@ -2298,7 +2298,7 @@ namespace MedLaunch
                 return;
             int romId = drv.ID;
 
-            bool b = Versions.MednafenVersionCheck(true);
+            bool b = VersionChecker.MednafenVersionCheck(true);
 
             if (b == false)
             {
@@ -3631,6 +3631,8 @@ namespace MedLaunch
         {
             //System.Windows.Forms.FolderBrowserDialog path = new System.Windows.Forms.FolderBrowserDialog();
 
+            string origPath = tbPathMednafen.Text;
+
             VistaFolderBrowserDialog path = new VistaFolderBrowserDialog();
             path.ShowNewFolderButton = true;
 
@@ -3640,6 +3642,13 @@ namespace MedLaunch
             if (path.SelectedPath != "")
             {
                 string strPath = path.SelectedPath;
+
+                if (strPath != origPath)
+                {
+                    // there has been a path change. Set the dirty flag on the log parser
+                    LogParser.Instance.IsDirty = true;
+                }
+
                 tbPathMednafen.Text = strPath;
                 Paths.SaveMednafenPath(strPath);
                 UpdateCheckMednafen();
@@ -4659,7 +4668,7 @@ namespace MedLaunch
             Release newRelease = new Release();
 
             // get current medlaunch version
-            string currVersion = Versions.ReturnApplicationVersion();
+            string currVersion = VersionChecker.ReturnApplicationVersion();
 
             var mySettings = new MetroDialogSettings()
             {
@@ -4831,12 +4840,12 @@ namespace MedLaunch
 
         public void UpdateCheckMednafen()
         {
-            Versions ver = new Versions();
+            //Versions ver = new Versions();
             // compatible mednafen version
-            lblcompatmedversion.Content = ver.LatestCompatMednafenVersion;
+            lblcompatmedversion.Content = VersionChecker.Instance.LatestCompatMedVerDesc.FullVersionString; // ver.LatestCompatMednafenVersion;
 
             // installed mednafen version
-            if (ver.CurrentMednafenVersion == null || ver.CurrentMednafenVersion == "")
+            if (VersionChecker.Instance.CurrentMedVerDesc == null || !VersionChecker.Instance.CurrentMedVerDesc.IsValid)
             {
                 // version not detected. 
                 lblinstalledmedversion.Content = "ERROR: Unable to detect.";
@@ -4844,15 +4853,15 @@ namespace MedLaunch
             }
             else
             {
-                lblinstalledmedversion.Content = ver.CurrentMednafenVersion;
+                lblinstalledmedversion.Content = VersionChecker.Instance.CurrentMedVerDesc.FullVersionString;
             }
 
             // update header if there is a newer mednafen version available
-            string[] CurrVersionArr = ver.CurrentMednafenVersion.Split('.');
-            string[] newVersionArr = ver.LatestCompatMednafenVersion.Split('.');
+            //string[] CurrVersionArr = ver.CurrentMednafenVersion.Split('.');
+            //string[] newVersionArr = ver.LatestCompatMednafenVersion.Split('.');
 
-            var CurMedVerDesc = LogParser.Instance.MedVersionDesc;
-            var NewMedVerDesc = MednafenVersionDescriptor.ReturnVersionDescriptor(ver.LatestCompatMednafenVersion);
+            var CurMedVerDesc = VersionChecker.Instance.CurrentMedVerDesc; // LogParser.Instance.MedVersionDesc;
+            var NewMedVerDesc = VersionChecker.Instance.LatestCompatMedVerDesc; // MednafenVersionDescriptor.ReturnVersionDescriptor(ver.LatestCompatMednafenVersion);
             
             bool upgradeNeeded = false;
 
@@ -4968,13 +4977,14 @@ namespace MedLaunch
 
         private void btnCheckForMednafenUpdates_Click(object sender, RoutedEventArgs e)
         {
+            LogParser.Instance.IsDirty = true;
             UpdateCheckMednafen();
         }
 
         public bool DownloadMednafenNoAsync()
         {
             /* start download and extraction of latest compatible mednafen version */
-            Versions ver = new Versions();
+            //Versions ver = new Versions();
 
             ProgressBar pb = new ProgressBar();
             pb.IsIndeterminate = true;
@@ -4983,7 +4993,7 @@ namespace MedLaunch
             System.IO.Directory.CreateDirectory(downloadsFolder);
 
             // get the new version
-            string url = ver.LatestCompatMednafenDownloadURL;
+            string url = VersionChecker.Instance.LatestCompatMednafenDownloadURL;
             string fName = url.Split('/').Last();
 
             // try the download
@@ -5037,7 +5047,7 @@ namespace MedLaunch
             System.IO.Directory.CreateDirectory(downloadsFolder);
 
             // get the new version
-            string url = ver.LatestCompatMednafenDownloadURL;
+            string url = VersionChecker.Instance.LatestCompatMednafenDownloadURL;
             string fName = url.Split('/').Last();
 
             var mySettings = new MetroDialogSettings()

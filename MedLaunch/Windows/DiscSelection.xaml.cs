@@ -118,7 +118,7 @@ namespace MedLaunch
                 this.Close();
             }
 
-            string compat = Versions.GetCompatLaunchString(LaunchString);
+            string compat = VersionChecker.GetCompatLaunchString(LaunchString);
 
             mw.LaunchRomHandler(compat, false);
 

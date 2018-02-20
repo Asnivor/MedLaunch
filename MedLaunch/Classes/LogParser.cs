@@ -147,7 +147,7 @@ namespace MedLaunch.Classes
                         UseShellExecute = false,
                         RedirectStandardOutput = true,
                         RedirectStandardInput = true,
-                        CreateNoWindow = false
+                        CreateNoWindow = true
             }
                 };
 
@@ -175,13 +175,16 @@ namespace MedLaunch.Classes
                     // no output detected - try old method
                     Output = string.Empty;
 
+                    //Thread.Sleep(500);
+
                     var winProcess = new Process
                     {
                         StartInfo = new ProcessStartInfo
                         {
                             FileName = MednafenEXE,
                             Arguments = "EmptyTriggerWindow",
-                            WindowStyle = ProcessWindowStyle.Normal,
+                            WindowStyle = ProcessWindowStyle.Hidden,
+                            UseShellExecute = false
                         }
                     };
 

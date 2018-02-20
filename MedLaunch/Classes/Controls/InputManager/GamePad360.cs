@@ -63,7 +63,7 @@ namespace MedLaunch.Classes.Controls
             IntPtr handle = new WindowInteropHelper(window).Handle;
             IsAvailable = false;
 
-            ContInfoFromLog = LogParser.Instance.GetAttachedControllers(false).Where(a => a.Type == ControllerType.XInput).ToArray();
+            ContInfoFromLog = LogParser.Instance.GetAttachedControllers(true).Where(a => a.Type == ControllerType.XInput).ToArray();
 
             try
             {
