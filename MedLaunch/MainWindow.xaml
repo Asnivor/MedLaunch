@@ -2668,9 +2668,15 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </Grid.RowDefinitions>
                                                 <Label Name="cfglbl_video__driver" Grid.Row="1">Video Driver</Label>
                                                 <ComboBox SelectedValuePath="Tag" Name="cfg_video__driver" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
-                                                    <ComboBoxItem Tag="opengl">OpenGL + SDL</ComboBoxItem>
-                                                    <ComboBoxItem Tag="sdl">SDL Surface</ComboBoxItem>
-                                                    <ComboBoxItem Tag="overlay">SDL Overlay</ComboBoxItem>
+                                                    <ComboBoxItem Tag="default">Default Video Driver</ComboBoxItem>
+                                                    <ComboBoxItem Tag="opengl">OpenGL</ComboBoxItem>
+                                                    <ComboBoxItem Tag="softfb">Software Blitting to Framebuffer</ComboBoxItem>
+                                                    <ComboBoxItem Tag="sdl" ToolTip="MedLaunch will automatically use 'default' on game launch if you are using mednafen version >= 1.21.x">
+                                                        SDL Surface (Depreciated in v1.21.x)
+                                                    </ComboBoxItem>
+                                                    <ComboBoxItem Tag="overlay" ToolTip="MedLaunch will automatically use 'default' on game launch if you are using mednafen version >= 1.21.x">
+                                                        SDL Overlay (Depreciated in v1.21.x)
+                                                    </ComboBoxItem>
                                                 </ComboBox>
 
                                             </Grid>

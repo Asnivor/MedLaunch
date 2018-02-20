@@ -109,10 +109,13 @@ namespace MedLaunch.Classes
                     new MednafenChangeHistory
                     {
                         Version = "1.21.0-UNSTABLE",
-                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-0.9.48-win64.zip",
+                        DownloadURL = "#",
                         Changes = new List<VersionChange>
                         {
-
+                            // Top level changes - these MUST be moved the beginning of every new version entry
+                            // Its a bit of a kludge, but for earlier versions they should get converted back again later on
+                            new VersionChange { Description = "sdl depreciated", ChangeMethod = ChangeType.ToRename, Item = "video.driver sdl", ChangeItem = "video.driver softfb" },
+                            new VersionChange { Description = "overlay depreciated", ChangeMethod = ChangeType.ToRename, Item = "video.driver overlay", ChangeItem = "video.driver default" },
                         }
                     },
 
@@ -124,6 +127,8 @@ namespace MedLaunch.Classes
                         Changes = new List<VersionChange>
                         {
                             new VersionChange { Description = "Display to use with fullscreen", ChangeMethod = ChangeType.ToRemove, Item = "video.fs.display" },
+                            new VersionChange { Description = "sdl depreciated", ChangeMethod = ChangeType.ToRename, Item = "video.driver default", ChangeItem = "video.driver opengl" },
+                            new VersionChange { Description = "overlay depreciated", ChangeMethod = ChangeType.ToRename, Item = "video.driver softfb", ChangeItem = "video.driver sdl" },
                         }
                     },
 
@@ -502,47 +507,23 @@ namespace MedLaunch.Classes
             var oldestDesc = MednafenVersionDescriptor.ReturnVersionDescriptor(GetMednafenCompatibilityMatrix().Last().Version);
 
             // check whether the current mednafen version is within the min and max supported constraints
-            bool isCompat = true;
+            // just looking at the first 3 digits of the version
+            string currStr = currDesc.MajorINT.ToString() + "." +
+                currDesc.MinorINT.ToString() + "." +
+                currDesc.BuildINT.ToString();
 
-            for (int i = 0; i < 3; i++)
+            var loookup = GetMednafenCompatibilityMatrix()
+                .Where(a => a.Version.StartsWith(currStr)).ToList();
+
+            bool isCompat;
+
+            if (loookup.Count() > 0)
             {
-                if (!isCompat)
-                    break;
-
-                switch (i)
-                {
-                    case 0:
-                        // MAJOR
-                        if (currDesc.MajorINT == null || currDesc.MajorINT < oldestDesc.MajorINT || currDesc.MajorINT > latestDesc.MajorINT)
-                        {
-                            isCompat = false;
-                        }
-                        break;
-                    case 1:
-                        // MINOR
-                        if (currDesc.MinorINT == null || currDesc.MinorINT < oldestDesc.MinorINT || currDesc.MinorINT > latestDesc.MinorINT)
-                        {
-                            isCompat = false;
-                        }
-                        break;
-                    case 2:
-                        // Build
-                        if (currDesc.BuildINT == null || currDesc.BuildINT < oldestDesc.BuildINT || currDesc.BuildINT > latestDesc.BuildINT)
-                        {
-                            isCompat = false;
-                        }
-                        break;
-                    case 3:
-                        // Revision
-                        if (currDesc.IsNewFormat)
-                            break;
-
-                        if (currDesc.RevisionINT < oldestDesc.RevisionINT || currDesc.RevisionINT > latestDesc.RevisionINT)
-                        {
-                            isCompat = false;
-                        }
-                        break;
-                }
+                isCompat = true;
+            }
+            else
+            {
+                isCompat = false;
             }
 
             if (isCompat)

@@ -409,6 +409,8 @@ namespace MedLaunch.Classes
                 gProcess.StartInfo.CreateNoWindow = false;
                 // Build command line config arguments
                 gProcess.StartInfo.Arguments = cmdArguments;
+                gProcess.StartInfo.UseShellExecute = false;
+                gProcess.StartInfo.EnvironmentVariables["MEDNAFEN_NOPOPUPS"] = "1";
                 gProcess.Start();
                 
                 gProcess.WaitForInputIdle();

@@ -16,6 +16,7 @@ title: Changelog
 * * Updated LogParser to handle new Mednafen version numbering and changes in stdout.txt behaviour
 * * MedLaunch will now get version and attached gamepad/joystick info from the console (rather than stdout.txt) if the mednafen version is new enough
 * * Added setting "video.fs.display" for all cores
+* * Added the new 'default' and 'softfb' video driver settings. These will be translated on game launch to 'opengl' and 'sdl' if you are still using an old version of mednafen. Both 'sdl' and the removed 'overlay' options are still present in the UI (but marked as depreciated) but will be automatically translated into the new 'softfb' and 'default' options (on game launch) if you are running the new version of mednafen
 
 ##### [0.5.18.5](https://medlaunch.info/releases/0-5-18-5)
 ###### 2018-01-15

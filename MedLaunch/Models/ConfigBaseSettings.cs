@@ -63,7 +63,7 @@ namespace MedLaunch.Models
         public bool? video__blit_timesync { get; set; }
         public string video__deinterlacer { get; set; }             // weave bob bob_offset
         public bool? video__disable_composition { get; set; }
-        public string video__driver { get; set; }                    // opengl sdl overlay
+        public string video__driver { get; set; }                    // default opengl, softfb (old: opengl sdl overlay)
         public bool? video__frameskip { get; set; }
         public bool? video__fs { get; set; }
         public bool? video__glvsync { get; set; }
@@ -946,7 +946,7 @@ namespace MedLaunch.Models
                 video__blit_timesync = true,                        // control placed
                 video__deinterlacer = "weave",                      // control placed
                 video__disable_composition = true,                  // control placed
-                video__driver = "opengl",                           // control placed
+                video__driver = "default",                           // control placed
                 video__frameskip = true,                            // control placed
                 video__fs = false,                                  // control placed
                 video__glvsync = true,                              // control placed
