@@ -285,6 +285,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Controls\InputBase.cs" />
     <Compile Include="Classes\Controls\InputManager\KeyboardTransSDL2.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\MiscBindings.cs" />
     <Compile Include="Classes\DAT\AsniDATDbContext.cs" />
@@ -1027,6 +1028,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Classes\Controls\Current\" />
+    <Folder Include="Classes\Controls\Legacy\" />
     <Folder Include="Classes\skeletonKey\" />
     <Folder Include="_Debug\DATDB\DATFiles\PSXDATACENTER\" />
   </ItemGroup>
