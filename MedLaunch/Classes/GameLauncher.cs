@@ -270,6 +270,7 @@ namespace MedLaunch.Classes
             var paths = Paths.GetPaths();
             string filePath = paths.mednafenExe + @"\" + systemCode + ".cfg";
 
+            
             // build config file string
             StringBuilder sb = new StringBuilder();
             foreach (var t in sysConfigObject)
@@ -279,7 +280,7 @@ namespace MedLaunch.Classes
                 {
                     // null or empty value - continue
                     continue;
-                }
+                }                
 
                 // convert all values to strings
                 string v = t.Value.ToString();
@@ -409,11 +410,11 @@ namespace MedLaunch.Classes
                 gProcess.StartInfo.CreateNoWindow = false;
                 // Build command line config arguments
                 gProcess.StartInfo.Arguments = cmdArguments;
-                gProcess.StartInfo.UseShellExecute = false;
-                gProcess.StartInfo.EnvironmentVariables["MEDNAFEN_NOPOPUPS"] = "1";
+                //gProcess.StartInfo.UseShellExecute = false;
+                //gProcess.StartInfo.EnvironmentVariables["MEDNAFEN_NOPOPUPS"] = "1";
                 gProcess.Start();
-                
-                gProcess.WaitForInputIdle();
+
+                gProcess.WaitForExit();
 
                 procId = gProcess.Id;
                 IntPtr hwnd = new IntPtr();
@@ -660,7 +661,7 @@ namespace MedLaunch.Classes
         public static string Validate(string s)
         {
             // check whether there are spaces in the incoming string - if so surround the string in "" marks
-            if (s.Contains(" "))
+            if (s.Contains(" ") || s.StartsWith("-"))
             {
                 return "\"" + s + "\"";
             }

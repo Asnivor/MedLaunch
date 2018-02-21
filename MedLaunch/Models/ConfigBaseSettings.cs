@@ -47,6 +47,15 @@ namespace MedLaunch.Models
         public bool? osd__alpha_blend { get; set; }
         public int? osd__message_display_time { get; set; }          // 0 through 15000
         public int? osd__state_display_time { get; set; }            // 0 through 15000
+
+        // new FPS options
+        public bool? fps__autoenable { get; set; }
+        public string fps__bgcolor { get; set; }                        // 0x00000000 through 0xFFFFFFFF           
+        public string fps__font { get; set; }                          //  5x7 6x9 6x12 6x13 9x18
+        public string fps__position { get; set; }                   // upper_left  upper_right
+        public int? fps__scale { get; set; }                        // 0 through 32
+        public string fps__textcolor { get; set; }                  // 0x00000000 through 0xFFFFFFFF
+
         public int? qtrecord__h_double_threshold { get; set; }       // 0 through 1073741824
         public string qtrecord__vcodec { get; set; }                // raw cscd png
         public int? qtrecord__w_double_threshold { get; set; }       // 0 through 1073741824
@@ -930,6 +939,16 @@ namespace MedLaunch.Models
                 osd__alpha_blend = true,                            // control placed
                 osd__message_display_time = 2500,                   // control placed
                 osd__state_display_time = 2000,                     // control placed
+
+                // new FPS options
+                fps__autoenable = false,
+                fps__bgcolor = "0x80000000",
+                fps__font = "5x7",
+                fps__position = "upper_left",
+                fps__scale = 1,
+                fps__textcolor = "0xFFFFFFFF",
+
+
                 qtrecord__h_double_threshold = 256,
                 qtrecord__w_double_threshold = 384,
                 qtrecord__vcodec = "cscd",
@@ -2249,7 +2268,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_") || control.Name.Contains("ALPHA"))
                     {
                         // checkbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
@@ -2341,7 +2360,38 @@ namespace MedLaunch.Models
                         else
                             n = v;
 
+                        /*
+                        // handle AARRGGBB values (eg FPS colors)
+                        if (n.Length == 8)
+                        {
+                            // this is AARRGGBB - we need to take the alpha channel value from the first byte
+                            // and update the matching alpha channel slider
+
+                            // first find the matching alpha channel control (currently only valid for FPS colors)
+                            string ctrlName = control.Name;
+                            string lookupName = ctrlName.Replace("cfg_fps__", "cfg_ALPHAfps__");
+                            Slider alphaSlider = ui.Sliders.Where(a => a.Name == lookupName).FirstOrDefault();
+
+                            // split the hex value into AA and RRGGBB
+                            string AA = n.Substring(0, 2);
+                            string RRBBGG = n.Substring(2, 6);
+
+                            // update the colorpicker
+                            control.SelectedColor = (Color)System.Windows.Media.ColorConverter.ConvertFromString("#" + RRBBGG);
+
+                            // update the alpha slider
+                            int aVal = int.Parse(AA, System.Globalization.NumberStyles.HexNumber);
+                            double aVa = (double)aVal;
+                            //alphaSlider.Value = aVa;
+                        }
+                        else
+                        {
+                            // this is RRGGBB - update the colorpicker directly with the value
                             control.SelectedColor = (Color)System.Windows.Media.ColorConverter.ConvertFromString("#" + n);
+                        }
+                        */
+
+                        control.SelectedColor = (Color)System.Windows.Media.ColorConverter.ConvertFromString("#" + n);
                     }
                 }
 
@@ -2431,7 +2481,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_") || control.Name.Contains("ALPHA"))
                     {
                         // checkbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
@@ -2558,13 +2608,24 @@ namespace MedLaunch.Models
                     }
                     else
                     {
-                        // get the control value
+                        // get the control values
                         System.Windows.Media.Color color = control.SelectedColor.Value;
                         string hex = new ColorConverter().ConvertToString(color);
-                        string v = "0x" + hex.Replace("#", "").ToUpper().Substring(2, 6);
+
+                        string v = string.Empty;
+
+                        if (hex.Length == 9)
+                        {
+                            v = "0x" + hex.Replace("#", "").ToUpper().Substring(0, 8);
+                        }
+                        else
+                        {
+                            v = "0x" + hex.Replace("#", "").ToUpper().Substring(2, 6);
+                        }
+                        
                         // update settings object with value
                         PropertyInfo propInfo = settings.GetType().GetProperty(propName);
-                        propInfo.SetValue(settings, v, null);
+                        propInfo.SetValue(settings, v, null);                        
                     }
                 }
 

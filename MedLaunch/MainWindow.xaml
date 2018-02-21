@@ -2569,8 +2569,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                 <Border Style="{StaticResource Borders1}" Margin="10">
                                     <GroupBox Margin="0"  BorderThickness="0" Header="OSD">
                                         <StackPanel Margin="10">
-
-
+                                            
                                             <CheckBox Name="cfg_osd__alpha_blend">Enable Alpha Blending</CheckBox>
 
                                             <Grid Margin="0">
@@ -2602,6 +2601,60 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <Slider Maximum="15000" Minimum="0" TickPlacement="BottomRight" TickFrequency="100" IsSnapToTickEnabled="True" 
                                         Name="cfg_osd__state_display_time"/>
                                                 </DockPanel>
+                                            </Grid>
+
+                                            <CheckBox Name="cfg_fps__autoenable" Margin="0,10,0,10">Auto Show FPS On Startup</CheckBox>
+
+                                            <Grid Margin="0">
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+
+                                                <Label Name="cfglbl_fps__position" Grid.Row="1">FPS Position</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_fps__position" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="upper_left">Upper Left</ComboBoxItem>
+                                                    <ComboBoxItem Tag="upper_right">Upper Right</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Name="cfglbl_fps__font" Grid.Row="2">FPS Font</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_fps__font" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
+                                                    <ComboBoxItem Tag="6x13">6x13 - CJK support</ComboBoxItem>
+                                                    <ComboBoxItem Tag="9x18">9x18 - CJK support</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
+                                                    <Label Name="cfglbl_fps__scale" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">FPS Scale Factor (Auto = 0)</Label>
+                                                    <Controls:NumericUpDown  Maximum="32" Minimum="0" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_fps__scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="32" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_fps__scale"/>
+                                                </DockPanel>
+
+                                                <Label Name="cfglbl_fps__textcolor" Grid.Column="0" Grid.Row="4">FPS Text Color</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black" Width="40" Grid.Column="3" Grid.Row="4" x:Name="cfg_fps__textcolor" />
+
+                                                
+
+                                                <Label Name="cfglbl_fps__bgcolor" Grid.Column="0" Grid.Row="5">FPS Text Color</Label>
+                                                <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black" Width="40" Grid.Column="3" Grid.Row="5" x:Name="cfg_fps__bgcolor" />
+
+
                                             </Grid>
 
 

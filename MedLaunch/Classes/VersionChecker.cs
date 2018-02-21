@@ -112,10 +112,14 @@ namespace MedLaunch.Classes
                         DownloadURL = "#",
                         Changes = new List<VersionChange>
                         {
+                            ////////////////////////////////////////////////////////////////
                             // Top level changes - these MUST be moved the beginning of every new version entry
                             // Its a bit of a kludge, but for earlier versions they should get converted back again later on
                             new VersionChange { Description = "sdl depreciated", ChangeMethod = ChangeType.ToRename, Item = "video.driver sdl", ChangeItem = "video.driver softfb" },
                             new VersionChange { Description = "overlay depreciated", ChangeMethod = ChangeType.ToRename, Item = "video.driver overlay", ChangeItem = "video.driver default" },
+                            ////////////////////////////////////////////////////////////////
+
+
                         }
                     },
 
@@ -129,6 +133,13 @@ namespace MedLaunch.Classes
                             new VersionChange { Description = "Display to use with fullscreen", ChangeMethod = ChangeType.ToRemove, Item = "video.fs.display" },
                             new VersionChange { Description = "sdl depreciated", ChangeMethod = ChangeType.ToRename, Item = "video.driver default", ChangeItem = "video.driver opengl" },
                             new VersionChange { Description = "overlay depreciated", ChangeMethod = ChangeType.ToRename, Item = "video.driver softfb", ChangeItem = "video.driver sdl" },
+
+                            new VersionChange { Description = "fps.autoenable", ChangeMethod = ChangeType.ToRemove, Item = "fps.autoenable" },
+                            new VersionChange { Description = "fps.bgcolor", ChangeMethod = ChangeType.ToRemove, Item = "fps.bgcolor" },
+                            new VersionChange { Description = "fps.font", ChangeMethod = ChangeType.ToRemove, Item = "fps.font" },
+                            new VersionChange { Description = "fps.position", ChangeMethod = ChangeType.ToRemove, Item = "fps.position" },
+                            new VersionChange { Description = "fps.scale", ChangeMethod = ChangeType.ToRemove, Item = "fps.scale" },
+                            new VersionChange { Description = "fps.textcolor", ChangeMethod = ChangeType.ToRemove, Item = "fps.textcolor" },
                         }
                     },
 
@@ -368,37 +379,38 @@ namespace MedLaunch.Classes
                 foreach (var change in c.Changes)
                 {
                     StringBuilder sb = new StringBuilder();
+
                     switch (change.ChangeMethod)
                     {
                         case ChangeType.ToRemove:               // explicitly remove the entire command
-                            string[] arr = working.Split('-');
+                            string[] arr = working.Split(new string[] { " -" }, StringSplitOptions.None);
                             foreach (string s in arr)
                             {
                                 if (!s.Contains(change.Item))
-                                    sb.Append("-" + s);
+                                    sb.Append(" -" + s);
                             }
                             working = sb.ToString();
                             break;
 
                         case ChangeType.ToRemoveCompletely:
-                            string[] arr2 = working.Split('-');
+                            string[] arr2 = working.Split(new string[] { " -" }, StringSplitOptions.None);
                             foreach (string s in arr2)
                             {
                                 if (!s.Contains(change.Item))
-                                    sb.Append("-" + s);
+                                    sb.Append(" -" + s);
                             }
                             working = sb.ToString();
                             break;
 
                         case ChangeType.ToRename:
-                            string[] arr3 = working.Split('-');
+                            string[] arr3 = working.Split(new string[] { " -" }, StringSplitOptions.None);
                             foreach (string s in arr3)
                             {
                                 if (!s.Contains(change.Item))
-                                    sb.Append("-" + s);
+                                    sb.Append(" -" + s);
                                 else
                                 {
-                                    sb.Append("-" + s.Replace(change.Item, change.ChangeItem));
+                                    sb.Append(" -" + s.Replace(change.Item, change.ChangeItem));
                                 }
                             }
                             working = sb.ToString();
@@ -410,7 +422,7 @@ namespace MedLaunch.Classes
                     }
                 }
 
-                working = working.TrimStart('-');
+                working = " -" + working.TrimStart('-').Replace("- -", "").Replace("-  -", "").TrimStart();
 
                 string currIntOnly;
                 string targetIntOnly;
@@ -638,6 +650,7 @@ namespace MedLaunch.Classes
             MednafenVersionDescriptor vd = new MednafenVersionDescriptor();
 
             vd.FullVersionString = versionString.Trim();
+            
 
             // attempt splitting the string by '.'
             string[] arr = versionString.Split('.');

@@ -285,6 +285,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Controls\InputManager\KeyboardTransSDL2.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\MiscBindings.cs" />
     <Compile Include="Classes\DAT\AsniDATDbContext.cs" />
     <Compile Include="Classes\DAT\DATMerge.cs" />
