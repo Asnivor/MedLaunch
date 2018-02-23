@@ -74,7 +74,6 @@ namespace MedLaunch.Classes.Controls
 
             ContInfoFromLog = LogParser.Instance.GetAttachedControllers(true).Where(a => a.Type == ControllerType.DirectInput).ToArray();
 
-
             List<xinput_id> xids = new List<xinput_id>();
 
             // get all directinput pnp devices from WMI

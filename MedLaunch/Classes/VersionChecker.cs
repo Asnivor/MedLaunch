@@ -89,6 +89,14 @@ namespace MedLaunch.Classes
             }
         }
 
+        public bool IsNewConfig
+        {
+            get
+            {
+                return CurrentMedVerDesc.IsNewConfig;
+            }
+        }
+
         #endregion
 
         #region Static Methods
@@ -632,9 +640,14 @@ namespace MedLaunch.Classes
         public string RevisionSTR { get; set; }
 
         /// <summary>
-        /// Signs whether version is mednafen 1.12.0 or above
+        /// Signs whether version number has 3 or 4 digits
         /// </summary>
         public bool IsNewFormat { get; set; }
+
+        /// <summary>
+        /// Signs whether mednafen version >= 1.21.x
+        /// </summary>
+        public bool IsNewConfig { get; set; }
 
         /// <summary>
         /// Signs that the version string was parsed successfully
@@ -734,6 +747,11 @@ namespace MedLaunch.Classes
                     vd.IsValid = false;
                     return vd;
             }
+
+            if (vd.MajorINT > 0)
+                vd.IsNewConfig = true;
+            else
+                vd.IsNewConfig = false;
 
             return vd;
         }

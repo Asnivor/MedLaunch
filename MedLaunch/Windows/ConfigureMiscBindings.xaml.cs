@@ -878,7 +878,7 @@ namespace MedLaunch
                     if (input.StartsWith("keyboard "))
                     {
                         // keyboard binding
-                        output = KeyboardTranslation.SDLCodetoDx(input, KeyboardType.UK);
+                        output = KeyboardTranslationSDL2.SDLCodetoDx(input, KeyboardType.UK);
                     }
                     if (input.StartsWith("mouse "))
                     {
@@ -918,7 +918,7 @@ namespace MedLaunch
                     if (!input.StartsWith("mouse ") && !input.StartsWith("joystick "))
                     {
                         // assume keyboard
-                        output = KeyboardTranslation.DXtoSDLCode(input, KeyboardType.UK);
+                        output = KeyboardTranslationSDL2.DXtoSDLCode(input, KeyboardType.UK);
                     }
                     break;
             }

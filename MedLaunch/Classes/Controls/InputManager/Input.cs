@@ -56,6 +56,8 @@ namespace MedLaunch.Classes.Controls.InputManager
         readonly Thread UpdateThread;
         public static bool AbortThread { private get; set; }
 
+        public MainWindow main { get; set; }
+
         public Input()
         {
             AbortThread = false;
@@ -71,13 +73,12 @@ namespace MedLaunch.Classes.Controls.InputManager
 
         public static void Initialize(MainWindow mw)
         {
-
             KeyInput.Initialize(mw);
-            //IPCKeyInput.Initialize();
             GamePad.Initialize(mw);
             GamePad360.Initialize(mw);     
 
             Instance = new Input();
+            Instance.main = mw;
         }
 
         public void Dispose()
@@ -282,8 +283,7 @@ namespace MedLaunch.Classes.Controls.InputManager
                 if (AbortThread == true)
                 {
                     break;
-                }
-                    
+                }                
 
                 var keyEvents = KeyInput.Update(); //.Concat(IPCKeyInput.Update());
                 GamePad.UpdateAll();

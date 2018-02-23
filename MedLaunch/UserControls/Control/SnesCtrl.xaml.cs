@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.SimpleChildWindow;
+using MedLaunch.Classes.Controls;
 
 namespace MedLaunch
 {
@@ -50,36 +51,79 @@ namespace MedLaunch
             // Get device definition for this controller
             //DeviceDefinition dev = Snes.GamePad(portNum);
 
-            DeviceDefinition dev = new DeviceDefinition();
+            // get mednafen config version
+            bool isNewConfig = Classes.VersionChecker.Instance.IsNewConfig;
 
-            switch (name)
+            IDeviceDefinition dev;
+
+            if (isNewConfig)
             {
-                case "SnesGamepad":
-                    dev = Snes.GamePad(portNum);
-                    break;
-                case "SnesSuperscope":
-                    dev = Snes.Superscope(portNum);
-                    break;
-                case "SnesMouse":
-                    dev = Snes.Mouse(portNum);
-                    break;
-                default:
-                    return;
+                dev = new DeviceDefinition();
+
+                switch (name)
+                {
+                    case "SnesGamepad":
+                        dev = Snes.GamePad(portNum);
+                        break;
+                    case "SnesSuperscope":
+                        dev = Snes.Superscope(portNum);
+                        break;
+                    case "SnesMouse":
+                        dev = Snes.Mouse(portNum);
+                        break;
+                    default:
+                        return;
+                }
+            }
+            else
+            {
+                dev = new DeviceDefinitionLegacy();
+
+                switch (name)
+                {
+                    case "SnesGamepad":
+                        dev = Snes_Legacy.GamePad(portNum);
+                        break;
+                    case "SnesSuperscope":
+                        dev = Snes_Legacy.Superscope(portNum);
+                        break;
+                    case "SnesMouse":
+                        dev = Snes_Legacy.Mouse(portNum);
+                        break;
+                    default:
+                        return;
+                }
             }
 
             mw.ControllerDefinition = dev;
 
             // launch controller configuration window
-            Grid RootGrid = (Grid)mw.FindName("RootGrid");
-            await mw.ShowChildWindowAsync(new ConfigureController()
+            if (isNewConfig)
             {
-                IsModal = true,
-                AllowMove = false,
-                Title = "Controller Configuration",
-                CloseOnOverlay = false,
-                CloseByEscape = false,
-                ShowCloseButton = false
-            }, RootGrid);
+                Grid RootGrid = (Grid)mw.FindName("RootGrid");
+                await mw.ShowChildWindowAsync(new ConfigureController()
+                {
+                    IsModal = true,
+                    AllowMove = false,
+                    Title = "Controller Configuration",
+                    CloseOnOverlay = false,
+                    ShowCloseButton = false,
+                    CloseByEscape = false
+                }, RootGrid);
+            }
+            else
+            {
+                Grid RootGrid = (Grid)mw.FindName("RootGrid");
+                await mw.ShowChildWindowAsync(new ConfigureControllerLegacy()
+                {
+                    IsModal = true,
+                    AllowMove = false,
+                    Title = "Controller Configuration",
+                    CloseOnOverlay = false,
+                    ShowCloseButton = false,
+                    CloseByEscape = false
+                }, RootGrid);
+            }
         }
     }
 }

@@ -135,8 +135,11 @@ namespace MedLaunch.Classes
             // if no data is returned check stdout.txt
             if (File.Exists(MednafenEXE))
             {
+                
                 // first try new method
                 string args = "\"" + MednafenEXE + "\" EmptyTriggerConsole";
+
+                /*
 
                 var conProcess = new Process
                 {
@@ -147,7 +150,8 @@ namespace MedLaunch.Classes
                         UseShellExecute = false,
                         RedirectStandardOutput = true,
                         RedirectStandardInput = true,
-                        CreateNoWindow = true
+                        CreateNoWindow = true,
+                        WindowStyle = ProcessWindowStyle.Hidden
             }
                 };
 
@@ -172,18 +176,21 @@ namespace MedLaunch.Classes
 
                 if (!Output.Contains("Starting Mednafen"))
                 {
+
+            */
                     // no output detected - try old method
                     Output = string.Empty;
 
-                    //Thread.Sleep(500);
+                //Thread.Sleep(500);
 
-                    var winProcess = new Process
+                var winProcess = new Process
+                {
+                    StartInfo = new ProcessStartInfo
                     {
-                        StartInfo = new ProcessStartInfo
-                        {
                             FileName = MednafenEXE,
                             Arguments = "EmptyTriggerWindow",
                             WindowStyle = ProcessWindowStyle.Hidden,
+                            CreateNoWindow = true,
                             UseShellExecute = false
                         }
                     };
@@ -223,7 +230,9 @@ namespace MedLaunch.Classes
                             Output += a + "\n";
                         }
                     }
+                    /*
                 }
+                */
 
                 // attempt to parse the output
                 List<string> list = Output.Replace("\r", "\n").Split('\n').ToList();
@@ -251,18 +260,14 @@ namespace MedLaunch.Classes
                     MedVersionDesc = MednafenVersionDescriptor.ReturnVersionDescriptor(VersionString);
                 }
 
-                // check whether this is a new type of mednafen or not
-                if (!MedVersionDesc.IsNewFormat)
+                IsDirty = false;
+                
+                // get joystick IDs
+                Controllers.Clear();
+
+                if (VersionChecker.Instance.IsNewConfig)
                 {
-                    // we need to run the detection again for the benefit of the joysticks
-                    // (without the -MEDNAFEN_NOPOPUPS param)
-                    IsNewFormat = false;
-                    ParseData();
-                }
-                else
-                {
-                    // get joystick IDs
-                    Controllers.Clear();
+                    // new version
                     var lines = list.Where(a => a.Contains("ID: ")).ToList();
 
                     foreach (var l in lines)
@@ -292,6 +297,40 @@ namespace MedLaunch.Classes
                         Controllers.Add(ci);
                     }
                 }
+                else
+                {
+                    // old version
+                    var lines = list.Where(a => a.TrimStart().StartsWith("Joystick ")).ToList();
+
+                    foreach (var l in lines)
+                    {
+                        ControllerInfo ci = new ControllerInfo();
+
+                        if (l.ToLower().Contains("xinput") ||
+                            l.ToLower().Contains("XBOX 360"))
+                        {
+                            // mednafen has probably detected this as an xinput controller
+                            ci.Type = ControllerType.XInput;
+                        }
+                        else
+                        {
+                            // mednafen has probably detected this as a directinput controller
+                            ci.Type = ControllerType.DirectInput;
+                        }
+
+                        string trimmed = l.Trim();
+
+                        // split the string up
+                        string[] arr = trimmed.Split(new string[] { " - " }, StringSplitOptions.None);
+                        ci.Name = arr[1];
+                        ci.ID = arr[2].Replace("Unique ID: ", "");
+
+                        Controllers.Add(ci);
+                    }
+                }
+
+                
+              
 
                 IsDirty = false;
             }
@@ -308,11 +347,11 @@ namespace MedLaunch.Classes
         }
         */
 
-        /// <summary>
-        /// Returns mednafen version info
-        /// </summary>
-        /// <param name="forceUpdate"></param>
-        /// <returns></returns>
+                /// <summary>
+                /// Returns mednafen version info
+                /// </summary>
+                /// <param name="forceUpdate"></param>
+                /// <returns></returns>
         public MednafenVersionDescriptor GetMednafenVersion(bool forceUpdate)
         {
             if (MedVersionDesc == null)
@@ -383,10 +422,24 @@ namespace MedLaunch.Classes
 
             return list.ToArray();
         }
+        */
 
+        /// <summary>
+        /// For old mednafen
+        /// </summary>
+        /// <returns></returns>
         public static ControllerInfo[] GetDirectInputControllerIds()
         {
-            EmptyLoad();
+            // force an update
+            LogParser.Instance.IsDirty = true;
+            LogParser.Instance.ParseData();
+
+            var controllers = LogParser.Instance.Controllers;
+
+            return controllers.ToArray();
+
+            /*
+
             var lines = ReadLog().Where(a => a.TrimStart().StartsWith("Joystick "));
             List<string> onlyDi = new List<string>();
 
@@ -409,8 +462,10 @@ namespace MedLaunch.Classes
             }
 
             return list.ToArray();
+
+            */
         }
-        */
+        
         /*
         /// <summary>
         /// Return the current Mednafen version

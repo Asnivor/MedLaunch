@@ -45,6 +45,7 @@ using System.Windows.Interactivity;
 using MedLaunch.Common.Eventing.Listeners;
 using MedLaunch.Common.IO.Compression;
 using MedLaunch.Windows;
+using MedLaunch.Classes.Controls;
 
 namespace MedLaunch
 {
@@ -103,7 +104,7 @@ namespace MedLaunch
         /// <summary>
         /// The last selected ControllerDefinition
         /// </summary>
-        public DeviceDefinition ControllerDefinition { get; set; }
+        public IDeviceDefinition ControllerDefinition { get; set; }
 
         /// <summary>
         /// Games library filtering
@@ -4052,15 +4053,32 @@ namespace MedLaunch
         private async void btnControlCommandBindings_Click(object sender, RoutedEventArgs e)
         {
             // launch controller configuration window
-            await this.ShowChildWindowAsync(new ConfigureMiscBindings()
+
+            if (VersionChecker.Instance.IsNewConfig)
             {
-                IsModal = true,
-                AllowMove = false,
-                Title = "Misc Binding Configuration",
-                CloseOnOverlay = false,
-                CloseByEscape = false,
-                ShowCloseButton = false
-            }, RootGrid);
+                await this.ShowChildWindowAsync(new ConfigureMiscBindings()
+                {
+                    IsModal = true,
+                    AllowMove = false,
+                    Title = "Misc Binding Configuration",
+                    CloseOnOverlay = false,
+                    CloseByEscape = false,
+                    ShowCloseButton = false
+                }, RootGrid);
+            }
+            else
+            {
+                await this.ShowChildWindowAsync(new ConfigureMiscBindingsLegacy()
+                {
+                    IsModal = true,
+                    AllowMove = false,
+                    Title = "Misc Binding Configuration",
+                    CloseOnOverlay = false,
+                    CloseByEscape = false,
+                    ShowCloseButton = false
+                }, RootGrid);
+            }
+            
         }
 
         // generic controls selections buttons
