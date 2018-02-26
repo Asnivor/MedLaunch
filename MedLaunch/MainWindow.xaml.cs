@@ -142,6 +142,8 @@ namespace MedLaunch
         {
             InitializeComponent();
 
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
+
             // init update vars
             DownloadComplete = false;
             UpdateStatus = 0;
@@ -4706,6 +4708,8 @@ namespace MedLaunch
 
             // attempt to download the LatestVersion text file from github
             string contents;
+
+            
 
             using (var wc = new CustomWebClient())
             {
