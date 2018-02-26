@@ -11,8 +11,9 @@ title: Changelog
 * (Enhancement) - Added shared memcard option for PSX ([#194](https://github.com/Asnivor/MedLaunch/issues/194)) - Caveat: this may not play nice with savestates, use with caution
 * (BugFix) - Added better error handling when inspecting corrupt archive files ([#198](https://github.com/Asnivor/MedLaunch/issues/198))
 * (BugFix) - Fixed code typo that was causing an exception when choosing pce gecdbios ([#200](https://github.com/Asnivor/MedLaunch/issues/200))
+* (BugFix) - MedLaunch update checker can now connect using TLS 1.2 (so updates can be checked and downloaded from GitHub). Unfortunately this will obviously require a manual update before this is available ([#201](https://github.com/Asnivor/MedLaunch/issues/201))
 
-* ## Mednafen 1.21.x support ##
+* ## Mednafen 1.21.x support ## ([#202](https://github.com/Asnivor/MedLaunch/issues/202))
 * * Updated LogParser to handle new Mednafen version numbering and changes in stdout.txt behaviour
 * * MedLaunch will now get version and attached gamepad/joystick info from the console (rather than stdout.txt) if the mednafen version is new enough
 * * Added setting "video.fs.display" for all cores
@@ -22,6 +23,8 @@ title: Changelog
 * * * New boolean logic operator bindings (||, &&, $!)
 * * * New mouse bindings
 * * * New SDL2 keyboard translations
+* * * New DirectInput GamePad configuration methods implemented
+* * * New XInput GamePad configuration methods implemented
 
 ##### [0.5.18.5](https://medlaunch.info/releases/0-5-18-5)
 ###### 2018-01-15
