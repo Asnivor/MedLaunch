@@ -26,6 +26,8 @@ namespace MedLaunch.Classes.Controls
         public string DeviceID { get; set; }
         public string LogicString { get; set; }
         public string Scale { get; set; }
+        public string GFlag { get; set; }
+        public string ScancodeModifier { get; set; }
 
         public Mapping Primary { get; set; }
         public Mapping Secondary { get; set; }

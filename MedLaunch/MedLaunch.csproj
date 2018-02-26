@@ -286,6 +286,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\Controls\InputManager\Keyboard\KeyboardSDL2.cs" />
+    <Compile Include="Classes\Controls\Interfaces\IGamePad.cs" />
+    <Compile Include="Classes\Controls\Interfaces\IGamePad360.cs" />
     <Compile Include="Classes\Controls\Interfaces\IKeyboardTranslator.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\DeviceDefinitionLegacy.cs" />
     <Compile Include="Classes\Controls\Interfaces\IDeviceDefinition.cs" />
@@ -361,8 +363,8 @@
     <Compile Include="Classes\BackupConfig.cs" />
     <Compile Include="Classes\ConfigImport.cs" />
     <Compile Include="Classes\ConfigToolTips.cs" />
-    <Compile Include="Classes\Controls\InputManager\GamePad.cs" />
-    <Compile Include="Classes\Controls\InputManager\GamePad360.cs" />
+    <Compile Include="Classes\Controls\InputManager\Gampad\GamePad.cs" />
+    <Compile Include="Classes\Controls\InputManager\Gampad\GamePad360.cs" />
     <Compile Include="Classes\Controls\InputManager\Input.cs" />
     <Compile Include="Classes\Controls\InputManager\Keyboard\KeyboardSDL.cs" />
     <Compile Include="Classes\Controls\InputManager\Keyboard\KeyInput.cs" />
