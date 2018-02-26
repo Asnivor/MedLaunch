@@ -286,8 +286,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\Controls\InputManager\Keyboard\KeyboardSDL2.cs" />
-    <Compile Include="Classes\Controls\Interfaces\IGamePad.cs" />
-    <Compile Include="Classes\Controls\Interfaces\IGamePad360.cs" />
     <Compile Include="Classes\Controls\Interfaces\IKeyboardTranslator.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\DeviceDefinitionLegacy.cs" />
     <Compile Include="Classes\Controls\Interfaces\IDeviceDefinition.cs" />
