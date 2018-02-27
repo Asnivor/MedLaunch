@@ -61,7 +61,7 @@
         </Image>
 
         <Label Name="lblRightClick" HorizontalAlignment="Center" Grid.Row="2">
-            (Right-click in the textboxes below to insert pre-defined mouse controls)
+            (Right-click in the textboxes below to insert macros and edit modifiers - a blue box signifies a modifier is present)
         </Label>
 
         

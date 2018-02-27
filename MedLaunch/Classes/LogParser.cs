@@ -288,7 +288,7 @@ namespace MedLaunch.Classes
 
                         // split the string up
                         string[] arr = l.TrimStart().Replace("ID: ", "").Split(new string[] { " - " }, StringSplitOptions.None);
-                        string ID = arr[0].TrimStart('0').TrimStart('x');
+                        string ID = arr[0]; //.TrimStart('0').TrimStart('x');
                         string Name = arr[1].Trim();
 
                         ci.ID = ID;

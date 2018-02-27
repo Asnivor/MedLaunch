@@ -698,6 +698,36 @@ namespace MedLaunch
             */
         }
 
+        private string GetConfigItemWorking(string configItemName, ConfigOrder configOrder)
+        {
+            // get the map
+            var map = (from a in ControllerDefinitionWorking.MapList
+                       where a.MednafenCommand == configItemName
+                       select a).FirstOrDefault();
+
+            if (map == null || map.Primary == null)
+                return "";
+
+            switch (configOrder)
+            {
+                case ConfigOrder.Primary:
+                    if (map.Primary != null)
+                        return DeviceDefinition.ProcessBlock(map.Primary);
+                    break;
+                case ConfigOrder.Secondary:
+                    if (map.Secondary != null)
+                        return DeviceDefinition.ProcessBlock(map.Secondary);
+                    break;
+                case ConfigOrder.Tertiary:
+                    if (map.Tertiary != null)
+                        return DeviceDefinition.ProcessBlock(map.Tertiary);
+                    break;
+            }
+
+            return "";
+
+        }
+
         private static BitmapImage GetImage(string controllerName)
         {
             string imgName = "";
@@ -1264,7 +1294,7 @@ namespace MedLaunch
             var map = GetMapFromTextBox(tb);
             if (map == null)
             {
-                tb.Background = Brushes.RoyalBlue;
+                tb.Background = Brushes.Transparent;
                 return;
             }
 
@@ -1273,36 +1303,50 @@ namespace MedLaunch
                 order = FieldType.Primary;
                 if (map.Primary == null ||
                     (map.Primary.Scale == null || map.Primary.Scale.Trim() == "") &&
-                    (map.Primary.GFlag == null || map.Primary.GFlag.Trim() == ""))
+                    (map.Primary.GFlag == null || map.Primary.GFlag.Trim() == "") &&
+                    (!map.Primary.Config.EndsWith("-+g")))
                 {
                     tb.Background = Brushes.Transparent;
                 }
                 else
+                {
+                    Thread.Sleep(100);
                     tb.Background = Brushes.RoyalBlue;
+                }
+                    
             }
             else if (tb.Name.Contains("Secondary"))
             {
                 order = FieldType.Secondary;
                 if (map.Secondary == null || 
                     (map.Secondary.Scale == null || map.Secondary.Scale.Trim() == "") &&
-                    (map.Secondary.GFlag == null || map.Secondary.GFlag.Trim() == ""))
+                    (map.Secondary.GFlag == null || map.Secondary.GFlag.Trim() == "") &&
+                    (!map.Secondary.Config.EndsWith("-+g")))
                 {
                     tb.Background = Brushes.Transparent;
                 }
                 else
+                {
+                    Thread.Sleep(100);
                     tb.Background = Brushes.RoyalBlue;
+                }
+                    
             }
             else if (tb.Name.Contains("Tertiary"))
             {
                 order = FieldType.Tertiary;
                 if (map.Tertiary == null || 
                     (map.Tertiary.Scale == null || map.Tertiary.Scale.Trim() == "") &&
-                    (map.Tertiary.GFlag == null || map.Tertiary.GFlag.Trim() == ""))
+                    (map.Tertiary.GFlag == null || map.Tertiary.GFlag.Trim() == "") &&
+                    (!map.Tertiary.Config.EndsWith("-+g")))
                 {
                     tb.Background = Brushes.Transparent;
                 }
                 else
+                {
+                    Thread.Sleep(100);
                     tb.Background = Brushes.RoyalBlue;
+                }
             }
         }
 
@@ -1395,6 +1439,47 @@ namespace MedLaunch
         /// </summary>
         private async void LaunchModWindow()
         {
+            // basic validation
+            string nobinding = "Please configure a binding before attempting to add modifiers to this field";
+            string noprimary = "Please ensure that you have configured the primary field for this option before attempting to add modifiers";
+            string nosecondary = "Please ensure that you have configured the secondary field for this option before attempting to add modifiers";
+
+            switch (tmpOrder)
+            {
+                case ConfigOrder.Primary:
+                    if (tmpMap.Primary == null || tmpMap.Primary.Config.Trim() == "")
+                    {
+                        MessageBox.Show(nobinding, "No Binding Data Found", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        return;
+                    }
+
+                    break;
+                case ConfigOrder.Secondary:
+                    if (tmpMap.Secondary == null || tmpMap.Secondary.Config.Trim() == "")
+                    {
+                        MessageBox.Show(nobinding, "No Binding Data Found", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        return;
+                    }
+                    if (tmpMap.Primary == null || tmpMap.Primary.Config.Trim() == "")
+                    {
+                        MessageBox.Show(noprimary, "No Primary Binding Data Found", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        return;
+                    }
+                    break;
+                case ConfigOrder.Tertiary:
+                    if (tmpMap.Tertiary == null || tmpMap.Tertiary.Config.Trim() == "")
+                    {
+                        MessageBox.Show(nobinding, "No Binding Data Found", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        return;
+                    }
+                    if (tmpMap.Secondary == null || tmpMap.Secondary.Config.Trim() == "")
+                    {
+                        MessageBox.Show(nosecondary, "No Secondary Binding Data Found", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        return;
+                    }
+                    break;
+            }
+
             Grid RootGrid = (Grid)mw.FindName("RootGrid");
             await mw.ShowChildWindowAsync(new ConfigureModWindow()
             {
@@ -1405,6 +1490,35 @@ namespace MedLaunch
                 ShowCloseButton = false,
                 CloseByEscape = true,                
             }, RootGrid);
+
+            // update the working collection and the textbox itself
+            var col = ControllerDefinitionWorking.MapList.Where(a => a.MednafenCommand == tmpMap.MednafenCommand).FirstOrDefault();
+            switch (tmpOrder)
+            {
+                case ConfigOrder.Primary:
+                    col.Primary = tmpMap.Primary;
+                    string primTxt = GetConfigItemWorking(col.MednafenCommand, ConfigOrder.Primary);
+                    TextBox t1 = GetTextBoxFromMap(col, ConfigOrder.Primary);
+                    t1.Text = ConvertText(primTxt, ConversionOrder.Load);
+                    ModificationChecker(t1);
+                    break;
+                case ConfigOrder.Secondary:
+                    col.Secondary = tmpMap.Secondary;
+                    string secTxt = GetConfigItemWorking(col.MednafenCommand, ConfigOrder.Secondary);
+                    TextBox t2 = GetTextBoxFromMap(col, ConfigOrder.Secondary);
+                    t2.Text = ConvertText(secTxt, ConversionOrder.Load);
+                    ModificationChecker(t2);
+                    break;
+                case ConfigOrder.Tertiary:
+                    col.Tertiary = tmpMap.Tertiary;
+                    string terTxt = GetConfigItemWorking(col.MednafenCommand, ConfigOrder.Tertiary);
+                    TextBox t3 = GetTextBoxFromMap(col, ConfigOrder.Tertiary);
+                    t3.Text = ConvertText(terTxt, ConversionOrder.Load);
+                    ModificationChecker(t3);
+                    break;
+            }
+
+            //Increment();
         }
 
         private enum FieldType
@@ -1436,6 +1550,33 @@ namespace MedLaunch
         }
 
         /// <summary>
+        /// Returns the relevant tb for the specified map object
+        /// </summary>
+        /// <param name="tb"></param>
+        /// <returns></returns>
+        private TextBox GetTextBoxFromMap(Mapping map, ConfigOrder order)
+        {
+            string command = map.MednafenCommand;
+
+            var boxes = UIHandler.GetChildren(DynamicDataGrid).TextBoxes.Where(a => a.Name.Contains(command.Replace(".", "__"))).ToList();
+
+            switch (order)
+            {
+                case ConfigOrder.Primary:
+                    TextBox tP = boxes.Where(a => a.Name.Contains("Primary")).FirstOrDefault();
+                    return tP;
+                case ConfigOrder.Secondary:
+                    TextBox tS = boxes.Where(a => a.Name.Contains("Secondary")).FirstOrDefault();
+                    return tS;
+                case ConfigOrder.Tertiary:
+                    TextBox tT = boxes.Where(a => a.Name.Contains("Tertiary")).FirstOrDefault();
+                    return tT;
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// handles conversions between how control bindings are displayed versus how mednafen stores them in its config file
         /// </summary>
         /// <param name="input"></param>
@@ -1444,7 +1585,7 @@ namespace MedLaunch
         public static string ConvertText(string input, ConversionOrder conversionOrder)
         {
             // create the output string
-            string output = input;
+            string output = input;            
 
             // see if there is a scale factor present and remove this
             string scale = string.Empty;
@@ -1462,8 +1603,6 @@ namespace MedLaunch
             }
             else
                 input = output;
-
-            
 
             switch (conversionOrder)
             {
@@ -1497,7 +1636,9 @@ namespace MedLaunch
 
                     if (input.StartsWith("joystick "))
                     {
-                        // joystick binding - no conversion implemented
+                        // joystick binding - just remove scale factor from the end if present
+                        //output = input.Replace(" " + scale, "").TrimEnd();
+                        //return input;
                     }
                     break;
 
@@ -1525,16 +1666,18 @@ namespace MedLaunch
 
                     if (input.StartsWith("joystick "))
                     {
+                        /*
                         // joystick binding
                         string[] joys = input.Split(' ').Where(a => a != "").ToArray();
 
                         // build the new string
-                        string joy = joys[0] + " " + joys[1].Replace("0", "") + " " + joys[2];
+                        string joy = (joys[0] + " " + joys[1] + " " + joys[2] + " " + scale).TrimEnd();
 
                         // remove g
-                        joy.TrimEnd('g');
+                        //joy.TrimEnd('g');
 
-                        //return joy;
+                        return joy;
+                        */
                     }
 
                     if (!input.StartsWith("mouse ") && !input.StartsWith("joystick "))

@@ -377,8 +377,8 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 sb.Append(map.DeviceID + " ");
                 sb.Append(map.Config + " ");
 
-                if (map.Scale != null && (map.Scale != "keyboard" && map.Scale != "joystick" && map.Scale != "mouse"))
-                    sb.Append(map.Scale + " ");
+                //if (map.Scale != null && (map.Scale != "keyboard" && map.Scale != "joystick" && map.Scale != "mouse"))
+                    //sb.Append(map.Scale + " ");
 
                 /*
                 if (map.LogicString != null)

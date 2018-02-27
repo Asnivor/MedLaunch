@@ -35,6 +35,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+
         <TextBlock Name="titleTextBlock" Grid.Row="0" Grid.ColumnSpan="2"
 				   Margin="5"
 				   FontSize="11"
@@ -42,42 +43,46 @@
             
             The mednafen config allows for a couple of modifications when dealing with controller configuration <LineBreak />    
             that are not shown in the MedLaunch controller configuration window. Once a modification is applied <LineBreak /> 
-            however, the background of the 'modified' textbox will turn blue. <LineBreak /> 
-                          <LineBreak />    
-            
-            <Bold>1. [SCALE]</Bold><LineBreak />
-            An optional integer between 0-65535, representing a 4.12 fixed-point quantity used to scale <LineBreak /> 
-            analog(e.g. axis) inputs in most usage contexts. The default is 4096(equivalent to 1.0) <LineBreak />
-            <LineBreak />
-            <Bold>2. Joystick "g" Flag</Bold> <LineBreak />
-            When manually mapping the axes of an emulated lightgun to the axes of a physical lightgun that <LineBreak />
-            presents itself as a joystick device<LineBreak /><LineBreak />
-            MedLaunch will only allow this to be mapped to an already mapped joystick axis<LineBreak />
-            When configuring a virtual lightgun, you are only presented with entry for each axis. Map one direction <LineBreak />
-            of your joystick axis to this control, then enter this modification menu and click the checkbox (if available)   
-
+            however, the background of the 'modified' textbox will turn blue.
         </TextBlock>
 
         <StackPanel Orientation="Vertical" Grid.Row="1">
 
+            <TextBlock Name="scaleTextBlock"
+				   Margin="5"
+				   FontSize="11"
+                   HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Bold>1. [SCALE]</Bold><LineBreak />
+            An optional integer between 0-65535, representing a 4.12 fixed-point quantity used to scale <LineBreak /> 
+            analog(e.g. axis) inputs in most usage contexts. The default is 4096(equivalent to 1.0)
+            </TextBlock>
+
             <DockPanel VerticalAlignment="Center" Margin="5">
                 <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">SCALE FACTOR</Label>
                 <TextBox Text="{Binding ElementName=slScaleFactor, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="60" />
-                <Slider Maximum="65535" Minimum="0" TickPlacement="BottomRight" TickFrequency="1024" IsSnapToTickEnabled="False" 
+                <Slider Maximum="65535" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="slScaleFactor" />                
             </DockPanel>
             <Button Name="btnScaleDefault" Click="btnScaleDefault_Click">Reset Scale to Default (removes scale)</Button>
-            
-            
 
+            <TextBlock Name="gTextBlock"
+				   Margin="5"
+				   FontSize="11"
+                   HorizontalAlignment="Center" VerticalAlignment="Top">   
+            <Bold>2. Joystick "g" Flag</Bold> <LineBreak />
+            When manually mapping the axes of an emulated lightgun to the axes of a physical lightgun that <LineBreak />
+            presents itself as a joystick device<LineBreak />
+            MedLaunch will only allow this to be mapped to an already mapped joystick axis<LineBreak />
+            When configuring a virtual lightgun, you are only presented with entry for each axis. Map one direction <LineBreak />
+            of your joystick axis to this control, then enter this modification menu and click the checkbox (if available)
+            </TextBlock>
+
+            <Button Name="chkGFlag" HorizontalAlignment="Center" Click="chkGFlag_Click">
+                Enable the special 'g' flag for this axis - to remove the flag you will have to just re-bind the field
+            </Button>
 
         </StackPanel>
         
-        
-
-        
-
-
         <UniformGrid Name="ugBottomButtons" Columns="2" Grid.Row="2">
             <Button
 				Margin="5"
