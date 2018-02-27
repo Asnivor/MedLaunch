@@ -13,6 +13,12 @@ title: Changelog
 * (BugFix) - Fixed code typo that was causing an exception when choosing pce gecdbios ([#200](https://github.com/Asnivor/MedLaunch/issues/200))
 * (BugFix) - MedLaunch update checker can now connect using TLS 1.2 (so updates can be checked and downloaded from GitHub). Unfortunately this will obviously require a manual update before this is available ([#201](https://github.com/Asnivor/MedLaunch/issues/201))
 * (BugFix) - Controller input configurator fields are now only triggered when MedLaunch has focus ([#203](https://github.com/Asnivor/MedLaunch/issues/203))
+* (Enhancement) - Added the ability to configure the following additional controllers (when targeting mednafen >= v1.21.x):
+* * NES Power Pad (Side A and B)
+* * NES Arkanoid Paddle
+* * PCE Tsushin Keyboard
+* * Saturn Keyboard (US)
+* * Saturn Keyboard (JP)
 
 * ## Mednafen 1.21.x support ## ([#202](https://github.com/Asnivor/MedLaunch/issues/202))
 * * Updated LogParser to handle new Mednafen version numbering and changes in stdout.txt behaviour

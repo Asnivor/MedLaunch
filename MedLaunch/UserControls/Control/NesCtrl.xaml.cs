@@ -65,6 +65,15 @@ namespace MedLaunch
                     case "NesZapper":
                         dev = Nes.Zapper(portNum);
                         break;
+                    case "NesPowerPadA":
+                        dev = Nes.PowerPadA(portNum);
+                        break;
+                    case "NesPowerPadB":
+                        dev = Nes.PowerPadB(portNum);
+                        break;
+                    case "NesArkanoidPaddle":
+                        dev = Nes.ArkanoidPaddle(portNum);
+                        break;
                     default:
                         return;
                 }

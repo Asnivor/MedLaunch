@@ -79,6 +79,12 @@ namespace MedLaunch
                     case "SsMouse":
                         dev = Ss.Mouse(portNum);
                         break;
+                    case "SsKeyboardUS":
+                        dev = Ss.KeyboardUS(portNum);
+                        break;
+                    case "SsKeyboardJP":
+                        dev = Ss.KeyboardJP(portNum);
+                        break;
                     default:
                         return;
                 }

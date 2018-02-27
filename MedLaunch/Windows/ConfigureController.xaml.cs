@@ -737,6 +737,15 @@ namespace MedLaunch
                 case "NES GamePad":
                     imgName = "nes-controller.png";
                     break;
+                case "NES Power Pad Side B":
+                    imgName = "nes_powerpadb.png";
+                    break;
+                case "NES Power Pad Side A":
+                    imgName = "nes_powerpada.png";
+                    break;
+                case "NES Arkanoid Paddle":
+                    imgName = "nes_arkanoidpaddle.png";
+                    break;
                 case "GB GamePad":
                     imgName = "gb_controller.png";
                     break;
@@ -770,6 +779,9 @@ namespace MedLaunch
                 case "PCFX GamePad":
                     imgName = "pce-controller.png";
                     break;
+                case "PCE Tsushin Keyboard":
+                    imgName = "pce_tsushin.png";
+                    break;
                 case "VB GamePad":
                     imgName = "vb-controller.png";
                     break;
@@ -795,7 +807,12 @@ namespace MedLaunch
                 case "PSX NeGcon Controller":
                     imgName = "psx-negcon.png";
                     break;
-
+                case "SS Keyboard (US)":
+                    imgName = "ss_keyboardus.png";
+                    break;
+                case "SS Keyboard (JP)":
+                    imgName = "ss_keyboardjp.png";
+                    break;
                 case "SS Steering Wheel":
                     imgName = "ss-wheel.png";
                     break;

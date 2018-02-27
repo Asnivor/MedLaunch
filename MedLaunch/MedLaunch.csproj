@@ -1189,6 +1189,12 @@
     <Resource Include="Data\Graphics\Controllers\snes-mouse.png" />
     <Resource Include="Data\Graphics\Controllers\ss-mouse.png" />
     <Resource Include="Data\Graphics\Controllers\nes-zapper.png" />
+    <Resource Include="Data\Graphics\Controllers\nes_powerpadb.png" />
+    <Resource Include="Data\Graphics\Controllers\nes_powerpada.png" />
+    <Resource Include="Data\Graphics\Controllers\nes_arkanoidpaddle.png" />
+    <Resource Include="Data\Graphics\Controllers\pce_tsushin.png" />
+    <Resource Include="Data\Graphics\Controllers\ss_keyboardus.png" />
+    <Resource Include="Data\Graphics\Controllers\ss_keyboardjp.png" />
     <Content Include="Data\Installers\vcredist_x86.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

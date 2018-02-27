@@ -65,6 +65,9 @@ namespace MedLaunch
                     case "PceMouse":
                         dev = Pce.Mouse(portNum);
                         break;
+                    case "PceTsushin":
+                        dev = Pce.Tsushin(portNum);
+                        break;
                     default:
                         return;
                 }
