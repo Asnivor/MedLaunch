@@ -417,6 +417,9 @@
     <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\Models\ToSecCollection.cs" />
     <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\Models\ToSecObject.cs" />
     <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\StringConverterToSec.cs" />
+    <Compile Include="Windows\ConfigureModWindow.xaml.cs">
+      <DependentUpon>ConfigureModWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ConfigureControllerLegacy.xaml.cs">
       <DependentUpon>ConfigureControllerLegacy.xaml</DependentUpon>
     </Compile>
@@ -604,6 +607,10 @@
     <Page Include="Windows\AccentStyleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ConfigureModWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\ConfigureControllerLegacy.xaml">
       <Generator>MSBuild:Compile</Generator>

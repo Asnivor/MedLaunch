@@ -237,6 +237,7 @@ namespace MedLaunch.Classes.Controls
             else
             {
                 // old style
+                
                 AddItem("joystick " + ID + " " + "0000000c", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.A) != 0);                   // A
                 AddItem("joystick " + ID + " " + "0000000d", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.B) != 0);                   // B
                 AddItem("joystick " + ID + " " + "0000000e", () => (state.Gamepad.wButtons & (ushort)GamepadButtonFlags.X) != 0);                   // X

@@ -39,6 +39,10 @@ namespace MedLaunch
         public IntPtr hWnd { get; set; }
         public ContextMenu TBCM { get; set; }
 
+        // state vars for modification child window
+        public Mapping tmpMap { get; set; }
+        public ConfigOrder tmpOrder { get; set; }
+
         public List<CustomInsert> CustomInsertList { get; set; }
 
         private TextBox _activeTB { get; set; }
@@ -128,6 +132,10 @@ namespace MedLaunch
 
             MenuItem HeaderMod = new MenuItem { Header = "Modifications" };
             TBCM.Items.Add(HeaderMod);
+
+            MenuItem MODWINDOW = new MenuItem { Header = "Add/Edit Modifications", Name = "menuMODWINDOW" };
+            MODWINDOW.Click += new RoutedEventHandler(Modification_Click);
+            HeaderMod.Items.Add(MODWINDOW);
 
             MenuItem ALLREMOVE = new MenuItem { Header = "Remove All Modifications", Name = "menuALLREMOVE" };
             ALLREMOVE.Click += new RoutedEventHandler(Modification_Click);
@@ -1325,24 +1333,32 @@ namespace MedLaunch
             if (tb.Name.Contains("Primary"))
             {
                 order = FieldType.Primary;
+                tmpOrder = ConfigOrder.Primary;
             }
             else if (tb.Name.Contains("Secondary"))
             {
                 order = FieldType.Secondary;
+                tmpOrder = ConfigOrder.Secondary;
             }
             else if (tb.Name.Contains("Tertiary"))
             {
                 order = FieldType.Tertiary;
+                tmpOrder = ConfigOrder.Tertiary;
             }
 
             // get the map
             var map = GetMapFromTextBox(tb);
+            tmpMap = GetMapFromTextBox(tb);
             if (map == null)
                 return;
 
             // process the various modification options
             switch (menuName)
             {
+                // launch modification window
+                case "menuMODWINDOW":
+                    LaunchModWindow();
+                    break;
                 // remove all modifications
                 case "menuALLREMOVE":
                     if (order == FieldType.None)
@@ -1373,6 +1389,23 @@ namespace MedLaunch
             }
 
             ModificationChecker(tb);
+        }
+
+        /// <summary>
+        /// shows the modification window for the selected textbox
+        /// </summary>
+        private async void LaunchModWindow()
+        {
+            Grid RootGrid = (Grid)mw.FindName("RootGrid");
+            await mw.ShowChildWindowAsync(new ConfigureModWindow()
+            {
+                IsModal = true,
+                AllowMove = false,
+                Title = "Controller Cell Modifications",
+                CloseOnOverlay = false,
+                ShowCloseButton = false,
+                CloseByEscape = true,                
+            }, RootGrid);
         }
 
         private enum FieldType
