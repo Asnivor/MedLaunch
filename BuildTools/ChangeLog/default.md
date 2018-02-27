@@ -26,6 +26,7 @@ title: Changelog
 * * * New SDL2 keyboard translations
 * * * New DirectInput GamePad configuration methods implemented
 * * * New XInput GamePad configuration methods implemented
+* * * Optional [SCALE] and g-Flag lightgun settings now handled (and can be edited with the right-click context menu)
 
 ##### [0.5.18.5](https://medlaunch.info/releases/0-5-18-5)
 ###### 2018-01-15
