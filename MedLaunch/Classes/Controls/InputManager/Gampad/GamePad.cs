@@ -9,11 +9,10 @@ using MedLaunch.Classes.Controls.InputManager;
 using MedLaunch.Extensions;
 using System.Reflection;
 using System.Windows.Interop;
+using System.Windows;
 
 namespace MedLaunch.Classes.Controls
 {
-    
-
     public struct di_axis_info
     {
         public int minimum;
@@ -128,6 +127,19 @@ namespace MedLaunch.Classes.Controls
                 // get mednafen unique id for this controller from stdout.txt
                 if (ContInfoFromLog.Count() > 0)
                     nId = ContInfoFromLog[count].ID;
+
+                if (nId == "")
+                {
+                    try
+                    {
+                        string error = "WARNING\n\nThe following gamepad/joystick has been detected by DirectInput:\n\n" +
+                        device.InstanceName + "\n" + device.InstanceGuid + "\n\n" +
+                        "BUT, we couldnt find a mednafen ID for it. Please check stdout.txt for any errors. You must correct them before trying to RE-POLL devices again.";
+                        MessageBox.Show(error);
+                    }
+                    catch (Exception) { }
+                    
+                }
                 
                 // instantiate new gamepad instance and add it to the collection
                 GamePad p = new GamePad(device.InstanceName, nId, joystick, device.InstanceGuid);

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using SlimDX.XInput;
 using System.Windows.Interop;
 using Microsoft;
+using System.Windows;
 
 #pragma warning disable 169
 #pragma warning disable 414
@@ -109,24 +110,38 @@ namespace MedLaunch.Classes.Controls
             var c3 = new Controller(UserIndex.Three);
             var c4 = new Controller(UserIndex.Four);
 
+            try
+            {
+                string error = "WARNING\n\nYou have one or more XInput gamepads/joypads that have been detected, but we couldnt find a mednafen ID for them\n\n" +                        
+                        "Please check stdout.txt for any errors. You must correct them before trying to RE-POLL devices again.";
+                
 
-
-            if (c1.IsConnected)
-            {
-                Devices.Add(new GamePad360(0, c1, ContInfoFromLog[0]));
+                if (c1.IsConnected)
+                {
+                    if (ContInfoFromLog.Length < 1)
+                        MessageBox.Show(error);
+                    Devices.Add(new GamePad360(0, c1, ContInfoFromLog[0]));
+                }
+                if (c2.IsConnected)
+                {
+                    if (ContInfoFromLog.Length < 2)
+                        MessageBox.Show(error);
+                    Devices.Add(new GamePad360(1, c2, ContInfoFromLog[1]));
+                }
+                if (c3.IsConnected)
+                {
+                    if (ContInfoFromLog.Length < 3)
+                        MessageBox.Show(error);
+                    Devices.Add(new GamePad360(2, c3, ContInfoFromLog[2]));
+                }
+                if (c4.IsConnected)
+                {
+                    if (ContInfoFromLog.Length < 4)
+                        MessageBox.Show(error);
+                    Devices.Add(new GamePad360(3, c4, ContInfoFromLog[3]));
+                }
             }
-            if (c2.IsConnected)
-            {
-                Devices.Add(new GamePad360(1, c2, ContInfoFromLog[1]));
-            }
-            if (c3.IsConnected)
-            {
-                Devices.Add(new GamePad360(2, c3, ContInfoFromLog[2]));
-            }
-            if (c4.IsConnected)
-            {
-                Devices.Add(new GamePad360(3, c4, ContInfoFromLog[3]));
-            }
+            catch (Exception) { }            
         }
 
         public static void UpdateAll()
