@@ -12,6 +12,7 @@ title: Changelog
 * (BugFix) - Added better error handling when inspecting corrupt archive files ([#198](https://github.com/Asnivor/MedLaunch/issues/198))
 * (BugFix) - Fixed code typo that was causing an exception when choosing pce gecdbios ([#200](https://github.com/Asnivor/MedLaunch/issues/200))
 * (BugFix) - MedLaunch update checker can now connect using TLS 1.2 (so updates can be checked and downloaded from GitHub). Unfortunately this will obviously require a manual update before this is available ([#201](https://github.com/Asnivor/MedLaunch/issues/201))
+* (BugFix) - Controller input configurator fields are now only triggered when MedLaunch has focus ([#203](https://github.com/Asnivor/MedLaunch/issues/203))
 
 * ## Mednafen 1.21.x support ## ([#202](https://github.com/Asnivor/MedLaunch/issues/202))
 * * Updated LogParser to handle new Mednafen version numbering and changes in stdout.txt behaviour

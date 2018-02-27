@@ -389,7 +389,11 @@ namespace MedLaunch.Classes
         public List<ControllerInfo> GetAttachedControllers(bool forceUpdate)
         {
             if (IsDirty || forceUpdate)
-                ParseData();
+            {
+                IsDirty = true;
+            }
+
+            ParseData();
 
             return Controllers;
         }

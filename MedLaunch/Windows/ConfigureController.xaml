@@ -17,6 +17,10 @@
                                IsModal="True"
                                TextOptions.TextFormattingMode="Display"
                                Closing="ChildWindow_Closing"
+                               LostFocus="ChildWindow_LostFocus"
+                               LostKeyboardFocus="ChildWindow_LostKeyboardFocus"
+                               GotFocus="ChildWindow_GotFocus"
+                               GotKeyboardFocus="ChildWindow_GotKeyboardFocus"
                                IsOpen="True">
 
     <simpleChildWindow:ChildWindow.Icon>

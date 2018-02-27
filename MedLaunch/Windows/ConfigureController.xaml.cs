@@ -55,7 +55,6 @@ namespace MedLaunch
         public ConfigureController()
         {
             InitializeComponent();
-            
 
             // textbox context menu
             TBCM = new ContextMenu();
@@ -1569,6 +1568,31 @@ namespace MedLaunch
             ToolTip tt = new System.Windows.Controls.ToolTip();
             tt.Content = ttText;
             tb.ToolTip = tt;
+        }
+
+        private void ChildWindow_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChildWindow_Deactivated(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChildWindow_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            Input.Instance.GotFocus = false;
+        }
+
+        private void ChildWindow_GotFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChildWindow_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            Input.Instance.GotFocus = true;
         }
     }
 

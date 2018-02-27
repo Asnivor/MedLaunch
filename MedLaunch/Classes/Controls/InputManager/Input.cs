@@ -56,6 +56,24 @@ namespace MedLaunch.Classes.Controls.InputManager
         readonly Thread UpdateThread;
         public static bool AbortThread { private get; set; }
 
+        private bool gotFocus;
+        public bool GotFocus
+        {
+            get
+            {
+                return gotFocus;
+            }
+            set
+            {                
+                LastState.Clear();
+                ModifierState.Clear();
+                ClearEvents();
+                gotFocus = value;
+            }
+        }
+
+        private bool focusDelay = false;
+
         public MainWindow main { get; set; }
 
         public Input()
@@ -283,11 +301,37 @@ namespace MedLaunch.Classes.Controls.InputManager
                 if (AbortThread == true)
                 {
                     break;
-                }                
+                }
 
                 var keyEvents = KeyInput.Update(); //.Concat(IPCKeyInput.Update());
                 GamePad.UpdateAll();
                 GamePad360.UpdateAll();
+
+                if (!GotFocus)
+                {
+                    focusDelay = true;
+                    continue;
+                }
+                else
+                {
+                    if (focusDelay)
+                    {
+                        // this should be called one time immediately after focus is regained
+                        focusDelay = false;
+                        ClearEvents();
+                        Thread.Sleep(100);
+                        focusDelay = false;
+                        keyEvents = new List<KeyEvent>();
+                    }
+                }
+                            
+
+                
+
+                if (focusDelay)
+                {
+                    
+                }
 
                 //this block is going to massively modify data structures that the binding method uses, so we have to lock it all
                 lock (this)
