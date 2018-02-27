@@ -42,7 +42,6 @@
         <TextBlock Name="titleTextBlock" Grid.Row="1" Grid.ColumnSpan="2"
 				   Margin="5"
 				   FontSize="23"
-				   FontWeight="Thin"
                    HorizontalAlignment="Center"/>
 
         <Image Name="img" HorizontalAlignment="Center" Height="80" Grid.Row="0" Stretch="Uniform" Margin="5">
@@ -240,7 +239,6 @@
 				IsDefault="True"
 				VerticalAlignment="Bottom"
 				FontSize="20"
-				FontWeight="Thin"
 				Content="OK"
 				Click="btnSelect_Click" 
                 x:Name="btnSelect"/>
@@ -250,7 +248,6 @@
 				IsDefault="True"
 				VerticalAlignment="Bottom"
 				FontSize="20"
-				FontWeight="Thin"
 				Content="Undo All Changes"
 				Click="btnReset_Click" 
                 x:Name="btnReset"/>
@@ -260,7 +257,6 @@
 				IsDefault="True"
 				VerticalAlignment="Bottom"
 				FontSize="20"
-				FontWeight="Thin"
 				Content="Cancel"
 				Click="btnCancel_Click" 
                 x:Name="btnCancel"/>

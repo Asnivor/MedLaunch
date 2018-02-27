@@ -89,7 +89,6 @@
 				IsDefault="True"
 				VerticalAlignment="Bottom"
 				FontSize="20"
-				FontWeight="Thin"
 				Content="OK"
 				Click="btnOK_Click" 
                 x:Name="btnOK"/>
@@ -99,7 +98,6 @@
 				IsDefault="True"
 				VerticalAlignment="Bottom"
 				FontSize="20"
-				FontWeight="Thin"
 				Content="Cancel"
 				Click="btnCancel_Click" 
                 x:Name="btnCancel"/>

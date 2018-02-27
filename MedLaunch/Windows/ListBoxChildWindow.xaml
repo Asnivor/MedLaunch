@@ -38,7 +38,6 @@
         <TextBlock Grid.Row="0"
 				   Margin="5"
 				   FontSize="36"
-				   FontWeight="Thin"
 				   Text="Matches Found" />
 
         <DataGrid Height="500" x:Name="dgReturnedGames" AutoGenerateColumns="False" ItemsSource="{Binding}" IsReadOnly="True" SelectionMode="Single" SelectionChanged="dgReturnedGames_SelectionChanged">
@@ -61,7 +60,6 @@
 				IsDefault="True"
 				VerticalAlignment="Bottom"
 				FontSize="20"
-				FontWeight="Thin"
 				Content="Select"
 				Click="btnSelect_Click" 
                 x:Name="btnSelect"/>
@@ -72,7 +70,6 @@
 				IsDefault="True"
 				VerticalAlignment="Bottom"
 				FontSize="20"
-				FontWeight="Thin"
 				Content="Cancel"
 				Click="CloseSec_OnClick" />
     </Grid>
