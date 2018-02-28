@@ -236,8 +236,10 @@ namespace MedLaunch
             // remove current items
             DynamicDataGrid.Children.Clear();
 
+            int count = 1;
+
             // loop through maplist and populate the dynamic data grid row by row
-            for (int i = 0; i < ControllerDefinition.MapList.Count; i++)
+            for (int i = 0; i < ControllerDefinition.MapList.Count; i++, count++)
             {
                 // description
                 Label desc = new Label();
@@ -375,6 +377,86 @@ namespace MedLaunch
 
                 DynamicDataGrid.Children.Add(btnLogic2);
 
+            }
+
+            // populate custom manual options
+            if (ControllerDefinition.CustomOptions != null)
+            {
+                for (int i = 0; i < ControllerDefinition.CustomOptions.Count(); i++)
+                {
+                    // description label
+                    Label desc = new Label();
+                    desc.Content = ControllerDefinition.CustomOptions[i].Description;
+                    desc.SetValue(Grid.ColumnProperty, 0);
+                    desc.SetValue(Grid.RowProperty, i + count);
+                    ToolTip tt = new System.Windows.Controls.ToolTip();
+                    tt.Content = ControllerDefinition.CustomOptions[i].MednafenCommand;
+                    desc.ToolTip = tt;
+                    KeyboardNavigation.SetIsTabStop(desc, false);
+                    DynamicDataGrid.Children.Add(desc);
+
+                    // now add the control
+                    switch (ControllerDefinition.CustomOptions[i].ContType)
+                    {
+                        case ContrType.SLIDER:
+
+                            Slider slider = new Slider();
+                            slider.SetValue(Grid.ColumnProperty, 1);
+                            slider.SetValue(Grid.ColumnSpanProperty, 10);     
+                            slider.SetValue(Grid.RowProperty, i + count);
+                            slider.Minimum = (double)ControllerDefinition.CustomOptions[i].MinValue;
+                            slider.Maximum = (double)ControllerDefinition.CustomOptions[i].MaxValue;
+                            slider.IsSnapToTickEnabled = true;
+                            slider.TickFrequency = 1;
+                            DynamicDataGrid.Children.Add(slider);
+                            break;
+
+                        case ContrType.UPDOWN:
+                            NumericUpDown ud = new NumericUpDown();
+                            ud.Name = "CUSTOM_" + ControllerDefinition.CustomOptions[i].MednafenCommand.Replace(".", "__");
+                            ud.SetValue(Grid.ColumnProperty, 1);
+                            ud.SetValue(Grid.ColumnSpanProperty, 3);
+                            ud.SetValue(Grid.RowProperty, i + count);
+                            ud.Minimum = (double)ControllerDefinition.CustomOptions[i].MinValue;
+                            ud.Maximum = (double)ControllerDefinition.CustomOptions[i].MaxValue;
+                            ud.ButtonsAlignment = ButtonsAlignment.Right;
+                            ud.HasDecimals = false;
+                            int tmp;
+                            bool test = int.TryParse(ControllerDefinition.CustomOptions[i].Config, out tmp);
+                            if (test)
+                                ud.Value = (double)tmp;
+                            DynamicDataGrid.Children.Add(ud);
+                            break;
+
+                        case ContrType.COMBO:
+                            ComboBox cb = new ComboBox();
+                            cb.Name = "CUSTOM_" + ControllerDefinition.CustomOptions[i].MednafenCommand.Replace(".", "__");
+                            cb.SetValue(Grid.ColumnProperty, 1);
+                            cb.SetValue(Grid.ColumnSpanProperty, 3);
+                            cb.SetValue(Grid.RowProperty, i + count);
+                            if (ControllerDefinition.CustomOptions[i].Values != null)
+                            {
+                                cb.ItemsSource = ControllerDefinition.CustomOptions[i].Values;
+                                /*
+                                foreach (var item in ControllerDefinition.CustomOptions[i].Values)
+                                {
+                                    ComboBoxItem cbi = new ComboBoxItem();
+                                    cbi.Content = item;
+                                    cb.Items.Add(cbi);
+                                }            
+                                */                    
+                            }
+
+                            DynamicDataGrid.Children.Add(cb);
+
+                            cb.SelectedValue = ControllerDefinition.CustomOptions[i].Config.Trim();
+                            //if (ControllerDefinition.CustomOptions[i].Config == "")
+                              //  cb.SelectedIndex = 0;
+                            
+                            break;
+                    }
+
+                }
             }
         }
 
@@ -994,6 +1076,42 @@ namespace MedLaunch
 
             if (!write)
                 MessagePopper.ShowMahappsMessageDialog("There was a problem reading from/writing to the mednafen config file", "Possible IO Error");
+
+            // now write any custom objects
+            if (ControllerDefinitionWorking.CustomOptions != null)
+            {
+                for (int i = 0; i < ControllerDefinitionWorking.CustomOptions.Count(); i++)
+                {
+                    // updowns
+                    var updowns = ui.NumericUpDowns.Where(a => a.Name.Contains("CUSTOM_")).ToList();
+                    foreach (var u in updowns)
+                    {
+                        string name = u.Name.Replace("CUSTOM_", "").Replace("__", ".");
+                        var m = ControllerDefinitionWorking.CustomOptions.Where(a => a.MednafenCommand.Trim() == name).FirstOrDefault();
+                        if (m != null)
+                            m.Config = u.Value.ToString();
+                    }
+
+                    // combos
+                    var combos = ui.ComboBoxes.Where(a => a.Name.Contains("CUSTOM_")).ToList();
+                    foreach (var u in combos)
+                    {
+                        string name = u.Name.Replace("CUSTOM_", "").Replace("__", ".");
+                        var m = ControllerDefinitionWorking.CustomOptions.Where(a => a.MednafenCommand.Trim() == name).FirstOrDefault();
+                        if (m != null)
+                            m.Config = (string)u.SelectionBoxItem;
+                    }
+                }
+            }
+
+            // now write all data to mednafen config
+            write = true;
+            write = DeviceDefinition.WriteDefinitionToConfigFile(ControllerDefinitionWorking.CustomOptions);
+
+            if (!write)
+                MessagePopper.ShowMahappsMessageDialog("There was a problem reading from/writing to the mednafen config file", "Possible IO Error");
+
+
             //MessageBox.Show("There was a problem reading from/writing to the mednafen config file", "Possible IO Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
             this.Close();

@@ -14,6 +14,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
         public string CommandStart { get; set; }
         public int VirtualPort { get; set; }
         public List<Mapping> MapList { get; set; }
+        public List<NonControlMapping> CustomOptions { get; set; }
 
         public DeviceDefinitionLegacy()
         {

@@ -12,6 +12,7 @@ namespace MedLaunch.Classes.Controls
         string CommandStart { get; set; }
         int VirtualPort { get; set; }
         List<Mapping> MapList { get; set; }
+        List<NonControlMapping> CustomOptions { get; set; }
     }
 
     public class Mapping
@@ -40,6 +41,10 @@ namespace MedLaunch.Classes.Controls
         public string Description { get; set; }
         public string Config { get; set; }
         public ConvertionType ConvType { get; set; }
+        public ContrType ContType { get; set; }
+        public int? MinValue { get; set; }
+        public int? MaxValue { get; set; }
+        public List<string> Values { get; set; }
     }
 
     public enum ConvertionType
@@ -47,6 +52,14 @@ namespace MedLaunch.Classes.Controls
         STRING,
         INT,
         DOUBLE,        
+    }
+
+    public enum ContrType
+    {
+        SLIDER,
+        SWITCH,
+        UPDOWN,
+        COMBO
     }
 
     public enum DeviceType

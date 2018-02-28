@@ -210,6 +210,40 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
             catch { return false; }
         }
 
+        public static bool WriteDefinitionToConfigFile(List<NonControlMapping> maps)
+        {
+            try
+            {
+                // load the whole mednafen config into an array
+                string[] lines = File.ReadAllLines(Paths.GetPaths().mednafenExe + @"\mednafen.cfg").ToArray();
+
+                // iterate through maps
+                for (int i = 0; i < maps.Count; i++)
+                {
+                    // check whether this matches something in lines
+                    for (int line = 0; line < lines.Length; line++)
+                    {
+                        if (lines[line].Contains(maps[i].MednafenCommand + " "))
+                        {
+                            // match found
+
+                            // add the command
+                            StringBuilder sb = new StringBuilder();
+                            sb.Append(maps[i].MednafenCommand + " ");
+                            sb.Append(maps[i].Config);                            
+
+                            lines[line] = sb.ToString();
+                        }
+                    }
+                }
+
+                // now write the updated config back to disk            
+                File.WriteAllLines(Paths.GetPaths().mednafenExe + @"\mednafen.cfg", lines);
+                return true;
+            }
+            catch { return false; }
+        }
+
         /// <summary>
         /// populate DeviceDefinition object with config strings from mednafen config
         /// </summary>
@@ -327,6 +361,36 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
 
                 // update deviceDef with the full config string
                 deviceDef.MapList[i].Config = justBindings;
+            }
+
+            // iterate through the custom objects
+            if (deviceDef.CustomOptions != null)
+            {
+                for (int i = 0; i < deviceDef.CustomOptions.Count(); i++)
+                {
+                    string cName = deviceDef.CustomOptions[i].MednafenCommand;
+
+                    // look up the config command in the string list
+                    string lookup = (from a in cfgs
+                                     where a.Contains(cName + " ")
+                                     select a).FirstOrDefault();
+
+                    if (lookup == null || lookup == "" || lookup == " ")
+                    {
+                        // command wasnt found
+                        continue;
+                    }
+
+                    // if there is no config set for this command - continue
+                    if (!lookup.Contains(" "))
+                        continue;
+
+                    // command was found - get just the config details
+                    string[] arr = lookup.Split(' ');
+
+                    // [0] should be the command, [1] the value
+                    deviceDef.CustomOptions[i].Config = arr[1].Trim();
+                }
             }
         }
 
