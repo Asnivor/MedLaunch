@@ -117,7 +117,7 @@ namespace MedLaunch.Classes
                     new MednafenChangeHistory
                     {
                         Version = "1.21.0-UNSTABLE",
-                        DownloadURL = "#",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-1.21.0-UNSTABLE-win64.zip",
                         Changes = new List<VersionChange>
                         {
                             ////////////////////////////////////////////////////////////////

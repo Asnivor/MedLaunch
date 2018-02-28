@@ -3654,6 +3654,13 @@ namespace MedLaunch
 
                 tbPathMednafen.Text = strPath;
                 Paths.SaveMednafenPath(strPath);
+
+                // re-init logparser instance
+                LogParser.Init();
+
+                // re-init input
+                Input.Initialize(this);
+
                 UpdateCheckMednafen();
             }
 
