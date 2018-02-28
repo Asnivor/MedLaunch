@@ -2614,6 +2614,18 @@ namespace MedLaunch.Models
 
                         string v = string.Empty;
 
+                        // we (at the moment) only want the alpha channel for the fps settings                        
+                        if (control.Name.Contains("fps"))
+                        {
+                            // AARRGGBB
+                            v = "0x" + hex.Replace("#", "").ToUpper().Substring(0, 8);
+                        }
+                        else
+                        {
+                            // RRGGBB
+                            v = "0x" + hex.Replace("#", "").ToUpper().Substring(2, 6);
+                        }
+                        /*
                         if (hex.Length == 9)
                         {
                             v = "0x" + hex.Replace("#", "").ToUpper().Substring(0, 8);
@@ -2622,6 +2634,7 @@ namespace MedLaunch.Models
                         {
                             v = "0x" + hex.Replace("#", "").ToUpper().Substring(2, 6);
                         }
+                        */
                         
                         // update settings object with value
                         PropertyInfo propInfo = settings.GetType().GetProperty(propName);
