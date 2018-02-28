@@ -13,9 +13,16 @@ title: Changelog
 * (BugFix) - Fixed code typo that was causing an exception when choosing pce gecdbios ([#200](https://github.com/Asnivor/MedLaunch/issues/200))
 * (BugFix) - MedLaunch update checker can now connect using TLS 1.2 (so updates can be checked and downloaded from GitHub). Unfortunately this will obviously require a manual update before this is available ([#201](https://github.com/Asnivor/MedLaunch/issues/201))
 * (BugFix) - Controller input configurator fields are now only triggered when MedLaunch has focus ([#203](https://github.com/Asnivor/MedLaunch/issues/203))
+* (Enhancement) - Famicom expansion port controls can now be configured (when targeting mednafen >= v1.21.x) ([#204](https://github.com/Asnivor/MedLaunch/issues/204))
 * (Enhancement) - Added the ability to configure the following additional controllers (when targeting mednafen >= v1.21.x):
 * * NES Power Pad (Side A and B)
 * * NES Arkanoid Paddle
+* * Famicom Family Keyboard
+* * Famicom Family Trainer (Side A and B)
+* * Famicom Hypershot
+* * Famicom Mahjong Controller
+* * Famicom Party Tap
+* * Famicom Space Shadow Gun
 * * PCE Tsushin Keyboard
 * * Saturn Keyboard (US)
 * * Saturn Keyboard (JP)

@@ -46,7 +46,13 @@ namespace MedLaunch
             // get the virtual port number
             //ComboBoxItem typeItem = (ComboBoxItem)cb.SelectedItem;
             string selectedString = cb.SelectionBoxItem.ToString();
-            int portNum = Convert.ToInt32(selectedString.Replace("Virtual Port ", ""));
+            int portNum;
+
+            // FXP we will call port 666
+            if (selectedString == "Famicon Expansion Port")
+                portNum = 666;
+            else            
+                portNum = Convert.ToInt32(selectedString.Replace("Virtual Port ", ""));
 
             // get mednafen config version
             bool isNewConfig = Classes.VersionChecker.Instance.IsNewConfig;
@@ -73,6 +79,30 @@ namespace MedLaunch
                         break;
                     case "NesArkanoidPaddle":
                         dev = Nes.ArkanoidPaddle(portNum);
+                        break;
+                    case "NesFamilyKeyboard":
+                        dev = Nes.FamilyKeyboard(portNum);
+                        break;
+                    case "NesFamilyTrainerA":
+                        dev = Nes.FamilyTrainerA(portNum);
+                        break;
+                    case "NesFamilyTrainerB":
+                        dev = Nes.FamilyTrainerB(portNum);
+                        break;
+                    case "NesHypershot":
+                        dev = Nes.HyperShot(portNum);
+                        break;
+                    case "NesMahjong":
+                        dev = Nes.Mahjong(portNum);
+                        break;
+                    case "NesOekakids":
+                        dev = Nes.OekaKids(portNum);
+                        break;
+                    case "NesPartyTap":
+                        dev = Nes.PartyTap(portNum);
+                        break;
+                    case "NesSpaceShadow":
+                        dev = Nes.SpaceShadow(portNum);
                         break;
                     default:
                         return;

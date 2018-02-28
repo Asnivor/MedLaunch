@@ -1195,6 +1195,12 @@
     <Resource Include="Data\Graphics\Controllers\pce_tsushin.png" />
     <Resource Include="Data\Graphics\Controllers\ss_keyboardus.png" />
     <Resource Include="Data\Graphics\Controllers\ss_keyboardjp.png" />
+    <Resource Include="Data\Graphics\Controllers\nes_familykeyboard.png" />
+    <Resource Include="Data\Graphics\Controllers\nes_familytrainer.png" />
+    <Resource Include="Data\Graphics\Controllers\nes_hypershot.png" />
+    <Resource Include="Data\Graphics\Controllers\NOIMAGEAVAILABLE.png" />
+    <Resource Include="Data\Graphics\Controllers\nes_oekakids.png" />
+    <Resource Include="Data\Graphics\Controllers\nes_spaceshadow.png" />
     <Content Include="Data\Installers\vcredist_x86.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

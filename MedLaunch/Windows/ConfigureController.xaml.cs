@@ -167,7 +167,13 @@ namespace MedLaunch
             // build the port string
             string vPortStr = "";
             if (ControllerDefinition.VirtualPort > 0)
-                vPortStr = " - Virtual Port: " + ControllerDefinition.VirtualPort;
+            {
+                if (ControllerDefinition.VirtualPort == 666)
+                    vPortStr = " - Virtual Port: Famicom Expansion Port";
+                else
+                    vPortStr = " - Virtual Port: " + ControllerDefinition.VirtualPort;
+            }
+                
 
 
             // set the title
@@ -220,15 +226,6 @@ namespace MedLaunch
 
             // now set the dynamic data scrollbar max height
             scrData.MaxHeight = this.ChildWindowHeight - 230;
-
-            
-            /*
-            ControllerDefinitionWorking.CommandStart = ControllerDefinition.CommandStart;
-            ControllerDefinitionWorking.DeviceName = ControllerDefinition.DeviceName;
-            ControllerDefinitionWorking.MapList = ControllerDefinition.MapList;
-            ControllerDefinitionWorking.VirtualPort = ControllerDefinition.VirtualPort;
-            */
-
         }
 
         /// <summary>
@@ -745,6 +742,26 @@ namespace MedLaunch
                     break;
                 case "NES Arkanoid Paddle":
                     imgName = "nes_arkanoidpaddle.png";
+                    break;
+                case "NES Family Keyboard":
+                    imgName = "nes_familykeyboard.png";
+                    break;
+                case "NES Family Trainer Side A":
+                case "NES Family Trainer Side B":
+                    imgName = "nes_familytrainer.png";
+                    break;
+                case "NES HyperShot":
+                    imgName = "nes_hypershot.png";
+                    break;
+                case "NES Mahjong":
+                case "NES Party Tap":
+                    imgName = "NOIMAGEAVAILABLE.png";
+                    break;
+                case "NES Oeka Kids Tablet":
+                    imgName = "nes_oekakids.png";
+                    break;
+                case "NES Space Shadow Gun":
+                    imgName = "nes_spaceshadow.png";
                     break;
                 case "GB GamePad":
                     imgName = "gb_controller.png";

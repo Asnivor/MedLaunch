@@ -10,22 +10,45 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
 {
     public class DeviceDefinition : IDeviceDefinition
     {
+        /// <summary>
+        /// Friendly device name
+        /// </summary>
         public string DeviceName { get; set; }
+        /// <summary>
+        /// The start of the mednafen command (eg, psx.input.port)
+        /// </summary>        
         public string CommandStart { get; set; }
-        public string ControllerName { get; set; }
+        /// <summary>
+        /// The port number specified in the config
+        /// </summary>
         public int VirtualPort { get; set; }
+        /// <summary>
+        /// The next part of the command string (eg, gamepad)
+        /// </summary>
+        public string ControllerName { get; set; }
+        /// <summary>
+        /// List of mapping objects (auto-generated from the mednafen config)
+        /// </summary>
         public List<Mapping> MapList { get; set; }
+        /// <summary>
+        /// Custom mapping list - specifies explicit config options that are controller/virtual port related
+        /// but are not button mappings
+        /// </summary>
+        public List<Mapping> CustomOptions { get; set; }
+        /// <summary>
+        /// An ordering list that is processed to order the mapping before display
+        /// </summary>
         public List<string> CustomOrdering { get; set; }
-
+        /// <summary>
+        /// An array that contains each line of the mednafen config file
+        /// </summary>
         public string[] ConfigList { get; set; }
 
         public DeviceDefinition()
         {
             MapList = new List<Mapping>();
             ConfigList = File.ReadAllLines(Paths.GetPaths().mednafenExe + @"\mednafen.cfg").ToArray();
-        }
-
-        
+        }        
 
         /// <summary>
         /// Automatically works out available config control options from mednafen.cfg
@@ -44,8 +67,11 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                     if (dd.ConfigList[i].ToLower().Contains("default position for"))
                         continue;
 
+                    if (dd.ConfigList[i].ToLower().Contains(" axis scale coefficient for "))
+                        continue;
+
                     // this line is needed
-                        Mapping map = new Mapping();
+                    Mapping map = new Mapping();
 
                     string[] arr = dd.ConfigList[i].Split(' ');
                     if (arr.Length < 1)
@@ -58,6 +84,9 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
 
                     // ignore these
                     if (prev.ToLower().Contains("default position for"))
+                        continue;
+
+                    if (prev.ToLower().Contains(" axis scale coefficient for "))
                         continue;
 
                     string[] descSplit = prev.Split(new string[] { ", " }, StringSplitOptions.None);
@@ -415,7 +444,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                 "Right Stick DOWN ↓",
                 "Right Stick LEFT ←",
                 "Right Stick RIGHT →",
-                "Right Stick, Button(L3)",
+                "Right Stick, Button(R3)",
 
                 "D-Pad UP ↑",
                 "D-Pad DOWN ↓",
