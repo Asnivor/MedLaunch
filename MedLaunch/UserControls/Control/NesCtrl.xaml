@@ -313,7 +313,7 @@
 
 
 
-                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/NOIMAGEAVAILABLE.png" Margin="5" Grid.Row="11">
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/nes_partytap.png" Margin="5" Grid.Row="11">
                             <Image.ToolTip>
                                 <ToolTip DataContext="{Binding PlacementTarget, 
         RelativeSource={RelativeSource Self}}">

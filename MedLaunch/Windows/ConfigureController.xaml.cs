@@ -755,9 +755,11 @@ namespace MedLaunch
                 case "NES HyperShot":
                     imgName = "nes_hypershot.png";
                     break;
-                case "NES Mahjong":
-                case "NES Party Tap":
+                case "NES Mahjong":                
                     imgName = "NOIMAGEAVAILABLE.png";
+                    break;
+                case "NES Party Tap":
+                    imgName = "nes_partytap.png";
                     break;
                 case "NES Oeka Kids Tablet":
                     imgName = "nes_oekakids.png";

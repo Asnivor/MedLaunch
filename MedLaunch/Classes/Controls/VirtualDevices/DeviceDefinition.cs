@@ -34,7 +34,7 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
         /// Custom mapping list - specifies explicit config options that are controller/virtual port related
         /// but are not button mappings
         /// </summary>
-        public List<Mapping> CustomOptions { get; set; }
+        public List<NonControlMapping> CustomOptions { get; set; }
         /// <summary>
         /// An ordering list that is processed to order the mapping before display
         /// </summary>

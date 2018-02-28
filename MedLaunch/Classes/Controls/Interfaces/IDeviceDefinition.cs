@@ -34,6 +34,21 @@ namespace MedLaunch.Classes.Controls
         public Mapping Tertiary { get; set; }
     }
 
+    public class NonControlMapping
+    {
+        public string MednafenCommand { get; set; }
+        public string Description { get; set; }
+        public string Config { get; set; }
+        public ConvertionType ConvType { get; set; }
+    }
+
+    public enum ConvertionType
+    {
+        STRING,
+        INT,
+        DOUBLE,        
+    }
+
     public enum DeviceType
     {
         Keyboard,
