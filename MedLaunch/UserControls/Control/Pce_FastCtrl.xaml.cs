@@ -83,6 +83,7 @@ namespace MedLaunch
                         dev = Pce_fast_Legacy.Mouse(portNum);
                         break;
                     default:
+                        Classes.ErrorMessage.PopControllerTargetingIssue();
                         return;
                 }
             }

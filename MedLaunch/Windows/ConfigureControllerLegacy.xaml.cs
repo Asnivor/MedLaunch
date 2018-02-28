@@ -946,7 +946,36 @@ namespace MedLaunch
             tt.Content = ttText;
             tb.ToolTip = tt;
         }
+
+        private void ChildWindow_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChildWindow_Deactivated(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChildWindow_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if (Input.Instance.GotFocus)
+                Input.Instance.GotFocus = false;
+        }
+
+        private void ChildWindow_GotFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChildWindow_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if (!Input.Instance.GotFocus)
+                Input.Instance.GotFocus = true;
+        }
     }
+
+    
     /*
     public enum ConfigOrder
     {

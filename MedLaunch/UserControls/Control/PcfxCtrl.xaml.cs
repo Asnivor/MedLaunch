@@ -82,6 +82,7 @@ namespace MedLaunch
                         dev = Pcfx_Legacy.Mouse(portNum);
                         break;
                     default:
+                        Classes.ErrorMessage.PopControllerTargetingIssue();
                         return;
                 }
             }

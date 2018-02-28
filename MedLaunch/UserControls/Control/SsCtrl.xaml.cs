@@ -117,6 +117,7 @@ namespace MedLaunch
                         dev = Ss_Legacy.Mouse(portNum);
                         break;
                     default:
+                        Classes.ErrorMessage.PopControllerTargetingIssue();
                         return;
                 }
             }            

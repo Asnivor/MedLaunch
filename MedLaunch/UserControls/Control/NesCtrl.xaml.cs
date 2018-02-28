@@ -29,6 +29,9 @@ namespace MedLaunch
         {
             InitializeComponent();
             mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            // hide controls from old config style
+
         }
 
         private async void btnControlsConfigure_Click(object sender, RoutedEventArgs e)
@@ -121,6 +124,7 @@ namespace MedLaunch
                         dev = Nes_Legacy.Zapper(portNum);
                         break;
                     default:
+                        Classes.ErrorMessage.PopControllerTargetingIssue();
                         return;
                 }
             }            

@@ -105,7 +105,7 @@
                             </Image.ToolTip>
                         </Image>
 
-                        <Label Margin="5" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Height="25">
+                        <Label Name="lblppa1" Margin="5" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Height="25">
                             Power Pad Side A
                         </Label>
 
