@@ -334,6 +334,37 @@ namespace MedLaunch.Classes
 
                 IsDirty = false;
             }
+
+
+            
+        }
+
+        /// <summary>
+        /// attempts to parse stdout for any runtime errors
+        /// </summary>
+        /// <returns></returns>
+        public string GetErrors()
+        {
+            string data = string.Empty;
+
+            try
+            {
+                var ar = FileAndFolder.StreamAllLines(LogPath);
+                int len = ar.Length;
+
+                // get the last 2 lines
+                for (int i = len - 2; i < len; i++)
+                {
+                    data += ar[i] + "\n";
+                }
+                data.TrimEnd('\n');
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return data;
+            }
         }
 
         /*
@@ -347,11 +378,11 @@ namespace MedLaunch.Classes
         }
         */
 
-                /// <summary>
-                /// Returns mednafen version info
-                /// </summary>
-                /// <param name="forceUpdate"></param>
-                /// <returns></returns>
+        /// <summary>
+        /// Returns mednafen version info
+        /// </summary>
+        /// <param name="forceUpdate"></param>
+        /// <returns></returns>
         public MednafenVersionDescriptor GetMednafenVersion(bool forceUpdate)
         {
             if (MedVersionDesc == null)

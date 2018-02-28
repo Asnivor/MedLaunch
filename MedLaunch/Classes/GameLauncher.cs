@@ -470,6 +470,24 @@ namespace MedLaunch.Classes
                 catch
                 {
                     // catch exception if mednafen doesnt launch correctly
+
+                    if (VersionChecker.Instance.CurrentMedVerDesc.MajorINT > 0)
+                    {
+                        // new mednafen already pops up error messages - so do nothing
+                    }
+                    else
+                    {
+                        // old mednafen does not pop messages - interogate stdout.txt and display the last error
+                        string res = LogParser.Instance.GetErrors();
+                        if (res != string.Empty)
+                        {
+                            string end = "\n--------------------------------------------\n";
+                            string beg = "It looks like mednafen did NOT launch correctly.\nThe following error log may help in troubleshooting:" + end;
+                            
+                            MessagePopper.ShowMahappsMessageDialog((beg + res + end).Replace("\n\n", "\n").TrimEnd('\n'), "MEDNAFEN ERROR PARSER");
+                        }
+                    }
+
                     return; 
                 }
             }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace MedLaunch.Classes
 {
@@ -39,15 +40,31 @@ namespace MedLaunch.Classes
         /// </summary>
         /// <param name="message"></param>
         /// <param name="header"></param>
-        public static async void ShowMahappsMessageDialog(string message, string header)
+        public static void ShowMahappsMessageDialog(string message, string header)
         {
             MetroDialogSettings settings = new MetroDialogSettings
             {
                 AnimateShow = false,
-                AnimateHide = false,                 
+                AnimateHide = false,  
+                               
             };
 
-            await GetMainWindow().ShowMessageAsync(header, message, MessageDialogStyle.Affirmative, settings);
+            if (Application.Current.Dispatcher.CheckAccess())
+            {
+                // we are already on the UI thread
+                GetMainWindow().ShowModalMessageExternal(header, message, MessageDialogStyle.Affirmative, settings);
+            }
+            else
+            {
+                // re-invoke with UI access
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Normal,
+                (Action)(() =>
+                {
+                    GetMainWindow().ShowModalMessageExternal(header, message, MessageDialogStyle.Affirmative, settings);
+                }));
+            }
+            //await GetMainWindow().ShowMessageAsync(header, message, MessageDialogStyle.Affirmative, settings);
         }
 
         /// <summary>
@@ -82,8 +99,24 @@ namespace MedLaunch.Classes
                     break;
             }
 
-            // pop the dialog and return the result
-            var msgTask = GetMainWindow().ShowModalMessageExternal(header, message, style, settings);
+            MessageDialogResult msgTask = MessageDialogResult.Negative;
+
+            if (Application.Current.Dispatcher.CheckAccess())
+            {
+                // we are already on the UI thread
+                msgTask = GetMainWindow().ShowModalMessageExternal(header, message, style, settings);
+            }
+            else
+            {
+                // re-invoke with UI access
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Normal,
+                (Action)(() =>
+                {
+                    msgTask = GetMainWindow().ShowModalMessageExternal(header, message, style, settings);
+                }));
+            }
+                
             return msgTask;            
         }
 
@@ -93,6 +126,8 @@ namespace MedLaunch.Classes
         /// <returns></returns>
         private static MainWindow GetMainWindow()
         {
+           
+
             return Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
         }
 
