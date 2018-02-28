@@ -101,10 +101,13 @@ namespace MedLaunch.Classes
 
                         if (!File.Exists(sbipath))
                         {
-                            MessageBoxResult result = MessageBox.Show("MedLaunch has determined that you need an available SBI patch file to play this game properly.\n\nDo you wish to copy this file to your disc directory?\n",
-                                "SBI Patch Needed - " + imageFiles.First().FileName, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                            var result = MessagePopper.ShowMahappsMessageDialog("MedLaunch has determined that you need an available SBI patch file to play this game properly.\n\nDo you wish to copy this file to your disc directory?\n",
+                                "SBI Patch Needed - " + imageFiles.First().FileName, MessagePopper.DialogButtonOptions.YESNO);
 
-                            if (result == MessageBoxResult.Yes)
+                            //MessageBoxResult result = MessageBox.Show("MedLaunch has determined that you need an available SBI patch file to play this game properly.\n\nDo you wish to copy this file to your disc directory?\n",
+                            //    "SBI Patch Needed - " + imageFiles.First().FileName, MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                            if (result == MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative)
                             {
                                 // copy sbi file to folder (named the same as the cue file)
                                 originalCue.ExtraInfo = imageFiles.First().ExtraInfo;
@@ -130,10 +133,13 @@ namespace MedLaunch.Classes
                             // sbi is available - prompt user
                             if (!File.Exists(imageFiles[image].FolderPath + "\\" + imageFiles[image].FileName.Replace(imageFiles[image].Extension, "") + ".sbi"))
                             {
-                                MessageBoxResult result = MessageBox.Show("MedLaunch has determined that you need an available SBI patch file to play this game properly.\n\nDo you wish to copy this file to your disc directory?\n",
-                                    "SBI Patch Needed - " + imageFiles[image].FileName + imageFiles[image].Extension, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                                var result = MessagePopper.ShowMahappsMessageDialog("MedLaunch has determined that you need an available SBI patch file to play this game properly.\n\nDo you wish to copy this file to your disc directory?\n",
+                                "SBI Patch Needed - " + imageFiles.First().FileName, MessagePopper.DialogButtonOptions.YESNO);
 
-                                if (result == MessageBoxResult.Yes)
+                                //MessageBoxResult result = MessageBox.Show("MedLaunch has determined that you need an available SBI patch file to play this game properly.\n\nDo you wish to copy this file to your disc directory?\n",
+                                    //"SBI Patch Needed - " + imageFiles[image].FileName + imageFiles[image].Extension, MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                                if (result == MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative)
                                 {
                                     // copy sbi file to folder (named the same as the cue file)
                                     DiscGameFile d = new DiscGameFile(cues[image], 9);

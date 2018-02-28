@@ -127,8 +127,10 @@ namespace MedLaunch.Models
         // remove ALL GAMES from db for all systems
         public static void RemoveAllGames()
         {
-            MessageBoxResult result = MessageBox.Show("This operation will wipe out ALL the games in your games library database (but they will not be deleted from disk)\n\nAre you sure you wish to continue?", "WARNING", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-            if (result == MessageBoxResult.OK)
+            var res = MessagePopper.ShowMahappsMessageDialog("This operation will wipe out ALL the games in your games library database (but they will not be deleted from disk)\n\nAre you sure you wish to continue?",
+                "WARNING", MessagePopper.DialogButtonOptions.YESNO);
+
+            if (res == MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative)
             {
                 // get all roms for specific system
                 using (var context = new MyDbContext())
@@ -136,16 +138,18 @@ namespace MedLaunch.Models
                     List<Game> roms = (from a in context.Game
                                        select a).ToList();
                     Game.DeleteGames(roms);
-                    //GameListBuilder.UpdateFlag();
                 }
-            }
+            }            
         }
 
         // remove all roms from db for a certain system
         public static void RemoveRoms(int sysId)
         {
-            MessageBoxResult result = MessageBox.Show("This operation will wipe out ALL the " + GSystem.GetSystemName(sysId) + " games in your library database (but they will not be deleted from disk)\n\nAre you sure you wish to continue?", "WARNING", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-            if (result == MessageBoxResult.OK)
+            var result = MessagePopper.ShowMahappsMessageDialog("This operation will wipe out ALL the " + GSystem.GetSystemName(sysId) + " games in your library database (but they will not be deleted from disk)\n\nAre you sure you wish to continue?",
+               "WARNING", MessagePopper.DialogButtonOptions.YESNO);
+
+            //MessageBoxResult result = MessageBox.Show("This operation will wipe out ALL the " + GSystem.GetSystemName(sysId) + " games in your library database (but they will not be deleted from disk)\n\nAre you sure you wish to continue?", "WARNING", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+            if (result == MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative)
             {
                 // get all roms for specific system
                 using (var context = new MyDbContext())
@@ -162,8 +166,11 @@ namespace MedLaunch.Models
         // remove all disk-based games from db for a certain system
         public static void RemoveDisks(int sysId)
         {
-            MessageBoxResult result = MessageBox.Show("This operation will wipe out ALL the " + GSystem.GetSystemName(sysId) + " games in your library database (but they will not be deleted from disk)\n\nAre you sure you wish to continue?", "WARNING", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-            if (result == MessageBoxResult.OK)
+            var result = MessagePopper.ShowMahappsMessageDialog("This operation will wipe out ALL the " + GSystem.GetSystemName(sysId) + " games in your library database (but they will not be deleted from disk)\n\nAre you sure you wish to continue?",
+               "WARNING", MessagePopper.DialogButtonOptions.YESNO);
+
+            //MessageBoxResult result = MessageBox.Show("This operation will wipe out ALL the " + GSystem.GetSystemName(sysId) + " games in your library database (but they will not be deleted from disk)\n\nAre you sure you wish to continue?", "WARNING", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+            if (result == MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative)
             {
                 // get all disks for specific system
                 using (var context = new MyDbContext())
@@ -501,9 +508,11 @@ namespace MedLaunch.Models
                 }
                 
             }
-
-            MessageBoxResult result = MessageBox.Show(message + "\n\n" + notmessage, "HERE BE DRAGONS!", MessageBoxButton.OKCancel, MessageBoxImage.Stop);
-            if (result == MessageBoxResult.OK)
+            var result = MessagePopper.ShowMahappsMessageDialog(message + "\n\n" + notmessage, 
+                "HERE BE DRAGONS!",
+               MessagePopper.DialogButtonOptions.YESNO);
+            //MessageBoxResult result = MessageBox.Show(message + "\n\n" + notmessage, "HERE BE DRAGONS!", MessageBoxButton.OKCancel, MessageBoxImage.Stop);
+            if (result == MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative)
             {
                 // delete the games
                 foreach (var g in toDelete)

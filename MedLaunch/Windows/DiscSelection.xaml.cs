@@ -60,7 +60,9 @@ namespace MedLaunch
 
             if (sheets == null || sheets.Length == 0)
             {
-                MessageBox.Show("ERROR: Track Sheets Could Not be Parsed.");
+                MessagePopper.ShowMahappsMessageDialog("Track Sheets Could Not be Parsed.",
+                    "ERROR");
+                //MessageBox.Show("ERROR: Track Sheets Could Not be Parsed.");
                 this.Close();
             }
             
@@ -114,7 +116,9 @@ namespace MedLaunch
 
             else
             {
-                MessageBox.Show("Invalid Disc. Press OK to Cancel");
+                MessagePopper.ShowMahappsMessageDialog("Invalid Disc. Press OK to Cancel",
+                   "ERROR");
+                //MessageBox.Show("Invalid Disc. Press OK to Cancel");
                 this.Close();
             }
 

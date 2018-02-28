@@ -315,7 +315,7 @@
     <Compile Include="Classes\DAT\DAT_Provider.cs" />
     <Compile Include="Classes\DAT\DAT_Rom.cs" />
     <Compile Include="Classes\DAT\DAT_System.cs" />
-    <Compile Include="Classes\ErrorMessage.cs" />
+    <Compile Include="Classes\MessagePopper.cs" />
     <Compile Include="Classes\GameListItem.cs" />
     <Compile Include="Classes\GamesLibrary\ColumnInfo.cs" />
     <Compile Include="Classes\GamesLibrary\DataGridSortDescriptionsSyncBehavior.cs" />

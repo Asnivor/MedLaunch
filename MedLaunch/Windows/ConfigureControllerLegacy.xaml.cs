@@ -613,7 +613,9 @@ namespace MedLaunch
             bool write = DeviceDefinitionLegacy.WriteDefinitionToConfigFile(maps);
 
             if (!write)
-                MessageBox.Show("There was a problem reading from/writing to the mednafen config file", "Possible IO Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessagePopper.ShowMahappsMessageDialog("There was a problem reading from/writing to the mednafen config file",
+                    "Possible IO Error");
+                //MessageBox.Show("There was a problem reading from/writing to the mednafen config file", "Possible IO Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
             this.Close();
         }

@@ -26,6 +26,7 @@ title: Changelog
 * * PCE Tsushin Keyboard
 * * Saturn Keyboard (US)
 * * Saturn Keyboard (JP)
+* (Enhancement) - Most of the old-style popup dialogs have now been re-styled to fit with the standard MedLaunch theme
 
 * ## Mednafen 1.21.x support ## ([#202](https://github.com/Asnivor/MedLaunch/issues/202))
 * * Updated LogParser to handle new Mednafen version numbering and changes in stdout.txt behaviour

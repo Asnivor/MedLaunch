@@ -401,7 +401,8 @@ namespace MedLaunch
 
             if (map == null)
             {
-                MessageBox.Show("command was not found");
+                MessagePopper.ShowMahappsMessageDialog("command was not found", "WARNING");
+                //MessageBox.Show("command was not found");
                 return;
             }
 
@@ -545,7 +546,8 @@ namespace MedLaunch
 
             if (map == null)
             {
-                MessageBox.Show("command was not found");
+                MessagePopper.ShowMahappsMessageDialog("command was not found", "WARNING");
+                //MessageBox.Show("command was not found");
                 return;
             }
 
@@ -989,7 +991,8 @@ namespace MedLaunch
             bool write = DeviceDefinition.WriteDefinitionToConfigFile(ControllerDefinitionWorking.MapList);
 
             if (!write)
-                MessageBox.Show("There was a problem reading from/writing to the mednafen config file", "Possible IO Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessagePopper.ShowMahappsMessageDialog("There was a problem reading from/writing to the mednafen config file", "Possible IO Error");
+            //MessageBox.Show("There was a problem reading from/writing to the mednafen config file", "Possible IO Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
             this.Close();
         }
@@ -1420,7 +1423,8 @@ namespace MedLaunch
                 case ConfigOrder.Primary:
                     if (tmpMap.Primary == null || tmpMap.Primary.Config.Trim() == "")
                     {
-                        MessageBox.Show(nobinding, "No Binding Data Found", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        MessagePopper.ShowMahappsMessageDialog(nobinding, "No Binding Data Found");
+                        //MessageBox.Show(nobinding, "No Binding Data Found", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                         return;
                     }
 
@@ -1428,24 +1432,25 @@ namespace MedLaunch
                 case ConfigOrder.Secondary:
                     if (tmpMap.Secondary == null || tmpMap.Secondary.Config.Trim() == "")
                     {
-                        MessageBox.Show(nobinding, "No Binding Data Found", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        MessagePopper.ShowMahappsMessageDialog(nobinding, "No Binding Data Found");
                         return;
                     }
                     if (tmpMap.Primary == null || tmpMap.Primary.Config.Trim() == "")
                     {
-                        MessageBox.Show(noprimary, "No Primary Binding Data Found", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        MessagePopper.ShowMahappsMessageDialog(noprimary, "No Primary Binding Data Found");
+                        //MessageBox.Show(noprimary, "No Primary Binding Data Found", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                         return;
                     }
                     break;
                 case ConfigOrder.Tertiary:
                     if (tmpMap.Tertiary == null || tmpMap.Tertiary.Config.Trim() == "")
                     {
-                        MessageBox.Show(nobinding, "No Binding Data Found", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        MessagePopper.ShowMahappsMessageDialog(nobinding, "No Binding Data Found");
                         return;
                     }
                     if (tmpMap.Secondary == null || tmpMap.Secondary.Config.Trim() == "")
                     {
-                        MessageBox.Show(nosecondary, "No Secondary Binding Data Found", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        MessagePopper.ShowMahappsMessageDialog(nosecondary, "No Secondary Binding Data Found");
                         return;
                     }
                     break;

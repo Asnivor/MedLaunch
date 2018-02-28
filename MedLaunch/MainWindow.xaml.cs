@@ -3933,7 +3933,8 @@ namespace MedLaunch
 
             if (row == null)
             {
-                MessageBox.Show("No Server Selected!");
+                MessagePopper.ShowMahappsMessageDialog("No Server Selected!", "ERROR");
+                //MessageBox.Show("No Server Selected!");
             }
             else
             {
@@ -3950,7 +3951,8 @@ namespace MedLaunch
             if (tbHostname.Text == null || tbHostname.Text == "" || tbHostname.Text.Trim() == "")
             {
                 // hostname has not been entered
-                MessageBox.Show("You must provide a Hostname or IP Address");
+                MessagePopper.ShowMahappsMessageDialog("You must provide a Hostname or IP Address", "ERROR");
+                //MessageBox.Show("You must provide a Hostname or IP Address");
                 return;
             }
 
@@ -3971,7 +3973,8 @@ namespace MedLaunch
                       select a;
             if (chk.Count() > 1)
             {
-                MessageBox.Show("This server and associated settings already exists!");
+                MessagePopper.ShowMahappsMessageDialog("This server and associated settings already exists!", "ERROR");
+                //MessageBox.Show("This server and associated settings already exists!");
                 return;
             }
 
@@ -3993,13 +3996,16 @@ namespace MedLaunch
 
             if (row == null)
             {
-                MessageBox.Show("No Server Selected!");
+                MessagePopper.ShowMahappsMessageDialog("No Server Selected!", "ERROR");
+                //MessageBox.Show("No Server Selected!");
                 return;
             }
 
             if (row.Selected == true)
             {
-                MessageBox.Show("Unable to delete because this is the current default server.\nSet another server to default (the 'use selected server button') and then try again");
+                MessagePopper.ShowMahappsMessageDialog("Unable to delete because this is the current default server.\nSet another server to default (the 'use selected server button') and then try again", 
+                    "ERROR");
+                //MessageBox.Show("Unable to delete because this is the current default server.\nSet another server to default (the 'use selected server button') and then try again");
                 return;
             }
 
@@ -4015,7 +4021,8 @@ namespace MedLaunch
 
             if (row == null)
             {
-                MessageBox.Show("No Server Selected!");
+                MessagePopper.ShowMahappsMessageDialog("No Server Selected!", "ERROR");
+                //MessageBox.Show("No Server Selected!");
                 return;
             }
 
@@ -4290,9 +4297,12 @@ namespace MedLaunch
 
         private void cfg_psx_shared_memcards_Checked(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult res = MessageBox.Show("Only use this option if you understand the risks.\nMednafen writes and reads memcard data during Save/Load state operations. This can cause memory card save corruption in some cases", "WARNING!",
-                MessageBoxButton.OKCancel);
-            if (res == MessageBoxResult.Cancel)
+            var res = MessagePopper.ShowMahappsMessageDialog("Only use this option if you understand the risks.\nMednafen writes and reads memcard data during Save/Load state operations. This can cause memory card save corruption in some cases",
+                "WARNING", MessagePopper.DialogButtonOptions.YESNO);
+
+            //MessageBoxResult res = MessageBox.Show("Only use this option if you understand the risks.\nMednafen writes and reads memcard data during Save/Load state operations. This can cause memory card save corruption in some cases", "WARNING!",
+                //MessageBoxButton.OKCancel);
+            if (res == MessageDialogResult.Negative)
             {
                 cfg_psx_shared_memcards.IsChecked = false;
             }
@@ -5351,7 +5361,8 @@ namespace MedLaunch
 
             if (e.Cancelled)
             {
-                MessageBox.Show("The download has been cancelled: \n\n" + e.Cancelled);
+                MessagePopper.ShowMahappsMessageDialog("The download has been cancelled: \n\n" + e.Cancelled, "INFORMATION");
+                //MessageBox.Show("The download has been cancelled: \n\n" + e.Cancelled);
                 return;
             }
 
@@ -5359,7 +5370,8 @@ namespace MedLaunch
 
             if (e.Error != null) // We have an error! Retry a few times, then abort.
             {
-                MessageBox.Show("An error ocurred while trying to download file: \n\n" + e.Error);
+                MessagePopper.ShowMahappsMessageDialog("An error ocurred while trying to download file: \n\n" + e.Error, "ERROR");
+                //MessageBox.Show("An error ocurred while trying to download file: \n\n" + e.Error);
 
                 return;
             }
@@ -5665,7 +5677,8 @@ namespace MedLaunch
             // temporary code for now until mednanet client is implemented
             if (tbDiscordName.Text == null || tbDiscordName.Text.Trim() == "")
             {
-                MessageBox.Show("Please enter a valid username", "Username Missing!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessagePopper.ShowMahappsMessageDialog("Please enter a valid username", "Username Missing!");
+                //MessageBox.Show("Please enter a valid username", "Username Missing!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else if (btn.Content.ToString() == "CONNECT")
             {
@@ -5800,13 +5813,15 @@ namespace MedLaunch
             var result = u.ProcessSMD(gamePath);
             if (result == null)
             {
-                MessageBox.Show("checksum invalid - skipping rom");
+                MessagePopper.ShowMahappsMessageDialog("checksum invalid - skipping rom", "INFORMATION");
+                //MessageBox.Show("checksum invalid - skipping rom");
                 return;
             }
             else
             {
                 // either rom has been converted, or it is compatible
-                MessageBox.Show("Final Rom Path: " + result.ConvertedPath);
+                MessagePopper.ShowMahappsMessageDialog("Final Rom Path: " + result.ConvertedPath, "INFORMATION");
+                //MessageBox.Show("Final Rom Path: " + result.ConvertedPath);
             }
         }
 

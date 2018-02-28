@@ -91,7 +91,7 @@ namespace MedLaunch
                         dev = Snes_Legacy.Mouse(portNum);
                         break;
                     default:
-                        Classes.ErrorMessage.PopControllerTargetingIssue();
+                        Classes.MessagePopper.PopControllerTargetingIssue();
                         return;
                 }
             }

@@ -250,14 +250,19 @@ namespace MedLaunch.Models
 
         public static void SetMednafenPath(Button btnPathMednafen)
         {
-            MessageBox.Show("Click OK to browse to either an existing Mednafen directory, or a new directory in order to download the latest compatible Mednafen version", "Invalid Mednafen.exe path!");
+            MessagePopper.ShowMahappsMessageDialog("Click OK to browse to either an existing Mednafen directory, or a new directory in order to download the latest compatible Mednafen version",
+                "Invalid Mednafen.exe path!");
+            //MessageBox.Show("Click OK to browse to either an existing Mednafen directory, or a new directory in order to download the latest compatible Mednafen version", "Invalid Mednafen.exe path!");
             btnPathMednafen.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
         }
 
         public static bool DownloadCheck()
         {
-            MessageBoxResult result = MessageBox.Show("The selected folder (" + Paths.GetPaths().mednafenExe + ")\nDoes not contain a mednafen executable.\n\nClick YES: Download and extract the latest Mednafen version to this folder\nClick NO: Choose another folder", "Mednafen NOT Detected", MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
+            var result = MessagePopper.ShowMahappsMessageDialog("The selected folder (" + Paths.GetPaths().mednafenExe + ")\nDoes not contain a mednafen executable.\n\nClick YES: Download and extract the latest Mednafen version to this folder\nClick NO: Choose another folder",
+                "Mednafen NOT Detected", MessagePopper.DialogButtonOptions.YESNO);
+
+            //MessageBoxResult result = MessageBox.Show("The selected folder (" + Paths.GetPaths().mednafenExe + ")\nDoes not contain a mednafen executable.\n\nClick YES: Download and extract the latest Mednafen version to this folder\nClick NO: Choose another folder", "Mednafen NOT Detected", MessageBoxButton.YesNo);
+            if (result == MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative)
             {
                 // download mednafen to this folder
                 return true;
@@ -306,8 +311,12 @@ namespace MedLaunch.Models
             if (gs.bypassConfig == false)
             {
                 //ask to import configs
-                MessageBoxResult result = MessageBox.Show("Do you want to import data from any Mednafen config files in this directory?\n(This will overwrite any config data stored in MedLaunch)\n\nYou will only be prompted once for this, but you can control automatic import of mednafen config files from the SETTINGS tab.", "Config Import", MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.Yes)
+
+                var result = MessagePopper.ShowMahappsMessageDialog("Do you want to import data from any Mednafen config files in this directory?\n(This will overwrite any config data stored in MedLaunch)\n\nYou will only be prompted once for this, but you can control automatic import of mednafen config files from the SETTINGS tab.",
+                "Config Import", MessagePopper.DialogButtonOptions.YESNO);
+
+                //MessageBoxResult result = MessageBox.Show("Do you want to import data from any Mednafen config files in this directory?\n(This will overwrite any config data stored in MedLaunch)\n\nYou will only be prompted once for this, but you can control automatic import of mednafen config files from the SETTINGS tab.", "Config Import", MessageBoxButton.YesNo);
+                if (result == MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative)
                 {
                     ConfigImport ci = new ConfigImport();
                     ci.ImportAll(null);

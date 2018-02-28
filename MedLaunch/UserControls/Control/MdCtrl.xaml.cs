@@ -93,7 +93,7 @@ namespace MedLaunch
                         dev = Md_Legacy.MegaMouse(portNum);
                         break;
                     default:
-                        Classes.ErrorMessage.PopControllerTargetingIssue();
+                        Classes.MessagePopper.PopControllerTargetingIssue();
                         return;
                 }
             }

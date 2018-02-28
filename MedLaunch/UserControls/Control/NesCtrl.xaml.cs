@@ -124,7 +124,7 @@ namespace MedLaunch
                         dev = Nes_Legacy.Zapper(portNum);
                         break;
                     default:
-                        Classes.ErrorMessage.PopControllerTargetingIssue();
+                        Classes.MessagePopper.PopControllerTargetingIssue();
                         return;
                 }
             }            
