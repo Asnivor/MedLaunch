@@ -97,6 +97,7 @@ namespace MedLaunch.Classes.Controls.InputManager
 
             Instance = new Input();
             Instance.main = mw;
+            Instance.GotFocus = true;
         }
 
         public void Dispose()
@@ -323,14 +324,6 @@ namespace MedLaunch.Classes.Controls.InputManager
                         focusDelay = false;
                         keyEvents = new List<KeyEvent>();
                     }
-                }
-                            
-
-                
-
-                if (focusDelay)
-                {
-                    
                 }
 
                 //this block is going to massively modify data structures that the binding method uses, so we have to lock it all

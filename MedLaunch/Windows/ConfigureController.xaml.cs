@@ -931,69 +931,6 @@ namespace MedLaunch
         /// <param name="e"></param>
         private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
-            /*
-            // get all the textboxes on the page
-            UIHandler ui = UIHandler.GetChildren(DynamicDataGrid);
-
-            // all textboxes
-            List<TextBox> tbs = ui.TextBoxes;
-
-            // just the primaries
-            List<TextBox> prims = tbs.Where(a => a.Name.Contains("Primary_Control")).ToList();
-
-            List<Mapping> maps = new List<Mapping>();
-
-            // iterate through each primary textbox
-            foreach (TextBox tb in prims)
-            {
-                string content = ConvertText(tb.Text, ConversionOrder.Save);
-                string name = tb.Name;
-                string configName = name.Replace("Primary_Control", "");
-
-                // check whether secondary and teritary also exist
-                string sec = "";
-                string ter = "";
-
-                TextBox tSec = tbs.Where(a => a.Name.Contains("Secondary_Control" + configName)).First();
-                TextBox tTer = tbs.Where(a => a.Name.Contains("Tertiary_Control" + configName)).First();
-
-                sec = ConvertText(tSec.Text, ConversionOrder.Save);
-                ter = ConvertText(tTer.Text, ConversionOrder.Save); 
-
-                /*
-                // convert non-mednafen things
-                if (!content.StartsWith("joystick ") && !content.StartsWith("mouse "))
-                {
-                    // this is a translated keyboard entry
-                    content = KeyboardTranslation.DXtoSDLCode(content, KeyboardType.UK);
-                }
-                if (!sec.StartsWith("joystick ") && !sec.StartsWith("mouse "))
-                {
-                    // this is a translated keyboard entry
-                    sec = KeyboardTranslation.DXtoSDLCode(sec, KeyboardType.UK);
-                }
-                if (!ter.StartsWith("joystick ") && !ter.StartsWith("mouse "))
-                {
-                    // this is a translated keyboard entry
-                    ter = KeyboardTranslation.DXtoSDLCode(ter, KeyboardType.UK);
-                }
-                */
-            /*
-            // build config string
-            string configData = ConfigLineBuilder(content, sec, ter);
-
-            // populate controller definition with new value
-            ControllerDefinitionWorking = ControllerDefinition;
-
-            Mapping map = new Mapping();
-
-            map = ControllerDefinition.MapList.Where(a => a.MednafenCommand == TranslateControlName(configName.Replace("Cfg_", "").Replace("cfg_", ""))).First();
-            map.Config = configData;
-            maps.Add(map);                
-        }
-
-    */
-
             // process all of the logic buttons
             UIHandler ui = UIHandler.GetChildren(DynamicDataGrid);
 
@@ -1742,7 +1679,8 @@ namespace MedLaunch
 
         private void ChildWindow_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            Input.Instance.GotFocus = false;
+            if (Input.Instance.GotFocus)
+                Input.Instance.GotFocus = false;
         }
 
         private void ChildWindow_GotFocus(object sender, RoutedEventArgs e)
@@ -1752,7 +1690,8 @@ namespace MedLaunch
 
         private void ChildWindow_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            Input.Instance.GotFocus = true;
+            if (!Input.Instance.GotFocus)
+                Input.Instance.GotFocus = true;
         }
     }
 
