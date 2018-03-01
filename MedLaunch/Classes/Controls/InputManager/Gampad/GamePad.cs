@@ -59,7 +59,7 @@ namespace MedLaunch.Classes.Controls
         
         public static void Dispose()
         {
-            dinput.Dispose();
+            //dinput.Dispose();
         }
 
         public static void Initialize(MainWindow window)

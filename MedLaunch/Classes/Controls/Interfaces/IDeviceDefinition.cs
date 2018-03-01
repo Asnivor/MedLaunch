@@ -42,8 +42,9 @@ namespace MedLaunch.Classes.Controls
         public string Config { get; set; }
         public ConvertionType ConvType { get; set; }
         public ContrType ContType { get; set; }
-        public int? MinValue { get; set; }
-        public int? MaxValue { get; set; }
+        public double? MinValue { get; set; }
+        public double? MaxValue { get; set; }
+        public double? TickFrequency { get; set; }
         public List<string> Values { get; set; }
     }
 

@@ -399,6 +399,11 @@ namespace MedLaunch
                     switch (ControllerDefinition.CustomOptions[i].ContType)
                     {
                         case ContrType.SLIDER:
+                            // dockpanel layout similar to configs section
+                            DockPanel dp = new DockPanel();
+                            dp.SetValue(Grid.ColumnProperty, 1);
+                            dp.SetValue(Grid.ColumnSpanProperty, 10);
+                            dp.SetValue(Grid.RowProperty, i + count);
 
                             Slider slider = new Slider();
                             slider.SetValue(Grid.ColumnProperty, 1);
@@ -407,7 +412,7 @@ namespace MedLaunch
                             slider.Minimum = (double)ControllerDefinition.CustomOptions[i].MinValue;
                             slider.Maximum = (double)ControllerDefinition.CustomOptions[i].MaxValue;
                             slider.IsSnapToTickEnabled = true;
-                            slider.TickFrequency = 1;
+                            slider.TickFrequency = 0.1;
                             DynamicDataGrid.Children.Add(slider);
                             break;
 
@@ -419,8 +424,12 @@ namespace MedLaunch
                             ud.SetValue(Grid.RowProperty, i + count);
                             ud.Minimum = (double)ControllerDefinition.CustomOptions[i].MinValue;
                             ud.Maximum = (double)ControllerDefinition.CustomOptions[i].MaxValue;
+                            ud.Interval = ControllerDefinition.CustomOptions[i].TickFrequency.Value;
                             ud.ButtonsAlignment = ButtonsAlignment.Right;
-                            ud.HasDecimals = false;
+                            if (ControllerDefinition.CustomOptions[i].ConvType == ConvertionType.DOUBLE)
+                                ud.HasDecimals = true;
+                            else
+                                ud.HasDecimals = false;
                             int tmp;
                             bool test = int.TryParse(ControllerDefinition.CustomOptions[i].Config, out tmp);
                             if (test)
@@ -904,6 +913,9 @@ namespace MedLaunch
                 case "PSX DualShock GamePad":
                     imgName = "psx-dualanalogcontroller.png";
                     break;
+                case "PSX Analog Joystick":
+                    imgName = "psx_analogjoy.png";
+                    break;
                 case "PSX DancePad":
                     imgName = "psx-dancepad.png";
                     break;
@@ -920,10 +932,10 @@ namespace MedLaunch
                     imgName = "ss-wheel.png";
                     break;
                 case "SS Dual Mission Stick":
-                    imgName = "ss-mission.png";
+                    imgName = "ss-dualmission.png";
                     break;
                 case "SS Mission Stick":
-                    imgName = "ss-dualmission.png";
+                    imgName = "ss-mission.png";
                     break;
                 case "SS Light Gun":
                     imgName = "ss_gun.png";
@@ -1106,7 +1118,8 @@ namespace MedLaunch
 
             // now write all data to mednafen config
             write = true;
-            write = DeviceDefinition.WriteDefinitionToConfigFile(ControllerDefinitionWorking.CustomOptions);
+            if (ControllerDefinitionWorking.CustomOptions != null && ControllerDefinitionWorking.CustomOptions.Count() != 0)
+                write = DeviceDefinition.WriteDefinitionToConfigFile(ControllerDefinitionWorking.CustomOptions);
 
             if (!write)
                 MessagePopper.ShowMessageDialog("There was a problem reading from/writing to the mednafen config file", "Possible IO Error");

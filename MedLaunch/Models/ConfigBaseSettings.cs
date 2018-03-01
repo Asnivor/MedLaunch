@@ -576,6 +576,7 @@ namespace MedLaunch.Models
         public string ss__debugger__disfontsize { get; set; }
         public string ss__debugger__memcharenc { get; set; }
 
+        /* moved into CONTROLS section - 2018-03-01
         public string ss__input__port1__3dpad__mode__defpos { get; set; }
         public string ss__input__port2__3dpad__mode__defpos { get; set; }
         public string ss__input__port3__3dpad__mode__defpos { get; set; }
@@ -588,6 +589,7 @@ namespace MedLaunch.Models
         public string ss__input__port10__3dpad__mode__defpos { get; set; }
         public string ss__input__port11__3dpad__mode__defpos { get; set; }
         public string ss__input__port12__3dpad__mode__defpos { get; set; }
+        */
 
         public bool? ss__enable { get; set; }
         public bool? ss__forcemono { get; set; }
@@ -1497,6 +1499,7 @@ namespace MedLaunch.Models
                 ss__input__sport1__multitap = false,
                 ss__input__sport2__multitap = false,
 
+                /* moved into controls section
                 ss__input__port10__3dpad__mode__defpos = "digital",
                 ss__input__port11__3dpad__mode__defpos = "digital",
                 ss__input__port12__3dpad__mode__defpos = "digital",
@@ -1509,6 +1512,7 @@ namespace MedLaunch.Models
                 ss__input__port7__3dpad__mode__defpos = "digital",
                 ss__input__port8__3dpad__mode__defpos = "digital",
                 ss__input__port9__3dpad__mode__defpos = "digital",
+                */
 
 
                 // playstation

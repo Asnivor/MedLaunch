@@ -23,7 +23,7 @@ namespace MedLaunch.Classes.Controls.InputManager
 
         public static void Dispose()
         {
-            dinput.Dispose();
+            //dinput.Dispose();
         }
         
 

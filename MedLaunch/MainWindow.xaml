@@ -8649,12 +8649,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                 <Label Name="cfglbl_ss__input__port1__gun_chairs" Grid.Column="2" Grid.Row="1">Gun Crosshair:</Label>
                                                 <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black" Width="40" Grid.Column="3" Grid.Row="1" x:Name="cfg_ss__input__port1__gun_chairs" />
-                                                
+                                                <!--
                                                 <Label Name="cfglbl_ss__input__port1__3dpad__mode__defpos" Grid.Column="4" Grid.Row="1">3DPad Def. Mode:</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port1__3dpad__mode__defpos" SelectedValuePath="Tag" Grid.Column="5" Grid.Row="1">
                                                     <ComboBoxItem Tag="digital">Digital</ComboBoxItem>
                                                     <ComboBoxItem Tag="analog">Analog</ComboBoxItem>
                                                 </ComboBox>
+                                                -->
                                                 
                                                 <Label Name="cfglbl_ss__input__port2" Grid.Column="0" Grid.Row="2">Input Device (Virtual) Port 2</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port2" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="2">
@@ -8671,13 +8672,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                 <Label Name="cfglbl_ss__input__port2__gun_chairs" Grid.Column="2" Grid.Row="2">Gun Crosshair:</Label>
                                                 <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black" Width="40"   Grid.Column="3" Grid.Row="2" x:Name="cfg_ss__input__port2__gun_chairs" />
-
+<!--
                                                 <Label Name="cfglbl_ss__input__port2__3dpad__mode__defpos" Grid.Column="4" Grid.Row="2">3DPad Def. Mode:</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port2__3dpad__mode__defpos" SelectedValuePath="Tag" Grid.Column="5" Grid.Row="2">
                                                     <ComboBoxItem Tag="digital">Digital</ComboBoxItem>
                                                     <ComboBoxItem Tag="analog">Analog</ComboBoxItem>
                                                 </ComboBox>
-                                                
+  -->                                              
                                                 <Label Name="cfglbl_ss__input__port3" Grid.Column="0" Grid.Row="3">Input Device (Virtual) Port 3</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port3" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="3">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
@@ -8693,13 +8694,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                 <Label Name="cfglbl_ss__input__port3__gun_chairs" Grid.Column="2" Grid.Row="3">Gun Crosshair:</Label>
                                                 <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black" Width="40"   Grid.Column="3" Grid.Row="3" x:Name="cfg_ss__input__port3__gun_chairs" />
-
+<!--
                                                 <Label Name="cfglbl_ss__input__port3__3dpad__mode__defpos" Grid.Column="4" Grid.Row="3">3DPad Def. Mode:</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port3__3dpad__mode__defpos" SelectedValuePath="Tag" Grid.Column="5" Grid.Row="3">
                                                     <ComboBoxItem Tag="digital">Digital</ComboBoxItem>
                                                     <ComboBoxItem Tag="analog">Analog</ComboBoxItem>
                                                 </ComboBox>
-
+-->
                                                 <Label Name="cfglbl_ss__input__port4" Grid.Column="0" Grid.Row="4">Input Device (Virtual) Port 4</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port4" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="4">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
@@ -8715,13 +8716,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                 <Label Name="cfglbl_ss__input__port4__gun_chairs" Grid.Column="2" Grid.Row="4">Gun Crosshair:</Label>
                                                 <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black" Width="40"   Grid.Column="3" Grid.Row="4" x:Name="cfg_ss__input__port4__gun_chairs" />
-
+<!--
                                                 <Label Name="cfglbl_ss__input__port4__3dpad__mode__defpos" Grid.Column="4" Grid.Row="4">3DPad Def. Mode:</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port4__3dpad__mode__defpos" SelectedValuePath="Tag" Grid.Column="5" Grid.Row="4">
                                                     <ComboBoxItem Tag="digital">Digital</ComboBoxItem>
                                                     <ComboBoxItem Tag="analog">Analog</ComboBoxItem>
                                                 </ComboBox>
-
+-->
                                                 <Label Name="cfglbl_ss__input__port5" Grid.Column="0" Grid.Row="5">Input Device (Virtual) Port 5</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port5" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="5">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
@@ -8737,13 +8738,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                 <Label Name="cfglbl_ss__input__port5__gun_chairs" Grid.Column="2" Grid.Row="5">Gun Crosshair:</Label>
                                                 <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black" Width="40"   Grid.Column="3" Grid.Row="5" x:Name="cfg_ss__input__port5__gun_chairs" />
-
+<!--
                                                 <Label Name="cfglbl_ss__input__port5__3dpad__mode__defpos" Grid.Column="4" Grid.Row="5">3DPad Def. Mode:</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port5__3dpad__mode__defpos" SelectedValuePath="Tag" Grid.Column="5" Grid.Row="5">
                                                     <ComboBoxItem Tag="digital">Digital</ComboBoxItem>
                                                     <ComboBoxItem Tag="analog">Analog</ComboBoxItem>
                                                 </ComboBox>
-
+-->
                                                 <Label Name="cfglbl_ss__input__port6" Grid.Column="0" Grid.Row="6">Input Device (Virtual) Port 6</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port6" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="6">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
@@ -8759,13 +8760,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                 <Label Name="cfglbl_ss__input__port6__gun_chairs" Grid.Column="2" Grid.Row="6">Gun Crosshair:</Label>
                                                 <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black" Width="40"   Grid.Column="3" Grid.Row="6" x:Name="cfg_ss__input__port6__gun_chairs" />
-
+<!--
                                                 <Label Name="cfglbl_ss__input__port6__3dpad__mode__defpos" Grid.Column="4" Grid.Row="6">3DPad Def. Mode:</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port6__3dpad__mode__defpos" SelectedValuePath="Tag" Grid.Column="5" Grid.Row="6">
                                                     <ComboBoxItem Tag="digital">Digital</ComboBoxItem>
                                                     <ComboBoxItem Tag="analog">Analog</ComboBoxItem>
                                                 </ComboBox>
-
+-->
                                                 <Label Name="cfglbl_ss__input__port7" Grid.Column="0" Grid.Row="7">Input Device (Virtual) Port 7</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port7" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="7">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
@@ -8781,13 +8782,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                 <Label Name="cfglbl_ss__input__port7__gun_chairs" Grid.Column="2" Grid.Row="7">Gun Crosshair:</Label>
                                                 <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Width="40"  Grid.Column="3" Grid.Row="7" x:Name="cfg_ss__input__port7__gun_chairs" />
-
+<!--
                                                 <Label Name="cfglbl_ss__input__port7__3dpad__mode__defpos" Grid.Column="4" Grid.Row="7">3DPad Def. Mode:</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port7__3dpad__mode__defpos" SelectedValuePath="Tag" Grid.Column="5" Grid.Row="7">
                                                     <ComboBoxItem Tag="digital">Digital</ComboBoxItem>
                                                     <ComboBoxItem Tag="analog">Analog</ComboBoxItem>
                                                 </ComboBox>
-
+-->
                                                 <Label Name="cfglbl_ss__input__port8" Grid.Column="0" Grid.Row="8">Input Device (Virtual) Port 8</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port8" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="8">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
@@ -8803,13 +8804,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                 <Label Name="cfglbl_ss__input__port8__gun_chairs" Grid.Column="2" Grid.Row="8">Gun Crosshair:</Label>
                                                 <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Width="40"  Grid.Column="3" Grid.Row="8" x:Name="cfg_ss__input__port8__gun_chairs" />
-
+<!--
                                                 <Label Name="cfglbl_ss__input__port8__3dpad__mode__defpos" Grid.Column="4" Grid.Row="8">3DPad Def. Mode:</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port8__3dpad__mode__defpos" SelectedValuePath="Tag" Grid.Column="5" Grid.Row="8">
                                                     <ComboBoxItem Tag="digital">Digital</ComboBoxItem>
                                                     <ComboBoxItem Tag="analog">Analog</ComboBoxItem>
                                                 </ComboBox>
-
+-->
                                                 <Label Name="cfglbl_ss__input__port9" Grid.Column="0" Grid.Row="9">Input Device (Virtual) Port 9</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port9" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="9">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
@@ -8825,13 +8826,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                 <Label Name="cfglbl_ss__input__port9__gun_chairs" Grid.Column="2" Grid.Row="9">Gun Crosshair:</Label>
                                                 <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Width="40"  Grid.Column="3" Grid.Row="9" x:Name="cfg_ss__input__port9__gun_chairs" />
-
+<!--
                                                 <Label Name="cfglbl_ss__input__port9__3dpad__mode__defpos" Grid.Column="4" Grid.Row="9">3DPad Def. Mode:</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port9__3dpad__mode__defpos" SelectedValuePath="Tag" Grid.Column="5" Grid.Row="9">
                                                     <ComboBoxItem Tag="digital">Digital</ComboBoxItem>
                                                     <ComboBoxItem Tag="analog">Analog</ComboBoxItem>
                                                 </ComboBox>
-
+-->
                                                 <Label Name="cfglbl_ss__input__port10" Grid.Column="0" Grid.Row="10">Input Device (Virtual) Port 10</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port10" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="10">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
@@ -8847,13 +8848,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                 <Label Name="cfglbl_ss__input__port10__gun_chairs" Grid.Column="2" Grid.Row="10">Gun Crosshair:</Label>
                                                 <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Width="40"  Grid.Column="3" Grid.Row="10" x:Name="cfg_ss__input__port10__gun_chairs" />
-
+<!--
                                                 <Label Name="cfglbl_ss__input__port10__3dpad__mode__defpos" Grid.Column="4" Grid.Row="10">3DPad Def. Mode:</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port10__3dpad__mode__defpos" SelectedValuePath="Tag" Grid.Column="5" Grid.Row="10">
                                                     <ComboBoxItem Tag="digital">Digital</ComboBoxItem>
                                                     <ComboBoxItem Tag="analog">Analog</ComboBoxItem>
                                                 </ComboBox>
-
+-->
                                                 <Label Name="cfglbl_ss__input__port11" Grid.Column="0" Grid.Row="11">Input Device (Virtual) Port 11</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port11" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="11">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
@@ -8869,13 +8870,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                 <Label Name="cfglbl_ss__input__port11__gun_chairs" Grid.Column="2" Grid.Row="11">Gun Crosshair:</Label>
                                                 <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black"  Width="40"  Grid.Column="3" Grid.Row="11" x:Name="cfg_ss__input__port11__gun_chairs" />
-
+<!--
                                                 <Label Name="cfglbl_ss__input__port11__3dpad__mode__defpos" Grid.Column="4" Grid.Row="11">3DPad Def. Mode:</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port11__3dpad__mode__defpos" SelectedValuePath="Tag" Grid.Column="5" Grid.Row="11">
                                                     <ComboBoxItem Tag="digital">Digital</ComboBoxItem>
                                                     <ComboBoxItem Tag="analog">Analog</ComboBoxItem>
                                                 </ComboBox>
-
+-->
                                                 <Label Name="cfglbl_ss__input__port12" Grid.Column="0" Grid.Row="12">Input Device (Virtual) Port 12</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port12" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="12">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
@@ -8891,13 +8892,13 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                 <Label Name="cfglbl_ss__input__port12__gun_chairs" Grid.Column="2" Grid.Row="12">Gun Crosshair:</Label>
                                                 <xctk:ColorPicker ColorMode="ColorCanvas" Background="Black" Width="40"  Grid.Column="3" Grid.Row="12" x:Name="cfg_ss__input__port12__gun_chairs" />
-
+<!--
                                                 <Label Name="cfglbl_ss__input__port12__3dpad__mode__defpos" Grid.Column="4" Grid.Row="12">3DPad Def. Mode:</Label>
                                                 <ComboBox x:Name="cfg_ss__input__port12__3dpad__mode__defpos" SelectedValuePath="Tag" Grid.Column="5" Grid.Row="12">
                                                     <ComboBoxItem Tag="digital">Digital</ComboBoxItem>
                                                     <ComboBoxItem Tag="analog">Analog</ComboBoxItem>
                                                 </ComboBox>
-
+-->
 
                                             </Grid>
                                         </StackPanel>

@@ -82,6 +82,9 @@ namespace MedLaunch
                     case "PsxMouse":
                         dev = Psx.Mouse(portNum);
                         break;
+                    case "PsxAnalogJoy":
+                        dev = Psx.AnalogJoystick(portNum);
+                        break;
                     default:
                         return;
                 }
