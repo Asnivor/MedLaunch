@@ -2391,7 +2391,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                         </Border>
 
                         <Button Style="{StaticResource MenuButton}"  x:Name="btnConfigImportAll"  Background="DarkOrange" Click="btnConfigImportAll_Click"
-                                ToolTip="Import all settings from mednafen-09x.cfg into 'Base Configuration' and all system.cfg files from the root of the Mednafen directory into the relevant system configurations in MedLaunch">
+                                ToolTip="Import all settings from mednafen main config file into 'Base Configuration' and all system.cfg files from the root of the Mednafen directory into the relevant system configurations in MedLaunch">
                             <TextBlock HorizontalAlignment="Center" TextAlignment="Center">
                                 IMPORT ALL CONFIGS
                                 <LineBreak />
@@ -10580,7 +10580,7 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 </CheckBox>
 
                                                 <CheckBox x:Name="chkBackupMednafenConfig" Grid.ColumnSpan="2" Grid.Row="8" Checked="chkBackupMednafenConfig_Checked" Unchecked="chkBackupMednafenConfig_Unchecked">
-                                                    Auto-backup Mednafen config file (mednafen-09x.cfg) when MedLaunch is started
+                                                    Auto-backup Mednafen config file when MedLaunch is started
                                                 </CheckBox>
 
                                                 <CheckBox x:Name="chkSaveSysConfigs" Grid.ColumnSpan="2" Grid.Row="9" Checked="chkSaveSysConfigs_Checked" Unchecked="chkSaveSysConfigs_Unchecked">

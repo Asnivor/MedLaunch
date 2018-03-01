@@ -332,8 +332,13 @@ namespace MedLaunch.Classes.Controls.InputManager
                     _NewEvents.Clear();
 
                     //analyze keys
-                    foreach (var ke in keyEvents)
-                        HandleButton(ke.Key.ToString(), ke.Pressed);
+                    try
+                    {
+                        foreach (var ke in keyEvents)
+                            HandleButton(ke.Key.ToString(), ke.Pressed);
+                    }
+                    catch { }
+                    
 
                     lock (FloatValues)
                     {
