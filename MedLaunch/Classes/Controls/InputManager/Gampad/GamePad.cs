@@ -135,7 +135,7 @@ namespace MedLaunch.Classes.Controls
                         string error = "WARNING\n\nThe following gamepad/joystick has been detected by DirectInput:\n\n" +
                         device.InstanceName + "\n" + device.InstanceGuid + "\n\n" +
                         "BUT, we couldnt find a mednafen ID for it. Please check stdout.txt for any errors. You must correct them before trying to RE-POLL devices again.";
-                        MessagePopper.ShowMahappsMessageDialog(error, "GAMEPAD DETECTION ISSUE");
+                        MessagePopper.ShowMessageDialog(error, "GAMEPAD DETECTION ISSUE");
                     }
                     catch (Exception) { }
                     

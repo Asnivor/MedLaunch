@@ -32,9 +32,10 @@ namespace MedLaunch.Classes
             string message = sb.ToString();
             string header = "FEATURE NOT IMPLEMENTED";
 
-            ShowMahappsMessageDialog(message, header);
+            //ShowMahappsMessageDialog(message, header);
+            ShowMessageDialog(message, header);
         }
-
+        /*
         /// <summary>
         /// Use mahapps dialog to show message
         /// </summary>
@@ -49,30 +50,46 @@ namespace MedLaunch.Classes
                                
             };
 
-            if (Application.Current.Dispatcher.CheckAccess())
+            MainWindow mw;
+
+            // when medlaunch is starting up, the mainwindow may not be visible yet
+            // if this is the case, then use standard MessageBox..
+            try
             {
-                // we are already on the UI thread
-                GetMainWindow().ShowModalMessageExternal(header, message, MessageDialogStyle.Affirmative, settings);
-            }
-            else
-            {
-                // re-invoke with UI access
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Normal,
-                (Action)(() =>
+                if (Application.Current.Dispatcher.CheckAccess())
                 {
-                    GetMainWindow().ShowModalMessageExternal(header, message, MessageDialogStyle.Affirmative, settings);
-                }));
+                    // we are already on the UI thread
+                    mw = GetMainWindow();
+                    mw.ShowModalMessageExternal(header, message, MessageDialogStyle.Affirmative, settings);
+                }
+                else
+                {
+                    // re-invoke with UI access
+                    Application.Current.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Normal,
+                    (Action)(() =>
+                    {
+                        mw = GetMainWindow();
+                        mw.ShowModalMessageExternal(header, message, MessageDialogStyle.Affirmative, settings);
+                    }));
+                }
             }
-            //await GetMainWindow().ShowMessageAsync(header, message, MessageDialogStyle.Affirmative, settings);
+            catch (Exception)
+            {
+                // there was an issue opening the mahapps message dialog
+                // fall back to standard MessageBox
+                MessageBox.Show(message, header);
+            }
         }
+        */
 
         /// <summary>
-        /// Use mahapps external modal dialog to show a messagebox and return MessageDialogResult
+        /// Use mahapps external modal dialog to show a messagebox and return custom result enum
+        /// Will fall back to using standard MessageBox if MahApps cannot display
         /// </summary>
         /// <param name="message"></param>
         /// <param name="header"></param>
-        public static MessageDialogResult ShowMahappsMessageDialog(string message, string header, DialogButtonOptions buttonOptions = DialogButtonOptions.YESNO, MetroDialogSettings settings = null)
+        public static ReturnResult ShowMessageDialog(string message, string header, DialogButtonOptions buttonOptions = DialogButtonOptions.YES, MetroDialogSettings settings = null)
         {
             // use default settings if they havent been supplied
             if (settings == null)
@@ -83,41 +100,140 @@ namespace MedLaunch.Classes
                     AnimateHide = false,
                 };
             }
-            
 
-            MessageDialogStyle style = MessageDialogStyle.AffirmativeAndNegative;
+            MainWindow mw;
+            
+            // convert buttonOptions
+            MessageDialogStyle btnOption = MessageDialogStyle.AffirmativeAndNegative;
+            MessageBoxButton btn = MessageBoxButton.OK;
             switch (buttonOptions)
             {
                 case DialogButtonOptions.YES:
-                    style = MessageDialogStyle.AffirmativeAndNegative;
+                case DialogButtonOptions.OK:
+                    btnOption = MessageDialogStyle.Affirmative;
+                    btn = MessageBoxButton.OK;
+                    break;
+                case DialogButtonOptions.YESNO:
+                    btnOption = MessageDialogStyle.AffirmativeAndNegative;
+                    btn = MessageBoxButton.YesNo;
                     break;
                 case DialogButtonOptions.YESNOPLUS1:
-                    style = MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary;
+                    btnOption = MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary;
+                    btn = MessageBoxButton.YesNoCancel;
                     break;
                 case DialogButtonOptions.YESNOPLUS2:
-                    style = MessageDialogStyle.AffirmativeAndNegativeAndDoubleAuxiliary;
+                    btnOption = MessageDialogStyle.AffirmativeAndNegativeAndDoubleAuxiliary;
+                    break;
+                case DialogButtonOptions.OKCANCEL:
+                    btnOption = MessageDialogStyle.AffirmativeAndNegative;
+                    btn = MessageBoxButton.OKCancel;
+                    break;
+                case DialogButtonOptions.YESNOCANCEL:
+                    btnOption = MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary;
+                    btn = MessageBoxButton.YesNoCancel;
                     break;
             }
 
-            MessageDialogResult msgTask = MessageDialogResult.Negative;
+            // set default return result
+            ReturnResult result = ReturnResult.Negative;
+            switch (btnOption)
+            {
+                case MessageDialogStyle.Affirmative:
+                    result = ReturnResult.Affirmative;
+                    break;
+                case MessageDialogStyle.AffirmativeAndNegative:
+                    result = ReturnResult.Negative;
+                    break;
+                default:
+                    result = ReturnResult.FirstAux;
+                    break;
+            }
 
-            if (Application.Current.Dispatcher.CheckAccess())
+            // when medlaunch is starting up, the mainwindow may not be visible yet
+            // if this is the case, then use standard MessageBox..
+            try
             {
-                // we are already on the UI thread
-                msgTask = GetMainWindow().ShowModalMessageExternal(header, message, style, settings);
-            }
-            else
-            {
-                // re-invoke with UI access
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Normal,
-                (Action)(() =>
+                MessageDialogResult mahRes;
+
+                // check whether we are on the UI thread first
+                if (Application.Current.Dispatcher.CheckAccess())
                 {
-                    msgTask = GetMainWindow().ShowModalMessageExternal(header, message, style, settings);
-                }));
+                    // we are already on the UI thread
+                    mw = GetMainWindow();
+                    mahRes = mw.ShowModalMessageExternal(header, message, btnOption, settings);
+
+                    // convert the result
+                    switch (mahRes)
+                    {
+                        case MessageDialogResult.Affirmative:
+                            result = ReturnResult.Affirmative;
+                            break;
+                        case MessageDialogResult.Negative:
+                            result = ReturnResult.Negative;
+                            break;
+                        case MessageDialogResult.FirstAuxiliary:
+                            result = ReturnResult.FirstAux;
+                            break;
+                        case MessageDialogResult.SecondAuxiliary:
+                            result = ReturnResult.SecondAux;
+                            break;
+                    }
+                }
+                else
+                {
+                    // re-invoke with UI access
+                    Application.Current.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Normal,
+                    (Action)(() =>
+                    {
+                        mw = GetMainWindow();
+                        mahRes = mw.ShowModalMessageExternal(header, message, btnOption, settings);
+
+                        // convert the result
+                        switch (mahRes)
+                        {
+                            case MessageDialogResult.Affirmative:
+                                result = ReturnResult.Affirmative;
+                                break;
+                            case MessageDialogResult.Negative:
+                                result = ReturnResult.Negative;
+                                break;
+                            case MessageDialogResult.FirstAuxiliary:
+                                result = ReturnResult.FirstAux;
+                                break;
+                            case MessageDialogResult.SecondAuxiliary:
+                                result = ReturnResult.SecondAux;
+                                break;
+                        }
+                    }));
+                }
             }
-                
-            return msgTask;            
+            catch (Exception)
+            {
+                // there was an issue opening the mahapps message dialog
+                // fall back to standard MessageBox
+                var msgRes = MessageBox.Show(message, header, btn, MessageBoxImage.Asterisk);
+
+                // convert the result
+                switch (msgRes)
+                {
+                    case MessageBoxResult.OK:
+                    case MessageBoxResult.Yes:
+                        result = ReturnResult.Affirmative;
+                        break;
+                    case MessageBoxResult.No:
+                        result = ReturnResult.Negative;
+                        break;
+                    case MessageBoxResult.Cancel:
+                        result = ReturnResult.FirstAux;
+                        break;
+                    case MessageBoxResult.None:
+                        result = ReturnResult.Negative;
+                        break;                       
+                }
+            }
+
+            return result;   
         }
 
         /// <summary>
@@ -126,8 +242,6 @@ namespace MedLaunch.Classes
         /// <returns></returns>
         private static MainWindow GetMainWindow()
         {
-           
-
             return Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
         }
 
@@ -136,7 +250,18 @@ namespace MedLaunch.Classes
             YES,
             YESNO,
             YESNOPLUS1,
-            YESNOPLUS2            
+            YESNOPLUS2,
+            OK,
+            OKCANCEL,
+            YESNOCANCEL                        
+        }
+
+        public enum ReturnResult
+        {
+            Affirmative,
+            Negative,
+            FirstAux,
+            SecondAux
         }
     }
 }

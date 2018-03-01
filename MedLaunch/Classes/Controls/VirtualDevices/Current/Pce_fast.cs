@@ -24,9 +24,13 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
             {
                 new NonControlMapping { Description = "Default position for 'MODE' switch",
                     MednafenCommand = device.CommandStart + ".gamepad.mode_select.defpos",
-                    MinValue = 1, MaxValue = 2,
-                    ContType = ContrType.UPDOWN,
-                 ConvType = ConvertionType.INT},
+                    MinValue = 2, MaxValue = 6,
+                    Values = new List<string>
+                    {
+                        "2", "6"
+                    },
+                    ContType = ContrType.COMBO,
+                 ConvType = ConvertionType.STRING},
             };
 
             DeviceDefinition.ParseOptionsFromConfig(device);

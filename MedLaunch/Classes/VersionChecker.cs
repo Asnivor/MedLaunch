@@ -116,7 +116,7 @@ namespace MedLaunch.Classes
                     // 1.21.0-UNSTABLE
                     new MednafenChangeHistory
                     {
-                        Version = "1.21.0-UNSTABLE",
+                        Version = "1.20.0-UNSTABLE",
                         DownloadURL = "https://mednafen.github.io/releases/files/mednafen-1.21.0-UNSTABLE-win64.zip",
                         Changes = new List<VersionChange>
                         {
@@ -502,7 +502,7 @@ namespace MedLaunch.Classes
             if (!File.Exists(medPath))
             {
                 if (showDialog)
-                    MessagePopper.ShowMahappsMessageDialog("Path to Mednafen is NOT valid\nPlease set this on the Settings tab",
+                    MessagePopper.ShowMessageDialog("Path to Mednafen is NOT valid\nPlease set this on the Settings tab",
                         "ERROR");
                     //MessageBox.Show("Path to Mednafen is NOT valid\nPlease set this on the Settings tab", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
@@ -514,7 +514,7 @@ namespace MedLaunch.Classes
             if (currDesc == null)
             {
                 if (showDialog)
-                    MessagePopper.ShowMahappsMessageDialog("There was a problem retreiving the Mednafen version.\nPlease check your paths",
+                    MessagePopper.ShowMessageDialog("There was a problem retreiving the Mednafen version.\nPlease check your paths",
                         "ERROR");
                 //MessageBox.Show("There was a problem retreiving the Mednafen version.\nPlease check your paths", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -523,7 +523,7 @@ namespace MedLaunch.Classes
             if (!currDesc.IsValid)
             {
                 if (showDialog)
-                    MessagePopper.ShowMahappsMessageDialog("There was a problem parsing the current Mednafen version.\nPlease check your paths",
+                    MessagePopper.ShowMessageDialog("There was a problem parsing the current Mednafen version.\nPlease check your paths",
                         "ERROR");
                 //MessageBox.Show("There was a problem parsing the current Mednafen version.\nPlease check your paths", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -565,25 +565,34 @@ namespace MedLaunch.Classes
                 {
                     // version doesnt match
                     StringBuilder sb = new StringBuilder();
-                    sb.Append("The version of Mednafen you are trying to launch is potentially NOT compatible with this version of MedLaunch\n\nMednafen version installed: ");
+                    sb.Append("The version of Mednafen you are trying to launch is potentially NOT compatible with this version of MedLaunch.\n\n");
+                    sb.Append("Mednafen version installed:\t");
                     sb.Append(currDesc.FullVersionString);
-                    sb.Append("\nMednafen version required: ");
+                    sb.Append("\nMednafen version required: \t");
                     sb.Append(oldestDesc.FullVersionString + " - " + latestDesc.FullVersionString);
-                    sb.Append("\n\nPlease ensure you are targeting a MedLaunch supported version of Mednafen.");
-                    sb.Append("\n\nPress OK to return to the Games Library");
-                    sb.Append("\nPress CANCEL to ignore these very important messages and try to launch the game (which may NOT work anyway)");
+                    sb.Append("\n\nPlease ensure you are targeting a MedLaunch supported version of Mednafen.\n");
+                    sb.Append("\nPress LAUNCH ANYWAY to try your luck");
+                    sb.Append("\nPress CANCEL to return to the Games Library");
 
-                    var result = MessagePopper.ShowMahappsMessageDialog(sb.ToString(),
-                        "Mednafen Version Error", MessagePopper.DialogButtonOptions.YESNO);
+                    var result = MessagePopper.ShowMessageDialog(sb.ToString(),
+                        "POSSIBLE VERSION MISMATCH", MessagePopper.DialogButtonOptions.YESNO, new MahApps.Metro.Controls.Dialogs.MetroDialogSettings
+                        {
+                            AnimateHide = false,
+                            AnimateShow = false,
+                            //ColorScheme = MahApps.Metro.Controls.Dialogs.MetroDialogColorScheme.Accented,
+                            AffirmativeButtonText = "LAUNCH ANYWAY",
+                            NegativeButtonText = "CANCEL",
+  
+                        });
 
                     //MessageBoxResult result = MessageBox.Show(sb.ToString(), "Mednafen Version Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
-                    if (result == MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative)
+                    if (result == MessagePopper.ReturnResult.Affirmative)
                     {
-                        return false;
+                        return true;
                     }
                     else
                     {
-                        return true;
+                        return false;
                     }
                 }
                 else

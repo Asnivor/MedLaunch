@@ -483,7 +483,7 @@ namespace MedLaunch
 
             if (map == null)
             {
-                MessagePopper.ShowMahappsMessageDialog("command was not found", "WARNING");
+                MessagePopper.ShowMessageDialog("command was not found", "WARNING");
                 //MessageBox.Show("command was not found");
                 return;
             }
@@ -628,7 +628,7 @@ namespace MedLaunch
 
             if (map == null)
             {
-                MessagePopper.ShowMahappsMessageDialog("command was not found", "WARNING");
+                MessagePopper.ShowMessageDialog("command was not found", "WARNING");
                 //MessageBox.Show("command was not found");
                 return;
             }
@@ -1075,7 +1075,7 @@ namespace MedLaunch
             bool write = DeviceDefinition.WriteDefinitionToConfigFile(ControllerDefinitionWorking.MapList);
 
             if (!write)
-                MessagePopper.ShowMahappsMessageDialog("There was a problem reading from/writing to the mednafen config file", "Possible IO Error");
+                MessagePopper.ShowMessageDialog("There was a problem reading from/writing to the mednafen config file", "Possible IO Error");
 
             // now write any custom objects
             if (ControllerDefinitionWorking.CustomOptions != null)
@@ -1109,7 +1109,7 @@ namespace MedLaunch
             write = DeviceDefinition.WriteDefinitionToConfigFile(ControllerDefinitionWorking.CustomOptions);
 
             if (!write)
-                MessagePopper.ShowMahappsMessageDialog("There was a problem reading from/writing to the mednafen config file", "Possible IO Error");
+                MessagePopper.ShowMessageDialog("There was a problem reading from/writing to the mednafen config file", "Possible IO Error");
 
 
             //MessageBox.Show("There was a problem reading from/writing to the mednafen config file", "Possible IO Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -1543,7 +1543,7 @@ namespace MedLaunch
                 case ConfigOrder.Primary:
                     if (tmpMap.Primary == null || tmpMap.Primary.Config.Trim() == "")
                     {
-                        MessagePopper.ShowMahappsMessageDialog(nobinding, "No Binding Data Found");
+                        MessagePopper.ShowMessageDialog(nobinding, "No Binding Data Found");
                         //MessageBox.Show(nobinding, "No Binding Data Found", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                         return;
                     }
@@ -1552,12 +1552,12 @@ namespace MedLaunch
                 case ConfigOrder.Secondary:
                     if (tmpMap.Secondary == null || tmpMap.Secondary.Config.Trim() == "")
                     {
-                        MessagePopper.ShowMahappsMessageDialog(nobinding, "No Binding Data Found");
+                        MessagePopper.ShowMessageDialog(nobinding, "No Binding Data Found");
                         return;
                     }
                     if (tmpMap.Primary == null || tmpMap.Primary.Config.Trim() == "")
                     {
-                        MessagePopper.ShowMahappsMessageDialog(noprimary, "No Primary Binding Data Found");
+                        MessagePopper.ShowMessageDialog(noprimary, "No Primary Binding Data Found");
                         //MessageBox.Show(noprimary, "No Primary Binding Data Found", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                         return;
                     }
@@ -1565,12 +1565,12 @@ namespace MedLaunch
                 case ConfigOrder.Tertiary:
                     if (tmpMap.Tertiary == null || tmpMap.Tertiary.Config.Trim() == "")
                     {
-                        MessagePopper.ShowMahappsMessageDialog(nobinding, "No Binding Data Found");
+                        MessagePopper.ShowMessageDialog(nobinding, "No Binding Data Found");
                         return;
                     }
                     if (tmpMap.Secondary == null || tmpMap.Secondary.Config.Trim() == "")
                     {
-                        MessagePopper.ShowMahappsMessageDialog(nosecondary, "No Secondary Binding Data Found");
+                        MessagePopper.ShowMessageDialog(nosecondary, "No Secondary Binding Data Found");
                         return;
                     }
                     break;

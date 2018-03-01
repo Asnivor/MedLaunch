@@ -322,7 +322,7 @@ namespace MedLaunch.Classes.Controls.InputManager
                         ClearEvents();
                         Thread.Sleep(100);
                         focusDelay = false;
-                        keyEvents = new List<KeyEvent>();
+                        //keyEvents = new List<KeyEvent>();
                     }
                 }
 

@@ -119,25 +119,25 @@ namespace MedLaunch.Classes.Controls
                 if (c1.IsConnected)
                 {
                     if (ContInfoFromLog.Length < 1)
-                        MessagePopper.ShowMahappsMessageDialog(error, "GAMEPAD DETECTION ISSUE");
+                        MessagePopper.ShowMessageDialog(error, "GAMEPAD DETECTION ISSUE");
                     Devices.Add(new GamePad360(0, c1, ContInfoFromLog[0]));
                 }
                 if (c2.IsConnected)
                 {
                     if (ContInfoFromLog.Length < 2)
-                        MessagePopper.ShowMahappsMessageDialog(error, "GAMEPAD DETECTION ISSUE");
+                        MessagePopper.ShowMessageDialog(error, "GAMEPAD DETECTION ISSUE");
                     Devices.Add(new GamePad360(1, c2, ContInfoFromLog[1]));
                 }
                 if (c3.IsConnected)
                 {
                     if (ContInfoFromLog.Length < 3)
-                        MessagePopper.ShowMahappsMessageDialog(error, "GAMEPAD DETECTION ISSUE");
+                        MessagePopper.ShowMessageDialog(error, "GAMEPAD DETECTION ISSUE");
                     Devices.Add(new GamePad360(2, c3, ContInfoFromLog[2]));
                 }
                 if (c4.IsConnected)
                 {
                     if (ContInfoFromLog.Length < 4)
-                        MessagePopper.ShowMahappsMessageDialog(error, "GAMEPAD DETECTION ISSUE");
+                        MessagePopper.ShowMessageDialog(error, "GAMEPAD DETECTION ISSUE");
                     Devices.Add(new GamePad360(3, c4, ContInfoFromLog[3]));
                 }
             }

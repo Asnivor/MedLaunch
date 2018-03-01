@@ -618,7 +618,7 @@ namespace MedLaunch.Classes.Scanning
             DiscGameFile gameFile = SelectGameFile(sysId);
             if (gameFile == null)
             {
-                MessagePopper.ShowMahappsMessageDialog("No valid file was selected",
+                MessagePopper.ShowMessageDialog("No valid file was selected",
                     "MedLaunch: Error");
                 //MessageBox.Show("No valid file was selected", "MedLaunch: Error");
                 return;
@@ -629,7 +629,7 @@ namespace MedLaunch.Classes.Scanning
                 Game g = InsertOrUpdateDisk(gameFile, sysId);
                 SaveToDatabase();
 
-                MessagePopper.ShowMahappsMessageDialog("Game: " + gameFile.FileName + " has added to (or updated in) the library",
+                MessagePopper.ShowMessageDialog("Game: " + gameFile.FileName + " has added to (or updated in) the library",
                     "MedLaunch: Import or Update Completed");
 
                 //MessageBox.Show("Game: " + gameFile.FileName + " has added to (or updated in) the library", "MedLaunch: Import or Update Completed");
@@ -792,7 +792,7 @@ namespace MedLaunch.Classes.Scanning
             catch
             {
                 // some problem obtaining the image file from the cue
-                MessagePopper.ShowMahappsMessageDialog("There was an issue determining the disc image from the cue/ccd/toc file you are using (" + f.FileName + ").\nPlease check that the cuefile is pointing to a valid (case sensitive) location.\n\n Press OK to skip the import of this game and proceed...",
+                MessagePopper.ShowMessageDialog("There was an issue determining the disc image from the cue/ccd/toc file you are using (" + f.FileName + ").\nPlease check that the cuefile is pointing to a valid (case sensitive) location.\n\n Press OK to skip the import of this game and proceed...",
                     "Disc Image Lookup Issue");
 
                 //MessageBox.Show("There was an issue determining the disc image from the cue/ccd/toc file you are using (" + f.FileName + ").\nPlease check that the cuefile is pointing to a valid (case sensitive) location.\n\n Press OK to skip the import of this game and proceed...", "Disc Image Lookup Issue", MessageBoxButton.OK, MessageBoxImage.Error);
