@@ -1277,7 +1277,7 @@ namespace MedLaunch
 
         private void ChildWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //Input.Instance.Dispose();
+            Input.Instance.Dispose();
         }
 
         void MoveToNextUIElement(KeyEventArgs e)

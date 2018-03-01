@@ -50,7 +50,7 @@ namespace MedLaunch.Classes.Controls
 
         public static void Dispose()
         {
-
+            
         }
 
         static class NativeMethods

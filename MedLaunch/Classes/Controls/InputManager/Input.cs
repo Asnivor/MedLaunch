@@ -102,8 +102,9 @@ namespace MedLaunch.Classes.Controls.InputManager
 
         public void Dispose()
         {
-            //KeyInput.Dispose();
-            //GamePad.Dispose();      
+            KeyInput.Dispose();
+            GamePad.Dispose();
+            GamePad360.Dispose();
 
             AbortThread = true;                 
         }

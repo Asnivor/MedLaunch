@@ -4059,6 +4059,7 @@ namespace MedLaunch
         {
             Input.Instance.Dispose();
             Input.Initialize(this);
+            Input.Instance.Dispose();
         }
 
         /// <summary>
