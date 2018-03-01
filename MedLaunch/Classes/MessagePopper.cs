@@ -35,6 +35,19 @@ namespace MedLaunch.Classes
             //ShowMahappsMessageDialog(message, header);
             ShowMessageDialog(message, header);
         }
+
+        public static void PopControllerNotFound()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("This option is not configurable");
+
+            string message = sb.ToString();
+            string header = "INPUT NOT FOUND";
+
+            //ShowMahappsMessageDialog(message, header);
+            ShowMessageDialog(message, header);
+        }
+
         /*
         /// <summary>
         /// Use mahapps dialog to show message

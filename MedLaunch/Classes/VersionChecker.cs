@@ -148,6 +148,20 @@ namespace MedLaunch.Classes
                             new VersionChange { Description = "fps.position", ChangeMethod = ChangeType.ToRemove, Item = "fps.position" },
                             new VersionChange { Description = "fps.scale", ChangeMethod = ChangeType.ToRemove, Item = "fps.scale" },
                             new VersionChange { Description = "fps.textcolor", ChangeMethod = ChangeType.ToRemove, Item = "fps.textcolor" },
+
+                            // for older mednafen versions just change the JP keyboard to US keyboard
+                            new VersionChange { Description = "SS JAP Keyboard", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port1 jpkeyboard", ChangeItem = "ss.input.port1 keyboard" },
+                            new VersionChange { Description = "SS JAP Keyboard", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port2 jpkeyboard", ChangeItem = "ss.input.port2 keyboard" },
+                            new VersionChange { Description = "SS JAP Keyboard", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port3 jpkeyboard", ChangeItem = "ss.input.port3 keyboard" },
+                            new VersionChange { Description = "SS JAP Keyboard", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port4 jpkeyboard", ChangeItem = "ss.input.port4 keyboard" },
+                            new VersionChange { Description = "SS JAP Keyboard", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port5 jpkeyboard", ChangeItem = "ss.input.port5 keyboard" },
+                            new VersionChange { Description = "SS JAP Keyboard", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port6 jpkeyboard", ChangeItem = "ss.input.port6 keyboard" },
+                            new VersionChange { Description = "SS JAP Keyboard", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port7 jpkeyboard", ChangeItem = "ss.input.port7 keyboard" },
+                            new VersionChange { Description = "SS JAP Keyboard", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port8 jpkeyboard", ChangeItem = "ss.input.port8 keyboard" },
+                            new VersionChange { Description = "SS JAP Keyboard", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port9 jpkeyboard", ChangeItem = "ss.input.port9 keyboard" },
+                            new VersionChange { Description = "SS JAP Keyboard", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port10 jpkeyboard", ChangeItem = "ss.input.port10 keyboard" },
+                            new VersionChange { Description = "SS JAP Keyboard", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port11 jpkeyboard", ChangeItem = "ss.input.port11 keyboard" },
+                            new VersionChange { Description = "SS JAP Keyboard", ChangeMethod = ChangeType.ToRename, Item = "ss.input.port12 jpkeyboard", ChangeItem = "ss.input.port12 keyboard" },
                         }
                     },
 

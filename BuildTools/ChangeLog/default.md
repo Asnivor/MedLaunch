@@ -15,6 +15,7 @@ title: Changelog
 * (BugFix) - Controller input configurator fields are now only triggered when MedLaunch has focus ([#203](https://github.com/Asnivor/MedLaunch/issues/203))
 * (Enhancement) - Famicom expansion port controls can now be configured (when targeting mednafen >= v1.21.x) ([#204](https://github.com/Asnivor/MedLaunch/issues/204))
 * (Enhancement) - Added the ability to configure the following additional controllers (when targeting mednafen >= v1.21.x):
+* (Enhancement) - Controllers can now be configured within the 'CONFIGS' tab (when targeting mednafen >= v1.21.x):
 * * NES Power Pad (Side A and B)
 * * NES Arkanoid Paddle
 * * Famicom Family Keyboard
@@ -35,6 +36,7 @@ title: Changelog
 * * Added setting "video.fs.display" for all cores
 * * Added the new 'default' and 'softfb' video driver settings. These will be translated on game launch to 'opengl' and 'sdl' if you are still using an old version of mednafen. Both 'sdl' and the removed 'overlay' options are still present in the UI (but marked as depreciated) but will be automatically translated into the new 'softfb' and 'default' options (on game launch) if you are running the new version of mednafen
 * * Implemented new FPS overlay options
+* * Added new Saturn JP Keyboard option
 * * Implemented new mednafen control mapping System (compatibility for old system is still present when older mednafen versions are detected)
 * * * New boolean logic operator bindings (||, &&, $!)
 * * * New mouse bindings

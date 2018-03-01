@@ -3659,7 +3659,7 @@ namespace MedLaunch
                 LogParser.Init();
 
                 // re-init input
-                Input.Initialize(this);
+                //Input.Initialize(this);
 
                 UpdateCheckMednafen();
             }
@@ -4057,7 +4057,7 @@ namespace MedLaunch
 
         private void btnControlRePoll_Click(object sender, RoutedEventArgs e)
         {
-            Input.Instance.Dispose();
+            //Input.Instance.Dispose();
             Input.Initialize(this);
             //Input.Instance.Dispose();
         }
@@ -5879,7 +5879,386 @@ namespace MedLaunch
 #endif
         }
 
-        
+        /// <summary>
+        /// Pops a gamepad/joystick configuration page directly from the config page
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ConfigureFromConfigPage(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            string btnName = btn.Name;
+            
+
+            // get the name of the device selection control
+            string ctrlName = btnName.Replace("Generic__CONFIGURE__", "");
+            string cmdName = ctrlName.Replace("cfg_", "");
+
+            bool skipCombo = false;
+
+            // actually get this control (assume a combobox)
+            ComboBox box = UIHandler.GetChildren(RootGrid).ComboBoxes.Where(a => a.Name == ctrlName).FirstOrDefault();
+
+            if (!cmdName.StartsWith("sms") &&
+                !cmdName.StartsWith("vb") &&
+                !cmdName.StartsWith("ngp") &&
+                !cmdName.StartsWith("gb") &&
+                !cmdName.StartsWith("gg") &&
+                !cmdName.StartsWith("lynx"))
+            {
+                // traditional mapping
+                if (box == null)
+                    return;
+
+                skipCombo = false;
+            }
+            else
+            {
+                skipCombo = true;
+            }
+
+            string value = string.Empty;
+
+            // get the string value
+            if (!skipCombo)
+            {
+                value = box.SelectedValue.ToString();
+            }   
+            else
+            {
+                if (cmdName.StartsWith("sms"))
+                {
+                    value = "gamepad";
+                }
+            }         
+
+            // get mednafen config version
+            bool isNewConfig = Classes.VersionChecker.Instance.IsNewConfig;
+
+            IDeviceDefinition dev;
+
+            if (isNewConfig)
+                dev = new DeviceDefinition();
+            else
+            {
+                dev = new DeviceDefinitionLegacy();
+                // this only works when targetting latest mednafen
+                Classes.MessagePopper.PopControllerTargetingIssue();
+                return;
+            }
+                
+
+            // get all the system codes
+            var systems = GSystem.GetSystems();
+            List<string> syss = new List<string>();
+            foreach (var s in systems)
+                syss.Add(s.systemCode);
+
+            bool completed = false;
+
+            int portNum;
+
+            string port = string.Empty;
+
+            // iterate through each system code
+            foreach (var s in syss)
+            {
+                if (completed)
+                    break;
+
+                if (!cmdName.StartsWith(s))
+                    continue;
+
+                bool isGBA = false;
+
+                if (cmdName.StartsWith("gba"))
+                    isGBA = true;
+
+                switch (s)
+                {
+                    case "nes":
+                        port = cmdName.Replace(s + "__input__", "");
+                        if (port == "fcexp")
+                        {
+                            portNum = 666;
+                        }
+                        else
+                        {
+                            // port should bein the format 'portn'
+                            port = port.Replace("port", "");
+                            if (!int.TryParse(port, out portNum))
+                                continue;
+                        }
+                        switch (value)
+                        {
+                            case "arkanoid": ControllerDefinition = Nes.ArkanoidPaddle(portNum); completed = true; break;
+                            case "shadow": ControllerDefinition = Nes.SpaceShadow(portNum); completed = true; break;
+                            case "fkb": ControllerDefinition = Nes.FamilyKeyboard(portNum); completed = true; break;
+                            case "hypershot": ControllerDefinition = Nes.HyperShot(portNum); completed = true; break;
+                            case "mahjong": ControllerDefinition = Nes.Mahjong(portNum); completed = true; break;
+                            case "partytap": ControllerDefinition = Nes.PartyTap(portNum); completed = true; break;
+                            case "ftrainera": ControllerDefinition = Nes.FamilyTrainerA(portNum); completed = true; break;
+                            case "ftrainerb": ControllerDefinition = Nes.FamilyTrainerB(portNum); completed = true; break;
+                            case "oekakids": ControllerDefinition = Nes.OekaKids(portNum); completed = true; break;
+                            case "gamepad": ControllerDefinition = Nes.GamePad(portNum); completed = true; break;
+                            case "zapper": ControllerDefinition = Nes.Zapper(portNum); completed = true; break;
+                            case "powerpada": ControllerDefinition = Nes.PowerPadA(portNum); completed = true; break;
+                            case "powerpadb": ControllerDefinition = Nes.PowerPadB(portNum); completed = true; break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                    case "snes":
+                        port = cmdName.Replace(s + "__input__", "");
+                        // port should bein the format 'portn'
+                        port = port.Replace("port", "");
+                        if (!int.TryParse(port, out portNum))
+                            continue;
+                      
+                        switch (value)
+                        {
+                            case "gamepad": ControllerDefinition = Snes.GamePad(portNum); completed = true; break;
+                            case "mouse": ControllerDefinition = Snes.Mouse(portNum); completed = true; break;
+                            case "superscope":
+                                if (portNum != 2)
+                                {
+                                    MessagePopper.PopControllerNotFound();
+                                    return;
+                                }
+                                    
+                                ControllerDefinition = Snes.Superscope(portNum);
+                                completed = true;
+                                break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                    case "snes_faust":
+                        port = cmdName.Replace(s + "__input__", "");
+                        // port should bein the format 'portn'
+                        port = port.Replace("port", "");
+                        if (!int.TryParse(port, out portNum))
+                            continue;
+
+                        switch (value)
+                        {
+                            case "gamepad": ControllerDefinition = Snes_faust.GamePad(portNum); completed = true; break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                    case "md":
+                        port = cmdName.Replace(s + "__input__", "");
+                        // port should bein the format 'portn'
+                        port = port.Replace("port", "");
+                        if (!int.TryParse(port, out portNum))
+                            continue;
+
+                        switch (value)
+                        {
+                            case "gamepad": ControllerDefinition = Md.ThreeButton(portNum); completed = true; break;
+                            case "gamepad2": ControllerDefinition = Md.TwoButton(portNum); completed = true; break;
+                            case "gamepad6": ControllerDefinition = Md.SixButton(portNum); completed = true; break;
+                            case "megamouse": ControllerDefinition = Md.MegaMouse(portNum); completed = true; break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                    case "pce":
+                        port = cmdName.Replace(s + "__input__", "");
+                        // port should bein the format 'portn'
+                        port = port.Replace("port", "");
+                        if (!int.TryParse(port, out portNum))
+                            continue;
+
+                        switch (value)
+                        {
+                            case "gamepad": ControllerDefinition = Pce.GamePad(portNum); completed = true; break;
+                            case "mouse": ControllerDefinition = Pce.Mouse(portNum); completed = true; break;
+                            case "tsushinkb": ControllerDefinition = Pce.Tsushin(portNum); completed = true; break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                    case "pce_fast":
+                        port = cmdName.Replace(s + "__input__", "");
+                        // port should bein the format 'portn'
+                        port = port.Replace("port", "");
+                        if (!int.TryParse(port, out portNum))
+                            continue;
+
+                        switch (value)
+                        {
+                            case "gamepad": ControllerDefinition = Pce_fast.GamePad(portNum); completed = true; break;
+                            case "mouse": ControllerDefinition = Pce_fast.Mouse(portNum); completed = true; break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                    case "sms":
+                        port = cmdName.Replace(s + "__input__", "");
+                        // port should bein the format 'portn'
+                        port = port.Replace("port", "");
+                        if (!int.TryParse(port, out portNum))
+                            continue;
+
+                        switch (value)
+                        {
+                            case "gamepad": ControllerDefinition = Sms.GamePad(portNum); completed = true; break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                    case "vb":
+                        // only 1 'controller'
+                        ControllerDefinition = Vb.GamePad(0);
+                        completed = true;
+                        break;
+
+                    case "ngp":
+                        // only 1 'controller'
+                        ControllerDefinition = Ngp.GamePad(0);
+                        completed = true;
+                        break;
+
+                    case "wswan":
+                        ControllerDefinition = Wswan.GamePad(0); completed = true; break;
+
+                    case "gba":
+
+                        if (!isGBA)
+                            continue;
+
+                        // only 1 'controller'
+                        ControllerDefinition = Gba.GamePad(0);
+                        completed = true;
+                        break;
+
+                    case "gb":
+
+                        if (isGBA)
+                            continue;
+
+                        // only 1 'controller'
+                        ControllerDefinition = Gb.GamePad(0);
+                        completed = true;
+                        break;                   
+
+                    case "gg":
+                        // only 1 'controller'
+                        ControllerDefinition = Gg.GamePad(0);
+                        completed = true;
+                        break;
+
+                    case "lynx":
+                        // only 1 'controller'
+                        ControllerDefinition = Lynx.GamePad(0);
+                        completed = true;
+                        break;
+
+                    case "ss":
+                        port = cmdName.Replace(s + "__input__", "");
+                        // port should bein the format 'portn'
+                        port = port.Replace("port", "");
+                        if (!int.TryParse(port, out portNum))
+                            continue;
+
+                        switch (value)
+                        {
+                            case "gamepad": ControllerDefinition = Ss.GamePad(portNum); completed = true; break;
+                            case "3dpad": ControllerDefinition = Ss.ThreeD(portNum); completed = true; break;
+                            case "mouse": ControllerDefinition = Ss.Mouse(portNum); completed = true; break;
+                            case "wheel": ControllerDefinition = Ss.Wheel(portNum); completed = true; break;
+                            case "dmission": ControllerDefinition = Ss.DMission(portNum); completed = true; break;
+                            case "mission": ControllerDefinition = Ss.Mission(portNum); completed = true; break;
+                            case "gun": ControllerDefinition = Ss.Gun(portNum); completed = true; break;
+                            case "keyboard": ControllerDefinition = Ss.KeyboardUS(portNum); completed = true; break;
+                            case "jpkeyboard": ControllerDefinition = Ss.KeyboardJP(portNum); completed = true; break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                    case "psx":
+                        port = cmdName.Replace(s + "__input__", "");
+                        // port should bein the format 'portn'
+                        port = port.Replace("port", "");
+                        if (!int.TryParse(port, out portNum))
+                            continue;
+
+                        switch (value)
+                        {
+                            case "gamepad": ControllerDefinition = Psx.DigitalGamePad(portNum); completed = true; break;
+                            case "dualshock": ControllerDefinition = Psx.DualShock(portNum); completed = true; break;
+                            case "dualanalog": ControllerDefinition = Psx.Mouse(portNum); completed = true; break;
+                            case "analogjoy": ControllerDefinition = Psx.AnalogJoystick(portNum); completed = true; break;
+                            case "mouse": ControllerDefinition = Psx.Mouse(portNum); completed = true; break;
+                            case "negcon": ControllerDefinition = Psx.NeGcon(portNum); completed = true; break;
+                            case "guncon": ControllerDefinition = Psx.GunCon(portNum); completed = true; break;
+                            case "justifier": ControllerDefinition = Psx.Justifier(portNum); completed = true; break;
+                            case "dancepad": ControllerDefinition = Psx.DancePad(portNum); completed = true; break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                    case "pcfx":
+                        port = cmdName.Replace(s + "__input__", "");
+                        // port should bein the format 'portn'
+                        port = port.Replace("port", "");
+                        if (!int.TryParse(port, out portNum))
+                            continue;
+
+                        switch (value)
+                        {
+                            case "gamepad": ControllerDefinition = Pcfx.GamePad(portNum); completed = true; break;
+                            case "mouse": ControllerDefinition = Pcfx.Mouse(portNum); completed = true; break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                }
+            }
+
+            if (ControllerDefinition.MapList != null && ControllerDefinition.MapList.Count() != 0)
+            {
+                // show the configuration screen
+                ConfigureController(ControllerDefinition);
+                return;
+            }
+        }
+
+        private async void ConfigureController(IDeviceDefinition dd)
+        {
+            await this.ShowChildWindowAsync(new ConfigureController()
+            {
+                IsModal = true,
+                AllowMove = false,
+                Title = "Controller Configuration",
+                CloseOnOverlay = false,
+                ShowCloseButton = false,
+                CloseByEscape = false
+            }, RootGrid);
+        }
     }
 
 
