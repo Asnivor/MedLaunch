@@ -1479,6 +1479,8 @@ namespace MedLaunch
 
         #region OnLoad / Opening / Closing
 
+        public bool ControllersSafeToInit = false;
+
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
             // if check for updates on start is allowed
@@ -1498,6 +1500,9 @@ namespace MedLaunch
                     ci.ImportAll(null);
                 }
             }
+
+            ControllersSafeToInit = true;
+            RePollControllers();
 
             //System.Windows.Data.CollectionViewSource globalSettingsViewModelViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("globalSettingsViewModelViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
@@ -4065,7 +4070,8 @@ namespace MedLaunch
 
         private void RePollControllers()
         {
-            Input.Initialize(this);
+            if (ControllersSafeToInit)
+                Input.Initialize(this);
         }
 
         /// <summary>

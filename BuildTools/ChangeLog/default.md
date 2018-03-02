@@ -32,7 +32,7 @@ title: Changelog
 * (Enhancement)	- MedLaunch splashscreen now gets updated with the current number and build date during the appveyor auto-build process ([#208](https://github.com/Asnivor/MedLaunch/issues/208))
 * (BugFix) - Fixed game data panel exception due to null CRC and SHA1 values in the DAT DB ([#205](https://github.com/Asnivor/MedLaunch/issues/205))
 
-* ## Mednafen 1.21.x support ## ([#202](https://github.com/Asnivor/MedLaunch/issues/202))
+* ##### Mednafen 1.21.x support ## ([#202](https://github.com/Asnivor/MedLaunch/issues/202))
 * * Updated LogParser to handle new Mednafen version numbering and changes in stdout.txt behaviour
 * * MedLaunch will now get version and attached gamepad/joystick info from the console (rather than stdout.txt) if the mednafen version is new enough
 * * Added setting "video.fs.display" for all cores
