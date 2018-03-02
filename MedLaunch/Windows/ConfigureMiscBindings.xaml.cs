@@ -171,6 +171,21 @@ namespace MedLaunch
             ALLREMOVE.Click += new RoutedEventHandler(Modification_Click);
             HeaderMod.Items.Add(ALLREMOVE);
 
+            TBCM.Items.Add(new Separator());
+
+            MenuItem HeaderSDL = new MenuItem { Header = "Insert Undefined SDL Scancode" };
+            TBCM.Items.Add(HeaderSDL);
+
+            KeyboardTranslationSDL2 kb = new KeyboardTranslationSDL2(KeyboardType.UK);
+            var undef = kb.dxKeys.Where(a => a.DxUK.StartsWith("SDL_SCANCODE_")).ToList();
+
+            for (int i = 0; i < undef.Count(); i++)
+            {
+                MenuItem SDL = new MenuItem { Header = undef[i].DxUK, Name = "menuSDL" + undef[i].SDLK };
+                SDL.Click += new RoutedEventHandler(Macro_Click);
+                HeaderSDL.Items.Add(SDL);
+            }
+
 
             // get the mainwindow
             mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
@@ -1405,6 +1420,14 @@ namespace MedLaunch
 
                 case "menuREMOVESHIFT":
                     tb.Text = ConvertText(tb.Text.Replace("+shift", ""), ConversionOrder.Load);
+                    break;
+
+                default:
+                    if (menuName.Replace("menu", "").Contains("SDL"))
+                    {
+                        string sdluk = menuName.Replace("menuSDL", "");
+                        tb.Text = ConvertText("keyboard 0x0 " + sdluk, ConversionOrder.Load);
+                    }
                     break;
             }
         }
