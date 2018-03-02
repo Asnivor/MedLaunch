@@ -87,6 +87,7 @@ namespace MedLaunch
                 LogUnhandledException(exception.Exception, "TaskScheduler.UnobservedException");
 
 
+
             /* is the OS x64 or x86? */
 
             
@@ -111,6 +112,13 @@ namespace MedLaunch
             var splashScreen = new SplashScreen(@"Data\Graphics\mediconsplash-new.png");
             splashScreen.Show(false);
             Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
+            // Init the logparser instance
+            Classes.LogParser.Init();
+
+            // Init the versions instance
+            Classes.VersionChecker.Init();
+
             // show the initialisation window and begin checks
             ShowInitWindow();
             Thread.Sleep(1000);

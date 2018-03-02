@@ -483,7 +483,9 @@ namespace MedLaunch.Classes.GamesLibrary
             catch
             {
                 // IO error
-                MessageBox.Show("There was an error writing to the config file: \n\n" + DGStatesPath + "\n\n Do you have the file open elsewhere??", "IO ERROR!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessagePopper.ShowMessageDialog("There was an error writing to the config file: \n\n" + DGStatesPath + "\n\n Do you have the file open elsewhere??",
+                    "IO ERROR!", MessagePopper.DialogButtonOptions.YES);
+                //MessageBox.Show("There was an error writing to the config file: \n\n" + DGStatesPath + "\n\n Do you have the file open elsewhere??", "IO ERROR!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

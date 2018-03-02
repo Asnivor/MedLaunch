@@ -24,6 +24,7 @@ using System.Threading;
 using System.Windows.Threading;
 using MedLaunch.Classes.Controls;
 using MahApps.Metro.Controls;
+using MedLaunch.Common;
 
 namespace MedLaunch
 {
@@ -32,11 +33,15 @@ namespace MedLaunch
     /// </summary>
     public partial class ConfigureMiscBindings : ChildWindow
     {
-        public DeviceDefinition ControllerDefinition { get; set; }
-        public DeviceDefinition ControllerDefinitionWorking { get; set; }
+        public IDeviceDefinition ControllerDefinition { get; set; }
+        public IDeviceDefinition ControllerDefinitionWorking { get; set; }
         public MainWindow mw { get; set; }
         public IntPtr hWnd { get; set; }
         public ContextMenu TBCM { get; set; }
+
+        // state vars for modification child window
+        public Mapping tmpMap { get; set; }
+        public ConfigOrder tmpOrder { get; set; }
 
         public List<CustomInsert> CustomInsertList { get; set; }
 
@@ -54,70 +59,171 @@ namespace MedLaunch
             // textbox context menu
             TBCM = new ContextMenu();
 
-            // Mouse Buttons
-            MenuItem LMB = new MenuItem { Header = "Insert LeftMouseButton", Name = "menuLMB" };
-            LMB.Click += new RoutedEventHandler(Macro_Click);
-            TBCM.Items.Add(LMB);
-            MenuItem RMB = new MenuItem { Header = "Insert RightMouseButton", Name = "menuRMB" };
-            RMB.Click += new RoutedEventHandler(Macro_Click);
-            TBCM.Items.Add(RMB);
-            MenuItem MMB = new MenuItem { Header = "Insert MiddleMouseButton", Name = "menuMMB" };
-            MMB.Click += new RoutedEventHandler(Macro_Click);
-            TBCM.Items.Add(MMB);
-            MenuItem MSU = new MenuItem { Header = "Insert MouseScrollUp", Name = "menuMSU" };
-            MSU.Click += new RoutedEventHandler(Macro_Click);
-            TBCM.Items.Add(MSU);
-            MenuItem MSD = new MenuItem { Header = "Insert MouseScrollDown", Name = "menuMSD" };
-            MSD.Click += new RoutedEventHandler(Macro_Click);
-            TBCM.Items.Add(MSD);
-            MenuItem MSB3 = new MenuItem { Header = "Insert MouseButton3", Name = "menuMSB3" };
-            MSB3.Click += new RoutedEventHandler(Macro_Click);
-            TBCM.Items.Add(MSB3);
-            MenuItem MSB4 = new MenuItem { Header = "Insert MouseButton4", Name = "menuMSB4" };
-            MSB4.Click += new RoutedEventHandler(Macro_Click);
-            TBCM.Items.Add(MSB4);
-            MenuItem MSB5 = new MenuItem { Header = "Insert MouseButton5", Name = "menuMSB5" };
-            MSB5.Click += new RoutedEventHandler(Macro_Click);
-            TBCM.Items.Add(MSB5);
+            // context headings
+            Label heading = new Label();
+            heading.Content = "Pre-defined Macros";
+            TBCM.Items.Add(heading);
+            TBCM.Items.Add(new Separator());
+
+            MenuItem HeaderScan = new MenuItem { Header = "Keyboard Scancodes" };
+            TBCM.Items.Add(HeaderScan);
 
             TBCM.Items.Add(new Separator());
 
+            MenuItem ADDCTRL = new MenuItem { Header = "Add CTRL (+ctrl)", Name = "menuADDCTRL" };
+            ADDCTRL.Click += new RoutedEventHandler(Macro_Click);
+            HeaderScan.Items.Add(ADDCTRL);
+
+            MenuItem REMOVECTRL = new MenuItem { Header = "Remove CTRL (+ctrl)", Name = "menuREMOVECTRL" };
+            REMOVECTRL.Click += new RoutedEventHandler(Macro_Click);
+            HeaderScan.Items.Add(REMOVECTRL);
+
+            MenuItem ADDALT = new MenuItem { Header = "Add ALT (+alt)", Name = "menuADDALT" };
+            ADDALT.Click += new RoutedEventHandler(Macro_Click);
+            HeaderScan.Items.Add(ADDALT);
+
+            MenuItem REMOVEALT = new MenuItem { Header = "Remove ALT (+alt)", Name = "menuREMOVEALT" };
+            REMOVEALT.Click += new RoutedEventHandler(Macro_Click);
+            HeaderScan.Items.Add(REMOVEALT);
+
+            MenuItem ADDSHIFT = new MenuItem { Header = "Add SHIFT (+shift)", Name = "menuADDSHIFT" };
+            ADDSHIFT.Click += new RoutedEventHandler(Macro_Click);
+            HeaderScan.Items.Add(ADDSHIFT);
+
+            MenuItem REMOVESHIFT = new MenuItem { Header = "Remove SHIFT (+shift)", Name = "menuREMOVESHIFT" };
+            REMOVESHIFT.Click += new RoutedEventHandler(Macro_Click);
+            HeaderScan.Items.Add(REMOVESHIFT);
+
+
+
+            MenuItem HeaderMouse = new MenuItem { Header = "Mouse" };
+            TBCM.Items.Add(HeaderMouse);
+
+            // Mouse Buttons
+            MenuItem LMB = new MenuItem { Header = "Insert LeftMouseButton (button_left)", Name = "menuLMB" };
+            LMB.Click += new RoutedEventHandler(Macro_Click);
+            HeaderMouse.Items.Add(LMB);
+            MenuItem RMB = new MenuItem { Header = "Insert RightMouseButton (button_right)", Name = "menuRMB" };
+            RMB.Click += new RoutedEventHandler(Macro_Click);
+            HeaderMouse.Items.Add(RMB);
+            MenuItem MMB = new MenuItem { Header = "Insert MiddleMouseButton (button_middle)", Name = "menuMMB" };
+            MMB.Click += new RoutedEventHandler(Macro_Click);
+            HeaderMouse.Items.Add(MMB);
+
+            MenuItem MSU = new MenuItem { Header = "Insert MouseScrollUp", Name = "menuMSU" };
+            MSU.Click += new RoutedEventHandler(Macro_Click);
+            HeaderMouse.Items.Add(MSU);
+            MenuItem MSD = new MenuItem { Header = "Insert MouseScrollDown", Name = "menuMSD" };
+            MSD.Click += new RoutedEventHandler(Macro_Click);
+            HeaderMouse.Items.Add(MSD);
+
+
+            MenuItem MSB3 = new MenuItem { Header = "Insert MouseButton4 (button_3)", Name = "menuMSB3" };
+            MSB3.Click += new RoutedEventHandler(Macro_Click);
+            HeaderMouse.Items.Add(MSB3);
+            MenuItem MSB4 = new MenuItem { Header = "Insert MouseButton5 (button_4)", Name = "menuMSB4" };
+            MSB4.Click += new RoutedEventHandler(Macro_Click);
+            HeaderMouse.Items.Add(MSB4);
+            MenuItem MSB5 = new MenuItem { Header = "Insert MouseButton6 (button_5)", Name = "menuMSB5" };
+            MSB5.Click += new RoutedEventHandler(Macro_Click);
+            HeaderMouse.Items.Add(MSB5);
+
+            HeaderMouse.Items.Add(new Separator());
+
             // Mouse Axis
-            MenuItem MSXAXIS = new MenuItem { Header = "Insert Mouse X-Axis", Name = "menuMSXAXIS" };
+            MenuItem MSXAXIS = new MenuItem { Header = "Insert Mouse X-Axis (cursor_x-+)", Name = "menuMSXAXIS" };
             MSXAXIS.Click += new RoutedEventHandler(Macro_Click);
-            TBCM.Items.Add(MSXAXIS);
-            MenuItem MSYAXIS = new MenuItem { Header = "Insert Mouse Y-Axis", Name = "menuMSYAXIS" };
+            HeaderMouse.Items.Add(MSXAXIS);
+            MenuItem MSYAXIS = new MenuItem { Header = "Insert Mouse Y-Axis (cursor_y-+)", Name = "menuMSYAXIS" };
             MSYAXIS.Click += new RoutedEventHandler(Macro_Click);
-            TBCM.Items.Add(MSYAXIS);
+            HeaderMouse.Items.Add(MSYAXIS);
+
+            MenuItem MSYAXISMOUP = new MenuItem { Header = "Insert Mouse Motion UP (rel_y-)", Name = "menuMSYAXISMOUP" };
+            MSYAXISMOUP.Click += new RoutedEventHandler(Macro_Click);
+            HeaderMouse.Items.Add(MSYAXISMOUP);
+
+            MenuItem MSYAXISMODOWN = new MenuItem { Header = "Insert Mouse Motion DOWN (rel_y+)", Name = "menuMSYAXISMODOWN" };
+            MSYAXISMODOWN.Click += new RoutedEventHandler(Macro_Click);
+            HeaderMouse.Items.Add(MSYAXISMODOWN);
+
+            MenuItem MSYAXISMOLEFT = new MenuItem { Header = "Insert Mouse Motion LEFT (rel_x-)", Name = "menuMSYAXISMOLEFT" };
+            MSYAXISMOLEFT.Click += new RoutedEventHandler(Macro_Click);
+            HeaderMouse.Items.Add(MSYAXISMOLEFT);
+
+            MenuItem MSYAXISMORIGHT = new MenuItem { Header = "Insert Mouse Motion RIGHT (rel_x+)", Name = "menuMSYAXISMORIGHT" };
+            MSYAXISMORIGHT.Click += new RoutedEventHandler(Macro_Click);
+            HeaderMouse.Items.Add(MSYAXISMORIGHT);
+
+
+            //Label modifications = new Label();
+            //modifications.Content = "Modifications";
+            //TBCM.Items.Add(modifications);
+            TBCM.Items.Add(new Separator());
+
+            MenuItem HeaderMod = new MenuItem { Header = "Modifications" };
+            TBCM.Items.Add(HeaderMod);
+
+            MenuItem MODWINDOW = new MenuItem { Header = "Add/Edit Modifications", Name = "menuMODWINDOW" };
+            MODWINDOW.Click += new RoutedEventHandler(Modification_Click);
+            HeaderMod.Items.Add(MODWINDOW);
+
+            MenuItem ALLREMOVE = new MenuItem { Header = "Remove All Modifications", Name = "menuALLREMOVE" };
+            ALLREMOVE.Click += new RoutedEventHandler(Modification_Click);
+            HeaderMod.Items.Add(ALLREMOVE);
+
+            TBCM.Items.Add(new Separator());
+
+            MenuItem HeaderSDL = new MenuItem { Header = "Insert Undefined SDL Scancode" };
+            TBCM.Items.Add(HeaderSDL);
+
+            KeyboardTranslationSDL2 kb = new KeyboardTranslationSDL2(KeyboardType.UK);
+            var undef = kb.dxKeys.Where(a => a.DxUK.StartsWith("SDL_SCANCODE_")).ToList();
+
+            for (int i = 0; i < undef.Count(); i++)
+            {
+                MenuItem SDL = new MenuItem { Header = undef[i].DxUK, Name = "menuSDL" + undef[i].SDLK };
+                SDL.Click += new RoutedEventHandler(Macro_Click);
+                HeaderSDL.Items.Add(SDL);
+            }
+
 
             // get the mainwindow
             mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            
+
             //Input.Initialize(mw);
 
             // clear all queued presses
             Input.Instance.ClearEvents();
 
+            // event to handle the escape key
             this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
 
 
             _timer.Tick += Timer_Tick;
 
             // set the controller definition from mainwindow
-            /*
             if (mw.ControllerDefinition == null)
                 this.Close();
-                */
 
-            ControllerDefinition = MiscBindings.Misc(0);
+            ControllerDefinition = mw.ControllerDefinition;
 
+            // setup the working definition
+            ControllerDefinitionWorking = ((DeviceDefinition)ControllerDefinition as DeviceDefinition).CloneJson<DeviceDefinition>();
+
+            // build the port string
             string vPortStr = "";
             if (ControllerDefinition.VirtualPort > 0)
-                vPortStr = " - Virtual Port: " + ControllerDefinition.VirtualPort;
+            {
+                if (ControllerDefinition.VirtualPort == 666)
+                    vPortStr = " - Virtual Port: Famicom Expansion Port";
+                else
+                    vPortStr = " - Virtual Port: " + ControllerDefinition.VirtualPort;
+            }
+
 
 
             // set the title
-            titleTextBlock.Text = "Configure " + ControllerDefinition.DeviceName; // + vPortStr;
+            titleTextBlock.Text = "Configure " + ControllerDefinition.DeviceName + vPortStr;
 
             // headers
             Label headDesc = new Label();
@@ -152,8 +258,34 @@ namespace MedLaunch
             DynamicDataGrid.Children.Add(headCustom);
             */
 
+            BuildDynamicGrid();
+
+            // populate the image
+            BitmapImage b = GetImage(ControllerDefinition.DeviceName);
+            if (b != null)
+            {
+                img.Source = b;
+            }
+
+            // set childwindow size - this should be a little less than the actual window size
+            this.ChildWindowHeight = mw.ActualHeight - 100;
+
+            // now set the dynamic data scrollbar max height
+            scrData.MaxHeight = this.ChildWindowHeight - 230;
+        }
+
+        /// <summary>
+        /// Builds (or refreshes) the dynamic grid from the original Constroller Definition
+        /// </summary>
+        public void BuildDynamicGrid()
+        {
+            // remove current items
+            DynamicDataGrid.Children.Clear();
+
+            int count = 1;
+
             // loop through maplist and populate the dynamic data grid row by row
-            for (int i = 0; i < ControllerDefinition.MapList.Count; i++)
+            for (int i = 0; i < ControllerDefinition.MapList.Count; i++, count++)
             {
                 // description
                 Label desc = new Label();
@@ -165,7 +297,6 @@ namespace MedLaunch
                 desc.ToolTip = tt;
                 KeyboardNavigation.SetIsTabStop(desc, false);
                 DynamicDataGrid.Children.Add(desc);
-
 
                 // Config Primary               
                 TextBox configInfo = new TextBox();
@@ -186,7 +317,10 @@ namespace MedLaunch
                 KeyboardNavigation.SetTabIndex(configInfo, i + 1);
                 configInfo.ContextMenu = TBCM;
                 configInfo.MouseEnter += tb_MouseEnter;
+                configInfo.TextChanged += Data_TextChanged;
+
                 DynamicDataGrid.Children.Add(configInfo);
+                ModificationChecker(configInfo);
 
 
                 // Config Secondary               
@@ -208,9 +342,11 @@ namespace MedLaunch
                 KeyboardNavigation.SetTabIndex(configInfo2, i + 1 + ControllerDefinition.MapList.Count);
                 configInfo2.ContextMenu = TBCM;
                 configInfo2.MouseEnter += tb_MouseEnter;
+                configInfo2.TextChanged += Data_TextChanged;
                 DynamicDataGrid.Children.Add(configInfo2);
+                ModificationChecker(configInfo2);
 
-            
+
                 // Config Tertiary              
                 TextBox configInfo3 = new TextBox();
                 configInfo3.Name = "Tertiary_" + TranslateConfigName(ControllerDefinition.MapList[i].MednafenCommand);
@@ -230,38 +366,351 @@ namespace MedLaunch
                 KeyboardNavigation.SetTabIndex(configInfo3, i + 1 + (ControllerDefinition.MapList.Count * 2));
                 configInfo3.ContextMenu = TBCM;
                 configInfo3.MouseEnter += tb_MouseEnter;
+                configInfo3.TextChanged += Data_TextChanged;
                 DynamicDataGrid.Children.Add(configInfo3);
+                ModificationChecker(configInfo3);
 
-          
-                // configure button
-                /*
-                Button btn = new Button();
-                btn.Content = "Configure";
-                btn.Name = "btn" + TranslateConfigName(ControllerDefinition.MapList[i].MednafenCommand);
-                btn.Click += btnConfigureSingle_Click;
 
-                btn.SetValue(Grid.ColumnProperty, 4);
-                btn.SetValue(Grid.RowProperty, i + 1);
-                */
+                // primary logic button
+                Button btnLogic1 = new Button();
+                btnLogic1.Content = "OR";
+                btnLogic1.Name = "btnLogic1_" + TranslateConfigName(ControllerDefinition.MapList[i].MednafenCommand);
+                btnLogic1.Click += SetLogicButton_Click;
 
-                //KeyboardNavigation.SetIsTabStop(btn, false);
+                btnLogic1.SetValue(Grid.ColumnProperty, 2);
+                btnLogic1.SetValue(Grid.RowProperty, i + 1);
 
-                //DynamicDataGrid.Children.Add(btn);
+                try
+                {
+                    switch (ControllerDefinition.MapList[i].Primary.LogicString)
+                    {
+                        case "||":
+                        default: btnLogic1.Content = "OR"; break;
+                        case "&&": btnLogic1.Content = "AND"; break;
+                        case "&!": btnLogic1.Content = "ANOT"; break;
+                    }
+                }
+                catch (Exception)
+                {
+                    btnLogic1.Content = "OR";
+                }
+
+                DynamicDataGrid.Children.Add(btnLogic1);
+
+                // secondary logic button
+                Button btnLogic2 = new Button();
+                btnLogic2.Content = "OR";
+                btnLogic2.Name = "btnLogic2_" + TranslateConfigName(ControllerDefinition.MapList[i].MednafenCommand);
+                btnLogic2.Click += SetLogicButton_Click;
+
+                btnLogic2.SetValue(Grid.ColumnProperty, 4);
+                btnLogic2.SetValue(Grid.RowProperty, i + 1);
+
+                try
+                {
+                    switch (ControllerDefinition.MapList[i].Secondary.LogicString)
+                    {
+                        case "||":
+                        default: btnLogic2.Content = "OR"; break;
+                        case "&&": btnLogic2.Content = "AND"; break;
+                        case "&!": btnLogic2.Content = "ANOT"; break;
+                    }
+                }
+                catch (Exception)
+                {
+                    btnLogic1.Content = "OR";
+                }
+
+                DynamicDataGrid.Children.Add(btnLogic2);
 
             }
 
-            // populate the image
-            BitmapImage b = GetImage(ControllerDefinition.DeviceName);
-            if (b != null)
+            // populate custom manual options
+            if (ControllerDefinition.CustomOptions != null)
             {
-                img.Source = b;
+                for (int i = 0; i < ControllerDefinition.CustomOptions.Count(); i++)
+                {
+                    // description label
+                    Label desc = new Label();
+                    desc.Content = ControllerDefinition.CustomOptions[i].Description;
+                    desc.SetValue(Grid.ColumnProperty, 0);
+                    desc.SetValue(Grid.RowProperty, i + count);
+                    ToolTip tt = new System.Windows.Controls.ToolTip();
+                    tt.Content = ControllerDefinition.CustomOptions[i].MednafenCommand;
+                    desc.ToolTip = tt;
+                    KeyboardNavigation.SetIsTabStop(desc, false);
+                    DynamicDataGrid.Children.Add(desc);
+
+                    // now add the control
+                    switch (ControllerDefinition.CustomOptions[i].ContType)
+                    {
+                        case ContrType.SLIDER:
+                            // dockpanel layout similar to configs section
+                            DockPanel dp = new DockPanel();
+                            dp.SetValue(Grid.ColumnProperty, 1);
+                            dp.SetValue(Grid.ColumnSpanProperty, 10);
+                            dp.SetValue(Grid.RowProperty, i + count);
+
+                            Slider slider = new Slider();
+                            slider.SetValue(Grid.ColumnProperty, 1);
+                            slider.SetValue(Grid.ColumnSpanProperty, 10);
+                            slider.SetValue(Grid.RowProperty, i + count);
+                            slider.Minimum = (double)ControllerDefinition.CustomOptions[i].MinValue;
+                            slider.Maximum = (double)ControllerDefinition.CustomOptions[i].MaxValue;
+                            slider.IsSnapToTickEnabled = true;
+                            slider.TickFrequency = 0.1;
+                            DynamicDataGrid.Children.Add(slider);
+                            break;
+
+                        case ContrType.UPDOWN:
+                            NumericUpDown ud = new NumericUpDown();
+                            ud.Name = "CUSTOM_" + ControllerDefinition.CustomOptions[i].MednafenCommand.Replace(".", "__");
+                            ud.SetValue(Grid.ColumnProperty, 1);
+                            ud.SetValue(Grid.ColumnSpanProperty, 3);
+                            ud.SetValue(Grid.RowProperty, i + count);
+                            ud.Minimum = (double)ControllerDefinition.CustomOptions[i].MinValue;
+                            ud.Maximum = (double)ControllerDefinition.CustomOptions[i].MaxValue;
+                            ud.Interval = ControllerDefinition.CustomOptions[i].TickFrequency.Value;
+                            ud.ButtonsAlignment = ButtonsAlignment.Right;
+                            if (ControllerDefinition.CustomOptions[i].ConvType == ConvertionType.DOUBLE)
+                                ud.HasDecimals = true;
+                            else
+                                ud.HasDecimals = false;
+                            int tmp;
+                            bool test = int.TryParse(ControllerDefinition.CustomOptions[i].Config, out tmp);
+                            if (test)
+                                ud.Value = (double)tmp;
+                            DynamicDataGrid.Children.Add(ud);
+                            break;
+
+                        case ContrType.COMBO:
+                            ComboBox cb = new ComboBox();
+                            cb.Name = "CUSTOM_" + ControllerDefinition.CustomOptions[i].MednafenCommand.Replace(".", "__");
+                            cb.SetValue(Grid.ColumnProperty, 1);
+                            cb.SetValue(Grid.ColumnSpanProperty, 3);
+                            cb.SetValue(Grid.RowProperty, i + count);
+                            if (ControllerDefinition.CustomOptions[i].Values != null)
+                            {
+                                cb.ItemsSource = ControllerDefinition.CustomOptions[i].Values;
+                                /*
+                                foreach (var item in ControllerDefinition.CustomOptions[i].Values)
+                                {
+                                    ComboBoxItem cbi = new ComboBoxItem();
+                                    cbi.Content = item;
+                                    cb.Items.Add(cbi);
+                                }            
+                                */
+                            }
+
+                            DynamicDataGrid.Children.Add(cb);
+
+                            cb.SelectedValue = ControllerDefinition.CustomOptions[i].Config.Trim();
+                            //if (ControllerDefinition.CustomOptions[i].Config == "")
+                            //  cb.SelectedIndex = 0;
+
+                            break;
+                    }
+
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Called every time a textbox content changes
+        /// This should update the working copy of the controller definition
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Data_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            string tbName = tb.Name;
+
+            // get the command string
+            string cmd = tbName.Split(new string[] { "ControlCfg_" }, StringSplitOptions.None)[1].Replace("__", ".");
+
+            string text = tb.Text;
+            if (text.Contains("box cannot be empty"))
+                return;
+
+            // update that command
+            Mapping map = ControllerDefinitionWorking.MapList.Where(a => a.MednafenCommand == cmd).FirstOrDefault();
+
+            if (map == null)
+            {
+                MessagePopper.ShowMessageDialog("command was not found", "WARNING");
+                //MessageBox.Show("command was not found");
+                return;
             }
 
-            // set childwindow size - this should be a little less than the actual window size
-            this.ChildWindowHeight = mw.ActualHeight - 100;
+            string converted = string.Empty;
 
-            // now set the dynamic data scrollbar max height
-            scrData.MaxHeight = this.ChildWindowHeight - 230;
+            if (tbName.StartsWith("Primary_"))
+            {
+                converted = ConvertText(tb.Text, ConversionOrder.Save);
+                if (map.Primary == null)
+                    map.Primary = new Mapping();
+
+                if (tb.Text.Trim() == "")
+                {
+                    map.Primary = null;
+                }
+                else
+                {
+                    map.Primary = CreateMapFromString(map.Primary, converted);
+                }
+            }
+
+            if (tbName.StartsWith("Secondary_"))
+            {
+                converted = ConvertText(tb.Text, ConversionOrder.Save);
+                if (map.Secondary == null)
+                    map.Secondary = new Mapping();
+
+                if (tb.Text.Trim() == "")
+                {
+                    map.Secondary = null;
+                }
+                else
+                {
+                    map.Secondary = CreateMapFromString(map.Secondary, converted);
+                }
+            }
+
+            if (tbName.StartsWith("Tertiary_"))
+            {
+                converted = ConvertText(tb.Text, ConversionOrder.Save);
+                if (map.Tertiary == null)
+                    map.Tertiary = new Mapping();
+
+                if (tb.Text.Trim() == "")
+                {
+                    map.Tertiary = null;
+                }
+                else
+                {
+                    map.Tertiary = CreateMapFromString(map.Tertiary, converted);
+                }
+            }
+
+            string test = "0";
+        }
+
+        /// <summary>
+        /// Processes an input string that comes from a textbox
+        /// This expects a mednafen formated config string
+        /// </summary>
+        /// <param name="map"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private Mapping CreateMapFromString(Mapping map, string input)
+        {
+            if (input.Trim() == "")
+                return map;
+
+            string[] arr = input.Split(' ');
+
+            switch (arr[0])
+            {
+                case "keyboard":
+                    map.DeviceType = DeviceType.Keyboard;
+                    map.DeviceID = "0x0";
+                    map.Scale = null;
+                    map.Config = arr[2];
+                    break;
+                case "mouse":
+                    map.DeviceType = DeviceType.Mouse;
+                    map.DeviceID = "0x0";
+                    map.Config = arr[2];
+                    if (arr.Length == 4)
+                        map.Scale = arr[3];
+                    break;
+                case "joystick":
+                    map.DeviceType = DeviceType.Joystick;
+                    map.DeviceID = arr[1];
+                    map.Config = arr[2];
+                    if (arr.Length == 4)
+                        map.Scale = arr[3];
+                    break;
+            }
+
+            return map;
+        }
+
+        /// <summary>
+        /// When a logic button is clicked cycle through the available boolean operators
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SetLogicButton_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> ops = new List<string>
+            {
+                "OR",
+                "AND",
+                "ANOT"
+            };
+
+            Button b = sender as Button;
+            //MessageBox.Show("You clicked: " + TranslateControlName(b.Name).TrimStart('b').TrimStart('t').TrimStart('n'));
+            string btnName = b.Name;
+
+            for (int i = 0; i < ops.Count(); i++)
+            {
+                if (ops[i] == b.Content.ToString())
+                {
+                    if (i == ops.Count() - 1)
+                    {
+                        // this is the last entry
+                        b.Content = ops[0];
+                        break;
+                    }
+                    else
+                    {
+                        b.Content = ops[i + 1];
+                        break;
+                    }
+                }
+            }
+
+            // now update the working definitions
+
+            // get the command string
+            string cmd = btnName.Split(new string[] { "ControlCfg_" }, StringSplitOptions.None)[1].Replace("__", ".");
+
+            // update that command
+            Mapping map = ControllerDefinitionWorking.MapList.Where(a => a.MednafenCommand == cmd).FirstOrDefault();
+
+            if (map == null)
+            {
+                MessagePopper.ShowMessageDialog("command was not found", "WARNING");
+                //MessageBox.Show("command was not found");
+                return;
+            }
+
+            // get order identifier
+            string order = btnName.Split(new string[] { "_ControlCfg_" }, StringSplitOptions.None)[0];
+
+            switch (order)
+            {
+                case "btnLogic1":
+                    if (b.Content.ToString() == "OR")
+                        map.Primary.LogicString = "||";
+                    if (b.Content.ToString() == "AND")
+                        map.Primary.LogicString = "&&";
+                    if (b.Content.ToString() == "ANOT")
+                        map.Primary.LogicString = "&!";
+                    break;
+                case "btnLogic2":
+                    if (b.Content.ToString() == "OR")
+                        map.Secondary.LogicString = "||";
+                    if (b.Content.ToString() == "AND")
+                        map.Secondary.LogicString = "&&";
+                    if (b.Content.ToString() == "ANOT")
+                        map.Secondary.LogicString = "&!";
+                    break;
+            }
         }
 
         private async void btnConfigureSingle_Click(object sender, RoutedEventArgs e)
@@ -312,12 +761,40 @@ namespace MedLaunch
             return controlName.Replace("__", ".").Replace("ddddd", "-").Replace("ControlCfg_", "");
         }
 
-        private string GetConfigItem(string configItemName, ConfigOrder configOrder)
+        private static string GetConfigItem(string configItemName, ConfigOrder configOrder)
         {
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
 
+            // get the map
+            var map = (from a in mw.ControllerDefinition.MapList
+                       where a.MednafenCommand == configItemName
+                       select a).FirstOrDefault();
+
+            if (map == null || map.Primary == null)
+                return "";
+
+            switch (configOrder)
+            {
+                case ConfigOrder.Primary:
+                    if (map.Primary != null)
+                        return DeviceDefinition.ProcessBlock(map.Primary);
+                    break;
+                case ConfigOrder.Secondary:
+                    if (map.Secondary != null)
+                        return DeviceDefinition.ProcessBlock(map.Secondary);
+                    break;
+                case ConfigOrder.Tertiary:
+                    if (map.Tertiary != null)
+                        return DeviceDefinition.ProcessBlock(map.Tertiary);
+                    break;
+            }
+
+            return "";
+
+            /*
+
             // load cfg string
-            string cfg = (from a in ControllerDefinition.MapList
+            string cfg = (from a in mw.ControllerDefinition.MapList
                          where a.MednafenCommand == configItemName
                          select a.Config).FirstOrDefault();
 
@@ -354,6 +831,38 @@ namespace MedLaunch
             }
 
             return "";
+
+            */
+        }
+
+        private string GetConfigItemWorking(string configItemName, ConfigOrder configOrder)
+        {
+            // get the map
+            var map = (from a in ControllerDefinitionWorking.MapList
+                       where a.MednafenCommand == configItemName
+                       select a).FirstOrDefault();
+
+            if (map == null || map.Primary == null)
+                return "";
+
+            switch (configOrder)
+            {
+                case ConfigOrder.Primary:
+                    if (map.Primary != null)
+                        return DeviceDefinition.ProcessBlock(map.Primary);
+                    break;
+                case ConfigOrder.Secondary:
+                    if (map.Secondary != null)
+                        return DeviceDefinition.ProcessBlock(map.Secondary);
+                    break;
+                case ConfigOrder.Tertiary:
+                    if (map.Tertiary != null)
+                        return DeviceDefinition.ProcessBlock(map.Tertiary);
+                    break;
+            }
+
+            return "";
+
         }
 
         private static BitmapImage GetImage(string controllerName)
@@ -486,28 +995,15 @@ namespace MedLaunch
             this.Close();
         }
 
+        /// <summary>
+        /// Resets the form state back to how it was (pre-any changes)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
-            // reset all textboxes - first get all of the tbs on the page
-            UIHandler ui = UIHandler.GetChildren(DynamicDataGrid);
-            foreach (TextBox tb in ui.TextBoxes)
-            {
-                if (tb.Name.Contains("Primary_"))
-                {
-                    string prim = TranslateControlName(tb.Name.Replace("Primary_", ""));
-                    tb.Text = GetConfigItem(prim, ConfigOrder.Primary);
-                }
-                if (tb.Name.Contains("Secondary_"))
-                {
-                    string sec = TranslateControlName(tb.Name.Replace("Secondary_", ""));
-                    tb.Text = GetConfigItem(sec, ConfigOrder.Secondary);
-                }
-                if (tb.Name.Contains("Tertiary_"))
-                {
-                    string ter = TranslateControlName(tb.Name.Replace("Tertiary_", ""));
-                    tb.Text = GetConfigItem(ter, ConfigOrder.Tertiary);
-                }
-            }
+            ControllerDefinitionWorking = ((DeviceDefinition)ControllerDefinition as DeviceDefinition).CloneJson<DeviceDefinition>();
+            BuildDynamicGrid();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -548,73 +1044,93 @@ namespace MedLaunch
 
         }
 
+        /// <summary>
+        /// Parses all the form data into a List<Mapping> object and saves
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
-            // get all the textboxes on the page
+            // process all of the logic buttons
             UIHandler ui = UIHandler.GetChildren(DynamicDataGrid);
 
-            // all textboxes
-            List<TextBox> tbs = ui.TextBoxes;
+            // get all logic buttons
+            List<Button> tbs = ui.Buttons.Where(a => a.Name.Contains("btnLogic")).ToList();
 
-            // just the primaries
-            List<TextBox> prims = tbs.Where(a => a.Name.Contains("Primary_Control")).ToList();
-
-            List<Mapping> maps = new List<Mapping>();
-
-            // iterate through each primary textbox
-            foreach (TextBox tb in prims)
+            // iterate through each item in the maplist
+            for (int i = 0; i < ControllerDefinitionWorking.MapList.Count(); i++)
             {
-                string content = ConvertText(tb.Text, ConversionOrder.Save);
-                string name = tb.Name;
-                string configName = name.Replace("Primary_Control", "");
+                string ctrlStr = ControllerDefinitionWorking.MapList[i].MednafenCommand.Replace(".", "__");
 
-                // check whether secondary and teritary also exist
-                string sec = "";
-                string ter = "";
+                var line = tbs.Where(a => a.Name.Contains(ctrlStr)).ToList();
 
-                TextBox tSec = tbs.Where(a => a.Name.Contains("Secondary_Control" + configName)).First();
-                TextBox tTer = tbs.Where(a => a.Name.Contains("Tertiary_Control" + configName)).First();
+                Button prim = line.Where(a => a.Name.Contains("ogic1")).FirstOrDefault();
+                Button sec = line.Where(a => a.Name.Contains("ogic2")).FirstOrDefault();
 
-                sec = ConvertText(tSec.Text, ConversionOrder.Save);
-                ter = ConvertText(tTer.Text, ConversionOrder.Save); 
-
-                /*
-                // convert non-mednafen things
-                if (!content.StartsWith("joystick ") && !content.StartsWith("mouse "))
+                try
                 {
-                    // this is a translated keyboard entry
-                    content = KeyboardTranslation.DXtoSDLCode(content, KeyboardType.UK);
+                    switch (prim.Content.ToString())
+                    {
+                        case "OR": ControllerDefinitionWorking.MapList[i].Primary.LogicString = "||"; break;
+                        case "AND": ControllerDefinitionWorking.MapList[i].Primary.LogicString = "&&"; break;
+                        case "ANOT": ControllerDefinitionWorking.MapList[i].Primary.LogicString = "&!"; break;
+                    }
+                    switch (sec.Content.ToString())
+                    {
+                        case "OR": ControllerDefinitionWorking.MapList[i].Secondary.LogicString = "||"; break;
+                        case "AND": ControllerDefinitionWorking.MapList[i].Secondary.LogicString = "&&"; break;
+                        case "ANOT": ControllerDefinitionWorking.MapList[i].Secondary.LogicString = "&!"; break;
+                    }
                 }
-                if (!sec.StartsWith("joystick ") && !sec.StartsWith("mouse "))
+                catch (Exception)
                 {
-                    // this is a translated keyboard entry
-                    sec = KeyboardTranslation.DXtoSDLCode(sec, KeyboardType.UK);
+                    continue;
                 }
-                if (!ter.StartsWith("joystick ") && !ter.StartsWith("mouse "))
-                {
-                    // this is a translated keyboard entry
-                    ter = KeyboardTranslation.DXtoSDLCode(ter, KeyboardType.UK);
-                }
-                */
-
-                // build config string
-                string configData = ConfigLineBuilder(content, sec, ter);
-
-                // populate controller definition with new value
-                ControllerDefinitionWorking = ControllerDefinition;
-                
-                Mapping map = new Mapping();
-
-                map = ControllerDefinition.MapList.Where(a => a.MednafenCommand == TranslateControlName(configName.Replace("Cfg_", "").Replace("cfg_", ""))).First();
-                map.Config = configData;
-                maps.Add(map);                
             }
 
             // now write all data to mednafen config
-            bool write = DeviceDefinition.WriteDefinitionToConfigFile(maps);
+            bool write = DeviceDefinition.WriteDefinitionToConfigFile(ControllerDefinitionWorking.MapList);
 
             if (!write)
-                MessageBox.Show("There was a problem reading from/writing to the mednafen config file", "Possible IO Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessagePopper.ShowMessageDialog("There was a problem reading from/writing to the mednafen config file", "Possible IO Error");
+
+            // now write any custom objects
+            if (ControllerDefinitionWorking.CustomOptions != null)
+            {
+                for (int i = 0; i < ControllerDefinitionWorking.CustomOptions.Count(); i++)
+                {
+                    // updowns
+                    var updowns = ui.NumericUpDowns.Where(a => a.Name.Contains("CUSTOM_")).ToList();
+                    foreach (var u in updowns)
+                    {
+                        string name = u.Name.Replace("CUSTOM_", "").Replace("__", ".");
+                        var m = ControllerDefinitionWorking.CustomOptions.Where(a => a.MednafenCommand.Trim() == name).FirstOrDefault();
+                        if (m != null)
+                            m.Config = u.Value.ToString();
+                    }
+
+                    // combos
+                    var combos = ui.ComboBoxes.Where(a => a.Name.Contains("CUSTOM_")).ToList();
+                    foreach (var u in combos)
+                    {
+                        string name = u.Name.Replace("CUSTOM_", "").Replace("__", ".");
+                        var m = ControllerDefinitionWorking.CustomOptions.Where(a => a.MednafenCommand.Trim() == name).FirstOrDefault();
+                        if (m != null)
+                            m.Config = (string)u.SelectionBoxItem;
+                    }
+                }
+            }
+
+            // now write all data to mednafen config
+            write = true;
+            if (ControllerDefinitionWorking.CustomOptions != null && ControllerDefinitionWorking.CustomOptions.Count() != 0)
+                write = DeviceDefinition.WriteDefinitionToConfigFile(ControllerDefinitionWorking.CustomOptions);
+
+            if (!write)
+                MessagePopper.ShowMessageDialog("There was a problem reading from/writing to the mednafen config file", "Possible IO Error");
+
+
+            //MessageBox.Show("There was a problem reading from/writing to the mednafen config file", "Possible IO Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
             this.Close();
         }
@@ -686,7 +1202,8 @@ namespace MedLaunch
         {
             TextBox tb = sender as TextBox;
             _activeTB = null;
-            tb.Background = Brushes.Transparent;
+            //tb.Background = Brushes.Transparent;
+            ModificationChecker(tb);
 
             if (tb.Text == "<-- Primary box cannot be empty" || tb.Text == "<-- Secondary box cannot be empty")
             {
@@ -812,23 +1329,24 @@ namespace MedLaunch
             if (mnu == null)
                 return;
 
-            tb = ((ContextMenu)mnu.Parent).PlacementTarget as TextBox;
+            MenuItem par = ((MenuItem)mnu.Parent);
+            tb = ((ContextMenu)par.Parent).PlacementTarget as TextBox;
             string tbName = tb.Name;
 
             // set the textbox .text
             switch (menuName)
             {
                 case "menuLMB":
-                    tb.Text = ConvertText("mouse 0000000000000000 00000000", ConversionOrder.Load);
+                    tb.Text = ConvertText("mouse 0x0 button_left", ConversionOrder.Load);
                     break;
 
                 case "menuMMB":
-                    tb.Text = ConvertText("mouse 0000000000000000 00000001", ConversionOrder.Load);
+                    tb.Text = ConvertText("mouse 0x0 button_middle", ConversionOrder.Load);
                     break;
 
                 case "menuRMB":
-                    tb.Text = ConvertText("mouse 0000000000000000 00000002", ConversionOrder.Load);
-                    break;                
+                    tb.Text = ConvertText("mouse 0x0 button_right", ConversionOrder.Load);
+                    break;
 
                 case "menuMSU":
                     tb.Text = ConvertText("mouse 0000000000000000 00000003", ConversionOrder.Load);
@@ -839,26 +1357,381 @@ namespace MedLaunch
                     break;
 
                 case "menuMSB3":
-                    tb.Text = ConvertText("mouse 0000000000000000 00000005", ConversionOrder.Load);
+                    tb.Text = ConvertText("mouse 0x0 button_3", ConversionOrder.Load);
                     break;
 
                 case "menuMSB4":
-                    tb.Text = ConvertText("mouse 0000000000000000 00000006", ConversionOrder.Load);
+                    tb.Text = ConvertText("mouse 0x0 button_4", ConversionOrder.Load);
                     break;
 
                 case "menuMSB5":
-                    tb.Text = ConvertText("mouse 0000000000000000 00000007", ConversionOrder.Load);
+                    tb.Text = ConvertText("mouse 0x0 button_5", ConversionOrder.Load);
                     break;
 
                 case "menuMSXAXIS":
-                    tb.Text = ConvertText("mouse 0000000000000000 00008000", ConversionOrder.Load);
+                    tb.Text = ConvertText("mouse 0x0 cursor_x-+", ConversionOrder.Load);
                     break;
 
                 case "menuMSYAXIS":
-                    tb.Text = ConvertText("mouse 0000000000000000 00008001", ConversionOrder.Load);
+                    tb.Text = ConvertText("mouse 0x0 cursor_y-+", ConversionOrder.Load);
+                    break;
+
+                case "menuMSYAXISMOUP":
+                    tb.Text = ConvertText("mouse 0x0 rel_y-", ConversionOrder.Load);
+                    break;
+
+                case "menuMSYAXISMODOWN":
+                    tb.Text = ConvertText("mouse 0x0 rel_y+", ConversionOrder.Load);
+                    break;
+
+                case "menuMSYAXISMOLEFT":
+                    tb.Text = ConvertText("mouse 0x0 rel_x-", ConversionOrder.Load);
+                    break;
+
+                case "menuMSYAXISMORIGHT":
+                    tb.Text = ConvertText("mouse 0x0 rel_x+", ConversionOrder.Load);
+                    break;
+
+                case "menuADDCTRL":
+                    if (tb.Text.Contains("+ctrl"))
+                        break;
+                    tb.Text = ConvertText(tb.Text + "+ctrl", ConversionOrder.Load);
+                    break;
+
+                case "menuREMOVECTRL":
+                    tb.Text = ConvertText(tb.Text.Replace("+ctrl", ""), ConversionOrder.Load);
+                    break;
+
+                case "menuADDALT":
+                    if (tb.Text.Contains("+alt"))
+                        break;
+                    tb.Text = ConvertText(tb.Text + "+alt", ConversionOrder.Load);
+                    break;
+
+                case "menuREMOVEALT":
+                    tb.Text = ConvertText(tb.Text.Replace("+alt", ""), ConversionOrder.Load);
+                    break;
+
+                case "menuADDSHIFT":
+                    if (tb.Text.Contains("+shift"))
+                        break;
+                    tb.Text = ConvertText(tb.Text + "+shift", ConversionOrder.Load);
+                    break;
+
+                case "menuREMOVESHIFT":
+                    tb.Text = ConvertText(tb.Text.Replace("+shift", ""), ConversionOrder.Load);
+                    break;
+
+                default:
+                    if (menuName.Replace("menu", "").Contains("SDL"))
+                    {
+                        string sdluk = menuName.Replace("menuSDL", "");
+                        tb.Text = ConvertText("keyboard 0x0 " + sdluk, ConversionOrder.Load);
+                    }
                     break;
             }
         }
+
+        /// <summary>
+        /// Checks a textbox for modifications - if found turn it blue
+        /// If not found - set it transparent
+        /// </summary>
+        /// <param name="tb"></param>
+        private void ModificationChecker(TextBox tb)
+        {
+            FieldType order = FieldType.None;
+
+            var map = GetMapFromTextBox(tb);
+            if (map == null)
+            {
+                tb.Background = Brushes.Transparent;
+                return;
+            }
+
+            if (tb.Name.Contains("Primary"))
+            {
+                order = FieldType.Primary;
+                if (map.Primary == null ||
+                    (map.Primary.Scale == null || map.Primary.Scale.Trim() == "") &&
+                    (map.Primary.GFlag == null || map.Primary.GFlag.Trim() == "") &&
+                    (!map.Primary.Config.EndsWith("-+g")))
+                {
+                    tb.Background = Brushes.Transparent;
+                }
+                else
+                {
+                    Thread.Sleep(100);
+                    tb.Background = Brushes.RoyalBlue;
+                }
+
+            }
+            else if (tb.Name.Contains("Secondary"))
+            {
+                order = FieldType.Secondary;
+                if (map.Secondary == null ||
+                    (map.Secondary.Scale == null || map.Secondary.Scale.Trim() == "") &&
+                    (map.Secondary.GFlag == null || map.Secondary.GFlag.Trim() == "") &&
+                    (!map.Secondary.Config.EndsWith("-+g")))
+                {
+                    tb.Background = Brushes.Transparent;
+                }
+                else
+                {
+                    Thread.Sleep(100);
+                    tb.Background = Brushes.RoyalBlue;
+                }
+
+            }
+            else if (tb.Name.Contains("Tertiary"))
+            {
+                order = FieldType.Tertiary;
+                if (map.Tertiary == null ||
+                    (map.Tertiary.Scale == null || map.Tertiary.Scale.Trim() == "") &&
+                    (map.Tertiary.GFlag == null || map.Tertiary.GFlag.Trim() == "") &&
+                    (!map.Tertiary.Config.EndsWith("-+g")))
+                {
+                    tb.Background = Brushes.Transparent;
+                }
+                else
+                {
+                    Thread.Sleep(100);
+                    tb.Background = Brushes.RoyalBlue;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Manages (initially hidden) modifications for each field
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void Modification_Click(Object sender, RoutedEventArgs e)
+        {
+            // get menuitem
+            MenuItem mnu = sender as MenuItem;
+            string menuName = mnu.Name;
+
+            // get parent textbox
+            TextBox tb = null;
+
+            if (mnu == null)
+                return;
+
+            MenuItem par = ((MenuItem)mnu.Parent);
+            tb = ((ContextMenu)par.Parent).PlacementTarget as TextBox;
+            string tbName = tb.Name;
+
+            FieldType order = FieldType.None;
+
+            if (tb.Name.Contains("Primary"))
+            {
+                order = FieldType.Primary;
+                tmpOrder = ConfigOrder.Primary;
+            }
+            else if (tb.Name.Contains("Secondary"))
+            {
+                order = FieldType.Secondary;
+                tmpOrder = ConfigOrder.Secondary;
+            }
+            else if (tb.Name.Contains("Tertiary"))
+            {
+                order = FieldType.Tertiary;
+                tmpOrder = ConfigOrder.Tertiary;
+            }
+
+            // get the map
+            var map = GetMapFromTextBox(tb);
+            tmpMap = GetMapFromTextBox(tb);
+            if (map == null)
+                return;
+
+            // process the various modification options
+            switch (menuName)
+            {
+                // launch modification window
+                case "menuMODWINDOW":
+                    LaunchModWindow();
+                    break;
+                // remove all modifications
+                case "menuALLREMOVE":
+                    if (order == FieldType.None)
+                        return;
+
+                    switch (order)
+                    {
+                        case FieldType.Primary:
+                            if (map.Primary == null)
+                                return;
+                            map.Primary.Scale = null;
+                            map.Primary.ScancodeModifier = null;
+                            break;
+                        case FieldType.Secondary:
+                            if (map.Secondary == null)
+                                return;
+                            map.Secondary.Scale = null;
+                            map.Secondary.ScancodeModifier = null;
+                            break;
+                        case FieldType.Tertiary:
+                            if (map.Tertiary == null)
+                                return;
+                            map.Tertiary.Scale = null;
+                            map.Tertiary.ScancodeModifier = null;
+                            break;
+                    }
+                    break;
+            }
+
+            ModificationChecker(tb);
+        }
+
+        /// <summary>
+        /// shows the modification window for the selected textbox
+        /// </summary>
+        private async void LaunchModWindow()
+        {
+            // basic validation
+            string nobinding = "Please configure a binding before attempting to add modifiers to this field";
+            string noprimary = "Please ensure that you have configured the primary field for this option before attempting to add modifiers";
+            string nosecondary = "Please ensure that you have configured the secondary field for this option before attempting to add modifiers";
+
+            switch (tmpOrder)
+            {
+                case ConfigOrder.Primary:
+                    if (tmpMap.Primary == null || tmpMap.Primary.Config.Trim() == "")
+                    {
+                        MessagePopper.ShowMessageDialog(nobinding, "No Binding Data Found");
+                        //MessageBox.Show(nobinding, "No Binding Data Found", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        return;
+                    }
+
+                    break;
+                case ConfigOrder.Secondary:
+                    if (tmpMap.Secondary == null || tmpMap.Secondary.Config.Trim() == "")
+                    {
+                        MessagePopper.ShowMessageDialog(nobinding, "No Binding Data Found");
+                        return;
+                    }
+                    if (tmpMap.Primary == null || tmpMap.Primary.Config.Trim() == "")
+                    {
+                        MessagePopper.ShowMessageDialog(noprimary, "No Primary Binding Data Found");
+                        //MessageBox.Show(noprimary, "No Primary Binding Data Found", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        return;
+                    }
+                    break;
+                case ConfigOrder.Tertiary:
+                    if (tmpMap.Tertiary == null || tmpMap.Tertiary.Config.Trim() == "")
+                    {
+                        MessagePopper.ShowMessageDialog(nobinding, "No Binding Data Found");
+                        return;
+                    }
+                    if (tmpMap.Secondary == null || tmpMap.Secondary.Config.Trim() == "")
+                    {
+                        MessagePopper.ShowMessageDialog(nosecondary, "No Secondary Binding Data Found");
+                        return;
+                    }
+                    break;
+            }
+
+            Grid RootGrid = (Grid)mw.FindName("RootGrid");
+            await mw.ShowChildWindowAsync(new ConfigureModWindow()
+            {
+                IsModal = true,
+                AllowMove = false,
+                Title = "Controller Cell Modifications",
+                CloseOnOverlay = false,
+                ShowCloseButton = false,
+                CloseByEscape = true,
+            }, RootGrid);
+
+            // update the working collection and the textbox itself
+            var col = ControllerDefinitionWorking.MapList.Where(a => a.MednafenCommand == tmpMap.MednafenCommand).FirstOrDefault();
+            switch (tmpOrder)
+            {
+                case ConfigOrder.Primary:
+                    col.Primary = tmpMap.Primary;
+                    string primTxt = GetConfigItemWorking(col.MednafenCommand, ConfigOrder.Primary);
+                    TextBox t1 = GetTextBoxFromMap(col, ConfigOrder.Primary);
+                    t1.Text = ConvertText(primTxt, ConversionOrder.Load);
+                    ModificationChecker(t1);
+                    break;
+                case ConfigOrder.Secondary:
+                    col.Secondary = tmpMap.Secondary;
+                    string secTxt = GetConfigItemWorking(col.MednafenCommand, ConfigOrder.Secondary);
+                    TextBox t2 = GetTextBoxFromMap(col, ConfigOrder.Secondary);
+                    t2.Text = ConvertText(secTxt, ConversionOrder.Load);
+                    ModificationChecker(t2);
+                    break;
+                case ConfigOrder.Tertiary:
+                    col.Tertiary = tmpMap.Tertiary;
+                    string terTxt = GetConfigItemWorking(col.MednafenCommand, ConfigOrder.Tertiary);
+                    TextBox t3 = GetTextBoxFromMap(col, ConfigOrder.Tertiary);
+                    t3.Text = ConvertText(terTxt, ConversionOrder.Load);
+                    ModificationChecker(t3);
+                    break;
+            }
+
+            //Increment();
+        }
+
+
+
+        private enum FieldType
+        {
+            None,
+            Primary,
+            Secondary,
+            Tertiary
+        }
+
+
+        /// <summary>
+        /// Returns the relevant map object for the specified tb
+        /// </summary>
+        /// <param name="tb"></param>
+        /// <returns></returns>
+        private Mapping GetMapFromTextBox(TextBox tb)
+        {
+            string tbName = tb.Name;
+
+            string cName = string.Empty;
+            cName = tbName.Split(new string[] { "ControlCfg_" }, StringSplitOptions.None)[1].Replace("__", ".");
+
+            var map = ControllerDefinitionWorking.MapList.Where(a => a.MednafenCommand == cName).FirstOrDefault();
+
+            if (map == null)
+                return null;
+
+            return map;
+        }
+
+        /// <summary>
+        /// Returns the relevant tb for the specified map object
+        /// </summary>
+        /// <param name="tb"></param>
+        /// <returns></returns>
+        private TextBox GetTextBoxFromMap(Mapping map, ConfigOrder order)
+        {
+            string command = map.MednafenCommand;
+
+            var boxes = UIHandler.GetChildren(DynamicDataGrid).TextBoxes.Where(a => a.Name.Contains(command.Replace(".", "__"))).ToList();
+
+            switch (order)
+            {
+                case ConfigOrder.Primary:
+                    TextBox tP = boxes.Where(a => a.Name.Contains("Primary")).FirstOrDefault();
+                    return tP;
+                case ConfigOrder.Secondary:
+                    TextBox tS = boxes.Where(a => a.Name.Contains("Secondary")).FirstOrDefault();
+                    return tS;
+                case ConfigOrder.Tertiary:
+                    TextBox tT = boxes.Where(a => a.Name.Contains("Tertiary")).FirstOrDefault();
+                    return tT;
+            }
+
+            return null;
+        }
+
+
 
         /// <summary>
         /// handles conversions between how control bindings are displayed versus how mednafen stores them in its config file
@@ -871,54 +1744,137 @@ namespace MedLaunch
             // create the output string
             string output = input;
 
+            // see if there is a scale factor present and remove this
+            string scale = string.Empty;
+            string[] arr = output.Split(' ').Where(a => a != "").ToArray();
+            input = string.Empty;
+            if (arr.Length == 4)
+            {
+                scale = arr[3];
+
+                for (int i = 0; i < 3; i++)
+                {
+                    input += arr[i] + " ";
+                }
+                input.TrimEnd();
+            }
+            else
+                input = output.TrimEnd();
+
             switch (conversionOrder)
             {
                 // Text is being loaded FROM mednafen config
                 case ConversionOrder.Load:
-                    if (input.StartsWith("keyboard "))
+                    if (input.StartsWith("keyboard 0x0 "))
                     {
+                        string b1 = string.Empty;
+                        if (input.Contains("+ctrl"))
+                        {
+                            b1 += "+ctrl";
+                            input = input.Replace("+ctrl", "");
+                        }
+                        if (input.Contains("+alt"))
+                        {
+                            b1 += "+alt";
+                            input = input.Replace("+alt", "");
+                        }
+                        if (input.Contains("+shift"))
+                        {
+                            b1 += "+shift";
+                            input = input.Replace("+shift", "");
+                        }
+
                         // keyboard binding
-                        output = KeyboardTranslation.SDLCodetoDx(input, KeyboardType.UK);
+                        output = KeyboardTranslationSDL2.SDLCodetoDx(input, KeyboardType.UK) + b1;
                     }
-                    if (input.StartsWith("mouse "))
+                    if (input.StartsWith("mouse 0x0 "))
                     {
                         // mouse binding
-                        if (input.Contains("mouse 0000000000000000 00000000")) { output = "LeftMouseButton"; }
-                        if (input.Contains("mouse 0000000000000000 00000001")) { output = "MiddleMouseButton"; }
-                        if (input.Contains("mouse 0000000000000000 00000002")) { output = "RightMouseButton"; }
+                        if (input.Contains("mouse 0x0 button_left")) { output = "LeftMouseButton"; }
+                        if (input.Contains("mouse 0x0 button_middle")) { output = "MiddleMouseButton"; }
+                        if (input.Contains("mouse 0x0 button_right")) { output = "RightMouseButton"; }
+
                         if (input.Contains("mouse 0000000000000000 00000003")) { output = "MouseScrollWheelUp"; }
                         if (input.Contains("mouse 0000000000000000 00000004")) { output = "MouseScrollWheelDown"; }
-                        if (input.Contains("mouse 0000000000000000 00000005")) { output = "MouseButton3"; }
-                        if (input.Contains("mouse 0000000000000000 00000006")) { output = "MouseButton4"; }
-                        if (input.Contains("mouse 0000000000000000 00000007")) { output = "MouseButton5"; }
-                        if (input.Contains("mouse 0000000000000000 00008000")) { output = "MouseX-Axis"; }
-                        if (input.Contains("mouse 0000000000000000 00008001")) { output = "MouseY-Axis"; }
+                        if (input.Contains("mouse 0x0 button_3")) { output = "MouseButton4"; }
+                        if (input.Contains("mouse 0x0 button_4")) { output = "MouseButton5"; }
+                        if (input.Contains("mouse 0x0 button_5")) { output = "MouseButton6"; }
+
+                        if (input.Contains("mouse 0x0 cursor_x-+")) { output = "MouseX-Axis (Cursor)"; }
+                        if (input.Contains("mouse 0x0 cursor_y-+")) { output = "MouseY-Axis (Cursor)"; }
+                        if (input.Contains("mouse 0x0 rel_y-")) { output = "Mouse RelativeY-"; }
+                        if (input.Contains("mouse 0x0 rel_y+")) { output = "Mouse RelativeY+"; }
+                        if (input.Contains("mouse 0x0 rel_x-")) { output = "Mouse RelativeX-"; }
+                        if (input.Contains("mouse 0x0 rel_x+")) { output = "Mouse RelativeX+"; }
                     }
+
                     if (input.StartsWith("joystick "))
                     {
-                        // joystick binding - not currently used
+                        // joystick binding - just remove scale factor from the end if present
+                        //output = input.Replace(" " + scale, "").TrimEnd();
+                        //return input;
                     }
                     break;
 
                 // Text is being saved TO mednafen config
                 case ConversionOrder.Save:
 
-                    if (input == "LeftMouseButton") { output = "mouse 0000000000000000 00000000"; return output; }
-                    if (input == "MiddleMouseButton") { output = "mouse 0000000000000000 00000001"; return output; }
-                    if (input == "RightMouseButton") { output = "mouse 0000000000000000 00000002"; return output; }
+                    if (input == "LeftMouseButton") { output = "mouse 0x0 button_left"; output += (" " + scale).TrimEnd(); return output; }
+                    if (input == "MiddleMouseButton") { output = "mouse 0x0 button_middle"; output += (" " + scale).TrimEnd(); return output; }
+                    if (input == "RightMouseButton") { output = "mouse 0x0 button_right"; output += (" " + scale).TrimEnd(); return output; }
+
                     if (input == "MouseScrollWheelUp") { output = "mouse 0000000000000000 00000003"; return output; }
                     if (input == "MouseScrollWheelDown") { output = "mouse 0000000000000000 00000004"; return output; }
-                    if (input == "MouseButton3") { output = "mouse 0000000000000000 00000005"; return output; }
-                    if (input == "MouseButton4") { output = "mouse 0000000000000000 00000006"; return output; }
-                    if (input == "MouseButton5") { output = "mouse 0000000000000000 00000007"; return output; }
-                    if (input == "MouseX-Axis") { output = "mouse 0000000000000000 00008000"; return output; }
-                    if (input == "MouseY-Axis") { output = "mouse 0000000000000000 00008001"; return output; }
+                    if (input == "MouseButton3") { output = "mouse 0000000000000000 00000005"; output += (" " + scale).TrimEnd(); return output; }
+                    if (input == "MouseButton4") { output = "mouse 0000000000000000 00000006"; output += (" " + scale).TrimEnd(); return output; }
+                    if (input == "MouseButton5") { output = "mouse 0000000000000000 00000007"; output += (" " + scale).TrimEnd(); return output; }
+                    if (input == "MouseX-Axis") { output = "mouse 0000000000000000 00008000"; output += (" " + scale).TrimEnd(); return output; }
+                    if (input == "MouseY-Axis") { output = "mouse 0000000000000000 00008001"; output += (" " + scale).TrimEnd(); return output; }
 
+                    if (input == "MouseX-Axis (Cursor)") { output = "mouse 0x0 cursor_x-+"; output += (" " + scale).TrimEnd(); return output; }
+                    if (input == "MouseY-Axis (Cursor)") { output = "mouse 0x0 cursor_y-+"; output += (" " + scale).TrimEnd(); return output; }
+                    if (input == "Mouse RelativeY-") { output = "mouse 0x0 rel_y-"; output += (" " + scale).TrimEnd(); return output; }
+                    if (input == "Mouse RelativeY+") { output = "mouse 0x0 rel_y+"; output += (" " + scale).TrimEnd(); return output; }
+                    if (input == "Mouse RelativeX-") { output = "mouse 0x0 rel_x-"; output += (" " + scale).TrimEnd(); return output; }
+                    if (input == "Mouse RelativeX+") { output = "mouse 0x0 rel_x+"; output += (" " + scale).TrimEnd(); return output; }
+
+                    if (input.StartsWith("joystick "))
+                    {
+                        /*
+                        // joystick binding
+                        string[] joys = input.Split(' ').Where(a => a != "").ToArray();
+
+                        // build the new string
+                        string joy = (joys[0] + " " + joys[1] + " " + joys[2] + " " + scale).TrimEnd();
+
+                        // remove g
+                        //joy.TrimEnd('g');
+
+                        return joy;
+                        */
+                    }
 
                     if (!input.StartsWith("mouse ") && !input.StartsWith("joystick "))
                     {
                         // assume keyboard
-                        output = KeyboardTranslation.DXtoSDLCode(input, KeyboardType.UK);
+                        string b2 = string.Empty;
+                        if (input.Contains("+ctrl"))
+                        {
+                            b2 += "+ctrl";
+                            input = input.Replace("+ctrl", "");
+                        }
+                        if (input.Contains("+alt"))
+                        {
+                            b2 += "+alt";
+                            input = input.Replace("+alt", "");
+                        }
+                        if (input.Contains("+shift"))
+                        {
+                            b2 += "+shift";
+                            input = input.Replace("+shift", "");
+                        }
+
+                        output = KeyboardTranslationSDL2.DXtoSDLCode(input, KeyboardType.UK) + b2;
                     }
                     break;
             }
@@ -946,6 +1902,33 @@ namespace MedLaunch
             ToolTip tt = new System.Windows.Controls.ToolTip();
             tt.Content = ttText;
             tb.ToolTip = tt;
+        }
+
+        private void ChildWindow_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChildWindow_Deactivated(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChildWindow_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if (Input.Instance.GotFocus)
+                Input.Instance.GotFocus = false;
+        }
+
+        private void ChildWindow_GotFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChildWindow_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if (!Input.Instance.GotFocus)
+                Input.Instance.GotFocus = true;
         }
     }
 

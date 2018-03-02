@@ -47,6 +47,15 @@ namespace MedLaunch.Models
         public bool? osd__alpha_blend { get; set; }
         public int? osd__message_display_time { get; set; }          // 0 through 15000
         public int? osd__state_display_time { get; set; }            // 0 through 15000
+
+        // new FPS options
+        public bool? fps__autoenable { get; set; }
+        public string fps__bgcolor { get; set; }                        // 0x00000000 through 0xFFFFFFFF           
+        public string fps__font { get; set; }                          //  5x7 6x9 6x12 6x13 9x18
+        public string fps__position { get; set; }                   // upper_left  upper_right
+        public int? fps__scale { get; set; }                        // 0 through 32
+        public string fps__textcolor { get; set; }                  // 0x00000000 through 0xFFFFFFFF
+
         public int? qtrecord__h_double_threshold { get; set; }       // 0 through 1073741824
         public string qtrecord__vcodec { get; set; }                // raw cscd png
         public int? qtrecord__w_double_threshold { get; set; }       // 0 through 1073741824
@@ -63,10 +72,11 @@ namespace MedLaunch.Models
         public bool? video__blit_timesync { get; set; }
         public string video__deinterlacer { get; set; }             // weave bob bob_offset
         public bool? video__disable_composition { get; set; }
-        public string video__driver { get; set; }                    // opengl sdl overlay
+        public string video__driver { get; set; }                    // default opengl, softfb (old: opengl sdl overlay)
         public bool? video__frameskip { get; set; }
         public bool? video__fs { get; set; }
         public bool? video__glvsync { get; set; }
+        public int? video__fs__display { get; set; }              // -1 through 32767
 
         // generic system specific settings -   <system>.setting
         public bool? __enable { get; set; }
@@ -85,6 +95,8 @@ namespace MedLaunch.Models
         public int? __yres { get; set; }                            // 0 through 65536
         public double? __yscale { get; set; }                       // 0.01 through 256
         public double? __yscalefs { get; set; }                     // 0.01 through 256
+
+        
 
         // system specific settings
 
@@ -564,6 +576,7 @@ namespace MedLaunch.Models
         public string ss__debugger__disfontsize { get; set; }
         public string ss__debugger__memcharenc { get; set; }
 
+        /* moved into CONTROLS section - 2018-03-01
         public string ss__input__port1__3dpad__mode__defpos { get; set; }
         public string ss__input__port2__3dpad__mode__defpos { get; set; }
         public string ss__input__port3__3dpad__mode__defpos { get; set; }
@@ -576,6 +589,7 @@ namespace MedLaunch.Models
         public string ss__input__port10__3dpad__mode__defpos { get; set; }
         public string ss__input__port11__3dpad__mode__defpos { get; set; }
         public string ss__input__port12__3dpad__mode__defpos { get; set; }
+        */
 
         public bool? ss__enable { get; set; }
         public bool? ss__forcemono { get; set; }
@@ -622,58 +636,74 @@ namespace MedLaunch.Models
         public double? psx__input__mouse_sensitivity { get; set; }         // 0.25 through 4
 
         public string psx__input__port1 { get; set; }
+        /* removed 2018-03-01
         public double? psx__input__port1__analogjoy__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port1__dualanalog__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port1__dualshock__axis_scale { get; set; }       // 1 through 1.5
+        */
         public string psx__input__port1__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public bool? psx__input__port1__memcard { get; set; }
 
         public string psx__input__port2 { get; set; }
+        /* removed 2018-03-01
         public double? psx__input__port2__analogjoy__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port2__dualanalog__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port2__dualshock__axis_scale { get; set; }       // 1 through 1.5
+        */
         public string psx__input__port2__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public bool? psx__input__port2__memcard { get; set; }
 
         public string psx__input__port3 { get; set; }
+        /* removed 2018-03-01
         public double? psx__input__port3__analogjoy__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port3__dualanalog__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port3__dualshock__axis_scale { get; set; }       // 1 through 1.5
+        */
         public string psx__input__port3__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public bool? psx__input__port3__memcard { get; set; }
 
         public string psx__input__port4 { get; set; }
+        /* removed 2018-03-01
         public double? psx__input__port4__analogjoy__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port4__dualanalog__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port4__dualshock__axis_scale { get; set; }       // 1 through 1.5
+        */
         public string psx__input__port4__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public bool? psx__input__port4__memcard { get; set; }
 
         public string psx__input__port5 { get; set; }
+        /* removed 2018-03-01
         public double? psx__input__port5__analogjoy__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port5__dualanalog__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port5__dualshock__axis_scale { get; set; }       // 1 through 1.5
+        */
         public string psx__input__port5__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public bool? psx__input__port5__memcard { get; set; }
 
         public string psx__input__port6 { get; set; }
+        /* removed 2018-03-01
         public double? psx__input__port6__analogjoy__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port6__dualanalog__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port6__dualshock__axis_scale { get; set; }       // 1 through 1.5
+        */
         public string psx__input__port6__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public bool? psx__input__port6__memcard { get; set; }
 
         public string psx__input__port7 { get; set; }
+        /* removed 2018-03-01
         public double? psx__input__port7__analogjoy__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port7__dualanalog__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port7__dualshock__axis_scale { get; set; }       // 1 through 1.5
+        */
         public string psx__input__port7__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public bool? psx__input__port7__memcard { get; set; }
 
         public string psx__input__port8 { get; set; }
+        /* removed 2018-03-01
         public double? psx__input__port8__analogjoy__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port8__dualanalog__axis_scale { get; set; }       // 1 through 1.5
         public double? psx__input__port8__dualshock__axis_scale { get; set; }       // 1 through 1.5
+        */
         public string psx__input__port8__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public bool? psx__input__port8__memcard { get; set; }
 
@@ -776,7 +806,7 @@ namespace MedLaunch.Models
         public string snes__input__port6 { get; set; }
         public string snes__input__port7 { get; set; }
         public string snes__input__port8 { get; set; }  
-        */      
+        */
 
         public double? snes__mouse_sensitivity { get; set; }                    // 0.125 through 2
 
@@ -927,6 +957,16 @@ namespace MedLaunch.Models
                 osd__alpha_blend = true,                            // control placed
                 osd__message_display_time = 2500,                   // control placed
                 osd__state_display_time = 2000,                     // control placed
+
+                // new FPS options
+                fps__autoenable = false,
+                fps__bgcolor = "0x80000000",
+                fps__font = "5x7",
+                fps__position = "upper_left",
+                fps__scale = 1,
+                fps__textcolor = "0xFFFFFFFF",
+
+
                 qtrecord__h_double_threshold = 256,
                 qtrecord__w_double_threshold = 384,
                 qtrecord__vcodec = "cscd",
@@ -943,10 +983,12 @@ namespace MedLaunch.Models
                 video__blit_timesync = true,                        // control placed
                 video__deinterlacer = "weave",                      // control placed
                 video__disable_composition = true,                  // control placed
-                video__driver = "opengl",                           // control placed
+                video__driver = "default",                           // control placed
                 video__frameskip = true,                            // control placed
                 video__fs = false,                                  // control placed
                 video__glvsync = true,                              // control placed
+
+                video__fs__display = -1,                          // -1 through 32767
 
                 // generic system specific settings
                 __enable = true,
@@ -965,6 +1007,8 @@ namespace MedLaunch.Models
                 __yres = 0,                                         // control placed
                 __yscale = 1,                                       // control placed
                 __yscalefs = 1,                                      // control placed
+
+                
 
                 // system specific settings
 
@@ -1471,6 +1515,7 @@ namespace MedLaunch.Models
                 ss__input__sport1__multitap = false,
                 ss__input__sport2__multitap = false,
 
+                /* moved into controls section
                 ss__input__port10__3dpad__mode__defpos = "digital",
                 ss__input__port11__3dpad__mode__defpos = "digital",
                 ss__input__port12__3dpad__mode__defpos = "digital",
@@ -1483,6 +1528,7 @@ namespace MedLaunch.Models
                 ss__input__port7__3dpad__mode__defpos = "digital",
                 ss__input__port8__3dpad__mode__defpos = "digital",
                 ss__input__port9__3dpad__mode__defpos = "digital",
+                */
 
 
                 // playstation
@@ -1496,51 +1542,51 @@ namespace MedLaunch.Models
                 psx__input__analog_mode_ct = false,                         // placed
                 psx__input__mouse_sensitivity = 1,                          // placed
                 psx__input__port1 = "gamepad",
-                psx__input__port1__analogjoy__axis_scale = 1,               // placed
-                psx__input__port1__dualanalog__axis_scale = 1,          // placed
-                psx__input__port1__dualshock__axis_scale = 1,   // placed
+                //psx__input__port1__analogjoy__axis_scale = 1,               // placed
+                //psx__input__port1__dualanalog__axis_scale = 1,          // placed
+                //psx__input__port1__dualshock__axis_scale = 1,   // placed
                 psx__input__port1__gun_chairs = "0xFF0000",     // placed
                 psx__input__port1__memcard = true,              // placed
                 psx__input__port2 = "gamepad",  // placed
-                psx__input__port2__analogjoy__axis_scale = 1,   // placed
-                psx__input__port2__dualanalog__axis_scale = 1,  // placed
-                psx__input__port2__dualshock__axis_scale = 1,   // placed
+                //psx__input__port2__analogjoy__axis_scale = 1,   // placed
+                //psx__input__port2__dualanalog__axis_scale = 1,  // placed
+                //psx__input__port2__dualshock__axis_scale = 1,   // placed
                 psx__input__port2__gun_chairs = "0xFF0000", // placed
                 psx__input__port2__memcard = true,  // placed
                 psx__input__port3 = "gamepad",  // placed
-                psx__input__port3__analogjoy__axis_scale = 1,   // placed
-                psx__input__port3__dualanalog__axis_scale = 1,  // placed
-                psx__input__port3__dualshock__axis_scale = 1,   // placed
+                //psx__input__port3__analogjoy__axis_scale = 1,   // placed
+                //psx__input__port3__dualanalog__axis_scale = 1,  // placed
+                //psx__input__port3__dualshock__axis_scale = 1,   // placed
                 psx__input__port3__gun_chairs = "0xFF0000", // placed
                 psx__input__port3__memcard = true,  // placed
                 psx__input__port4 = "gamepad",  // placed
-                psx__input__port4__analogjoy__axis_scale = 1,   // placed
-                psx__input__port4__dualanalog__axis_scale = 1,  // placed
-                psx__input__port4__dualshock__axis_scale = 1,// placed
+                //psx__input__port4__analogjoy__axis_scale = 1,   // placed
+                //psx__input__port4__dualanalog__axis_scale = 1,  // placed
+                //psx__input__port4__dualshock__axis_scale = 1,// placed
                 psx__input__port4__gun_chairs = "0xFF0000", // placed
                 psx__input__port4__memcard = true,  // placed
                 psx__input__port5 = "gamepad",  // placed
-                psx__input__port5__analogjoy__axis_scale = 1,   // placed
-                psx__input__port5__dualanalog__axis_scale = 1,  // placed
-                psx__input__port5__dualshock__axis_scale = 1,   // placed
+                //psx__input__port5__analogjoy__axis_scale = 1,   // placed
+                //psx__input__port5__dualanalog__axis_scale = 1,  // placed
+                //psx__input__port5__dualshock__axis_scale = 1,   // placed
                 psx__input__port5__gun_chairs = "0xFF0000", // placed
                 psx__input__port5__memcard = true,  // placed
                 psx__input__port6 = "gamepad",  // placed
-                psx__input__port6__analogjoy__axis_scale = 1,   // placed
-                psx__input__port6__dualanalog__axis_scale = 1,  // placed
-                psx__input__port6__dualshock__axis_scale = 1,   // placed
+                //psx__input__port6__analogjoy__axis_scale = 1,   // placed
+                //psx__input__port6__dualanalog__axis_scale = 1,  // placed
+                //psx__input__port6__dualshock__axis_scale = 1,   // placed
                 psx__input__port6__gun_chairs = "0xFF0000", // placed
                 psx__input__port6__memcard = true,  // placed
                 psx__input__port7 = "gamepad",  // placed
-                psx__input__port7__analogjoy__axis_scale = 1,   // placed
-                psx__input__port7__dualanalog__axis_scale = 1,  // placed
-                psx__input__port7__dualshock__axis_scale = 1,   // placed
+                //psx__input__port7__analogjoy__axis_scale = 1,   // placed
+                //psx__input__port7__dualanalog__axis_scale = 1,  // placed
+                //psx__input__port7__dualshock__axis_scale = 1,   // placed
                 psx__input__port7__gun_chairs = "0xFF0000", // placed
                 psx__input__port7__memcard = true,  // placed
                 psx__input__port8 = "gamepad",  // placed
-                psx__input__port8__analogjoy__axis_scale = 1,   // placed
-                psx__input__port8__dualanalog__axis_scale = 1,  // placed
-                psx__input__port8__dualshock__axis_scale = 1,   // placed
+                //psx__input__port8__analogjoy__axis_scale = 1,   // placed
+                //psx__input__port8__dualanalog__axis_scale = 1,  // placed
+                //psx__input__port8__dualshock__axis_scale = 1,   // placed
                 psx__input__port8__gun_chairs = "0xFF0000",         // placed
                 psx__input__port8__memcard = true,                  // placed
                 psx__input__pport1__multitap = false,               // placed
@@ -2242,7 +2288,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_") || control.Name.Contains("ALPHA"))
                     {
                         // checkbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
@@ -2334,7 +2380,38 @@ namespace MedLaunch.Models
                         else
                             n = v;
 
+                        /*
+                        // handle AARRGGBB values (eg FPS colors)
+                        if (n.Length == 8)
+                        {
+                            // this is AARRGGBB - we need to take the alpha channel value from the first byte
+                            // and update the matching alpha channel slider
+
+                            // first find the matching alpha channel control (currently only valid for FPS colors)
+                            string ctrlName = control.Name;
+                            string lookupName = ctrlName.Replace("cfg_fps__", "cfg_ALPHAfps__");
+                            Slider alphaSlider = ui.Sliders.Where(a => a.Name == lookupName).FirstOrDefault();
+
+                            // split the hex value into AA and RRGGBB
+                            string AA = n.Substring(0, 2);
+                            string RRBBGG = n.Substring(2, 6);
+
+                            // update the colorpicker
+                            control.SelectedColor = (Color)System.Windows.Media.ColorConverter.ConvertFromString("#" + RRBBGG);
+
+                            // update the alpha slider
+                            int aVal = int.Parse(AA, System.Globalization.NumberStyles.HexNumber);
+                            double aVa = (double)aVal;
+                            //alphaSlider.Value = aVa;
+                        }
+                        else
+                        {
+                            // this is RRGGBB - update the colorpicker directly with the value
                             control.SelectedColor = (Color)System.Windows.Media.ColorConverter.ConvertFromString("#" + n);
+                        }
+                        */
+
+                        control.SelectedColor = (Color)System.Windows.Media.ColorConverter.ConvertFromString("#" + n);
                     }
                 }
 
@@ -2424,7 +2501,7 @@ namespace MedLaunch.Models
                     string propName = ConvertControlNameToConfigName(control.Name);
                     //MessageBoxResult result = MessageBox.Show(propName);
                     // make sure name is not null
-                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_"))
+                    if (control.Name == null || control.Name.Trim() == "" || control.Name.Contains("Generic__") || control.Name.Contains("tb_") || control.Name.Contains("ALPHA"))
                     {
                         // checkbox does not have a name set - skip
                         //MessageBoxResult aresult = MessageBox.Show(propName + " IS EMPTY!");
@@ -2551,13 +2628,37 @@ namespace MedLaunch.Models
                     }
                     else
                     {
-                        // get the control value
+                        // get the control values
                         System.Windows.Media.Color color = control.SelectedColor.Value;
                         string hex = new ColorConverter().ConvertToString(color);
-                        string v = "0x" + hex.Replace("#", "").ToUpper().Substring(2, 6);
+
+                        string v = string.Empty;
+
+                        // we (at the moment) only want the alpha channel for the fps settings                        
+                        if (control.Name.Contains("fps"))
+                        {
+                            // AARRGGBB
+                            v = "0x" + hex.Replace("#", "").ToUpper().Substring(0, 8);
+                        }
+                        else
+                        {
+                            // RRGGBB
+                            v = "0x" + hex.Replace("#", "").ToUpper().Substring(2, 6);
+                        }
+                        /*
+                        if (hex.Length == 9)
+                        {
+                            v = "0x" + hex.Replace("#", "").ToUpper().Substring(0, 8);
+                        }
+                        else
+                        {
+                            v = "0x" + hex.Replace("#", "").ToUpper().Substring(2, 6);
+                        }
+                        */
+                        
                         // update settings object with value
                         PropertyInfo propInfo = settings.GetType().GetProperty(propName);
-                        propInfo.SetValue(settings, v, null);
+                        propInfo.SetValue(settings, v, null);                        
                     }
                 }
 

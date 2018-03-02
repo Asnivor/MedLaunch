@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.SimpleChildWindow;
+using MedLaunch.Classes.Controls;
 
 namespace MedLaunch
 {
@@ -46,39 +47,86 @@ namespace MedLaunch
             string selectedString = cb.SelectionBoxItem.ToString();
             int portNum = Convert.ToInt32(selectedString.Replace("Virtual Port ", ""));
 
-            DeviceDefinition dev = new DeviceDefinition();
+            // get mednafen config version
+            bool isNewConfig = Classes.VersionChecker.Instance.IsNewConfig;
 
-            switch (name)
+            IDeviceDefinition dev;
+
+            if (isNewConfig)
             {
-                case "Md3ButtonGamepad":
-                    dev = Md.ThreeButton(portNum);
-                    break;
-                case "Md6ButtonGamepad":
-                    dev = Md.SixButton(portNum);
-                    break;
-                case "Md2ButtonGamepad":
-                    dev = Md.TwoButton(portNum);
-                    break;
-                case "MdMegaMouse":
-                    dev = Md.MegaMouse(portNum);
-                    break;
-                default:
-                    return;
+                dev = new DeviceDefinition();
+
+                switch (name)
+                {
+                    case "Md3ButtonGamepad":
+                        dev = Md.ThreeButton(portNum);
+                        break;
+                    case "Md6ButtonGamepad":
+                        dev = Md.SixButton(portNum);
+                        break;
+                    case "Md2ButtonGamepad":
+                        dev = Md.TwoButton(portNum);
+                        break;
+                    case "MdMegaMouse":
+                        dev = Md.MegaMouse(portNum);
+                        break;
+                    default:
+                        return;
+                }
+            }
+            else
+            {
+                dev = new DeviceDefinitionLegacy();
+
+                switch (name)
+                {
+                    case "Md3ButtonGamepad":
+                        dev = Md_Legacy.ThreeButton(portNum);
+                        break;
+                    case "Md6ButtonGamepad":
+                        dev = Md_Legacy.SixButton(portNum);
+                        break;
+                    case "Md2ButtonGamepad":
+                        dev = Md_Legacy.TwoButton(portNum);
+                        break;
+                    case "MdMegaMouse":
+                        dev = Md_Legacy.MegaMouse(portNum);
+                        break;
+                    default:
+                        Classes.MessagePopper.PopControllerTargetingIssue();
+                        return;
+                }
             }
             
             mw.ControllerDefinition = dev;
 
             // launch controller configuration window
-            Grid RootGrid = (Grid)mw.FindName("RootGrid");
-            await mw.ShowChildWindowAsync(new ConfigureController()
+            if (isNewConfig)
             {
-                IsModal = true,
-                AllowMove = false,
-                Title = "Controller Configuration",
-                CloseByEscape = false,
-                CloseOnOverlay = false,
-                ShowCloseButton = false
-            }, RootGrid);
+                Grid RootGrid = (Grid)mw.FindName("RootGrid");
+                await mw.ShowChildWindowAsync(new ConfigureController()
+                {
+                    IsModal = true,
+                    AllowMove = false,
+                    Title = "Controller Configuration",
+                    CloseOnOverlay = false,
+                    ShowCloseButton = false,
+                    CloseByEscape = false
+                }, RootGrid);
+            }
+            else
+            {
+                Grid RootGrid = (Grid)mw.FindName("RootGrid");
+                await mw.ShowChildWindowAsync(new ConfigureControllerLegacy()
+                {
+                    IsModal = true,
+                    AllowMove = false,
+                    Title = "Controller Configuration",
+                    CloseOnOverlay = false,
+                    ShowCloseButton = false,
+                    CloseByEscape = false
+                }, RootGrid);
+            }
         }
     }
 }

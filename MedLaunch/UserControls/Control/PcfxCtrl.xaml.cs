@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.SimpleChildWindow;
+using MedLaunch.Classes.Controls;
 
 namespace MedLaunch
 {
@@ -47,34 +48,74 @@ namespace MedLaunch
             string selectedString = cb.SelectionBoxItem.ToString();
             int portNum = Convert.ToInt32(selectedString.Replace("Virtual Port ", ""));
 
-            // Get device definition for this controller
-            DeviceDefinition dev = new DeviceDefinition();
+            // get mednafen config version
+            bool isNewConfig = Classes.VersionChecker.Instance.IsNewConfig;
 
-            switch (name)
+            IDeviceDefinition dev;
+
+            if (isNewConfig)
             {
-                case "PcfxGamepad":
-                    dev = Pcfx.GamePad(portNum);
-                    break;
-                case "PcfxMouse":
-                    dev = Pcfx.Mouse(portNum);
-                    break;
-                default:
-                    return;
+                dev = new DeviceDefinition();
+
+                switch (name)
+                {
+                    case "PcfxGamepad":
+                        dev = Pcfx.GamePad(portNum);
+                        break;
+                    case "PcfxMouse":
+                        dev = Pcfx.Mouse(portNum);
+                        break;
+                    default:
+                        return;
+                }
+            }
+            else
+            {
+                dev = new DeviceDefinitionLegacy();
+
+                switch (name)
+                {
+                    case "PcfxGamepad":
+                        dev = Pcfx_Legacy.GamePad(portNum);
+                        break;
+                    case "PcfxMouse":
+                        dev = Pcfx_Legacy.Mouse(portNum);
+                        break;
+                    default:
+                        Classes.MessagePopper.PopControllerTargetingIssue();
+                        return;
+                }
             }
 
             mw.ControllerDefinition = dev;
 
             // launch controller configuration window
-            Grid RootGrid = (Grid)mw.FindName("RootGrid");
-            await mw.ShowChildWindowAsync(new ConfigureController()
+            if (isNewConfig)
             {
-                IsModal = true,
-                AllowMove = false,
-                Title = "Controller Configuration",
-                CloseOnOverlay = false,
-                CloseByEscape = false,
-                ShowCloseButton = false
-            }, RootGrid);
+                Grid RootGrid = (Grid)mw.FindName("RootGrid");
+                await mw.ShowChildWindowAsync(new ConfigureController()
+                {
+                    IsModal = true,
+                    AllowMove = false,
+                    Title = "Controller Configuration",
+                    CloseOnOverlay = false,
+                    ShowCloseButton = false,
+                    CloseByEscape = false
+                }, RootGrid);
+            }
+            else
+            {
+                Grid RootGrid = (Grid)mw.FindName("RootGrid");
+                await mw.ShowChildWindowAsync(new ConfigureControllerLegacy()
+                {
+                    IsModal = true,
+                    AllowMove = false,
+                    Title = "Controller Configuration",
+                    CloseOnOverlay = false,
+                    ShowCloseButton = false,
+                    CloseByEscape = false
+                }, RootGrid);
+            }
         }
     }
 }

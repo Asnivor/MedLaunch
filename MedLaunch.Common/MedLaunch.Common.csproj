@@ -44,6 +44,10 @@
       <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net45\MahApps.Metro.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.9.0.2-beta1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="SevenZipSharp, Version=1.0.5.0, Culture=neutral, PublicKeyToken=c8ff6ba0184838bb, processorArchitecture=MSIL">
@@ -94,6 +98,7 @@
     <Compile Include="IO\Compression\CompressionResult.cs" />
     <Compile Include="IO\Compression\CompressionResults.cs" />
     <Compile Include="IO\Compression\ZipArchiveExtensions.cs" />
+    <Compile Include="ObjectCopier.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="PathUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

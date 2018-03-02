@@ -27,7 +27,7 @@ namespace MedLaunch.Classes
             string connString = "Data Source=" + AppDomain.CurrentDomain.BaseDirectory + dbPath;
 
             string dbVersion = "";
-            string appVersion = Versions.ReturnApplicationVersion();
+            string appVersion = VersionChecker.ReturnApplicationVersion();
             // connect to database and retreive the current version
             using (SQLiteConnection conn = new SQLiteConnection(connString))
             {

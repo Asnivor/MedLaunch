@@ -45,6 +45,7 @@ using System.Windows.Interactivity;
 using MedLaunch.Common.Eventing.Listeners;
 using MedLaunch.Common.IO.Compression;
 using MedLaunch.Windows;
+using MedLaunch.Classes.Controls;
 
 namespace MedLaunch
 {
@@ -103,7 +104,7 @@ namespace MedLaunch
         /// <summary>
         /// The last selected ControllerDefinition
         /// </summary>
-        public DeviceDefinition ControllerDefinition { get; set; }
+        public IDeviceDefinition ControllerDefinition { get; set; }
 
         /// <summary>
         /// Games library filtering
@@ -141,6 +142,8 @@ namespace MedLaunch
         {
             InitializeComponent();
 
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
+
             // init update vars
             DownloadComplete = false;
             UpdateStatus = 0;
@@ -174,8 +177,8 @@ namespace MedLaunch
             }
 
             // get application version
-            string appVersion = Versions.ReturnApplicationVersion();
-            string devBuildNo = Versions.GetDevBuild();
+            string appVersion = VersionChecker.ReturnApplicationVersion();
+            string devBuildNo = VersionChecker.GetDevBuild();
             
             // set window title
             string linkTimeLocal = (Assembly.GetExecutingAssembly().GetLinkerTime()).ToString("yyyy-MM-dd HH:mm:ss");
@@ -185,7 +188,7 @@ namespace MedLaunch
             else
                 this.Title = "MedLaunch (v" + appVersion + ") - DevBuild-" + devBuildNo + " - Windows Front-End for Mednafen";
 
-            rightMenuLabel.Text = "(Compatible Mednafen v" + Versions.GetMednafenCompatibilityMatrix().Last().Version + " - v" + Versions.GetMednafenCompatibilityMatrix().First().Version + ")";
+            rightMenuLabel.Text = "(Compatible Mednafen v" + VersionChecker.GetMednafenCompatibilityMatrix().Last().Version + " - v" + VersionChecker.GetMednafenCompatibilityMatrix().First().Version + ")";
 
             /*
              *  Startup checks
@@ -318,7 +321,7 @@ namespace MedLaunch
             SetBackgroundImage();
 
             // Run an emptyload of the log parser (running mednafen once if neccesary to generate log files)
-            LogParser.EmptyLoad();
+            LogParser.Instance.ParseData();
         }
 
         #endregion
@@ -2259,7 +2262,7 @@ namespace MedLaunch
             int romId = drv.ID;
 
 
-            bool b = Versions.MednafenVersionCheck(true);
+            bool b = VersionChecker.MednafenVersionCheck(true);
 
             if (b == false)
             {
@@ -2298,7 +2301,7 @@ namespace MedLaunch
                 return;
             int romId = drv.ID;
 
-            bool b = Versions.MednafenVersionCheck(true);
+            bool b = VersionChecker.MednafenVersionCheck(true);
 
             if (b == false)
             {
@@ -3631,6 +3634,8 @@ namespace MedLaunch
         {
             //System.Windows.Forms.FolderBrowserDialog path = new System.Windows.Forms.FolderBrowserDialog();
 
+            string origPath = tbPathMednafen.Text;
+
             VistaFolderBrowserDialog path = new VistaFolderBrowserDialog();
             path.ShowNewFolderButton = true;
 
@@ -3640,9 +3645,23 @@ namespace MedLaunch
             if (path.SelectedPath != "")
             {
                 string strPath = path.SelectedPath;
+
+                if (strPath != origPath)
+                {
+                    // there has been a path change. Set the dirty flag on the log parser
+                    LogParser.Instance.IsDirty = true;
+                }
+
                 tbPathMednafen.Text = strPath;
                 Paths.SaveMednafenPath(strPath);
+
+                // re-init logparser instance
+                LogParser.Init();
+
                 UpdateCheckMednafen();
+
+                // re-init input
+                RePollControllers();
             }
 
         }
@@ -3921,7 +3940,8 @@ namespace MedLaunch
 
             if (row == null)
             {
-                MessageBox.Show("No Server Selected!");
+                MessagePopper.ShowMessageDialog("No Server Selected!", "ERROR");
+                //MessageBox.Show("No Server Selected!");
             }
             else
             {
@@ -3938,7 +3958,8 @@ namespace MedLaunch
             if (tbHostname.Text == null || tbHostname.Text == "" || tbHostname.Text.Trim() == "")
             {
                 // hostname has not been entered
-                MessageBox.Show("You must provide a Hostname or IP Address");
+                MessagePopper.ShowMessageDialog("You must provide a Hostname or IP Address", "ERROR");
+                //MessageBox.Show("You must provide a Hostname or IP Address");
                 return;
             }
 
@@ -3959,7 +3980,8 @@ namespace MedLaunch
                       select a;
             if (chk.Count() > 1)
             {
-                MessageBox.Show("This server and associated settings already exists!");
+                MessagePopper.ShowMessageDialog("This server and associated settings already exists!", "ERROR");
+                //MessageBox.Show("This server and associated settings already exists!");
                 return;
             }
 
@@ -3981,13 +4003,16 @@ namespace MedLaunch
 
             if (row == null)
             {
-                MessageBox.Show("No Server Selected!");
+                MessagePopper.ShowMessageDialog("No Server Selected!", "ERROR");
+                //MessageBox.Show("No Server Selected!");
                 return;
             }
 
             if (row.Selected == true)
             {
-                MessageBox.Show("Unable to delete because this is the current default server.\nSet another server to default (the 'use selected server button') and then try again");
+                MessagePopper.ShowMessageDialog("Unable to delete because this is the current default server.\nSet another server to default (the 'use selected server button') and then try again", 
+                    "ERROR");
+                //MessageBox.Show("Unable to delete because this is the current default server.\nSet another server to default (the 'use selected server button') and then try again");
                 return;
             }
 
@@ -4003,7 +4028,8 @@ namespace MedLaunch
 
             if (row == null)
             {
-                MessageBox.Show("No Server Selected!");
+                MessagePopper.ShowMessageDialog("No Server Selected!", "ERROR");
+                //MessageBox.Show("No Server Selected!");
                 return;
             }
 
@@ -4031,7 +4057,14 @@ namespace MedLaunch
 
         private void btnControlRePoll_Click(object sender, RoutedEventArgs e)
         {
-            Input.Instance.Dispose();
+            //Input.Instance.Dispose();
+            //Input.Initialize(this);
+            //Input.Instance.Dispose();
+            RePollControllers();
+        }
+
+        private void RePollControllers()
+        {
             Input.Initialize(this);
         }
 
@@ -4043,15 +4076,41 @@ namespace MedLaunch
         private async void btnControlCommandBindings_Click(object sender, RoutedEventArgs e)
         {
             // launch controller configuration window
-            await this.ShowChildWindowAsync(new ConfigureMiscBindings()
+            IDeviceDefinition dev;
+
+            if (VersionChecker.Instance.IsNewConfig)
             {
-                IsModal = true,
-                AllowMove = false,
-                Title = "Misc Binding Configuration",
-                CloseOnOverlay = false,
-                CloseByEscape = false,
-                ShowCloseButton = false
-            }, RootGrid);
+                dev = new DeviceDefinition();
+                dev = MiscBindings.Misc(0);
+                ControllerDefinition = dev;
+
+                await this.ShowChildWindowAsync(new ConfigureMiscBindings()
+                {
+                    IsModal = true,
+                    AllowMove = false,
+                    Title = "Misc Binding Configuration",
+                    CloseOnOverlay = false,
+                    CloseByEscape = false,
+                    ShowCloseButton = false
+                }, RootGrid);
+            }
+            else
+            {
+                dev = new DeviceDefinitionLegacy();
+                dev = MiscBindings_Legacy.Misc(0);
+                ControllerDefinition = dev;
+
+                await this.ShowChildWindowAsync(new ConfigureMiscBindingsLegacy()
+                {
+                    IsModal = true,
+                    AllowMove = false,
+                    Title = "Misc Binding Configuration",
+                    CloseOnOverlay = false,
+                    CloseByEscape = false,
+                    ShowCloseButton = false
+                }, RootGrid);
+            }
+            
         }
 
         // generic controls selections buttons
@@ -4261,9 +4320,12 @@ namespace MedLaunch
 
         private void cfg_psx_shared_memcards_Checked(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult res = MessageBox.Show("Only use this option if you understand the risks.\nMednafen writes and reads memcard data during Save/Load state operations. This can cause memory card save corruption in some cases", "WARNING!",
-                MessageBoxButton.OKCancel);
-            if (res == MessageBoxResult.Cancel)
+            var res = MessagePopper.ShowMessageDialog("Only use this option if you understand the risks.\nMednafen writes and reads memcard data during Save/Load state operations. This can cause memory card save corruption in some cases",
+                "WARNING", MessagePopper.DialogButtonOptions.YESNO);
+
+            //MessageBoxResult res = MessageBox.Show("Only use this option if you understand the risks.\nMednafen writes and reads memcard data during Save/Load state operations. This can cause memory card save corruption in some cases", "WARNING!",
+                //MessageBoxButton.OKCancel);
+            if (res == MessagePopper.ReturnResult.Negative || res == MessagePopper.ReturnResult.FirstAux)
             {
                 cfg_psx_shared_memcards.IsChecked = false;
             }
@@ -4659,7 +4721,7 @@ namespace MedLaunch
             Release newRelease = new Release();
 
             // get current medlaunch version
-            string currVersion = Versions.ReturnApplicationVersion();
+            string currVersion = VersionChecker.ReturnApplicationVersion();
 
             var mySettings = new MetroDialogSettings()
             {
@@ -4679,6 +4741,8 @@ namespace MedLaunch
 
             // attempt to download the LatestVersion text file from github
             string contents;
+
+            
 
             using (var wc = new CustomWebClient())
             {
@@ -4831,12 +4895,12 @@ namespace MedLaunch
 
         public void UpdateCheckMednafen()
         {
-            Versions ver = new Versions();
+            //Versions ver = new Versions();
             // compatible mednafen version
-            lblcompatmedversion.Content = ver.LatestCompatMednafenVersion;
+            lblcompatmedversion.Content = VersionChecker.Instance.LatestCompatMedVerDesc.FullVersionString; // ver.LatestCompatMednafenVersion;
 
             // installed mednafen version
-            if (ver.CurrentMednafenVersion == null || ver.CurrentMednafenVersion == "")
+            if (VersionChecker.Instance.CurrentMedVerDesc == null || !VersionChecker.Instance.CurrentMedVerDesc.IsValid)
             {
                 // version not detected. 
                 lblinstalledmedversion.Content = "ERROR: Unable to detect.";
@@ -4844,14 +4908,56 @@ namespace MedLaunch
             }
             else
             {
-                lblinstalledmedversion.Content = ver.CurrentMednafenVersion;
+                lblinstalledmedversion.Content = VersionChecker.Instance.CurrentMedVerDesc.FullVersionString;
             }
 
             // update header if there is a newer mednafen version available
-            string[] CurrVersionArr = ver.CurrentMednafenVersion.Split('.');
-            string[] newVersionArr = ver.LatestCompatMednafenVersion.Split('.');
+            //string[] CurrVersionArr = ver.CurrentMednafenVersion.Split('.');
+            //string[] newVersionArr = ver.LatestCompatMednafenVersion.Split('.');
+
+            var CurMedVerDesc = VersionChecker.Instance.CurrentMedVerDesc; // LogParser.Instance.MedVersionDesc;
+            var NewMedVerDesc = VersionChecker.Instance.LatestCompatMedVerDesc; // MednafenVersionDescriptor.ReturnVersionDescriptor(ver.LatestCompatMednafenVersion);
+            
             bool upgradeNeeded = false;
 
+            if (CurMedVerDesc.IsValid && NewMedVerDesc.IsValid)
+            {
+                while (!upgradeNeeded)
+                {
+                    if (NewMedVerDesc.MajorINT > CurMedVerDesc.MajorINT)
+                    {
+                        upgradeNeeded = true;
+                    }
+                    else if (NewMedVerDesc.MinorINT > CurMedVerDesc.MinorINT)
+                    {
+                        upgradeNeeded = true;
+                    }
+                    else if (NewMedVerDesc.BuildINT > CurMedVerDesc.BuildINT)
+                    {
+                        upgradeNeeded = true;
+                    }
+                    else
+                    {
+                        // test the 4th value if it actually exists
+                        if (NewMedVerDesc.IsNewFormat)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            if (!CurMedVerDesc.IsNewFormat)
+                            {
+                                if (NewMedVerDesc.RevisionINT > CurMedVerDesc.RevisionINT)
+                                {
+                                    upgradeNeeded = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            /*
             for (int v = 0; v < 4; v++)
             {
                 int currV = 0;
@@ -4882,8 +4988,8 @@ namespace MedLaunch
                     upgradeNeeded = true;
                     break;
                 }
-
             }
+            */
 
             if (upgradeNeeded == true)
             {
@@ -4926,13 +5032,14 @@ namespace MedLaunch
 
         private void btnCheckForMednafenUpdates_Click(object sender, RoutedEventArgs e)
         {
+            LogParser.Instance.IsDirty = true;
             UpdateCheckMednafen();
         }
 
         public bool DownloadMednafenNoAsync()
         {
             /* start download and extraction of latest compatible mednafen version */
-            Versions ver = new Versions();
+            //Versions ver = new Versions();
 
             ProgressBar pb = new ProgressBar();
             pb.IsIndeterminate = true;
@@ -4941,7 +5048,7 @@ namespace MedLaunch
             System.IO.Directory.CreateDirectory(downloadsFolder);
 
             // get the new version
-            string url = ver.LatestCompatMednafenDownloadURL;
+            string url = VersionChecker.Instance.LatestCompatMednafenDownloadURL;
             string fName = url.Split('/').Last();
 
             // try the download
@@ -4995,7 +5102,7 @@ namespace MedLaunch
             System.IO.Directory.CreateDirectory(downloadsFolder);
 
             // get the new version
-            string url = ver.LatestCompatMednafenDownloadURL;
+            string url = VersionChecker.Instance.LatestCompatMednafenDownloadURL;
             string fName = url.Split('/').Last();
 
             var mySettings = new MetroDialogSettings()
@@ -5277,7 +5384,8 @@ namespace MedLaunch
 
             if (e.Cancelled)
             {
-                MessageBox.Show("The download has been cancelled: \n\n" + e.Cancelled);
+                MessagePopper.ShowMessageDialog("The download has been cancelled: \n\n" + e.Cancelled, "INFORMATION");
+                //MessageBox.Show("The download has been cancelled: \n\n" + e.Cancelled);
                 return;
             }
 
@@ -5285,7 +5393,8 @@ namespace MedLaunch
 
             if (e.Error != null) // We have an error! Retry a few times, then abort.
             {
-                MessageBox.Show("An error ocurred while trying to download file: \n\n" + e.Error);
+                MessagePopper.ShowMessageDialog("An error ocurred while trying to download file: \n\n" + e.Error, "ERROR");
+                //MessageBox.Show("An error ocurred while trying to download file: \n\n" + e.Error);
 
                 return;
             }
@@ -5591,7 +5700,8 @@ namespace MedLaunch
             // temporary code for now until mednanet client is implemented
             if (tbDiscordName.Text == null || tbDiscordName.Text.Trim() == "")
             {
-                MessageBox.Show("Please enter a valid username", "Username Missing!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessagePopper.ShowMessageDialog("Please enter a valid username", "Username Missing!");
+                //MessageBox.Show("Please enter a valid username", "Username Missing!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else if (btn.Content.ToString() == "CONNECT")
             {
@@ -5726,13 +5836,15 @@ namespace MedLaunch
             var result = u.ProcessSMD(gamePath);
             if (result == null)
             {
-                MessageBox.Show("checksum invalid - skipping rom");
+                MessagePopper.ShowMessageDialog("checksum invalid - skipping rom", "INFORMATION");
+                //MessageBox.Show("checksum invalid - skipping rom");
                 return;
             }
             else
             {
                 // either rom has been converted, or it is compatible
-                MessageBox.Show("Final Rom Path: " + result.ConvertedPath);
+                MessagePopper.ShowMessageDialog("Final Rom Path: " + result.ConvertedPath, "INFORMATION");
+                //MessageBox.Show("Final Rom Path: " + result.ConvertedPath);
             }
         }
 
@@ -5782,7 +5894,386 @@ namespace MedLaunch
 #endif
         }
 
-        
+        /// <summary>
+        /// Pops a gamepad/joystick configuration page directly from the config page
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ConfigureFromConfigPage(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            string btnName = btn.Name;
+            
+
+            // get the name of the device selection control
+            string ctrlName = btnName.Replace("Generic__CONFIGURE__", "");
+            string cmdName = ctrlName.Replace("cfg_", "");
+
+            bool skipCombo = false;
+
+            // actually get this control (assume a combobox)
+            ComboBox box = UIHandler.GetChildren(RootGrid).ComboBoxes.Where(a => a.Name == ctrlName).FirstOrDefault();
+
+            if (!cmdName.StartsWith("sms") &&
+                !cmdName.StartsWith("vb") &&
+                !cmdName.StartsWith("ngp") &&
+                !cmdName.StartsWith("gb") &&
+                !cmdName.StartsWith("gg") &&
+                !cmdName.StartsWith("lynx"))
+            {
+                // traditional mapping
+                if (box == null)
+                    return;
+
+                skipCombo = false;
+            }
+            else
+            {
+                skipCombo = true;
+            }
+
+            string value = string.Empty;
+
+            // get the string value
+            if (!skipCombo)
+            {
+                value = box.SelectedValue.ToString();
+            }   
+            else
+            {
+                if (cmdName.StartsWith("sms"))
+                {
+                    value = "gamepad";
+                }
+            }         
+
+            // get mednafen config version
+            bool isNewConfig = Classes.VersionChecker.Instance.IsNewConfig;
+
+            IDeviceDefinition dev;
+
+            if (isNewConfig)
+                dev = new DeviceDefinition();
+            else
+            {
+                dev = new DeviceDefinitionLegacy();
+                // this only works when targetting latest mednafen
+                Classes.MessagePopper.PopControllerTargetingIssue();
+                return;
+            }
+                
+
+            // get all the system codes
+            var systems = GSystem.GetSystems();
+            List<string> syss = new List<string>();
+            foreach (var s in systems)
+                syss.Add(s.systemCode);
+
+            bool completed = false;
+
+            int portNum;
+
+            string port = string.Empty;
+
+            // iterate through each system code
+            foreach (var s in syss)
+            {
+                if (completed)
+                    break;
+
+                if (!cmdName.StartsWith(s))
+                    continue;
+
+                bool isGBA = false;
+
+                if (cmdName.StartsWith("gba"))
+                    isGBA = true;
+
+                switch (s)
+                {
+                    case "nes":
+                        port = cmdName.Replace(s + "__input__", "");
+                        if (port == "fcexp")
+                        {
+                            portNum = 666;
+                        }
+                        else
+                        {
+                            // port should bein the format 'portn'
+                            port = port.Replace("port", "");
+                            if (!int.TryParse(port, out portNum))
+                                continue;
+                        }
+                        switch (value)
+                        {
+                            case "arkanoid": ControllerDefinition = Nes.ArkanoidPaddle(portNum); completed = true; break;
+                            case "shadow": ControllerDefinition = Nes.SpaceShadow(portNum); completed = true; break;
+                            case "fkb": ControllerDefinition = Nes.FamilyKeyboard(portNum); completed = true; break;
+                            case "hypershot": ControllerDefinition = Nes.HyperShot(portNum); completed = true; break;
+                            case "mahjong": ControllerDefinition = Nes.Mahjong(portNum); completed = true; break;
+                            case "partytap": ControllerDefinition = Nes.PartyTap(portNum); completed = true; break;
+                            case "ftrainera": ControllerDefinition = Nes.FamilyTrainerA(portNum); completed = true; break;
+                            case "ftrainerb": ControllerDefinition = Nes.FamilyTrainerB(portNum); completed = true; break;
+                            case "oekakids": ControllerDefinition = Nes.OekaKids(portNum); completed = true; break;
+                            case "gamepad": ControllerDefinition = Nes.GamePad(portNum); completed = true; break;
+                            case "zapper": ControllerDefinition = Nes.Zapper(portNum); completed = true; break;
+                            case "powerpada": ControllerDefinition = Nes.PowerPadA(portNum); completed = true; break;
+                            case "powerpadb": ControllerDefinition = Nes.PowerPadB(portNum); completed = true; break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                    case "snes":
+                        port = cmdName.Replace(s + "__input__", "");
+                        // port should bein the format 'portn'
+                        port = port.Replace("port", "");
+                        if (!int.TryParse(port, out portNum))
+                            continue;
+                      
+                        switch (value)
+                        {
+                            case "gamepad": ControllerDefinition = Snes.GamePad(portNum); completed = true; break;
+                            case "mouse": ControllerDefinition = Snes.Mouse(portNum); completed = true; break;
+                            case "superscope":
+                                if (portNum != 2)
+                                {
+                                    MessagePopper.PopControllerNotFound();
+                                    return;
+                                }
+                                    
+                                ControllerDefinition = Snes.Superscope(portNum);
+                                completed = true;
+                                break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                    case "snes_faust":
+                        port = cmdName.Replace(s + "__input__", "");
+                        // port should bein the format 'portn'
+                        port = port.Replace("port", "");
+                        if (!int.TryParse(port, out portNum))
+                            continue;
+
+                        switch (value)
+                        {
+                            case "gamepad": ControllerDefinition = Snes_faust.GamePad(portNum); completed = true; break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                    case "md":
+                        port = cmdName.Replace(s + "__input__", "");
+                        // port should bein the format 'portn'
+                        port = port.Replace("port", "");
+                        if (!int.TryParse(port, out portNum))
+                            continue;
+
+                        switch (value)
+                        {
+                            case "gamepad": ControllerDefinition = Md.ThreeButton(portNum); completed = true; break;
+                            case "gamepad2": ControllerDefinition = Md.TwoButton(portNum); completed = true; break;
+                            case "gamepad6": ControllerDefinition = Md.SixButton(portNum); completed = true; break;
+                            case "megamouse": ControllerDefinition = Md.MegaMouse(portNum); completed = true; break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                    case "pce":
+                        port = cmdName.Replace(s + "__input__", "");
+                        // port should bein the format 'portn'
+                        port = port.Replace("port", "");
+                        if (!int.TryParse(port, out portNum))
+                            continue;
+
+                        switch (value)
+                        {
+                            case "gamepad": ControllerDefinition = Pce.GamePad(portNum); completed = true; break;
+                            case "mouse": ControllerDefinition = Pce.Mouse(portNum); completed = true; break;
+                            case "tsushinkb": ControllerDefinition = Pce.Tsushin(portNum); completed = true; break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                    case "pce_fast":
+                        port = cmdName.Replace(s + "__input__", "");
+                        // port should bein the format 'portn'
+                        port = port.Replace("port", "");
+                        if (!int.TryParse(port, out portNum))
+                            continue;
+
+                        switch (value)
+                        {
+                            case "gamepad": ControllerDefinition = Pce_fast.GamePad(portNum); completed = true; break;
+                            case "mouse": ControllerDefinition = Pce_fast.Mouse(portNum); completed = true; break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                    case "sms":
+                        port = cmdName.Replace(s + "__input__", "");
+                        // port should bein the format 'portn'
+                        port = port.Replace("port", "");
+                        if (!int.TryParse(port, out portNum))
+                            continue;
+
+                        switch (value)
+                        {
+                            case "gamepad": ControllerDefinition = Sms.GamePad(portNum); completed = true; break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                    case "vb":
+                        // only 1 'controller'
+                        ControllerDefinition = Vb.GamePad(0);
+                        completed = true;
+                        break;
+
+                    case "ngp":
+                        // only 1 'controller'
+                        ControllerDefinition = Ngp.GamePad(0);
+                        completed = true;
+                        break;
+
+                    case "wswan":
+                        ControllerDefinition = Wswan.GamePad(0); completed = true; break;
+
+                    case "gba":
+
+                        if (!isGBA)
+                            continue;
+
+                        // only 1 'controller'
+                        ControllerDefinition = Gba.GamePad(0);
+                        completed = true;
+                        break;
+
+                    case "gb":
+
+                        if (isGBA)
+                            continue;
+
+                        // only 1 'controller'
+                        ControllerDefinition = Gb.GamePad(0);
+                        completed = true;
+                        break;                   
+
+                    case "gg":
+                        // only 1 'controller'
+                        ControllerDefinition = Gg.GamePad(0);
+                        completed = true;
+                        break;
+
+                    case "lynx":
+                        // only 1 'controller'
+                        ControllerDefinition = Lynx.GamePad(0);
+                        completed = true;
+                        break;
+
+                    case "ss":
+                        port = cmdName.Replace(s + "__input__", "");
+                        // port should bein the format 'portn'
+                        port = port.Replace("port", "");
+                        if (!int.TryParse(port, out portNum))
+                            continue;
+
+                        switch (value)
+                        {
+                            case "gamepad": ControllerDefinition = Ss.GamePad(portNum); completed = true; break;
+                            case "3dpad": ControllerDefinition = Ss.ThreeD(portNum); completed = true; break;
+                            case "mouse": ControllerDefinition = Ss.Mouse(portNum); completed = true; break;
+                            case "wheel": ControllerDefinition = Ss.Wheel(portNum); completed = true; break;
+                            case "dmission": ControllerDefinition = Ss.DMission(portNum); completed = true; break;
+                            case "mission": ControllerDefinition = Ss.Mission(portNum); completed = true; break;
+                            case "gun": ControllerDefinition = Ss.Gun(portNum); completed = true; break;
+                            case "keyboard": ControllerDefinition = Ss.KeyboardUS(portNum); completed = true; break;
+                            case "jpkeyboard": ControllerDefinition = Ss.KeyboardJP(portNum); completed = true; break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                    case "psx":
+                        port = cmdName.Replace(s + "__input__", "");
+                        // port should bein the format 'portn'
+                        port = port.Replace("port", "");
+                        if (!int.TryParse(port, out portNum))
+                            continue;
+
+                        switch (value)
+                        {
+                            case "gamepad": ControllerDefinition = Psx.DigitalGamePad(portNum); completed = true; break;
+                            case "dualshock": ControllerDefinition = Psx.DualShock(portNum); completed = true; break;
+                            case "dualanalog": ControllerDefinition = Psx.Mouse(portNum); completed = true; break;
+                            case "analogjoy": ControllerDefinition = Psx.AnalogJoystick(portNum); completed = true; break;
+                            case "mouse": ControllerDefinition = Psx.Mouse(portNum); completed = true; break;
+                            case "negcon": ControllerDefinition = Psx.NeGcon(portNum); completed = true; break;
+                            case "guncon": ControllerDefinition = Psx.GunCon(portNum); completed = true; break;
+                            case "justifier": ControllerDefinition = Psx.Justifier(portNum); completed = true; break;
+                            case "dancepad": ControllerDefinition = Psx.DancePad(portNum); completed = true; break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                    case "pcfx":
+                        port = cmdName.Replace(s + "__input__", "");
+                        // port should bein the format 'portn'
+                        port = port.Replace("port", "");
+                        if (!int.TryParse(port, out portNum))
+                            continue;
+
+                        switch (value)
+                        {
+                            case "gamepad": ControllerDefinition = Pcfx.GamePad(portNum); completed = true; break;
+                            case "mouse": ControllerDefinition = Pcfx.Mouse(portNum); completed = true; break;
+                            default:
+                                MessagePopper.PopControllerNotFound();
+                                return;
+                        }
+                        break;
+
+                }
+            }
+
+            if (ControllerDefinition.MapList != null && ControllerDefinition.MapList.Count() != 0)
+            {
+                // show the configuration screen
+                ConfigureController(ControllerDefinition);
+                return;
+            }
+        }
+
+        private async void ConfigureController(IDeviceDefinition dd)
+        {
+            await this.ShowChildWindowAsync(new ConfigureController()
+            {
+                IsModal = true,
+                AllowMove = false,
+                Title = "Controller Configuration",
+                CloseOnOverlay = false,
+                ShowCloseButton = false,
+                CloseByEscape = false
+            }, RootGrid);
+        }
     }
 
 

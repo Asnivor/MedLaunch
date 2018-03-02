@@ -27,6 +27,8 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="36" />
                             <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
                         </Grid.RowDefinitions>
 
                                 <Image Source="/MedLaunch;component/Data/Graphics/Controllers/pce-controller.png" Margin="5">
@@ -54,6 +56,10 @@
 
                                 <Button Name="btnPceGamepadConfigure" Margin="5" Grid.Column="3" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center">Configure</Button>
 
+                                
+                                
+                                
+                                
                         <Image Source="/MedLaunch;component/Data/Graphics/Controllers/pce-mouse.png" Margin="5" Grid.Row="1" Grid.Column="0">
                             <Image.ToolTip>
                                 <ToolTip DataContext="{Binding PlacementTarget, 
@@ -78,6 +84,29 @@
                         </ComboBox>
 
                         <Button Name="btnPceMouseConfigure" Margin="5" Grid.Column="3" Grid.Row="1" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center">Configure</Button>
+
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/pce_tsushin.png" Margin="5" Grid.Row="2" Grid.Column="0">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+                        <Label Margin="5" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Height="25">
+                            Tsushin Keyboard
+                        </Label>
+
+                        <ComboBox Name="cmbPceTsushin" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Grid.Row="2" Height="25" VerticalAlignment="Center">
+                            <ComboBoxItem>Virtual Port 1</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnPceTsushinConfigure" Margin="5" Grid.Column="3" Grid.Row="2" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center">Configure</Button>
+
 
                     </Grid>                            
                         </WrapPanel>

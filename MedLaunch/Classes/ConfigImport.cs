@@ -38,6 +38,8 @@ namespace MedLaunch.Classes
         public ConfigBaseSettings _ConfigSnes_faustSettings { get; set; }
         public ConfigBaseSettings _ConfigPce_fastSettings { get; set; }
 
+        public string MednafenConfigName { get; set; }
+
         // contructor
         public ConfigImport()
         {
@@ -63,6 +65,15 @@ namespace MedLaunch.Classes
             _ConfigWswanSettings = ConfigBaseSettings.GetConfig(2000000015);
             _ConfigSnes_faustSettings = ConfigBaseSettings.GetConfig(2000000016);
             _ConfigPce_fastSettings = ConfigBaseSettings.GetConfig(2000000017);
+
+            if (VersionChecker.Instance.CurrentMedVerDesc.MajorINT > 0)
+            {
+                MednafenConfigName = @"mednafen.cfg";
+            }
+            else
+            {
+                MednafenConfigName = @"\mednafen-09x.cfg";
+            }
         }
 
         public void ImportAll(ProgressDialogController controller)
@@ -111,13 +122,13 @@ namespace MedLaunch.Classes
 
         public void ImportBaseConfigFromDisk(ProgressDialogController controller)
         {
-            string cfgPath = _Paths.mednafenExe + @"\mednafen-09x.cfg";
+            string cfgPath = _Paths.mednafenExe + MednafenConfigName;// @"\mednafen-09x.cfg";
             var config = LoadConfigFromDisk(cfgPath);
             if (config.Count > 0)
             {
                 // data was returned - begin import
                 if (controller != null)
-                    controller.SetMessage("Importing mednafen-09x.cfg");
+                    controller.SetMessage("Importing " + MednafenConfigName); // mednafen -09x.cfg");
                 ParseConfigIncoming(config, 0);                
             }
         }
@@ -389,7 +400,7 @@ namespace MedLaunch.Classes
             if (configId == 2000000000)
             {
                 // base config
-                path = _Paths.mednafenExe + "\\" + "mednafen-09x.cfg";
+                path = _Paths.mednafenExe + "\\" + MednafenConfigName; // "mednafen-09x.cfg";
             }
             else
             {

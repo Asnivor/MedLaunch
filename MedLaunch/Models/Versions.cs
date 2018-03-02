@@ -12,20 +12,102 @@ namespace MedLaunch.Models
 {
     public class Versions
     {
+        /*
+        #region Static Instance
+
+        /// <summary>
+        /// Static instance of the versions object
+        /// </summary>
+        public static Versions Instance { get; set; }
+
+        /// <summary>
+        /// Initialises the single instance of logparser
+        /// </summary>
+        public static void Init()
+        {
+            Instance = new Versions();
+        }
+
+        #endregion
+        */
+
         public int versionId { get; set; }
         public string dbVersion { get; set; }
         public string CurrentMednafenVersion { get; set; }
         public string LatestCompatMednafenVersion { get; set; }
-        public string LatestCompatMednafenDownloadURL { get; set; }
+
+        /*
+
+        /// <summary>
+        /// Returns the download URL for the latest compatible mednafen release
+        /// </summary>
+        public string LatestCompatMednafenDownloadURL
+        {
+            get
+            {
+                return GetMednafenCompatibilityMatrix().First().DownloadURL;
+            }
+        }
+
+        /// <summary>
+        /// Gets a MednafenVersionDescriptor object containing the latest compatible version info
+        /// </summary>
+        public MednafenVersionDescriptor LatestCompatMedVerDesc
+        {
+            get
+            {
+                var desc = GetMednafenCompatibilityMatrix();
+                var latest = desc.First();
+                return MednafenVersionDescriptor.ReturnVersionDescriptor(latest.Version);
+            }
+        }
+
+        /// <summary>
+        /// Gets a MednafenVersionDescriptor object containing the currently detected mednafen info
+        /// </summary>
+        public MednafenVersionDescriptor CurrentMedVerDesc
+        {
+            get
+            {
+                // for this to work, the database must be already generated
+                // and a mednafen directory has been set
+                Paths p = Paths.GetPaths();
+                if (p != null && p.mednafenExe != null && Directory.Exists(p.mednafenExe))
+                {
+                    try
+                    {
+                        var curr = LogParser.Instance.GetMednafenVersion(false);
+                        return curr;
+                    }
+                    catch (Exception)
+                    {
+                        return null;
+                    }
+                }
+                else
+                    return null;
+            }
+        }
+
+            */
 
         // constructors
+        /*
         public Versions()
         {
-            CurrentMednafenVersion = LogParser.GetMednafenVersion();
+            Paths p = Paths.GetPaths();
+            if (p != null && p.mednafenExe != null && Directory.Exists(p.mednafenExe))
+            {
+                CurrentMednafenVersion = LogParser.Instance.GetMednafenVersion(false).FullVersionString;
+            }
+            
             LatestCompatMednafenVersion = Versions.GetMednafenCompatibilityMatrix().First().Version;
             LatestCompatMednafenDownloadURL = Versions.GetMednafenCompatibilityMatrix().First().DownloadURL;
         }
+        */
 
+
+        /*
         public static List<string> GetDevReleases()
         {
             return new List<string>
@@ -34,7 +116,14 @@ namespace MedLaunch.Models
                 "0.5.12.0"
             };
         }
-
+        */
+        /*
+        /// <summary>
+        /// Gets the dev build version number from the DevStatus.txt file
+        /// This is generated automatically by AppVeyor when a dev version is built
+        /// MedLaunch uses the data in this file to show that it is a dev version in the title bar
+        /// </summary>
+        /// <returns></returns>
         public static string GetDevBuild()
         {
             string devStatusFile = AppDomain.CurrentDomain.BaseDirectory + @"Data\Settings\DevStatus.txt";
@@ -55,12 +144,31 @@ namespace MedLaunch.Models
                 return null;
             }
         }
-
+        */
+        /*
+        /// <summary>
+        /// Compatibility Matrix
+        /// Stores all the medlaunch changes per mednafen version
+        /// Other functions can iterate through this list backwards applying all transformations so that
+        /// MedLaunch is compatible with the version the user is using
+        /// </summary>
+        /// <returns></returns>
         public static List<MednafenChangeHistory> GetMednafenCompatibilityMatrix()
         {
             return
                 new List<MednafenChangeHistory>
                 {
+                    // 1.21.0-UNSTABLE
+                    new MednafenChangeHistory
+                    {
+                        Version = "1.21.0-UNSTABLE",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-0.9.48-win64.zip",
+                        Changes = new List<VersionChange>
+                        {
+                            
+                        }
+                    },
+
                     // 0.9.48
                     new MednafenChangeHistory
                     {
@@ -68,7 +176,7 @@ namespace MedLaunch.Models
                         DownloadURL = "https://mednafen.github.io/releases/files/mednafen-0.9.48-win64.zip",
                         Changes = new List<VersionChange>
                         {
-
+                            new VersionChange { Description = "Display to use with fullscreen", ChangeMethod = ChangeType.ToRemove, Item = "video.fs.display" },
                         }
                     },
 
@@ -256,9 +364,17 @@ namespace MedLaunch.Models
 
         }
 
+            */
+/*
+        /// <summary>
+        /// Parses a mednafen launch string using the compatibility matrix and removes/modifies anything
+        /// that is not compatible with the user's current mednafen version
+        /// </summary>
+        /// <param name="launchParams"></param>
+        /// <returns></returns>
         public static string GetCompatLaunchString(string launchParams)
         {
-            Versions VC = new Versions();
+            //Versions VC = new Versions();
             string working = launchParams;
 
             bool isVersionValid = Versions.MednafenVersionCheck(false);
@@ -319,7 +435,35 @@ namespace MedLaunch.Models
 
                 working = working.TrimStart('-');
 
-                if (ReturnMednafenMajor(VC.CurrentMednafenVersion) == ReturnMednafenMajor(c.Version))
+                string currIntOnly;
+                string targetIntOnly;
+
+                var targetDesc = MednafenVersionDescriptor.ReturnVersionDescriptor(c.Version);
+
+                if (Versions.Instance.CurrentMedVerDesc.IsNewFormat)
+                {
+                    currIntOnly = Versions.Instance.CurrentMedVerDesc.MajorINT + "." +
+                        Versions.Instance.CurrentMedVerDesc.MinorINT + "." +
+                        Versions.Instance.CurrentMedVerDesc.BuildINT;
+
+                    targetIntOnly = targetDesc.MajorINT + "." +
+                        targetDesc.MinorINT + "." +
+                        targetDesc.BuildINT;
+                }
+                else
+                {
+                    currIntOnly = Versions.Instance.CurrentMedVerDesc.MajorINT + "." +
+                        Versions.Instance.CurrentMedVerDesc.MinorINT + "." +
+                        Versions.Instance.CurrentMedVerDesc.BuildINT + "." +
+                        Versions.Instance.CurrentMedVerDesc.RevisionINT;
+
+                    targetIntOnly = targetDesc.MajorINT + "." +
+                        targetDesc.MinorINT + "." +
+                        targetDesc.BuildINT + "." +
+                        targetDesc.RevisionINT;
+                }
+
+                if (currIntOnly == targetIntOnly)
                 {
                     // we have reached the targeted version and all transformations should have been applied
                     break;
@@ -327,12 +471,14 @@ namespace MedLaunch.Models
             }
             return working;
         }
+        */
 
         /// <summary>
         /// return only the first 3 parts of the mednafen version (the major version with APi changes)
         /// </summary>
         /// <param name="version"></param>
         /// <returns></returns>
+        /*
         public static string ReturnMednafenMajor(string version)
         {
             string[] arr = version.Trim().Split('.');
@@ -348,9 +494,12 @@ namespace MedLaunch.Models
 
         /*
          *      Misc Version methods
-         */ 
-        
-        // get application version
+         */
+         /*
+        /// <summary>
+        /// Looks at the VS assembly info and gets the current version data
+        /// </summary>
+        /// <returns></returns>
         public static string ReturnApplicationVersion()
         {
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
@@ -363,6 +512,7 @@ namespace MedLaunch.Models
             string fVersion = fvi.FileVersion;
             return versionMajor + "." + versionMinor + "." + versionBuild + "." + versionPrivate;
         }
+        */
 
         // get defaults (for initial seed)
         public static Versions GetVersionDefaults()
@@ -370,7 +520,7 @@ namespace MedLaunch.Models
             Versions v = new Versions
             {
                 versionId = 1,
-                dbVersion = ReturnApplicationVersion()
+                dbVersion = VersionChecker.ReturnApplicationVersion()
             };
             return v;
         }
@@ -394,8 +544,14 @@ namespace MedLaunch.Models
                 v = query.FirstOrDefault();
             }
             return v;
-        }        
-
+        }
+        /*
+        /// <summary>
+        /// Entry point for the application to get mednafen version and 
+        /// display compatibility info if neccessary
+        /// </summary>
+        /// <param name="showDialog"></param>
+        /// <returns></returns>
         public static bool MednafenVersionCheck(bool showDialog)
         {
             // mednafen version check     
@@ -410,7 +566,125 @@ namespace MedLaunch.Models
                 return false;
             }
 
-            string version = LogParser.GetMednafenVersion();
+            // detect current version
+            var currDesc = Versions.Instance.CurrentMedVerDesc;
+            if (currDesc == null)
+            {
+                if (showDialog)
+                    MessageBox.Show("There was a problem retreiving the Mednafen version.\nPlease check your paths", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (!currDesc.IsValid)
+            {
+                if (showDialog)
+                    MessageBox.Show("There was a problem parsing the current Mednafen version.\nPlease check your paths", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            // get the min and max support mednafen versions
+            var latestDesc = Versions.Instance.LatestCompatMedVerDesc;
+            var oldestDesc = MednafenVersionDescriptor.ReturnVersionDescriptor(GetMednafenCompatibilityMatrix().Last().Version);
+
+            // check whether the current mednafen version is within the min and max supported constraints
+            bool isCompat = true;
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (!isCompat)
+                    break;
+
+                switch (i)
+                {
+                    case 0:
+                        // MAJOR
+                        if (currDesc.MajorINT == null || currDesc.MajorINT < oldestDesc.MajorINT || currDesc.MajorINT > latestDesc.MajorINT)
+                        {
+                            isCompat = false;
+                        }
+                        break;
+                    case 1:
+                        // MINOR
+                        if (currDesc.MinorINT == null || currDesc.MinorINT < oldestDesc.MinorINT || currDesc.MinorINT > latestDesc.MinorINT)
+                        {
+                            isCompat = false;
+                        }
+                        break;
+                    case 2:
+                        // Build
+                        if (currDesc.BuildINT == null || currDesc.BuildINT < oldestDesc.BuildINT || currDesc.BuildINT > latestDesc.BuildINT)
+                        {
+                            isCompat = false;
+                        }
+                        break;
+                    case 3:
+                        // Revision
+                        if (currDesc.IsNewFormat)
+                            break;
+
+                        if (currDesc.RevisionINT < oldestDesc.RevisionINT || currDesc.RevisionINT > latestDesc.RevisionINT)
+                        {
+                            isCompat = false;
+                        }
+                        break;
+                }                
+            }
+
+            if (isCompat)
+            {
+                // is compatible
+                return true;
+            }
+            else
+            {
+                // is not compatible
+                if (showDialog)
+                {
+                    // version doesnt match
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("The version of Mednafen you are trying to launch is potentially NOT compatible with this version of MedLaunch\n\nMednafen version installed: ");
+                    sb.Append(currDesc.FullVersionString);
+                    sb.Append("\nMednafen version required: ");
+                    sb.Append(oldestDesc.FullVersionString + " - " + latestDesc.FullVersionString);
+                    sb.Append("\n\nPlease ensure you are targeting a MedLaunch supported version of Mednafen.");
+                    sb.Append("\n\nPress OK to return to the Games Library");
+                    sb.Append("\nPress CANCEL to ignore these very important messages and try to launch the game (which may NOT work anyway)");
+
+                    MessageBoxResult result = MessageBox.Show(sb.ToString(), "Mednafen Version Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            
+        }
+        */
+
+        /*
+        public static bool MednafenVersionCheck(bool showDialog)
+        {
+            // mednafen version check     
+            Paths pa = Paths.GetPaths();
+            string medFolderPath = pa.mednafenExe;
+            string medPath = medFolderPath + @"\mednafen.exe";
+
+            if (!File.Exists(medPath))
+            {
+                if (showDialog)
+                    MessageBox.Show("Path to Mednafen is NOT valid\nPlease set this on the Settings tab", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            string version = LogParser.Instance.GetMednafenVersion(true).FullVersionString;
 
             if (version == null || version == "")
             {
@@ -467,9 +741,191 @@ namespace MedLaunch.Models
             return true;
             
         }
+
+    */
         
     }
 
+    /*
+    public class MednafenVersionDescriptor
+    {
+        /// <summary>
+        /// The full version string passed in
+        /// </summary>
+        public string FullVersionString { get; set; }
+
+        /// <summary>
+        /// Major
+        /// </summary>
+        public int? MajorINT { get; set; }
+        public string MajorSTR { get; set; }
+        /// <summary>
+        /// Minor
+        /// </summary>
+        public int? MinorINT { get; set; }
+        public string MinorSTR { get; set; }
+        /// <summary>
+        /// Build
+        /// </summary>
+        public int? BuildINT { get; set; }
+        public string BuildSTR { get; set; }
+        /// <summary>
+        /// Revision (as of mednafen >= 1.12.0 this no longer exists)
+        /// </summary>
+        public int? RevisionINT { get; set; }
+        public string RevisionSTR { get; set; }
+
+        /// <summary>
+        /// Signs whether version is mednafen 1.12.0 or above
+        /// </summary>
+        public bool IsNewFormat { get; set; }
+
+        /// <summary>
+        /// Signs that the version string was parsed successfully
+        /// </summary>
+        public bool IsValid { get; set; }
+
+        /// <summary>
+        /// Creates a version descriptor object from a string
+        /// </summary>
+        /// <param name="versionString"></param>
+        public static MednafenVersionDescriptor ReturnVersionDescriptor(string versionString)
+        {
+            MednafenVersionDescriptor vd = new MednafenVersionDescriptor();
+
+            vd.FullVersionString = versionString.Trim();
+
+            // attempt splitting the string by '.'
+            string[] arr = versionString.Split('.');
+
+            int count = arr.Length;
+
+            vd.IsValid = true;
+
+            switch (count)
+            {
+                // new version format
+                case 3:
+                    // get each version int, string
+                    for (int i = 0; i < count; i++)
+                    {
+                        var result = ParseVersionInt(arr[i]);
+
+                        if (result.Key == null)
+                        {
+                            vd.IsValid = false;
+                        }
+
+                        switch (i)
+                        {
+                            case 0:
+                                vd.MajorINT = result.Key;
+                                vd.MajorSTR = result.Value;
+                                break;
+                            case 1:
+                                vd.MinorINT = result.Key;
+                                vd.MinorSTR = result.Value;
+                                break;
+                            case 2:
+                                vd.BuildINT = result.Key;
+                                vd.BuildSTR = result.Value;
+                                break;
+                        }
+                    }
+
+                    vd.IsNewFormat = true;
+                    break;
+                    
+                // old version format
+                case 4:
+                    // get each version int, string
+                    for (int i = 0; i < count; i++)
+                    {
+                        var result = ParseVersionInt(arr[i]);
+
+                        if (result.Key == null)
+                        {
+                            vd.IsValid = false;
+                        }
+
+                        switch (i)
+                        {
+                            case 0:
+                                vd.MajorINT = result.Key;
+                                vd.MajorSTR = result.Value;
+                                break;
+                            case 1:
+                                vd.MinorINT = result.Key;
+                                vd.MinorSTR = result.Value;
+                                break;
+                            case 2:
+                                vd.BuildINT = result.Key;
+                                vd.BuildSTR = result.Value;
+                                break;
+                            case 3:
+                                vd.RevisionINT = result.Key;
+                                vd.RevisionSTR = result.Value;
+                                break;
+                        }
+                    }
+
+                    vd.IsNewFormat = false;                    
+                    break;
+
+                // not valid - no more processing should take place
+                default:
+                    vd.IsValid = false;
+                    return vd;
+            }
+
+            return vd;
+        }
+
+        private static KeyValuePair<int?, string> ParseVersionInt(string ver)
+        {
+            // attempt to parse the string
+            int i;
+            bool result = int.TryParse(ver, out i);
+
+            if (!result)
+            {
+                // parsing was not successful - attempt to split string again
+                // (often mednafen with have a 0-UNSTABLE)
+                string[] arr = ver.Split('-');
+
+                int count = arr.Length;
+
+                if (count > 1)
+                {
+                    // test the first element
+                    bool res = int.TryParse(arr[0], out i);
+
+                    if (res)
+                    {
+                        // an int was parsed from the first element
+                        // use this as the int, and use the second as the string
+                        return new KeyValuePair<int?, string>(i, arr[1]);
+                    }
+
+                    // parsing was not successful - just return a null it value and the string
+                    return new KeyValuePair<int?, string>(null, ver);
+                }
+                else
+                {
+                    // could not parse
+                    return new KeyValuePair<int?, string>(null, ver);
+                }
+            }
+            else
+            {
+                // parsing was successful
+                return new KeyValuePair<int?, string>(i, ver);
+            }
+        }
+    }
+    */
+
+    /*
     public class MednafenChangeHistory
     {
         public string Version { get; set; }
@@ -492,4 +948,6 @@ namespace MedLaunch.Models
         ToRemoveCompletely,     // remove entire option where string is matched
         ToAdd                   // add in a command that was previous removed (not currently needed)
     }
+
+    */
 }

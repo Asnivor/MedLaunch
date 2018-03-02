@@ -54,7 +54,6 @@
 				IsDefault="True"
 				VerticalAlignment="Bottom"
 				FontSize="20"
-				FontWeight="Thin"
 				Content="Save"
                 x:Name="btnSave"
                 Click="Save_OnClick"/>
@@ -65,7 +64,6 @@
 				IsDefault="True"
 				VerticalAlignment="Bottom"
 				FontSize="20"
-				FontWeight="Thin"
 				Content="Cancel" 
                 Click="CloseSec_OnClick"/>
         </UniformGrid>

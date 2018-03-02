@@ -101,10 +101,13 @@ namespace MedLaunch.Classes
 
                         if (!File.Exists(sbipath))
                         {
-                            MessageBoxResult result = MessageBox.Show("MedLaunch has determined that you need an available SBI patch file to play this game properly.\n\nDo you wish to copy this file to your disc directory?\n",
-                                "SBI Patch Needed - " + imageFiles.First().FileName, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                            var result = MessagePopper.ShowMessageDialog("MedLaunch has determined that you need an available SBI patch file to play this game properly.\n\nDo you wish to copy this file to your disc directory?\n",
+                                "SBI Patch Needed - " + imageFiles.First().FileName, MessagePopper.DialogButtonOptions.YESNO);
 
-                            if (result == MessageBoxResult.Yes)
+                            //MessageBoxResult result = MessageBox.Show("MedLaunch has determined that you need an available SBI patch file to play this game properly.\n\nDo you wish to copy this file to your disc directory?\n",
+                            //    "SBI Patch Needed - " + imageFiles.First().FileName, MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                            if (result == MessagePopper.ReturnResult.Affirmative)
                             {
                                 // copy sbi file to folder (named the same as the cue file)
                                 originalCue.ExtraInfo = imageFiles.First().ExtraInfo;
@@ -130,10 +133,13 @@ namespace MedLaunch.Classes
                             // sbi is available - prompt user
                             if (!File.Exists(imageFiles[image].FolderPath + "\\" + imageFiles[image].FileName.Replace(imageFiles[image].Extension, "") + ".sbi"))
                             {
-                                MessageBoxResult result = MessageBox.Show("MedLaunch has determined that you need an available SBI patch file to play this game properly.\n\nDo you wish to copy this file to your disc directory?\n",
-                                    "SBI Patch Needed - " + imageFiles[image].FileName + imageFiles[image].Extension, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                                var result = MessagePopper.ShowMessageDialog("MedLaunch has determined that you need an available SBI patch file to play this game properly.\n\nDo you wish to copy this file to your disc directory?\n",
+                                "SBI Patch Needed - " + imageFiles.First().FileName, MessagePopper.DialogButtonOptions.YESNO);
 
-                                if (result == MessageBoxResult.Yes)
+                                //MessageBoxResult result = MessageBox.Show("MedLaunch has determined that you need an available SBI patch file to play this game properly.\n\nDo you wish to copy this file to your disc directory?\n",
+                                    //"SBI Patch Needed - " + imageFiles[image].FileName + imageFiles[image].Extension, MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                                if (result == MessagePopper.ReturnResult.Affirmative)
                                 {
                                     // copy sbi file to folder (named the same as the cue file)
                                     DiscGameFile d = new DiscGameFile(cues[image], 9);
@@ -270,6 +276,7 @@ namespace MedLaunch.Classes
             var paths = Paths.GetPaths();
             string filePath = paths.mednafenExe + @"\" + systemCode + ".cfg";
 
+            
             // build config file string
             StringBuilder sb = new StringBuilder();
             foreach (var t in sysConfigObject)
@@ -279,7 +286,7 @@ namespace MedLaunch.Classes
                 {
                     // null or empty value - continue
                     continue;
-                }
+                }                
 
                 // convert all values to strings
                 string v = t.Value.ToString();
@@ -409,9 +416,11 @@ namespace MedLaunch.Classes
                 gProcess.StartInfo.CreateNoWindow = false;
                 // Build command line config arguments
                 gProcess.StartInfo.Arguments = cmdArguments;
+                //gProcess.StartInfo.UseShellExecute = false;
+                //gProcess.StartInfo.EnvironmentVariables["MEDNAFEN_NOPOPUPS"] = "1";
                 gProcess.Start();
-                
-                gProcess.WaitForInputIdle();
+
+                gProcess.WaitForExit();
 
                 procId = gProcess.Id;
                 IntPtr hwnd = new IntPtr();
@@ -461,6 +470,24 @@ namespace MedLaunch.Classes
                 catch
                 {
                     // catch exception if mednafen doesnt launch correctly
+
+                    if (VersionChecker.Instance.CurrentMedVerDesc.MajorINT > 0)
+                    {
+                        // new mednafen already pops up error messages - so do nothing
+                    }
+                    else
+                    {
+                        // old mednafen does not pop messages - interogate stdout.txt and display the last error
+                        string res = LogParser.Instance.GetErrors();
+                        if (res != string.Empty)
+                        {
+                            string end = "\n--------------------------------------------\n";
+                            string beg = "It looks like mednafen did NOT launch correctly.\nThe following error log may help in troubleshooting:" + end;
+                            
+                            MessagePopper.ShowMessageDialog((beg + res + end).Replace("\n\n", "\n").TrimEnd('\n'), "MEDNAFEN ERROR PARSER");
+                        }
+                    }
+
                     return; 
                 }
             }
@@ -643,7 +670,7 @@ namespace MedLaunch.Classes
 
 
             // perform mednafen version check and replace/remove config options that are not viable
-            baseStr = Versions.GetCompatLaunchString(baseStr);
+            baseStr = VersionChecker.GetCompatLaunchString(baseStr);
 
             // add gamepath to command line
             baseStr += "\"" + BuildFullGamePath(RomFolder, RomPath) + "\"";
@@ -658,7 +685,7 @@ namespace MedLaunch.Classes
         public static string Validate(string s)
         {
             // check whether there are spaces in the incoming string - if so surround the string in "" marks
-            if (s.Contains(" "))
+            if (s.Contains(" ") || s.StartsWith("-"))
             {
                 return "\"" + s + "\"";
             }

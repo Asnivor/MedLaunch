@@ -27,6 +27,18 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="36" />
                             <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
                         </Grid.RowDefinitions>
 
                                 <Image Source="/MedLaunch;component/Data/Graphics/Controllers/nes-controller.png" Margin="5">
@@ -53,6 +65,9 @@
 
                                 <Button Name="btnNesGamepadConfigure" Margin="5" Grid.Column="3" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center">Configure</Button>
 
+                                
+                                
+                                
                         <Image Source="/MedLaunch;component/Data/Graphics/Controllers/nes-zapper.png" Margin="5" Grid.Row="1">
                             <Image.ToolTip>
                                 <ToolTip DataContext="{Binding PlacementTarget, 
@@ -74,6 +89,276 @@
                         </ComboBox>
 
                         <Button Name="btnNesZapperConfigure" Margin="5" Grid.Column="3" Grid.Row="1" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center">Configure</Button>
+
+
+
+
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/nes_powerpada.png" Margin="5" Grid.Row="2">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+                        <Label Name="lblppa1" Margin="5" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Height="25">
+                            Power Pad Side A
+                        </Label>
+
+                        <ComboBox Name="cmbNesPowerPadA" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Grid.Row="2" Height="25" VerticalAlignment="Center">
+                            <ComboBoxItem>Virtual Port 1</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 2</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnNesPowerPadAConfigure" Margin="5" Grid.Column="3" Grid.Row="2" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center">Configure</Button>
+
+
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/nes_powerpadb.png" Margin="5" Grid.Row="3">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+                        <Label Margin="5" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Height="25">
+                            Power Pad Side B
+                        </Label>
+
+                        <ComboBox Name="cmbNesPowerPadB" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Grid.Row="3" Height="25" VerticalAlignment="Center">
+                            <ComboBoxItem>Virtual Port 1</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 2</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnNesPowerPadBConfigure" Margin="5" Grid.Column="3" Grid.Row="3" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center">Configure</Button>
+
+
+
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/nes_arkanoidpaddle.png" Margin="5" Grid.Row="4">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+                        <Label Margin="5" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Height="25">
+                            Arkanoid Paddle
+                        </Label>
+
+                        <ComboBox Name="cmbNesArkanoidPaddle" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Grid.Row="4" Height="25" VerticalAlignment="Center">
+                            <ComboBoxItem>Virtual Port 1</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 2</ComboBoxItem>
+                            <ComboBoxItem>Famicon Expansion Port</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnNesArkanoidPaddleConfigure" Margin="5" Grid.Column="3" Grid.Row="4" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center">Configure</Button>
+
+
+
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/nes_familykeyboard.png" Margin="5" Grid.Row="5">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+                        <Label Margin="5" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Height="25">
+                            Family Keyboard
+                        </Label>
+
+                        <ComboBox Name="cmbNesFamilyKeyboard" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Grid.Row="5" Height="25" VerticalAlignment="Center">
+                            <ComboBoxItem>Famicon Expansion Port</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnNesFamilyKeyboardConfigure" Margin="5" Grid.Column="3" Grid.Row="5" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center">Configure</Button>
+
+
+
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/nes_familytrainer.png" Margin="5" Grid.Row="6">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+                        <Label Margin="5" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Height="25">
+                            Family Trainer Side A
+                        </Label>
+
+                        <ComboBox Name="cmbNesFamilyTrainerA" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Grid.Row="6" Height="25" VerticalAlignment="Center">
+                            <ComboBoxItem>Famicon Expansion Port</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnNesFamilyTrainerAConfigure" Margin="5" Grid.Column="3" Grid.Row="6" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center">Configure</Button>
+
+
+
+
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/nes_familytrainer.png" Margin="5" Grid.Row="7">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+                        <Label Margin="5" Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Height="25">
+                            Family Trainer Side B
+                        </Label>
+
+                        <ComboBox Name="cmbNesFamilyTrainerB" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Grid.Row="7" Height="25" VerticalAlignment="Center">
+                            <ComboBoxItem>Famicon Expansion Port</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnNesFamilyTrainerBConfigure" Margin="5" Grid.Column="3" Grid.Row="7" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center">Configure</Button>
+
+
+
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/nes_hypershot.png" Margin="5" Grid.Row="8">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+                        <Label Margin="5" Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" Height="25">
+                            Hypershot
+                        </Label>
+
+                        <ComboBox Name="cmbNesHypershot" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Grid.Row="8" Height="25" VerticalAlignment="Center">
+                            <ComboBoxItem>Famicon Expansion Port</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnNesHypershotConfigure" Margin="5" Grid.Column="3" Grid.Row="8" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center">Configure</Button>
+
+
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/NOIMAGEAVAILABLE.png" Margin="5" Grid.Row="9">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+                        <Label Margin="5" Grid.Column="1" Grid.Row="9" VerticalAlignment="Center" Height="25">
+                            Mahjong
+                        </Label>
+
+                        <ComboBox Name="cmbNesMahjong" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Grid.Row="9" Height="25" VerticalAlignment="Center">
+                            <ComboBoxItem>Famicon Expansion Port</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnNesMahjongConfigure" Margin="5" Grid.Column="3" Grid.Row="9" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center">Configure</Button>
+
+
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/nes_oekakids.png" Margin="5" Grid.Row="10">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+                        <Label Margin="5" Grid.Column="1" Grid.Row="10" VerticalAlignment="Center" Height="25">
+                            Oeka Kids Tablet
+                        </Label>
+
+                        <ComboBox Name="cmbNesOekakids" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Grid.Row="10" Height="25" VerticalAlignment="Center">
+                            <ComboBoxItem>Famicon Expansion Port</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnNesOekakidsConfigure" Margin="5" Grid.Column="3" Grid.Row="10" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center">Configure</Button>
+
+
+
+
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/nes_partytap.png" Margin="5" Grid.Row="11">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+                        <Label Margin="5" Grid.Column="1" Grid.Row="11" VerticalAlignment="Center" Height="25">
+                            Party Tap
+                        </Label>
+
+                        <ComboBox Name="cmbNesPartyTap" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Grid.Row="11" Height="25" VerticalAlignment="Center">
+                            <ComboBoxItem>Famicon Expansion Port</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnNesPartyTapConfigure" Margin="5" Grid.Column="3" Grid.Row="11" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center">Configure</Button>
+
+
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/nes_spaceshadow.png" Margin="5" Grid.Row="12">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+                        <Label Margin="5" Grid.Column="1" Grid.Row="12" VerticalAlignment="Center" Height="25">
+                            Space Shadow Gun
+                        </Label>
+
+                        <ComboBox Name="cmbNesSpaceShadow" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Grid.Row="12" Height="25" VerticalAlignment="Center">
+                            <ComboBoxItem>Famicon Expansion Port</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnNesSpaceShadowConfigure" Margin="5" Grid.Column="3" Grid.Row="12" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center">Configure</Button>
+
+
+
 
                     </Grid>                            
                         </WrapPanel>
