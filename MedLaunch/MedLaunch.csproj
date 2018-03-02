@@ -1084,6 +1084,10 @@
       <Project>{376fd53c-1f78-40ed-ae4b-5fd0fa1a1cb4}</Project>
       <Name>MedLaunch.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SplashScreenUpdater\SplashScreenUpdater.csproj">
+      <Project>{3c03e2cc-0894-4184-bd1d-6eab720f5995}</Project>
+      <Name>SplashScreenUpdater</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ucon64-wrapper\ucon64-wrapper.csproj">
       <Project>{32EEAB9C-791A-4303-A675-A43324C35154}</Project>
       <Name>ucon64-wrapper</Name>
@@ -1204,6 +1208,7 @@
     <Resource Include="Data\Graphics\Controllers\nes_spaceshadow.png" />
     <Resource Include="Data\Graphics\Controllers\nes_partytap.png" />
     <Resource Include="Data\Graphics\Controllers\psx_analogjoy.png" />
+    <Resource Include="Data\Graphics\mediconsplash-base.png" />
     <Content Include="Data\Installers\vcredist_x86.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1265,4 +1270,8 @@
     <Move SourceFiles="@(MoveToLibFolder)" DestinationFolder="$(OutputPath)lib" OverwriteReadOnlyFiles="true" />
   </Target>
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
 </Project>
