@@ -14,8 +14,8 @@ title: Changelog
 * (BugFix) - MedLaunch update checker can now connect using TLS 1.2 (so updates can be checked and downloaded from GitHub). Unfortunately this will obviously require a manual update before this is available ([#201](https://github.com/Asnivor/MedLaunch/issues/201))
 * (BugFix) - Controller input configurator fields are now only triggered when MedLaunch has focus ([#203](https://github.com/Asnivor/MedLaunch/issues/203))
 * (Enhancement) - Famicom expansion port controls can now be configured (when targeting mednafen >= v1.21.x) ([#204](https://github.com/Asnivor/MedLaunch/issues/204))
-* (Enhancement) - Added the ability to configure the following additional controllers (when targeting mednafen >= v1.21.x):
-* (Enhancement) - Controllers can now be configured within the 'CONFIGS' tab (when targeting mednafen >= v1.21.x):
+* (Enhancement) - All controllers can now be configured within the 'CONFIGS' tab (when targeting mednafen >= v1.21.x) ([#206](https://github.com/Asnivor/MedLaunch/issues/206))
+* (Enhancement) - Added the ability to configure ALL virtual controllers that mednafen supports. The following additional controllers have been added (and are available to configure when targeting mednafen >= v1.21.x) ([#207](https://github.com/Asnivor/MedLaunch/issues/207)):
 * * NES Power Pad (Side A and B)
 * * NES Arkanoid Paddle
 * * Famicom Family Keyboard
