@@ -211,9 +211,8 @@ namespace MedLaunch.Classes.DAT
                 if (hash != null)
                 {
                     var cData = (from g in aData
-                                 where g.MD5.ToUpper().Trim() == hash.ToUpper().Trim() ||
-                                 g.CRC.ToUpper().Trim() == hash.ToUpper().Trim() ||
-                                 g.SHA1.ToUpper().Trim() == hash.ToUpper().Trim()
+                                 where (g.MD5 != null && g.MD5.ToUpper().Trim() == hash.ToUpper().Trim()) ||
+                                 (g.CRC != null && g.CRC.ToUpper().Trim() == hash.ToUpper().Trim())
                                  select g).FirstOrDefault();
                     return cData;
                 }
