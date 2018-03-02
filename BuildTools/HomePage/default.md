@@ -38,10 +38,10 @@ title: Home
 **MedLaunch** is a .NET (Windows only) front-end for the excellent [Mednafen](http://mednafen.fobby.net/) multi-system emulator.
 
 ### Production Releases
-* Latest Production Version: 0.5.18.5 
+* Latest Production Version: 0.5.25.2 
 * [![Build status](https://ci.appveyor.com/api/projects/status/4maii9la7yb72bw8/branch/master?svg=true&passingText=Latest%20MASTER%20Build%20-%20OK&failingText=Lastest%20MASTER%20Build%20-%20FAILED&pendingText=Latest%20MASTER%20Build%20-%20IN%20PROGRESS)](https://ci.appveyor.com/project/Asnivor/medlaunch/branch/master)
 * Direct Production Download: [LATEST](https://downloads.medlaunch.info/latest)
-* Compatible with Mednafen: 0.9.39.x - 0.9.48
+* Compatible with Mednafen: 0.9.39.x - 1.21.0-UNSTABLE
 
 Official production releases happen when the team are happy after testing. The frequency of these releases has decreased over time, so users should look to the dev builds to get new features and compatibility early.
 
@@ -63,7 +63,7 @@ The development releases should usually be stable, but it is advisable to backup
 * **Responsive UI**
  * Customizable color scheme
  * Scaleable to aid usability on a wide range of resolutions
-* **Supports versions of Mednafen 0.9.39.x - 0.9.46.x (latest)**
+* **Supports versions of Mednafen 0.9.39.x - 1.21.0-UNSTABLE (latest)**
 * **Nearly all Mednafen config parameters are supported and configurable through the launcher**
  * With the exception of control configuration parameters, all config settings are stored internally on per-emulated system basis
  * On game launch a {system}.cfg file is generated (so that per-system configurations can be utilized outside of MedLaunch)
