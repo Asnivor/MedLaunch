@@ -3658,10 +3658,10 @@ namespace MedLaunch
                 // re-init logparser instance
                 LogParser.Init();
 
-                // re-init input
-                //Input.Initialize(this);
-
                 UpdateCheckMednafen();
+
+                // re-init input
+                RePollControllers();
             }
 
         }
@@ -4058,8 +4058,14 @@ namespace MedLaunch
         private void btnControlRePoll_Click(object sender, RoutedEventArgs e)
         {
             //Input.Instance.Dispose();
-            Input.Initialize(this);
+            //Input.Initialize(this);
             //Input.Instance.Dispose();
+            RePollControllers();
+        }
+
+        private void RePollControllers()
+        {
+            Input.Initialize(this);
         }
 
         /// <summary>

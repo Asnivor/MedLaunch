@@ -19,6 +19,7 @@ namespace MedLaunch.Classes
 
     public enum ControllerType
     {
+        Undefined,
         DirectInput,
         XInput
     }
@@ -273,9 +274,10 @@ namespace MedLaunch.Classes
                     foreach (var l in lines)
                     {
                         ControllerInfo ci = new ControllerInfo();
-
+                        
                         if (l.ToLower().Contains("xinput") ||
-                            l.ToLower().Contains("XBOX 360"))
+                            l.ToLower().Contains("XBOX 360") ||
+                            l.Contains("00000000000000000001"))
                         {
                             // mednafen has probably detected this as an xinput controller
                             ci.Type = ControllerType.XInput;
@@ -307,7 +309,8 @@ namespace MedLaunch.Classes
                         ControllerInfo ci = new ControllerInfo();
 
                         if (l.ToLower().Contains("xinput") ||
-                            l.ToLower().Contains("XBOX 360"))
+                            l.ToLower().Contains("XBOX 360") ||
+                            l.Contains("000000000001"))
                         {
                             // mednafen has probably detected this as an xinput controller
                             ci.Type = ControllerType.XInput;

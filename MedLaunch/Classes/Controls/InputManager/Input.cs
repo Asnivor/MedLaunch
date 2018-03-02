@@ -100,6 +100,12 @@ namespace MedLaunch.Classes.Controls.InputManager
             Instance.GotFocus = true;
         }
 
+        public static void ReInitGamepads(MainWindow mw)
+        {
+            GamePad.Initialize(mw);
+            GamePad360.Initialize(mw);
+        }
+
         public void Dispose()
         {
             //KeyInput.Dispose();

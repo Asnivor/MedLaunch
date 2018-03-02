@@ -100,7 +100,8 @@ namespace MedLaunch.Classes.Controls
                 string devId = device.ProductGuid.ToString();
                 string devPidVid = (devId.Split('-'))[0];
 
-                // compare PIDVID from WMI from the first part of the ProductGuid. If they match, this is an xinput controller and can be skipped (and left for GamePad360)
+                // compare PIDVID from WMI from the first part of the ProductGuid. If they match, this is an xinput controller 
+                // and can be skipped (and left for GamePad360)
                 var check = (from a in xids
                             where a.PIDVID == devPidVid
                             select a).ToList();

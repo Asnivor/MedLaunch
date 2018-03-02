@@ -64,6 +64,9 @@ namespace MedLaunch.Classes.Controls
             IntPtr handle = new WindowInteropHelper(window).Handle;
             IsAvailable = false;
 
+            // clear devices
+            Devices.Clear();
+
             ContInfoFromLog = LogParser.Instance.GetAttachedControllers(true).Where(a => a.Type == ControllerType.XInput).ToArray();
 
             try
