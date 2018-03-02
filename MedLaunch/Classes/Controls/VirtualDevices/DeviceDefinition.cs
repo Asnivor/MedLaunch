@@ -90,33 +90,44 @@ namespace MedLaunch.Classes.Controls.VirtualDevices
                         continue;
 
                     string[] descSplit = prev.Split(new string[] { ", " }, StringSplitOptions.None);
-                    if (descSplit.Length < 1)
-                    {
-                        map.Description = prev;
-                    }
-                    else if (descSplit.Length > 2)
-                    {
-                        string res = string.Empty;
-                        for (int s = 1; s < descSplit.Length; s++)
-                        {
-                            res += descSplit[s];
-                            if (s != descSplit.Length - 1)
-                                res += ", ";
-                        }
-                        map.Description = res;
-                    }
-                    else
-                    {
-                        string last = descSplit.Last();
-                        map.Description = last;
-                    }
 
-                    // attempt to remove the beginning nonsense
-                    string[] n = map.Description.Split(new string[] { ": " }, StringSplitOptions.None);
-                    if (n.Length < 2)
-                        map.Description = map.Description;
+                    if (map.MednafenCommand.StartsWith("command"))
+                    {
+                        // this is a command binding - take whole description without the leading ;
+                        map.Description = prev.TrimStart(';');
+                    }
                     else
-                        map.Description = n.Last();
+                    {
+                        // non command binding
+                        if (descSplit.Length < 1)
+                        {
+                            map.Description = prev;
+                        }
+                        else if (descSplit.Length > 2)
+                        {
+                            string res = string.Empty;
+                            for (int s = 1; s < descSplit.Length; s++)
+                            {
+                                res += descSplit[s];
+                                if (s != descSplit.Length - 1)
+                                    res += ", ";
+                            }
+                            map.Description = res;
+                        }
+                        else
+                        {
+                            string last = descSplit.Last();
+                            map.Description = last;
+                        }
+
+                        // attempt to remove the beginning nonsense
+                        string[] n = map.Description.Split(new string[] { ": " }, StringSplitOptions.None);
+                        if (n.Length < 2)
+                            map.Description = map.Description;
+                        else
+                            map.Description = n.Last();
+                    }
+                    
 
                     // add to maplist
                     dd.MapList.Add(map);

@@ -4076,9 +4076,14 @@ namespace MedLaunch
         private async void btnControlCommandBindings_Click(object sender, RoutedEventArgs e)
         {
             // launch controller configuration window
+            IDeviceDefinition dev;
 
             if (VersionChecker.Instance.IsNewConfig)
             {
+                dev = new DeviceDefinition();
+                dev = MiscBindings.Misc(0);
+                ControllerDefinition = dev;
+
                 await this.ShowChildWindowAsync(new ConfigureMiscBindings()
                 {
                     IsModal = true,
@@ -4091,6 +4096,10 @@ namespace MedLaunch
             }
             else
             {
+                dev = new DeviceDefinitionLegacy();
+                dev = MiscBindings_Legacy.Misc(0);
+                ControllerDefinition = dev;
+
                 await this.ShowChildWindowAsync(new ConfigureMiscBindingsLegacy()
                 {
                     IsModal = true,

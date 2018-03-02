@@ -322,7 +322,7 @@ namespace MedLaunch.Classes.Controls
                 if (uk.First().DxUK.Contains("SDL_SCANCODE_"))
                 {
                     // no dx lookup was found
-                    return "keyboard 0x0" + uk.First().SDLK;
+                    //return "keyboard 0x0 " + uk.First().SDLK;
                 }
 
                 return uk.First().DxUK;

@@ -1694,7 +1694,7 @@ namespace MedLaunch
         public static string ConvertText(string input, ConversionOrder conversionOrder)
         {
             // create the output string
-            string output = input;            
+            string output = input.TrimEnd();            
 
             // see if there is a scale factor present and remove this
             string scale = string.Empty;
@@ -1711,7 +1711,7 @@ namespace MedLaunch
                 input.TrimEnd();
             }
             else
-                input = output;
+                input = output.TrimEnd();
 
             switch (conversionOrder)
             {

@@ -32,8 +32,8 @@ namespace MedLaunch
     /// </summary>
     public partial class ConfigureMiscBindingsLegacy : ChildWindow
     {
-        public DeviceDefinition ControllerDefinition { get; set; }
-        public DeviceDefinition ControllerDefinitionWorking { get; set; }
+        public IDeviceDefinition ControllerDefinition { get; set; }
+        public IDeviceDefinition ControllerDefinitionWorking { get; set; }
         public MainWindow mw { get; set; }
         public IntPtr hWnd { get; set; }
         public ContextMenu TBCM { get; set; }
@@ -109,7 +109,7 @@ namespace MedLaunch
                 this.Close();
                 */
 
-            ControllerDefinition = MiscBindings.Misc(0);
+            ControllerDefinition = mw.ControllerDefinition; //MiscBindings_Legacy.Misc(0);
 
             string vPortStr = "";
             if (ControllerDefinition.VirtualPort > 0)
