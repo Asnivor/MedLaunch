@@ -29,6 +29,7 @@ title: Changelog
 * * Saturn Keyboard (JP)
 * * PSX Analog Joystick
 * (Enhancement) - Most of the old-style popup dialogs have now been re-styled to fit with the standard MedLaunch theme
+* (Enhancement)	- MedLaunch splashscreen now gets updated with the current number and build date during the appveyor auto-build process
 
 * ## Mednafen 1.21.x support ## ([#202](https://github.com/Asnivor/MedLaunch/issues/202))
 * * Updated LogParser to handle new Mednafen version numbering and changes in stdout.txt behaviour
