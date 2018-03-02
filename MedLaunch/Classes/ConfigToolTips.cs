@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
 using System.IO;
@@ -15,6 +14,9 @@ using MedLaunch.Classes.HtmlToXaml;
 
 namespace MedLaunch.Classes
 {
+    /// <summary>
+    /// Manages tooltips generated from the Mednafen help file for each release
+    /// </summary>
     public class ConfigToolTips
     {
         /// <summary>
@@ -24,7 +26,6 @@ namespace MedLaunch.Classes
         /// <param name="SetOrUnset"></param>
         public static void SetToolTips(int SetOrUnset)
         {
-            
             // get all config controls
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             // find the root grid

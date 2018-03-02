@@ -73,7 +73,7 @@
   },
   {
     "Command": "lynx.xres",
-    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the current desktop horizontal resolution to be used."
   },
   {
     "Command": "lynx.xscale",
@@ -85,7 +85,7 @@
   },
   {
     "Command": "lynx.yres",
-    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the current desktop vertical resolution to be used."
   },
   {
     "Command": "lynx.yscale",
@@ -165,7 +165,7 @@
   },
   {
     "Command": "gb.xres",
-    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the current desktop horizontal resolution to be used."
   },
   {
     "Command": "gb.xscale",
@@ -177,7 +177,7 @@
   },
   {
     "Command": "gb.yres",
-    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the current desktop vertical resolution to be used."
   },
   {
     "Command": "gb.yscale",
@@ -257,7 +257,7 @@
   },
   {
     "Command": "gba.xres",
-    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the current desktop horizontal resolution to be used."
   },
   {
     "Command": "gba.xscale",
@@ -269,7 +269,7 @@
   },
   {
     "Command": "gba.yres",
-    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the current desktop vertical resolution to be used."
   },
   {
     "Command": "gba.yscale",
@@ -349,7 +349,7 @@
   },
   {
     "Command": "ngp.xres",
-    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the current desktop horizontal resolution to be used."
   },
   {
     "Command": "ngp.xscale",
@@ -361,7 +361,7 @@
   },
   {
     "Command": "ngp.yres",
-    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the current desktop vertical resolution to be used."
   },
   {
     "Command": "ngp.yscale",
@@ -581,7 +581,7 @@
   },
   {
     "Command": "nes.xres",
-    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the current desktop horizontal resolution to be used."
   },
   {
     "Command": "nes.xscale",
@@ -593,7 +593,7 @@
   },
   {
     "Command": "nes.yres",
-    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the current desktop vertical resolution to be used."
   },
   {
     "Command": "nes.yscale",
@@ -749,7 +749,7 @@
   },
   {
     "Command": "pce_fast.xres",
-    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the current desktop horizontal resolution to be used."
   },
   {
     "Command": "pce_fast.xscale",
@@ -761,7 +761,7 @@
   },
   {
     "Command": "pce_fast.yres",
-    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the current desktop vertical resolution to be used."
   },
   {
     "Command": "pce_fast.yscale",
@@ -945,7 +945,7 @@
   },
   {
     "Command": "pce.xres",
-    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the current desktop horizontal resolution to be used."
   },
   {
     "Command": "pce.xscale",
@@ -957,7 +957,7 @@
   },
   {
     "Command": "pce.yres",
-    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the current desktop vertical resolution to be used."
   },
   {
     "Command": "pce.yscale",
@@ -1033,7 +1033,7 @@
   },
   {
     "Command": "gg.xres",
-    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the current desktop horizontal resolution to be used."
   },
   {
     "Command": "gg.xscale",
@@ -1045,7 +1045,7 @@
   },
   {
     "Command": "gg.yres",
-    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the current desktop vertical resolution to be used."
   },
   {
     "Command": "gg.yscale",
@@ -1189,7 +1189,7 @@
   },
   {
     "Command": "md.xres",
-    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the current desktop horizontal resolution to be used."
   },
   {
     "Command": "md.xscale",
@@ -1201,7 +1201,7 @@
   },
   {
     "Command": "md.yres",
-    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the current desktop vertical resolution to be used."
   },
   {
     "Command": "md.yscale",
@@ -1301,7 +1301,7 @@
   },
   {
     "Command": "sms.xres",
-    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the current desktop horizontal resolution to be used."
   },
   {
     "Command": "sms.xscale",
@@ -1313,7 +1313,7 @@
   },
   {
     "Command": "sms.yres",
-    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the current desktop vertical resolution to be used."
   },
   {
     "Command": "sms.yscale",
@@ -1369,7 +1369,11 @@
   },
   {
     "Command": "ss.input.port1",
-    "Description": "Input device for Virtual Port 1\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 1\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details.\n\njpkeyboard - Keyboard (JP)\n89-key Japanese keyboard(e.g. HSS-0129).\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port1.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
   },
   {
     "Command": "ss.input.port1.gun_chairs",
@@ -1377,7 +1381,11 @@
   },
   {
     "Command": "ss.input.port10",
-    "Description": "Input device for Virtual Port 10\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 10\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details.\n\njpkeyboard - Keyboard (JP)\n89-key Japanese keyboard(e.g. HSS-0129).\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port10.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
   },
   {
     "Command": "ss.input.port10.gun_chairs",
@@ -1385,7 +1393,11 @@
   },
   {
     "Command": "ss.input.port11",
-    "Description": "Input device for Virtual Port 11\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 11\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details.\n\njpkeyboard - Keyboard (JP)\n89-key Japanese keyboard(e.g. HSS-0129).\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port11.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
   },
   {
     "Command": "ss.input.port11.gun_chairs",
@@ -1393,7 +1405,11 @@
   },
   {
     "Command": "ss.input.port12",
-    "Description": "Input device for Virtual Port 12\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 12\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details.\n\njpkeyboard - Keyboard (JP)\n89-key Japanese keyboard(e.g. HSS-0129).\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port12.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
   },
   {
     "Command": "ss.input.port12.gun_chairs",
@@ -1401,7 +1417,11 @@
   },
   {
     "Command": "ss.input.port2",
-    "Description": "Input device for Virtual Port 2\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 2\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details.\n\njpkeyboard - Keyboard (JP)\n89-key Japanese keyboard(e.g. HSS-0129).\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port2.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
   },
   {
     "Command": "ss.input.port2.gun_chairs",
@@ -1409,7 +1429,11 @@
   },
   {
     "Command": "ss.input.port3",
-    "Description": "Input device for Virtual Port 3\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 3\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details.\n\njpkeyboard - Keyboard (JP)\n89-key Japanese keyboard(e.g. HSS-0129).\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port3.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
   },
   {
     "Command": "ss.input.port3.gun_chairs",
@@ -1417,7 +1441,11 @@
   },
   {
     "Command": "ss.input.port4",
-    "Description": "Input device for Virtual Port 4\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 4\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details.\n\njpkeyboard - Keyboard (JP)\n89-key Japanese keyboard(e.g. HSS-0129).\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port4.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
   },
   {
     "Command": "ss.input.port4.gun_chairs",
@@ -1425,7 +1453,11 @@
   },
   {
     "Command": "ss.input.port5",
-    "Description": "Input device for Virtual Port 5\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 5\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details.\n\njpkeyboard - Keyboard (JP)\n89-key Japanese keyboard(e.g. HSS-0129).\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port5.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
   },
   {
     "Command": "ss.input.port5.gun_chairs",
@@ -1433,7 +1465,11 @@
   },
   {
     "Command": "ss.input.port6",
-    "Description": "Input device for Virtual Port 6\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 6\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details.\n\njpkeyboard - Keyboard (JP)\n89-key Japanese keyboard(e.g. HSS-0129).\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port6.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
   },
   {
     "Command": "ss.input.port6.gun_chairs",
@@ -1441,7 +1477,11 @@
   },
   {
     "Command": "ss.input.port7",
-    "Description": "Input device for Virtual Port 7\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 7\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details.\n\njpkeyboard - Keyboard (JP)\n89-key Japanese keyboard(e.g. HSS-0129).\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port7.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
   },
   {
     "Command": "ss.input.port7.gun_chairs",
@@ -1449,7 +1489,11 @@
   },
   {
     "Command": "ss.input.port8",
-    "Description": "Input device for Virtual Port 8\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 8\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details.\n\njpkeyboard - Keyboard (JP)\n89-key Japanese keyboard(e.g. HSS-0129).\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port8.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
   },
   {
     "Command": "ss.input.port8.gun_chairs",
@@ -1457,7 +1501,11 @@
   },
   {
     "Command": "ss.input.port9",
-    "Description": "Input device for Virtual Port 9\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+    "Description": "Input device for Virtual Port 9\n\nnone - none\n\n\ngamepad - Digital Gamepad\nStandard Saturn digital gamepad.\n\n3dpad - 3D Control Pad\n3D Control Pad\n\nmouse - Mouse\nMouse\n\nwheel - Steering Wheel\nArcade Racer/Racing Controller\n\nmission - Mission Stick\nMission Stick\n\ndmission - Dual Mission\nDual Mission Sticks, useful for \"Panzer Dragoon Zwei\".  With 30 inputs to map, don't get distracted by..LOOK A LOBSTER!\n\ngun - Light Gun\nVirtua Gun/Stunner.  Won't function properly if connected behind an emulated multitap.\n\nEmulation of the Saturn lightgun in Mednafen is not particularly accurate(in terms of low-level details), unless you happen to be in the habit of using your Saturn with a TV the size of a house and bright enough to start fires.\n\nkeyboard - Keyboard (US)\n101-key US keyboard.\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details.\n\njpkeyboard - Keyboard (JP)\n89-key Japanese keyboard(e.g. HSS-0129).\n\nEmulated keyboard key state is not updated unless input grabbing(by default, mapped to CTRL+SHIFT+Menu) is toggled on; refer to the main documentation for details."
+  },
+  {
+    "Command": "ss.input.port9.3dpad.mode.defpos",
+    "Description": "Default position for switch \"Mode\".\n\nSets the position for the switch to the value specified upon startup and virtual input device change.>\n\ndigital - Digital(+)\n\n\nanalog - Analog(â—‹)\nAnalog mode is not compatible with all games.  For some compatible games, analog mode reportedly must be enabled before the game boots up for the game to recognize it properly."
   },
   {
     "Command": "ss.input.port9.gun_chairs",
@@ -1585,7 +1633,7 @@
   },
   {
     "Command": "ss.xres",
-    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the current desktop horizontal resolution to be used."
   },
   {
     "Command": "ss.xscale",
@@ -1597,7 +1645,7 @@
   },
   {
     "Command": "ss.yres",
-    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the current desktop vertical resolution to be used."
   },
   {
     "Command": "ss.yscale",
@@ -1949,7 +1997,7 @@
   },
   {
     "Command": "psx.xres",
-    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the current desktop horizontal resolution to be used."
   },
   {
     "Command": "psx.xscale",
@@ -1961,7 +2009,7 @@
   },
   {
     "Command": "psx.yres",
-    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the current desktop vertical resolution to be used."
   },
   {
     "Command": "psx.yscale",
@@ -2097,7 +2145,7 @@
   },
   {
     "Command": "snes_faust.xres",
-    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the current desktop horizontal resolution to be used."
   },
   {
     "Command": "snes_faust.xscale",
@@ -2109,7 +2157,7 @@
   },
   {
     "Command": "snes_faust.yres",
-    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the current desktop vertical resolution to be used."
   },
   {
     "Command": "snes_faust.yscale",
@@ -2217,7 +2265,7 @@
   },
   {
     "Command": "snes.xres",
-    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the current desktop horizontal resolution to be used."
   },
   {
     "Command": "snes.xscale",
@@ -2229,7 +2277,7 @@
   },
   {
     "Command": "snes.yres",
-    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the current desktop vertical resolution to be used."
   },
   {
     "Command": "snes.yscale",
@@ -2369,7 +2417,7 @@
   },
   {
     "Command": "vb.xres",
-    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the current desktop horizontal resolution to be used."
   },
   {
     "Command": "vb.xscale",
@@ -2381,7 +2429,7 @@
   },
   {
     "Command": "vb.yres",
-    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the current desktop vertical resolution to be used."
   },
   {
     "Command": "vb.yscale",
@@ -2497,7 +2545,7 @@
   },
   {
     "Command": "wswan.xres",
-    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the current desktop horizontal resolution to be used."
   },
   {
     "Command": "wswan.xscale",
@@ -2509,7 +2557,7 @@
   },
   {
     "Command": "wswan.yres",
-    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the current desktop vertical resolution to be used."
   },
   {
     "Command": "wswan.yscale",
@@ -2610,6 +2658,30 @@
   {
     "Command": "filesys.untrusted_fip_check",
     "Description": "Enable untrusted file-inclusion path security check.\n\nWhen this setting is set to \"1\", the default, paths to files referenced from files like CUE sheets and PSF rips are checked for certain characters that can be used in directory traversal, and if found, loading is aborted.  Set it to \"0\" if you want to allow constructs like absolute paths in CUE sheets, but only if you understand the security implications of doing so(see \"Security Issues\" section in the documentation)."
+  },
+  {
+    "Command": "fps.autoenable",
+    "Description": "Automatically enable FPS display on startup."
+  },
+  {
+    "Command": "fps.bgcolor",
+    "Description": "FPS display background color.\n\n0xAARRGGBB"
+  },
+  {
+    "Command": "fps.font",
+    "Description": "FPS display font.\n\n5x7 - 5x7\n\n\n6x9 - 6x9\n\n\n6x12 - 6x12\n\n\n6x13 - 6x13.  CJK support.\n\n\n9x18 - 9x18;  CJK support.\n"
+  },
+  {
+    "Command": "fps.position",
+    "Description": "FPS display position.\n"
+  },
+  {
+    "Command": "fps.scale",
+    "Description": "FPS display scale factor.\n\nA value of 0 enables auto-scaling."
+  },
+  {
+    "Command": "fps.textcolor",
+    "Description": "FPS display text color.\n\n0xAARRGGBB"
   },
   {
     "Command": "input.autofirefreq",
@@ -2745,7 +2817,7 @@
   },
   {
     "Command": "video.driver",
-    "Description": "Video output method/driver.\n\nopengl - OpenGL + SDL\nThis output method is preferred, as all features are available with it.\n\nsdl - SDL Surface\nSlower with lower-quality scaling than OpenGL, but if you don't have hardware-accelerated OpenGL rendering, it will be faster than software OpenGL rendering. Bilinear interpolation not available. OpenGL shaders do not work with this output method, of course.\n\noverlay - SDL Overlay\nAs fast as OpenGL, perhaps faster in some situations, *if* it's hardware-accelerated. Scanline effects are not available. hq2x, hq3x, hq4x are not available. The OSD may be missing or glitchy. PSX emulation will not display properly. Bilinear interpolation can't be turned off. Harsh chroma subsampling blurring in some picture types.  If you use this output method, it is strongly recommended to use a special scaler with it, such as nn2x."
+    "Description": "Video output driver.\n\ndefault - Default\nSelects the default video driver.  Currently, this is OpenGL for all platforms, but may change in the future if better platform-specific drivers are added.\n\nopengl - OpenGL\nAll video-related Mednafen features are available with this video driver.\n\nsoftfb - Software Blitting to Framebuffer\nSlower with lower-quality scaling than OpenGL, but if you don't have hardware-accelerated OpenGL rendering, it will probably be faster than software OpenGL rendering. Bilinear interpolation not available. OpenGL shaders do not work with this output method, of course."
   },
   {
     "Command": "video.frameskip",
@@ -2754,6 +2826,10 @@
   {
     "Command": "video.fs",
     "Description": "Enable fullscreen mode."
+  },
+  {
+    "Command": "video.fs.display",
+    "Description": "Display to use with fullscreen mode.\n\nSpecify -1 to use the display on which the center of the window lies in windowed mode."
   },
   {
     "Command": "video.glvsync",
@@ -2825,7 +2901,7 @@
   },
   {
     "Command": "&lt;system&gt;.xres",
-    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the desktop horizontal resolution to be used."
+    "Description": "Full-screen horizontal resolution.\n\nA value of \"0\" will cause the current desktop horizontal resolution to be used."
   },
   {
     "Command": "&lt;system&gt;.xscale",
@@ -2837,7 +2913,7 @@
   },
   {
     "Command": "&lt;system&gt;.yres",
-    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the desktop vertical resolution to be used."
+    "Description": "Full-screen vertical resolution.\n\nA value of \"0\" will cause the current desktop vertical resolution to be used."
   },
   {
     "Command": "&lt;system&gt;.yscale",

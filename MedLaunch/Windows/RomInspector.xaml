@@ -749,7 +749,6 @@
                     <TextBlock Grid.Row="0" Grid.Column="0"  Name="tbRawInspecResults"
 				   Margin="5,5,5,57"
 				   FontSize="15"
-				   FontWeight="Thin"
 				   Text="ROM/Disc Inspection Results" TextWrapping="Wrap" Grid.ColumnSpan="2" />
 
                     <TextBox Grid.Column="0" FontFamily="Courier New" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Name="tbInsResult" Height="500" Width="600" IsReadOnly="True" Grid.ColumnSpan="2" Margin="0,38,0,52" Grid.RowSpan="2" />
@@ -759,7 +758,7 @@
                     <TextBlock Grid.Row="0" Grid.Column="2" 
 				   Margin="29,5,29,57"
 				   FontSize="20"
-				   FontWeight="Thin" HorizontalAlignment="Center"
+				   HorizontalAlignment="Center"
 				   Text="Detected Values" />
 
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Column="2" Grid.RowSpan="2" Height="480" Margin="0,48,0,62">
@@ -841,7 +840,7 @@
 				IsDefault="True"
 				VerticalAlignment="Bottom"
 				FontSize="20"
-				FontWeight="Thin"
+				
 				Content="SAVE CHANGES"
 				Click="SaveSec_OnClick" />
 
@@ -851,7 +850,7 @@
 				IsDefault="True"
 				VerticalAlignment="Bottom"
 				FontSize="20"
-				FontWeight="Thin"
+				
 				Content="CANCEL"
 				Click="CloseSec_OnClick" />
             

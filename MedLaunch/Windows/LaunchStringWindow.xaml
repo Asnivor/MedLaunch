@@ -51,7 +51,6 @@
 				IsDefault="True"
 				VerticalAlignment="Bottom"
 				FontSize="20"
-				FontWeight="Thin"
 				Content="OK"
 				Click="OK_Click" 
                 x:Name="btnSelect"/>
@@ -62,7 +61,6 @@
 				IsDefault="True"
 				VerticalAlignment="Bottom"
 				FontSize="20"
-				FontWeight="Thin"
 				Content="Cancel"
 				Click="CANCEL_Click" />
     </Grid>

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace MedLaunch.Classes
 {
+    /// <summary>
+    /// Game item class used when scraping
+    /// </summary>
     public class GameListItem
     {
         public int GamesDBId { get; set; }

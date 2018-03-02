@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.IO;
 using MedLaunch.Models;
 using System.Diagnostics;
-using System.Windows;
 using System.Threading;
 
 namespace MedLaunch.Classes
 {
+    /// <summary>
+    /// Database migration routines
+    /// </summary>
     public static class DbMigration
     {
-        
-       
         public static bool CheckVersions()
         {
             // skip this as still testing
@@ -30,7 +27,7 @@ namespace MedLaunch.Classes
             string connString = "Data Source=" + AppDomain.CurrentDomain.BaseDirectory + dbPath;
 
             string dbVersion = "";
-            string appVersion = Versions.ReturnApplicationVersion();
+            string appVersion = VersionChecker.ReturnApplicationVersion();
             // connect to database and retreive the current version
             using (SQLiteConnection conn = new SQLiteConnection(connString))
             {

@@ -10,6 +10,9 @@ using MahApps.Metro.Controls.Dialogs;
 
 namespace MedLaunch.Classes
 {
+    /// <summary>
+    /// Handles the import of all mednafen config files
+    /// </summary>
     public class ConfigImport
     {
         // Properties
@@ -35,6 +38,8 @@ namespace MedLaunch.Classes
         public ConfigBaseSettings _ConfigSnes_faustSettings { get; set; }
         public ConfigBaseSettings _ConfigPce_fastSettings { get; set; }
 
+        public string MednafenConfigName { get; set; }
+
         // contructor
         public ConfigImport()
         {
@@ -42,9 +47,7 @@ namespace MedLaunch.Classes
             _Paths = Paths.GetPaths();
             _ConfigNetplaySettings = ConfigNetplaySettings.GetNetplay();
             _ConfigServerSettings = new ConfigServerSettings(); // ConfigServerSettings.GetServer(100);
-
             _ConfigBaseSettings = ConfigBaseSettings.GetConfig(2000000000);
-
             _ConfigGbSettings = ConfigBaseSettings.GetConfig(2000000001);
             _ConfigGbaSettings = ConfigBaseSettings.GetConfig(2000000002);
             _ConfigLynxSettings = ConfigBaseSettings.GetConfig(2000000003);
@@ -62,6 +65,15 @@ namespace MedLaunch.Classes
             _ConfigWswanSettings = ConfigBaseSettings.GetConfig(2000000015);
             _ConfigSnes_faustSettings = ConfigBaseSettings.GetConfig(2000000016);
             _ConfigPce_fastSettings = ConfigBaseSettings.GetConfig(2000000017);
+
+            if (VersionChecker.Instance.CurrentMedVerDesc.MajorINT > 0)
+            {
+                MednafenConfigName = @"mednafen.cfg";
+            }
+            else
+            {
+                MednafenConfigName = @"\mednafen-09x.cfg";
+            }
         }
 
         public void ImportAll(ProgressDialogController controller)
@@ -81,7 +93,6 @@ namespace MedLaunch.Classes
 
             // now save to database
             SaveToDatabase();
-
         }
 
         public void SaveToDatabase()
@@ -109,49 +120,16 @@ namespace MedLaunch.Classes
             ConfigServerSettings.SaveToDatabase(_ConfigServerSettings);
         }
 
-        /*
-        public void ImportConfigsFromDisk(ProgressDialogController controller)
-        {
-            if (controller != null)
-                controller.SetMessage("Importing Mednafen Configs from disk\nPlease wait.....");
-
-            _ConfigBaseSettings = ConfigBaseSettings.GetConfig(2000000000);
-
-            // get a list of current systems
-            List<GSystem> systems = GSystem.GetSystems();
-
-            // first import base config
-            ImportBaseConfigFromDisk(null);            
-
-            // now iterate through each system and search/import system specific config files
-            foreach (GSystem sys in systems)
-            {
-                ImportSystemConfigFromDisk(null, sys);                
-            }
-        }
-        */
-
         public void ImportBaseConfigFromDisk(ProgressDialogController controller)
         {
-            string cfgPath = _Paths.mednafenExe + @"\mednafen-09x.cfg";
+            string cfgPath = _Paths.mednafenExe + MednafenConfigName;// @"\mednafen-09x.cfg";
             var config = LoadConfigFromDisk(cfgPath);
             if (config.Count > 0)
             {
                 // data was returned - begin import
                 if (controller != null)
-                    controller.SetMessage("Importing mednafen-09x.cfg");
-                ParseConfigIncoming(config, 0);
-
-                // now save to the database
-
-                /*
-                if (controller != null)
-                    controller.SetMessage("Saving base settings to database");
-
-                ConfigBaseSettings.SetConfig(_ConfigBaseSettings);
-                ConfigNetplaySettings.SetNetplay(_ConfigNetplaySettings);
-                ConfigServerSettings.SaveToDatabase(_ConfigServerSettings);
-                */
+                    controller.SetMessage("Importing " + MednafenConfigName); // mednafen -09x.cfg");
+                ParseConfigIncoming(config, 0);                
             }
         }
 
@@ -172,11 +150,6 @@ namespace MedLaunch.Classes
             if (controller != null)
                 controller.SetMessage("Importing " + sys.systemCode + ".cfg");
             ParseConfigIncoming(specCfg, 2000000000 + sys.systemId);
-
-            // set to enabled
-            //_ConfigBaseSettings.isEnabled = true;
-
-            //ConfigBaseSettings.SetConfig(_ConfigBaseSettings);
         }
 
         public void ParseConfigIncoming(List<string> cfg, int confId)
@@ -427,7 +400,7 @@ namespace MedLaunch.Classes
             if (configId == 2000000000)
             {
                 // base config
-                path = _Paths.mednafenExe + "\\" + "mednafen-09x.cfg";
+                path = _Paths.mednafenExe + "\\" + MednafenConfigName; // "mednafen-09x.cfg";
             }
             else
             {

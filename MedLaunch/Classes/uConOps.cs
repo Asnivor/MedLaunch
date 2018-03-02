@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ucon64_wrapper;
+﻿using ucon64_wrapper;
 
 namespace MedLaunch.Classes
 {
+    /// <summary>
+    /// uCon handler class (possibly no longer needed)
+    /// </summary>
     public class uConOps
     {
         public static SystemType GetSystemType(int systemId)

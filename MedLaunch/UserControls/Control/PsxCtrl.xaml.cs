@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.SimpleChildWindow;
+using MedLaunch.Classes.Controls;
 
 namespace MedLaunch
 {
@@ -46,51 +47,113 @@ namespace MedLaunch
             string selectedString = cb.SelectionBoxItem.ToString();
             int portNum = Convert.ToInt32(selectedString.Replace("Virtual Port ", ""));
 
-            DeviceDefinition dev = new DeviceDefinition();
+            // get mednafen config version
+            bool isNewConfig = Classes.VersionChecker.Instance.IsNewConfig;
 
-            switch (name)
+            IDeviceDefinition dev;
+
+            if (isNewConfig)
             {
-                case "PsxGamePad":
-                    dev = Psx.DigitalGamePad(portNum);
-                    break;
-                case "PsxDualAnalogGamepad":
-                    dev = Psx.DualAnalog(portNum);
-                    break;
-                case "PsxDualShockGamepad":
-                    dev = Psx.DualShock(portNum);
-                    break;
-                case "PsxNegconGamepad":
-                    dev = Psx.NeGcon(portNum);
-                    break;
-                case "PsxDancepad":
-                    dev = Psx.DancePad(portNum);
-                    break;
-                case "PsxGunCon":
-                    dev = Psx.GunCon(portNum);
-                    break;
-                case "PsxJustifier":
-                    dev = Psx.Justifier(portNum);
-                    break;
-                case "PsxMouse":
-                    dev = Psx.Mouse(portNum);
-                    break;
-                default:
-                    return;
+                dev = new DeviceDefinition();
+
+                switch (name)
+                {
+                    case "PsxGamePad":
+                        dev = Psx.DigitalGamePad(portNum);
+                        break;
+                    case "PsxDualAnalogGamepad":
+                        dev = Psx.DualAnalog(portNum);
+                        break;
+                    case "PsxDualShockGamepad":
+                        dev = Psx.DualShock(portNum);
+                        break;
+                    case "PsxNegconGamepad":
+                        dev = Psx.NeGcon(portNum);
+                        break;
+                    case "PsxDancepad":
+                        dev = Psx.DancePad(portNum);
+                        break;
+                    case "PsxGunCon":
+                        dev = Psx.GunCon(portNum);
+                        break;
+                    case "PsxJustifier":
+                        dev = Psx.Justifier(portNum);
+                        break;
+                    case "PsxMouse":
+                        dev = Psx.Mouse(portNum);
+                        break;
+                    case "PsxAnalogJoy":
+                        dev = Psx.AnalogJoystick(portNum);
+                        break;
+                    default:
+                        return;
+                }
+            }
+            else
+            {
+                dev = new DeviceDefinitionLegacy();
+
+                switch (name)
+                {
+                    case "PsxGamePad":
+                        dev = Psx_Legacy.DigitalGamePad(portNum);
+                        break;
+                    case "PsxDualAnalogGamepad":
+                        dev = Psx_Legacy.DualAnalog(portNum);
+                        break;
+                    case "PsxDualShockGamepad":
+                        dev = Psx_Legacy.DualShock(portNum);
+                        break;
+                    case "PsxNegconGamepad":
+                        dev = Psx_Legacy.NeGcon(portNum);
+                        break;
+                    case "PsxDancepad":
+                        dev = Psx_Legacy.DancePad(portNum);
+                        break;
+                    case "PsxGunCon":
+                        dev = Psx_Legacy.GunCon(portNum);
+                        break;
+                    case "PsxJustifier":
+                        dev = Psx_Legacy.Justifier(portNum);
+                        break;
+                    case "PsxMouse":
+                        dev = Psx_Legacy.Mouse(portNum);
+                        break;
+                    default:
+                        Classes.MessagePopper.PopControllerTargetingIssue();
+                        return;
+                }
             }
             
             mw.ControllerDefinition = dev;
 
             // launch controller configuration window
-            Grid RootGrid = (Grid)mw.FindName("RootGrid");
-            await mw.ShowChildWindowAsync(new ConfigureController()
+            if (isNewConfig)
             {
-                IsModal = true,
-                AllowMove = false,
-                Title = "Controller Configuration",
-                CloseOnOverlay = false,
-                CloseByEscape = false,
-                ShowCloseButton = false
-            }, RootGrid);
+                Grid RootGrid = (Grid)mw.FindName("RootGrid");
+                await mw.ShowChildWindowAsync(new ConfigureController()
+                {
+                    IsModal = true,
+                    AllowMove = false,
+                    Title = "Controller Configuration",
+                    CloseOnOverlay = false,
+                    ShowCloseButton = false,
+                    CloseByEscape = false
+                }, RootGrid);
+            }
+            else
+            {
+                Grid RootGrid = (Grid)mw.FindName("RootGrid");
+                await mw.ShowChildWindowAsync(new ConfigureControllerLegacy()
+                {
+                    IsModal = true,
+                    AllowMove = false,
+                    Title = "Controller Configuration",
+                    CloseOnOverlay = false,
+                    ShowCloseButton = false,
+                    CloseByEscape = false
+                }, RootGrid);
+            }
         }
     }
 }

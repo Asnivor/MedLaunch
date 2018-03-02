@@ -1,0 +1,107 @@
+﻿<simpleChildWindow:ChildWindow x:Class="MedLaunch.ConfigureModWindow"
+							   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+							   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+							   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+							   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+							   xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
+                               xmlns:diag="clr-namespace:System.Diagnostics;assembly=mscorlib"
+                               xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+							   mc:Ignorable="d"
+							   d:DesignHeight="800"
+							   d:DesignWidth="600"
+							   CloseOnOverlay="True"
+							   GlowBrush="{DynamicResource AccentColorBrush}"
+							   BorderBrush="{DynamicResource AccentColorBrush}"
+							   BorderThickness="1"
+							   ShowCloseButton="False"
+                               IsModal="True"
+                               TextOptions.TextFormattingMode="Display"
+                               IsOpen="True">
+
+    <simpleChildWindow:ChildWindow.Icon>
+        <Rectangle Width="22"
+				   Height="22"
+				   Fill="{DynamicResource IdealForegroundColorBrush}">
+            <Rectangle.OpacityMask>
+                <VisualBrush Stretch="Uniform"
+							 Visual="{DynamicResource appbar_cog}" />
+            </Rectangle.OpacityMask>
+        </Rectangle>
+    </simpleChildWindow:ChildWindow.Icon>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Name="titleTextBlock" Grid.Row="0" Grid.ColumnSpan="2"
+				   Margin="5"
+				   FontSize="11"
+                   HorizontalAlignment="Center" VerticalAlignment="Top">
+            
+            The mednafen config allows for a couple of modifications when dealing with controller configuration <LineBreak />    
+            that are not shown in the MedLaunch controller configuration window. Once a modification is applied <LineBreak /> 
+            however, the background of the 'modified' textbox will turn blue.
+        </TextBlock>
+
+        <StackPanel Orientation="Vertical" Grid.Row="1">
+
+            <TextBlock Name="scaleTextBlock"
+				   Margin="5"
+				   FontSize="11"
+                   HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Bold>1. [SCALE]</Bold><LineBreak />
+            An optional integer between 0-65535, representing a 4.12 fixed-point quantity used to scale <LineBreak /> 
+            analog(e.g. axis) inputs in most usage contexts. The default is 4096(equivalent to 1.0)
+            </TextBlock>
+
+            <DockPanel VerticalAlignment="Center" Margin="5">
+                <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">SCALE FACTOR</Label>
+                <TextBox Text="{Binding ElementName=slScaleFactor, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="60" />
+                <Slider Maximum="65535" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="slScaleFactor" />                
+            </DockPanel>
+            <Button Name="btnScaleDefault" Click="btnScaleDefault_Click">Reset Scale to Default (removes scale)</Button>
+
+            <TextBlock Name="gTextBlock"
+				   Margin="5"
+				   FontSize="11"
+                   HorizontalAlignment="Center" VerticalAlignment="Top">   
+            <Bold>2. Joystick "g" Flag</Bold> <LineBreak />
+            When manually mapping the axes of an emulated lightgun to the axes of a physical lightgun that <LineBreak />
+            presents itself as a joystick device<LineBreak />
+            MedLaunch will only allow this to be mapped to an already mapped joystick axis<LineBreak />
+            When configuring a virtual lightgun, you are only presented with entry for each axis. Map one direction <LineBreak />
+            of your joystick axis to this control, then enter this modification menu and click the checkbox (if available)
+            </TextBlock>
+
+            <Button Name="chkGFlag" HorizontalAlignment="Center" Click="chkGFlag_Click">
+                Enable the special 'g' flag for this axis - to remove the flag you will have to just re-bind the field
+            </Button>
+
+        </StackPanel>
+        
+        <UniformGrid Name="ugBottomButtons" Columns="2" Grid.Row="2">
+            <Button
+				Margin="5"
+				IsDefault="True"
+				VerticalAlignment="Bottom"
+				FontSize="20"
+				Content="OK"
+				Click="btnOK_Click" 
+                x:Name="btnOK"/>
+
+            <Button
+				Margin="5"
+				IsDefault="True"
+				VerticalAlignment="Bottom"
+				FontSize="20"
+				Content="Cancel"
+				Click="btnCancel_Click" 
+                x:Name="btnCancel"/>
+        </UniformGrid>
+        
+    </Grid>
+</simpleChildWindow:ChildWindow>

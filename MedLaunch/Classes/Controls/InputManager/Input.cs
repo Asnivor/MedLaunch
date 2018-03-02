@@ -56,6 +56,26 @@ namespace MedLaunch.Classes.Controls.InputManager
         readonly Thread UpdateThread;
         public static bool AbortThread { private get; set; }
 
+        private bool gotFocus;
+        public bool GotFocus
+        {
+            get
+            {
+                return gotFocus;
+            }
+            set
+            {                
+                LastState.Clear();
+                ModifierState.Clear();
+                ClearEvents();
+                gotFocus = value;
+            }
+        }
+
+        private bool focusDelay = false;
+
+        public MainWindow main { get; set; }
+
         public Input()
         {
             AbortThread = false;
@@ -71,19 +91,26 @@ namespace MedLaunch.Classes.Controls.InputManager
 
         public static void Initialize(MainWindow mw)
         {
-
             KeyInput.Initialize(mw);
-            //IPCKeyInput.Initialize();
             GamePad.Initialize(mw);
             GamePad360.Initialize(mw);     
 
             Instance = new Input();
+            Instance.main = mw;
+            Instance.GotFocus = true;
+        }
+
+        public static void ReInitGamepads(MainWindow mw)
+        {
+            GamePad.Initialize(mw);
+            GamePad360.Initialize(mw);
         }
 
         public void Dispose()
         {
             //KeyInput.Dispose();
-            //GamePad.Dispose();      
+            //GamePad.Dispose();
+            //GamePad360.Dispose();
 
             AbortThread = true;                 
         }
@@ -283,11 +310,28 @@ namespace MedLaunch.Classes.Controls.InputManager
                 {
                     break;
                 }
-                    
 
                 var keyEvents = KeyInput.Update(); //.Concat(IPCKeyInput.Update());
                 GamePad.UpdateAll();
                 GamePad360.UpdateAll();
+
+                if (!GotFocus)
+                {
+                    focusDelay = true;
+                    continue;
+                }
+                else
+                {
+                    if (focusDelay)
+                    {
+                        // this should be called one time immediately after focus is regained
+                        focusDelay = false;
+                        ClearEvents();
+                        Thread.Sleep(100);
+                        focusDelay = false;
+                        //keyEvents = new List<KeyEvent>();
+                    }
+                }
 
                 //this block is going to massively modify data structures that the binding method uses, so we have to lock it all
                 lock (this)
@@ -295,8 +339,13 @@ namespace MedLaunch.Classes.Controls.InputManager
                     _NewEvents.Clear();
 
                     //analyze keys
-                    foreach (var ke in keyEvents)
-                        HandleButton(ke.Key.ToString(), ke.Pressed);
+                    try
+                    {
+                        foreach (var ke in keyEvents)
+                            HandleButton(ke.Key.ToString(), ke.Pressed);
+                    }
+                    catch { }
+                    
 
                     lock (FloatValues)
                     {

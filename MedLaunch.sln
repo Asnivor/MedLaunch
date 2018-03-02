@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedLaunch", "MedLaunch\MedLaunch.csproj", "{6B1B4A85-5A13-4A5D-B551-1AC97CC53D38}"
 	ProjectSection(ProjectDependencies) = postProject
 		{32EEAB9C-791A-4303-A675-A43324C35154} = {32EEAB9C-791A-4303-A675-A43324C35154}
+		{3C03E2CC-0894-4184-BD1D-6EAB720F5995} = {3C03E2CC-0894-4184-BD1D-6EAB720F5995}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{828C683F-F4EF-436D-8EB8-9186AF653289}"
@@ -29,23 +30,25 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BuildTools", "BuildTools\",
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_6840"
-		Debug.AspNetCompiler.PhysicalPath = "T:\Matt Burgess\VS\MedLaunch\BuildTools\"
+		Debug.AspNetCompiler.PhysicalPath = "BuildTools\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_6840\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_6840"
-		Release.AspNetCompiler.PhysicalPath = "T:\Matt Burgess\VS\MedLaunch\BuildTools\"
+		Release.AspNetCompiler.PhysicalPath = "BuildTools\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_6840\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "6840"
-		SlnRelativePath = "T:\Matt Burgess\VS\MedLaunch\BuildTools\"
+		SlnRelativePath = "BuildTools\"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SplashScreenUpdater", "SplashScreenUpdater\SplashScreenUpdater.csproj", "{3C03E2CC-0894-4184-BD1D-6EAB720F5995}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -128,6 +131,18 @@ Global
 		{837EC310-C73E-4562-9955-C4F0ECCA9013}.Release|x64.Build.0 = Debug|Any CPU
 		{837EC310-C73E-4562-9955-C4F0ECCA9013}.Release|x86.ActiveCfg = Debug|Any CPU
 		{837EC310-C73E-4562-9955-C4F0ECCA9013}.Release|x86.Build.0 = Debug|Any CPU
+		{3C03E2CC-0894-4184-BD1D-6EAB720F5995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C03E2CC-0894-4184-BD1D-6EAB720F5995}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C03E2CC-0894-4184-BD1D-6EAB720F5995}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3C03E2CC-0894-4184-BD1D-6EAB720F5995}.Debug|x64.Build.0 = Debug|Any CPU
+		{3C03E2CC-0894-4184-BD1D-6EAB720F5995}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3C03E2CC-0894-4184-BD1D-6EAB720F5995}.Debug|x86.Build.0 = Debug|Any CPU
+		{3C03E2CC-0894-4184-BD1D-6EAB720F5995}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C03E2CC-0894-4184-BD1D-6EAB720F5995}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C03E2CC-0894-4184-BD1D-6EAB720F5995}.Release|x64.ActiveCfg = Release|Any CPU
+		{3C03E2CC-0894-4184-BD1D-6EAB720F5995}.Release|x64.Build.0 = Release|Any CPU
+		{3C03E2CC-0894-4184-BD1D-6EAB720F5995}.Release|x86.ActiveCfg = Release|Any CPU
+		{3C03E2CC-0894-4184-BD1D-6EAB720F5995}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

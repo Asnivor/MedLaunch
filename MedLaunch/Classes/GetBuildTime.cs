@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MedLaunch.Classes
 {
+    /// <summary>
+    /// Calculates the build time of the application
+    /// </summary>
     public static class GetBuildTime
     {
         public static DateTime GetLinkerTime(this Assembly assembly, TimeZoneInfo target = null)

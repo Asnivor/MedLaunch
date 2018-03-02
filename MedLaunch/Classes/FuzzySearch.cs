@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MedLaunch.Models;
 using System.Text.RegularExpressions;
 using MedLaunch.Classes.Scraper;
 
 namespace MedLaunch.Classes
 {   
-
+    /// <summary>
+    /// Fuzzy search implimentation
+    /// </summary>
     public static class FuzzySearch
     {
         public static List<ScraperMaster> FSearch(string word, List<ScraperMaster> platformGames, double fuzzyness)

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.SimpleChildWindow;
+using MedLaunch.Classes.Controls;
 
 namespace MedLaunch
 {
@@ -28,6 +29,9 @@ namespace MedLaunch
         {
             InitializeComponent();
             mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            // hide controls from old config style
+
         }
 
         private async void btnControlsConfigure_Click(object sender, RoutedEventArgs e)
@@ -45,36 +49,115 @@ namespace MedLaunch
             // get the virtual port number
             //ComboBoxItem typeItem = (ComboBoxItem)cb.SelectedItem;
             string selectedString = cb.SelectionBoxItem.ToString();
-            int portNum = Convert.ToInt32(selectedString.Replace("Virtual Port ", ""));
+            int portNum;
 
-            // Get device definition for this controller
-            DeviceDefinition dev = new DeviceDefinition();
+            // FXP we will call port 666
+            if (selectedString == "Famicon Expansion Port")
+                portNum = 666;
+            else            
+                portNum = Convert.ToInt32(selectedString.Replace("Virtual Port ", ""));
 
-            switch (name)
+            // get mednafen config version
+            bool isNewConfig = Classes.VersionChecker.Instance.IsNewConfig;
+
+            IDeviceDefinition dev;
+
+            if (isNewConfig)
             {
-                case "NesGamepad":
-                    dev = Nes.GamePad(portNum);
-                    break;
-                case "NesZapper":
-                    dev = Nes.Zapper(portNum);
-                    break;
-                default:
-                    return;
+                dev = new DeviceDefinition();
+
+                switch (name)
+                {
+                    case "NesGamepad":
+                        dev = Nes.GamePad(portNum);
+                        break;
+                    case "NesZapper":
+                        dev = Nes.Zapper(portNum);
+                        break;
+                    case "NesPowerPadA":
+                        dev = Nes.PowerPadA(portNum);
+                        break;
+                    case "NesPowerPadB":
+                        dev = Nes.PowerPadB(portNum);
+                        break;
+                    case "NesArkanoidPaddle":
+                        dev = Nes.ArkanoidPaddle(portNum);
+                        break;
+                    case "NesFamilyKeyboard":
+                        dev = Nes.FamilyKeyboard(portNum);
+                        break;
+                    case "NesFamilyTrainerA":
+                        dev = Nes.FamilyTrainerA(portNum);
+                        break;
+                    case "NesFamilyTrainerB":
+                        dev = Nes.FamilyTrainerB(portNum);
+                        break;
+                    case "NesHypershot":
+                        dev = Nes.HyperShot(portNum);
+                        break;
+                    case "NesMahjong":
+                        dev = Nes.Mahjong(portNum);
+                        break;
+                    case "NesOekakids":
+                        dev = Nes.OekaKids(portNum);
+                        break;
+                    case "NesPartyTap":
+                        dev = Nes.PartyTap(portNum);
+                        break;
+                    case "NesSpaceShadow":
+                        dev = Nes.SpaceShadow(portNum);
+                        break;
+                    default:
+                        return;
+                }
             }
+            else
+            {
+                dev = new DeviceDefinitionLegacy();
+
+                switch (name)
+                {
+                    case "NesGamepad":
+                        dev = Nes_Legacy.GamePad(portNum);
+                        break;
+                    case "NesZapper":
+                        dev = Nes_Legacy.Zapper(portNum);
+                        break;
+                    default:
+                        Classes.MessagePopper.PopControllerTargetingIssue();
+                        return;
+                }
+            }            
 
             mw.ControllerDefinition = dev;
 
             // launch controller configuration window
-            Grid RootGrid = (Grid)mw.FindName("RootGrid");
-            await mw.ShowChildWindowAsync(new ConfigureController()
+            if (isNewConfig)
             {
-                IsModal = true,
-                AllowMove = false,
-                Title = "Controller Configuration",
-                CloseByEscape = false,
-                CloseOnOverlay = false,
-                ShowCloseButton = false
-            }, RootGrid);
+                Grid RootGrid = (Grid)mw.FindName("RootGrid");
+                await mw.ShowChildWindowAsync(new ConfigureController()
+                {
+                    IsModal = true,
+                    AllowMove = false,
+                    Title = "Controller Configuration",
+                    CloseOnOverlay = false,
+                    ShowCloseButton = false,
+                    CloseByEscape = false
+                }, RootGrid);
+            }
+            else
+            {
+                Grid RootGrid = (Grid)mw.FindName("RootGrid");
+                await mw.ShowChildWindowAsync(new ConfigureControllerLegacy()
+                {
+                    IsModal = true,
+                    AllowMove = false,
+                    Title = "Controller Configuration",
+                    CloseOnOverlay = false,
+                    ShowCloseButton = false,
+                    CloseByEscape = false
+                }, RootGrid);
+            }
         }
     }
 }

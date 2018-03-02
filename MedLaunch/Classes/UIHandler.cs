@@ -1,20 +1,17 @@
 ﻿using MahApps.Metro.Controls;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using MedLaunch.Models;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using Xceed.Wpf.Toolkit;
-using MedLaunch.Classes.Controls;
 
 namespace MedLaunch.Classes
 {
+    /// <summary>
+    /// Manages collections of all WPF elements
+    /// </summary>
     public class UIHandler
     {
         // properties

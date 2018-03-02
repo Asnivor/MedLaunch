@@ -6,7 +6,47 @@ title: Changelog
 ------------------------------------
 #### Development Build Changes ([Dev](https://github.com/Asnivor/MedLaunch/tree/dev) branch) - [![Build status](https://ci.appveyor.com/api/projects/status/4maii9la7yb72bw8/branch/dev?svg=true)](https://ci.appveyor.com/project/Asnivor/medlaunch/branch/dev/artifacts)
 ------------------------------------
-* None as yet
+* (Enhancement)	- Background image - added 'stretch and maintain aspect' and 'original size' options ([#196](https://github.com/Asnivor/MedLaunch/issues/196))
+* (BugFix) - Controller and Misc Binding configuration windows now instantiate based on the current MedLaunch window height (so that buttons at the bottom of the window should never be cut off) ([#197](https://github.com/Asnivor/MedLaunch/issues/197))
+* (Enhancement) - Added shared memcard option for PSX ([#194](https://github.com/Asnivor/MedLaunch/issues/194)) - Caveat: this may not play nice with savestates, use with caution
+* (BugFix) - Added better error handling when inspecting corrupt archive files ([#198](https://github.com/Asnivor/MedLaunch/issues/198))
+* (BugFix) - Fixed code typo that was causing an exception when choosing pce gecdbios ([#200](https://github.com/Asnivor/MedLaunch/issues/200))
+* (BugFix) - MedLaunch update checker can now connect using TLS 1.2 (so updates can be checked and downloaded from GitHub). Unfortunately this will obviously require a manual update before this is available ([#201](https://github.com/Asnivor/MedLaunch/issues/201))
+* (BugFix) - Controller input configurator fields are now only triggered when MedLaunch has focus ([#203](https://github.com/Asnivor/MedLaunch/issues/203))
+* (Enhancement) - Famicom expansion port controls can now be configured (when targeting mednafen >= v1.21.x) ([#204](https://github.com/Asnivor/MedLaunch/issues/204))
+* (Enhancement) - All controllers can now be configured within the 'CONFIGS' tab (when targeting mednafen >= v1.21.x) ([#206](https://github.com/Asnivor/MedLaunch/issues/206))
+* (Enhancement) - Added the ability to configure ALL virtual controllers that mednafen supports. The following additional controllers have been added (and are available to configure when targeting mednafen >= v1.21.x) ([#207](https://github.com/Asnivor/MedLaunch/issues/207)):
+* * NES Power Pad (Side A and B)
+* * NES Arkanoid Paddle
+* * Famicom Family Keyboard
+* * Famicom Family Trainer (Side A and B)
+* * Famicom Hypershot
+* * Famicom Mahjong Controller
+* * Famicom Party Tap
+* * Famicom Space Shadow Gun
+* * PCE Tsushin Keyboard
+* * Saturn Keyboard (US)
+* * Saturn Keyboard (JP)
+* * PSX Analog Joystick
+* (Enhancement) - Most of the old-style popup dialogs have now been re-styled to fit with the standard MedLaunch theme
+* (Enhancement)	- MedLaunch splashscreen now gets updated with the current number and build date during the appveyor auto-build process ([#208](https://github.com/Asnivor/MedLaunch/issues/208))
+* (BugFix) - Fixed game data panel exception due to null CRC and SHA1 values in the DAT DB ([#205](https://github.com/Asnivor/MedLaunch/issues/205))
+
+* ## Mednafen 1.21.x support ## ([#202](https://github.com/Asnivor/MedLaunch/issues/202))
+* * Updated LogParser to handle new Mednafen version numbering and changes in stdout.txt behaviour
+* * MedLaunch will now get version and attached gamepad/joystick info from the console (rather than stdout.txt) if the mednafen version is new enough
+* * Added setting "video.fs.display" for all cores
+* * Added the new 'default' and 'softfb' video driver settings. These will be translated on game launch to 'opengl' and 'sdl' if you are still using an old version of mednafen. Both 'sdl' and the removed 'overlay' options are still present in the UI (but marked as depreciated) but will be automatically translated into the new 'softfb' and 'default' options (on game launch) if you are running the new version of mednafen
+* * Implemented new FPS overlay options
+* * Added new Saturn JP Keyboard option
+* * Implemented new mednafen control mapping System (compatibility for old system is still present when older mednafen versions are detected)
+* * * New boolean logic operator bindings (||, &&, $!)
+* * * New mouse bindings
+* * * New SDL2 keyboard translations
+* * * New DirectInput GamePad configuration methods implemented
+* * * New XInput GamePad configuration methods implemented
+* * * Optional [SCALE] and g-Flag lightgun settings now handled (and can be edited with the right-click context menu)
+* * * All command bindings are now configurable (along with the new scancode modifiers)
 
 ##### [0.5.18.5](https://medlaunch.info/releases/0-5-18-5)
 ###### 2018-01-15

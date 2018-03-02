@@ -33,6 +33,7 @@
                             <RowDefinition Height="36" />
                             <RowDefinition Height="36" />
                             <RowDefinition Height="36" />
+                            <RowDefinition Height="36" />
                         </Grid.RowDefinitions>
 
                                 <Image Source="/MedLaunch;component/Data/Graphics/Controllers/psx-controller.png" Margin="5">
@@ -271,6 +272,38 @@
                         </ComboBox>
 
                         <Button Name="btnPsxMouseConfigure" Margin="5" Grid.Column="3" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center" Grid.Row="7">Configure</Button>
+
+
+
+
+                        <Image Source="/MedLaunch;component/Data/Graphics/Controllers/psx_analogjoy.png" Margin="5" Grid.Row="8">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+        RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+
+
+                        <Label Margin="5" Grid.Column="1" VerticalAlignment="Center" Height="25" Grid.Row="8">
+                            Analog Joystick
+                        </Label>
+
+                        <ComboBox Name="cmbPsxAnalogJoy" Margin="5" HorizontalAlignment="Center" SelectedIndex="0" Grid.Column="2" Height="25" VerticalAlignment="Center" Grid.Row="8">
+                            <ComboBoxItem>Virtual Port 1</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 2</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 3</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 4</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 5</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 6</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 7</ComboBoxItem>
+                            <ComboBoxItem>Virtual Port 8</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="btnPsxAnalogJoyConfigure" Margin="5" Grid.Column="3" Click="btnControlsConfigure_Click" Height="26" VerticalAlignment="Center" Grid.Row="8">Configure</Button>
 
 
                     </Grid>                            

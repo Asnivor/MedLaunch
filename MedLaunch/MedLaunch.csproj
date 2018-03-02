@@ -285,13 +285,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Classes\Controls\VirtualDevices\MiscBindings.cs" />
+    <Compile Include="Classes\Controls\InputManager\Keyboard\KeyboardSDL2.cs" />
+    <Compile Include="Classes\Controls\Interfaces\IKeyboardTranslator.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\DeviceDefinitionLegacy.cs" />
+    <Compile Include="Classes\Controls\Interfaces\IDeviceDefinition.cs" />
+    <Compile Include="Classes\Controls\Interfaces\VirtualDeviceBase.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\MiscBindings.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Legacy\Gb.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Legacy\Gba.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Legacy\Gg.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Legacy\Lynx.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Legacy\Md.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Legacy\MiscBindings.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Legacy\Nes.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Legacy\Ngp.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Legacy\Pce.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Legacy\Pce_fast.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Legacy\Pcfx.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Legacy\Psx.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Legacy\Sms.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Legacy\Snes.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Legacy\Snes_faust.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Legacy\Ss.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Legacy\Vb.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Legacy\Wswan.cs" />
     <Compile Include="Classes\DAT\AsniDATDbContext.cs" />
     <Compile Include="Classes\DAT\DATMerge.cs" />
     <Compile Include="Classes\DAT\DAT_Game.cs" />
     <Compile Include="Classes\DAT\DAT_Provider.cs" />
     <Compile Include="Classes\DAT\DAT_Rom.cs" />
     <Compile Include="Classes\DAT\DAT_System.cs" />
+    <Compile Include="Classes\MessagePopper.cs" />
     <Compile Include="Classes\GameListItem.cs" />
     <Compile Include="Classes\GamesLibrary\ColumnInfo.cs" />
     <Compile Include="Classes\GamesLibrary\DataGridSortDescriptionsSyncBehavior.cs" />
@@ -328,6 +352,7 @@
     <Compile Include="Classes\Scraper\ScraperSearch.cs" />
     <Compile Include="Classes\uConOps.cs" />
     <Compile Include="Classes\InstructionSet.cs" />
+    <Compile Include="Classes\VersionChecker.cs" />
     <Compile Include="Extensions\FocusExtension.cs" />
     <Compile Include="MedDataGrid.cs" />
     <Compile Include="Models\MednaNetSettings.cs" />
@@ -337,30 +362,30 @@
     <Compile Include="Classes\BackupConfig.cs" />
     <Compile Include="Classes\ConfigImport.cs" />
     <Compile Include="Classes\ConfigToolTips.cs" />
-    <Compile Include="Classes\Controls\InputManager\GamePad.cs" />
-    <Compile Include="Classes\Controls\InputManager\GamePad360.cs" />
+    <Compile Include="Classes\Controls\InputManager\Gampad\GamePad.cs" />
+    <Compile Include="Classes\Controls\InputManager\Gampad\GamePad360.cs" />
     <Compile Include="Classes\Controls\InputManager\Input.cs" />
-    <Compile Include="Classes\Controls\InputManager\KeyboardTrans.cs" />
-    <Compile Include="Classes\Controls\InputManager\KeyInput.cs" />
+    <Compile Include="Classes\Controls\InputManager\Keyboard\KeyboardSDL.cs" />
+    <Compile Include="Classes\Controls\InputManager\Keyboard\KeyInput.cs" />
     <Compile Include="Classes\Controls\InputManager\pnp.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\DeviceDefinition.cs" />
-    <Compile Include="Classes\Controls\VirtualDevices\Gb.cs" />
-    <Compile Include="Classes\Controls\VirtualDevices\Gba.cs" />
-    <Compile Include="Classes\Controls\VirtualDevices\Gg.cs" />
-    <Compile Include="Classes\Controls\VirtualDevices\Lynx.cs" />
-    <Compile Include="Classes\Controls\VirtualDevices\Md.cs" />
-    <Compile Include="Classes\Controls\VirtualDevices\Nes.cs" />
-    <Compile Include="Classes\Controls\VirtualDevices\Ngp.cs" />
-    <Compile Include="Classes\Controls\VirtualDevices\Pce.cs" />
-    <Compile Include="Classes\Controls\VirtualDevices\Pce_fast.cs" />
-    <Compile Include="Classes\Controls\VirtualDevices\Pcfx.cs" />
-    <Compile Include="Classes\Controls\VirtualDevices\Psx.cs" />
-    <Compile Include="Classes\Controls\VirtualDevices\Sms.cs" />
-    <Compile Include="Classes\Controls\VirtualDevices\Snes.cs" />
-    <Compile Include="Classes\Controls\VirtualDevices\Snes_faust.cs" />
-    <Compile Include="Classes\Controls\VirtualDevices\Ss.cs" />
-    <Compile Include="Classes\Controls\VirtualDevices\Vb.cs" />
-    <Compile Include="Classes\Controls\VirtualDevices\Wswan.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\Gb.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\Gba.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\Gg.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\Lynx.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\Md.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\Nes.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\Ngp.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\Pce.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\Pce_fast.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\Pcfx.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\Psx.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\Sms.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\Snes.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\Snes_faust.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\Ss.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\Vb.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\Wswan.cs" />
     <Compile Include="Classes\Scraper\_PendingDestruction\GameListBuilder.cs" />
     <Compile Include="Classes\GamesLibrary\GamesLibraryDataGridRefresh.cs" />
     <Compile Include="Classes\HtmlToXaml\CssStylesheet.cs" />
@@ -393,6 +418,15 @@
     <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\Models\ToSecCollection.cs" />
     <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\Models\ToSecObject.cs" />
     <Compile Include="Classes\Scraper\_PendingDestruction\DAT\TOSEC\StringConverterToSec.cs" />
+    <Compile Include="Windows\ConfigureModWindow.xaml.cs">
+      <DependentUpon>ConfigureModWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ConfigureControllerLegacy.xaml.cs">
+      <DependentUpon>ConfigureControllerLegacy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ConfigureMiscBindingsLegacy.xaml.cs">
+      <DependentUpon>ConfigureMiscBindingsLegacy.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ConfigureMiscBindings.xaml.cs">
       <DependentUpon>ConfigureMiscBindings.xaml</DependentUpon>
     </Compile>
@@ -453,7 +487,6 @@
     <Compile Include="Classes\Scraper\TheGamesDB\GDBNETPlatform.cs" />
     <Compile Include="Classes\Scraper\TheGamesDB\GDBNETPlatformSearchResult.cs" />
     <Compile Include="Classes\Scraper\TheGamesDB\GDBScraper.cs" />
-    <Compile Include="Classes\UserAgent.cs" />
     <Compile Include="Classes\WebOps.cs" />
     <Compile Include="Windows\ConfigureController.xaml.cs">
       <DependentUpon>ConfigureController.xaml</DependentUpon>
@@ -564,6 +597,10 @@
     <Compile Include="_Debug\ScrapeDB\MasterView.cs" />
     <Compile Include="_Debug\ScrapeDB\MOBY_Game.cs" />
     <Compile Include="_Debug\ScrapeDB\MOBY_Platform.cs" />
+    <Compile Include="_Debug\skeletonKey\AdminSkeletonKey.cs" />
+    <Compile Include="_Debug\skeletonKey\SK_Game.cs" />
+    <Compile Include="_Debug\skeletonKey\skeletonKeyAdminDbContext.cs" />
+    <Compile Include="_Debug\skeletonKey\SK_System.cs" />
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -571,6 +608,18 @@
     <Page Include="Windows\AccentStyleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ConfigureModWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ConfigureControllerLegacy.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ConfigureMiscBindingsLegacy.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\ConfigureMiscBindings.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -858,6 +907,27 @@
     <None Include="Data\System\ToolTips.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="_Debug\skeletonKey\DATFiles\Atari - Lynx.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Bandai - WonderSwan Color.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Bandai - WonderSwan.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\NEC - PC Engine - TurboGrafx 16.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\NEC - PC Engine CD - TurboGrafx CD.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\NEC - PC Engine SuperGrafx.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\NEC - PC-FX.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Nintendo - Famicom.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Nintendo - Game Boy Advance.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Nintendo - Game Boy Color.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Nintendo - Game Boy.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Nintendo - Nintendo Entertainment System.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Nintendo - Super Nintendo Entertainment System.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Nintendo - Virtual Boy.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Sega - Game Gear.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Sega - Master System - Mark III.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Sega - Mega Drive - Genesis.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Sega - Saturn.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\SNK - Neo Geo Pocket Color.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\SNK - Neo Geo Pocket.7z" />
+    <None Include="_Debug\skeletonKey\DATFiles\Sony - Playstation.7z" />
     <Resource Include="Fonts\Arvo-Bold.ttf" />
     <Resource Include="Fonts\Arvo-BoldItalic.ttf" />
     <Resource Include="Fonts\Arvo-Italic.ttf" />
@@ -1001,6 +1071,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Classes\skeletonKey\" />
     <Folder Include="_Debug\DATDB\DATFiles\PSXDATACENTER\" />
   </ItemGroup>
   <ItemGroup>
@@ -1012,6 +1083,10 @@
     <ProjectReference Include="..\MedLaunch.Common\MedLaunch.Common.csproj">
       <Project>{376fd53c-1f78-40ed-ae4b-5fd0fa1a1cb4}</Project>
       <Name>MedLaunch.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SplashScreenUpdater\SplashScreenUpdater.csproj">
+      <Project>{3c03e2cc-0894-4184-bd1d-6eab720f5995}</Project>
+      <Name>SplashScreenUpdater</Name>
     </ProjectReference>
     <ProjectReference Include="..\ucon64-wrapper\ucon64-wrapper.csproj">
       <Project>{32EEAB9C-791A-4303-A675-A43324C35154}</Project>
@@ -1119,6 +1194,21 @@
     <Resource Include="Data\Graphics\Controllers\snes-mouse.png" />
     <Resource Include="Data\Graphics\Controllers\ss-mouse.png" />
     <Resource Include="Data\Graphics\Controllers\nes-zapper.png" />
+    <Resource Include="Data\Graphics\Controllers\nes_powerpadb.png" />
+    <Resource Include="Data\Graphics\Controllers\nes_powerpada.png" />
+    <Resource Include="Data\Graphics\Controllers\nes_arkanoidpaddle.png" />
+    <Resource Include="Data\Graphics\Controllers\pce_tsushin.png" />
+    <Resource Include="Data\Graphics\Controllers\ss_keyboardus.png" />
+    <Resource Include="Data\Graphics\Controllers\ss_keyboardjp.png" />
+    <Resource Include="Data\Graphics\Controllers\nes_familykeyboard.png" />
+    <Resource Include="Data\Graphics\Controllers\nes_familytrainer.png" />
+    <Resource Include="Data\Graphics\Controllers\nes_hypershot.png" />
+    <Resource Include="Data\Graphics\Controllers\NOIMAGEAVAILABLE.png" />
+    <Resource Include="Data\Graphics\Controllers\nes_oekakids.png" />
+    <Resource Include="Data\Graphics\Controllers\nes_spaceshadow.png" />
+    <Resource Include="Data\Graphics\Controllers\nes_partytap.png" />
+    <Resource Include="Data\Graphics\Controllers\psx_analogjoy.png" />
+    <Resource Include="Data\Graphics\mediconsplash-base.png" />
     <Content Include="Data\Installers\vcredist_x86.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1180,4 +1270,8 @@
     <Move SourceFiles="@(MoveToLibFolder)" DestinationFolder="$(OutputPath)lib" OverwriteReadOnlyFiles="true" />
   </Target>
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
 </Project>

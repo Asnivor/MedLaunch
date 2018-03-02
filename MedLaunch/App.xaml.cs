@@ -1,21 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using MahApps.Metro.Controls.Dialogs;
 using System.Threading;
-using MedLaunch.Classes;
 using MahApps.Metro;
 using MedLaunch.Models;
 using System.IO;
 using MedLaunch.Classes.GamesLibrary;
 using System.ComponentModel;
-using System.Windows.Controls;
-using System.Windows.Input;
-using MedLaunch.Classes.Scraper;
 
 namespace MedLaunch
 {
@@ -24,9 +15,15 @@ namespace MedLaunch
     /// </summary>
     public partial class App : Application, INotifyPropertyChanged
     {
+        /// <summary>
+        /// Architecture check (not currrently used)
+        /// </summary>
         public bool IsX86 { get; set; }
-                
-        private GamesLibraryViewModel gamesLibrary;
+
+        /// <summary>
+        /// Main view model for the Games Library
+        /// </summary>       
+        private GamesLibraryViewModel gamesLibrary;        
         public GamesLibraryViewModel GamesLibrary
         {
             get
@@ -90,6 +87,7 @@ namespace MedLaunch
                 LogUnhandledException(exception.Exception, "TaskScheduler.UnobservedException");
 
 
+
             /* is the OS x64 or x86? */
 
             
@@ -107,42 +105,36 @@ namespace MedLaunch
                 // assume x86
                 IsX86 = true;
             }
-
     
             IsX86 = false;
+
+
             var splashScreen = new SplashScreen(@"Data\Graphics\mediconsplash-new.png");
             splashScreen.Show(false);
             Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
+            // Init the logparser instance
+            Classes.LogParser.Init();
+
+            // Init the versions instance
+            Classes.VersionChecker.Init();
+
             // show the initialisation window and begin checks
             ShowInitWindow();
             Thread.Sleep(1000);
             // init should have completed - run MainWindow
 
             // instantiate GamesList object  
-            //GamesList = new GameListBuilder();
             GamesLibrary = new GamesLibraryViewModel();
 
             MainWindow mw = new MedLaunch.MainWindow();
             Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
             Application.Current.MainWindow = mw;
 
-            
-            //mw.DataContext = _GamesLibraryViewModel;
+            // show the main window
             mw.Show();
 
-            // instantiate GamesList object  
-            //GamesList = new GameListBuilder();
-
-
-
             splashScreen.Close(TimeSpan.FromSeconds(1));
-
-            // instantiate ScrapeDB
-            //ScrapedData = new ScrapeDB();
-            //ScrapeDB sdb = new ScrapeDB();
-
-            
-
 
             // set color scheme from database
             Tuple<AppTheme, Accent> appStyle = ThemeManager.DetectAppStyle(Application.Current);
@@ -160,11 +152,13 @@ namespace MedLaunch
                 ThemeManager.ChangeAppStyle(Application.Current,
                                     ThemeManager.GetAccent("Emerald"),
                                     ThemeManager.GetAppTheme("BaseDark"));
-            }
-            
+            }            
 
         }
 
+        /// <summary>
+        /// Displays the initialisation window (pre-application start)
+        /// </summary>
         private void ShowInitWindow()
         {
             InitWindow init = new InitWindow();

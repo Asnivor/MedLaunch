@@ -10,6 +10,9 @@ namespace MedLaunch.Classes
 {
     public class BackupConfig
     {
+        /// <summary>
+        /// Creates a backup of the current mednafen config file
+        /// </summary>
         public static void BackupMain()
         {
             // backup mednafen config if option is selected

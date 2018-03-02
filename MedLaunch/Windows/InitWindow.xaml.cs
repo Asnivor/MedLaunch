@@ -139,7 +139,7 @@ namespace MedLaunch
                 }                
 
                 UpdateStatus("Checking application version", true);
-                string appVersion = Versions.ReturnApplicationVersion();
+                string appVersion = VersionChecker.ReturnApplicationVersion();
                 UpdateStatus(appVersion, false);
 
                 // compare versions and determine whether an upgrade is needed

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.SimpleChildWindow;
+using MedLaunch.Classes.Controls;
 
 namespace MedLaunch
 {
@@ -46,48 +47,110 @@ namespace MedLaunch
             string selectedString = cb.SelectionBoxItem.ToString();
             int portNum = Convert.ToInt32(selectedString.Replace("Virtual Port ", ""));
 
-            DeviceDefinition dev = new DeviceDefinition();
+            // get mednafen config version
+            bool isNewConfig = Classes.VersionChecker.Instance.IsNewConfig;
 
-            switch (name)
+            IDeviceDefinition dev;
+
+            if (isNewConfig)
             {
-                case "SsGamepad":
-                    dev = Ss.GamePad(portNum);
-                    break;
-                case "Ss3DGamepad":
-                    dev = Ss.ThreeD(portNum);
-                    break;
-                case "SsMission":
-                    dev = Ss.Mission(portNum);
-                    break;
-                case "SsDualMission":
-                    dev = Ss.DMission(portNum);
-                    break;
-                case "SsWheel":
-                    dev = Ss.Wheel(portNum);
-                    break;
-                case "SsGun":
-                    dev = Ss.Gun(portNum);
-                    break;
-                case "SsMouse":
-                    dev = Ss.Mouse(portNum);
-                    break;
-                default:
-                    return;
+                dev = new DeviceDefinition();
+
+                switch (name)
+                {
+                    case "SsGamepad":
+                        dev = Ss.GamePad(portNum);
+                        break;
+                    case "Ss3DGamepad":
+                        dev = Ss.ThreeD(portNum);
+                        break;
+                    case "SsMission":
+                        dev = Ss.Mission(portNum);
+                        break;
+                    case "SsDualMission":
+                        dev = Ss.DMission(portNum);
+                        break;
+                    case "SsWheel":
+                        dev = Ss.Wheel(portNum);
+                        break;
+                    case "SsGun":
+                        dev = Ss.Gun(portNum);
+                        break;
+                    case "SsMouse":
+                        dev = Ss.Mouse(portNum);
+                        break;
+                    case "SsKeyboardUS":
+                        dev = Ss.KeyboardUS(portNum);
+                        break;
+                    case "SsKeyboardJP":
+                        dev = Ss.KeyboardJP(portNum);
+                        break;
+                    default:
+                        return;
+                }
             }
+            else
+            {
+                dev = new DeviceDefinitionLegacy();
+
+                switch (name)
+                {
+                    case "SsGamepad":
+                        dev = Ss_Legacy.GamePad(portNum);
+                        break;
+                    case "Ss3DGamepad":
+                        dev = Ss_Legacy.ThreeD(portNum);
+                        break;
+                    case "SsMission":
+                        dev = Ss_Legacy.Mission(portNum);
+                        break;
+                    case "SsDualMission":
+                        dev = Ss_Legacy.DMission(portNum);
+                        break;
+                    case "SsWheel":
+                        dev = Ss_Legacy.Wheel(portNum);
+                        break;
+                    case "SsGun":
+                        dev = Ss_Legacy.Gun(portNum);
+                        break;
+                    case "SsMouse":
+                        dev = Ss_Legacy.Mouse(portNum);
+                        break;
+                    default:
+                        Classes.MessagePopper.PopControllerTargetingIssue();
+                        return;
+                }
+            }            
             
             mw.ControllerDefinition = dev;
 
             // launch controller configuration window
-            Grid RootGrid = (Grid)mw.FindName("RootGrid");
-            await mw.ShowChildWindowAsync(new ConfigureController()
+            if (isNewConfig)
             {
-                IsModal = true,
-                AllowMove = false,
-                Title = "Controller Configuration",
-                CloseOnOverlay = false,
-                CloseByEscape = false,
-                ShowCloseButton = false
-            }, RootGrid);
+                Grid RootGrid = (Grid)mw.FindName("RootGrid");
+                await mw.ShowChildWindowAsync(new ConfigureController()
+                {
+                    IsModal = true,
+                    AllowMove = false,
+                    Title = "Controller Configuration",
+                    CloseOnOverlay = false,
+                    ShowCloseButton = false,
+                    CloseByEscape = false
+                }, RootGrid);
+            }
+            else
+            {
+                Grid RootGrid = (Grid)mw.FindName("RootGrid");
+                await mw.ShowChildWindowAsync(new ConfigureControllerLegacy()
+                {
+                    IsModal = true,
+                    AllowMove = false,
+                    Title = "Controller Configuration",
+                    CloseOnOverlay = false,
+                    ShowCloseButton = false,
+                    CloseByEscape = false
+                }, RootGrid);
+            }
         }
     }
 }

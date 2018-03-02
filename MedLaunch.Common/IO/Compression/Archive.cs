@@ -58,87 +58,97 @@ namespace MedLaunch.Common.IO.Compression
 
             // mount the archive
 
-            using (Stream archiveStream = File.OpenRead(ArchivePath))
+            try
             {
-                using (var ar = new SevenZipExtractor(archiveStream))
+                using (Stream archiveStream = File.OpenRead(ArchivePath))
                 {
-                    var structure = ar.ArchiveFileData;
-
-                    List<ArchiveFileInfo> allowedFiles = new List<ArchiveFileInfo>();
-
-                    foreach (var s in structure)
+                    using (var ar = new SevenZipExtractor(archiveStream))
                     {
-                        if (s.IsDirectory == true)
-                            continue;
+                        var structure = ar.ArchiveFileData;
 
-                        string fileName = s.FileName;
-                        string extension = Path.GetExtension(fileName);
+                        List<ArchiveFileInfo> allowedFiles = new List<ArchiveFileInfo>();
 
-                        if (allowedExtensions == null)
+                        foreach (var s in structure)
                         {
-                            allowedFiles.Add(s);
-                            continue;
-                        }
+                            if (s.IsDirectory == true)
+                                continue;
 
-                        foreach (var ext in allowedExtensions)
-                        {
-                            if (ext == extension)
+                            string fileName = s.FileName;
+                            string extension = Path.GetExtension(fileName);
+
+                            if (allowedExtensions == null)
                             {
                                 allowedFiles.Add(s);
-                                break;
+                                continue;
                             }
-                        }
-                    }
 
-                    AllowedFilesDetected = allowedFiles.Count();
-
-                    // now we should have a list of allowed files
-                    foreach (var file in allowedFiles)
-                    {
-                        CompressionResult cr = new CompressionResult();
-                        cr.ArchivePath = ArchivePath;
-                        cr.InternalPath = file.FileName.Replace("\\", "/");
-                        cr.FileName = cr.InternalPath.Split('/').LastOrDefault();
-                        cr.CRC32 = file.Crc.ToString("X");
-                        cr.Extension = Path.GetExtension(cr.FileName);
-                        cr.RomName = cr.FileName.Replace(cr.Extension, "");
-
-                        //cr.CalculateDBPathString();
-                        /*
-                        if (Path.GetExtension(ArchivePath).ToLower() == ".zip")
-                        {
-                            // calculate md5 hash
-                            using (var stream = new MemoryStream())
+                            foreach (var ext in allowedExtensions)
                             {
-                                ar.ExtractFile(file.Index, stream);
-                                byte[] data = new byte[stream.Length];
-                                data = StreamTools.ReadToEnd(stream);
-
-                                using (var md5 = MD5.Create())
+                                if (ext == extension)
                                 {
-                                    string hash = BitConverter.ToString(md5.ComputeHash(data)).Replace("-", string.Empty);
-                                    cr.MD5 = hash;
+                                    allowedFiles.Add(s);
+                                    break;
                                 }
                             }
                         }
-                        */
 
-                        // 7zip and zip extraction too slow, use CRC32 instead
-                        cr.MD5 = cr.CRC32;
+                        AllowedFilesDetected = allowedFiles.Count();
 
-                        crs.Results.Add(cr);
+                        // now we should have a list of allowed files
+                        foreach (var file in allowedFiles)
+                        {
+                            CompressionResult cr = new CompressionResult();
+                            cr.ArchivePath = ArchivePath;
+                            cr.InternalPath = file.FileName.Replace("\\", "/");
+                            cr.FileName = cr.InternalPath.Split('/').LastOrDefault();
+                            cr.CRC32 = file.Crc.ToString("X");
+                            cr.Extension = Path.GetExtension(cr.FileName);
+                            cr.RomName = cr.FileName.Replace(cr.Extension, "");
 
-                        // build status message
-                        StringBuilder sb1 = new StringBuilder();
-                        sb1.Append("Scanning: " + Path.GetFileName(ArchivePath) + "\n\n");
-                        sb1.Append("Processing: " + cr.InternalPath);
+                            //cr.CalculateDBPathString();
+                            /*
+                            if (Path.GetExtension(ArchivePath).ToLower() == ".zip")
+                            {
+                                // calculate md5 hash
+                                using (var stream = new MemoryStream())
+                                {
+                                    ar.ExtractFile(file.Index, stream);
+                                    byte[] data = new byte[stream.Length];
+                                    data = StreamTools.ReadToEnd(stream);
 
-                        ProgressDialogEventArgs eva = new ProgressDialogEventArgs();
-                        eva.DialogText = sb1.ToString();
-                        FireMessageEvent(eva);
+                                    using (var md5 = MD5.Create())
+                                    {
+                                        string hash = BitConverter.ToString(md5.ComputeHash(data)).Replace("-", string.Empty);
+                                        cr.MD5 = hash;
+                                    }
+                                }
+                            }
+                            */
+
+                            // 7zip and zip extraction too slow, use CRC32 instead
+                            cr.MD5 = cr.CRC32;
+
+                            crs.Results.Add(cr);
+
+                            // build status message
+                            StringBuilder sb1 = new StringBuilder();
+                            sb1.Append("Scanning: " + Path.GetFileName(ArchivePath) + "\n\n");
+                            sb1.Append("Processing: " + cr.InternalPath);
+
+                            ProgressDialogEventArgs eva = new ProgressDialogEventArgs();
+                            eva.DialogText = sb1.ToString();
+                            FireMessageEvent(eva);
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                // problem with archive?
+                string exceptionMsg = ex.ToString();
+            }
+
+            
 
                // var ar = new SevenZipExtractor(ArchivePath);
             
@@ -157,25 +167,36 @@ namespace MedLaunch.Common.IO.Compression
         /// <param name="outputDirectory"></param>
         private static string Extract(Stream archiveStream, string internalFileName, string outputDirectory)
         {
-            using (SevenZipExtractor extr = new SevenZipExtractor(archiveStream))
+            try
             {
-                foreach (ArchiveFileInfo archiveFileInfo in extr.ArchiveFileData.Where(a => a.FileName == internalFileName))
+                using (SevenZipExtractor extr = new SevenZipExtractor(archiveStream))
                 {
-                    if (!archiveFileInfo.IsDirectory)
+                    foreach (ArchiveFileInfo archiveFileInfo in extr.ArchiveFileData.Where(a => a.FileName == internalFileName))
                     {
-                        using (var mem = new MemoryStream())
+                        if (!archiveFileInfo.IsDirectory)
                         {
-                            extr.ExtractFile(archiveFileInfo.Index, mem);
+                            using (var mem = new MemoryStream())
+                            {
+                                extr.ExtractFile(archiveFileInfo.Index, mem);
 
-                            string shortFileName = Path.GetFileName(archiveFileInfo.FileName);
-                            byte[] content = mem.ToArray();
-                            File.WriteAllBytes(outputDirectory + @"\" + shortFileName, content);
+                                string shortFileName = Path.GetFileName(archiveFileInfo.FileName);
+                                byte[] content = mem.ToArray();
+                                File.WriteAllBytes(outputDirectory + @"\" + shortFileName, content);
 
-                            return outputDirectory + @"\" + shortFileName;
+                                return outputDirectory + @"\" + shortFileName;
+                            }
                         }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                // problem with archive?
+                string exceptionMsg = ex.ToString();
+
+            }
+
+            
             return null;
         }
 
@@ -187,25 +208,36 @@ namespace MedLaunch.Common.IO.Compression
         /// <param name="outputDirectory"></param>
         public static string Extract(Stream archiveStream, int index, string newFileName, string outputDirectory)
         {
-            using (SevenZipExtractor extr = new SevenZipExtractor(archiveStream))
+            try
             {
-                foreach (ArchiveFileInfo archiveFileInfo in extr.ArchiveFileData.Where(a => a.Index == index))
+                using (SevenZipExtractor extr = new SevenZipExtractor(archiveStream))
                 {
-                    if (!archiveFileInfo.IsDirectory)
+                    foreach (ArchiveFileInfo archiveFileInfo in extr.ArchiveFileData.Where(a => a.Index == index))
                     {
-                        using (var mem = new MemoryStream())
+                        if (!archiveFileInfo.IsDirectory)
                         {
-                            extr.ExtractFile(archiveFileInfo.Index, mem);
+                            using (var mem = new MemoryStream())
+                            {
+                                extr.ExtractFile(archiveFileInfo.Index, mem);
 
-                            string shortFileName = Path.GetFileName(archiveFileInfo.FileName);
-                            byte[] content = mem.ToArray();
-                            File.WriteAllBytes(outputDirectory + @"\" + newFileName, content);
+                                string shortFileName = Path.GetFileName(archiveFileInfo.FileName);
+                                byte[] content = mem.ToArray();
+                                File.WriteAllBytes(outputDirectory + @"\" + newFileName, content);
 
-                            return outputDirectory + @"\" + shortFileName;
+                                return outputDirectory + @"\" + shortFileName;
+                            }
                         }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                // problem with archive?
+                string exceptionMsg = ex.ToString();
+
+            }
+
+            
             return null;
         }
 
@@ -219,23 +251,34 @@ namespace MedLaunch.Common.IO.Compression
         {
             MemoryStream ms = new MemoryStream();
 
-            using (SevenZipExtractor extr = new SevenZipExtractor(archiveStream))
+            try
             {
-                foreach (ArchiveFileInfo archiveFileInfo in extr.ArchiveFileData.Where(a => a.FileName == internalFileName))
+                using (SevenZipExtractor extr = new SevenZipExtractor(archiveStream))
                 {
-                    if (!archiveFileInfo.IsDirectory)
+                    foreach (ArchiveFileInfo archiveFileInfo in extr.ArchiveFileData.Where(a => a.FileName == internalFileName))
                     {
-                        using (var mem = new MemoryStream())
+                        if (!archiveFileInfo.IsDirectory)
                         {
-                            extr.ExtractFile(archiveFileInfo.Index, mem);
+                            using (var mem = new MemoryStream())
+                            {
+                                extr.ExtractFile(archiveFileInfo.Index, mem);
 
-                            mem.CopyTo(ms);
-                            return ms;
-                            
+                                mem.CopyTo(ms);
+                                return ms;
+
+                            }
                         }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                // problem with archive?
+                string exceptionMsg = ex.ToString();
+
+            }
+
+            
             return null;
         }
 
@@ -249,23 +292,34 @@ namespace MedLaunch.Common.IO.Compression
         {
             MemoryStream ms = new MemoryStream();
 
-            using (SevenZipExtractor extr = new SevenZipExtractor(archiveStream))
+            try
             {
-                foreach (ArchiveFileInfo archiveFileInfo in extr.ArchiveFileData.Where(a => a.Index == index))
+                using (SevenZipExtractor extr = new SevenZipExtractor(archiveStream))
                 {
-                    if (!archiveFileInfo.IsDirectory)
+                    foreach (ArchiveFileInfo archiveFileInfo in extr.ArchiveFileData.Where(a => a.Index == index))
                     {
-                        using (var mem = new MemoryStream())
+                        if (!archiveFileInfo.IsDirectory)
                         {
-                            extr.ExtractFile(archiveFileInfo.Index, mem);
+                            using (var mem = new MemoryStream())
+                            {
+                                extr.ExtractFile(archiveFileInfo.Index, mem);
 
-                            mem.CopyTo(ms);
-                            return ms;
+                                mem.CopyTo(ms);
+                                return ms;
 
+                            }
                         }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                // problem with archive?
+                string exceptionMsg = ex.ToString();
+
+            }
+
+           
             return null;
         }
 
@@ -293,22 +347,33 @@ namespace MedLaunch.Common.IO.Compression
         {
             List<string> outputs = new List<string>();
 
-            // check whether archive and output directory exists
-            if (!File.Exists(archivePath) || !Directory.Exists(outputDirectory))
-                return new string[] { "" };
-
-            // open the archive
-            using (Stream archiveStream = File.OpenRead(archivePath))
+            try
             {
-                foreach (var s in internalPath)
-                {
-                    string internalConverted = s.Replace("/", "\\");
-                    string extractedFilePath = Extract(archiveStream, internalConverted, outputDirectory);
+                // check whether archive and output directory exists
+                if (!File.Exists(archivePath) || !Directory.Exists(outputDirectory))
+                    return new string[] { "" };
 
-                    if (extractedFilePath != null)
-                        outputs.Add(extractedFilePath);
+                // open the archive
+                using (Stream archiveStream = File.OpenRead(archivePath))
+                {
+                    foreach (var s in internalPath)
+                    {
+                        string internalConverted = s.Replace("/", "\\");
+                        string extractedFilePath = Extract(archiveStream, internalConverted, outputDirectory);
+
+                        if (extractedFilePath != null)
+                            outputs.Add(extractedFilePath);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                // problem with archive?
+                string exceptionMsg = ex.ToString();
+
+            }
+
+            
 
             if (outputs.Count() == 0)
             {

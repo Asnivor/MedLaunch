@@ -24,6 +24,12 @@ write-host "Detected file version: $version / $versionDot"
 if ($env:APPVEYOR -eq $true)
 {
     write-host "Appveyor detected"
+
+	# set vars for splashscreen updater
+	$splashupdaterexe = "$($root)\SplashScreenUpdater\output\SplashScreenUpdater.exe"
+	$imgSource = "$($root)\MedLaunch\Data\Graphics\mediconsplash-base.png"
+	$imgDest = "$($root)\MedLaunch\Data\Graphics\mediconsplash-new.png"
+
     if ($env:APPVEYOR_REPO_BRANCH -eq "dev")
     {
         $buildNo = $env:APPVEYOR_BUILD_NUMBER
@@ -42,6 +48,10 @@ if ($env:APPVEYOR -eq $true)
         # set custom environment filename
         Set-AppveyorBuildVariable -Name 'ML_ARTIFACT_NAME' -Value $filename
         #$env:ML_ARTIFACT_NAME=$filename
+
+		# update the splashscreen graphic
+		Write-Host "Attempting to update MedLaunch splashscreen graphic for DEV"
+		& "$splashupdaterexe" "$newVerDev" "$imgSource" "$imgDest"
     }
     if ($env:APPVEYOR_REPO_BRANCH -eq "master")
     {
@@ -83,6 +93,10 @@ if ($env:APPVEYOR -eq $true)
         }
         
         #write-host "Release info: `n`n$newContent"
+
+		# update the splashscreen graphic
+		Write-Host "Attempting to update MedLaunch splashscreen graphic for PRODUCTION"
+		& "$splashupdaterexe" "ML-$versionDot" "$imgSource" "$imgDest"
     }
 }
 else
