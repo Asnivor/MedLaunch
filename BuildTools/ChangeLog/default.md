@@ -6,6 +6,14 @@ title: Changelog
 ------------------------------------
 #### Development Build Changes ([Dev](https://github.com/Asnivor/MedLaunch/tree/dev) branch) - [![Build status](https://ci.appveyor.com/api/projects/status/4maii9la7yb72bw8/branch/dev?svg=true)](https://ci.appveyor.com/project/Asnivor/medlaunch/branch/dev/artifacts)
 ------------------------------------
+* None as yet
+
+##### [0.5.25.3](https://medlaunch.info/releases/0-5-25-x)
+###### 2018-03-22
+* (Enhancement) - Small update to support mednafen v1.21.1
+
+##### [0.5.25.2](https://medlaunch.info/releases/0-5-25-x)
+###### 2018-03-02
 * (Enhancement)	- Background image - added 'stretch and maintain aspect' and 'original size' options ([#196](https://github.com/Asnivor/MedLaunch/issues/196))
 * (BugFix) - Controller and Misc Binding configuration windows now instantiate based on the current MedLaunch window height (so that buttons at the bottom of the window should never be cut off) ([#197](https://github.com/Asnivor/MedLaunch/issues/197))
 * (Enhancement) - Added shared memcard option for PSX ([#194](https://github.com/Asnivor/MedLaunch/issues/194)) - Caveat: this may not play nice with savestates, use with caution

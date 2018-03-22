@@ -113,11 +113,11 @@ namespace MedLaunch.Classes
             return
                 new List<MednafenChangeHistory>
                 {
-                    // 1.21.0-UNSTABLE
+                    // 1.21.1
                     new MednafenChangeHistory
                     {
-                        Version = "1.21.0-UNSTABLE",
-                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-1.21.0-UNSTABLE-win64.zip",
+                        Version = "1.21.1",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-1.21.1-win64.zip",
                         Changes = new List<VersionChange>
                         {
                             ////////////////////////////////////////////////////////////////
@@ -127,6 +127,17 @@ namespace MedLaunch.Classes
                             new VersionChange { Description = "overlay depreciated", ChangeMethod = ChangeType.ToRename, Item = "video.driver overlay", ChangeItem = "video.driver default" },
                             ////////////////////////////////////////////////////////////////
 
+
+                        }
+                    },
+
+                    // 1.21.0-UNSTABLE
+                    new MednafenChangeHistory
+                    {
+                        Version = "1.21.0-UNSTABLE",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-1.21.0-UNSTABLE-win64.zip",
+                        Changes = new List<VersionChange>
+                        {
 
                         }
                     },
