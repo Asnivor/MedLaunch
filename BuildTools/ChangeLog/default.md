@@ -8,6 +8,10 @@ title: Changelog
 ------------------------------------
 * None as yet
 
+##### [0.5.25.3](https://medlaunch.info/releases/0-5-25-x)
+###### 2018-03-22
+* (Enhancement) - Small update to support mednafen v1.21.1
+
 ##### [0.5.25.2](https://medlaunch.info/releases/0-5-25-x)
 ###### 2018-03-02
 * (Enhancement)	- Background image - added 'stretch and maintain aspect' and 'original size' options ([#196](https://github.com/Asnivor/MedLaunch/issues/196))
