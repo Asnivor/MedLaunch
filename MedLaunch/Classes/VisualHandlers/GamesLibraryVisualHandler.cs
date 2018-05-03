@@ -1032,21 +1032,29 @@ namespace MedLaunch.Classes
         public static string FormatMinutesToString(double minutes)
         {
             string tt = "";
-            TimeSpan ts = TimeSpan.FromMinutes(minutes);
-            int hh = ts.Hours;
-            int mm = ts.Minutes;
-            int ss = ts.Seconds;
-            if (minutes <= 0)
-                tt = "Never";
-            else
+            try
             {
-                if (hh > 0)
-                    tt += hh + " Hours, ";
-                if (mm > 0)
-                    tt += mm + " Minutes, ";
-                tt += ss + " Seconds";
+                TimeSpan ts = TimeSpan.FromMinutes(minutes);
+                int hh = ts.Hours;
+                int mm = ts.Minutes;
+                int ss = ts.Seconds;
+                if (minutes <= 0)
+                    tt = "Never";
+                else
+                {
+                    if (hh > 0)
+                        tt += hh + " Hours, ";
+                    if (mm > 0)
+                        tt += mm + " Minutes, ";
+                    tt += ss + " Seconds";
+                }
+
+                return tt;
             }
-            return tt;
+            catch (Exception)
+            {
+                return "Unknown";
+            }
         }
 
         // Get the current setup of the games library (selected filters etc), do a refresh then return to previous configuration
