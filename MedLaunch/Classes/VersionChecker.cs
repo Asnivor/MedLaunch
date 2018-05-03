@@ -113,6 +113,33 @@ namespace MedLaunch.Classes
             return
                 new List<MednafenChangeHistory>
                 {
+                    // 1.21.3
+                    new MednafenChangeHistory
+                    {
+                        Version = "1.21.3",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-1.21.3-win64.zip",
+                        Changes = new List<VersionChange>
+                        {
+                            ////////////////////////////////////////////////////////////////
+                            // Top level changes - these MUST be moved the beginning of every new version entry and removed from the previous ones
+                            // Its a bit of a kludge, but for earlier versions they should get converted back again later on
+                            new VersionChange { Description = "sdl depreciated", ChangeMethod = ChangeType.ToRename, Item = "video.driver sdl", ChangeItem = "video.driver softfb" },
+                            new VersionChange { Description = "overlay depreciated", ChangeMethod = ChangeType.ToRename, Item = "video.driver overlay", ChangeItem = "video.driver default" },
+                            ////////////////////////////////////////////////////////////////
+                        }
+                    },
+
+                    // 1.21.2
+                    new MednafenChangeHistory
+                    {
+                        Version = "1.21.2",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-1.21.2-win64.zip",
+                        Changes = new List<VersionChange>
+                        {
+
+                        }
+                    },
+
                     // 1.21.1
                     new MednafenChangeHistory
                     {
@@ -120,13 +147,6 @@ namespace MedLaunch.Classes
                         DownloadURL = "https://mednafen.github.io/releases/files/mednafen-1.21.1-win64.zip",
                         Changes = new List<VersionChange>
                         {
-                            ////////////////////////////////////////////////////////////////
-                            // Top level changes - these MUST be moved the beginning of every new version entry
-                            // Its a bit of a kludge, but for earlier versions they should get converted back again later on
-                            new VersionChange { Description = "sdl depreciated", ChangeMethod = ChangeType.ToRename, Item = "video.driver sdl", ChangeItem = "video.driver softfb" },
-                            new VersionChange { Description = "overlay depreciated", ChangeMethod = ChangeType.ToRename, Item = "video.driver overlay", ChangeItem = "video.driver default" },
-                            ////////////////////////////////////////////////////////////////
-
 
                         }
                     },
