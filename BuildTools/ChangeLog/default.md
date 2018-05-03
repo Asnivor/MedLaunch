@@ -6,7 +6,7 @@ title: Changelog
 ------------------------------------
 #### Development Build Changes ([Dev](https://github.com/Asnivor/MedLaunch/tree/dev) branch) - [![Build status](https://ci.appveyor.com/api/projects/status/4maii9la7yb72bw8/branch/dev?svg=true)](https://ci.appveyor.com/project/Asnivor/medlaunch/branch/dev/artifacts)
 ------------------------------------
-* None as yet
+* (Enhancement) - Added compatibility for mednafen v1.21.2 and v1.21.3
 
 ##### [0.5.25.3](https://medlaunch.info/releases/0-5-25-x)
 ###### 2018-03-22
