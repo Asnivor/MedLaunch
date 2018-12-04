@@ -475,7 +475,7 @@ namespace MedLaunch.Classes
                     }
                 }
 
-                working = " -" + working.TrimStart('-').Replace("- -", "").Replace("-  -", "").TrimStart();
+                working = " -" + working.TrimStart('-').Replace("- -", "").Replace("-  -", "").Replace("--", "").Replace("--", "").TrimStart();
 
                 string currIntOnly;
                 string targetIntOnly;
