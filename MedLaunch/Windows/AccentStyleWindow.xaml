@@ -105,7 +105,7 @@
                 <DockPanel Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Margin="5">
                     <Label DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">Opacity</Label>
                     <TextBox Text="{Binding ElementName=slOpac, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" TextChanged="TextBox_TextChanged" />
-                    <Slider Maximum="1" Minimum="0.05" TickPlacement="BottomRight" TickFrequency="0.05" IsSnapToTickEnabled="True" 
+                    <Slider Maximum="1" Minimum="0.00" TickPlacement="BottomRight" TickFrequency="0.05" IsSnapToTickEnabled="True" 
                                         Name="slOpac" />
                 </DockPanel>
 

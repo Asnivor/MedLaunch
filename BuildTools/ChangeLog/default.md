@@ -8,6 +8,7 @@ title: Changelog
 ------------------------------------
 * (Enhancement) - Added compatibility for mednafen v1.21.2 and v1.21.3 ([214](https://github.com/Asnivor/MedLaunch/issues/214))
 * (BugFix) - Mitigated TimeSpan overflow exception ([215](https://github.com/Asnivor/MedLaunch/issues/215))
+* (Enhancement) - Background picture can now be hidden (Opacity set to 0) ([220](https://github.com/Asnivor/MedLaunch/issues/220))
 
 ##### [0.5.25.3](https://medlaunch.info/releases/0-5-25-x)
 ###### 2018-03-22

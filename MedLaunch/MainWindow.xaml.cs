@@ -957,7 +957,7 @@ namespace MedLaunch
 
 
                         // Start ROM scan for this system
-                        ds.BeginDiscImportImproved(s.systemId, controller);
+                        ds.BeginDiscImportImprovedold(s.systemId, controller);
 
 
                         //output += ".....Completed\n\n";

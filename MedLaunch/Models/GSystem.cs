@@ -417,8 +417,16 @@ namespace MedLaunch.Models
             char c = ',';
             string[] aSplit = archive.Split(c);
             string[] nSplit = nonArchive.Split(c);
-            foreach (string s in aSplit) { supported.Add(s); }
-            foreach (string s in nSplit) { supported.Add(s); }
+            foreach (string s in aSplit)
+            {
+                if (s.Trim() != "")
+                    supported.Add(s);
+            }
+            foreach (string s in nSplit)
+            {
+                if (s.Trim() != "")
+                    supported.Add(s);
+            }
 
             return supported;
         }
