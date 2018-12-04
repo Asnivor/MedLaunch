@@ -9,7 +9,8 @@ title: Changelog
 * (Enhancement) - Added compatibility for mednafen v1.21.2 and v1.21.3 ([214](https://github.com/Asnivor/MedLaunch/issues/214))
 * (BugFix) - Mitigated TimeSpan overflow exception ([215](https://github.com/Asnivor/MedLaunch/issues/215))
 * (Enhancement) - Background picture can now be hidden (Opacity set to 0) ([220](https://github.com/Asnivor/MedLaunch/issues/220))
-* (BugFix) - Remove unneccesary dashes generated at the start of a launch string if user is running an older version of mednafen (or emu4crt.exe renamed to mednafen.exe)
+* (BugFix) - Remove unneccesary dashes generated at the start of a launch string if user is running an older version of mednafen (or emu4crt.exe renamed to mednafen.exe) ([222](https://github.com/Asnivor/MedLaunch/issues/222))
+* (BugFix) - Enable case-agnostic file extension scanning ([226](https://github.com/Asnivor/MedLaunch/issues/226))
 
 ##### [0.5.25.3](https://medlaunch.info/releases/0-5-25-x)
 ###### 2018-03-22

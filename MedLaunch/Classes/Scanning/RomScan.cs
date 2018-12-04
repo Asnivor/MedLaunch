@@ -73,7 +73,7 @@ namespace MedLaunch.Classes.Scanning
             {
                 foreach (string p in romFiles)
                 {
-                    if (p.EndsWith(s))
+                    if (p.ToUpper().EndsWith(s.ToUpper()))
                     {
                         //MessageBoxResult result5 = MessageBox.Show(p);
                         allowedFiles.Add(p);
@@ -128,7 +128,7 @@ namespace MedLaunch.Classes.Scanning
             string hash = String.Empty;
 
             // inspect archive files
-            if (extension == ".zip" || extension == ".7z")
+            if (extension.ToLower() == ".zip" || extension.ToLower() == ".7z")
             {
                 //bool isAllowed = false;
                 try
@@ -151,7 +151,7 @@ namespace MedLaunch.Classes.Scanning
                             // no allowed files
                             return;
                         }
-                        else if (alcnt == 1 && extension == ".zip")
+                        else if (alcnt == 1 && extension.ToLower() == ".zip")
                         {
                             // 1 allowed file and 1 total files in a zip file - use the zip file rather than the embedded rom
                             var result = results.Results.FirstOrDefault();
@@ -159,7 +159,7 @@ namespace MedLaunch.Classes.Scanning
                             if (result == null)
                                 return;
 
-                            if (result.Extension == ".zip" || result.Extension == ".7z")
+                            if (result.Extension.ToLower() == ".zip" || result.Extension.ToLower() == ".7z")
                                 return;
 
                             //ArchiveFiles.Add(a);
