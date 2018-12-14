@@ -206,9 +206,9 @@ namespace MedLaunch.Classes
                     // check whether stdout.txt doesnt exist or not
                     if (!File.Exists(LogPath))
                     {
-                        Thread.Sleep(10);
+                        Thread.Sleep(500);
                         ParseData();
-                        Thread.Sleep(10);
+                        Thread.Sleep(500);
 
                         if (!File.Exists(LogPath))
                         {
