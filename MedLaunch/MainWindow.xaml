@@ -8776,6 +8776,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
 
                                                 <Label Name="cfglbl_ss__region_default" Grid.Column="0" Grid.Row="0">Default Region</Label>
@@ -8809,46 +8812,54 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="extram4">4MiB Extended RAM</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <CheckBox x:Name="cfg_ss__smpc__autortc" Grid.Row="3" Grid.ColumnSpan="2">Auto Set RTC on Game Load</CheckBox>
-                                                <CheckBox x:Name="cfg_ss__midsync" Grid.Row="4" Grid.ColumnSpan="2">Enable Mid-Frame Sync</CheckBox>
+                                                <Label Name="cfglbl_ss__cart__auto_default" Grid.Column="0" Grid.Row="3">Expansion Cart</Label>
+                                                <ComboBox x:Name="cfg_ss__cart__auto_default" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="2">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="backup">Backup Memory(512KiB)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="extram1">1MiB Extended RAM</ComboBoxItem>
+                                                    <ComboBoxItem Tag="extram4">4MiB Extended RAM</ComboBoxItem>
+                                                </ComboBox>
 
-                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Center" Margin="3">
+                                                <CheckBox x:Name="cfg_ss__smpc__autortc" Grid.Row="4" Grid.ColumnSpan="2">Auto Set RTC on Game Load</CheckBox>
+                                                <CheckBox x:Name="cfg_ss__midsync" Grid.Row="5" Grid.ColumnSpan="2">Enable Mid-Frame Sync</CheckBox>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_ss__scsp__resamp_quality" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">SCSP Output Resampler Quality</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_ss__scsp__resamp_quality, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="10" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_ss__scsp__resamp_quality"/>
                                                 </DockPanel>
 
-                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Center" Margin="3">
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="7" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_ss__slstart" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">First Displayed Scanline (NTSC)</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_ss__slstart, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="239" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_ss__slstart"/>
                                                 </DockPanel>
 
-                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="7" VerticalAlignment="Center" Margin="3">
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="8" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_ss__slend" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Last Displayed Scanline (NTSC)</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_ss__slend, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="239" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_ss__slend"/>
                                                 </DockPanel>
 
-                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="8" VerticalAlignment="Center" Margin="3">
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="9" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_ss__slstartp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">First Displayed Scanline (PAL)</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_ss__slstartp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="271" Minimum="-16" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_ss__slstartp"/>
                                                 </DockPanel>
 
-                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="9" VerticalAlignment="Center" Margin="3">
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="10" VerticalAlignment="Center" Margin="3">
                                                     <Label Name="cfglbl_ss__slendp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Last Displayed Scanline (PAL)</Label>
                                                     <TextBox Text="{Binding ElementName=cfg_ss__slendp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                                                     <Slider Maximum="271" Minimum="-16" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_ss__slendp"/>
                                                 </DockPanel>
 
-                                                <Label Name="cfglbl_ss__debugger__disfontsize" Grid.Column="0" Grid.Row="10">Disassembly Font Size</Label>
-                                                <ComboBox x:Name="cfg_ss__debugger__disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="10">
+                                                <Label Name="cfglbl_ss__debugger__disfontsize" Grid.Column="0" Grid.Row="11">Disassembly Font Size</Label>
+                                                <ComboBox x:Name="cfg_ss__debugger__disfontsize" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="12">
                                                     <ComboBoxItem Tag="5x7">5x7</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x9">6x9</ComboBoxItem>
                                                     <ComboBoxItem Tag="6x12">6x12</ComboBoxItem>
@@ -8856,8 +8867,8 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                     <ComboBoxItem Tag="9x18">9x18 (CJK Support)</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Label Name="cfglbl_ss__debugger__memcharenc" Grid.Column="0" Grid.Row="11">Debugger Char Encoding</Label>
-                                                <TextBox x:Name="cfg_ss__debugger__memcharenc" Grid.Column="1" Grid.Row="11" />
+                                                <Label Name="cfglbl_ss__debugger__memcharenc" Grid.Column="0" Grid.Row="13">Debugger Char Encoding</Label>
+                                                <TextBox x:Name="cfg_ss__debugger__memcharenc" Grid.Column="1" Grid.Row="13" />
 
 
                                             </Grid>
@@ -10977,6 +10988,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
 
                                                 </Grid.ColumnDefinitions>
                                                 <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
