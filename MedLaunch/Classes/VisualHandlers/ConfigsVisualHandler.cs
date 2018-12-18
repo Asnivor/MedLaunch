@@ -288,8 +288,9 @@ namespace MedLaunch.Classes
                     TextBox tbPathVb = (TextBox)mw.FindName("tbPathVb");
                     TextBox tbPathWswan = (TextBox)mw.FindName("tbPathWswan");
                     TextBox tbPathPceCd = (TextBox)mw.FindName("tbPathPceCd");
+					TextBox tbPathApple2 = (TextBox)mw.FindName("tbPathApple2");
 
-                    Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs,tbPathPceCd);
+                    Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs, tbPathPceCd, tbPathApple2);
                     break;
 
                 case SettingGroup.GlobalSettings:

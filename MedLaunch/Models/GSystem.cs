@@ -170,6 +170,9 @@ namespace MedLaunch.Models
                 case 4936:
                     r = "Famicon Disk System";
                     break;
+				case 4942:
+					r = "Apple II";
+					break;
 
                 default:
                     break;
@@ -388,6 +391,10 @@ namespace MedLaunch.Models
                     supportedFileExtensions = ".cue,.ccd,.toc,", supportedArchiveExtensions = "",
                         systemDescription = "TurboGrafx-16, fully titled as TurboGrafx-16 Entertainment SuperSystem and known in Japan as the PC Engine, is a video game console developed by Hudson Soft and NEC, released in Japan on October 30, 1987, and in North America on August 29, 1989." },
 
+				new GSystem { systemId = 19, theGamesDBPlatformId = new List<int>{4942}, systemCode = "apple2", systemName = "Apple II/II+",
+				MobyPlatformName = new List<string> { "apple2" },
+					supportedFileExtensions = ".mai,.d13,.dsk,.do,.po,.woz", supportedArchiveExtensions = ".zip,.7z",
+						systemDescription = "The Apple II series is a family of home computers designed primarily by Steve Wozniak and manufactured by Apple Computer. The Apple II was launched in 1977 and was designed to look more like a home appliance than a piece of electronic equipment. The Apple II+ was released two years later (1979) and featured an Applesoft BASIC ROM, improved graphics and disk-booting support in the ROM."}
                 };
             return gSystems;
         }

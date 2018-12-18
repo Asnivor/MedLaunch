@@ -16,8 +16,6 @@ namespace MedLaunch.Models
     {
         public int pathId { get; set; }
         public string mednafenExe { get; set; }                     // Path to the Mednafen EXE
-
-        //public string systemCdplay { get; set; }                    // CD-DA Player
         public string systemGb { get; set; }                        // Gameboy Color
         public string systemGba { get; set; }                       // Gamboy Advance
         public string systemLynx { get; set; }                      // Atari Lynx
@@ -32,9 +30,9 @@ namespace MedLaunch.Models
         public string systemNes { get; set; }                       // Nintendo Entertainment System/Famicon
         public string systemSnes { get; set; }                      // Super Nintendo Entertainment System/Super Famicom
         public string systemSs { get; set; }                        // Sega Saturn
-        //public string systemSsfplay { get; set; }                   // Sega Saturn Sound Format Player
         public string systemVb { get; set; }                        // Virtual Boy
         public string systemWswan { get; set; }                     // WonderSwan
+		public string systemApple2 { get; set; }					// Apple II
 
         public static string GetSystemPath(int systemId)
         {
@@ -75,6 +73,8 @@ namespace MedLaunch.Models
                     return paths.systemWswan;
                 case 18:
                     return paths.systemPceCd;
+				case 19:
+					return paths.systemApple2;
                 default:
                     return null;
             }
@@ -134,7 +134,7 @@ namespace MedLaunch.Models
         // Populate path forms with DB data
         public static void LoadPathSettings(TextBox tbPathMednafen, TextBox tbPathGb, TextBox tbPathGba, TextBox tbPathGg, TextBox tbPathLynx, TextBox tbPathMd,
             TextBox tbPathNes, TextBox tbPathSnes, TextBox tbPathNgp, TextBox tbPathPce, TextBox tbPathPcfx, TextBox tbPathSms,
-            TextBox tbPathVb, TextBox tbPathWswan, TextBox tbPathPsx, TextBox tbPathSs, TextBox tbPathPceCd)
+            TextBox tbPathVb, TextBox tbPathWswan, TextBox tbPathPsx, TextBox tbPathSs, TextBox tbPathPceCd, TextBox tbPathApple2)
         {
             Paths paths = GetPaths();
 
@@ -155,12 +155,13 @@ namespace MedLaunch.Models
             tbPathVb.Text = paths.systemVb;
             tbPathWswan.Text = paths.systemWswan;
             tbPathPceCd.Text = paths.systemPceCd;
+			tbPathApple2.Text = paths.systemApple2;
         }
 
         // save path settings from form
         public static void SavePathSettings(TextBox tbPathMednafen, TextBox tbPathGb, TextBox tbPathGba, TextBox tbPathGg, TextBox tbPathLynx, TextBox tbPathMd,
             TextBox tbPathNes, TextBox tbPathSnes, TextBox tbPathNgp, TextBox tbPathPce, TextBox tbPathPcfx, TextBox tbPathSms,
-            TextBox tbPathVb, TextBox tbPathWswan, TextBox tbPathPsx, TextBox tbPathSs, TextBox tbPathPceCd)
+            TextBox tbPathVb, TextBox tbPathWswan, TextBox tbPathPsx, TextBox tbPathSs, TextBox tbPathPceCd, TextBox tbPathApple2)
         {
             Paths paths = GetPaths();
             paths.mednafenExe = tbPathMednafen.Text;
@@ -180,6 +181,7 @@ namespace MedLaunch.Models
             paths.systemVb = tbPathVb.Text;
             paths.systemWswan = tbPathWswan.Text;
             paths.systemPceCd = tbPathPceCd.Text;
+			paths.systemApple2 = tbPathApple2.Text;
 
             SetPaths(paths);
         }

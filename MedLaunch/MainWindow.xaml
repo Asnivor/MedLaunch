@@ -11046,6 +11046,9 @@ xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Micro
                                                 <TextBox x:Name="tbPathPceCd" Grid.Column="1" Grid.Row="15" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
                                                 <Button x:Name="btnPathPceCd" Grid.Column="0" Grid.Row="15" Click="btnPathPceCd_Click">PC Engine (CD)</Button>
 
+                                                <TextBox x:Name="tbPathApple2" Grid.Column="1" Grid.Row="16" TextChanged="tbSettings_Paths_TextChanged"></TextBox>
+                                                <Button x:Name="btnPathApple2" Grid.Column="0" Grid.Row="16" Click="btnPathApple2_Click">Apple II/II+</Button>
+
                                                 <StackPanel Grid.ColumnSpan="2" Grid.Row="17">
                                                     <!-- 
                                                     <Button x:Name="btnPathsSaveChanges" Content="Save Changes" Background="{DynamicResource AccentColorBrush}" Click="btnPathsSaveChanges_Click" ></Button>
