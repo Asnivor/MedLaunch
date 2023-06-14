@@ -41,7 +41,7 @@ using System.Windows.Threading;
 using MedLaunch._Debug.ScrapeDB.ReplacementDocs;
 using MedLaunch.Classes.MednaNet;
 using ucon64_wrapper;
-using System.Windows.Interactivity;
+using Microsoft.Xaml.Behaviors;
 using MedLaunch.Common.Eventing.Listeners;
 using MedLaunch.Common.IO.Compression;
 using MedLaunch.Windows;
