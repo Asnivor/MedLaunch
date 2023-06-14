@@ -26,14 +26,14 @@ artifacts:
 before_deploy:
 - cmd: powershell.exe ".\BuildTools\AppveyorDeploy.ps1"
 
-deploy:
-- provider: GitHub
-  tag: $(MEDLAUNCH_VERSION_DOT)
-  release: MedLaunch v$(MEDLAUNCH_VERSION_DOT)
-  description: $(MEDLAUNCH_RELEASE_DESCRIPTION)
-  auth_token:
-    secure: lCQYDdMEEZZKFO0qJkHddSQVHGqB8K1czFJvbBdhfV8X7F17ImQKHvKn7T4S4HM5
-  artifact: '$(ML_ARTIFACT_NAME_NEW)'
-  draft: true
-  prerelease: false
-  force_update: true
+#deploy:
+#- provider: GitHub
+#  tag: $(MEDLAUNCH_VERSION_DOT)
+#  release: MedLaunch v$(MEDLAUNCH_VERSION_DOT)
+#  description: $(MEDLAUNCH_RELEASE_DESCRIPTION)
+#  auth_token:
+#    secure: lCQYDdMEEZZKFO0qJkHddSQVHGqB8K1czFJvbBdhfV8X7F17ImQKHvKn7T4S4HM5
+#  artifact: '$(ML_ARTIFACT_NAME_NEW)'
+#  draft: true
+#  prerelease: false
+#  force_update: true
