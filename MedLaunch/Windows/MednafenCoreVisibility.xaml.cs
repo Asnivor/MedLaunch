@@ -50,6 +50,7 @@ namespace MedLaunch
             coreVis16.IsChecked = false;// gs.coreVis16;
             coreVis17.IsChecked = false;// gs.coreVis17;
             coreVis18.IsChecked = gs.coreVis18;
+			coreVis19.IsChecked = gs.coreVis19;
 
             // hide faust and fast
             coreVis16.Visibility = Visibility.Collapsed;
@@ -82,7 +83,8 @@ namespace MedLaunch
                 coreVis15.IsChecked.Value,
                 coreVis16.IsChecked.Value,
                 coreVis17.IsChecked.Value,
-                coreVis18.IsChecked.Value
+                coreVis18.IsChecked.Value,
+				coreVis19.IsChecked.Value,
             };
 
             bool[] bsa = bs.ToArray();

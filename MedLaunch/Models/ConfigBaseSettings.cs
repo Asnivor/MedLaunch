@@ -535,6 +535,7 @@ namespace MedLaunch.Models
         public string ss__bios_na_eu { get; set; }
         public bool? ss__bios_sanity { get; set; }
         public string ss__cart { get; set; }
+		public string ss__cart__auto_default { get; set; }
         public string ss__cart__kof95_path { get; set; }
         public string ss__cart__ultraman_path { get; set; }
         public bool? ss__cd_sanity { get; set; }
@@ -1443,6 +1444,7 @@ namespace MedLaunch.Models
                 ss__bios_na_eu = "mpr-17933.bin",
                 ss__bios_sanity = true,                                     // placed
                 ss__cart = "auto",                                          // placed
+				ss__cart__auto_default = "backup",							// placed
                 ss__cart__kof95_path = "mpr-18811-mx.ic1",
                 ss__cart__ultraman_path = "mpr-19367-mx.ic1",
                 ss__cd_sanity = true,                                       // placed

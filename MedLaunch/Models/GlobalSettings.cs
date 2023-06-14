@@ -74,6 +74,7 @@ namespace MedLaunch.Models
         public string glFil17 { get; set; }             // PSX
         public string glFil18 { get; set; }             // PCECD
         public string glFil19 { get; set; }             // PCFX
+		public string glFil20 { get; set; }				// Apple II
 
         // games library search filters visibility
         public bool hideCountryFilters { get; set; }
@@ -97,6 +98,7 @@ namespace MedLaunch.Models
         public bool coreVis16 { get; set; }
         public bool coreVis17 { get; set; }
         public bool coreVis18 { get; set; }
+		public bool coreVis19 { get; set; }
 
         // Game scraping options
         public bool scrapeBanners { get; set; }
@@ -146,6 +148,7 @@ namespace MedLaunch.Models
         public string sysWinPos16 { get; set; }
         public string sysWinPos17 { get; set; }
         public string sysWinPos18 { get; set; }
+		public string sysWinPos19 { get; set; }
 
         public static GlobalSettings GetGlobalDefaults()
         {
@@ -222,6 +225,7 @@ namespace MedLaunch.Models
                 glFil17 = "3FFF",
                 glFil18 = "3FFF",
                 glFil19 = "3FFF",
+				glFil20 = "3FFF",
 
                 hideCountryFilters = false,
 
@@ -243,6 +247,7 @@ namespace MedLaunch.Models
                 coreVis16 = true,
                 coreVis17 = true,
                 coreVis18 = true,
+				coreVis19 = true,
 
                 sidebarwidth = 350,
                 bgImagePath = @"Data\Graphics\medicon.png",
@@ -371,6 +376,7 @@ namespace MedLaunch.Models
             gs.coreVis16 = b[15];
             gs.coreVis17 = b[16];
             gs.coreVis18 = b[17];
+			gs.coreVis19 = b[18];
 
             GlobalSettings.SetGlobals(gs);
         }
@@ -398,7 +404,8 @@ namespace MedLaunch.Models
                 gs.coreVis15,
                 gs.coreVis16,
                 gs.coreVis17,
-                gs.coreVis18
+                gs.coreVis18,
+				gs.coreVis19,
         };
 
             return b;
@@ -821,6 +828,7 @@ namespace MedLaunch.Models
                 gs.sysWinPos16,
                 gs.sysWinPos17,
                 gs.sysWinPos18,
+				gs.sysWinPos19,
             };
 
             string result = s[systemId - 1];
@@ -889,6 +897,9 @@ namespace MedLaunch.Models
                 case 18:
                     gs.sysWinPos18 = coords;
                     break;
+				case 19:
+					gs.sysWinPos19 = coords;
+					break;
             }
 
             SetGlobals(gs);
@@ -919,6 +930,7 @@ namespace MedLaunch.Models
             gs.sysWinPos16 = coords;
             gs.sysWinPos17 = coords;
             gs.sysWinPos18 = coords;
+			gs.sysWinPos19 = coords;
 
             SetGlobals(gs);
         }
@@ -946,7 +958,8 @@ namespace MedLaunch.Models
                 gs.glFil16,
                 gs.glFil17,
                 gs.glFil18,
-                gs.glFil19
+                gs.glFil19,
+				gs.glFil20,
             };
 
             return arr;
@@ -974,9 +987,9 @@ namespace MedLaunch.Models
             gs.glFil17 = filterResults[16];
             gs.glFil18 = filterResults[17];
             gs.glFil19 = filterResults[18];
+			gs.glFil20 = filterResults[19];
 
             GlobalSettings.SetGlobals(gs);
         }
-
     }
 }

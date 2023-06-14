@@ -47,6 +47,7 @@
         <CheckBox Name="coreVis16">SNES/Super Famicom (Faust Emulation)</CheckBox>
         <CheckBox Name="coreVis17">PC Engine/TurboGrafx 16/SuperGrafx (Fast Emulation)</CheckBox>
         <CheckBox Name="coreVis18">PC Engine (CD)/TurboGrafx 16 (CD)</CheckBox>
+        <CheckBox Name="coreVis19">Apple II/II+</CheckBox>
 
         <UniformGrid Columns="2" Margin="30">
             <Button Grid.Row="2"

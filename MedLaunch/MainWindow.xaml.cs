@@ -220,7 +220,7 @@ namespace MedLaunch
             ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
             
             // load path settings for paths page
-            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs, tbPathPceCd);
+            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs, tbPathPceCd, tbPathApple2);
 
             SettingsVisualHandler.PopulateServers(lvServers);
             SettingsVisualHandler.ServerSettingsInitialButtonHide();
@@ -3414,7 +3414,7 @@ namespace MedLaunch
 
             this.Dispatcher.Invoke(() =>
             {
-                Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs, tbPathPceCd);
+                Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs, tbPathPceCd, tbPathApple2);
                 ConfigNetplaySettings.SaveNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
                 ConfigServerSettings.SaveCustomServerSettings(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
                 //ConfigBaseSettings.SaveMednafenPathValues(spMedPathSettings);
@@ -3440,7 +3440,7 @@ namespace MedLaunch
             //SettingsHandler sh = new SettingsHandler();
             //sh.LoadAllSettings();
 
-            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs, tbPathPceCd);
+            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs, tbPathPceCd, tbPathApple2);
             ConfigNetplaySettings.LoadNetplaySettings(tbNetplayNick, slLocalPlayersValue, slConsoleLinesValue, slConsoleScaleValue, resOne, resTwo, resThree, resFour, resFive);
             //ConfigServerSettings.PopulateCustomServer(tbServerDesc, tbHostname, slServerPort, tbPassword, tbGameKey);
             ConfigBaseSettings.LoadMednafenPathValues(spMedPathSettings);
@@ -3882,17 +3882,30 @@ namespace MedLaunch
             }
         }
 
-        // Path page save & restore
+		private void btnPathApple2_Click(object sender, RoutedEventArgs e)
+		{
+			VistaFolderBrowserDialog path = new VistaFolderBrowserDialog();
+			path.ShowNewFolderButton = true;
+			path.Description = "Select Apple II Directory";
+			path.ShowDialog();
+			if (path.SelectedPath != "")
+			{
+				string strPath = path.SelectedPath;
+				tbPathApple2.Text = strPath;
+			}
+		}
 
-        private void btnPathsSaveChanges_Click(object sender, RoutedEventArgs e)
+		// Path page save & restore
+
+		private void btnPathsSaveChanges_Click(object sender, RoutedEventArgs e)
         {
-            Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs, tbPathPceCd);
+            Paths.SavePathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs, tbPathPceCd, tbPathApple2);
             //lblPathsSettingsSave.Content = "***Path Settings Saved***";
         }
 
         private void btnPathsCancelChanges_Click(object sender, RoutedEventArgs e)
         {
-            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs, tbPathPceCd);
+            Paths.LoadPathSettings(tbPathMednafen, tbPathGb, tbPathGba, tbPathGg, tbPathLynx, tbPathMd, tbPathNes, tbPathSnes, tbPathNgp, tbPathPce, tbPathPcfx, tbPathSms, tbPathVb, tbPathWswan, tbPathPsx, tbPathSs, tbPathPceCd, tbPathApple2);
             //lblPathsSettingsSave.Content = "***Path Settings Reverted***";
         }
 
