@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AsniTech")]
 [assembly: AssemblyProduct("MedLaunch")]
-[assembly: AssemblyCopyright("Copyright © Asnivor 2016")]
+[assembly: AssemblyCopyright("Copyright © MedLaunch Team 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -51,5 +51,5 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.5.26.0")]
-[assembly: AssemblyFileVersion("0.5.26.0")]
+[assembly: AssemblyVersion("0.6.0.1")]
+[assembly: AssemblyFileVersion("0.6.0.1")]
