@@ -57,7 +57,7 @@ Please see the [REQUIREMENTS](https://medlaunch.asnitech.co.uk/documentation/en/
 
 Bugs/Suggestions/Feature Requests can be posted on the GitHub [Issue Tracker](https://github.com/Asnivor/MedLaunch/issues), or connect to our [Discord Server](https://discord.gg/nsbanNa) and let us know there.
 
-### Features
+### Features 
 * **No installation required (and no data is written outside of the MedLaunch folder)**
 * **Local (SQLite) auto-generated database where all settings are saved**
 * **Can import existing mednafen configuration options**
