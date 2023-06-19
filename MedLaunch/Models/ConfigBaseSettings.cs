@@ -27,6 +27,8 @@ namespace MedLaunch.Models
         public string affinity__video { get; set; }               // Video blitting thread CPU affinity mask.
         public bool? autosave { get; set; }                       // autosave
         public bool? cd__image_memcache { get; set; }             // cd.image_memcache
+        public int? cd__m3u__disc_limit { get; set; }             // M3U total number of disc images limit.
+        public int? cd__m3u__recursion_limit { get; set; }        // M3U recursion limit.
         public bool? cheats { get; set; }                         // cheats
         public bool? debugger__autostepmode { get; set; }         // debugger.autostepmode
         public bool? ffnosound { get; set; }                      // ffnosound
@@ -43,6 +45,12 @@ namespace MedLaunch.Models
         public string filesys__path_state { get; set; }             // filesys.path_state
         public int? filesys__state_comp_level { get; set; }          // filesys.state_comp_level         (-1 through 9)
         public bool? filesys__untrusted_fip_check { get; set; }   // filesys.untrusted_fip_check
+        public bool? fps__autoenable { get; set; }
+        public string fps__bgcolor { get; set; }                        // 0x00000000 through 0xFFFFFFFF           
+        public string fps__font { get; set; }                          //  5x7 6x9 6x12 6x13 9x18
+        public string fps__position { get; set; }                   // upper_left  upper_right
+        public int? fps__scale { get; set; }                        // 0 through 32
+        public string fps__textcolor { get; set; }                  // 0x00000000 through 0xFFFFFFFF
         public int? input__autofirefreq { get; set; }                // input.autofirefreq               (0 through 1000)
         public int? input__ckdelay { get; set; }                     // 0 through 99999
         public double? input__joystick__axis_threshold { get; set; }    // 0 through 100
@@ -51,14 +59,6 @@ namespace MedLaunch.Models
         public bool? osd__alpha_blend { get; set; }
         public int? osd__message_display_time { get; set; }          // 0 through 15000
         public int? osd__state_display_time { get; set; }            // 0 through 15000
-
-        // new FPS options
-        public bool? fps__autoenable { get; set; }
-        public string fps__bgcolor { get; set; }                        // 0x00000000 through 0xFFFFFFFF           
-        public string fps__font { get; set; }                          //  5x7 6x9 6x12 6x13 9x18
-        public string fps__position { get; set; }                   // upper_left  upper_right
-        public int? fps__scale { get; set; }                        // 0 through 32
-        public string fps__textcolor { get; set; }                  // 0x00000000 through 0xFFFFFFFF
 
         public int? qtrecord__h_double_threshold { get; set; }       // 0 through 1073741824
         public string qtrecord__vcodec { get; set; }                // raw cscd png
@@ -74,13 +74,17 @@ namespace MedLaunch.Models
         public int? sound__volume { get; set; }                      // 0 through 150
         public int? srwframes { get; set; }                          // 10 through 99999
         public bool? video__blit_timesync { get; set; }
+        public string video__cursorvis { get; set; }
         public string video__deinterlacer { get; set; }             // weave bob bob_offset
         public bool? video__disable_composition { get; set; }
         public string video__driver { get; set; }                    // default opengl, softfb (old: opengl sdl overlay)
+        public bool? video__force_bbclear { get; set; }
         public bool? video__frameskip { get; set; }
-        public bool? video__fs { get; set; }
-        public bool? video__glvsync { get; set; }
+        public bool? video__fs { get; set; }       
+        
         public int? video__fs__display { get; set; }              // -1 through 32767
+        public bool? video__glvsync { get; set; }
+        public string video__glformat { get; set; }
 
         // generic system specific settings -   <system>.setting
         public bool? __enable { get; set; }
@@ -946,13 +950,13 @@ namespace MedLaunch.Models
                 UpdatedTime = DateTime.Now,
                 systemIdent = 0,
                 isEnabled = true,
-
-                affinity__cd = "0x0000000000000000",
-                affinity__emu = "0x0000000000000000",
-                affinity__video = "0x0000000000000000",
-
+                affinity__cd = "0x0000000000000000",                // control placed
+                affinity__emu = "0x0000000000000000",               // control placed
+                affinity__video = "0x0000000000000000",             // control placed
                 autosave = false,                                   // control placed
                 cd__image_memcache = false,                         // control placed
+                cd__m3u__disc_limit = 25,
+                cd__m3u__recursion_limit = 9,
                 cheats = true,                                      // control placed
                 debugger__autostepmode = false,
                 ffnosound = false,                                  // control placed
@@ -1003,12 +1007,15 @@ namespace MedLaunch.Models
                 sound__volume = 100,                                // control placed
                 srwframes = 600,                                    // control placed
                 video__blit_timesync = true,                        // control placed
+                video__cursorvis = "hidden",
                 video__deinterlacer = "weave",                      // control placed
                 video__disable_composition = true,                  // control placed
                 video__driver = "default",                           // control placed
+                video__force_bbclear = false,                           // control placed
                 video__frameskip = true,                            // control placed
                 video__fs = false,                                  // control placed
                 video__glvsync = true,                              // control placed
+                video__glformat = "auto",
 
                 video__fs__display = -1,                          // -1 through 32767
 

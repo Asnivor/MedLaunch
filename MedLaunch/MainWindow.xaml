@@ -2432,6 +2432,21 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
 
                                             <CheckBox Name="cfg_autosave">Autosave</CheckBox>
                                             <CheckBox Name="cfg_cd__image_memcache">Cache CD</CheckBox>
+
+                                            <DockPanel VerticalAlignment="Center" Margin="3">
+                                                <Label x:Name="cfglbl_cd__m3u__disc_limit" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">M3U Disc Images Limit</Label>
+                                                <Controls:NumericUpDown Interval="1" Maximum="999" Minimum="1" HideUpDownButtons="True" HasDecimals="False"  Value="{Binding ElementName=cfg_cd__m3u__disc_limit, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="35" />
+                                                <Slider Maximum="999" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_cd__m3u__disc_limit"/>
+                                            </DockPanel>
+
+                                            <DockPanel VerticalAlignment="Center" Margin="3">
+                                                <Label x:Name="cfglbl_cd__m3u__recursion_limit" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">M3U Recursion Limit</Label>
+                                                <Controls:NumericUpDown Interval="1" Maximum="99" Minimum="0" HideUpDownButtons="True" HasDecimals="False"  Value="{Binding ElementName=cfg_cd__m3u__recursion_limit, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="35" />
+                                                <Slider Maximum="99" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_cd__m3u__recursion_limit"/>
+                                            </DockPanel>
+
                                             <CheckBox Name="cfg_cheats">Cheats</CheckBox>
 
                                             <DockPanel>
@@ -2737,6 +2752,7 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                             <CheckBox Name="cfg_video__glvsync">OpenGL Sync</CheckBox>
                                             <CheckBox Name="cfg_video__blit_timesync">Frame Blit Sync</CheckBox>
                                             <CheckBox Name="cfg_video__disable_composition">Disable Desktop Composition</CheckBox>
+                                            <CheckBox Name="cfg_video__force_bbclear">Force Backbuffer Clear</CheckBox>
 
 
                                             <Grid Margin="0,10,0,0">
@@ -2749,10 +2765,30 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
-                                                <Label Name="cfglbl_video__driver" Grid.Row="1">Video Driver</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_video__driver" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                
+                                                
+                                                <Label Name="cfglbl_video__cursorvis" Grid.Row="0">Video Driver</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_video__cursorvis" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="hidden">Hidden</ComboBoxItem>
+                                                    <ComboBoxItem Tag="visible">Visible</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Name="cfglbl_video__glformat" Grid.Row="1">Source Data Pixel Format</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_video__glformat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="auto">Auto</ComboBoxItem>
+                                                    <ComboBoxItem Tag="truecolor">Truecolor, 16M colors</ComboBoxItem>
+                                                    <ComboBoxItem Tag="hicolor">Hicolor, 32K/64K colors</ComboBoxItem>
+                                                    <ComboBoxItem Tag="rgb565">RGB565, 64K colors</ComboBoxItem>
+                                                    <ComboBoxItem Tag="rgb555 ">RGB555, 32K colors</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Name="cfglbl_video__driver" Grid.Row="2">Video Driver</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_video__driver" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="default">Default Video Driver</ComboBoxItem>
                                                     <ComboBoxItem Tag="opengl">OpenGL</ComboBoxItem>
                                                     <ComboBoxItem Tag="softfb">Software Blitting to Framebuffer</ComboBoxItem>
@@ -2763,6 +2799,7 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                                         SDL Overlay (Depreciated in v1.21.x)
                                                     </ComboBoxItem>
                                                 </ComboBox>
+                                                
 
                                             </Grid>
 
