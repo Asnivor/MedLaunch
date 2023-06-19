@@ -14,6 +14,7 @@ namespace MedLaunch._Debug.ScrapeDB
         public string alias { get; set; }
         public string releaseYear { get; set; }
         public int pid { get; set; }
+        public int mobyGameId { get; set; }
 
         /// <summary>
         /// return single mobygame entry based on alias name and platform id
@@ -21,16 +22,16 @@ namespace MedLaunch._Debug.ScrapeDB
         /// <param name="alias"></param>
         /// <param name="pid"></param>
         /// <returns></returns>
-        public static MOBY_Game GetGame(string alias, int pid)
-        {
-            using (var context = new AsniScrapeAdminDbContext())
-            {
-                var cData = (from g in context.MOBY_Game
-                             where g.alias == alias && g.pid == pid
-                             select g).FirstOrDefault();
-                return cData;
-            }
-        }
+        //public static MOBY_Game GetGame(string alias, int pid)
+        //{
+        //    using (var context = new AsniScrapeAdminDbContext())
+        //    {
+        //        var cData = (from g in context.MOBY_Game
+        //                     where g.alias == alias && g.pid == pid
+        //                     select g).FirstOrDefault();
+        //        return cData;
+        //    }
+        //}
 
         /// <summary>
         /// return list of all moby games
@@ -135,7 +136,7 @@ namespace MedLaunch._Debug.ScrapeDB
                     else
                     {
                         MOBY_Game t = (from a in current
-                                       where (a.alias == g.alias && a.pid == g.pid)
+                                       where (a.mobyGameId == g.mobyGameId)
                                        select a).SingleOrDefault();
                         if (t == null) { toAdd.Add(g); }
                         else
@@ -145,6 +146,7 @@ namespace MedLaunch._Debug.ScrapeDB
                             m.alias = g.alias;
                             m.pid = g.pid;
                             m.releaseYear = g.releaseYear;
+                            m.mobyGameId = g.mobyGameId;
                             toUpdate.Add(m);
                         }
                     }

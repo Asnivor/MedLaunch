@@ -11,6 +11,13 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using MedLaunch.Common.Search;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using MednaNetAPIClient;
+using Newtonsoft.Json;
+using MedLaunch.Classes.Scraper.MobyGames.API;
+using System.Runtime.InteropServices;
+using MedLaunch.Models;
 
 namespace MedLaunch._Debug.ScrapeDB
 {
@@ -19,12 +26,20 @@ namespace MedLaunch._Debug.ScrapeDB
         public MainWindow mw { get; set; }
         public List<GDB_Platform> platforms { get; set; }
         public List<MOBY_Platform> mobyplatforms { get; set; }
+        public string mobyAPIKey { get; set; }
+        int mobyAPIThrottle { get; set; }
+
+        readonly HttpClient mobyAPIHttpClient = new HttpClient();
+
+
 
         public AdminScrapeDb()
         {
             mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             platforms = GDB_Platform.GetPlatforms();
             mobyplatforms = MOBY_Platform.GetPlatforms();
+            mobyAPIKey = Environment.GetEnvironmentVariable("MedlaunchMobyGamesAPI");
+            mobyAPIThrottle = 11000;
         }
 
         /// <summary>
@@ -43,122 +58,82 @@ namespace MedLaunch._Debug.ScrapeDB
             controller.SetCancelable(true);
             await Task.Delay(100);
 
-            await Task.Run(() =>
+            mobyAPIHttpClient.BaseAddress = new Uri("https://api.mobygames.com/v1/");
+            mobyAPIHttpClient.DefaultRequestHeaders.Accept.Clear();
+            mobyAPIHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            int count = 1;
+            int sysCount = mobyplatforms.Count();
+
+            controller.Minimum = 0;
+            controller.Maximum = sysCount;
+
+            foreach (var platform in mobyplatforms)
             {
-                Task.Delay(1);
-                
-                int count = 1;
-                int sysCount = mobyplatforms.Count();
+                string dialogMessage = "Retrieving Game List for Platform: " + platform.name;
 
-                controller.Minimum = 0;
-                controller.Maximum = sysCount;
+                if (platform.mobyPid == 0) continue;
 
-                foreach (var platform in mobyplatforms)
+                controller.SetProgress(Convert.ToDouble(count));
+                controller.SetMessage(dialogMessage);
+
+                int offSet = 0;
+                bool firstRun = true;
+
+                while(true)
                 {
                     List<MOBY_Game> gs = new List<MOBY_Game>();
-                    controller.SetProgress(Convert.ToDouble(count));
-                    controller.SetMessage("Retrieving Game List for Platform: " + platform.name);
 
-                    // get initial page
-                    string url = platform.listURL;
-                    string initialPage = ReturnWebpage(url, "", 10000);
+                    var response = await mobyAPIHttpClient.GetStringAsync(String.Format("games?platform={0}&offset={1}&api_key={2}&format=normal", platform.mobyPid, offSet, mobyAPIKey));
+                    
+                    var mobyGame = JsonConvert.DeserializeObject<MobyGames>(response);
 
-                    bool isAttrib = false;
-                    if (url.Contains("attribute/sheet"))
-                        isAttrib = true;
-
-                    int totalGames = 0;
-
-                    if (!isAttrib)
+                    if (mobyGame.Games.Count == 0)
                     {
-                        /* Get the total number of games available for this system */
-                        // split the html to list via line breaks
-                        List<string> html = initialPage.Split('\n').ToList();
-                        // get only the line that contains the number of games
-                        string hLine = html.Where(a => a.Contains(" games)")).FirstOrDefault();
-                        // get only the substring "xxx games"
-                        string resultString = Regex.Match(hLine, @"(?<=\().+?(?=\))").Value;
-                        // split by whitespace
-                        string[] gArr = resultString.Split(' ');
-                        // get int number of games
-                        totalGames = Convert.ToInt32(gArr[0]);
-                    }
-                    else
-                    {
-                        List<string> html = initialPage.Split('\n').ToList();
-                        string hLine = html.Where(a => a.Contains("(items")).FirstOrDefault();
-                        string resultString = Regex.Match(hLine, @"(?<=\().+?(?=\))").Value;
-                        string[] gArr = resultString.Split(' ');
-                        totalGames = Convert.ToInt32(gArr.Last());
+                        await Task.Delay(mobyAPIThrottle);
+                        break;
                     }
 
-                    HtmlDocument doc = new HtmlDocument();
-                    doc.LoadHtml(initialPage);
-
-                    // build a list of page URLs
-                    double numberofpages = Convert.ToDouble(totalGames) / 25;
-                    int numberOfPages = Convert.ToInt32(Math.Ceiling(numberofpages));
-
-                    // connect to every page and import all the game information
-                    for (int i = 0; i < numberOfPages; i++)
+                    foreach (var g in mobyGame.Games)
                     {
-                        int offset = i * 25;
-                        string newUrl = url.Replace("offset,0", "offset," + offset);
+                        MOBY_Game game = new MOBY_Game();
+                        game.pid = platform.pid;
+                        game.gameTitle = g.title;
+                        game.mobyGameId = g.game_id;
 
-                        HtmlDocument hDoc = new HtmlDocument();
-                        if (i == 0)
-                            hDoc = doc;
-                        else
+                        var gamesPlatform = g.platforms.FirstOrDefault(x => x.platform_name == platform.mobyName);
+
+                        if(gamesPlatform != null)
                         {
-                            string htmlRes = ReturnWebpage(newUrl, "", 10000);
-                            hDoc.LoadHtml(htmlRes);
+                            if (!String.IsNullOrEmpty(gamesPlatform.first_release_date))
+                            {
+                                var firstDate = gamesPlatform.first_release_date.Split('-')[0];
+                                game.releaseYear = firstDate;
+                            }
                         }
 
-                        // get just the data table we are interested in
-                        HtmlNode objectTable = hDoc.GetElementbyId("mof_object_list");
-
-                        // iterate through each row and scrape the game information
-                        int cGame = 1;
-                        foreach (HtmlNode row in objectTable.SelectNodes("tbody/tr"))
+                        if (String.IsNullOrEmpty(game.releaseYear))
                         {
-                            int currentGameNumber = offset + cGame;
-                            if (controller != null)
-                            {
-                                controller.SetMessage("Scraping basic list of all " + platform.name + " games\nGame: (" + currentGameNumber + " of " + totalGames + ")\nPage: (" + (i + 1) + " of " + numberOfPages + ")");
-                                controller.Minimum = 1;
-                                controller.Maximum = totalGames;
-                                controller.SetProgress(Convert.ToDouble(currentGameNumber));
-                            }
-
-
-                            HtmlNode[] cells = (from a in row.SelectNodes("td")
-                                                select a).ToArray();
-
-                            string Title = cells[0].InnerText.Trim();
-                            //var allLi = row.SelectSingleNode("//a[@href]");
-                            string URLstring = cells[0].InnerHtml.Trim();
-                            Regex regex = new Regex("href\\s*=\\s*(?:\"(?<1>[^\"]*)\"|(?<1>\\S+))", RegexOptions.IgnoreCase);
-                            Match match;
-                            string URL = "";
-                            for (match = regex.Match(URLstring); match.Success; match = match.NextMatch())
-                            {
-                                URL = match.Groups[1].ToString();
-                            }
-
-                            MOBY_Game game = new MOBY_Game();
-                            game.pid = platform.pid;
-                            game.gameTitle = WebUtility.HtmlDecode(Title);
-                            game.alias = WebUtility.HtmlDecode(URL.Split('/').LastOrDefault());
-                            game.releaseYear = cells[1].InnerText.Trim();
-                            
-                            // add game to main list
-                            gs.Add(game);
+                            string test2 = "";
                         }
+
+                        gs.Add(game);
                     }
+
+                    offSet += 100;
+
+                    if (firstRun)
+                    {
+                        offSet += 1;
+                        firstRun = false;
+                    }
+                    
                     MOBY_Game.SaveToDatabase(gs);
+                    await Task.Delay(mobyAPIThrottle);
                 }
-                               
-            });
+
+                count++;
+            }
 
             await controller.CloseAsync();
             if (controller.IsCanceled)

@@ -232,9 +232,8 @@
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>ExternalAssemblies\System.Net.Http.Formatting.dll</HintPath>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
@@ -344,6 +343,13 @@
     <Compile Include="Classes\Scraper\DBModels\Game_Doc.cs" />
     <Compile Include="Classes\Scraper\DBModels\MasterView.cs" />
     <Compile Include="Classes\Scraper\GDBPlatformGame.cs" />
+    <Compile Include="Classes\Scraper\MobyGames\API\AlternateTitles.cs" />
+    <Compile Include="Classes\Scraper\MobyGames\API\Game.cs" />
+    <Compile Include="Classes\Scraper\MobyGames\API\MobyGames.cs" />
+    <Compile Include="Classes\Scraper\MobyGames\API\Genre.cs" />
+    <Compile Include="Classes\Scraper\MobyGames\API\Platform.cs" />
+    <Compile Include="Classes\Scraper\MobyGames\API\SampleCover.cs" />
+    <Compile Include="Classes\Scraper\MobyGames\API\SampleScreenshot.cs" />
     <Compile Include="Classes\Scraper\_PendingDestruction\PSXDATACENTER\PsxDc.cs" />
     <Compile Include="Classes\Scraper\ScrapeDB.cs" />
     <Compile Include="Classes\Scraper\ScrapeDbContext.cs" />
@@ -447,6 +453,7 @@
     <Compile Include="_Debug\DATDB\DAT_Provider.cs" />
     <Compile Include="_Debug\DATDB\DAT_Rom.cs" />
     <Compile Include="_Debug\DATDB\DAT_System.cs" />
+    <Compile Include="_Debug\ScrapeDB\MOBY_Platform.cs" />
     <Compile Include="_Debug\DATDB\Platforms\NOINTRO\ImportNoIntroData.cs" />
     <Compile Include="_Debug\DATDB\Platforms\NOINTRO\Models\NoIntroCollection.cs" />
     <Compile Include="_Debug\DATDB\Platforms\NOINTRO\StringConverterNoIntro.cs" />
@@ -595,7 +602,6 @@
     <Compile Include="_Debug\ScrapeDB\Junction.cs" />
     <Compile Include="_Debug\ScrapeDB\MasterView.cs" />
     <Compile Include="_Debug\ScrapeDB\MOBY_Game.cs" />
-    <Compile Include="_Debug\ScrapeDB\MOBY_Platform.cs" />
     <Compile Include="_Debug\skeletonKey\AdminSkeletonKey.cs" />
     <Compile Include="_Debug\skeletonKey\SK_Game.cs" />
     <Compile Include="_Debug\skeletonKey\skeletonKeyAdminDbContext.cs" />
