@@ -358,7 +358,23 @@
     <Compile Include="Classes\VersionChecker.cs" />
     <Compile Include="Extensions\FocusExtension.cs" />
     <Compile Include="MedDataGrid.cs" />
-    <Compile Include="Models\ConfigBaseSettings.Defaults.cs" />
+    <Compile Include="Models\ConfigBaseSettings.gb.cs" />
+    <Compile Include="Models\ConfigBaseSettings.gba.cs" />
+    <Compile Include="Models\ConfigBaseSettings.gg.cs" />
+    <Compile Include="Models\ConfigBaseSettings.lynx.cs" />
+    <Compile Include="Models\ConfigBaseSettings.md.cs" />
+    <Compile Include="Models\ConfigBaseSettings.nes.cs" />
+    <Compile Include="Models\ConfigBaseSettings.ngp.cs" />
+    <Compile Include="Models\ConfigBaseSettings.pce.cs" />
+    <Compile Include="Models\ConfigBaseSettings.pce_fast.cs" />
+    <Compile Include="Models\ConfigBaseSettings.pcfx.cs" />
+    <Compile Include="Models\ConfigBaseSettings.psx.cs" />
+    <Compile Include="Models\ConfigBaseSettings.sms.cs" />
+    <Compile Include="Models\ConfigBaseSettings.snes.cs" />
+    <Compile Include="Models\ConfigBaseSettings.snes_faust.cs" />
+    <Compile Include="Models\ConfigBaseSettings.ss.cs" />
+    <Compile Include="Models\ConfigBaseSettings.vb.cs" />
+    <Compile Include="Models\ConfigBaseSettings.wswan.cs" />
     <Compile Include="Models\MednaNetSettings.cs" />
     <Compile Include="Windows\AccentStyleWindow.xaml.cs">
       <DependentUpon>AccentStyleWindow.xaml</DependentUpon>
