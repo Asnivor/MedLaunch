@@ -7263,7 +7263,8 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
 
                                         <StackPanel>
                                             <CheckBox x:Name="cfg_snes_faust__enable">Enable (Automatic) Usage of this module</CheckBox>
-                                            <CheckBox x:Name="cfg_snes_faust__forcemono">Force Mono Sound Output</CheckBox>
+                                            <CheckBox x:Name="cfg_snes_faust__forcemono">Force Mono Sound Output</CheckBox>                                           
+                                            
                                             <CheckBox Name="cfg_snes_faust__tblur">Temporal Blur</CheckBox>
                                             <CheckBox Name="cfg_snes_faust__tblur__accum">Accumulate Color Data</CheckBox>
                                             <Grid Margin="0,10,0,0">
@@ -7276,10 +7277,24 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
-                                                <Label Name="cfglbl_snes_faust__shader" Grid.Row="1">OGL Pixel Shader</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_snes_faust__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+
+                                                <Label Name="cfglbl_snes_faust__region" Grid.Row="1">Region of SNES to Emulate</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_snes_faust__region" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="auto">Auto</ComboBoxItem>
+                                                    <ComboBoxItem Tag="ntsc">NTSC (North America/Japan)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="pal">PAL (Europe)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="ntsc_lie_auto">NTSC, but PPU bit as if "auto"</ComboBoxItem>
+                                                    <ComboBoxItem Tag="pal_lie_auto">PAL, but PPU bit as if "auto"</ComboBoxItem>
+                                                    <ComboBoxItem Tag="ntsc_lie_pal">NTSC, but PPU bit as if PAL</ComboBoxItem>
+                                                    <ComboBoxItem Tag="pal_lie_ntsc">PAL, but PPU bit as if NTSC</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Name="cfglbl_snes_faust__shader" Grid.Row="2">OGL Pixel Shader</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_snes_faust__shader" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
                                                     <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
@@ -7292,8 +7307,8 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                                     <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
                                                     <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
                                                 </ComboBox>
-                                                <Label Name="cfglbl_snes_faust__special" Grid.Row="2">Special Video Scaler</Label>
-                                                <ComboBox SelectedValuePath="Tag" Name="cfg_snes_faust__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
+                                                <Label Name="cfglbl_snes_faust__special" Grid.Row="3">Special Video Scaler</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_snes_faust__special" Grid.Row="3" Grid.Column="1" Margin="0,0,0,10">
                                                     <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
                                                     <ComboBoxItem Tag="hq2x">hq2x</ComboBoxItem>
                                                     <ComboBoxItem Tag="hq3x">hq3x</ComboBoxItem>
@@ -7311,12 +7326,26 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                                     <ComboBoxItem Tag="nny3x">Nearest-neighbor 3x Y Axis</ComboBoxItem>
                                                     <ComboBoxItem Tag="nny4x">Nearest-neighbor 4x Y Axis</ComboBoxItem>
                                                 </ComboBox>
-                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+
+                                                <Label Name="cfglbl_snes_faust__h_filter" Grid.Row="4">Horiz. Blending Filter</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_snes_faust__h_filter" Grid.Row="4" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                                    <ComboBoxItem Tag="512">Force 512</ComboBoxItem>
+                                                    <ComboBoxItem Tag="phr256blend">Pseudo-hires halve-blend</ComboBoxItem>
+                                                    <ComboBoxItem Tag="phr256blend_auto512">Pseudo-hires halve-blend and force 512 if necessary</ComboBoxItem>
+                                                    <ComboBoxItem Tag="phr256blend_512">Pseudo-hires halve-blend and force 512</ComboBoxItem>
+                                                    <ComboBoxItem Tag="512_blend">Force 512 and blend</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="5" Margin="0,5,0,5">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="Auto" />
                                                         <ColumnDefinition Width="*" />
                                                     </Grid.ColumnDefinitions>
                                                     <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
@@ -7328,6 +7357,35 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                                         <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
                                         Name="cfg_snes_faust__scanlines"/>
                                                     </DockPanel>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
+                                                        <Label Name="cfglbl_snes_faust__slend" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Last Disp. NTSC SL</Label>
+                                                        <Controls:NumericUpDown  Maximum="223" Minimum="0" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes_faust__slend, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="223" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_snes_faust__slend"/>
+                                                    </DockPanel>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
+                                                        <Label Name="cfglbl_snes_faust__slendp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Last Disp. PAL SL</Label>
+                                                        <Controls:NumericUpDown  Maximum="238" Minimum="0" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes_faust__slendp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="238" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_snes_faust__slendp"/>
+                                                    </DockPanel>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
+                                                        <Label Name="cfglbl_snes_faust__slstart" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">First Disp. NTSC SL</Label>
+                                                        <Controls:NumericUpDown  Maximum="223" Minimum="0" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes_faust__slstart, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="223" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_snes_faust__slstart"/>
+                                                    </DockPanel>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Center" Margin="3">
+                                                        <Label Name="cfglbl_snes_faust__slstartp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">First Disp. PAL SL</Label>
+                                                        <Controls:NumericUpDown  Maximum="238" Minimum="0" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes_faust__slstartp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="238" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_snes_faust__slstartp"/>
+                                                    </DockPanel>
+
                                                 </Grid>
                                             </Grid>
                                             <Grid Margin="0">
@@ -7347,6 +7405,66 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                                 </DockPanel>
                                             </Grid>
 
+                                        </StackPanel>
+                                    </GroupBox>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes_faust3" Margin="10">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="SNES (Faust) CPU and Clock">
+                                        <StackPanel>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+
+                                                <Label Name="cfglbl_snes_faust__affinity__msu1__audio" Grid.Row="1" Grid.ColumnSpan="2">MSU1 Audio Aff.Mask</Label>
+                                                <TextBox x:Name="cfg_snes_faust__affinity__msu1__audio" Grid.Row="2" Grid.ColumnSpan="2" />
+
+                                                <Label Name="cfglbl_snes_faust__affinity__msu1__data" Grid.Row="3" Grid.ColumnSpan="2">MSU1 Data Aff.Mask</Label>
+                                                <TextBox x:Name="cfg_snes_faust__affinity__msu1__data" Grid.Row="4" Grid.ColumnSpan="2" />
+
+                                                <Label Name="cfglbl_snes_faust__affinity__ppu" Grid.Row="5" Grid.ColumnSpan="2">MSU1 Data Aff.Mask</Label>
+                                                <TextBox x:Name="cfg_snes_faust__affinity__ppu" Grid.Row="6" Grid.ColumnSpan="2" />
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="7" VerticalAlignment="Center" Margin="3">
+                                                    <Label Name="cfglbl_snes_faust__cx4__clock_rate" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">CX4 Clock Rate (% of normal)</Label>
+                                                    <Controls:NumericUpDown  Maximum="500" Minimum="100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes_faust__cx4__clock_rate, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="500" Minimum="100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_snes_faust__cx4__clock_rate"/>
+                                                </DockPanel>
+
+                                                <Label Name="cfglbl_snes_faust__renderer" Grid.Row="8">PPU Renderer</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_snes_faust__renderer" Grid.Row="8" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="st">Single-threaded</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mt">Multi-threaded</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="9" VerticalAlignment="Center" Margin="3">
+                                                    <Label Name="cfglbl_snes_faust__superfx__clock_rate" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Super FX Clock Rate (% of normal)</Label>
+                                                    <Controls:NumericUpDown  Maximum="500" Minimum="25" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes_faust__superfx__clock_rate, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="500" Minimum="25" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_snes_faust__superfx__clock_rate"/>
+                                                </DockPanel>
+
+                                                <StackPanel Grid.ColumnSpan="2" Grid.Row="10">
+                                                    <CheckBox Name="cfg_snes_faust__superfx__icache">Enable SuperFX Inst.Cache Emu</CheckBox>
+                                                </StackPanel>
+
+                                            </Grid>
                                         </StackPanel>
                                     </GroupBox>
                                 </Border>
@@ -7433,7 +7551,7 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                     </GroupBox>
                                 </Border>
 
-                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes_faust3" Margin="10">
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificSnes_faust4" Margin="10">
                                     <GroupBox Margin="0" BorderThickness="0" Header="SNES (Faust) Resolution">
 
                                         <StackPanel>
@@ -7579,6 +7697,8 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
 
                                                 <DockPanel Grid.ColumnSpan="3" Grid.Row="0" VerticalAlignment="Center" Margin="3">
@@ -7595,36 +7715,43 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                         Name="cfg_snes_faust__resamp_rate_error"/>
                                                 </DockPanel>
 
-                                                <CheckBox Name="cfg_snes_faust__input__sport1__multitap" Grid.Row="2">Enable multitap on SNES Port 1</CheckBox>
-                                                <CheckBox Name="cfg_snes_faust__input__sport2__multitap" Grid.Row="3">Enable multitap on SNES Port 2</CheckBox>
+                                                <DockPanel Grid.ColumnSpan="3" Grid.Row="2" VerticalAlignment="Center" Margin="3">
+                                                    <Label Name="cfglbl_snes_faust__msu1__resamp_quality" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Sound Quality</Label>
+                                                    <TextBox Text="{Binding ElementName=cfg_snes_faust__msu1__resamp_quality, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="5" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_snes_faust__msu1__resamp_quality"/>
+                                                </DockPanel>
 
-                                                <Label Name="cfglbl_snes_faust__input__port1" Grid.Column="0" Grid.Row="4">Port 1 Input Device</Label>
-                                                <ComboBox x:Name="cfg_snes_faust__input__port1" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="4">
+                                                <CheckBox Name="cfg_snes_faust__input__sport1__multitap" Grid.Row="3">Enable multitap on SNES Port 1</CheckBox>
+                                                <CheckBox Name="cfg_snes_faust__input__sport2__multitap" Grid.Row="4">Enable multitap on SNES Port 2</CheckBox>
+
+                                                <Label Name="cfglbl_snes_faust__input__port1" Grid.Column="0" Grid.Row="5">Port 1 Input Device</Label>
+                                                <ComboBox x:Name="cfg_snes_faust__input__port1" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="5">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
                                                     <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Button Name="Generic__CONFIGURE__cfg_snes_faust__input__port1" Click="ConfigureFromConfigPage" Grid.Column="2" Grid.Row="4">
+                                                <Button Name="Generic__CONFIGURE__cfg_snes_faust__input__port1" Click="ConfigureFromConfigPage" Grid.Column="2" Grid.Row="5">
                                                     Configure
                                                 </Button>
 
-                                                <Label Name="cfglbl_snes_faust__input__port2" Grid.Column="0" Grid.Row="5">Port 2 Input Device</Label>
-                                                <ComboBox x:Name="cfg_snes_faust__input__port2" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="5">
+                                                <Label Name="cfglbl_snes_faust__input__port2" Grid.Column="0" Grid.Row="6">Port 2 Input Device</Label>
+                                                <ComboBox x:Name="cfg_snes_faust__input__port2" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="6">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
                                                     <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Button Name="Generic__CONFIGURE__cfg_snes_faust__input__port2" Click="ConfigureFromConfigPage" Grid.Column="2" Grid.Row="5">
+                                                <Button Name="Generic__CONFIGURE__cfg_snes_faust__input__port2" Click="ConfigureFromConfigPage" Grid.Column="2" Grid.Row="6">
                                                     Configure
                                                 </Button>
 
-                                                <Label Name="cfglbl_snes_faust__input__port3" Grid.Column="0" Grid.Row="6">Port 3 Input Device</Label>
-                                                <ComboBox x:Name="cfg_snes_faust__input__port3" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="6">
+                                                <Label Name="cfglbl_snes_faust__input__port3" Grid.Column="0" Grid.Row="7">Port 3 Input Device</Label>
+                                                <ComboBox x:Name="cfg_snes_faust__input__port3" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="7">
                                                     <ComboBoxItem Tag="none">None</ComboBoxItem>
                                                     <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
                                                 </ComboBox>
 
-                                                <Button Name="Generic__CONFIGURE__cfg_snes_faust__input__port3" Click="ConfigureFromConfigPage" Grid.Column="2" Grid.Row="6">
+                                                <Button Name="Generic__CONFIGURE__cfg_snes_faust__input__port3" Click="ConfigureFromConfigPage" Grid.Column="2" Grid.Row="7">
                                                     Configure
                                                 </Button>
 
@@ -7677,6 +7804,13 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                                 <Button Name="Generic__CONFIGURE__cfg_snes_faust__input__port8" Click="ConfigureFromConfigPage" Grid.Column="2" Grid.Row="11">
                                                     Configure
                                                 </Button>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="12" VerticalAlignment="Center" Margin="3">
+                                                    <Label Name="cfglbl_snes_faust__input__mouse_sensitivity" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Emulated Mouse Sensitivity</Label>
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_snes_faust__input__mouse_sensitivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_snes_faust__input__mouse_sensitivity"/>
+                                                </DockPanel>
 
                                             </Grid>
                                         </StackPanel>

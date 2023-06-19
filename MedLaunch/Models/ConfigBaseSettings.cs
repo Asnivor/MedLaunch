@@ -755,11 +755,13 @@ namespace MedLaunch.Models
 
         // SNES (Faust)
 
+        public string snes_faust__affinity__msu1__audio { get; set; }   // 0x0000000000000000 through 0xFFFFFFFFFFFFFFFF
+        public string snes_faust__affinity__msu1__data { get; set; }    // 0x0000000000000000 through 0xFFFFFFFFFFFFFFFF
+        public string snes_faust__affinity__ppu { get; set; }           // 0x0000000000000000 through 0xFFFFFFFFFFFFFFFF
         public bool? snes_faust__correct_aspect { get; set; }
-
-        public bool snes_faust__input__sport1__multitap { get; set; }
-        public bool snes_faust__input__sport2__multitap { get; set; }
-
+        public int? snes_faust__cx4__clock_rate { get; set; }           // 100 through 500
+        public string snes_faust__h_filter { get; set; }
+        public double? snes_faust__input__mouse_sensitivity { get; set; } 
         public string snes_faust__input__port1 { get; set; }
         public string snes_faust__input__port2 { get; set; }
         public string snes_faust__input__port3 { get; set; }
@@ -768,10 +770,21 @@ namespace MedLaunch.Models
         public string snes_faust__input__port6 { get; set; }
         public string snes_faust__input__port7 { get; set; }
         public string snes_faust__input__port8 { get; set; }
-        public int? snes_faust__resamp_quality { get; set; }                    // 0 through 5
+        public bool snes_faust__input__sport1__multitap { get; set; }
+        public bool snes_faust__input__sport2__multitap { get; set; }
+        public int? snes_faust__msu1__resamp_quality { get; set; }              // 0 through 5
+        public string snes_faust__region { get; set; }
+        public string snes_faust__renderer { get; set; }
+        public int? snes_faust__resamp_quality { get; set; }                    // 0 through 5        
         public double? snes_faust__resamp_rate_error { get; set; }              // 0.0000001 through 0.0015
+        public int? snes_faust__slend { get; set; }                             // 0 through 223
+        public int? snes_faust__slendp { get; set; }                            // 0 through 238
+        public int? snes_faust__slstart { get; set; }                           // 0 through 223
+        public int? snes_faust__slstartp { get; set; }                          // 0 through 238
         public bool? snes_faust__spex { get; set; }
         public bool? snes_faust__spex__sound { get; set; }
+        public int? snes_faust__superfx__clock_rate { get; set; }               // 25 through 500
+        public bool snes_faust__superfx__icache { get; set; }
 
         public bool? snes_faust__enable { get; set; }
         public bool? snes_faust__forcemono { get; set; }
@@ -934,7 +947,7 @@ namespace MedLaunch.Models
                 systemIdent = 0,
                 isEnabled = true,
 
-                affinity__cd = "0x0000000000000000",                
+                affinity__cd = "0x0000000000000000",
                 affinity__emu = "0x0000000000000000",
                 affinity__video = "0x0000000000000000",
 
@@ -1017,7 +1030,7 @@ namespace MedLaunch.Models
                 __yscale = 1,                                       // control placed
                 __yscalefs = 1,                                      // control placed
 
-                
+
 
                 // system specific settings
 
@@ -1452,7 +1465,7 @@ namespace MedLaunch.Models
                 ss__bios_na_eu = "mpr-17933.bin",
                 ss__bios_sanity = true,                                     // placed
                 ss__cart = "auto",                                          // placed
-				ss__cart__auto_default = "backup",							// placed
+                ss__cart__auto_default = "backup",							// placed
                 ss__cart__kof95_path = "mpr-18811-mx.ic1",
                 ss__cart__ultraman_path = "mpr-19367-mx.ic1",
                 ss__cd_sanity = true,                                       // placed
@@ -1640,10 +1653,14 @@ namespace MedLaunch.Models
                 psx_shared_memcards = false,
 
                 // snes faust
-                snes_faust__correct_aspect = true,
 
-                snes_faust__input__sport1__multitap = false,
-                snes_faust__input__sport2__multitap = false,
+                snes_faust__affinity__msu1__audio = "0x0000000000000000",
+                snes_faust__affinity__msu1__data = "0x0000000000000000",
+                snes_faust__affinity__ppu = "0x0000000000000000",
+                snes_faust__correct_aspect = true,
+                snes_faust__cx4__clock_rate = 100,                  // placed              
+                snes_faust__h_filter = "none",                      // placed
+                snes_faust__input__mouse_sensitivity = 0.50,        // placed                
                 snes_faust__input__port1 = "gamepad",               // placed
                 snes_faust__input__port2 = "gamepad",               // placed
                 snes_faust__input__port3 = "gamepad",               // placed
@@ -1652,14 +1669,25 @@ namespace MedLaunch.Models
                 snes_faust__input__port6 = "gamepad",               // placed
                 snes_faust__input__port7 = "gamepad",               // placed
                 snes_faust__input__port8 = "gamepad",               // placed
+                snes_faust__input__sport1__multitap = false,
+                snes_faust__input__sport2__multitap = false,
+                snes_faust__msu1__resamp_quality = 4,               // placed
+                snes_faust__region = "auto",                        // placed
+                snes_faust__renderer = "st",                        // placed
                 snes_faust__resamp_quality = 3,                     // placed
                 snes_faust__resamp_rate_error = 0.000035,           // placed
+                snes_faust__slend = 223,                            // placed
+                snes_faust__slendp = 238,                           // placed
+                snes_faust__slstart = 223,                          // placed
+                snes_faust__slstartp = 238,                         // placed
                 snes_faust__spex = false,                           // placed
                 snes_faust__spex__sound = true,                     // placed
+                snes_faust__superfx__clock_rate = 100,
+                snes_faust__superfx__icache = false,
 
                 snes_faust__enable = true,
                 snes_faust__forcemono = false,                                // control placed
-                snes_faust__shader = "none",                               // control placed
+                snes_faust__shader = "none",                                    // control placed
                 snes_faust__scanlines = 0,                                    // control placed
                 snes_faust__special = "none",                                 // control placed
                 snes_faust__stretch = "aspect_mult2",                         // control placed
