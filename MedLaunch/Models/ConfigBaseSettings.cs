@@ -21,6 +21,10 @@ namespace MedLaunch.Models
         public bool? isEnabled { get; set; }
         public int? systemIdent { get; set; }
 
+
+        public string affinity__cd { get; set; }                  // CD read threads CPU affinity mask.
+        public string affinity__emu { get; set; }                 // Main emulation thread CPU affinity mask.
+        public string affinity__video { get; set; }               // Video blitting thread CPU affinity mask.
         public bool? autosave { get; set; }                       // autosave
         public bool? cd__image_memcache { get; set; }             // cd.image_memcache
         public bool? cheats { get; set; }                         // cheats
@@ -59,7 +63,7 @@ namespace MedLaunch.Models
         public int? qtrecord__h_double_threshold { get; set; }       // 0 through 1073741824
         public string qtrecord__vcodec { get; set; }                // raw cscd png
         public int? qtrecord__w_double_threshold { get; set; }       // 0 through 1073741824
-        public double? sfspeed { get; set; }                        // 0.25 through 1
+        public double? sfspeed { get; set; }                        // 0.25 through 15
         public bool? sftoggle { get; set; }
         public bool? sound { get; set; }
         public int? sound__buffer_time { get; set; }                 // 0 through 1000
@@ -564,7 +568,7 @@ namespace MedLaunch.Models
         public string ss__input__port11__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public string ss__input__port12 { get; set; }
         public string ss__input__port12__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
-        public bool? ss__midsync { get; set; }
+        //public bool? ss__midsync { get; set; }
         public bool? ss__region_autodetect { get; set; }
         public string ss__region_default { get; set; }
         public int? ss__scsp__resamp_quality { get; set; }                  // 0 through 10
@@ -929,6 +933,10 @@ namespace MedLaunch.Models
                 UpdatedTime = DateTime.Now,
                 systemIdent = 0,
                 isEnabled = true,
+
+                affinity__cd = "0x0000000000000000",                
+                affinity__emu = "0x0000000000000000",
+                affinity__video = "0x0000000000000000",
 
                 autosave = false,                                   // control placed
                 cd__image_memcache = false,                         // control placed
@@ -1473,7 +1481,7 @@ namespace MedLaunch.Models
                 ss__input__port11__gun_chairs = "0x8080FF",
                 ss__input__port12 = "gamepad",                              // placed
                 ss__input__port12__gun_chairs = "0xFF8080",
-                ss__midsync = false,                                        // placed
+                //ss__midsync = false,                                        // placed
                 ss__region_autodetect = true,                               // placed
                 ss__region_default = "jp",                                  // placed
                 ss__scsp__resamp_quality = 4,                               // placed

@@ -1520,10 +1520,6 @@
     "Description": "Enable multitap on Saturn port 2."
   },
   {
-    "Command": "ss.midsync",
-    "Description": "Enable mid-frame synchronization.\n\nMid-frame synchronization can reduce input latency, but it will increase CPU requirements."
-  },
-  {
     "Command": "ss.region_autodetect",
     "Description": "Attempt to auto-detect region of game."
   },
