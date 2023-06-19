@@ -2435,15 +2435,33 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                             <CheckBox Name="cfg_cheats">Cheats</CheckBox>
 
                                             <DockPanel>
-                                                <Label x:Name="cfglbl_affinity__cd" Width="75" >CD Read Threads CPU Affinity Mask</Label>
+                                                <Label x:Name="cfglbl_affinity__cd" Width="75" Content="CD Aff.">
+                                                    <Label.Resources>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="TextWrapping" Value="Wrap" />
+                                                        </Style>
+                                                    </Label.Resources>                                                    
+                                                </Label>
                                                 <TextBox x:Name="cfg_affinity__cd" Margin="0,0,0,10"></TextBox>
                                             </DockPanel>
                                             <DockPanel>
-                                                <Label x:Name="cfglbl_affinity__emu" Width="75">Main Emulation Thread CPU Affinity Mask</Label>
+                                                <Label x:Name="cfglbl_affinity__emu" Width="75">
+                                                    <Label.Resources>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="TextWrapping" Value="Wrap" />
+                                                        </Style>
+                                                    </Label.Resources>
+                                                    Emu Aff.</Label>
                                                 <TextBox x:Name="cfg_affinity__emu" Margin="0,0,0,10"></TextBox>
                                             </DockPanel>
                                             <DockPanel>
-                                                <Label x:Name="cfglbl_affinity__video" Width="75">Video Blitting Thread CPU Affinity Mask</Label>
+                                                <Label x:Name="cfglbl_affinity__video" Width="75">
+                                                    <Label.Resources>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="TextWrapping" Value="Wrap" />
+                                                        </Style>
+                                                    </Label.Resources>
+                                                    Video Aff.</Label>
                                                 <TextBox x:Name="cfg_affinity__video" Margin="0,0,0,10"></TextBox>
                                             </DockPanel>
                                             
