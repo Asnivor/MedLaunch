@@ -358,6 +358,7 @@
     <Compile Include="Classes\VersionChecker.cs" />
     <Compile Include="Extensions\FocusExtension.cs" />
     <Compile Include="MedDataGrid.cs" />
+    <Compile Include="Models\ConfigBaseSettings.Defaults.cs" />
     <Compile Include="Models\MednaNetSettings.cs" />
     <Compile Include="Windows\AccentStyleWindow.xaml.cs">
       <DependentUpon>AccentStyleWindow.xaml</DependentUpon>
