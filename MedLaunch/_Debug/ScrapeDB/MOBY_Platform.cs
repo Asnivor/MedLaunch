@@ -12,6 +12,8 @@ namespace MedLaunch._Debug.ScrapeDB
         public string name { get; set; }
         public string alias { get; set; }
         public string listURL { get; set; }
+        public string mobyName { get; set; }
+        public int mobyPid { get; set; }
 
         /// <summary>
         /// return a list with all moby platforms
