@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedLaunch", "MedLaunch\MedLaunch.csproj", "{6B1B4A85-5A13-4A5D-B551-1AC97CC53D38}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -28,7 +28,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedLaunch.Common", "MedLaun
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BuildTools", "BuildTools\", "{837EC310-C73E-4562-9955-C4F0ECCA9013}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_6840"
 		Debug.AspNetCompiler.PhysicalPath = "BuildTools\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_6840\"

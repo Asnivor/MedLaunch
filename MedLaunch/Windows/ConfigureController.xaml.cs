@@ -351,13 +351,20 @@ namespace MedLaunch
 
                 try
                 {
-                    switch (ControllerDefinition.MapList[i].Primary.LogicString)
+                    if (ControllerDefinition.MapList[i].Primary == null)
                     {
-                        case "||":
-                        default: btnLogic1.Content = "OR"; break;
-                        case "&&": btnLogic1.Content = "AND"; break;
-                        case "&!": btnLogic1.Content = "ANOT"; break;
+                        btnLogic1.Content = "OR";
                     }
+                    else
+                    {
+                        switch (ControllerDefinition.MapList[i].Primary.LogicString)
+                        {
+                            case "||":
+                            default: btnLogic1.Content = "OR"; break;
+                            case "&&": btnLogic1.Content = "AND"; break;
+                            case "&!": btnLogic1.Content = "ANOT"; break;
+                        }
+                    }                    
                 }
                 catch (Exception)
                 {
