@@ -9013,6 +9013,7 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                                     <ComboBoxItem Tag="backup">Backup Memory(512KiB)</ComboBoxItem>
                                                     <ComboBoxItem Tag="extram1">1MiB Extended RAM</ComboBoxItem>
                                                     <ComboBoxItem Tag="extram4">4MiB Extended RAM</ComboBoxItem>
+                                                    <ComboBoxItem Tag="cs1ram16">16MiB RAM mapped in A-bus CS1</ComboBoxItem>
                                                 </ComboBox>
 
                                                 <Label Name="cfglbl_ss__cart__auto_default" Grid.Column="0" Grid.Row="3">Expansion Cart (AutoDefault)</Label>
@@ -9021,6 +9022,7 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                                     <ComboBoxItem Tag="backup">Backup Memory(512KiB)</ComboBoxItem>
                                                     <ComboBoxItem Tag="extram1">1MiB Extended RAM</ComboBoxItem>
                                                     <ComboBoxItem Tag="extram4">4MiB Extended RAM</ComboBoxItem>
+                                                    <ComboBoxItem Tag="cs1ram16">16MiB RAM mapped in A-bus CS1</ComboBoxItem>
                                                 </ComboBox>
 
                                                 <CheckBox x:Name="cfg_ss__smpc__autortc" Grid.Row="4" Grid.ColumnSpan="2">Auto Set RTC on Game Load</CheckBox>
@@ -9072,6 +9074,8 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                                 <Label Name="cfglbl_ss__debugger__memcharenc" Grid.Column="0" Grid.Row="12">Debugger Char Encoding</Label>
                                                 <TextBox x:Name="cfg_ss__debugger__memcharenc" Grid.Column="1" Grid.Row="12" />
 
+                                                <Label Name="cfglbl_ss__affinity__vdp2" Grid.ColumnSpan="2" Grid.Row="13">VDP2 Rend. CPU Aff. Mask</Label>
+                                                <TextBox x:Name="cfg_ss__affinity__vdp2" Grid.ColumnSpan="2" Grid.Row="14" />
 
                                             </Grid>
                                         </StackPanel>
@@ -11302,6 +11306,14 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
 
                                                     <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
@@ -11333,14 +11345,29 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                                 <TextBox x:Name="cfg_ss__bios_na_eu" Grid.Column="1" Grid.Row="8" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
                                                 <Button x:Name="tbBiosSsNaEu" Grid.Column="0" Grid.Row="8" Click="btnMednafenBiosPaths_Click">SS NA/EU Bios</Button>
 
-                                                <TextBox x:Name="cfg_psx__bios_eu" Grid.Column="1" Grid.Row="9" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
-                                                <Button x:Name="tbBiosPsxEu" Grid.Column="0" Grid.Row="9" Click="btnMednafenBiosPaths_Click">PSX EU Bios</Button>
+                                                <TextBox x:Name="cfg_ss__bios_stv_eu" Grid.Column="1" Grid.Row="9" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
+                                                <Button x:Name="tbBiosSsStvEu" Grid.Column="0" Grid.Row="9" Click="btnMednafenBiosPaths_Click">SS ST-V EU Bios</Button>
 
-                                                <TextBox x:Name="cfg_psx__bios_jp" Grid.Column="1" Grid.Row="10" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
-                                                <Button x:Name="tbBiosPsxJp" Grid.Column="0" Grid.Row="10" Click="btnMednafenBiosPaths_Click">PSX JP Bios</Button>
+                                                <TextBox x:Name="cfg_ss__bios_stv_jp" Grid.Column="1" Grid.Row="10" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
+                                                <Button x:Name="tbBiosSsStvJp" Grid.Column="0" Grid.Row="10" Click="btnMednafenBiosPaths_Click">SS ST-V JP Bios</Button>
 
-                                                <TextBox x:Name="cfg_psx__bios_na" Grid.Column="1" Grid.Row="11" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
-                                                <Button x:Name="tbBiosPsxNa" Grid.Column="0" Grid.Row="11" Click="btnMednafenBiosPaths_Click">PSX NA Bios</Button>
+                                                <TextBox x:Name="cfg_ss__bios_stv_na" Grid.Column="1" Grid.Row="11" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
+                                                <Button x:Name="tbBiosSsStvNa" Grid.Column="0" Grid.Row="11" Click="btnMednafenBiosPaths_Click">SS ST-V NA Bios</Button>
+
+                                                <TextBox x:Name="cfg_ss__cart__kof95_path" Grid.Column="1" Grid.Row="12" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
+                                                <Button x:Name="tbBiosSsKof95" Grid.Column="0" Grid.Row="12" Click="btnMednafenBiosPaths_Click">KoF 95 ROM Image</Button>
+
+                                                <TextBox x:Name="cfg_ss__cart__ultraman_path" Grid.Column="1" Grid.Row="13" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
+                                                <Button x:Name="tbBiosSsUltraman" Grid.Column="0" Grid.Row="13" Click="btnMednafenBiosPaths_Click">Ultraman ROM image</Button>
+
+                                                <TextBox x:Name="cfg_psx__bios_eu" Grid.Column="1" Grid.Row="14" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
+                                                <Button x:Name="tbBiosPsxEu" Grid.Column="0" Grid.Row="14" Click="btnMednafenBiosPaths_Click">PSX EU Bios</Button>
+
+                                                <TextBox x:Name="cfg_psx__bios_jp" Grid.Column="1" Grid.Row="15" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
+                                                <Button x:Name="tbBiosPsxJp" Grid.Column="0" Grid.Row="15" Click="btnMednafenBiosPaths_Click">PSX JP Bios</Button>
+
+                                                <TextBox x:Name="cfg_psx__bios_na" Grid.Column="1" Grid.Row="16" TextChanged="tbSettings_BiosPaths_TextChanged"></TextBox>
+                                                <Button x:Name="tbBiosPsxNa" Grid.Column="0" Grid.Row="16" Click="btnMednafenBiosPaths_Click">PSX NA Bios</Button>
 
                                             </Grid>
                                         </StackPanel>

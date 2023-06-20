@@ -11,14 +11,21 @@ namespace MedLaunch.Models
     /// </summary>
     public partial class ConfigBaseSettings
     {
+        public string ss__affinity__vdp2 { get; set; }
         public string ss__bios_jp { get; set; }
         public string ss__bios_na_eu { get; set; }
         public bool? ss__bios_sanity { get; set; }
+        public string ss__bios_stv_eu { get; set; }
+        public string ss__bios_stv_jp { get; set; }
+        public string ss__bios_stv_na { get; set; }
         public string ss__cart { get; set; }
         public string ss__cart__auto_default { get; set; }
         public string ss__cart__kof95_path { get; set; }
         public string ss__cart__ultraman_path { get; set; }
         public bool? ss__cd_sanity { get; set; }
+        public bool? ss__correct_aspect { get; set; }
+        public bool? ss__h_blend { get; set; }
+        public bool? ss__h_overscan { get; set; }
         public double? ss__input__mouse_sensitivity { get; set; }           // 0.125 through 2
         public string ss__input__port1 { get; set; }
         public string ss__input__port1__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
@@ -44,19 +51,6 @@ namespace MedLaunch.Models
         public string ss__input__port11__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
         public string ss__input__port12 { get; set; }
         public string ss__input__port12__gun_chairs { get; set; }                     // 0x000000 through 0x1000000
-        //public bool? ss__midsync { get; set; }
-        public bool? ss__region_autodetect { get; set; }
-        public string ss__region_default { get; set; }
-        public int? ss__scsp__resamp_quality { get; set; }                  // 0 through 10
-        public int? ss__slend { get; set; }                                 //0 through 239
-        public int? ss__slendp { get; set; }                                // -16 through 271
-        public int? ss__slstart { get; set; }                                 //0 through 239
-        public int? ss__slstartp { get; set; }                                // -16 through 271
-        public bool? ss__smpc__autortc { get; set; }
-        public string ss__smpc__autortc__lang { get; set; }
-        public string ss__debugger__disfontsize { get; set; }
-        public string ss__debugger__memcharenc { get; set; }
-
         /* moved into CONTROLS section - 2018-03-01
         public string ss__input__port1__3dpad__mode__defpos { get; set; }
         public string ss__input__port2__3dpad__mode__defpos { get; set; }
@@ -71,6 +65,24 @@ namespace MedLaunch.Models
         public string ss__input__port11__3dpad__mode__defpos { get; set; }
         public string ss__input__port12__3dpad__mode__defpos { get; set; }
         */
+
+        //public bool? ss__midsync { get; set; }
+
+        public bool? ss__input__sport1__multitap { get; set; }
+        public bool? ss__input__sport2__multitap { get; set; }
+
+        public bool? ss__region_autodetect { get; set; }
+        public string ss__region_default { get; set; }
+        public int? ss__scsp__resamp_quality { get; set; }                  // 0 through 10
+        public int? ss__slend { get; set; }                                 //0 through 239
+        public int? ss__slendp { get; set; }                                // -16 through 271
+        public int? ss__slstart { get; set; }                                 //0 through 239
+        public int? ss__slstartp { get; set; }                                // -16 through 271
+        public bool? ss__smpc__autortc { get; set; }
+        public string ss__smpc__autortc__lang { get; set; }
+        
+        public string ss__debugger__disfontsize { get; set; }
+        public string ss__debugger__memcharenc { get; set; }       
 
         public bool? ss__enable { get; set; }
         public bool? ss__forcemono { get; set; }
@@ -89,13 +101,7 @@ namespace MedLaunch.Models
         public double? ss__yscale { get; set; }                       // 0.01 through 256
         public double? ss__yscalefs { get; set; }                     // 0.01 through 256
 
-        public bool? ss__input__sport1__multitap { get; set; }
-        public bool? ss__input__sport2__multitap { get; set; }
-
-        // added controls mednafen 0.9.41
-        public bool? ss__correct_aspect { get; set; }
-        public bool? ss__h_blend { get; set; }
-        public bool? ss__h_overscan { get; set; }
+            
 
         public bool? ss__shader__goat__fprog { get; set; }
         public double? ss__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
@@ -107,9 +113,13 @@ namespace MedLaunch.Models
 
         public static void GetDefaults_ss(ConfigBaseSettings c)
         {
+            c.ss__affinity__vdp2 = "0x0000000000000000";
             c.ss__bios_jp = "sega_101.bin";
             c.ss__bios_na_eu = "mpr-17933.bin";
             c.ss__bios_sanity = true;                                     // placed
+            c.ss__bios_stv_eu = "epr-17954a.ic8";
+            c.ss__bios_stv_jp = "epr-20091.ic8";
+            c.ss__bios_stv_na = "epr-17952a.ic8";
             c.ss__cart = "auto";                                          // placed
             c.ss__cart__auto_default = "backup";							// placed
             c.ss__cart__kof95_path = "mpr-18811-mx.ic1";

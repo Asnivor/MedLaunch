@@ -3585,6 +3585,21 @@ namespace MedLaunch
                 case "SsNaEu":
                     tbName = "cfg_ss__bios_na_eu";
                     break;
+                case "SsStvEu":
+                    tbName = "cfg_ss__bios_stv_eu";
+                    break;
+                case "SsStvJp":
+                    tbName = "cfg_ss__bios_stv_jp";
+                    break;
+                case "SsStvNa":
+                    tbName = "cfg_ss__bios_stv_na";
+                    break;
+                case "SsKof95":
+                    tbName = "cfg_ss__cart__kof95_path";
+                    break;
+                case "SsUltraman":
+                    tbName = "cfg_ss__cart__ultraman_path";
+                    break;
                 case "PsxEu":
                     tbName = "cfg_psx__bios_eu";
                     break;
