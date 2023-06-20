@@ -35,9 +35,9 @@
 **MedLaunch** is a .NET (Windows only) front-end for the excellent [Mednafen](http://mednafen.fobby.net/) multi-system emulator.
 
 ### Production Releases
-* Latest Production Version: 0.5.25.3
+* Latest Production Version: 0.6.0.0
 * Direct Production Download: [LATEST](https://downloads.medlaunch.asnitech.co.uk/latest)
-* Compatible with Mednafen: 0.9.39.x - 1.21.1
+* Compatible with Mednafen: 1.27.1 - 1.31.0-UNSTABLE
 
 Official production releases happen when the team are happy after testing. The frequency of these releases has decreased over time, so users should look to the dev builds to get new features and compatibility early.
 
@@ -102,10 +102,10 @@ Bugs/Suggestions/Feature Requests can be posted on the GitHub [Issue Tracker](ht
 This upcoming changes (and many others) can be found in the current roadmap [here](http://medlaunch.asnitech.co.uk/roadmap).
 
 ### Requirements
-* [Microsoft .NET Framework 4.5.2](https://www.microsoft.com/en-gb/download/details.aspx?id=42643)
+* [Microsoft .NET Framework 4..8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
 * Microsoft Visual C++ 2010 x86 Redistributable (MedLaunch will prompt you to auto-install this if you do not have it)
-* At least [Mednafen version 0.9.39.x](https://mednafen.github.io/releases/) - 64-bit version required for Saturn games
-* Tested on Windows 7 (SP1)/8/8.1/10. It may work on Vista but has not been tested but will certainly NOT run on XP
+* At least [Mednafen version 1.27.1](https://mednafen.github.io/releases/) - 64-bit version required for Saturn games
+* Tested on Windows 10+
 
 ### Download
 You can always get the latest release build of MedLaunch on the [GitHub Releases](https://github.com/Asnivor/MedLaunch/releases/latest) page. I am actively working on code in the [Dev Branch](https://github.com/Asnivor/MedLaunch/tree/dev) and you can see the active changes for the next release on the [ChangeLog](https://medlaunch.asnitech.co.uk/changelog). These pre-release changes will be released when I am happy with them, so please do not ask for builds ahead of the official releases. You can of course get yourself a copy of Visual Studio Community installed and build it yourself from the Master branch.
