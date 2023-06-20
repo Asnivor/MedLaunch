@@ -283,6 +283,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Controls\InputManager\Keyboard\KeyboardSDL2.cs" />
     <Compile Include="Classes\Controls\Interfaces\IKeyboardTranslator.cs" />
+    <Compile Include="Classes\Controls\VirtualDevices\Current\Apple2.cs" />
     <Compile Include="Classes\Controls\VirtualDevices\DeviceDefinitionLegacy.cs" />
     <Compile Include="Classes\Controls\Interfaces\IDeviceDefinition.cs" />
     <Compile Include="Classes\Controls\Interfaces\VirtualDeviceBase.cs" />
@@ -377,6 +378,9 @@
     <Compile Include="Models\ConfigBaseSettings.vb.cs" />
     <Compile Include="Models\ConfigBaseSettings.wswan.cs" />
     <Compile Include="Models\MednaNetSettings.cs" />
+    <Compile Include="UserControls\Control\Apple2Ctrl.xaml.cs">
+      <DependentUpon>Apple2Ctrl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AccentStyleWindow.xaml.cs">
       <DependentUpon>AccentStyleWindow.xaml</DependentUpon>
     </Compile>
@@ -631,6 +635,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Control\Apple2Ctrl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -4237,6 +4237,9 @@ namespace MedLaunch
                     break;
                 case "psx":
                     tccControls.Content = new PsxCtrl();
+                    break;                    
+                case "apple2":
+                    tccControls.Content = new Apple2Ctrl();
                     break;
                 default:
                     // show all usercontrols
@@ -4301,6 +4304,9 @@ namespace MedLaunch
                                 break;
                             case 17:         // pcfx
                                 t.Content = new PcfxCtrl();
+                                break;
+                            case 18:        // apple2
+                                t.Content = new Apple2Ctrl();
                                 break;
 
                         }

@@ -11145,6 +11145,11 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
                                         NEC PC-FX
                                     </RadioButton>
+                                    <RadioButton x:Name="btnControlApple2" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                      ContextMenuService.ShowOnDisabled="True"
+                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" Checked="btnControl_Checked" Unchecked="btnControl_UnChecked">
+                                        Apple II/II+
+                                    </RadioButton>
 
                                     <Button Style="{StaticResource MenuButton}"  x:Name="btnControlRePoll"  Background="DarkOrange" Click="btnControlRePoll_Click"
                                 ToolTip="Attempt to detect GamePads/Joysticks that have been plugged in/remoted since MedLaunch was started">
@@ -11205,6 +11210,7 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                 <Controls:TransitioningContentControl x:Name="tccControlsDyn16" Transition="LeftReplace"/>
                                 <Controls:TransitioningContentControl x:Name="tccControlsDyn17" Transition="LeftReplace"/>
                                 <Controls:TransitioningContentControl x:Name="tccControlsDyn18" Transition="LeftReplace"/>
+                                <Controls:TransitioningContentControl x:Name="tccControlsDyn19" Transition="LeftReplace"/>
 
                             </WrapPanel>
                         </ScrollViewer>
