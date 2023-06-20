@@ -12,6 +12,10 @@ namespace MedLaunch.Models
     public partial class ConfigBaseSettings
     {
         public bool? sms__fm { get; set; }
+        public int? sms__slstart { get; set; }
+        public int? sms__slend { get; set; }
+        public int? sms__slstartp { get; set; }
+        public int? sms__slendp { get; set; }
         public string sms__territory { get; set; }
 
         public bool? sms__enable { get; set; }
@@ -29,13 +33,7 @@ namespace MedLaunch.Models
         public double? sms__xscalefs { get; set; }                     // 0.01 through 256
         public int? sms__yres { get; set; }                            // 0 through 65536
         public double? sms__yscale { get; set; }                       // 0.01 through 256
-        public double? sms__yscalefs { get; set; }                     // 0.01 through 256
-
-        // mednafen version 0.9.41
-        public int? sms__slstart { get; set; }
-        public int? sms__slend { get; set; }
-        public int? sms__slstartp { get; set; }
-        public int? sms__slendp { get; set; }
+        public double? sms__yscalefs { get; set; }                     // 0.01 through 256        
 
         public bool? sms__shader__goat__fprog { get; set; }
         public double? sms__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
