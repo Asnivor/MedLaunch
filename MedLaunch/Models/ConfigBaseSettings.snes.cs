@@ -13,10 +13,12 @@ namespace MedLaunch.Models
     {
         public int? snes__apu__resamp_quality { get; set; }                     // 0 through 10
         public bool? snes__correct_aspect { get; set; }
-        public bool? snes__input__port1__multitap { get; set; }
-        public bool? snes__input__port2__multitap { get; set; }
+        public bool? snes__h_blend { get; set; }
         public string snes__input__port1 { get; set; }
+        public bool? snes__input__port1__multitap { get; set; }
         public string snes__input__port2 { get; set; }
+        public bool? snes__input__port2__multitap { get; set; }       
+        
         /*
         public string snes__input__port3 { get; set; }
         public string snes__input__port4 { get; set; }
@@ -25,7 +27,6 @@ namespace MedLaunch.Models
         public string snes__input__port7 { get; set; }
         public string snes__input__port8 { get; set; }  
         */
-
         public double? snes__mouse_sensitivity { get; set; }                    // 0.125 through 2
 
         public bool? snes__enable { get; set; }
@@ -52,7 +53,7 @@ namespace MedLaunch.Models
         public double? snes__shader__goat__tp { get; set; }              // 0.00 through 1.00
         public double? snes__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
 
-        public bool? snes__h_blend { get; set; }
+        
 
 
         public static void GetDefaults_snes(ConfigBaseSettings c)

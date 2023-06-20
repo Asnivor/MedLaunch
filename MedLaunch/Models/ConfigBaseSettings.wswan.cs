@@ -15,6 +15,7 @@ namespace MedLaunch.Models
         public string wswan__blood { get; set; }
         public int? wswan__bmonth { get; set; }                                 // 1 though 12
         public int? wswan__byear { get; set; }                                  // 0 through 9999
+        public string wswan__input__builtin { get; set; }
         public string wswan__language { get; set; }
         public string wswan__name { get; set; }
         //public bool? wswan__rotateinput { get; set; }
@@ -47,7 +48,7 @@ namespace MedLaunch.Models
         public double? wswan__shader__goat__tp { get; set; }              // 0.00 through 1.00
         public double? wswan__shader__goat__vdiv { get; set; }           // -2.00 through 2.00
 
-        public string wswan__input__builtin { get; set; }
+        
 
 
         public static void GetDefaults_wswan(ConfigBaseSettings c)

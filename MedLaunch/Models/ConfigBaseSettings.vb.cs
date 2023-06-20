@@ -22,6 +22,7 @@ namespace MedLaunch.Models
         public bool? vb__disable_parallax { get; set; }
         public bool? vb__input__instant_read_hack { get; set; }
         public bool? vb__instant_display_hack { get; set; }
+        public double? vb__ledonscale { get; set; }                   // 1 through 2   
         public int? vb__liprescale { get; set; }                                // 1 through 10
         public int? vb__sidebyside__separation { get; set; }                    // 0 though 1024
 
@@ -44,9 +45,6 @@ namespace MedLaunch.Models
         public int? vb__yres { get; set; }                            // 0 through 65536
         public double? vb__yscale { get; set; }                       // 0.01 through 256
         public double? vb__yscalefs { get; set; }                     // 0.01 through 256
-
-        public double? vb__ledonscale { get; set; }                   // 1 through 2    
-
         public bool? vb__shader__goat__fprog { get; set; }
         public double? vb__shader__goat__hdiv { get; set; }           // -2.00 through 2.00
         public string vb__shader__goat__pat { get; set; }
