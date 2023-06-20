@@ -9597,6 +9597,8 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
 
                                         <StackPanel>
 
+                                            <CheckBox x:Name="cfg_psx__correct_aspect">Correct Aspect Ratio</CheckBox>
+                                            
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />

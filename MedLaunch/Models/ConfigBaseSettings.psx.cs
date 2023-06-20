@@ -16,6 +16,7 @@ namespace MedLaunch.Models
         public string psx__bios_na { get; set; }
         public bool? psx__bios_sanity { get; set; }
         public bool? psx__cd_sanity { get; set; }
+        public bool? psx__correct_aspect { get; set; }
         public int? psx__dbg_level { get; set; }                            // 0 through 4
         public bool? psx__h_overscan { get; set; }
         public bool? psx__input__analog_mode_ct { get; set; }
@@ -142,6 +143,7 @@ namespace MedLaunch.Models
             c.psx__bios_na = "scph5501.bin";
             c.psx__bios_sanity = true;                                    // placed
             c.psx__cd_sanity = true;                                      // placed
+            c.psx__correct_aspect = true;
             c.psx__dbg_level = 0;                                         // placed
             c.psx__h_overscan = true;                                     // placed
             c.psx__input__analog_mode_ct = false;                         // placed
