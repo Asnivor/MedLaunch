@@ -120,10 +120,49 @@ namespace MedLaunch.Classes
                         DownloadURL = "https://mednafen.github.io/releases/files/mednafen-1.31.0-UNSTABLE-win64.zip",
                         Changes = new List<VersionChange>
                         {
-                            /// NO BACKWARDS COMPATIBILITY BEFORE 1.31.0 NOW
+                            
+                        }
+                    },
+
+                    // 1.29.0
+                    new MednafenChangeHistory
+                    {
+                        Version = "1.29.0",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-1.29.0-win64.zip",
+                        Changes = new List<VersionChange>
+                        {
+                            new VersionChange { Description = "snes_faust.input.mouse.sensitivity", ChangeMethod = ChangeType.ToRemove, Item = "snes_faust.input.mouse.sensitivity" },
+
+                           
+                        }
+                    },
+
+                    // 1.28.0-UNSTABLE
+                    new MednafenChangeHistory
+                    {
+                        Version = "1.28.0-UNSTABLE",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-1.28.0-UNSTABLE-win64.zip",
+                        Changes = new List<VersionChange>
+                        {
+
+                        }
+                    },
+
+                    // 1.27.1
+                    new MednafenChangeHistory
+                    {
+                        Version = "1.27.1",
+                        DownloadURL = "https://mednafen.github.io/releases/files/mednafen-1.27.1-win64.zip",
+                        Changes = new List<VersionChange>
+                        {
+                            new VersionChange { Description = "video.force_bbclear", ChangeMethod = ChangeType.ToRemove, Item = "video.force_bbclear" },
+                            new VersionChange { Description = "video.cursorvis", ChangeMethod = ChangeType.ToRemove, Item = "video.cursorvis" },
                         }
                     },
                 };
+
+
+            /// NO BACKWARDS COMPATIBILITY BEFORE 1.27.1 NOW
 
         }
 
