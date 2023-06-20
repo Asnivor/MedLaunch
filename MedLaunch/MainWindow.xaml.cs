@@ -163,8 +163,8 @@ namespace MedLaunch
             dpZoomSlider.Visibility = Visibility.Collapsed;
 
             // set initial window size
-            this.Height = 768;
-            this.Width = 1366;
+            this.Height = 815; // 768;
+            this.Width = 1390;
 
             // check workspace size, if mahapps resolution is too big - go full screen
             int wWidth = Convert.ToInt32(SystemParameters.WorkArea.Width);
@@ -2028,6 +2028,22 @@ namespace MedLaunch
             _filterId = 3;
             GamesLibraryVisualHandler.LoadColumnInfo(15);
             _App.GamesLibrary.FilterByFilterButton(15);
+        }
+
+        /// <summary>
+        /// Called when the games library APPLE2 filter is checked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnApple2_Checked(object sender, RoutedEventArgs e)
+        {
+            // set column visibility
+            GamesLibraryVisualHandler.SetColumnVisibility(16);
+
+            // load datagrid
+            _filterId = 19;
+            GamesLibraryVisualHandler.LoadColumnInfo(16);
+            _App.GamesLibrary.FilterByFilterButton(16);
         }
 
 
@@ -4379,7 +4395,6 @@ namespace MedLaunch
             // populate the psx combo fields
             string hexCode = cfg_psx__input__analog_mode_ct__compare.Text;
             CalculateComboChecks(hexCode);
-
         }
 
         // Generic Config Selection Buttons UNCHECKED

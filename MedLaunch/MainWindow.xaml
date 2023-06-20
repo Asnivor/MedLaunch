@@ -639,7 +639,7 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         Game Gear
-                                    </RadioButton>
+                                    </RadioButton>                                    
                                     <RadioButton GroupName="flt" x:Name="btnLynx" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnLynx_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
@@ -653,6 +653,32 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                             </ContextMenu>
                                         </RadioButton.ContextMenu>
                                         Atari Lynx
+                                    </RadioButton>                                    
+                                </StackPanel>
+                            </Expander>
+                        </Border>
+
+                        <Border Style="{StaticResource Borders1}"  Margin="0" Grid.Column="0">
+                            <Expander IsExpanded="True" BorderThickness="0" Header="Disks" >
+                                <Expander.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Click="RemoveAllGames_Click" Header="Remove All Games From Database" />
+                                    </ContextMenu>
+                                </Expander.ContextMenu>
+                                <StackPanel x:Name="spDiskFilters">
+                                    <RadioButton GroupName="flt" x:Name="btnApple2" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnApple2_Checked" Unchecked="btnFilters_UnChecked">
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem x:Name="ScanRoms19" Click="ScanRoms_Click" Header="Rescan AppleII Disks" />
+                                                <MenuItem x:Name="ScrapeGames19" Click="ScrapeGames_Click" Header="Auto-Scrape (previously unscraped) AppleII Game Info" />
+                                                <MenuItem x:Name="RescrapeGames19" Click="RescrapeGames_Click" Header="Re-Scrape ALL AppleII Game Info" />
+                                                <Separator />
+                                                <MenuItem x:Name="RemoveRoms19" Click="RemoveRoms_Click" Header="Remove All AppleII Disks from Database" />
+                                                <Separator />
+                                                <MenuItem x:Name="Apple2ResetToDefaultColumnState" Click="LynxResetToDefaultColumnState_Click" Header="Reset 'AppleII' Column States to Default" />
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                        Apple II/II+
                                     </RadioButton>
                                 </StackPanel>
                             </Expander>
@@ -665,7 +691,7 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                         <MenuItem Click="RemoveAllGames_Click" Header="Remove All Games From Database" />
                                     </ContextMenu>
                                 </Expander.ContextMenu>
-                                <StackPanel x:Name="spDiskFilters">
+                                <StackPanel x:Name="spDiscFilters">
                                     <RadioButton GroupName="flt" x:Name="btnSs" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" Checked="btnSs_Checked" Unchecked="btnFilters_UnChecked">
                                         <RadioButton.ContextMenu>
                                             <ContextMenu>
@@ -2377,6 +2403,20 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                             <ContextMenu>
                                                 <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
                                                 <MenuItem Header="Load the PC-FX configuration from disk (pcfx.cfg)" Click="LoadConfigFromDisk_Click" />
+                                                <!--
+                                                <MenuItem Header="Save the PC-FX configuration to disk (pcfx.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
+                                            -->
+                                            </ContextMenu>
+                                        </RadioButton.ContextMenu>
+                                    </RadioButton>
+                                    <RadioButton x:Name="btnConfigApple2" HorizontalContentAlignment="Left" Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Checked="btnConfig_Checked" Unchecked="btnConfig_Unchecked" ContextMenuService.ShowOnDisabled="True"
+                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
+                                        Apple II/II+
+                                        <RadioButton.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Reset to Defaults" Click="MenuItemDefault_Click"  />
+                                                <MenuItem Header="Load the Apple2 configuration from disk (apple2.cfg)" Click="LoadConfigFromDisk_Click" />
                                                 <!--
                                                 <MenuItem Header="Save the PC-FX configuration to disk (pcfx.cfg)" Click="SaveConfigToDisk_Click" ToolTip="Caution: This will completely overwrite the system-specific config on disk" />
                                             -->
@@ -10542,7 +10582,455 @@ xmlns:il="http://schemas.microsoft.com/xaml/behaviors"
                                 </Border>
 
 
+                                <!-- apple2 -->
 
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificApple22" Margin="10">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Apple2 Filters/Misc">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_apple2__enable">Enable (Automatic) Usage of this module</CheckBox>
+                                            <CheckBox Name="cfg_apple2__tblur">Temporal Blur</CheckBox>
+                                            <CheckBox Name="cfg_apple2__tblur__accum">Accumulate Color Data</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Name="cfglbl_apple2__shader" Grid.Row="1">OGL Pixel Shader</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_apple2__shader" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
+                                                    <ComboBoxItem Tag="autoip">Auto Interpolation</ComboBoxItem>
+                                                    <ComboBoxItem Tag="autoipsharper">Sharper Auto Interpolation</ComboBoxItem>
+                                                    <ComboBoxItem Tag="scale2x">Scale2x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="sabr">SABR v3.0</ComboBoxItem>
+                                                    <ComboBoxItem Tag="ipsharper">Sharper Bilinear Int.</ComboBoxItem>
+                                                    <ComboBoxItem Tag="ipxnoty">Linear Int. on X Axis</ComboBoxItem>
+                                                    <ComboBoxItem Tag="ipynotx">Linear Int. on Y Axis</ComboBoxItem>
+                                                    <ComboBoxItem Tag="ipxnotysharper">Sharper Lin.Int. on X</ComboBoxItem>
+                                                    <ComboBoxItem Tag="ipynotxsharper">Sharper Lin.Int. on Y</ComboBoxItem>
+                                                    <ComboBoxItem Tag="goat">Goat (Simple Approximation of Color TV CRT)</ComboBoxItem>
+                                                </ComboBox>
+                                                <Label Name="cfglbl_apple2__special" Grid.Row="2">Special Video Scaler</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_apple2__special" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="none">None/Disabled</ComboBoxItem>
+                                                    <ComboBoxItem Tag="hq2x">hq2x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="hq3x">hq3x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="hq4x">hq4x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="scale2x">scale2x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="scale3x">scale3x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="scale4x">scale4x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="2xsai">2xSaI</ComboBoxItem>
+                                                    <ComboBoxItem Tag="super2xsai">Super 2xSaI</ComboBoxItem>
+                                                    <ComboBoxItem Tag="supereagle">Super Eagle</ComboBoxItem>
+                                                    <ComboBoxItem Tag="nn2x">Nearest-neighbor 2x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="nn3x">Nearest-neighbor 3x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="nn4x">Nearest-neighbor 4x</ComboBoxItem>
+                                                    <ComboBoxItem Tag="nny2x">Nearest-neighbor 2x Y Axis</ComboBoxItem>
+                                                    <ComboBoxItem Tag="nny3x">Nearest-neighbor 3x Y Axis</ComboBoxItem>
+                                                    <ComboBoxItem Tag="nny4x">Nearest-neighbor 4x Y Axis</ComboBoxItem>
+                                                </ComboBox>
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label Name="cfglbl_apple2__scanlines" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Scanlines</Label>
+                                                        <Controls:NumericUpDown  Maximum="100" Minimum="-100" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_apple2__scanlines, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="100" Minimum="-100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_apple2__scanlines"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label Name="cfglbl_apple2__tblur__accum__amount" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Blur Amount</Label>
+                                                    <Controls:NumericUpDown  Maximum="100" Minimum="0" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_apple2__tblur__accum__amount, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_apple2__tblur__accum__amount"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </GroupBox>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificApple299" Margin="10">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Apple2 OGL Goat Filter Settings">
+
+                                        <StackPanel>
+                                            <CheckBox x:Name="cfg_apple2__shader__goat__fprog">Force Interlaced Video to be Treated as Progressive</CheckBox>
+                                            <CheckBox x:Name="cfg_apple2__shader__goat__slen">Enable Goat Scanlines Effect</CheckBox>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label Name="cfglbl_apple2__shader__goat__pat" Grid.Row="1">Goat Mask Pattern</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_apple2__shader__goat__pat" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="goatron">Goatron (Brightest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="borg">Borg (Darkest)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="slenderman">Slenderman (Spookiest?)</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                        <Label Name="cfglbl_apple2__shader__goat__hdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Horizontal Divergence</Label>
+                                                        <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_apple2__shader__goat__hdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                        <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_apple2__shader__goat__hdiv"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label Name="cfglbl_apple2__shader__goat__vdiv" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Constant RGB Vertical Divergence</Label>
+                                                    <Controls:NumericUpDown  Maximum="2" Minimum="-2" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_apple2__shader__goat__vdiv, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="2" Minimum="-2" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_apple2__shader__goat__vdiv"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Margin="3">
+                                                    <Label Name="cfglbl_apple2__shader__goat__tp" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Transparency of Otherwise-Opaque Mask Areas</Label>
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="0" Interval="0.01" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_apple2__shader__goat__tp, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.01" IsSnapToTickEnabled="True" 
+                                        Name="cfg_apple2__shader__goat__tp"/>
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </GroupBox>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificApple23" Margin="10">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Apple2 Resolution">
+
+                                        <StackPanel>
+
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Label Name="cfglbl_apple2__stretch" Grid.Row="0">Stretching</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_apple2__stretch" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
+                                                    <ComboBoxItem Tag="full">Full</ComboBoxItem>
+                                                    <ComboBoxItem Tag="aspect">Asp. Preserve</ComboBoxItem>
+                                                    <ComboBoxItem Tag="aspect_int">Asp. Preserve + Int</ComboBoxItem>
+                                                    <ComboBoxItem Tag="aspect_mult2">Asp. Preserve + x2</ComboBoxItem>
+                                                </ComboBox>
+                                                <Label Name="cfglbl_apple2__videoip" Grid.Row="1">Interpolation</Label>
+                                                <ComboBox SelectedValuePath="Tag" Name="cfg_apple2__videoip" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                                    <ComboBoxItem Tag="0">Disabled</ComboBoxItem>
+                                                    <ComboBoxItem Tag="1">Bilinear</ComboBoxItem>
+                                                    <ComboBoxItem Tag="x">Linear (X)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="y">Linear (Y)</ComboBoxItem>
+                                                </ComboBox>
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="2" Margin="0,5,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="0.5*" />
+                                                        <ColumnDefinition Width="0.5*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center">FullScreen Resolution (0 for native)</Label>
+                                                    <Label Name="cfglbl_apple2__xres" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Width</Label>
+                                                    <Label Name="cfglbl_apple2__yres" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Height</Label>
+
+                                                    <Controls:NumericUpDown Name="cfg_apple2__xres" Grid.Column="0" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <Controls:NumericUpDown Name="cfg_apple2__yres" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="30000" Interval="1"/>
+                                                    <!--
+                                                    <ComboBox SelectedValuePath="Tag" Name="cfg_apple2__xres" Grid.Column="0" Grid.Row="2">
+                                                        <ComboBoxItem Tag="0">Native</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1920">1920</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1856">1856</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1792">1792</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1680">1680</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1600">1600</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1440">1440</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1366">1366</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1280">1280</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1152">1152</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1024">1024</ComboBoxItem>
+                                                        <ComboBoxItem Tag="800">800</ComboBoxItem>
+                                                        <ComboBoxItem Tag="640">640</ComboBoxItem>
+                                                    </ComboBox>
+                                                    <ComboBox SelectedValuePath="Tag" Name="cfg_apple2__yres" Grid.Column="2" Grid.Row="2">
+                                                        <ComboBoxItem Tag="0">Native</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1920">1920</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1856">1856</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1792">1792</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1680">1680</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1600">1600</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1440">1440</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1366">1366</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1280">1280</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1152">1152</ComboBoxItem>
+                                                        <ComboBoxItem Tag="1024">1024</ComboBoxItem>
+                                                        <ComboBoxItem Tag="800">800</ComboBoxItem>
+                                                        <ComboBoxItem Tag="640">640</ComboBoxItem>
+                                                    </ComboBox>
+                                                    -->
+                                                    <Label Margin="0,10,0,-10" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">FullScreen Scaling</Label>
+                                                    <Label Name="cfglbl_apple2__xscalefs" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">X</Label>
+                                                    <Label Name="cfglbl_apple2__yscalefs" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">Y</Label>
+                                                    <Controls:NumericUpDown Name="cfg_apple2__xscalefs" Grid.Column="0" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
+                                                    <Controls:NumericUpDown Name="cfg_apple2__yscalefs" Grid.Column="1" Grid.Row="5" Minimum="0.01" Maximum="256" Interval="0.01"/>
+                                                    <Label Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center">Window Scaling</Label>
+                                                    <Label Name="cfglbl_apple2__xscale" Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center">X</Label>
+                                                    <Label Name="cfglbl_apple2__yscale" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center">Y</Label>
+                                                    <Controls:NumericUpDown Name="cfg_apple2__xscale" Grid.Column="0" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
+                                                    <Controls:NumericUpDown Name="cfg_apple2__yscale" Grid.Column="1" Grid.Row="8" Minimum="0.01" Maximum="256" Interval="0.01"/>
+                                                </Grid>
+                                            </Grid>
+                                        </StackPanel>
+                                    </GroupBox>
+                                </Border>
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificApple21" Margin="10">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Apple2 Video Settings">
+                                        <StackPanel Margin="10">
+
+                                            <CheckBox x:Name="cfg_apple2__video__color_smooth">Enable Color Video Smoothing</CheckBox>
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+
+                                                <Label Name="cfglbl_apple2__video__mode" Grid.Column="0" Grid.Row="0">Video Rendering Mode</Label>
+                                                <ComboBox x:Name="cfg_apple2__video__mode" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="0">
+                                                    <ComboBoxItem Tag="composite">Composite</ComboBoxItem>
+                                                    <ComboBoxItem Tag="rgb">RGB</ComboBoxItem>
+                                                    <ComboBoxItem Tag="rgb_tfr">RGB, with HGR text fringe reduction</ComboBoxItem>
+                                                    <ComboBoxItem Tag="rgb_alt">RGB (alternate algorithm)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="rgb_alt_tfr">RGB (alternate algorithm), with HGR text fringe reduction</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="3">
+                                                    <Label Name="cfglbl_apple2__video__brightness" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Video Brightness</Label>
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="-1" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_apple2__video__brightness, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="-1" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_apple2__video__brightness"/>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="3">
+                                                    <Label Name="cfglbl_apple2__video__color_lumafilter" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Color Video Luma Filter</Label>
+                                                    <Controls:NumericUpDown  Maximum="3" Minimum="-3" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_apple2__video__color_lumafilter, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="3" Minimum="-3" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_apple2__video__color_lumafilter"/>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Margin="3">
+                                                    <Label Name="cfglbl_apple2__video__mono_lumafilter" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Color Video Luma Filter</Label>
+                                                    <Controls:NumericUpDown  Maximum="7" Minimum="-3" Interval="1" HasDecimals="False" HideUpDownButtons="True" Value="{Binding ElementName=cfg_apple2__video__mono_lumafilter, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="7" Minimum="-3" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_apple2__video__mono_lumafilter"/>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Center" Margin="3">
+                                                    <Label Name="cfglbl_apple2__video__contrast" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Video Contrast</Label>
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="-1" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_apple2__video__contrast, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="-1" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_apple2__video__contrast"/>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Center" Margin="3">
+                                                    <Label Name="cfglbl_apple2__video__saturation" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Video Contrast</Label>
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="-1" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_apple2__video__saturation, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="-1" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_apple2__video__saturation"/>
+                                                </DockPanel>
+
+                                                <DockPanel Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Center" Margin="3">
+                                                    <Label Name="cfglbl_apple2__video__hue" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">Color Video Hue/Tint</Label>
+                                                    <Controls:NumericUpDown  Maximum="1" Minimum="-1" Interval="0.1" HasDecimals="True" HideUpDownButtons="True" Value="{Binding ElementName=cfg_apple2__video__hue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                                                    <Slider Maximum="1" Minimum="-1" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" 
+                                        Name="cfg_apple2__video__hue"/>
+                                                </DockPanel>
+
+                                                <Label Name="cfglbl_apple2__video__matrix" Grid.Column="0" Grid.Row="7">Color Decoder Matrix</Label>
+                                                <ComboBox x:Name="cfg_apple2__video__matrix" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="5">
+                                                    <ComboBoxItem Tag="custom">Custom</ComboBoxItem>
+                                                    <ComboBoxItem Tag="mednafen">Mednafen</ComboBoxItem>
+                                                    <ComboBoxItem Tag="la7620">Sanyo LA7620-like</ComboBoxItem>
+                                                    <ComboBoxItem Tag="cxa2025as_usa">Sony CXA2025AS-like, USA setting</ComboBoxItem>
+                                                    <ComboBoxItem Tag="cxa2060bs_usa">Sony CXA2060BS-like, USA setting</ComboBoxItem>
+                                                    <ComboBoxItem Tag="cxa2095s_usa">Sony CXA2095S-like, USA setting</ComboBoxItem>
+                                                    <ComboBoxItem Tag="cxa2025as_japan">Sony CXA2025AS-like, Japan setting</ComboBoxItem>
+                                                    <ComboBoxItem Tag="cxa2060bs_japan">Sony CXA2060BS-like, Japan setting</ComboBoxItem>
+                                                    <ComboBoxItem Tag="cxa2095s_japan">Sony CXA2095S-like, Japan setting</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <CheckBox Grid.Row="8" Grid.ColumnSpan="2"  x:Name="cfg_apple2__video__mixed_text_mono">Mixed-Mode Mono Text Hack</CheckBox>
+
+                                            </Grid>
+                                        </StackPanel>
+                                    </GroupBox>
+                                </Border>
+
+
+                                <Border Style="{StaticResource Borders1}" x:Name="brdSpecificApple27" Margin="10">
+                                    <GroupBox Margin="0" BorderThickness="0" Header="Apple2 Control Settings">
+                                        <StackPanel Margin="10">
+
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+
+                                                <Label Name="cfglbl_apple2__input__port1" Grid.Column="0" Grid.Row="1">Gameport 1 Input Device</Label>
+                                                <ComboBox x:Name="cfg_apple2__input__port1" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="1">
+                                                    <ComboBoxItem Tag="none">None (all game I/O devices disabled)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="paddle">Paddle</ComboBoxItem>
+                                                    <ComboBoxItem Tag="joystick">Joystick</ComboBoxItem>
+                                                    <ComboBoxItem Tag="gamepad">Gamepad</ComboBoxItem>
+                                                    <ComboBoxItem Tag="atari">Atari Joystick</ComboBoxItem>
+                                                </ComboBox>
+
+                                                <Label Name="cfglbl_apple2__input__port2" Grid.Column="0" Grid.Row="2">Gameport 1 Input Device</Label>
+                                                <ComboBox x:Name="cfg_apple2__input__port2" SelectedValuePath="Tag" Grid.Column="1" Grid.Row="2">
+                                                    <ComboBoxItem Tag="paddle">Paddle (Must be selected on port 1 also)</ComboBoxItem>
+                                                    <ComboBoxItem Tag="atari">Atari Joystick (Must be selected on port 1 also)</ComboBoxItem>
+                                                </ComboBox>                                                
+                                            </Grid>
+                                        </StackPanel>
+                                    </GroupBox>
+                                </Border>
 
 
 

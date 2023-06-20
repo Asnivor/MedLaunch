@@ -102,6 +102,13 @@ namespace MedLaunch.Classes
             foreach (Border border in AllDynamicConfigPanels)
             {
                 string brdName = StripTrailingNumerals(border.Name.ToLower().Replace("brdspecific", ""));
+
+                // hack for apple2 system
+                if (brdName == "apple")
+                {
+                    brdName = "apple2";
+                }
+
                 if (brdName == name || (name == "base" && GS.showAllBaseSettings == true))
                 {
                     border.Visibility = Visibility.Visible;

@@ -21,11 +21,11 @@
   },
   {
     "Command": "lynx.shader",
-    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"<system>.videoip\" setting is ignored.\n\n\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances.</system"
+    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"&lt;system&gt;.videoip\" setting is ignored.>\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances."
   },
   {
     "Command": "lynx.shader.goat.fprog",
-    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen.  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
+    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen, unless it's set to \"blend\" or \"blend_rg\".  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
   },
   {
     "Command": "lynx.shader.goat.hdiv",
@@ -49,7 +49,7 @@
   },
   {
     "Command": "lynx.special",
-    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, for a sharper image, though the \"autoipsharper\" shader may provide better results.>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
   },
   {
     "Command": "lynx.stretch",
@@ -81,7 +81,7 @@
   },
   {
     "Command": "lynx.xscalefs",
-    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "lynx.yres",
@@ -93,7 +93,7 @@
   },
   {
     "Command": "lynx.yscalefs",
-    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "gb.system_type",
@@ -113,11 +113,11 @@
   },
   {
     "Command": "gb.shader",
-    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"<system>.videoip\" setting is ignored.\n\n\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances.</system"
+    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"&lt;system&gt;.videoip\" setting is ignored.>\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances."
   },
   {
     "Command": "gb.shader.goat.fprog",
-    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen.  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
+    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen, unless it's set to \"blend\" or \"blend_rg\".  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
   },
   {
     "Command": "gb.shader.goat.hdiv",
@@ -141,7 +141,7 @@
   },
   {
     "Command": "gb.special",
-    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, for a sharper image, though the \"autoipsharper\" shader may provide better results.>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
   },
   {
     "Command": "gb.stretch",
@@ -173,7 +173,7 @@
   },
   {
     "Command": "gb.xscalefs",
-    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "gb.yres",
@@ -185,7 +185,7 @@
   },
   {
     "Command": "gb.yscalefs",
-    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "gba.bios",
@@ -205,11 +205,11 @@
   },
   {
     "Command": "gba.shader",
-    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"<system>.videoip\" setting is ignored.\n\n\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances.</system"
+    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"&lt;system&gt;.videoip\" setting is ignored.>\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances."
   },
   {
     "Command": "gba.shader.goat.fprog",
-    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen.  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
+    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen, unless it's set to \"blend\" or \"blend_rg\".  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
   },
   {
     "Command": "gba.shader.goat.hdiv",
@@ -233,7 +233,7 @@
   },
   {
     "Command": "gba.special",
-    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, for a sharper image, though the \"autoipsharper\" shader may provide better results.>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
   },
   {
     "Command": "gba.stretch",
@@ -265,7 +265,7 @@
   },
   {
     "Command": "gba.xscalefs",
-    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "gba.yres",
@@ -277,7 +277,7 @@
   },
   {
     "Command": "gba.yscalefs",
-    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "ngp.language",
@@ -297,11 +297,11 @@
   },
   {
     "Command": "ngp.shader",
-    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"<system>.videoip\" setting is ignored.\n\n\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances.</system"
+    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"&lt;system&gt;.videoip\" setting is ignored.>\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances."
   },
   {
     "Command": "ngp.shader.goat.fprog",
-    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen.  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
+    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen, unless it's set to \"blend\" or \"blend_rg\".  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
   },
   {
     "Command": "ngp.shader.goat.hdiv",
@@ -325,7 +325,7 @@
   },
   {
     "Command": "ngp.special",
-    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, for a sharper image, though the \"autoipsharper\" shader may provide better results.>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
   },
   {
     "Command": "ngp.stretch",
@@ -357,7 +357,7 @@
   },
   {
     "Command": "ngp.xscalefs",
-    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "ngp.yres",
@@ -369,7 +369,7 @@
   },
   {
     "Command": "ngp.yscalefs",
-    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "nes.clipsides",
@@ -509,7 +509,7 @@
   },
   {
     "Command": "nes.soundq",
-    "Description": "Sound quality.\n\nHigher values correspond to better SNR and better preservation of higher frequencies(\"brightness\"), at the cost of increased computational complexity and a negligible(<0.5ms) increase=\"\" in=\"\"></0.5ms)"
+    "Description": "Sound quality.\n\nHigher values correspond to better SNR and better preservation of higher frequencies(\"brightness\"), at the cost of increased computational complexity and a negligible(&lt;0.5ms) increase in latency."
   },
   {
     "Command": "nes.debugger.disfontsize",
@@ -529,11 +529,11 @@
   },
   {
     "Command": "nes.shader",
-    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"<system>.videoip\" setting is ignored.\n\n\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances.</system"
+    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"&lt;system&gt;.videoip\" setting is ignored.>\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances."
   },
   {
     "Command": "nes.shader.goat.fprog",
-    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen.  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
+    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen, unless it's set to \"blend\" or \"blend_rg\".  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
   },
   {
     "Command": "nes.shader.goat.hdiv",
@@ -557,7 +557,7 @@
   },
   {
     "Command": "nes.special",
-    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, for a sharper image, though the \"autoipsharper\" shader may provide better results.>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
   },
   {
     "Command": "nes.stretch",
@@ -589,7 +589,7 @@
   },
   {
     "Command": "nes.xscalefs",
-    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "nes.yres",
@@ -601,7 +601,7 @@
   },
   {
     "Command": "nes.yscalefs",
-    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "pce_fast.adpcmlp",
@@ -697,11 +697,11 @@
   },
   {
     "Command": "pce_fast.shader",
-    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"<system>.videoip\" setting is ignored.\n\n\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances.</system"
+    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"&lt;system&gt;.videoip\" setting is ignored.>\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances."
   },
   {
     "Command": "pce_fast.shader.goat.fprog",
-    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen.  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
+    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen, unless it's set to \"blend\" or \"blend_rg\".  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
   },
   {
     "Command": "pce_fast.shader.goat.hdiv",
@@ -725,7 +725,7 @@
   },
   {
     "Command": "pce_fast.special",
-    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, for a sharper image, though the \"autoipsharper\" shader may provide better results.>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
   },
   {
     "Command": "pce_fast.stretch",
@@ -757,7 +757,7 @@
   },
   {
     "Command": "pce_fast.xscalefs",
-    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "pce_fast.yres",
@@ -769,7 +769,7 @@
   },
   {
     "Command": "pce_fast.yscalefs",
-    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "pce.adpcmextraprec",
@@ -853,7 +853,7 @@
   },
   {
     "Command": "pce.psgrevision",
-    "Description": "Select PSG revision.\n\nWARNING: HES playback will always use the \"huc6280a\" revision if this setting is set to \"match\", since HES playback is always done with SuperGrafx emulation enabled.>\n\nhuc6280 - HuC6280\nHuC6280 as found in the original PC Engine.\n\nhuc6280a - HuC6280A\nHuC6280A as found in the SuperGrafx and CoreGrafx I.  Provides proper channel amplitude centering, but may cause clicking in a few games designed with the original HuC6280's sound characteristics in mind.\n\nmatch - Match emulation mode.\nSelects \"huc6280\" for non-SuperGrafx mode, and \"huc6280a\" for SuperGrafx(full) mode."
+    "Description": "Select PSG revision.\n\nWARNING: HES playback will always use the \"huc6280a\" revision if this setting is set to \"match\", since HES playback is always done with SuperGrafx emulation enabled.>\n\nhuc6280 - HuC6280\nHuC6280 as found in the original PC Engine.\n\nhuc6280a - HuC6280A\nHuC6280A as found in the SuperGrafx and CoreGrafx I.  Provides proper channel amplitude centering.  Many games will have less clicking with the HuC6280A, but it may cause clicking in a few games designed with the original HuC6280's sound characteristics in mind.\n\nmatch - Match emulation mode.\nSelects \"huc6280\" for non-SuperGrafx mode, and \"huc6280a\" for SuperGrafx(full) mode."
   },
   {
     "Command": "pce.resamp_quality",
@@ -893,11 +893,11 @@
   },
   {
     "Command": "pce.shader",
-    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"<system>.videoip\" setting is ignored.\n\n\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances.</system"
+    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"&lt;system&gt;.videoip\" setting is ignored.>\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances."
   },
   {
     "Command": "pce.shader.goat.fprog",
-    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen.  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
+    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen, unless it's set to \"blend\" or \"blend_rg\".  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
   },
   {
     "Command": "pce.shader.goat.hdiv",
@@ -921,7 +921,7 @@
   },
   {
     "Command": "pce.special",
-    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, for a sharper image, though the \"autoipsharper\" shader may provide better results.>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
   },
   {
     "Command": "pce.stretch",
@@ -953,7 +953,7 @@
   },
   {
     "Command": "pce.xscalefs",
-    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "pce.yres",
@@ -965,7 +965,7 @@
   },
   {
     "Command": "pce.yscalefs",
-    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "gg.enable",
@@ -981,11 +981,11 @@
   },
   {
     "Command": "gg.shader",
-    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"<system>.videoip\" setting is ignored.\n\n\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances.</system"
+    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"&lt;system&gt;.videoip\" setting is ignored.>\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances."
   },
   {
     "Command": "gg.shader.goat.fprog",
-    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen.  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
+    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen, unless it's set to \"blend\" or \"blend_rg\".  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
   },
   {
     "Command": "gg.shader.goat.hdiv",
@@ -1009,7 +1009,7 @@
   },
   {
     "Command": "gg.special",
-    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, for a sharper image, though the \"autoipsharper\" shader may provide better results.>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
   },
   {
     "Command": "gg.stretch",
@@ -1041,7 +1041,7 @@
   },
   {
     "Command": "gg.xscalefs",
-    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "gg.yres",
@@ -1053,7 +1053,7 @@
   },
   {
     "Command": "gg.yscalefs",
-    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "md.cdbios",
@@ -1137,11 +1137,11 @@
   },
   {
     "Command": "md.shader",
-    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"<system>.videoip\" setting is ignored.\n\n\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances.</system"
+    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"&lt;system&gt;.videoip\" setting is ignored.>\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances."
   },
   {
     "Command": "md.shader.goat.fprog",
-    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen.  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
+    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen, unless it's set to \"blend\" or \"blend_rg\".  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
   },
   {
     "Command": "md.shader.goat.hdiv",
@@ -1165,7 +1165,7 @@
   },
   {
     "Command": "md.special",
-    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, for a sharper image, though the \"autoipsharper\" shader may provide better results.>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
   },
   {
     "Command": "md.stretch",
@@ -1197,7 +1197,7 @@
   },
   {
     "Command": "md.xscalefs",
-    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "md.yres",
@@ -1209,7 +1209,7 @@
   },
   {
     "Command": "md.yscalefs",
-    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "sms.fm",
@@ -1249,11 +1249,11 @@
   },
   {
     "Command": "sms.shader",
-    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"<system>.videoip\" setting is ignored.\n\n\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances.</system"
+    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"&lt;system&gt;.videoip\" setting is ignored.>\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances."
   },
   {
     "Command": "sms.shader.goat.fprog",
-    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen.  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
+    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen, unless it's set to \"blend\" or \"blend_rg\".  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
   },
   {
     "Command": "sms.shader.goat.hdiv",
@@ -1277,7 +1277,7 @@
   },
   {
     "Command": "sms.special",
-    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, for a sharper image, though the \"autoipsharper\" shader may provide better results.>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
   },
   {
     "Command": "sms.stretch",
@@ -1309,7 +1309,7 @@
   },
   {
     "Command": "sms.xscalefs",
-    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "sms.yres",
@@ -1321,7 +1321,11 @@
   },
   {
     "Command": "sms.yscalefs",
-    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
+  },
+  {
+    "Command": "ss.affinity.vdp2",
+    "Description": "VDP2 rendering thread CPU affinity mask.\n\nSet to 0 to disable changing affinity."
   },
   {
     "Command": "ss.bios_jp",
@@ -1336,8 +1340,24 @@
     "Description": "Enable BIOS ROM image sanity checks."
   },
   {
+    "Command": "ss.bios_stv_eu",
+    "Description": "Path to the Europe ST-V ROM BIOS"
+  },
+  {
+    "Command": "ss.bios_stv_jp",
+    "Description": "Path to the Japan ST-V ROM BIOS"
+  },
+  {
+    "Command": "ss.bios_stv_na",
+    "Description": "Path to the North America ST-V ROM BIOS"
+  },
+  {
     "Command": "ss.cart",
     "Description": "Expansion cart.\n\nauto - Automatic\n\n\nnone - None\n\n\nbackup - Backup Memory(512KiB)\n\n\nextram1 - 1MiB Extended RAM\n\n\nextram4 - 4MiB Extended RAM\n\n\ncs1ram16 - 16MiB RAM mapped in A-bus CS1\n"
+  },
+  {
+    "Command": "ss.cart.auto_default",
+    "Description": "Default expansion cart when autodetection fails.\n\nExpansion cart to emulate when \"ss.cart\" is set to \"auto\", but the game wasn't found in the internal database for carts.>\n\nnone - None\n\n\nbackup - Backup Memory(512KiB)\n\n\nextram1 - 1MiB Extended RAM\n\n\nextram4 - 4MiB Extended RAM\n\n\ncs1ram16 - 16MiB RAM mapped in A-bus CS1\n"
   },
   {
     "Command": "ss.cart.kof95_path",
@@ -1577,11 +1597,11 @@
   },
   {
     "Command": "ss.shader",
-    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"<system>.videoip\" setting is ignored.\n\n\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances.</system"
+    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"&lt;system&gt;.videoip\" setting is ignored.>\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances."
   },
   {
     "Command": "ss.shader.goat.fprog",
-    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen.  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
+    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen, unless it's set to \"blend\" or \"blend_rg\".  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
   },
   {
     "Command": "ss.shader.goat.hdiv",
@@ -1605,7 +1625,7 @@
   },
   {
     "Command": "ss.special",
-    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, for a sharper image, though the \"autoipsharper\" shader may provide better results.>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
   },
   {
     "Command": "ss.stretch",
@@ -1637,7 +1657,7 @@
   },
   {
     "Command": "ss.xscalefs",
-    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "ss.yres",
@@ -1649,7 +1669,7 @@
   },
   {
     "Command": "ss.yscalefs",
-    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "psx.bios_eu",
@@ -1670,6 +1690,10 @@
   {
     "Command": "psx.cd_sanity",
     "Description": "Enable CD (image) sanity checks.\n\nSanity checks are only performed on discs detected(via heuristics) to be PS1 discs.  The checks primarily consist of ensuring that Q subchannel data is as expected for a typical commercially-released PS1 disc."
+  },
+  {
+    "Command": "psx.correct_aspect",
+    "Description": "Correct aspect ratio.\n\nDisabling aspect ratio correction with this setting should be considered a hack.\n\n\n\nIf disabling it to allow for sharper pixels by also separately disabling interpolation(though using Mednafen's \"autoipsharper\" OpenGL shader is usually a better option), remember to use scale factors that are multiples of 2, or else games that use high-resolution and interlaced modes will have distorted pixels.\n\n\n\nDisabling aspect ratio correction with this setting will allow for the QuickTime movie recording feature to produce much smaller files using much less CPU time."
   },
   {
     "Command": "psx.dbg_level",
@@ -1941,11 +1965,11 @@
   },
   {
     "Command": "psx.shader",
-    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"<system>.videoip\" setting is ignored.\n\n\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances.</system"
+    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"&lt;system&gt;.videoip\" setting is ignored.>\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances."
   },
   {
     "Command": "psx.shader.goat.fprog",
-    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen.  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
+    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen, unless it's set to \"blend\" or \"blend_rg\".  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
   },
   {
     "Command": "psx.shader.goat.hdiv",
@@ -1969,7 +1993,7 @@
   },
   {
     "Command": "psx.special",
-    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, for a sharper image, though the \"autoipsharper\" shader may provide better results.>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
   },
   {
     "Command": "psx.stretch",
@@ -2001,7 +2025,7 @@
   },
   {
     "Command": "psx.xscalefs",
-    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "psx.yres",
@@ -2013,43 +2037,67 @@
   },
   {
     "Command": "psx.yscalefs",
-    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
+  },
+  {
+    "Command": "snes_faust.affinity.msu1.audio",
+    "Description": "MSU1 audio read thread CPU affinity mask.\n\nSet to 0 to disable changing affinity."
+  },
+  {
+    "Command": "snes_faust.affinity.msu1.data",
+    "Description": "MSU1 data read thread CPU affinity mask.\n\nSet to 0 to disable changing affinity."
+  },
+  {
+    "Command": "snes_faust.affinity.ppu",
+    "Description": "PPU rendering thread CPU affinity mask.\n\nSet to 0 to disable changing affinity."
   },
   {
     "Command": "snes_faust.correct_aspect",
-    "Description": "Correct aspect ratio."
+    "Description": "Correct aspect ratio.\n\n0 - Disabled\n\n\n1 - Enabled\n\n\nforce_ntsc - Enabled, force NTSC PAR.\n\n\nforce_pal - Enabled, force PAL PAR.\n"
+  },
+  {
+    "Command": "snes_faust.cx4.clock_rate",
+    "Description": "CX4 clock rate, specified in percentage of normal.\n\nOverclocking the CX4 will cause or worsen attract mode desynchronization."
+  },
+  {
+    "Command": "snes_faust.h_filter",
+    "Description": "Horizontal blending/doubling filter.\n\nnone - None\n\n\n512 - Force 512.\nDouble width of line if it's 256.\n\nphr256blend - Pseudo-hires halve-blend.\nBlend line down to 256 pixels if it's pseudo-hires.\n\nphr256blend_auto512 - Pseudo-hires halve-blend and force 512 if necessary.\nBlend line down to 256 pixels if it's pseudo-hires.  After, double width of line if any other lines use hires mode.\n\nphr256blend_512 - Pseudo-hires halve-blend and force 512.\nBlend line down to 256 pixels if it's pseudo-hires.  After, double width of line if it's 256.\n\n512_blend - Force 512 and blend.\nDouble width of line if it's 256.  After, blend line."
+  },
+  {
+    "Command": "snes_faust.input.mouse_sensitivity",
+    "Description": "Emulated mouse sensitivity."
   },
   {
     "Command": "snes_faust.input.port1",
-    "Description": "Input device for Virtual Port 1\n\nnone - none\n\n\ngamepad - Gamepad\n"
+    "Description": "Input device for Virtual Port 1\n\nnone - none\n\n\ngamepad - Gamepad\n\n\nmouse - Mouse\n"
   },
   {
     "Command": "snes_faust.input.port2",
-    "Description": "Input device for Virtual Port 2\n\nnone - none\n\n\ngamepad - Gamepad\n"
+    "Description": "Input device for Virtual Port 2\n\nnone - none\n\n\ngamepad - Gamepad\n\n\nmouse - Mouse\n"
   },
   {
     "Command": "snes_faust.input.port3",
-    "Description": "Input device for Virtual Port 3\n\nnone - none\n\n\ngamepad - Gamepad\n"
+    "Description": "Input device for Virtual Port 3\n\nnone - none\n\n\ngamepad - Gamepad\n\n\nmouse - Mouse\n"
   },
   {
     "Command": "snes_faust.input.port4",
-    "Description": "Input device for Virtual Port 4\n\nnone - none\n\n\ngamepad - Gamepad\n"
+    "Description": "Input device for Virtual Port 4\n\nnone - none\n\n\ngamepad - Gamepad\n\n\nmouse - Mouse\n"
   },
   {
     "Command": "snes_faust.input.port5",
-    "Description": "Input device for Virtual Port 5\n\nnone - none\n\n\ngamepad - Gamepad\n"
+    "Description": "Input device for Virtual Port 5\n\nnone - none\n\n\ngamepad - Gamepad\n\n\nmouse - Mouse\n"
   },
   {
     "Command": "snes_faust.input.port6",
-    "Description": "Input device for Virtual Port 6\n\nnone - none\n\n\ngamepad - Gamepad\n"
+    "Description": "Input device for Virtual Port 6\n\nnone - none\n\n\ngamepad - Gamepad\n\n\nmouse - Mouse\n"
   },
   {
     "Command": "snes_faust.input.port7",
-    "Description": "Input device for Virtual Port 7\n\nnone - none\n\n\ngamepad - Gamepad\n"
+    "Description": "Input device for Virtual Port 7\n\nnone - none\n\n\ngamepad - Gamepad\n\n\nmouse - Mouse\n"
   },
   {
     "Command": "snes_faust.input.port8",
-    "Description": "Input device for Virtual Port 8\n\nnone - none\n\n\ngamepad - Gamepad\n"
+    "Description": "Input device for Virtual Port 8\n\nnone - none\n\n\ngamepad - Gamepad\n\n\nmouse - Mouse\n"
   },
   {
     "Command": "snes_faust.input.sport1.multitap",
@@ -2060,6 +2108,18 @@
     "Description": "Enable multitap on SNES port 2."
   },
   {
+    "Command": "snes_faust.msu1.resamp_quality",
+    "Description": "MSU1 sound quality.\n\nHigher values correspond to better SNR and better preservation of higher frequencies(\"brightness\"), at the cost of increased computational complexity and a negligible increase in latency.\n\n\n\nHigher values will also slightly increase the probability of sample clipping(relevant if Mednafen's volume control settings are set too high), due to increased (time-domain) ringing."
+  },
+  {
+    "Command": "snes_faust.region",
+    "Description": "Region of SNES to emulate.\n\nauto - Auto\n\n\nntsc - NTSC(North America/Japan)\n\n\npal - PAL(Europe)\n\n\nntsc_lie_auto - NTSC, but PPU bit as if \"auto\".\n\n\npal_lie_auto - PAL, but PPU bit as if \"auto\".\n\n\nntsc_lie_pal - NTSC, but PPU bit as if PAL.\n\n\npal_lie_ntsc - PAL, but PPU bit as if NTSC.\n"
+  },
+  {
+    "Command": "snes_faust.renderer",
+    "Description": "PPU renderer.\n\nIf you have only one CPU with one physical CPU core, select the single-threaded renderer for better performance.>\n\nst - Single-threaded\nPPU rendering is performed in the main emulation thread.\n\nmt - Multi-threaded\nPPU rendering is performed in a dedicated thread."
+  },
+  {
     "Command": "snes_faust.resamp_quality",
     "Description": "Sound quality.\n\nHigher values correspond to better SNR and better preservation of higher frequencies(\"brightness\"), at the cost of increased computational complexity and a negligible increase in latency.\n\n\n\nHigher values will also slightly increase the probability of sample clipping(relevant if Mednafen's volume control settings are set too high), due to increased (time-domain) ringing."
   },
@@ -2068,12 +2128,36 @@
     "Description": "Sound output rate tolerance.\n\nLower values correspond to better matching of the output rate of the resampler to the actual desired output rate, at the expense of increased RAM usage and poorer CPU cache utilization."
   },
   {
+    "Command": "snes_faust.slend",
+    "Description": "Last displayed scanline in NTSC mode."
+  },
+  {
+    "Command": "snes_faust.slendp",
+    "Description": "Last displayed scanline in PAL mode."
+  },
+  {
+    "Command": "snes_faust.slstart",
+    "Description": "First displayed scanline in NTSC mode."
+  },
+  {
+    "Command": "snes_faust.slstartp",
+    "Description": "First displayed scanline in PAL mode."
+  },
+  {
     "Command": "snes_faust.spex",
-    "Description": "Enable 1-frame speculative execution for video output.\n\nHack to reduce input->output video latency by 1 frame.  Enabling will increase CPU usage, and may cause video glitches(such as \"jerkiness\") in some oddball games, but most commercially-released games should be fine."
+    "Description": "Enable 1-frame speculative execution for video output.\n\nHack to reduce input-&gt;output video latency by 1 frame.  Enabling will increase CPU usage, and may cause video glitches(such as \"jerkiness\") in some oddball games, but most commercially-released games should be fine."
   },
   {
     "Command": "snes_faust.spex.sound",
     "Description": "Enable speculative execution for sound output too.\n\nOnly has an effect when speculative-execution for video output is enabled.  Will cause minor sound glitches in some games."
+  },
+  {
+    "Command": "snes_faust.superfx.clock_rate",
+    "Description": "Super FX clock rate, specified in percentage of normal.\n\nOverclocking the Super FX will cause or worsen attract mode desynchronization."
+  },
+  {
+    "Command": "snes_faust.superfx.icache",
+    "Description": "Enable SuperFX instruction cache emulation.\n\nEnabling will likely increase CPU usage."
   },
   {
     "Command": "snes_faust.enable",
@@ -2089,11 +2173,11 @@
   },
   {
     "Command": "snes_faust.shader",
-    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"<system>.videoip\" setting is ignored.\n\n\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances.</system"
+    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"&lt;system&gt;.videoip\" setting is ignored.>\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances."
   },
   {
     "Command": "snes_faust.shader.goat.fprog",
-    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen.  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
+    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen, unless it's set to \"blend\" or \"blend_rg\".  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
   },
   {
     "Command": "snes_faust.shader.goat.hdiv",
@@ -2117,7 +2201,7 @@
   },
   {
     "Command": "snes_faust.special",
-    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, for a sharper image, though the \"autoipsharper\" shader may provide better results.>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
   },
   {
     "Command": "snes_faust.stretch",
@@ -2149,7 +2233,7 @@
   },
   {
     "Command": "snes_faust.xscalefs",
-    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "snes_faust.yres",
@@ -2161,7 +2245,7 @@
   },
   {
     "Command": "snes_faust.yscalefs",
-    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "snes.apu.resamp_quality",
@@ -2209,11 +2293,11 @@
   },
   {
     "Command": "snes.shader",
-    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"<system>.videoip\" setting is ignored.\n\n\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances.</system"
+    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"&lt;system&gt;.videoip\" setting is ignored.>\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances."
   },
   {
     "Command": "snes.shader.goat.fprog",
-    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen.  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
+    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen, unless it's set to \"blend\" or \"blend_rg\".  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
   },
   {
     "Command": "snes.shader.goat.hdiv",
@@ -2237,7 +2321,7 @@
   },
   {
     "Command": "snes.special",
-    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, for a sharper image, though the \"autoipsharper\" shader may provide better results.>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
   },
   {
     "Command": "snes.stretch",
@@ -2269,7 +2353,7 @@
   },
   {
     "Command": "snes.xscalefs",
-    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "snes.yres",
@@ -2281,11 +2365,11 @@
   },
   {
     "Command": "snes.yscalefs",
-    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "vb.3dmode",
-    "Description": "3D mode.\n\nanaglyph - Anaglyph\nUsed in conjunction with classic dual-lens-color glasses.\n\ncscope - CyberScope\nIntended for use with the CyberScope 3D device.\n\nsidebyside - Side-by-Side\nThe left-eye image is displayed on the left, and the right-eye image is displayed on the right.\n\nvli - Vertical Line Interlaced\nVertical lines alternate between left view and right view.\n\nhli - Horizontal Line Interlaced\nHorizontal lines alternate between left view and right view."
+    "Description": "3D mode.\n\nanaglyph - Anaglyph\nUsed in conjunction with classic dual-lens-color glasses.\n\ncscope - CyberScope\nIntended for use with the CyberScope 3D device.\n\nsidebyside - Side-by-Side\nThe left-eye image is displayed on the left, and the right-eye image is displayed on the right.\n\nvli - Vertical Line Interlaced\nVertical lines alternate between left view and right view.\n\nhli - Horizontal Line Interlaced\nHorizontal lines alternate between left view and right view.\n\nleft - Left View Only\nShow only the left view.\n\nright - Right View Only\nShow only the right view."
   },
   {
     "Command": "vb.3dreverse",
@@ -2361,11 +2445,11 @@
   },
   {
     "Command": "vb.shader",
-    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"<system>.videoip\" setting is ignored.\n\n\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances.</system"
+    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"&lt;system&gt;.videoip\" setting is ignored.>\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances."
   },
   {
     "Command": "vb.shader.goat.fprog",
-    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen.  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
+    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen, unless it's set to \"blend\" or \"blend_rg\".  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
   },
   {
     "Command": "vb.shader.goat.hdiv",
@@ -2389,7 +2473,7 @@
   },
   {
     "Command": "vb.special",
-    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, for a sharper image, though the \"autoipsharper\" shader may provide better results.>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
   },
   {
     "Command": "vb.stretch",
@@ -2421,7 +2505,7 @@
   },
   {
     "Command": "vb.xscalefs",
-    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "vb.yres",
@@ -2433,7 +2517,7 @@
   },
   {
     "Command": "vb.yscalefs",
-    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "wswan.bday",
@@ -2489,11 +2573,11 @@
   },
   {
     "Command": "wswan.shader",
-    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"<system>.videoip\" setting is ignored.\n\n\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances.</system"
+    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"&lt;system&gt;.videoip\" setting is ignored.>\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances."
   },
   {
     "Command": "wswan.shader.goat.fprog",
-    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen.  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
+    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen, unless it's set to \"blend\" or \"blend_rg\".  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
   },
   {
     "Command": "wswan.shader.goat.hdiv",
@@ -2517,7 +2601,7 @@
   },
   {
     "Command": "wswan.special",
-    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, for a sharper image, though the \"autoipsharper\" shader may provide better results.>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
   },
   {
     "Command": "wswan.stretch",
@@ -2549,7 +2633,7 @@
   },
   {
     "Command": "wswan.xscalefs",
-    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "wswan.yres",
@@ -2561,15 +2645,35 @@
   },
   {
     "Command": "wswan.yscalefs",
-    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
+  },
+  {
+    "Command": "affinity.cd",
+    "Description": "CD read threads CPU affinity mask.\n\nSet to 0 to disable changing affinity."
+  },
+  {
+    "Command": "affinity.emu",
+    "Description": "Main emulation thread CPU affinity mask.\n\nSet to 0 to disable changing affinity."
+  },
+  {
+    "Command": "affinity.video",
+    "Description": "Video blitting thread CPU affinity mask.\n\nSet to 0 to disable changing affinity."
   },
   {
     "Command": "autosave",
-    "Description": "Automatic load/save state on game load/save.\n\nAutomatically save and load save states when a game is closed or loaded, respectively."
+    "Description": "Automatically load/save state on game load/close.\n\nAutomatically save and load save states when a game is closed or loaded, respectively."
   },
   {
     "Command": "cd.image_memcache",
-    "Description": "Cache entire CD images in memory.\n\nReads the entire CD image(s) into memory at startup(which will cause a small delay).  Can help obviate emulation hiccups due to emulated CD access.  May cause more harm than good on low memory systems, systems with swap enabled, and/or when the disc images in question are on a fast SSD."
+    "Description": "Cache entire CD images in memory.\n\nReads the entire CD image(s) into memory at startup(which will cause a small delay).  Can help obviate emulation hiccups due to emulated CD access.  May cause more harm than good on low memory systems, systems with swap enabled, and/or when the disc images in question are on a fast SSD.\n\n\n\n<font color=\"yellow\">Caution:</font> When using a 32-bit build of Mednafen on Windows or a 32-bit operating system, Mednafen may run out of address space(and error out, possibly in the middle of emulation) if this option is enabled when loading large disc sets(e.g. 3+ discs) via M3U files."
+  },
+  {
+    "Command": "cd.m3u.disc_limit",
+    "Description": "M3U total number of disc images limit."
+  },
+  {
+    "Command": "cd.m3u.recursion_limit",
+    "Description": "M3U recursion limit.\n\nA value of 0 effectively disables recursive loading of M3U files."
   },
   {
     "Command": "cheats",
@@ -2669,7 +2773,7 @@
   },
   {
     "Command": "fps.position",
-    "Description": "FPS display position.\n"
+    "Description": "FPS display position.\n\nupper_left - Upper left.\n\n\nupper_right - Upper right.\n\n\nupper_center - Upper center.\n\n\ncenter - Center.\n"
   },
   {
     "Command": "fps.scale",
@@ -2804,8 +2908,12 @@
     "Description": "Enable time synchronization(waiting) for frame blitting.\n\nDisable to reduce latency, at the cost of potentially increased video \"juddering\", with the maximum reduction in latency being about 1 video frame's time.\n\nWill work best with emulated systems that are not very computationally expensive to emulate, combined with running on a relatively fast CPU."
   },
   {
+    "Command": "video.cursorvis",
+    "Description": "Preferred window manager cursor visibility.\n\nThe cursor will still be forcibly hidden in relative mouse mode(used automatically when emulating a mouse input device in fullscreen mode or in windowed mode and input grabbing is toggled on), and forcibly shown in the debugger.>\n\nhidden - Hidden\n\n\nvisible - Visible\n"
+  },
+  {
     "Command": "video.deinterlacer",
-    "Description": "Deinterlacer to use for interlaced video.\n\nweave - Good for low-motion video; can be used in conjunction with negative <system>.scanlines setting values.\n</system>\n\nbob - Good for causing a headache.  All glory to Bob.\n\n\nbob_offset - Good for high-motion video, but is a bit flickery; reduces the subjective vertical resolution.\n"
+    "Description": "Deinterlacer to use for interlaced video.\n\nweave - Good for low-motion video; can be used in conjunction with negative <system>.scanlines setting values.\n</system>\n\nbob - Good for causing a headache.  All glory to Bob.\n\n\nbob_offset - Good for high-motion video, but is a bit flickery; reduces the subjective vertical resolution.\n\n\nblend - Blend fields together; reduces vertical and temporal resolution.\n\n\nblend_rg - Like the \"blend\" deinterlacer, but the blending is done in a manner that respects gamma, reducing unwanted brightness changes, at the cost of increased CPU usage.\n"
   },
   {
     "Command": "video.disable_composition",
@@ -2814,6 +2922,10 @@
   {
     "Command": "video.driver",
     "Description": "Video output driver.\n\ndefault - Default\nSelects the default video driver.  Currently, this is OpenGL for all platforms, but may change in the future if better platform-specific drivers are added.\n\nopengl - OpenGL\nAll video-related Mednafen features are available with this video driver.\n\nsoftfb - Software Blitting to Framebuffer\nSlower with lower-quality scaling than OpenGL, but if you don't have hardware-accelerated OpenGL rendering, it will probably be faster than software OpenGL rendering. Bilinear interpolation not available. OpenGL shaders do not work with this output method, of course."
+  },
+  {
+    "Command": "video.force_bbclear",
+    "Description": "Force backbuffer clear before drawing.\n\nEnabling may result in a noticeable negative impact on performance with the \"softfb\" video driver, and with the \"opengl\" video driver on underpowered GPUs."
   },
   {
     "Command": "video.frameskip",
@@ -2828,6 +2940,10 @@
     "Description": "Display to use with fullscreen mode.\n\nSpecify -1 to use the display on which the center of the window lies in windowed mode."
   },
   {
+    "Command": "video.glformat",
+    "Description": "Preferred source data pixel format for emulated video.\n\nUsing hicolor(RGB555/RGB565) formats may boost performance, but at the cost of color fidelity.  Noticeability of color degradation depends on the emulated system and features, such as custom palettes or NTSC blitter, being used.  When hicolor format support is not available for the emulation module or special scaler being used, Mednafen will automatically fall back to using a truecolor format.  Examine Mednafen's startup output to see the actual OpenGL texture formats being used.>\n\nauto - Auto\nCurrently the same as \"truecolor\", but may automatically select deeper color formats in the future.\n\ntruecolor - Truecolor, 16M colors\nRGB, 8 bits per color component.\n\nhicolor - Hicolor, 32K/64K colors\nRGB565 or RGB555, with priority given to RGB565.\n\nrgb565 - RGB565, 64K colors\n\n\nrgb555 - RGB555, 32K colors\n"
+  },
+  {
     "Command": "video.glvsync",
     "Description": "Attempt to synchronize OpenGL page flips to vertical retrace period.\n\nNote: Additionally, if the environment variable \"__GL_SYNC_TO_VBLANK\" does not exist, then it will be created and set to the value specified for this setting.  This has the effect of forcibly enabling or disabling vblank synchronization when running under Linux with NVidia's drivers."
   },
@@ -2836,20 +2952,16 @@
     "Description": "Enable (automatic) usage of this module."
   },
   {
-    "Command": "&lt;system&gt;.forcemono",
-    "Description": "Force monophonic sound output."
-  },
-  {
     "Command": "&lt;system&gt;.scanlines",
     "Description": "Enable scanlines with specified opacity.\n\nOpacity is specified in %; IE a value of \"100\" will give entirely black scanlines.\n\n\n\nNegative values are the same as positive values for non-interlaced video, but for interlaced video will cause the scanlines to be overlaid over the previous(if the video.deinterlacer setting is set to \"weave\", the default) field's lines."
   },
   {
     "Command": "&lt;system&gt;.shader",
-    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"<system>.videoip\" setting is ignored.\n\n\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances.</system"
+    "Description": "Enable specified OpenGL shader.\n\nObviously, this will only work with the OpenGL \"video.driver\" setting, and only on cards and OpenGL implementations that support shaders, otherwise you will get a black screen, or Mednafen may display an error message when starting up. When a shader is enabled, the \"&lt;system&gt;.videoip\" setting is ignored.>\n\nnone - None/Disabled\n\n\nautoip - Auto Interpolation\nWill automatically interpolate on each axis if the corresponding effective scaling factor is not an integer.\n\nautoipsharper - Sharper Auto Interpolation\nSame as \"autoip\", but when interpolation is done, it is done in a manner that will reduce blurriness if possible.\n\nscale2x - Scale2x\n\n\nsabr - SABR v3.0\nGPU-intensive.\n\nipsharper - Sharper bilinear interpolation.\n\n\nipxnoty - Linear interpolation on X axis only.\n\n\nipynotx - Linear interpolation on Y axis only.\n\n\nipxnotysharper - Sharper version of \"ipxnoty\".\n\n\nipynotxsharper - Sharper version of \"ipynotx\".\n\n\ngoat - Simple approximation of a color TV CRT look.\nIntended for fullscreen modes with a vertical resolution of around 1000 to 1500 pixels.  Doesn't simulate halation and electron beam energy distribution nuances."
   },
   {
     "Command": "&lt;system&gt;.shader.goat.fprog",
-    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen.  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
+    "Description": "Force interlaced video to be treated as progressive.\n\nWhen disabled, the default, the \"video.deinterlacer\" setting is effectively ignored with respect to what appears on the screen, unless it's set to \"blend\" or \"blend_rg\".  When enabled, it may be prudent to disable the scanlines effect controlled by the *.goat.slen setting, or else the scanline effect may look objectionable."
   },
   {
     "Command": "&lt;system&gt;.shader.goat.hdiv",
@@ -2873,7 +2985,7 @@
   },
   {
     "Command": "&lt;system&gt;.special",
-    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, at high resolutions(such as 1280x1024; nn2x(or nny2x) + bilinear interpolation + fullscreen stretching at this resolution looks quite nice).>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
+    "Description": "Enable specified special video scaler.\n\nThe destination rectangle is NOT altered by this setting, so if you have xscale and yscale set to \"2\", and try to use a 3x scaling filter like hq3x, the image is not going to look that great. The nearest-neighbor scalers are intended for use with bilinear interpolation enabled, for a sharper image, though the \"autoipsharper\" shader may provide better results.>\n\nnone - None/Disabled\n\n\nhq2x - hq2x\n\n\nhq3x - hq3x\n\n\nhq4x - hq4x\n\n\nscale2x - scale2x\n\n\nscale3x - scale3x\n\n\nscale4x - scale4x\n\n\n2xsai - 2xSaI\n\n\nsuper2xsai - Super 2xSaI\n\n\nsupereagle - Super Eagle\n\n\nnn2x - Nearest-neighbor 2x\n\n\nnn3x - Nearest-neighbor 3x\n\n\nnn4x - Nearest-neighbor 4x\n\n\nnny2x - Nearest-neighbor 2x, y axis only\n\n\nnny3x - Nearest-neighbor 3x, y axis only\n\n\nnny4x - Nearest-neighbor 4x, y axis only\n"
   },
   {
     "Command": "&lt;system&gt;.stretch",
@@ -2905,7 +3017,7 @@
   },
   {
     "Command": "&lt;system&gt;.xscalefs",
-    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the X axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
   },
   {
     "Command": "&lt;system&gt;.yres",
@@ -2917,7 +3029,11 @@
   },
   {
     "Command": "&lt;system&gt;.yscalefs",
-    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this settings to have any effect, the \"<system>.stretch\" setting must be set to \"0\".\n\n</system"
+    "Description": "Scaling factor for the Y axis in fullscreen mode.\n\nFor this setting to have any effect, the \"&lt;system&gt;.stretch\" setting must be set to \"0\"."
+  },
+  {
+    "Command": "&lt;system&gt;.forcemono",
+    "Description": "Force monophonic sound output."
   },
   {
     "Command": "&lt;system&gt;.debugger.disfontsize",

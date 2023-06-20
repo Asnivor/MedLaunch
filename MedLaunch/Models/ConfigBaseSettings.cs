@@ -219,6 +219,7 @@ namespace MedLaunch.Models
             GetDefaults_ss(cfb);
             GetDefaults_vb(cfb);
             GetDefaults_wswan(cfb);
+            GetDefaults_apple2(cfb);
 
             return cfb;
         }

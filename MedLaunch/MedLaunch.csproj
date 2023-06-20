@@ -358,6 +358,7 @@
     <Compile Include="Classes\VersionChecker.cs" />
     <Compile Include="Extensions\FocusExtension.cs" />
     <Compile Include="MedDataGrid.cs" />
+    <Compile Include="Models\ConfigBaseSettings.apple2.cs" />
     <Compile Include="Models\ConfigBaseSettings.gb.cs" />
     <Compile Include="Models\ConfigBaseSettings.gba.cs" />
     <Compile Include="Models\ConfigBaseSettings.gg.cs" />
