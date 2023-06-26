@@ -1,0 +1,1873 @@
+<?xml version="1.0"?>
+<!DOCTYPE datafile PUBLIC "-//Logiqx//DTD ROM Management Datafile//EN" "http://www.logiqx.com/Dats/datafile.dtd">
+<datafile>
+	<header>
+		<name>Apple - II (A2R) (Parent-Clone)</name>
+		<description>Apple - II (A2R) (Parent-Clone)</description>
+		<version>20220728-095306</version>
+		<date>20220728-095306</date>
+		<author>FakeShemp, MeguCocoa</author>
+		<url>www.no-intro.org</url>
+	</header>
+	<game name="1040WORKS (Disk 1) (Unknown) (Side A)">
+		<description>1040WORKS (Disk 1) (Unknown) (Side A)</description>
+		<rom name="1040WORKS (Disk 1) (Unknown) (Side A).a2r" size="25489045" crc="8952796a" md5="7e2ce4cb3771ce9e0ee46fe927475c04" sha1="f24d66c51e51a6a8715a907509f5a4e4b7263d87"/>
+	</game>
+	<game name="1040WORKS Utilities (Disk 1) (Unknown) (Side A)">
+		<description>1040WORKS Utilities (Disk 1) (Unknown) (Side A)</description>
+		<rom name="1040WORKS Utilities (Disk 1) (Unknown) (Side A).a2r" size="25302190" crc="ee7c45b9" md5="3c2bc5c453bbefc30d0e8f29be8fd82b" sha1="c056cda44fea23fa97096900c0dc57c49ba90f54"/>
+	</game>
+	<game name="3DChart! (Disk 1) (Unknown) (Side A)">
+		<description>3DChart! (Disk 1) (Unknown) (Side A)</description>
+		<rom name="3DChart! - Disk 1, Side A.a2r" size="26938316" crc="2fe84820" md5="d1e26873c0cef171b543a72aa94e22b8" sha1="68f07bec4479a0c58e12fc95d0a37f3cbd4ca37e"/>
+	</game>
+	<game name="3DChart! (Disk 1) (Unknown) (Side B)">
+		<description>3DChart! (Disk 1) (Unknown) (Side B)</description>
+		<rom name="3DChart! - Disk 1, Side B.a2r" size="20439553" crc="5ab1d65d" md5="e71793c66ef3c7c23c06e1624a2bfa78" sha1="53d6617d5447857ebeed191cd25c1c7a716fb2b0"/>
+	</game>
+	<game name="A City Dies Whenever Night Falls (Disk 1) (Unknown) (Side A)">
+		<description>A City Dies Whenever Night Falls (Disk 1) (Unknown) (Side A)</description>
+		<rom name="A City Dies Whenever Night Falls - Disk 1, Side A.a2r" size="16642832" crc="98b65d9e" md5="2fc13188753de2fa86476339325964b7" sha1="5635ee5a559b656fd2a0d041131255ee2599b121"/>
+	</game>
+	<game name="A Mind Forever Voyaging (Disk 1) (Unknown)">
+		<description>A Mind Forever Voyaging (Disk 1) (Unknown)</description>
+		<rom name="A Mind Forever Voyaging (Disk 1) (Unknown).a2r" size="13974114" crc="4e667e2f" md5="05eb708091e6f759fb190d6650b2150b" sha1="1fbf0af5371749c6507259e78f368d6c751391d7"/>
+	</game>
+	<game name="A Treasure Hunt of Facts - Prescription Disk (Unknown)">
+		<description>A Treasure Hunt of Facts - Prescription Disk (Unknown)</description>
+		<rom name="A Treasure Hunt of Facts - Prescription Disk (Unknown).a2r" size="18097196" crc="b3dd93cd" md5="7da9fe01fabedbdc84092ba3576efb39" sha1="96dc6f60031d22e1843345c86ab8b8d94c26a95d"/>
+	</game>
+	<game name="A Treasure Hunt of Facts - Prescription Disk (Alt) (Unknown)">
+		<description>A Treasure Hunt of Facts - Prescription Disk (Alt) (Unknown)</description>
+		<rom name="A Treasure Hunt of Facts - Prescription Disk (Alt) (Unknown).a2r" size="21683274" crc="37546384" md5="bf3394a1944cedf321fda8f329aa85bc" sha1="6b11afe2acc0c34dc59c45e69f484e62146ece83"/>
+	</game>
+	<game name="A Treasure Hunt of Facts - Skill-Building Disk (Unknown)">
+		<description>A Treasure Hunt of Facts - Skill-Building Disk (Unknown)</description>
+		<rom name="A Treasure Hunt of Facts - Skill-Building Disk (Unknown).a2r" size="25722784" crc="ce5ada55" md5="548d840534db0235bb2f40e9df3ebb2d" sha1="d256aef956834e4b24cda2d749496b7ddf53eb71"/>
+	</game>
+	<game name="A Treasure Hunt of Facts - Skill-Building Disk (Alt) (Unknown)">
+		<description>A Treasure Hunt of Facts - Skill-Building Disk (Alt) (Unknown)</description>
+		<rom name="A Treasure Hunt of Facts - Skill-Building Disk (Alt) (Unknown).a2r" size="19543271" crc="254183ff" md5="8fc899d07b90f69badb8075ab3dbea83" sha1="c5492d45ad5cf7c0ce0499928e81379dbcf0d9ac"/>
+	</game>
+	<game name="Airheart - 1 (Unknown)">
+		<description>Airheart - 1 (Unknown)</description>
+		<rom name="Airheart - 1 (Unknown).a2r" size="26915055" crc="7b559de5" md5="09ca87d896dc1bdd04f3d78cda6a66a0" sha1="f033a34139a37e6e1bdb39cef31d856544b95259"/>
+	</game>
+	<game name="Alpha Plot (Disk 1) (Unknown) (Side A)">
+		<description>Alpha Plot (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Alpha Plot (Disk 1) (Unknown) (Side A).a2r" size="27486416" crc="752841e2" md5="4f00737223609aacfb88ad5cfe75688b" sha1="94951aa72ddf016cca32cf3aa72111778230c75f"/>
+	</game>
+	<game name="AlphaChart! (Disk 1) (Unknown) (Side A)">
+		<description>AlphaChart! (Disk 1) (Unknown) (Side A)</description>
+		<rom name="AlphaChart! - Disk 1, Side A.a2r" size="26518401" crc="75d2a6bf" md5="1fce9a23d3dc36363c2a1954e71685bf" sha1="57dc2b4ec6078bf52acccdfe91e9741b3d922f55"/>
+	</game>
+	<game name="AlphaChart! (Disk 1) (Unknown) (Side B)">
+		<description>AlphaChart! (Disk 1) (Unknown) (Side B)</description>
+		<rom name="AlphaChart! - Disk 1, Side B.a2r" size="21242472" crc="c02355f6" md5="fb3efafc88c8d2a580cd9e3a60e8a62a" sha1="4f3a7d7b07d0edc77539bc567cdbbb27625fddd1"/>
+	</game>
+	<game name="Amazon - Boot (Unknown)">
+		<description>Amazon - Boot (Unknown)</description>
+		<rom name="Amazon - Boot (Unknown).a2r" size="27414375" crc="fc4eb516" md5="f1e3f814e323b6554b0f496f732d9ada" sha1="5409d9d75233bed9f82ee488cfbef153423f5b0a"/>
+	</game>
+	<game name="Amazon (Disk 1) (Unknown) (Side A)">
+		<description>Amazon (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Amazon (Disk 1) (Unknown) (Side A).a2r" size="27616712" crc="fdd57653" md5="0760dbfbc6c9612b78935e631a000f0e" sha1="51f8a0529261d7e779a20f044866f294918be8b4"/>
+	</game>
+	<game name="Amazon (Disk 1) (Unknown) (Side B)">
+		<description>Amazon (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Amazon (Disk 1) (Unknown) (Side B).a2r" size="26967412" crc="7f7c9553" md5="301b5e8974557b553a6a526a2be2a117" sha1="619a4205c523432cc1856fcbb1a0ff371405432a"/>
+	</game>
+	<game name="Amazon (Disk 2) (Unknown) (Side B)">
+		<description>Amazon (Disk 2) (Unknown) (Side B)</description>
+		<rom name="Amazon (Disk 2) (Unknown) (Side B).a2r" size="25154268" crc="0ea606f7" md5="1314bce20b9adc46501836642168e51a" sha1="d9150898b7cf5caa05ee7e002c12ef85d9a59b4e"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 1, Side A (Alt 2) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 1, Side A (Alt 2) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 1, Side A (Alt 2) (Unknown).a2r" size="26031276" crc="b442d1a2" md5="aadda09115e56767ba5770ff94289e74" sha1="307486c7ad8a769873edc5bf076b1f54f139603f"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 1, Side A (Alt) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 1, Side A (Alt) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 1, Side A (Alt) (Unknown).a2r" size="25423966" crc="e5e91ae0" md5="751b3733b9a95527819189c9179daa86" sha1="a9d407ada5833df8a8b259d8fff4249507e2dbb0"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 1, Side B (Alt 2) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 1, Side B (Alt 2) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 1, Side B (Alt 2) (Unknown).a2r" size="24665951" crc="6e991dc2" md5="5f24b08b7137c4c8d257c31b3336a2a3" sha1="bc5b338a563280913da9ca9247732ccd926551e4"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 1, Side B (Alt) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 1, Side B (Alt) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 1, Side B (Alt) (Unknown).a2r" size="24349378" crc="0f3da6dc" md5="28b1a3d7867cb1171fc247de1ccb5ae3" sha1="f9df60221b7a8ba43a4dbe5096aa99bed3576bb5"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 2, Side A (Alt 2) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 2, Side A (Alt 2) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 2, Side A (Alt 2) (Unknown).a2r" size="15959918" crc="08dcf761" md5="bea25f94064b9a2f9b68407f207d8bf0" sha1="2e0909efb84f3a47906041486263e8110bebf57d"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 2, Side A (Alt) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 2, Side A (Alt) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 2, Side A (Alt) (Unknown).a2r" size="25153159" crc="731cc89e" md5="ce9d38936e23fcccdee975f8bb1fe0a8" sha1="6c12af8305a0d87951588a9ce1efd3234846ac28"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 2, Side B (Alt 2) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 2, Side B (Alt 2) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 2, Side B (Alt 2) (Unknown).a2r" size="18588030" crc="e0b8d27d" md5="3b30ad5e59760bd7f58ce2550085d0cf" sha1="917c28b518e7b735b73a53c0b0de00f6c55d95dd"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 2, Side B (Alt) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 2, Side B (Alt) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 2, Side B (Alt) (Unknown).a2r" size="22374292" crc="23d3b024" md5="a6490774549da3889568ccc7411b10f6" sha1="43eff71925bb68be40ebdcbb3e06d3315f102a04"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 3, Side A (Alt 2) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 3, Side A (Alt 2) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 3, Side A (Alt 2) (Unknown).a2r" size="23730617" crc="dc4d02b1" md5="30aa74f2a26f66799182878df64ab7ac" sha1="5b92a356545a7baee4f030a51fa627bc0b943041"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 3, Side A (Alt) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 3, Side A (Alt) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 3, Side A (Alt) (Unknown).a2r" size="25605520" crc="81b79992" md5="0b2b0a95ff8eceb8931f041ca5d3e30d" sha1="ca5e648ce2f67daf19b67bdd2d5332013fe3ae69"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 3, Side B (Alt 2) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 3, Side B (Alt 2) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 3, Side B (Alt 2) (Unknown).a2r" size="22148161" crc="13092006" md5="57956e819d3a0ea647f92dc1d909a2a5" sha1="18e112a601e6733c3c22c475646fea537f9b7750"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 3, Side B (Alt) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 3, Side B (Alt) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 3, Side B (Alt) (Unknown).a2r" size="22540173" crc="9ebf4d6f" md5="44d3a871a6d49ce4f149475b85a358c1" sha1="2b7024b2c2a16a5f6bfa08e518021de36efe283f"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 4, Side A (Alt 2) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 4, Side A (Alt 2) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 4, Side A (Alt 2) (Unknown).a2r" size="25421558" crc="157fabc5" md5="8a2fd66b6fdc36751b6c5adcf80366e5" sha1="6945ef154978b6834380701a808a66afa1033d76"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 4, Side A (Alt) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 4, Side A (Alt) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 4, Side A (Alt) (Unknown).a2r" size="25082480" crc="c71d97d2" md5="83923072e1a448d10d3a9314e7f2e836" sha1="357d50048590136b4b0bc06dd4d30ffc9a3e44db"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 4, Side B (Alt 2) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 4, Side B (Alt 2) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 4, Side B (Alt 2) (Unknown).a2r" size="15418104" crc="6141fb99" md5="50633dba7185c9885f941895d2d8a349" sha1="66918cf879132c8ee7e4563306ba03f24ff90520"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 4, Side B (Alt) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 4, Side B (Alt) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 4, Side B (Alt) (Unknown).a2r" size="22030005" crc="3181a6dd" md5="4dfcc506aaa37d3673ab9dab404b02ab" sha1="86d46138284c2b8f8f08187a4e5bd7a96bf4586c"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 5, Side A (Alt 2) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 5, Side A (Alt 2) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 5, Side A (Alt 2) (Unknown).a2r" size="23067393" crc="a797ac17" md5="a99df7112fdb09a3c45c539d9fc1ba39" sha1="cb0a59b855db778305489fc046d38970a1d16178"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 5, Side A (Alt) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 5, Side A (Alt) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 5, Side A (Alt) (Unknown).a2r" size="22703147" crc="813c0745" md5="b2c4029b44e1367fcc742f7714579118" sha1="99e61df8524594e91f8a594933733b3745204149"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 5, Side B (Alt 2) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 5, Side B (Alt 2) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 5, Side B (Alt 2) (Unknown).a2r" size="15114577" crc="2f218b9e" md5="33d9246da9f50db5eb7fffbcfc12cd73" sha1="47b2ffb328abba4bd207cf89c4ff14aed96e90e9"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money - Disk 5, Side B (Alt) (Unknown)">
+		<description>Andrew Tobias Managing Your Money - Disk 5, Side B (Alt) (Unknown)</description>
+		<rom name="Andrew Tobias Managing Your Money - Disk 5, Side B (Alt) (Unknown).a2r" size="24683007" crc="1c8bab0a" md5="5751d1e5e2b5427d155ea4fa863a7c8d" sha1="234034a815b9744b0d0d9173c5a417b87658310f"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money (Disk 1) (Unknown) (Side A)">
+		<description>Andrew Tobias Managing Your Money (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Andrew Tobias Managing Your Money (Disk 1) (Unknown) (Side A).a2r" size="15807017" crc="4849ec5a" md5="981dbf338869085e1cb8aeabf1906b16" sha1="8706d97d464798b7f506402dbc6fb3a38edf6a3d"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money (Disk 1) (Unknown) (Side B)">
+		<description>Andrew Tobias Managing Your Money (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Andrew Tobias Managing Your Money (Disk 1) (Unknown) (Side B).a2r" size="23605769" crc="13bb37e0" md5="206f1ff2cfa071589b31d2aef0e960bb" sha1="bc23075d5b85610d5c71b7959c8ef22d4aeb0f00"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money (Disk 2) (Unknown) (Side A)">
+		<description>Andrew Tobias Managing Your Money (Disk 2) (Unknown) (Side A)</description>
+		<rom name="Andrew Tobias Managing Your Money (Disk 2) (Unknown) (Side A).a2r" size="16096873" crc="5571c862" md5="2ffeba35afb1651605efacfeeaf48159" sha1="81674244dddbb0567953bc22f70345c9ecb8a270"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money (Disk 2) (Unknown) (Side B)">
+		<description>Andrew Tobias Managing Your Money (Disk 2) (Unknown) (Side B)</description>
+		<rom name="Andrew Tobias Managing Your Money (Disk 2) (Unknown) (Side B).a2r" size="13700292" crc="35e9cba3" md5="36e72f3a02ce9052959c3805e5da52fc" sha1="3a63e8e20f48318c163b58d95a898e0a55a79a73"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money (Disk 3) (Unknown) (Side A)">
+		<description>Andrew Tobias Managing Your Money (Disk 3) (Unknown) (Side A)</description>
+		<rom name="Andrew Tobias Managing Your Money (Disk 3) (Unknown) (Side A).a2r" size="16035398" crc="1fbb767a" md5="0b6a90731f1aaf892e4a500e0639af6f" sha1="8ecc7dfbe3386e103c159dfd6a4b9564bb6dec98"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money (Disk 3) (Unknown) (Side B)">
+		<description>Andrew Tobias Managing Your Money (Disk 3) (Unknown) (Side B)</description>
+		<rom name="Andrew Tobias Managing Your Money (Disk 3) (Unknown) (Side B).a2r" size="14214994" crc="8d7734e3" md5="1f56115947fd89854099e7d03dccff7a" sha1="e0cdbc34bf9916b7bc507a2338762289149ddf5d"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money (Disk 4) (Unknown) (Side A)">
+		<description>Andrew Tobias Managing Your Money (Disk 4) (Unknown) (Side A)</description>
+		<rom name="Andrew Tobias Managing Your Money (Disk 4) (Unknown) (Side A).a2r" size="15904318" crc="eb6a7590" md5="558d501c12b3c0ef10007e716e78c554" sha1="c508657c3850ef6afe52c2dda1f092619ec9ae07"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money (Disk 4) (Unknown) (Side B)">
+		<description>Andrew Tobias Managing Your Money (Disk 4) (Unknown) (Side B)</description>
+		<rom name="Andrew Tobias Managing Your Money (Disk 4) (Unknown) (Side B).a2r" size="14751192" crc="5472bf42" md5="d2b30747cf6260d28594d4631a23cb95" sha1="c55947eb482c28172c7d6982bee3acd81f6fbb7f"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money (Disk 5) (Unknown) (Side A)">
+		<description>Andrew Tobias Managing Your Money (Disk 5) (Unknown) (Side A)</description>
+		<rom name="Andrew Tobias Managing Your Money (Disk 5) (Unknown) (Side A).a2r" size="15500002" crc="456f8bbf" md5="ce23ed0135c09f7e2e0ada113fd2f604" sha1="750c67b9502094635dec56a642e2269f0c968460"/>
+	</game>
+	<game name="Andrew Tobias Managing Your Money (Disk 5) (Unknown) (Side B)">
+		<description>Andrew Tobias Managing Your Money (Disk 5) (Unknown) (Side B)</description>
+		<rom name="Andrew Tobias Managing Your Money (Disk 5) (Unknown) (Side B).a2r" size="16993879" crc="57dfeb10" md5="276c169c51f3eefa79d679306372676e" sha1="35149108c39d077a6d7da56374a67c7345bb9a8c"/>
+	</game>
+	<game name="Animate - Animation Library (Unknown)">
+		<description>Animate - Animation Library (Unknown)</description>
+		<rom name="Animate - Animation Library (Unknown).a2r" size="21649000" crc="0542b367" md5="52fe8dfd06267b5e38740f77a42d152c" sha1="421aaa7935d67b3af3babf5f5b53baa9b62616f8"/>
+	</game>
+	<game name="Animate - Background Library (Unknown)">
+		<description>Animate - Background Library (Unknown)</description>
+		<rom name="Animate - Background Library (Unknown).a2r" size="17633428" crc="b5c054ef" md5="20951de9f88e1d991490cc115ef7fd73" sha1="1c0d3662566505968665cc0e06f7047e54014ee2"/>
+	</game>
+	<game name="Animate - Boot A (Unknown)">
+		<description>Animate - Boot A (Unknown)</description>
+		<rom name="Animate - Boot A (Unknown).a2r" size="27042517" crc="73d3c924" md5="8acdc83fd2e784f9f9ea87222d94d400" sha1="3fd2934d8532da2c82d6e5d3a12fd39cc3cf0126"/>
+	</game>
+	<game name="Animate - Boot B (Unknown)">
+		<description>Animate - Boot B (Unknown)</description>
+		<rom name="Animate - Boot B (Unknown).a2r" size="23058732" crc="7df47744" md5="756574850b8b2c2ce793662a9a2ad539" sha1="157479fea8b340405ac2cedb3f25baddf58708ff"/>
+	</game>
+	<game name="Animate - Demonstration Show (Unknown)">
+		<description>Animate - Demonstration Show (Unknown)</description>
+		<rom name="Animate - Demonstration Show (Unknown).a2r" size="22891350" crc="eeae3e20" md5="c40624895b69b24dc8ad40aee5dd37ae" sha1="0d503d90f10a8f0d33c3ac4263bb3a4b93400474"/>
+	</game>
+	<game name="Animate - Programmer's Aids (Unknown)">
+		<description>Animate - Programmer's Aids (Unknown)</description>
+		<rom name="Animate - Programmer's Aids (Unknown).a2r" size="26004287" crc="65a82303" md5="7a138d41e24b8d53c402654b492b3202" sha1="cf6c9404913423a21852e4934496eea9d2ee82fd"/>
+	</game>
+	<game name="Apple Pascal - Apple 0 (Unknown)">
+		<description>Apple Pascal - Apple 0 (Unknown)</description>
+		<rom name="Apple Pascal - Apple 0.a2r" size="19333210" crc="6b0816f2" md5="b68cfa1f9f7e46a1d4e827155fd2ef76" sha1="d2c97cb4932fe05880b533e2402f09ae37d78b93"/>
+	</game>
+	<game name="Apple Pascal - Apple 1 (Unknown)">
+		<description>Apple Pascal - Apple 1 (Unknown)</description>
+		<rom name="Apple Pascal - Apple 1.a2r" size="20716880" crc="5044b67e" md5="166df8f6f55c6176883efedf575c9add" sha1="5ecdf8d8c03153c1660d6f11c7b33566ea351673"/>
+	</game>
+	<game name="Apple Pascal - Apple 2 (Unknown)">
+		<description>Apple Pascal - Apple 2 (Unknown)</description>
+		<rom name="Apple Pascal - Apple 2.a2r" size="23235203" crc="59db5610" md5="79a8eb0e1325c96db9fb3cc94c72fddf" sha1="94f5799e96ea65aa422a37a75323938a9b1318ec"/>
+	</game>
+	<game name="AppleWorks - Dictionary (Unknown)">
+		<description>AppleWorks - Dictionary (Unknown)</description>
+		<rom name="AppleWorks - Dictionary (Unknown).a2r" size="27750974" crc="6602b864" md5="68c20aef5b29ed747f640dc52a6ed852" sha1="08a07657bac13c90ac3f66a680591766d6452950"/>
+	</game>
+	<game name="AppleWorks - Dictionary (Alt) (Unknown)">
+		<description>AppleWorks - Dictionary (Alt) (Unknown)</description>
+		<rom name="AppleWorks - Dictionary (Alt) (Unknown).a2r" size="17854915" crc="519e3d3a" md5="c015a3b877cff89fc73b25e3109fa598" sha1="417f36567364ea6ef887382436a297ceaf65b240"/>
+	</game>
+	<game name="AppleWorks - Spreadsheet (Unknown)">
+		<description>AppleWorks - Spreadsheet (Unknown)</description>
+		<rom name="AppleWorks - Spreadsheet (Unknown).a2r" size="24122787" crc="6b6c2848" md5="a35545a0eed314c39fb6154ebcd7f521" sha1="21ac739946e9e2f21527a4a5c2aaa277972649b6"/>
+	</game>
+	<game name="AppleWorks - Spreadsheet (Alt) (Unknown)">
+		<description>AppleWorks - Spreadsheet (Alt) (Unknown)</description>
+		<rom name="AppleWorks - Spreadsheet (Alt) (Unknown).a2r" size="23622247" crc="9b4bac6e" md5="25d73b7de06dfddc0180a0d0b0690aa0" sha1="30d81b8f594a5adc544dd753242310265984fc79"/>
+	</game>
+	<game name="AppleWorks - StartUp (Unknown)">
+		<description>AppleWorks - StartUp (Unknown)</description>
+		<rom name="AppleWorks - StartUp (Unknown).a2r" size="25568428" crc="5bf7a127" md5="e356ca36022604039c70e7b3abde3328" sha1="fb526a92ff72173b0f2e38df2ceb9ba56ce17f01"/>
+	</game>
+	<game name="AppleWorks - Word Processor and Data Base (Unknown)">
+		<description>AppleWorks - Word Processor and Data Base (Unknown)</description>
+		<rom name="AppleWorks - Word Processor and Data Base (Unknown).a2r" size="18522886" crc="cd56fbb2" md5="10c8841ca53a29910ece5dd403d82bbf" sha1="f928284f6d5eb347ba87195f2ef81e71eba328fd"/>
+	</game>
+	<game name="AppleWorks 2 Expander (Disk 1) (Unknown) (Side A)">
+		<description>AppleWorks 2 Expander (Disk 1) (Unknown) (Side A)</description>
+		<rom name="AppleWorks 2 Expander (Disk 1) (Unknown) (Side A).a2r" size="22462169" crc="13d74da4" md5="d9aacadab5d55b03c7bb12b2530dc327" sha1="4b253abfb8b4a2f09eecc03588a78ab53195ffb2"/>
+	</game>
+	<game name="AppleWorks Program Word Processor and Data Base (Disk 1) (Unknown) (Side A)">
+		<description>AppleWorks Program Word Processor and Data Base (Disk 1) (Unknown) (Side A)</description>
+		<rom name="AppleWorks Program Word Processor and Data Base (Disk 1) (Unknown) (Side A).a2r" size="24340807" crc="e93c0265" md5="c50fd296af68e41bf074b048b9f62076" sha1="70ebace141afc24d11bc6c99f20f10aebdc76f7b"/>
+	</game>
+	<game name="AppleWorks Sample Files (Disk 1) (Unknown) (Side A)">
+		<description>AppleWorks Sample Files (Disk 1) (Unknown) (Side A)</description>
+		<rom name="AppleWorks Sample Files (Disk 1) (Unknown) (Side A).a2r" size="13778848" crc="5d324b94" md5="79b0a31dc2c2b0963cfc7040ba5dbaff" sha1="abcfbd499a9d9cadc4e9ee225977612bc0c553a5"/>
+	</game>
+	<game name="AppleWorks Sample Files (Disk 1) (Unknown) (Side A) (Alt 2)">
+		<description>AppleWorks Sample Files (Disk 1) (Unknown) (Side A) (Alt 2)</description>
+		<rom name="AppleWorks Sample Files (Disk 1) (Unknown) (Side A) (Alt 2).a2r" size="24730056" crc="aaa92947" md5="78df4d790f34ae444e943e6c111c3c08" sha1="1f09f1ee874b7f1b8840e3306f29c584b2c0d32d"/>
+	</game>
+	<game name="AppleWorks Sample Files (Disk 1) (Unknown) (Side B)">
+		<description>AppleWorks Sample Files (Disk 1) (Unknown) (Side B)</description>
+		<rom name="AppleWorks Sample Files (Disk 1) (Unknown) (Side B).a2r" size="23628863" crc="2cd1eb81" md5="4fc0b666584b667841f6738e43f149c8" sha1="f524bcfe76896373446147ea13e92cb81434076c"/>
+	</game>
+	<game name="AppleWorks Sample Files (Disk 1) (Alt) (Unknown) (Side A)">
+		<description>AppleWorks Sample Files (Disk 1) (Alt) (Unknown) (Side A)</description>
+		<rom name="AppleWorks Sample Files (Disk 1) (Alt) (Unknown) (Side A).a2r" size="14695509" crc="30ff5028" md5="36450a45c45770600f5f0709b85adedd" sha1="33b4b274eef3200eea3eb199d3e94300715187e6"/>
+	</game>
+	<game name="AppleWorks StartUp (Disk 1) (Unknown) (Side A)">
+		<description>AppleWorks StartUp (Disk 1) (Unknown) (Side A)</description>
+		<rom name="AppleWorks StartUp (Disk 1) (Unknown) (Side A).a2r" size="17437852" crc="44660d68" md5="802b1b4fe2f5d979fd71f18d74d19f3e" sha1="70c0ae9eff599562bbec516b319320e1e3a7b561"/>
+	</game>
+	<game name="AppleWorks Training (Disk 1) (Unknown) (Side A)">
+		<description>AppleWorks Training (Disk 1) (Unknown) (Side A)</description>
+		<rom name="AppleWorks Training (Disk 1) (Unknown) (Side A).a2r" size="26694798" crc="26975732" md5="005eb4f1031b2c78dcda19725f2c9cd5" sha1="234b8c50f9b62487f1fea50e8be2cbc02a52c934"/>
+	</game>
+	<game name="AppleWorks Training (Disk 1) (Unknown) (Side B)">
+		<description>AppleWorks Training (Disk 1) (Unknown) (Side B)</description>
+		<rom name="AppleWorks Training (Disk 1) (Unknown) (Side B).a2r" size="22589044" crc="47106db7" md5="c730f69af620af6735d503c64f32855e" sha1="256f4f6b76d1e1c01fda9a8b216983b5b9a8ec9e"/>
+	</game>
+	<game name="Archon (Disk 1) (Unknown) (Side A)">
+		<description>Archon (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Archon (Disk 1) (Unknown) (Side A).a2r" size="21381207" crc="47cf68fb" md5="76db13094b3a6cc1fea872c8ce61e38f" sha1="3a0a163ecc4e7b74a2fef21f6190f777e2be40df"/>
+	</game>
+	<game name="Astro-Gover (Disk 1) (Unknown) (Side A)">
+		<description>Astro-Gover (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Astro-Gover (Disk 1) (Unknown) (Side A).a2r" size="21039634" crc="d1b97352" md5="384c72587a8662c465e645bf2d992c51" sha1="811a68418aa1d93b4160b2d763af5c8d01b3f1e6"/>
+	</game>
+	<game name="Autoduel (Disk 1) (Unknown) (Side A)">
+		<description>Autoduel (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Autoduel (Disk 1) (Unknown) (Side A).a2r" size="24095524" crc="9aae6bf1" md5="950202fd9e97ffbe0c0e5233968dbba3" sha1="8642fcc84fe81fc69e9fff83c261fc794baac050"/>
+	</game>
+	<game name="Autoduel (Disk 1) (Unknown) (Side B)">
+		<description>Autoduel (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Autoduel (Disk 1) (Unknown) (Side B).a2r" size="28575558" crc="f15926bf" md5="7f87d14ac675663a4f8bd491b8579671" sha1="c966ebdccf1450f69a8ce0061a180bb007a7a6c5"/>
+	</game>
+	<game name="AW 3 Expander (Disk 1) (Unknown) (Side A)">
+		<description>AW 3 Expander (Disk 1) (Unknown) (Side A)</description>
+		<rom name="AW 3 Expander (Disk 1) (Unknown) (Side A).a2r" size="26701465" crc="f4885770" md5="84e0e3f5e0ff6c7c2e1e5864a9011245" sha1="0f6c59f1a0dbecb554a687d16a8c0d3fdf73f86a"/>
+	</game>
+	<game name="AW 3 Expander (Disk 1) (Unknown) (Side B)">
+		<description>AW 3 Expander (Disk 1) (Unknown) (Side B)</description>
+		<rom name="AW 3 Expander (Disk 1) (Unknown) (Side B).a2r" size="23373710" crc="71c8d497" md5="d01b7b02399530d877131adc5feb1c23" sha1="2bbab26e32cab30e6ed7ce50f775a3f32484dc3d"/>
+	</game>
+	<game name="Axis Assassin (Disk 1) (Unknown) (Side A)">
+		<description>Axis Assassin (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Axis Assassin (Disk 1) (Unknown) (Side A).a2r" size="24669247" crc="8446c162" md5="035b83793feef9f60a10b6e5d7940dfc" sha1="65a4dbd18a19ade721a5c382b4b24fe1683ddbe0"/>
+	</game>
+	<game name="Bank Street Filer - Program Disk (Unknown)">
+		<description>Bank Street Filer - Program Disk (Unknown)</description>
+		<rom name="Bank Street Filer - Program Disk (Unknown).a2r" size="23027555" crc="dbcb2ca2" md5="715ff20e6e8702c481f49e1e0dad4fb2" sha1="2c6e5c548c1d51881ef4219fc84bd5c13a93a720"/>
+	</game>
+	<game name="Bank Street Writer (Disk 1) (Unknown) (Side A)">
+		<description>Bank Street Writer (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Bank Street Writer (Disk 1) (Unknown) (Side A).a2r" size="25853364" crc="9db70fa0" md5="0c07e361c2fdaa412fdf6a7a46b20c74" sha1="9373d2dea7515959222d80047ca8f80d82c05e3e"/>
+	</game>
+	<game name="Bank Street Writer (Disk 1) (Unknown) (Side B)">
+		<description>Bank Street Writer (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Bank Street Writer (Disk 1) (Unknown) (Side B).a2r" size="25940428" crc="0025eb28" md5="4ff6c14419c878443b49823191f0531e" sha1="7be566833568a1f62db0b46268e44d30a00d2ac6"/>
+	</game>
+	<game name="Bank Street Writer (Disk 1) (Alt) (Unknown) (Side A)">
+		<description>Bank Street Writer (Disk 1) (Alt) (Unknown) (Side A)</description>
+		<rom name="Bank Street Writer (Disk 1) (Alt) (Unknown) (Side A).a2r" size="25768659" crc="da574854" md5="3f977b81f3f7b4bb070a4b47c08ddb96" sha1="69781812bad70d2db713019e14298f3f1f02b18b"/>
+	</game>
+	<game name="Barron's Computer Study Program For The SAT (Disk 1) (Unknown) (Side A)">
+		<description>Barron's Computer Study Program For The SAT (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Barron's Computer Study Program For The SAT (Disk 1) (Unknown) (Side A).a2r" size="17627384" crc="45b89b1d" md5="18a1aee5cd6b39b0569c4cc7aafdd1ea" sha1="36847b5b76bb350ffeae74f428bb52ba7883879f"/>
+	</game>
+	<game name="Barron's Computer Study Program For The SAT (Disk 1) (Unknown) (Side B)">
+		<description>Barron's Computer Study Program For The SAT (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Barron's Computer Study Program For The SAT (Disk 1) (Unknown) (Side B).a2r" size="16601467" crc="2e262f11" md5="159664fb10785e05a7dc6a3ba3a31edd" sha1="45d5d3a5668770bc28dfa8d443c643ea1bd67b18"/>
+	</game>
+	<game name="Barron's Computer Study Program For The SAT (Disk 2) (Unknown) (Side A)">
+		<description>Barron's Computer Study Program For The SAT (Disk 2) (Unknown) (Side A)</description>
+		<rom name="Barron's Computer Study Program For The SAT (Disk 2) (Unknown) (Side A).a2r" size="26563226" crc="60100e04" md5="695812ee82ed6ce0fa706eea68d83fd4" sha1="2d690b053597d79cab549ad15386a5c007cdd254"/>
+	</game>
+	<game name="Barron's Computer Study Program For The SAT (Disk 2) (Unknown) (Side B)">
+		<description>Barron's Computer Study Program For The SAT (Disk 2) (Unknown) (Side B)</description>
+		<rom name="Barron's Computer Study Program For The SAT (Disk 2) (Unknown) (Side B).a2r" size="16281609" crc="82340448" md5="f1747b58045a0864b76347973c7189e3" sha1="1b8ba3311b82231e95988bbf55f21375a3538a38"/>
+	</game>
+	<game name="Barron's Computer Study Program For The SAT (Disk 3) (Unknown) (Side A)">
+		<description>Barron's Computer Study Program For The SAT (Disk 3) (Unknown) (Side A)</description>
+		<rom name="Barron's Computer Study Program For The SAT (Disk 3) (Unknown) (Side A).a2r" size="17410266" crc="5a814a09" md5="d17441cd78a1dd7111ccd5f12258d835" sha1="5a12e7a148ceb2ee51cadd35dff24468abf7aa41"/>
+	</game>
+	<game name="Barron's Computer Study Program For The SAT (Disk 3) (Unknown) (Side B)">
+		<description>Barron's Computer Study Program For The SAT (Disk 3) (Unknown) (Side B)</description>
+		<rom name="Barron's Computer Study Program For The SAT (Disk 3) (Unknown) (Side B).a2r" size="21679053" crc="5f47dd30" md5="b9ed1015f59c24b422bbd8106b264fae" sha1="80cf024ab13a3d50ae7b72ace971c55ac48eb420"/>
+	</game>
+	<game name="BASIC Computer Programs for the Home (Disk 1) (Unknown) (Side A)">
+		<description>BASIC Computer Programs for the Home (Disk 1) (Unknown) (Side A)</description>
+		<rom name="BASIC Computer Programs for the Home (Disk 1) (Unknown) (Side A).a2r" size="16944172" crc="51ebd547" md5="fb023301d580be032d83dbd2a499d7c1" sha1="046b16720fc668a74c08ac51c6b1afb7744a2960"/>
+	</game>
+	<game name="BASIC Computer Programs for the Home (Disk 1) (Unknown) (Side B)">
+		<description>BASIC Computer Programs for the Home (Disk 1) (Unknown) (Side B)</description>
+		<rom name="BASIC Computer Programs for the Home (Disk 1) (Unknown) (Side B).a2r" size="17834864" crc="7927b742" md5="12613a0f37fa5027a0f0f219c7a67132" sha1="52ef6cacdd7d59110fe20c561cf9d6a7b740b4a6"/>
+	</game>
+	<game name="Beach-head II (Disk 1) (Unknown) (Side A)">
+		<description>Beach-head II (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Beach-head II (Disk 1) (Unknown) (Side A).a2r" size="23861975" crc="ea2c1da5" md5="e244ba3838bd2af5fa2daae7e7c0b6bd" sha1="c6ac1985176ac1c7143be98685171615f4a027ab"/>
+	</game>
+	<game name="Beagle Bag (Disk 1) (Unknown) (Side A)">
+		<description>Beagle Bag (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Beagle Bag (Disk 1) (Unknown) (Side A).a2r" size="28471909" crc="0d1b5b50" md5="0fd33c9fd82f86cc310d07ce0f6f6a35" sha1="fe610bd7524858cdc0909b38ad4d5a6b2b961254"/>
+	</game>
+	<game name="BeagleWorks (Disk 1) (Unknown)">
+		<description>BeagleWorks (Disk 1) (Unknown)</description>
+		<rom name="BeagleWorks (Disk 1) (Unknown).a2r" size="22346957" crc="d88b8a76" md5="29810797aec8546c90d43397705daa97" sha1="cf25440d645ddf2609e4de2cd28747d431cb9e17"/>
+	</game>
+	<game name="BeagleWorks (Disk 2) (Unknown)">
+		<description>BeagleWorks (Disk 2) (Unknown)</description>
+		<rom name="BeagleWorks (Disk 2) (Unknown).a2r" size="22284794" crc="d41ceba2" md5="fcd202792dc4ddbf8006e500062a63e5" sha1="8b92c6846a4cfe4780d61bc7b96352deac162046"/>
+	</game>
+	<game name="BeagleWorks (Disk 3) (Unknown)">
+		<description>BeagleWorks (Disk 3) (Unknown)</description>
+		<rom name="BeagleWorks (Disk 3) (Unknown).a2r" size="22336042" crc="38cbf03d" md5="a424f5772d2ade2415e0c895769b8670" sha1="f466c5c31e62cc4ad91b10f7d576f2a40d9b62c0"/>
+	</game>
+	<game name="Beyond Castle Wolfenstein (USA)">
+		<description>Beyond Castle Wolfenstein (USA)</description>
+		<rom name="Beyond Castle Wolfenstein (USA).a2r" size="25223659" crc="dbfac109" md5="2e2f74408125bd385f114f427a5af315" sha1="bd43ea9d8e5eccffc181dfd9dce93a30f97c5ca3"/>
+	</game>
+	<game name="Beyond Castle Wolfenstein (Disk 1) (Unknown) (Side A)">
+		<description>Beyond Castle Wolfenstein (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Beyond Castle Wolfenstein (Disk 1) (Unknown) (Side A).a2r" size="25743891" crc="91a00e7f" md5="74036ee2a6ecdd62ddc8271f45f4d189" sha1="c818fb4d853d6f11f6137d052b6200c65935c30c"/>
+	</game>
+	<game name="Big Bird's Special Delivery (Disk 1) (Unknown) (Side A)">
+		<description>Big Bird's Special Delivery (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Big Bird's Special Delivery (Disk 1) (Unknown) (Side A).a2r" size="14739001" crc="cb35ef4a" md5="813373738ef8efff52ccc9bfc29e4068" sha1="00d498d41c4231e31570b04105fb0d7df2266b57"/>
+	</game>
+	<game name="Borrowed Time (Disk 1) (Unknown) (Side A)">
+		<description>Borrowed Time (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Borrowed Time (Disk 1) (Unknown) (Side A).a2r" size="28460848" crc="0bd7402e" md5="d6e66b2a1199e7ad05091666c26cd70c" sha1="7ec05a5ea31ba0f0dbbf5ad990dfa5e119af2f06"/>
+	</game>
+	<game name="Borrowed Time (Disk 1) (Unknown) (Side B)">
+		<description>Borrowed Time (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Borrowed Time (Disk 1) (Unknown) (Side B).a2r" size="28136484" crc="0729e912" md5="936bc16c33296e6c5fd3e25dc4772027" sha1="4dcf4b247da48c563008d9f0fde7c1ea7918de76"/>
+	</game>
+	<game name="Bridge Partner (Disk 1) (Unknown) (Side A)">
+		<description>Bridge Partner (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Bridge Partner - Disk 1, Side A.a2r" size="28390537" crc="e008f0f3" md5="331b4b54edc543b32428f9c2d4a772b1" sha1="5f431bf5cb3c18f803ac51410ce194907db3f604"/>
+	</game>
+	<game name="Building Reading Skills (Disk 1) (Unknown) (Side A)">
+		<description>Building Reading Skills (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Building Reading Skills (Disk 1) (Unknown) (Side A).a2r" size="21026613" crc="ff647950" md5="1d395a4c4ff5394cc0bb6b79611aaac1" sha1="23d8328fde37c37fe615468b87e54a07de1fb41b"/>
+	</game>
+	<game name="Centauri Alliance - Roster (Unknown)">
+		<description>Centauri Alliance - Roster (Unknown)</description>
+		<rom name="Centauri Alliance - Roster (Unknown).a2r" size="28871662" crc="540916e0" md5="96ebfe892c3af9d6df49b2e694b75fe1" sha1="5791249898618dcf552e33ef50bd377e91b07b2b"/>
+	</game>
+	<game name="Centauri Alliance - Scenario 1 (Unknown)">
+		<description>Centauri Alliance - Scenario 1 (Unknown)</description>
+		<rom name="Centauri Alliance - Scenario 1 (Unknown).a2r" size="27747190" crc="a635827e" md5="105cda4e245b44038e5659ba61773f5c" sha1="f893ab251b55db4e69d3741d2d61ec6ff41d8ba7"/>
+	</game>
+	<game name="Centauri Alliance - Scenario 2 (Unknown)">
+		<description>Centauri Alliance - Scenario 2 (Unknown)</description>
+		<rom name="Centauri Alliance - Scenario 2 (Unknown).a2r" size="24396480" crc="6461e8fa" md5="537aaf2abd45c9e1ec4e823a80654d12" sha1="62c4a5a461e19be7b7e0cd3c68100745970a7c51"/>
+	</game>
+	<game name="Centauri Alliance - Scenario 3 (Unknown)">
+		<description>Centauri Alliance - Scenario 3 (Unknown)</description>
+		<rom name="Centauri Alliance - Scenario 3 (Unknown).a2r" size="26504311" crc="118b35e4" md5="5c4399ab77b6a8aa00e5e7933ba6587a" sha1="df6290a21596c0f58003303c8ebad91ff5726dcd"/>
+	</game>
+	<game name="Centauri Alliance - Scenario 4 (Unknown)">
+		<description>Centauri Alliance - Scenario 4 (Unknown)</description>
+		<rom name="Centauri Alliance - Scenario 4 (Unknown).a2r" size="28403690" crc="b3c56ae4" md5="f585822d472faeb7d07adb59a251f1d4" sha1="84e84bd2804f104b8f529fe59d9216e09126640e"/>
+	</game>
+	<game name="Centauri Alliance (Disk 1) (Unknown) (Side A)">
+		<description>Centauri Alliance (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Centauri Alliance (Disk 1) (Unknown) (Side A).a2r" size="26851148" crc="82c426b2" md5="6a09af26279ad77a3303fe1200bbd73d" sha1="c8481fbcca25eafe111b6365f4d121b3801bb9fd"/>
+	</game>
+	<game name="Championship Golf (Disk 1) (Unknown) (Side A)">
+		<description>Championship Golf (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Championship Golf (Disk 1) (Unknown) (Side A).a2r" size="31365380" crc="c8f7937a" md5="31530aae14396183a9335231f4b53460" sha1="dd9b7d2a1393ae13d90986c26b578b431292ad23"/>
+	</game>
+	<game name="Championship Wrestling (Disk 1) (Unknown) (Side A)">
+		<description>Championship Wrestling (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Championship Wrestling (Disk 1) (Unknown) (Side A).a2r" size="26063441" crc="67040b10" md5="75fcc16746c879a6ea97e16571ce32e6" sha1="ce6e66a7caa60a1f41f5da26622ee6bb2699fbdd"/>
+	</game>
+	<game name="Championship Wrestling (Disk 1) (Unknown) (Side B)">
+		<description>Championship Wrestling (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Championship Wrestling (Disk 1) (Unknown) (Side B).a2r" size="30727852" crc="78c03cbd" md5="35eb2949cbf5a52d20ef0d2beaf0b346" sha1="28d03c7e5af03890a55b9cf23c3c2b15a5758ea8"/>
+	</game>
+	<game name="Checker King (Disk 1) (Unknown) (Side A)">
+		<description>Checker King (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Checker King - Disk 1, Side A.a2r" size="3878499" crc="c7d3d55a" md5="bc434dde62a643d453d2bbc17fe24978" sha1="7497a21343834a0f50b8cc133956ac98018b0738"/>
+	</game>
+	<game name="Claris AppleWorks Startup (Disk 1) (Unknown)">
+		<description>Claris AppleWorks Startup (Disk 1) (Unknown)</description>
+		<rom name="Claris AppleWorks Startup (Disk 1) (Unknown).a2r" size="21569465" crc="a3d8c717" md5="4149403d7d2a4e23586aa5ce1e9b1427" sha1="935714942160be62d856fa29209c7a7591c5a236"/>
+	</game>
+	<game name="Cloze Plus Program - Level C-1 (Ancient Rome) (Unknown)">
+		<description>Cloze Plus Program - Level C-1 (Ancient Rome) (Unknown)</description>
+		<rom name="Cloze Plus Program - Level C-1 (Ancient Rome) (Unknown).a2r" size="25020629" crc="b2246050" md5="6841be71d0fe5490fe06a0aa4b362a8a" sha1="3406dbbf7e95c3ea9819d79b5c9bcbd1d6130bc0"/>
+	</game>
+	<game name="Cloze Plus Program - Level C-2 (Bloodhounds) (Unknown)">
+		<description>Cloze Plus Program - Level C-2 (Bloodhounds) (Unknown)</description>
+		<rom name="Cloze Plus Program - Level C-2 (Bloodhounds) (Unknown).a2r" size="15519471" crc="a80c7917" md5="19a2c60a2fb26e925df8df3380abb452" sha1="43df9109cea504618f188688afe119a8f6e1ae98"/>
+	</game>
+	<game name="Cloze Plus Program - Level C-3 (Annie Oakley) (Unknown)">
+		<description>Cloze Plus Program - Level C-3 (Annie Oakley) (Unknown)</description>
+		<rom name="Cloze Plus Program - Level C-3 (Annie Oakley) (Unknown).a2r" size="24128530" crc="56be191d" md5="716c004788a5e1b637a27b5f547d6641" sha1="033f064afde0ff3eab7181befcfc7ca59526d1b4"/>
+	</game>
+	<game name="Cloze Plus Program - Level C-4 (Fireworksy) (Unknown)">
+		<description>Cloze Plus Program - Level C-4 (Fireworksy) (Unknown)</description>
+		<rom name="Cloze Plus Program - Level C-4 (Fireworksy) (Unknown).a2r" size="24517691" crc="dc395f3a" md5="18df3cbadbd57f8f00bf8438bf0a504b" sha1="eb1027cb5e9bcac1283a62c424df0d010b065945"/>
+	</game>
+	<game name="Cloze Plus Program - Level D-1 (Unknown)">
+		<description>Cloze Plus Program - Level D-1 (Unknown)</description>
+		<rom name="Cloze Plus Program - Level D-1 (Unknown).a2r" size="17074965" crc="f1be5693" md5="6a6df286469d2424de641bf29057c63d" sha1="2728ff023edf9bb20baa1ab078a14dea9c5cae16"/>
+	</game>
+	<game name="Cloze Plus Program - Level D-2 (Unknown)">
+		<description>Cloze Plus Program - Level D-2 (Unknown)</description>
+		<rom name="Cloze Plus Program - Level D-2 (Unknown).a2r" size="24298283" crc="b220f505" md5="02e97d23dd955bb7c09c26b71ce23269" sha1="8ddcc0be7e5a2d37212c8fc4e3ef76c74434e988"/>
+	</game>
+	<game name="Cloze Plus Program - Level D-3 (Unknown)">
+		<description>Cloze Plus Program - Level D-3 (Unknown)</description>
+		<rom name="Cloze Plus Program - Level D-3 (Unknown).a2r" size="21834527" crc="b0270a7b" md5="e1a6e775d4bcbe0a467fbd51a8f34011" sha1="2ab7409c11a55ff7dd19905461ccacb1ed0be6e3"/>
+	</game>
+	<game name="Cloze Plus Program - Level D-4 (Unknown)">
+		<description>Cloze Plus Program - Level D-4 (Unknown)</description>
+		<rom name="Cloze Plus Program - Level D-4 (Unknown).a2r" size="17126227" crc="9de8493f" md5="67ca993819aa910b6818eafd246c2742" sha1="e5f76b5eb1bbd14887b3bf0d2b3a147d50ca79ec"/>
+	</game>
+	<game name="Cloze Plus Program - Level E-1 (Unknown)">
+		<description>Cloze Plus Program - Level E-1 (Unknown)</description>
+		<rom name="Cloze Plus Program - Level E-1 (Unknown).a2r" size="16313368" crc="878e2db9" md5="b62134e531c594edc43dbba86f1be09a" sha1="e0a7637b8c5cf9b9b3e5656fb58a2682ff1e8b96"/>
+	</game>
+	<game name="Cloze Plus Program - Level E-2 (Unknown)">
+		<description>Cloze Plus Program - Level E-2 (Unknown)</description>
+		<rom name="Cloze Plus Program - Level E-2 (Unknown).a2r" size="25196204" crc="046da937" md5="5df54daf6d26f6c7cef928d202102b43" sha1="685779fe9d84ac4c4f75a2355bb93f8b8ef62743"/>
+	</game>
+	<game name="Cloze Plus Program - Level E-3 (Unknown)">
+		<description>Cloze Plus Program - Level E-3 (Unknown)</description>
+		<rom name="Cloze Plus Program - Level E-3 (Unknown).a2r" size="17230010" crc="c3298a59" md5="370a57881368d2413a49ca3bb8f26f0c" sha1="da53285474e85a7e3a76887c1970975d8bec9425"/>
+	</game>
+	<game name="Cloze Plus Program - Level E-4 (Unknown)">
+		<description>Cloze Plus Program - Level E-4 (Unknown)</description>
+		<rom name="Cloze Plus Program - Level E-4 (Unknown).a2r" size="16283306" crc="3a475c03" md5="2d5aabd41c294a1210a65033648ba523" sha1="c1f0ffa2327d513a72e099b39f372dbbba821ec5"/>
+	</game>
+	<game name="COMMAND.COM and PINPOINT (Disk 1) (Unknown) (Side A)">
+		<description>COMMAND.COM and PINPOINT (Disk 1) (Unknown) (Side A)</description>
+		<rom name="COMMAND.COM and PINPOINT (Disk 1) (Unknown) (Side A).a2r" size="24838226" crc="352a078e" md5="d9d3e7512d7ddd4a76d6ac3dd0be2df9" sha1="fcbf6e562c22cac736a880b1dba380d9fa90ff25"/>
+	</game>
+	<game name="COMMAND.COM and PINPOINT (Disk 1) (Unknown) (Side B)">
+		<description>COMMAND.COM and PINPOINT (Disk 1) (Unknown) (Side B)</description>
+		<rom name="COMMAND.COM and PINPOINT (Disk 1) (Unknown) (Side B).a2r" size="25276784" crc="62a65ff1" md5="6b5ef3e81f2fc90dabcb55ccaca88f76" sha1="c1a5c97ab05bb57658b6439882a1c011808697c0"/>
+	</game>
+	<game name="Computer Conflict (Disk 1) (Unknown) (Side A)">
+		<description>Computer Conflict (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Computer Conflict - Disk 1, Side A.a2r" size="28830808" crc="9a3d47d6" md5="464dcacfbe92febc60285e21b27e89e6" sha1="4afb62c5c6ebf3cabd4373ad0c1a148bc6a0e1f4"/>
+	</game>
+	<game name="Copy II Plus Version 9 (Disk 1) (Unknown)">
+		<description>Copy II Plus Version 9 (Disk 1) (Unknown)</description>
+		<rom name="Copy II Plus Version 9 (Disk 1) (Unknown).a2r" size="13836971" crc="92dcab0f" md5="50cc21c96aa9fb85a7db61248be7cb5d" sha1="6931ef3e5856ac1701b2df50d5f29d5a37b109bb"/>
+	</game>
+	<game name="Copy II Plus Version 9.0 (Disk 1) (Unknown) (Side A)">
+		<description>Copy II Plus Version 9.0 (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Copy II Plus Version 9.0 (Disk 1) (Unknown) (Side A).a2r" size="16777127" crc="a5e097d1" md5="ef78724ded50ecbc32fc7e3fe1108887" sha1="75bf7457f4c9c70f7bb581fe35314e3782f0b896"/>
+	</game>
+	<game name="Cosmic Balance (Disk 1) (Unknown) (Side A)">
+		<description>Cosmic Balance (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Cosmic Balance - Disk 1, Side A.a2r" size="23460460" crc="87ebc8aa" md5="9cc287485f68e11c209d18eb40a4fb0a" sha1="0cd880514d37bc58eb06241a796ec5e249c47962"/>
+	</game>
+	<game name="Cosmic Balance II (Disk 1) (Unknown) (Side A)">
+		<description>Cosmic Balance II (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Cosmic Balance II - Disk 1, Side A.a2r" size="18587741" crc="7f660681" md5="bf2916afb09752657f1b86761bf17966" sha1="570e7752c7af686231277eaa1cec9fdbd6929e46"/>
+	</game>
+	<game name="County Fair (Disk 1) (Unknown) (Side A)">
+		<description>County Fair (Disk 1) (Unknown) (Side A)</description>
+		<rom name="County Fair - Disk 1, Side A.a2r" size="11387476" crc="7e0c5440" md5="24b3d2f04424289ac39cb5d669575d37" sha1="2bd82e54d8ab45a5bec9cccf32d810647d03c90b"/>
+	</game>
+	<game name="Create A Calendar - Graphics,Borders,Typestyles (Unknown)">
+		<description>Create A Calendar - Graphics,Borders,Typestyles (Unknown)</description>
+		<rom name="Create A Calendar - Graphics,Borders,Typestyles.a2r" size="21241306" crc="4e9cde2d" md5="12ca9bc9a7a61f8849c87f5fa1b6b45c" sha1="95c801248a2b976646fea568ca013ad0159b20f0"/>
+	</game>
+	<game name="Create A Calendar - Program (Unknown)">
+		<description>Create A Calendar - Program (Unknown)</description>
+		<rom name="Create A Calendar - Program.a2r" size="22782720" crc="f2721053" md5="8be28f29fb5c19de8724824876933be1" sha1="863748d5910134d18f39b65ae0d0462cf79b6945"/>
+	</game>
+	<game name="Creative Writer (Disk 1) (Unknown)">
+		<description>Creative Writer (Disk 1) (Unknown)</description>
+		<rom name="Creative Writer (Disk 1) (Unknown).a2r" size="22409220" crc="5af6d2a0" md5="8d3ddeb990461e5e372b2fbfef8de78e" sha1="a13920ba3cc07d8586889f8e4f4f594370c20c81"/>
+	</game>
+	<game name="Creative Writer (Disk 2) (Unknown)">
+		<description>Creative Writer (Disk 2) (Unknown)</description>
+		<rom name="Creative Writer (Disk 2) (Unknown).a2r" size="22430750" crc="ecd0a113" md5="22af1033e3a0919a7e68e03243abe9c8" sha1="48cad63d4e6781a8b226c982b09662c2f8dd6a73"/>
+	</game>
+	<game name="Creative Writer (Disk 3) (Unknown)">
+		<description>Creative Writer (Disk 3) (Unknown)</description>
+		<rom name="Creative Writer (Disk 3) (Unknown).a2r" size="22429562" crc="302c61ad" md5="8d090c27059ea4d74c08aa39129bd405" sha1="14308557572c745d6a27d00ff5b496cac71d6ae4"/>
+	</game>
+	<game name="Creative Writer (Disk 4) (Unknown)">
+		<description>Creative Writer (Disk 4) (Unknown)</description>
+		<rom name="Creative Writer (Disk 4) (Unknown).a2r" size="22389646" crc="105dc1dc" md5="3922c1f99e1856ede95d871d7a847557" sha1="c15e99398ec6cadd7a7959c27b9bef82054b8af9"/>
+	</game>
+	<game name="Creative Writer (Disk 5) (Unknown)">
+		<description>Creative Writer (Disk 5) (Unknown)</description>
+		<rom name="Creative Writer (Disk 5) (Unknown).a2r" size="22113290" crc="8de1fbe2" md5="58b31c135291e1fdeba3b3d67f896b78" sha1="b6dcd656bc8079cb55560ba421bdaa3c6a5b83f4"/>
+	</game>
+	<game name="Critical Reading A (Disk 1) (Unknown) (Side A)">
+		<description>Critical Reading A (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Critical Reading A - Disk 1, Side A.a2r" size="24491593" crc="575212aa" md5="404a1d6155e7bc55f549f13384f18af4" sha1="23c5beec1d87b98ef97c3dce45d7ef0a5cc7cf6e"/>
+	</game>
+	<game name="Critical Reading B (Disk 2) (Unknown) (Side A)">
+		<description>Critical Reading B (Disk 2) (Unknown) (Side A)</description>
+		<rom name="Critical Reading B - Disk 2, Side A.a2r" size="26161141" crc="c1e141be" md5="563a75f45902f288e383e00d64a254fb" sha1="259b727fdd7502e55055b6ae49a3028e5b4eadfb"/>
+	</game>
+	<game name="Critical Reading C damaged (Disk 3) (Unknown) (Side A)">
+		<description>Critical Reading C damaged (Disk 3) (Unknown) (Side A)</description>
+		<rom name="Critical Reading C damaged - Disk 3, Side A.a2r" size="20613610" crc="b35d233c" md5="962a13ebac194b2c52d51e17657a2f15" sha1="2ce5dea8e0a8b0431558dd182cd6905f77b461e4"/>
+	</game>
+	<game name="Critical Reading D (Disk 4) (Unknown) (Side A)">
+		<description>Critical Reading D (Disk 4) (Unknown) (Side A)</description>
+		<rom name="Critical Reading D - Disk 4, Side A.a2r" size="21990183" crc="46e1a283" md5="21a5320b39d3bfbf96c6355e1a683cdc" sha1="3ca1bff11afe66f2e7a8dba54678aa94881bec87"/>
+	</game>
+	<game name="Critical Reading E (Disk 5) (Unknown) (Side A)">
+		<description>Critical Reading E (Disk 5) (Unknown) (Side A)</description>
+		<rom name="Critical Reading E - Disk 5, Side A.a2r" size="19272957" crc="b17003ba" md5="38cfb7620779042d2edfc0f6e70802b0" sha1="c0d70e3968b85a55f3bd48211baa8792867e1ec7"/>
+	</game>
+	<game name="Critical Reading F (Disk 6) (Unknown) (Side A)">
+		<description>Critical Reading F (Disk 6) (Unknown) (Side A)</description>
+		<rom name="Critical Reading F - Disk 6, Side A.a2r" size="19290582" crc="7716edff" md5="b5dce3df86abd5d5553da9b9e7ded639" sha1="df21cb747afd0f559108b985075e6a964d203cb4"/>
+	</game>
+	<game name="Critical Reading G (Disk 7) (Unknown) (Side A)">
+		<description>Critical Reading G (Disk 7) (Unknown) (Side A)</description>
+		<rom name="Critical Reading G - Disk 7, Side A.a2r" size="20791550" crc="975f9ca4" md5="c668cb7d22ec9a9a8ac7a1c890e565df" sha1="65f3b16b22082bd7ae4c70258cd7c64384a18344"/>
+	</game>
+	<game name="Critical Reading H (Disk 8) (Unknown) (Side A)">
+		<description>Critical Reading H (Disk 8) (Unknown) (Side A)</description>
+		<rom name="Critical Reading H - Disk 8, Side A.a2r" size="26050802" crc="5fd9adba" md5="8e33932aef31a33f17b0434a6c9cafad" sha1="e9f99c7dcf62b39e15b17983974df2532eac8551"/>
+	</game>
+	<game name="Crossword Magic (Disk 1) (Unknown) (Side A)">
+		<description>Crossword Magic (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Crossword Magic (Disk 1) (Unknown) (Side A).a2r" size="10522446" crc="7622f9bb" md5="ced0c100ce91d1bbb62193c91bfe0233" sha1="b99b3be1f632d16729fd43ecf4f9f5820f9e3b16"/>
+	</game>
+	<game name="CurvePlotter! (Disk 1) (Unknown) (Side A)">
+		<description>CurvePlotter! (Disk 1) (Unknown) (Side A)</description>
+		<rom name="CurvePlotter! - Disk 1, Side A.a2r" size="23237976" crc="c6cf124e" md5="1e891a3ad149d1994cba8d418d6e66c4" sha1="d669daeb4852437c067f7efd20473dbd39072b56"/>
+	</game>
+	<game name="CurvePlotter! (Disk 1) (Unknown) (Side B)">
+		<description>CurvePlotter! (Disk 1) (Unknown) (Side B)</description>
+		<rom name="CurvePlotter! - Disk 1, Side B.a2r" size="23104109" crc="211e27dc" md5="1e301869a6d1481a5c1d1ecc75f4d660" sha1="ea052ebf7434f5e3ea5cd17484a8a7147d8c3dfc"/>
+	</game>
+	<game name="Cytron Masters (Disk 1) (Unknown) (Side A)">
+		<description>Cytron Masters (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Cytron Masters - Disk 1, Side A.a2r" size="26327662" crc="6975f612" md5="492ebac7cb22016eecb18de9e28f90d8" sha1="d158603c8a8005c947591c38ee0c029701dd2eb8"/>
+	</game>
+	<game name="Data-Plot (Disk 1) (Unknown) (Side A)">
+		<description>Data-Plot (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Data-Plot - Disk 1, Side A.a2r" size="26666853" crc="3ed35f14" md5="78699d0603a844247159718204b5a826" sha1="b5fa20ee54fa6a14017124ffa0cfe08e01388782"/>
+	</game>
+	<game name="Datacopy AccuText (Disk 1) (Unknown)">
+		<description>Datacopy AccuText (Disk 1) (Unknown)</description>
+		<rom name="Datacopy AccuText (Disk 1) (Unknown).a2r" size="22471413" crc="251b3ee1" md5="7974bafac63d98348d7db17e89dac51c" sha1="521d52fc587bfd1f7dad5e4fd932f303a05771ae"/>
+	</game>
+	<game name="Datacopy AccuText (Disk 2) (Unknown)">
+		<description>Datacopy AccuText (Disk 2) (Unknown)</description>
+		<rom name="Datacopy AccuText (Disk 2) (Unknown).a2r" size="22690243" crc="980a754d" md5="36b6f401ec71b50c51bd606e0f92b65a" sha1="43e67ccf6ed44b3d12e55c9a4375c1278a603744"/>
+	</game>
+	<game name="DClock Utilities (Disk 1) (Unknown) (Side A)">
+		<description>DClock Utilities (Disk 1) (Unknown) (Side A)</description>
+		<rom name="DClock Utilities (Disk 1) (Unknown) (Side A).a2r" size="24165978" crc="11de9245" md5="e0e5dc65eb9d1e7b649080ed73a37184" sha1="0e6b59d21efcd2d8471af5a3d7287c56b51f1df9"/>
+	</game>
+	<game name="Delta Drawing (Disk 1) (Unknown) (Side A)">
+		<description>Delta Drawing (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Delta Drawing - Disk 1, Side A.a2r" size="19977777" crc="dda1e35f" md5="62b88c2ae19c6aa390be9b2e42d6e9cf" sha1="007387c36fe323cb80d1448f949c62c99b67a47a"/>
+	</game>
+	<game name="Dig Dug (Disk 1) (Unknown) (Side A)">
+		<description>Dig Dug (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Dig Dug (Disk 1) (Unknown) (Side A).a2r" size="23637801" crc="2e699779" md5="df50277e992e18a45e5ccd6e9f7f1054" sha1="c7941e8c7f33c0cb5fbf1cc95f226abb016516e7"/>
+	</game>
+	<game name="Dollars and Sense (Disk 1) (Unknown) (Side A)">
+		<description>Dollars and Sense (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Dollars and Sense (Disk 1) (Unknown) (Side A).a2r" size="26637709" crc="59da6c8f" md5="fb3b6bf8aecbd4fee2441f8d1b796b31" sha1="d692cd4bcefa2fa55075e18170f34bd6b0e13828"/>
+	</game>
+	<game name="Dollars and Sense (Disk 1) (Unknown) (Side B)">
+		<description>Dollars and Sense (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Dollars and Sense (Disk 1) (Unknown) (Side B).a2r" size="23623919" crc="b3cc5339" md5="7e42ae3a0f4b1fa94513e292b54146e0" sha1="20904f7ed59beeb288bce16b6f33b9cc883dd3d8"/>
+	</game>
+	<game name="DOS 3.3 RamFactor Utilities (Disk 1) (Unknown) (Side A)">
+		<description>DOS 3.3 RamFactor Utilities (Disk 1) (Unknown) (Side A)</description>
+		<rom name="DOS 3.3 RamFactor Utilities (Disk 1) (Unknown) (Side A).a2r" size="20415448" crc="9a6d74d9" md5="1f48a390ee38bb0522e2a1c5fea380c7" sha1="454e91fc5e699ee5117486f931a91633e98269e5"/>
+	</game>
+	<game name="DOS 3.3 System Master (Disk 1) (Unknown) (Side A)">
+		<description>DOS 3.3 System Master (Disk 1) (Unknown) (Side A)</description>
+		<rom name="DOS 3.3 System Master - Disk 1, Side A.a2r" size="17501942" crc="ef77fea2" md5="b9e8ded8e2053fc3055172d11aa2b50c" sha1="f53987dc1d4767c4f326f6349b9889ebcd06daee"/>
+	</game>
+	<game name="Dragon Mix (Disk 1) (Unknown) (Side A)">
+		<description>Dragon Mix (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Dragon Mix (Disk 1) (Unknown) (Side A).a2r" size="22481470" crc="2e4e5ce4" md5="af3df51b73f996cf2876109df7051079" sha1="c0e8e437bf008610afc16f0f282d9a9600fc4089"/>
+	</game>
+	<game name="Dragonworld - A (Unknown)">
+		<description>Dragonworld - A (Unknown)</description>
+		<rom name="Dragonworld - A (Unknown).a2r" size="26891197" crc="61cf89d4" md5="5b2c4b6a7d1a5bfb57bba5cdea0b45e2" sha1="8cbb0857c74c5405b2ed758d96def2f2fef337a8"/>
+	</game>
+	<game name="Dragonworld - B (Unknown)">
+		<description>Dragonworld - B (Unknown)</description>
+		<rom name="Dragonworld - B (Unknown).a2r" size="26685996" crc="80bb7bbe" md5="8a86293aab17cca3993441d2cb196c17" sha1="b0fd4200c32bc5c789ab4dbe9d66c39a3d8de42f"/>
+	</game>
+	<game name="Dragonworld - C (Unknown)">
+		<description>Dragonworld - C (Unknown)</description>
+		<rom name="Dragonworld - C (Unknown).a2r" size="26238164" crc="abc3613f" md5="eeb1d475eccb803d89b4a555171651b4" sha1="fe42eb1b9b7b4ee3646f179f3261efd18142aad3"/>
+	</game>
+	<game name="Dragonworld - D (Unknown)">
+		<description>Dragonworld - D (Unknown)</description>
+		<rom name="Dragonworld - D (Unknown).a2r" size="18336968" crc="ca023b80" md5="0cd7097e213df8a1ec7034699bfd99c8" sha1="6664a987e80a48e1c9f5801609d40b47d7b17c78"/>
+	</game>
+	<game name="Dragonworld - E (Unknown)">
+		<description>Dragonworld - E (Unknown)</description>
+		<rom name="Dragonworld - E (Unknown).a2r" size="26817959" crc="71cd29c5" md5="cc914faa8f77e0e1446c7b7625e3dc0a" sha1="5fdafadc5ea1c2d1c9af4c38dd1aae70b0c967ad"/>
+	</game>
+	<game name="Drugs - Their Effects On You (Unknown) (Side A)">
+		<description>Drugs - Their Effects On You (Unknown) (Side A)</description>
+		<rom name="Drugs - Their Effects On You (Unknown) (Side A).a2r" size="22216382" crc="b581ea67" md5="42001e5b58e7e8325e5f5ddb60d13605" sha1="4a89d43f50704860d5be902c2566802f380efddb"/>
+		<rom name="Drugs - Their Effects On You (Unknown) (Side A).a2r" size="22216382" crc="b581ea67" md5="42001e5b58e7e8325e5f5ddb60d13605" sha1="4a89d43f50704860d5be902c2566802f380efddb"/>
+	</game>
+	<game name="Drugs - Their Effects On You (Unknown) (Side B)">
+		<description>Drugs - Their Effects On You (Unknown) (Side B)</description>
+		<rom name="Drugs - Their Effects On You (Unknown) (Side B).a2r" size="26347412" crc="6ad533ed" md5="3a8cc0614d79cfd11c93dd0deb8925fb" sha1="19735537474bb14bd5a2fd40409f01221fff4890"/>
+	</game>
+	<game name="Dunjonquest - Curse of Ra (Disk 1) (Unknown) (Side A)">
+		<description>Dunjonquest - Curse of Ra (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Dunjonquest - Curse of Ra - Disk 1, Side A.a2r" size="14118947" crc="b7f7cf06" md5="80f6e7f5702344a1ec822637f79fbaa7" sha1="4d0a742bb63eb5397d7b6be33cfad392ae2dca83"/>
+	</game>
+	<game name="Electrik Circus (Disk 1) (Unknown) (Side A)">
+		<description>Electrik Circus (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Electrik Circus - Disk 1, Side A.a2r" size="27675896" crc="5113ce65" md5="ed93636a604f921123a665e8a39ccf18" sha1="260ed36803cea2301cea63a71c9e304195b4c6c1"/>
+	</game>
+	<game name="F-15 Strike Eagle (Disk 1) (Unknown) (Side A)">
+		<description>F-15 Strike Eagle (Disk 1) (Unknown) (Side A)</description>
+		<rom name="F-15 Strike Eagle (Disk 1) (Unknown) (Side A).a2r" size="15555256" crc="22bc4ca4" md5="c3689a4ea1d4facfaeae7eec3e5157df" sha1="c6247a0864f3367e8093a378be83af8f18babfff"/>
+	</game>
+	<game name="F-15 Strike Eagle (Disk 1) (Unknown) (Side A) (Alt)">
+		<description>F-15 Strike Eagle (Disk 1) (Unknown) (Side A) (Alt)</description>
+		<rom name="F-15 Strike Eagle (Disk 1) (Unknown) (Side A) (Alt).a2r" size="24941721" crc="d12d3ceb" md5="5a475bd661f01c5c4f0a073f962b43f3" sha1="5338e39423f8e0011906f8f5c98f7c89a49ecac7"/>
+	</game>
+	<game name="Fat City (Disk 1) (Unknown) (Side A)">
+		<description>Fat City (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Fat City - Disk 1, Side A.a2r" size="21320969" crc="a753f7de" md5="94c8772178b94aef63708bb5b0766370" sha1="2d4746cf76700a3c3a75c27b2643403fb3538bf0"/>
+	</game>
+	<game name="Fine Artist (Disk 1) (Unknown)">
+		<description>Fine Artist (Disk 1) (Unknown)</description>
+		<rom name="Fine Artist (Disk 1) (Unknown).a2r" size="22442531" crc="68dcc036" md5="9689b7af1a210d3a977363c5a6a2e183" sha1="dcf79eac5a6ced5f399813eadc74b60d4ea1ded0"/>
+	</game>
+	<game name="Fine Artist (Disk 2) (Unknown)">
+		<description>Fine Artist (Disk 2) (Unknown)</description>
+		<rom name="Fine Artist (Disk 2) (Unknown).a2r" size="22441401" crc="eae02db3" md5="f362407e563c690ce6013fdc06e16cf3" sha1="341f32002d76d5432566ae7bb5149620bd691e73"/>
+	</game>
+	<game name="Fine Artist (Disk 3) (Unknown)">
+		<description>Fine Artist (Disk 3) (Unknown)</description>
+		<rom name="Fine Artist (Disk 3) (Unknown).a2r" size="22450789" crc="b1b2f982" md5="c0c0dacc0b50ed88b1e86a897ad1efb0" sha1="53837d7858fea033ddf571c8eabc6f80c0555e90"/>
+	</game>
+	<game name="Fine Artist (Disk 4) (Unknown)">
+		<description>Fine Artist (Disk 4) (Unknown)</description>
+		<rom name="Fine Artist (Disk 4) (Unknown).a2r" size="22297027" crc="96bf4255" md5="851d9c9033e75d34f279fe6bb84696e0" sha1="d9278dda67ddd7bba8fe718e13559082f7e89098"/>
+	</game>
+	<game name="Fine Artist (Disk 5) (Unknown)">
+		<description>Fine Artist (Disk 5) (Unknown)</description>
+		<rom name="Fine Artist (Disk 5) (Unknown).a2r" size="22414586" crc="6646f1cb" md5="205e9de086e82133b37933f7f76f7cc3" sha1="89cc1f2639900670dcf1ad322c0b20040bb33532"/>
+	</game>
+	<game name="Flex Type (Disk 1) (Unknown) (Side A)">
+		<description>Flex Type (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Flex Type (Disk 1) (Unknown) (Side A).a2r" size="20054227" crc="67919b37" md5="0d40bd7c89fa8ff633aa5a82894ce660" sha1="5c914a90570bdae308470d1d7d4a5c494c3ee173"/>
+	</game>
+	<game name="Flight Simulator II (Disk 1) (Unknown) (Side A)">
+		<description>Flight Simulator II (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Flight Simulator II (Disk 1) (Unknown) (Side A).a2r" size="27716098" crc="0baa591f" md5="a4548aaef030a7e9ee04d50ac4b8cbd2" sha1="8e81223fedb15fccb56b7883c94cac2eb9de6db0"/>
+	</game>
+	<game name="Flight Siulator II (Disk 1) (Unknown) (Side A)">
+		<description>Flight Siulator II (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Flight Siulator II (Disk 1) (Unknown) (Side A).a2r" size="27919086" crc="4a424c47" md5="626cf73bb2e1b2e3f67e96a038e5963b" sha1="991dcd9f350f2ea6ee2fe4548ccbd7d86fb369b5"/>
+	</game>
+	<game name="Fortran - FORT 2 (Unknown)">
+		<description>Fortran - FORT 2 (Unknown)</description>
+		<rom name="Fortran - FORT 2.a2r" size="24033065" crc="a50fa289" md5="2774b9393b4b0332a11ff272f2cc51cb" sha1="b639336218d5711d4e58d723009082c1bfaad6d0"/>
+	</game>
+	<game name="Gammon Gambler (Disk 1) (Unknown) (Side A)">
+		<description>Gammon Gambler (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Gammon Gambler - Disk 1, Side A.a2r" size="31594166" crc="7a65cf10" md5="5a90d6ff90f2126274574a766c5ef737" sha1="0e5af65c904546b8b39a7251be70c80980196139"/>
+	</game>
+	<game name="Graphics Exhibitor (Disk 1) (Unknown) (Side A)">
+		<description>Graphics Exhibitor (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Graphics Exhibitor (Disk 1) (Unknown) (Side A).a2r" size="16421494" crc="4226681f" md5="97abacb72febe052185c81c6d289ee1d" sha1="263e0baf6daf1b96a809155c688eb15459bf276e"/>
+	</game>
+	<game name="Guadalcanal Campaign (Disk 1) (Unknown) (Side A)">
+		<description>Guadalcanal Campaign (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Guadalcanal Campaign (Disk 1) (Unknown) (Side A).a2r" size="20639131" crc="626b7fa8" md5="06094499cf338501f0a1575065d3b2a2" sha1="fa5aaf362d9269a63736e2f75617bdfa28348dc5"/>
+	</game>
+	<game name="HabaMerge (Disk 1) (Unknown) (Side A)">
+		<description>HabaMerge (Disk 1) (Unknown) (Side A)</description>
+		<rom name="HabaMerge (Disk 1) (Unknown) (Side A).a2r" size="25462854" crc="2b971960" md5="66a90264cb4f2fccb165c109a48aa505" sha1="c24bdbae224a32adb10463ea964a3781dd7d3c78"/>
+	</game>
+	<game name="Hard Hat Mack (Disk 1) (Unknown) (Side A)">
+		<description>Hard Hat Mack (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Hard Hat Mack (Disk 1) (Unknown) (Side A).a2r" size="21669305" crc="3bd16911" md5="c13ee8785513d4a06f5029fb23dbfbfe" sha1="53ccafc3e201a7aa777d8275affc01706a3733c2"/>
+	</game>
+	<game name="Highrise (Disk 1) (Unknown) (Side A)">
+		<description>Highrise (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Highrise (Disk 1) (Unknown) (Side A).a2r" size="8112365" crc="fad5f932" md5="7c7b8b757d82aa432a0afff72a8c2d76" sha1="87bc628d8e49113d19b84321dcbdec9b89f8dc90"/>
+	</game>
+	<game name="Hitchhiker's Guide to the Galaxy (Disk 1) (Unknown) (Side A)">
+		<description>Hitchhiker's Guide to the Galaxy (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Hitchhiker's Guide to the Galaxy - Disk 1, Side A.a2r" size="19901669" crc="1ae48847" md5="1c3b001504ad5a0955033eef27fdb78e" sha1="45fa8022f018e9d4d5e61186189e8b8f261584e4"/>
+	</game>
+	<game name="HomePak (Disk 1) (Unknown) (Side A)">
+		<description>HomePak (Disk 1) (Unknown) (Side A)</description>
+		<rom name="HomePak - Disk 1, Side A.a2r" size="17254567" crc="41d80bff" md5="ced1acb6730b19472f727b29dbb6e097" sha1="d3a3c5774330b9fa9ad302f30009e2201e6e5d08"/>
+	</game>
+	<game name="HomeVideo Producer (Disk 1) (Unknown) (Side A)">
+		<description>HomeVideo Producer (Disk 1) (Unknown) (Side A)</description>
+		<rom name="HomeVideo Producer (Disk 1) (Unknown) (Side A).a2r" size="24190810" crc="96b17d70" md5="39025493b694028017af4a52fa787f93" sha1="5971c84841a1e3583cf256a09cdd7bb0fb284449"/>
+	</game>
+	<game name="HomeVideo Producer (Disk 1) (Unknown) (Side B)">
+		<description>HomeVideo Producer (Disk 1) (Unknown) (Side B)</description>
+		<rom name="HomeVideo Producer (Disk 1) (Unknown) (Side B).a2r" size="24842029" crc="70f9a37c" md5="65e425e02750a3cab7c60d0217c0088c" sha1="2742df278fefaa9101aa55d836f318e9fd14ccd4"/>
+	</game>
+	<game name="HomeVideo Producer (Disk 2) (Unknown) (Side A)">
+		<description>HomeVideo Producer (Disk 2) (Unknown) (Side A)</description>
+		<rom name="HomeVideo Producer (Disk 2) (Unknown) (Side A).a2r" size="16193396" crc="a8543f3f" md5="a9f26500829276573c20010e0b50aa37" sha1="49e9878759435e2a31e2b40040dd7ac9b8e57ce4"/>
+	</game>
+	<game name="Homeword Plus - Master Program (Unknown)">
+		<description>Homeword Plus - Master Program (Unknown)</description>
+		<rom name="Homeword Plus - Master Program (Unknown).a2r" size="22682695" crc="07e01261" md5="c420367732125e388a1e761451d01030" sha1="ff622579aa9ba5bec6e832f506796e8ba41b8a62"/>
+	</game>
+	<game name="Homeword Plus - ProDOS System Utilities (Unknown)">
+		<description>Homeword Plus - ProDOS System Utilities (Unknown)</description>
+		<rom name="Homeword Plus - ProDOS System Utilities (Unknown).a2r" size="26818357" crc="b57cfb27" md5="7174334abfb045910dfa1f0ca915f4a7" sha1="9b7f235f68a24ba904622f9fad43a13f75c67b16"/>
+	</game>
+	<game name="Homeword Plus - Speller (Unknown)">
+		<description>Homeword Plus - Speller (Unknown)</description>
+		<rom name="Homeword Plus - Speller (Unknown).a2r" size="28649325" crc="8f0d8eab" md5="45a31f537823f1f3b3af87a6b5c25a67" sha1="a88cfbb9f5b7628a3e347b2b9d12a5eb92ba4aea"/>
+	</game>
+	<game name="House of Usher (Disk 1) (Unknown) (Side A)">
+		<description>House of Usher (Disk 1) (Unknown) (Side A)</description>
+		<rom name="House of Usher - Disk 1, Side A.a2r" size="27899284" crc="c411ef0d" md5="80e7791f2be5d5efbc03b37efe78bb73" sha1="e377336b639fcb1321268fc21fbe7428537b7733"/>
+	</game>
+	<game name="Infiltrator II (Disk 1) (Unknown) (Side A)">
+		<description>Infiltrator II (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Infiltrator II (Disk 1) (Unknown) (Side A).a2r" size="36025077" crc="2a91c80f" md5="d940bcb9b8592b88693ebc36a735b854" sha1="63cb11e274ca5b24a2942b7a4cf24068bb114978"/>
+	</game>
+	<game name="Infiltrator II (Disk 1) (Unknown) (Side B)">
+		<description>Infiltrator II (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Infiltrator II (Disk 1) (Unknown) (Side B).a2r" size="35880157" crc="0a79f0a8" md5="7a574893f4bdc3a549aa636cb5811573" sha1="319867ff978b43f2aeea559c7c53619e147e430b"/>
+	</game>
+	<game name="InfoMerge (Disk 1) (Unknown) (Side A)">
+		<description>InfoMerge (Disk 1) (Unknown) (Side A)</description>
+		<rom name="InfoMerge (Disk 1) (Unknown) (Side A).a2r" size="16388761" crc="fd6ac2d2" md5="de44aa1648551199055f12f791e41954" sha1="db924236f3888c8a3deae1fb685a5c9a3cba886d"/>
+	</game>
+	<game name="InfoMerge (Disk 1) (Unknown) (Side B)">
+		<description>InfoMerge (Disk 1) (Unknown) (Side B)</description>
+		<rom name="InfoMerge (Disk 1) (Unknown) (Side B).a2r" size="13585644" crc="1b001e24" md5="6ebc70590097891fde476e63b9ebdca6" sha1="8cf248e19d27e502ace975275af251d8bc7a6468"/>
+	</game>
+	<game name="Interlude ][ (Disk 1) (Unknown) (Side A)">
+		<description>Interlude ][ (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Interlude ][ - Disk 1, Side A.a2r" size="25846477" crc="a1d0f4b3" md5="ba26a3dc90b2545da6b4ba0eea750456" sha1="d56948a8cf9dee33e9925d3e717374470e651f70"/>
+	</game>
+	<game name="Jeopardy! (Disk 1) (Unknown) (Side A)">
+		<description>Jeopardy! (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Jeopardy! (Disk 1) (Unknown) (Side A).a2r" size="26439042" crc="af63e76e" md5="11408d61efb83179ab1c2c79f8d0ab12" sha1="f39c02de1d64b33231f7cdf69ff8ef7f80ae1b85"/>
+	</game>
+	<game name="Jeopardy! (Disk 1) (Unknown) (Side B)">
+		<description>Jeopardy! (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Jeopardy! (Disk 1) (Unknown) (Side B).a2r" size="28771635" crc="aac9cb24" md5="330e902eeeb8f556dd797c515e6bb498" sha1="58bf467a816e08f9689b6179839df47a7fb3ad46"/>
+	</game>
+	<game name="Jeopardy! Junior Edition (Disk 1) (Unknown) (Side A)">
+		<description>Jeopardy! Junior Edition (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Jeopardy! Junior Edition (Disk 1) (Unknown) (Side A).a2r" size="15853167" crc="c52b8229" md5="9968b1d662520f1081eebf817d0916ec" sha1="3444d54998f88b2ffbfc8d7e5f734d123a2744d7"/>
+	</game>
+	<game name="Jeopardy! Junior Edition (Disk 1) (Unknown) (Side B)">
+		<description>Jeopardy! Junior Edition (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Jeopardy! Junior Edition (Disk 1) (Unknown) (Side B).a2r" size="25988736" crc="656fa131" md5="5fa3ce07ab55475b4adae17a2e1d965d" sha1="373157321a880f1c4544fb1dfde43bd72f1d97a6"/>
+	</game>
+	<game name="John Madden Football (Disk 1) (Unknown) (Side A)">
+		<description>John Madden Football (Disk 1) (Unknown) (Side A)</description>
+		<rom name="John Madden Football (Disk 1) (Unknown) (Side A).a2r" size="4757354" crc="4cd6fbe8" md5="7dc07260cf888aeb8ce0bc17e7f4a1f7" sha1="79358dd32d7ebf7264465d390f9489d799269901"/>
+	</game>
+	<game name="John Madden Football (Disk 1) (Unknown) (Side B)">
+		<description>John Madden Football (Disk 1) (Unknown) (Side B)</description>
+		<rom name="John Madden Football (Disk 1) (Unknown) (Side B).a2r" size="3391288" crc="0c21fdb8" md5="58abd5f74ea68d285d3dc97d8fc1633c" sha1="9d556f755ab6987ab9d494e3c3553213d4795f1c"/>
+	</game>
+	<game name="Karate Champ (Disk 1) (Unknown) (Side A)">
+		<description>Karate Champ (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Karate Champ (Disk 1) (Unknown) (Side A).a2r" size="26731406" crc="6105fe51" md5="af18c44ed39b7ba58c1e43459da90e06" sha1="1c8eeea29124a2b17575ce1740c7bdf0fc6232fb"/>
+	</game>
+	<game name="Koalapainter (Disk 1) (Unknown) (Side A)">
+		<description>Koalapainter (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Koalapainter (Disk 1) (Unknown) (Side A).a2r" size="14744435" crc="ff2f0201" md5="74cd7ec16af51d859f5d8ced0dcefb40" sha1="59bed3ab3f8bad09f2e78259b935f0259635fd0b"/>
+	</game>
+	<game name="Labels,Labels, Labels (Disk 1) (Unknown)">
+		<description>Labels,Labels, Labels (Disk 1) (Unknown)</description>
+		<rom name="Labels,Labels, Labels (Disk 1) (Unknown).a2r" size="19257366" crc="d406bef5" md5="70b9d2049990278792c49e0699b198fd" sha1="3d532987ec1051fa4b2bb57b92176533d4c364dc"/>
+	</game>
+	<game name="Master of the Lamps - A (Bad) (Unknown)">
+		<description>Master of the Lamps - A (Bad) (Unknown)</description>
+		<rom name="Master of the Lamps - A (Bad) (Unknown).a2r" size="25820305" crc="98232885" md5="731d6f2b0908d794c7df7791729631a8" sha1="ce6efb49d73e422d53dbbc33115c7bb15b9ce89c"/>
+	</game>
+	<game name="Master of the Lamps - B (Bad) (Unknown)">
+		<description>Master of the Lamps - B (Bad) (Unknown)</description>
+		<rom name="Master of the Lamps - B (Bad) (Unknown).a2r" size="26052787" crc="ea4656c0" md5="3444473442d40458f2ebf13064163c9a" sha1="c7b91fdc23ef69203ef61a31596be846c74febba"/>
+	</game>
+	<game name="MasterType (Disk 1) (Unknown) (Side A)">
+		<description>MasterType (Disk 1) (Unknown) (Side A)</description>
+		<rom name="MasterType - Disk 1, Side A.a2r" size="24426118" crc="2787d37a" md5="43a7b8efde15143f22ccb66851ee0813" sha1="59f3c9530c73c5ee35616eed2217d56a3362f627"/>
+	</game>
+	<game name="Math Blaster! - Data (Unknown)">
+		<description>Math Blaster! - Data (Unknown)</description>
+		<rom name="Math Blaster! - Data.a2r" size="19177142" crc="74e8aa91" md5="c6c6989ed6ca22c63bfa128cd47d7fd3" sha1="afe535f904c0df92e1ae0ad83b642922ab83e686"/>
+	</game>
+	<game name="Math Blaster! - Data (Unknown) (Alt)">
+		<description>Math Blaster! - Data (Unknown) (Alt)</description>
+		<rom name="Math Blaster! - Data (Unknown) (Alt).a2r" size="15561911" crc="fbda046e" md5="b267f48826b5c4666be09de41a3dec81" sha1="b56b957b2163f8417d8b668d72acbd9fb7e1ddb9"/>
+	</game>
+	<game name="Math Blaster! - Program (Unknown)">
+		<description>Math Blaster! - Program (Unknown)</description>
+		<rom name="Math Blaster! - Program.a2r" size="20065942" crc="a282bf92" md5="de51dc3a8c355be0974a8bf7f6b157d2" sha1="6985ff99eb25e753832cb911c77cd4c3b8f69475"/>
+	</game>
+	<game name="Math Blaster! - Program (Unknown) (Alt)">
+		<description>Math Blaster! - Program (Unknown) (Alt)</description>
+		<rom name="Math Blaster! - Program (Unknown) (Alt).a2r" size="15899782" crc="3262ee13" md5="3f90d686dd8d078c1621a685446b3842" sha1="0d8696ef8194ab065228e4f730d59ad4bd8f9020"/>
+	</game>
+	<game name="Math Rabbit (Disk 1) (Unknown) (Side A)">
+		<description>Math Rabbit (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Math Rabbit (Disk 1) (Unknown) (Side A).a2r" size="15675076" crc="6e77cd50" md5="2bbcfc663cfe49eebc2b3edebfbe0e22" sha1="5c35864d733602f182b7d42c4ab68a494d1cda7d"/>
+	</game>
+	<game name="Micro Barmate (Disk 1) (Unknown) (Side A)">
+		<description>Micro Barmate (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Micro Barmate - Disk 1, Side A.a2r" size="25269391" crc="d8729d76" md5="aae73c95178d3a890a1c918a5aa2a65d" sha1="6de67bb286f9e59a3df344ed6c34cfa0a7cf9926"/>
+	</game>
+	<game name="Micro Cookbook - Basic Recipes (Unknown)">
+		<description>Micro Cookbook - Basic Recipes (Unknown)</description>
+		<rom name="Micro Cookbook - Basic Recipes.a2r" size="22693502" crc="4a227de7" md5="cbf5cb7707f2d24846e8d8e234c34ac9" sha1="1d6815271c827baa9a9ba9bc6b45dcde9b8dbc2a"/>
+	</game>
+	<game name="Micro Cookbook - Basic Recipes (Unknown) (Alt 2)">
+		<description>Micro Cookbook - Basic Recipes (Unknown) (Alt 2)</description>
+		<rom name="Micro Cookbook - Basic Recipes (Unknown) (Alt 2).a2r" size="15543969" crc="f79c44f8" md5="7d4850376774708dccd4c0503312a26e" sha1="60309de8632ddc6cc52951c97c93d415574ea5d3"/>
+	</game>
+	<game name="Micro Cookbook - Basic Recipes (Alt) (Unknown)">
+		<description>Micro Cookbook - Basic Recipes (Alt) (Unknown)</description>
+		<rom name="Micro Cookbook - Basic Recipes (Alt) (Unknown).a2r" size="17304674" crc="fa02cb8b" md5="4f7623c7ff771e4a04d6117aeda97c00" sha1="7ca20700de53ab23ad1375f7d7ff9d94af956496"/>
+	</game>
+	<game name="Micro Cookbook - Software (Unknown)">
+		<description>Micro Cookbook - Software (Unknown)</description>
+		<rom name="Micro Cookbook - Software.a2r" size="23553873" crc="6d273d1f" md5="4367b695858d382f361bde04bd7272af" sha1="a58b580a26520380721367aa36163f635f6d1614"/>
+	</game>
+	<game name="Micro Cookbook - Software (Unknown) (Alt)">
+		<description>Micro Cookbook - Software (Unknown) (Alt)</description>
+		<rom name="Micro Cookbook - Software (Unknown) (Alt).a2r" size="27091043" crc="46f5b6fe" md5="463fd0d16f1e61c68eb8118c4b12300b" sha1="d0e4fef884c57ac713b154b53ecc7f7c9fca3544"/>
+	</game>
+	<game name="Micro Cookbook (Disk 1) (Unknown) (Side A)">
+		<description>Micro Cookbook (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Micro Cookbook (Disk 1) (Unknown) (Side A).a2r" size="16097315" crc="b9d76273" md5="9c8c40770eff3c85fb7230ac8a21291c" sha1="4bb6715bb4166ca54bb6e3fd5109cffb1456c040"/>
+	</game>
+	<game name="Microzine (Disk 1) (Unknown) (Side A)">
+		<description>Microzine (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Microzine - Disk 1, Side A.a2r" size="24628878" crc="479f362e" md5="444d9a08e5cd0d42ccd4aef8cc1f83c7" sha1="f16ccbee2a1253436ffa6d45b038b9c26436c8b5"/>
+	</game>
+	<game name="Microzine (Disk 1) (Unknown) (Side B)">
+		<description>Microzine (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Microzine - Disk 1, Side B.a2r" size="29013732" crc="3a467676" md5="fee44b0e362952452f2b3b34c79fef98" sha1="efff2239d1bd9258b915aeeaa4a81c7e7f91fc95"/>
+	</game>
+	<game name="Microzine (Disk 1) (Alt) (Unknown) (Side A)">
+		<description>Microzine (Disk 1) (Alt) (Unknown) (Side A)</description>
+		<rom name="Microzine - Disk 1, Side A (1).a2r" size="19807195" crc="e9fac787" md5="876cdbf888c50568dcf51ceeee6ea315" sha1="4cf8b6ccd5ac3804a82d8395ce19858f060d23f9"/>
+	</game>
+	<game name="Microzine (Disk 1) (Alt) (Unknown) (Side B)">
+		<description>Microzine (Disk 1) (Alt) (Unknown) (Side B)</description>
+		<rom name="Microzine - Disk 1, Side B (1).a2r" size="22156194" crc="ce3d833f" md5="e4341a5c67fcde37b525f1ff314ebd49" sha1="afb2963dcacb7f63f695e5a3ef1c0c83c9074a08"/>
+	</game>
+	<game name="Microzine Issue 17 (Disk 1) (Unknown) (Side A)">
+		<description>Microzine Issue 17 (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Microzine Issue 17 (Disk 1) (Unknown) (Side A).a2r" size="16322197" crc="b17c4f87" md5="65b34b08f279be76bb13ce63b3eee908" sha1="293ee9bfffd07cfd5acea5bd289839e57c71b564"/>
+	</game>
+	<game name="Microzine Issue 17 (Disk 1) (Unknown) (Side B)">
+		<description>Microzine Issue 17 (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Microzine Issue 17 (Disk 1) (Unknown) (Side B).a2r" size="16595691" crc="f904c3a5" md5="54580240f91952b54f1db03b78174da8" sha1="02ef1500c4ef90072ae5c6dcf15982fc2dd9331b"/>
+	</game>
+	<game name="Microzine Issue 36 (Disk 1) (Unknown) (Side A)">
+		<description>Microzine Issue 36 (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Microzine Issue 36 (Disk 1) (Unknown) (Side A).a2r" size="15447025" crc="60b56210" md5="957f7816561cf1f784de20bf454ac648" sha1="2d74dbeabbe3025f0d405e16e5fd44916fbc31e1"/>
+	</game>
+	<game name="Microzine Issue 36 (Disk 1) (Unknown) (Side B)">
+		<description>Microzine Issue 36 (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Microzine Issue 36 (Disk 1) (Unknown) (Side B).a2r" size="20099090" crc="aa629e9e" md5="03c8b380095b39d56b099818e355e060" sha1="52f4b8e506bc6a171fad2567c36ce7369bc84974"/>
+	</game>
+	<game name="Microzine Issue 36 (Disk 2) (Unknown) (Side A)">
+		<description>Microzine Issue 36 (Disk 2) (Unknown) (Side A)</description>
+		<rom name="Microzine Issue 36 (Disk 2) (Unknown) (Side A).a2r" size="23740266" crc="8dbc3c17" md5="f7234f69bb90221f08f71e3e13114b64" sha1="2cb97855eef9ecdc3b4da2cfe1e8458b26ee5067"/>
+	</game>
+	<game name="Microzine Issue 36 (Disk 2) (Unknown) (Side B)">
+		<description>Microzine Issue 36 (Disk 2) (Unknown) (Side B)</description>
+		<rom name="Microzine Issue 36 (Disk 2) (Unknown) (Side B).a2r" size="22756782" crc="183a228f" md5="64382c96369353e8ff1df2437fe44c98" sha1="fa7b778e9ce169c55f92b32ebbea0059a60648f3"/>
+	</game>
+	<game name="Montezuma's Revenge (Disk 1) (Unknown) (Side B)">
+		<description>Montezuma's Revenge (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Montezuma's Revenge (Disk 1) (Unknown) (Side B).a2r" size="26110348" crc="cb3cf297" md5="91ca2c0835dd83f114bfe73c50c5da79" sha1="85c26b9e68e331d448b6d7fbb3d05bbe1468286b"/>
+	</game>
+	<game name="Moonmist (Disk 1) (Unknown) (Side A)">
+		<description>Moonmist (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Moonmist - Disk 1, Side A.a2r" size="25619819" crc="ffa8bff6" md5="bb09e2041a1e98f103a1a80683499cc2" sha1="022d248011977eeb5a3acbeac604c2686935a447"/>
+	</game>
+	<game name="Murder Party (Disk 1) (Unknown) (Side A)">
+		<description>Murder Party (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Murder Party (Disk 1) (Unknown) (Side A).a2r" size="27243318" crc="7bbeafa3" md5="1d47059631f532c227663d2343081b24" sha1="469f9643d661ba623730295ba17f738eb38f5638"/>
+	</game>
+	<game name="Murder Party (Disk 1) (Unknown) (Side B)">
+		<description>Murder Party (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Murder Party (Disk 1) (Unknown) (Side B).a2r" size="30135323" crc="cd500112" md5="b971da7966d00d37c26f748187d5a78f" sha1="4ecf74fbdc5756a21e8313eb2a6152d62052d1a9"/>
+	</game>
+	<game name="Neverending Story, The (Unknown) (Side A)">
+		<description>Neverending Story, The (Unknown) (Side A)</description>
+		<rom name="Neverending Story, The - Disk 1, Side A.a2r" size="15810134" crc="916c7a4d" md5="1b95a610d9d9d18f61948624e5c0078e" sha1="a5ac05865c529c1f54d5d73e749cb7b40847a111"/>
+	</game>
+	<game name="No-Slot Clock Utilities Diskette (Disk 1) (Unknown) (Side A)">
+		<description>No-Slot Clock Utilities Diskette (Disk 1) (Unknown) (Side A)</description>
+		<rom name="No-Slot Clock Utilities Diskette (Disk 1) (Unknown) (Side A).a2r" size="19930969" crc="1cd1e94f" md5="4a399e73c81ad5fcf593eb3c28f35e2d" sha1="96ec84ab537b9f2237a5bb58bdaca68bff3aff61"/>
+	</game>
+	<game name="Odyssey (Disk 1) (Unknown) (Side A)">
+		<description>Odyssey (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Odyssey (Disk 1) (Unknown) (Side A).a2r" size="23541567" crc="9c06032a" md5="0006ec9966c8faed37f33a47a64a2c2b" sha1="2c813b07956925d6d6adef7ea398dac416a3ab39"/>
+	</game>
+	<game name="Oil Barons (Disk 1) (Unknown) (Side A)">
+		<description>Oil Barons (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Oil Barons (Disk 1) (Unknown) (Side A).a2r" size="19184309" crc="444544f4" md5="028a271b0c94786235753201a1805f71" sha1="4a3e7d9a4d0546b89859f4b89fa0fd4cbf3dd46e"/>
+	</game>
+	<game name="Oil Barons (Disk 1) (Unknown) (Side B)">
+		<description>Oil Barons (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Oil Barons (Disk 1) (Unknown) (Side B).a2r" size="24866805" crc="af2502e6" md5="2ff98dfdfa229baf64859b79f074ee3e" sha1="d199f96f856fa9d273c3ffb803452bcbb726f1df"/>
+	</game>
+	<game name="One on One (Disk 1) (Unknown) (Side A)">
+		<description>One on One (Disk 1) (Unknown) (Side A)</description>
+		<rom name="One on One (Disk 1) (Unknown) (Side A).a2r" size="22690460" crc="ec1352d6" md5="a217425b570a877db4ad78bbd2009a45" sha1="15025de14c34f8164b613c508ecd70a27fff66a6"/>
+	</game>
+	<game name="One-on-One (Disk 1) (Unknown) (Side A)">
+		<description>One-on-One (Disk 1) (Unknown) (Side A)</description>
+		<rom name="One-on-One (Disk 1) (Unknown) (Side A).a2r" size="24292767" crc="a430f7af" md5="1faeab72ad628da42c88f7b36c438a4f" sha1="d04b3f168992ef55938f3ce6b15270e73b86c6c4"/>
+	</game>
+	<game name="One-on-One (Disk 1) (Alt) (Unknown) (Side A)">
+		<description>One-on-One (Disk 1) (Alt) (Unknown) (Side A)</description>
+		<rom name="One-on-One (Disk 1) (Alt) (Unknown) (Side A).a2r" size="22847345" crc="398c66ee" md5="9e8becb1a29ef0b84455b8c0a145933e" sha1="edd518df599791e02cbcbc7e12190561cc5f5126"/>
+	</game>
+	<game name="Ortho Personalized Plant Selector (Disk 1) (Unknown) (Side A)">
+		<description>Ortho Personalized Plant Selector (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Ortho Personalized Plant Selector (Disk 1) (Unknown) (Side A).a2r" size="18310460" crc="3dfd3477" md5="e79f52367fd14a2118e86b8e59e169cb" sha1="b98fff710e72b59e422804f67bb8b9d3736e6daa"/>
+	</game>
+	<game name="Ortho Personalized Plant Selector (Disk 1) (Unknown) (Side B)">
+		<description>Ortho Personalized Plant Selector (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Ortho Personalized Plant Selector (Disk 1) (Unknown) (Side B).a2r" size="17238804" crc="2c839d6f" md5="44ff1a85cd51428c0481f7739e8f8a66" sha1="87f9cdcb93f7606dc919d6dad306d3d10599b8f9"/>
+	</game>
+	<game name="Picnic Paranoia (Disk 1) (Unknown) (Side A)">
+		<description>Picnic Paranoia (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Picnic Paranoia - Disk 1, Side A.a2r" size="9140301" crc="051f05bd" md5="0d4b11c6250a4177d7b2d1a3d0eefb4d" sha1="2d37b0a8b7b0cc6bd0b47277a003ec065cc537d3"/>
+	</game>
+	<game name="Pinball Construction Set (Disk 1) (Unknown) (Side A)">
+		<description>Pinball Construction Set (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Pinball Construction Set (Disk 1) (Unknown) (Side A).a2r" size="23125858" crc="6121b7d7" md5="198665a9f56e69d8da52781605a97a09" sha1="a679f993c6ba4e12896583f77c977d2d29eed6b0"/>
+	</game>
+	<game name="Pinball Construction Set (Disk 1) (Unknown) (Side B)">
+		<description>Pinball Construction Set (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Pinball Construction Set (Disk 1) (Unknown) (Side B).a2r" size="28436867" crc="80b84d21" md5="811395f624e8f351934810ebc896fce5" sha1="f742a1277721c68b85b4af97487b4d7955169022"/>
+	</game>
+	<game name="Pinpoink ToolKit (Disk 1) (Unknown) (Side A)">
+		<description>Pinpoink ToolKit (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Pinpoink ToolKit (Disk 1) (Unknown) (Side A).a2r" size="24099951" crc="490210d4" md5="5adc979bc92eb2d50e23a93bc9bfcce2" sha1="6c7e00817365440cb6c2ae0629a5b62a70d4d2d8"/>
+	</game>
+	<game name="Pinpoink ToolKit (Disk 1) (Unknown) (Side B)">
+		<description>Pinpoink ToolKit (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Pinpoink ToolKit (Disk 1) (Unknown) (Side B).a2r" size="16580220" crc="a330a85b" md5="13b21a9a9541c4f306d2f2a629e3eac4" sha1="7d6d01b15741ef7a163610e7b4b8fbed820f1e30"/>
+	</game>
+	<game name="Pinpoink ToolKit (Disk 2) (Unknown) (Side A)">
+		<description>Pinpoink ToolKit (Disk 2) (Unknown) (Side A)</description>
+		<rom name="Pinpoink ToolKit (Disk 2) (Unknown) (Side A).a2r" size="21424955" crc="176b661d" md5="c3d22ed4cf2ce64778e20f99d97d9320" sha1="ecbf13c1ad38efb82776f7b8faccbf076b8326bb"/>
+	</game>
+	<game name="Pinpoink ToolKit (Disk 2) (Unknown) (Side B)">
+		<description>Pinpoink ToolKit (Disk 2) (Unknown) (Side B)</description>
+		<rom name="Pinpoink ToolKit (Disk 2) (Unknown) (Side B).a2r" size="15252687" crc="2992e184" md5="e4b1124d5de7206c204f8a25ce4d6b6b" sha1="da84935eb2465e88defbc2d2caf1e5f9c87f3ef1"/>
+	</game>
+	<game name="Pinpoint (Disk 1) (Unknown) (Side A)">
+		<description>Pinpoint (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Pinpoint (Disk 1) (Unknown) (Side A).a2r" size="24945144" crc="b3f9ba88" md5="09f473e023bdbb67e94406c728ee263c" sha1="5325fd2ff548ad0635b2f55ece1ee947bbb6cefe"/>
+	</game>
+	<game name="Pinpoint (Disk 1) (Unknown) (Side B)">
+		<description>Pinpoint (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Pinpoint (Disk 1) (Unknown) (Side B).a2r" size="19869083" crc="257354e2" md5="abcb89fac06317357034d93079c41f1b" sha1="7fcb4f1bf5b8b88e61e8e999409f5d51853d7498"/>
+	</game>
+	<game name="Pinpoint Document Checker (Disk 1) (Unknown) (Side A)">
+		<description>Pinpoint Document Checker (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Pinpoint Document Checker (Disk 1) (Unknown) (Side A).a2r" size="21548634" crc="09de4d49" md5="87fd7beb4d6af303b14ef016d1e9e1df" sha1="5aca46907ee1efa0c51c03cb0bc34b02b26df69f"/>
+	</game>
+	<game name="Pinpoint Document Checker (Disk 1) (Unknown) (Side B)">
+		<description>Pinpoint Document Checker (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Pinpoint Document Checker (Disk 1) (Unknown) (Side B).a2r" size="25145020" crc="58b229ff" md5="57da9cadacb8a32913e981b777ee575d" sha1="11971984f5ad433a2c6ad0f40b4f536bb54009ab"/>
+	</game>
+	<game name="Pinpoint Graphic Edge (Disk 1) (Unknown) (Side A)">
+		<description>Pinpoint Graphic Edge (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Pinpoint Graphic Edge (Disk 1) (Unknown) (Side A).a2r" size="15030080" crc="24605e61" md5="56932941a4215fbbc37db7f8805905fa" sha1="69214a01e5f25844b39153055b517bb85952a89f"/>
+	</game>
+	<game name="Pinpoint Graphic Edge (Disk 1) (Unknown) (Side B)">
+		<description>Pinpoint Graphic Edge (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Pinpoint Graphic Edge (Disk 1) (Unknown) (Side B).a2r" size="16224258" crc="5bda64ad" md5="bf55e6a7bf4593e6885f7706e457e80c" sha1="589166dc32fd901becac305734702d7e5903ef7a"/>
+	</game>
+	<game name="Pinpoint Graphic Edge (Disk 2) (Unknown) (Side A)">
+		<description>Pinpoint Graphic Edge (Disk 2) (Unknown) (Side A)</description>
+		<rom name="Pinpoint Graphic Edge (Disk 2) (Unknown) (Side A).a2r" size="13863234" crc="fbbc0be7" md5="ed3cdcd81b7e4854105a00e200e0774c" sha1="b996174274b86acc46a584f86b98f49def9028f9"/>
+	</game>
+	<game name="Pinpoint Graphic Edge (Disk 2) (Unknown) (Side B)">
+		<description>Pinpoint Graphic Edge (Disk 2) (Unknown) (Side B)</description>
+		<rom name="Pinpoint Graphic Edge (Disk 2) (Unknown) (Side B).a2r" size="13435753" crc="c9ff072d" md5="0ba94b8e18cc0a072b25adf6d69d6a02" sha1="283bb1b75556ea28e5a3f2707f2ad4073d783ebb"/>
+	</game>
+	<game name="Pinpoint Spelling Checker (Disk 1) (Unknown) (Side A)">
+		<description>Pinpoint Spelling Checker (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Pinpoint Spelling Checker (Disk 1) (Unknown) (Side A).a2r" size="23655921" crc="9db21a4d" md5="963d9deddfc32bbafeedfb561e87f6d0" sha1="94be723d35bdc7e76429807404b8f61030fb866d"/>
+	</game>
+	<game name="Pinpoint Spelling Checker (Disk 1) (Unknown) (Side B)">
+		<description>Pinpoint Spelling Checker (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Pinpoint Spelling Checker (Disk 1) (Unknown) (Side B).a2r" size="26532208" crc="9fae4792" md5="ddbe5a2cee08879c807b8bc7437d745e" sha1="e79fc27dfe106682ab2abda3a59b46f07d297c6b"/>
+	</game>
+	<game name="Pioneer CD-ROM LD-ROM Device Driver (Disk 1) (Unknown)">
+		<description>Pioneer CD-ROM LD-ROM Device Driver (Disk 1) (Unknown)</description>
+		<rom name="Pioneer CD-ROM LD-ROM Device Driver (Disk 1) (Unknown).a2r" size="20672358" crc="859f6601" md5="af1838e05e17719bc9f032f88a525cb5" sha1="7ec4c6f07fd2d0a347fd1dba52b6f218aa4a5281"/>
+	</game>
+	<game name="Pioneer CD-ROM LD-ROM Device Driver (Disk 1) (Alt) (Unknown)">
+		<description>Pioneer CD-ROM LD-ROM Device Driver (Disk 1) (Alt) (Unknown)</description>
+		<rom name="Pioneer CD-ROM LD-ROM Device Driver (Disk 1) (Alt) (Unknown).a2r" size="20760258" crc="ac6e34fb" md5="75e3afc35e9662e19a87de97c8fb8e81" sha1="ab1cc94fe48b2cf29506398b1421dd07bb0c43bd"/>
+	</game>
+	<game name="Pirates! (Disk 1) (Unknown) (Side A)">
+		<description>Pirates! (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Pirates! (Disk 1) (Unknown) (Side A).a2r" size="28671035" crc="1e713ab7" md5="d814a43ec56516266a9ddb2011d68948" sha1="18ff05d32e218165ca14c942412c438d4e89cb7f"/>
+	</game>
+	<game name="Pirates! (Disk 1) (Unknown) (Side B)">
+		<description>Pirates! (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Pirates! (Disk 1) (Unknown) (Side B).a2r" size="22926489" crc="e747c632" md5="6a853b23e249eafaf2bfd00c7049dc30" sha1="5d09ca0378746512e233ea18c8e71a72dea7df80"/>
+	</game>
+	<game name="Planetfall - IS3-AP1-FD1 (Unknown)">
+		<description>Planetfall - IS3-AP1-FD1 (Unknown)</description>
+		<rom name="Planetfall - IS3-AP1-FD1.a2r" size="18272888" crc="2be26a96" md5="5725db20c9e732b88182608f6b874d36" sha1="568493a2d5b8907557e985738e765b68ea259aff"/>
+	</game>
+	<game name="Police Quest (Disk 1) (Unknown) (Side A)">
+		<description>Police Quest (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Police Quest (Disk 1) (Unknown) (Side A).a2r" size="22710343" crc="8de5fb75" md5="ed84a7b3c86d0539bb89411ff16fcb7b" sha1="65683f72829bbf54a41a1e2ae3d9f5b74c22dd36"/>
+	</game>
+	<game name="Police Quest (Disk 1) (Unknown) (Side B)">
+		<description>Police Quest (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Police Quest (Disk 1) (Unknown) (Side B).a2r" size="29072402" crc="70a0c563" md5="c6b44f8a8cd333fd384594e73e360d14" sha1="528f0d971be48d7249212e4021095f57c24aa777"/>
+	</game>
+	<game name="Police Quest (Disk 2) (Unknown) (Side A)">
+		<description>Police Quest (Disk 2) (Unknown) (Side A)</description>
+		<rom name="Police Quest (Disk 2) (Unknown) (Side A).a2r" size="26880215" crc="4794574c" md5="d905a360f3a73437966a29c36cbc972e" sha1="bde1cf766fe8a4c8687b239e7bd4924836ea41a8"/>
+	</game>
+	<game name="Police Quest (Disk 2) (Unknown) (Side B)">
+		<description>Police Quest (Disk 2) (Unknown) (Side B)</description>
+		<rom name="Police Quest (Disk 2) (Unknown) (Side B).a2r" size="28923734" crc="1b946bc5" md5="4e1e166758e11c9459051a264699fdb3" sha1="8dde40cefc401a040fedc14103b1c6cab05d5652"/>
+	</game>
+	<game name="Police Quest (Disk 3) (Unknown) (Side A)">
+		<description>Police Quest (Disk 3) (Unknown) (Side A)</description>
+		<rom name="Police Quest (Disk 3) (Unknown) (Side A).a2r" size="23753032" crc="58f1a2e0" md5="0e59972818480dc1ce18e2c3cc03f91a" sha1="971bfb34e1cc64bceb64cf2e34e0dd3bc9cf8f5a"/>
+	</game>
+	<game name="Police Quest (Disk 3) (Unknown) (Side B)">
+		<description>Police Quest (Disk 3) (Unknown) (Side B)</description>
+		<rom name="Police Quest (Disk 3) (Unknown) (Side B).a2r" size="29132464" crc="c19d374b" md5="8dc45a29ed97c4494c4856bd6f392c7d" sha1="f343d58f5b88fd484078256d3f18590af22cda7a"/>
+	</game>
+	<game name="Police Quest (Disk 4) (Unknown) (Side A)">
+		<description>Police Quest (Disk 4) (Unknown) (Side A)</description>
+		<rom name="Police Quest (Disk 4) (Unknown) (Side A).a2r" size="28372552" crc="a289e1d7" md5="cadfe77201a8345bbf3c3f39421f226d" sha1="a4426c6fdf490f3b1d4dc322e10f6a7c41a12403"/>
+	</game>
+	<game name="Police Quest (Disk 4) (Unknown) (Side B)">
+		<description>Police Quest (Disk 4) (Unknown) (Side B)</description>
+		<rom name="Police Quest (Disk 4) (Unknown) (Side B).a2r" size="28573300" crc="486a04db" md5="63aaaa789d58661d75183c485d30b518" sha1="09d056e1ed56f08e776891e51af5e739e24349ac"/>
+	</game>
+	<game name="Power Up! Sign Designer (Disk 1) (Unknown) (Side A)">
+		<description>Power Up! Sign Designer (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Power Up! Sign Designer - Disk 1, Side A.a2r" size="22428504" crc="064e7918" md5="7e4bb047d3a0249ba64f82d17f2afe57" sha1="52637238c86e73dfd57240f2a912bb74d0605c5d"/>
+	</game>
+	<game name="Power Up! The Typewriter (Disk 1) (Unknown) (Side A)">
+		<description>Power Up! The Typewriter (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Power Up! The Typewriter - Disk 1, Side A.a2r" size="27160117" crc="fff53e71" md5="db3ace68a629907201c8d1566071b102" sha1="94809340935238871daffd71504f0dfa5760c316"/>
+	</game>
+	<game name="ProTerm - Disk 1 (Alt) (Unknown)">
+		<description>ProTerm - Disk 1 (Alt) (Unknown)</description>
+		<rom name="ProTerm - Disk 1 (Alt) (Unknown).a2r" size="74469565" crc="08d96563" md5="e18cdd4a9b5ca7bb40b345712a0159f1" sha1="eb227d42ea6e8bb4caffee5e1e7c1f59c7e570e9"/>
+	</game>
+	<game name="ProTerm (Disk 1) (Unknown)">
+		<description>ProTerm (Disk 1) (Unknown)</description>
+		<rom name="ProTerm (Disk 1) (Unknown).a2r" size="21284116" crc="1bef6b7e" md5="96b9969d924b42a128ea8169e557dd44" sha1="badcff5520c67d1ab3b5f24ae6358623f9f23bee"/>
+	</game>
+	<game name="ProTerm Mac (Disk 1) (Unknown)">
+		<description>ProTerm Mac (Disk 1) (Unknown)</description>
+		<rom name="ProTerm Mac (Disk 1) (Unknown).a2r" size="22810358" crc="6b841f48" md5="28d14a446314a0603bd5666ea9472d38" sha1="884846a6df31e252ee05e801afd56da89a144652"/>
+	</game>
+	<game name="Publish It! 2 - Artwork (Unknown)">
+		<description>Publish It! 2 - Artwork (Unknown)</description>
+		<rom name="Publish It! 2 - Artwork (Unknown).a2r" size="20650365" crc="4aa81d5d" md5="910921e0fd47c4c8672e47ceffe2e3b2" sha1="7f7e404de72f2e836dc83e643f5543803ac341d2"/>
+	</game>
+	<game name="Publish It! 2 - Program (Unknown)">
+		<description>Publish It! 2 - Program (Unknown)</description>
+		<rom name="Publish It! 2 - Program (Unknown).a2r" size="20123028" crc="bcd7f820" md5="af250094414a3b9042d020801b877674" sha1="9dd6212b043d0373b3aa5d3deee09643eada61ff"/>
+	</game>
+	<game name="Publish It! 3 - Artwork (Unknown)">
+		<description>Publish It! 3 - Artwork (Unknown)</description>
+		<rom name="Publish It! 3 - Artwork (Unknown).a2r" size="20704937" crc="1f732a19" md5="c2917cb771bddc2fd4ea1280164c3519" sha1="7432d2478075a6d7653a126626c6a38041c651e8"/>
+	</game>
+	<game name="Publish It! 3 - Program and Help (Unknown)">
+		<description>Publish It! 3 - Program and Help (Unknown)</description>
+		<rom name="Publish It! 3 - Program and Help (Unknown).a2r" size="20341983" crc="8a956c63" md5="1c1082f7cf0ecc5ef2ec72d0d7eb1757" sha1="b8e1915a919dd58490c8e26a92ef6ec119cdaf71"/>
+	</game>
+	<game name="Publish It! Design Ideas (Disk 1) (Unknown) (Side A)">
+		<description>Publish It! Design Ideas (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Publish It! Design Ideas (Disk 1) (Unknown) (Side A).a2r" size="19581518" crc="a637fe33" md5="46732193a573be2ca005c7b87af13d73" sha1="f7f73d64da6d22cdc883df0ecd5d72de6cea3c91"/>
+	</game>
+	<game name="Publish It! Design Ideas (Disk 1) (Unknown) (Side B)">
+		<description>Publish It! Design Ideas (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Publish It! Design Ideas (Disk 1) (Unknown) (Side B).a2r" size="14842511" crc="8ca4f643" md5="b23ade7fbe9d555f3fcbd7db88a23145" sha1="f1303b60ce442665021d603b0c9c1ddc6b2e842b"/>
+	</game>
+	<game name="Publish It! Design Ideas (Disk 1) (Unknown)">
+		<description>Publish It! Design Ideas (Disk 1) (Unknown)</description>
+		<rom name="Publish It! Design Ideas (Disk 1) (Unknown).a2r" size="20124898" crc="fc80a937" md5="082475b6c995af3fdbc1285da051729c" sha1="4814572400a152104f9a80b8f137f8872533ca21"/>
+	</game>
+	<game name="Publish It! Design Ideas (Disk 2) (Unknown) (Side A)">
+		<description>Publish It! Design Ideas (Disk 2) (Unknown) (Side A)</description>
+		<rom name="Publish It! Design Ideas (Disk 2) (Unknown) (Side A).a2r" size="14638170" crc="6e56607e" md5="941da015c18e5a5f244ffaeb8fe1ed37" sha1="eeef8b99b0a6a303c40d2e5d672c50e8889abac2"/>
+	</game>
+	<game name="Publish It! Design Ideas (Disk 2) (Unknown) (Side B)">
+		<description>Publish It! Design Ideas (Disk 2) (Unknown) (Side B)</description>
+		<rom name="Publish It! Design Ideas (Disk 2) (Unknown) (Side B).a2r" size="23129825" crc="c1e7074c" md5="d8ca26d3e83d25650df7822c6ae8aa1e" sha1="0e69ee8f65abcd2bcdb5918c3667b3219456545f"/>
+	</game>
+	<game name="Publish It! Education Graphics (Disk 1) (Unknown) (Side A)">
+		<description>Publish It! Education Graphics (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Publish It! Education Graphics (Disk 1) (Unknown) (Side A).a2r" size="17607829" crc="bfaced2c" md5="c430c83c8712acfd07ab3828b4da1757" sha1="3ae329e409647e653ee28525aff17e08c0a926cd"/>
+	</game>
+	<game name="Publish It! Education Graphics (Disk 1) (Unknown) (Side B)">
+		<description>Publish It! Education Graphics (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Publish It! Education Graphics (Disk 1) (Unknown) (Side B).a2r" size="14567761" crc="281599e6" md5="971581a26146c82b4606e2106624af95" sha1="7e5db91bef712ab0739160833c0b5e75e1ac583f"/>
+	</game>
+	<game name="Publish It! Education Graphics (Disk 1) (Unknown)">
+		<description>Publish It! Education Graphics (Disk 1) (Unknown)</description>
+		<rom name="Publish It! Education Graphics (Disk 1) (Unknown).a2r" size="22522696" crc="3dc2acd2" md5="268d6e1832dff1cf1e9cb87365325f55" sha1="6c9543e967973db30f35836c7258e42f65d06d15"/>
+	</game>
+	<game name="Publish It! Education Graphics (Disk 2) (Unknown) (Side A)">
+		<description>Publish It! Education Graphics (Disk 2) (Unknown) (Side A)</description>
+		<rom name="Publish It! Education Graphics (Disk 2) (Unknown) (Side A).a2r" size="14491121" crc="034bdc40" md5="380eae4ae984f08e3b26e187ff0a6171" sha1="a9499384a9d4d3ace375dcb39905767a870ae82b"/>
+	</game>
+	<game name="Publish It! Education Graphics (Disk 2) (Unknown) (Side B)">
+		<description>Publish It! Education Graphics (Disk 2) (Unknown) (Side B)</description>
+		<rom name="Publish It! Education Graphics (Disk 2) (Unknown) (Side B).a2r" size="14643866" crc="663fbdb9" md5="bd23e0eb3518cc435a8973f87afd8b2b" sha1="2d568311cc469f01c7c1deb1db81b49fb25904d7"/>
+	</game>
+	<game name="Publish It! Education Graphics (Disk 3) (Unknown) (Side A)">
+		<description>Publish It! Education Graphics (Disk 3) (Unknown) (Side A)</description>
+		<rom name="Publish It! Education Graphics (Disk 3) (Unknown) (Side A).a2r" size="23512908" crc="f04add3b" md5="75702623f22ab10dd2df1d6ef4251b7a" sha1="15cc8c6ca0d2b41d8a71f9a57c9791b5843a9484"/>
+	</game>
+	<game name="Publish It! Education Graphics (Disk 3) (Unknown) (Side B)">
+		<description>Publish It! Education Graphics (Disk 3) (Unknown) (Side B)</description>
+		<rom name="Publish It! Education Graphics (Disk 3) (Unknown) (Side B).a2r" size="23494216" crc="c72af687" md5="b0817f95e2b5c7b785f108a84d75668a" sha1="bcdffe4d89478437b09474c56666b88d5ceb456d"/>
+	</game>
+	<game name="Publish It! Font Pack 1 (Disk 1) (Unknown) (Side A)">
+		<description>Publish It! Font Pack 1 (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Publish It! Font Pack 1 (Disk 1) (Unknown) (Side A).a2r" size="21176107" crc="ba214a7e" md5="a5be304cc965b6c33bb7e00029c5ce08" sha1="a00ad54027327c5380346a12acdbb666ababa351"/>
+	</game>
+	<game name="Publish It! Font Pack 1 (Disk 1) (Unknown) (Side B)">
+		<description>Publish It! Font Pack 1 (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Publish It! Font Pack 1 (Disk 1) (Unknown) (Side B).a2r" size="16542528" crc="a9f99e39" md5="182503836b19736d65e3598c6c14433f" sha1="2d6d2c32fbd03cf012b76db29855271159919c93"/>
+	</game>
+	<game name="Publish It! Font Pack 1 (Disk 1) (Unknown)">
+		<description>Publish It! Font Pack 1 (Disk 1) (Unknown)</description>
+		<rom name="Publish It! Font Pack 1 (Disk 1) (Unknown).a2r" size="19089568" crc="9ba37601" md5="af01e10be092000f4a06e33b245b9043" sha1="45bdffd0626487028b8591c82d24326e9c97f1d9"/>
+	</game>
+	<game name="Publish It! Font Pack 2 (Disk 1) (Unknown) (Side A)">
+		<description>Publish It! Font Pack 2 (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Publish It! Font Pack 2 (Disk 1) (Unknown) (Side A).a2r" size="22390825" crc="1fa57c68" md5="310b0987f6cdac5a59f10cc44421f05e" sha1="b07e8fda28954329b1c127bcdd4589993fcbf28a"/>
+	</game>
+	<game name="Publish It! Font Pack 2 (Disk 1) (Unknown) (Side B)">
+		<description>Publish It! Font Pack 2 (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Publish It! Font Pack 2 (Disk 1) (Unknown) (Side B).a2r" size="25324484" crc="a2d5f329" md5="e89cc4eedf68e7111c2c251c56ba6291" sha1="2cdfc54c71794e63063a3a49df2a76fca3960520"/>
+	</game>
+	<game name="Publish It! Font Pack 2 (Disk 1) (Unknown)">
+		<description>Publish It! Font Pack 2 (Disk 1) (Unknown)</description>
+		<rom name="Publish It! Font Pack 2 (Disk 1) (Unknown).a2r" size="20491369" crc="ccc06100" md5="3ba507cc8820ed011f099b94af47660a" sha1="a1b0b998bc282e20bf977d243a9bf6b1963a771e"/>
+	</game>
+	<game name="Publish It! Font Pack 2 (Disk 2) (Unknown) (Side A)">
+		<description>Publish It! Font Pack 2 (Disk 2) (Unknown) (Side A)</description>
+		<rom name="Publish It! Font Pack 2 (Disk 2) (Unknown) (Side A).a2r" size="24966840" crc="abbf5bed" md5="24e0d6ec49eee12f1dfcff6d09237587" sha1="11c34d01ca598d0dc3b4b17b8c757684f56be234"/>
+	</game>
+	<game name="Publish It! Laser Accessory Pack (Disk 1) (Unknown) (Side A)">
+		<description>Publish It! Laser Accessory Pack (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Publish It! Laser Accessory Pack (Disk 1) (Unknown) (Side A).a2r" size="16866449" crc="c2ab1d1f" md5="ede0e76497b6fc74b3f8f31f7ddfea32" sha1="5358819b026432340bade88bc11a41175acd3b5f"/>
+	</game>
+	<game name="Publish It! Laser Accessory Pack (Disk 1) (Unknown)">
+		<description>Publish It! Laser Accessory Pack (Disk 1) (Unknown)</description>
+		<rom name="Publish It! Laser Accessory Pack (Disk 1) (Unknown).a2r" size="18093605" crc="06dbb0a9" md5="b88fac6201c530f5dccad2403c2b5fcd" sha1="dde88c676c475b9047d8cfc8a1ab86f934d25485"/>
+	</game>
+	<game name="Publish It! People Places and Things (Disk 1) (Unknown) (Side A)">
+		<description>Publish It! People Places and Things (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Publish It! People Places and Things (Disk 1) (Unknown) (Side A).a2r" size="15366566" crc="58c33667" md5="896c0864099e70efc874f77b33f31692" sha1="48cdd885593b60bb6f0e79694609c7167b396ae1"/>
+	</game>
+	<game name="Publish It! People Places and Things (Disk 1) (Unknown) (Side B)">
+		<description>Publish It! People Places and Things (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Publish It! People Places and Things (Disk 1) (Unknown) (Side B).a2r" size="15263538" crc="1e1a5f84" md5="8a9350d7b903f38f3edecc64ef149101" sha1="0a213f6800804627b120872cb24d16514281735e"/>
+	</game>
+	<game name="Publish It! People Places and Things (Disk 1) (Unknown)">
+		<description>Publish It! People Places and Things (Disk 1) (Unknown)</description>
+		<rom name="Publish It! People Places and Things (Disk 1) (Unknown).a2r" size="23498162" crc="29242daa" md5="94dc132399bb9ac45adf84674e16a48c" sha1="5dceb23ab1e8e334965c684b85daa89569a8a1a4"/>
+	</game>
+	<game name="Publish It! People Places and Things (Disk 2) (Unknown) (Side A)">
+		<description>Publish It! People Places and Things (Disk 2) (Unknown) (Side A)</description>
+		<rom name="Publish It! People Places and Things (Disk 2) (Unknown) (Side A).a2r" size="14161912" crc="8d5cc1f7" md5="d3a607328f255fea9518ed02247b247e" sha1="8d25755559a3fefdfcf6bbfbd3258a6e4e55922b"/>
+	</game>
+	<game name="Publish It! People Places and Things (Disk 2) (Unknown) (Side B)">
+		<description>Publish It! People Places and Things (Disk 2) (Unknown) (Side B)</description>
+		<rom name="Publish It! People Places and Things (Disk 2) (Unknown) (Side B).a2r" size="14708168" crc="b62e9493" md5="5a487df10a7f3dc4b281020edb4956c9" sha1="c5ce9084eca88e0ce4f87778eac53d547fa1fbc5"/>
+	</game>
+	<game name="Publish It! People Places and Things (Disk 3) (Unknown) (Side A)">
+		<description>Publish It! People Places and Things (Disk 3) (Unknown) (Side A)</description>
+		<rom name="Publish It! People Places and Things (Disk 3) (Unknown) (Side A).a2r" size="16391550" crc="6679f18a" md5="8debf7fcbb288fa114a64c0b6d2a7cf1" sha1="64c397800635aaecc10dfc1c01d798d2774e05f0"/>
+	</game>
+	<game name="Publish It! People Places and Things (Disk 3) (Unknown) (Side B)">
+		<description>Publish It! People Places and Things (Disk 3) (Unknown) (Side B)</description>
+		<rom name="Publish It! People Places and Things (Disk 3) (Unknown) (Side B).a2r" size="23054734" crc="bf650be1" md5="4d8be5013876d9a010823dc516938ad0" sha1="acf96bff683dc5ef4070bcc5b2a63a1979b0f08a"/>
+	</game>
+	<game name="Publish It! Symbols and Slogans (Disk 1) (Unknown) (Side A)">
+		<description>Publish It! Symbols and Slogans (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Publish It! Symbols and Slogans (Disk 1) (Unknown) (Side A).a2r" size="21474845" crc="15ec4934" md5="6ed440e52d03f5c94b0a0d0b32fb51ff" sha1="3f6daee4ee1bd8fbdef910f6aa2917ed08c06223"/>
+	</game>
+	<game name="Publish It! Symbols and Slogans (Disk 1) (Unknown) (Side B)">
+		<description>Publish It! Symbols and Slogans (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Publish It! Symbols and Slogans (Disk 1) (Unknown) (Side B).a2r" size="15138025" crc="25eb5fd0" md5="ebc4214de1603cd5ea689cf975453d4e" sha1="19073028c899b9088b18105a9fc319e03eac587f"/>
+	</game>
+	<game name="Publish It! Symbols and Slogans (Disk 1) (Unknown)">
+		<description>Publish It! Symbols and Slogans (Disk 1) (Unknown)</description>
+		<rom name="Publish It! Symbols and Slogans (Disk 1) (Unknown).a2r" size="23155930" crc="16e080ce" md5="3e788a9404749bbf05bf5e258f06a44f" sha1="74a6e4ff8f0262dc85a6a60b4b3a374b1e16b9ad"/>
+	</game>
+	<game name="Publish It! Symbols and Slogans (Disk 2) (Unknown) (Side A)">
+		<description>Publish It! Symbols and Slogans (Disk 2) (Unknown) (Side A)</description>
+		<rom name="Publish It! Symbols and Slogans (Disk 2) (Unknown) (Side A).a2r" size="14831548" crc="835d8945" md5="3e070a763ebf9999298fd4f8d4d4ce6b" sha1="11dcb9e83f7b78b4220bd7de59660ae6920b1819"/>
+	</game>
+	<game name="Publish It! Symbols and Slogans (Disk 2) (Unknown) (Side B)">
+		<description>Publish It! Symbols and Slogans (Disk 2) (Unknown) (Side B)</description>
+		<rom name="Publish It! Symbols and Slogans (Disk 2) (Unknown) (Side B).a2r" size="14396745" crc="37f37c43" md5="341a90ae05d79bde9b4b8d9b3e4d68b9" sha1="22c97d34c63c8e2d279998a8f7c52debf5a9fc50"/>
+	</game>
+	<game name="Publish It! Symbols and Slogans (Disk 3) (Unknown) (Side A)">
+		<description>Publish It! Symbols and Slogans (Disk 3) (Unknown) (Side A)</description>
+		<rom name="Publish It! Symbols and Slogans (Disk 3) (Unknown) (Side A).a2r" size="15158294" crc="fd7d4204" md5="61b58ddc9276327cd799fd73f99a65e1" sha1="16e4db2bc3c9c471d13d2c2f4ee66ca2b89bb8e9"/>
+	</game>
+	<game name="Publish It! Symbols and Slogans (Disk 3) (Unknown) (Side B)">
+		<description>Publish It! Symbols and Slogans (Disk 3) (Unknown) (Side B)</description>
+		<rom name="Publish It! Symbols and Slogans (Disk 3) (Unknown) (Side B).a2r" size="23370856" crc="b34a60e0" md5="395527daeb1d51481f45d7984ea9165e" sha1="beeeec4f76b5910fbf23bf976f0b50ee0dcc544f"/>
+	</game>
+	<game name="Publish-It! 3 - Artwork Side 1 (Unknown)">
+		<description>Publish-It! 3 - Artwork Side 1 (Unknown)</description>
+		<rom name="Publish-It! 3 - Artwork Side 1 (Unknown).a2r" size="18884131" crc="0c71852e" md5="9362e9640b2ea0871d704ccfb4b59841" sha1="4749a309d5332b29f98988cd0bbf6d09e876df76"/>
+	</game>
+	<game name="Publish-It! 3 - Artwork Side 2 (Unknown)">
+		<description>Publish-It! 3 - Artwork Side 2 (Unknown)</description>
+		<rom name="Publish-It! 3 - Artwork Side 2 (Unknown).a2r" size="23149051" crc="67b2732e" md5="8c8c8966176a909e8cfdd4c99c435c15" sha1="d2f4205849ecfd5076c8a4809bfe9f73ada644ae"/>
+	</game>
+	<game name="Publish-It! 3 - Artwork Side 3 (Unknown)">
+		<description>Publish-It! 3 - Artwork Side 3 (Unknown)</description>
+		<rom name="Publish-It! 3 - Artwork Side 3 (Unknown).a2r" size="23306575" crc="73be01c0" md5="e5a9fc967c9d9646928282b2cbfa9964" sha1="1c97462621576414e7977e23a933f761ccbf080e"/>
+	</game>
+	<game name="Publish-It! 3 - Artwork Side 4 (Unknown)">
+		<description>Publish-It! 3 - Artwork Side 4 (Unknown)</description>
+		<rom name="Publish-It! 3 - Artwork Side 4 (Unknown).a2r" size="23141405" crc="2704e3e9" md5="0803421605be56621d14195231d3b9b7" sha1="203eaa5a20661662aff2d9eb29b2b5cc0ab5858a"/>
+	</game>
+	<game name="Publish-It! 3 - Fonts (Side 1) (Unknown)">
+		<description>Publish-It! 3 - Fonts (Side 1) (Unknown)</description>
+		<rom name="Publish-It! 3 - Fonts (Side 1) (Unknown).a2r" size="16520763" crc="861e19b8" md5="5b9964899dbc1ff1c865a9831483f8c7" sha1="d3f64bceab60d2e1da9cecca52c48238bb93fe5f"/>
+	</game>
+	<game name="Publish-It! 3 - Fonts (Side 1) (Alt) (Unknown)">
+		<description>Publish-It! 3 - Fonts (Side 1) (Alt) (Unknown)</description>
+		<rom name="Publish-It! 3 - Fonts (Side 1) (Alt) (Unknown).a2r" size="14927808" crc="60b30f68" md5="e2ea46c78261c6f23506778ed5f2ef6a" sha1="857bb8183453c43ca4d29bdce9a07580d36da602"/>
+	</game>
+	<game name="Publish-It! 3 - Fonts Side 2 (Unknown)">
+		<description>Publish-It! 3 - Fonts Side 2 (Unknown)</description>
+		<rom name="Publish-It! 3 - Fonts Side 2 (Unknown).a2r" size="15610598" crc="2d8fdd91" md5="c863218fe23e33134855a2dc269935b5" sha1="7e7841caad4e3cc09b2cbf2b635cf262c5d31e5d"/>
+	</game>
+	<game name="Publish-It! 3 - Fonts Side 2 (Alt) (Unknown)">
+		<description>Publish-It! 3 - Fonts Side 2 (Alt) (Unknown)</description>
+		<rom name="Publish-It! 3 - Fonts Side 2 (Alt) (Unknown).a2r" size="19842025" crc="568cda46" md5="ae3041283bbc921c7965d1da0c7e3bd1" sha1="d8fd03050ce538c45f5d2de9c384e4d81294dc1c"/>
+	</game>
+	<game name="Publish-It! 3 - Program and Help (Unknown)">
+		<description>Publish-It! 3 - Program and Help (Unknown)</description>
+		<rom name="Publish-It! 3 - Program and Help (Unknown).a2r" size="27197147" crc="1aa1c6c0" md5="919ab3e0f040c8f801769b6e910d38ec" sha1="fad5b744aff9817b91d0fee984f6f636f5903007"/>
+	</game>
+	<game name="Publish-It! 3 - Program and Help (Alt) (Unknown)">
+		<description>Publish-It! 3 - Program and Help (Alt) (Unknown)</description>
+		<rom name="Publish-It! 3 - Program and Help (Alt) (Unknown).a2r" size="18552418" crc="5cd9c671" md5="2d0581a8577d9338ee46c29738080f79" sha1="ae6ff747057cb58d1260a51aa5e448e387e14f4c"/>
+	</game>
+	<game name="Publish-It! 3 - Startup Sample and Laser Printing (Unknown)">
+		<description>Publish-It! 3 - Startup Sample and Laser Printing (Unknown)</description>
+		<rom name="Publish-It! 3 - Startup Sample and Laser Printing (Unknown).a2r" size="26137148" crc="94f06e19" md5="055148c81bdfdf557f31d0b8dcabd19b" sha1="9531a27302d1f7112ba5828f0501926e138a008e"/>
+	</game>
+	<game name="Publish-It! 3 - Startup Sample and Laser Printing (Alt) (Unknown)">
+		<description>Publish-It! 3 - Startup Sample and Laser Printing (Alt) (Unknown)</description>
+		<rom name="Publish-It! 3 - Startup Sample and Laser Printing (Alt) (Unknown).a2r" size="16339466" crc="c498d802" md5="34f5b767913691239b1a6b10f6579973" sha1="903ab276e5db13e075b5c7ce69f77dd589d5632f"/>
+	</game>
+	<game name="Publish-It! 4 - Artwork Side 1 (Unknown)">
+		<description>Publish-It! 4 - Artwork Side 1 (Unknown)</description>
+		<rom name="Publish-It! 4 - Artwork Side 1 (Unknown).a2r" size="19358586" crc="bd2c8f21" md5="772f8add00260968338ad8a6b040f70a" sha1="9cd55ef99d1a86e6cd63c1e743aff988375c6a49"/>
+	</game>
+	<game name="Publish-It! 4 - Artwork Side 2 (Unknown)">
+		<description>Publish-It! 4 - Artwork Side 2 (Unknown)</description>
+		<rom name="Publish-It! 4 - Artwork Side 2 (Unknown).a2r" size="14214484" crc="eb4006d9" md5="6d5d4436b5d9f538918b7d51be670ff6" sha1="294ea0f197261bd8e0ed9c88621d9519d8276a01"/>
+	</game>
+	<game name="Publish-It! 4 - Artwork Side 3 (Unknown)">
+		<description>Publish-It! 4 - Artwork Side 3 (Unknown)</description>
+		<rom name="Publish-It! 4 - Artwork Side 3 (Unknown).a2r" size="18989008" crc="dd9c9d7d" md5="1af915076ddfb127436cf0ba675fb453" sha1="39b0f3ebd0afdb063681703a6c020a73b924c6e9"/>
+	</game>
+	<game name="Publish-It! 4 - Artwork Side 4 (Unknown)">
+		<description>Publish-It! 4 - Artwork Side 4 (Unknown)</description>
+		<rom name="Publish-It! 4 - Artwork Side 4 (Unknown).a2r" size="22663421" crc="73d1a069" md5="77d023dca8e47facea66fe0d44df3e34" sha1="7ce64d16a894c420e2d1c2a4fd25054407a61858"/>
+	</game>
+	<game name="Publish-It! 4 - Chooser (Unknown)">
+		<description>Publish-It! 4 - Chooser (Unknown)</description>
+		<rom name="Publish-It! 4 - Chooser (Unknown).a2r" size="25172226" crc="be3eeb33" md5="55c83bc5558f719f32efdf89d67078ee" sha1="b0320cce7a485f595304e4d19979490e08bce292"/>
+	</game>
+	<game name="Publish-It! 4 - Chooser and Artwork (Unknown)">
+		<description>Publish-It! 4 - Chooser and Artwork (Unknown)</description>
+		<rom name="Publish-It! 4 - Chooser and Artwork (Unknown).a2r" size="21501970" crc="193580de" md5="6cde7f44c0f46de8ffd9d231edab4f00" sha1="78ac24c457be5fc2cdf8f495f4ba62f5b79aa182"/>
+	</game>
+	<game name="Publish-It! 4 - Fonts Side 1 (Unknown)">
+		<description>Publish-It! 4 - Fonts Side 1 (Unknown)</description>
+		<rom name="Publish-It! 4 - Fonts Side 1 (Unknown).a2r" size="16368520" crc="17af7fbc" md5="2c641ec2e7a50b6c2293c4f42f4d63d5" sha1="a0ece7e489297a1916563d5a789dd7c13d968cb2"/>
+	</game>
+	<game name="Publish-It! 4 - Program (Unknown)">
+		<description>Publish-It! 4 - Program (Unknown)</description>
+		<rom name="Publish-It! 4 - Program (Unknown).a2r" size="20911939" crc="f910d5c2" md5="9fc60be02c372a93ec10578da6d4a400" sha1="47eb1a70a90cea5b3ea0ef931252b1fab47115a0"/>
+	</game>
+	<game name="Publish-It! 4 - Program and Help (Unknown)">
+		<description>Publish-It! 4 - Program and Help (Unknown)</description>
+		<rom name="Publish-It! 4 - Program and Help (Unknown).a2r" size="20525581" crc="8aecc2a8" md5="87b5002c32b4512a61264f7dd8f4ab4b" sha1="af8d8b3804fa8cb437d7ed786444765340ccb6f5"/>
+	</game>
+	<game name="Publish-It! 4 - Sample Data (Unknown)">
+		<description>Publish-It! 4 - Sample Data (Unknown)</description>
+		<rom name="Publish-It! 4 - Sample Data (Unknown).a2r" size="21029714" crc="eb60422d" md5="4e600ac203041359a77e57e8de29e696" sha1="bbbfb4cebd48273675bfac085a0c87bc258d9577"/>
+	</game>
+	<game name="Publish-It! 4 - Startup Help and Laser Printing Files (Unknown)">
+		<description>Publish-It! 4 - Startup Help and Laser Printing Files (Unknown)</description>
+		<rom name="Publish-It! 4 - Startup Help and Laser Printing Files (Unknown).a2r" size="26007182" crc="0de37394" md5="61b30d29484d85ea068522739204ab55" sha1="6daf5247fb9d5d1fea16a3ecfe08c42f809281b5"/>
+	</game>
+	<game name="Quickie (Disk 1) (Unknown)">
+		<description>Quickie (Disk 1) (Unknown)</description>
+		<rom name="Quickie (Disk 1) (Unknown).a2r" size="23439209" crc="e3797d8e" md5="843ac157491dadae57d56cd0a97362ce" sha1="512110f9986cee02bab3f89646f725db42da24b8"/>
+	</game>
+	<game name="Quickie Hand Scanner (Disk 1) (Unknown) (Side A)">
+		<description>Quickie Hand Scanner (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Quickie Hand Scanner (Disk 1) (Unknown) (Side A).a2r" size="20491241" crc="1dcced56" md5="3929e956e8bc0414900af62389562a5e" sha1="25a37b1ce0de5078afcfcf5c0bb1ab3f7b0a42c2"/>
+	</game>
+	<game name="RamFactor Expand (Disk 1) (Unknown) (Side A)">
+		<description>RamFactor Expand (Disk 1) (Unknown) (Side A)</description>
+		<rom name="RamFactor Expand (Disk 1) (Unknown) (Side A).a2r" size="24063489" crc="b2fc427c" md5="9c11ac59e6933ef38fc1f2e909c3b2a1" sha1="8b388480d926a92a6b3cd6a432bb8b03b4729fa7"/>
+	</game>
+	<game name="RamUp (Disk 1) (Unknown) (Side A)">
+		<description>RamUp (Disk 1) (Unknown) (Side A)</description>
+		<rom name="RamUp (Disk 1) (Unknown) (Side A).a2r" size="27380331" crc="8f7ed381" md5="e10d770eba6aa0bf42b9905278741741" sha1="e053fc23f51dee6bc5ff7b4a1cc06073c8c35805"/>
+	</game>
+	<game name="RamUp (Disk 1) (Unknown) (Side B)">
+		<description>RamUp (Disk 1) (Unknown) (Side B)</description>
+		<rom name="RamUp (Disk 1) (Unknown) (Side B).a2r" size="26591278" crc="abf26cce" md5="84f25dc6c01528589fcd5211e3cc0a6f" sha1="c61c1fd19c8f4dd4f57b8cf6832b3a7932c11aa8"/>
+	</game>
+	<game name="Real Life (Disk 1) (Unknown) (Side A)">
+		<description>Real Life (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Real Life - Disk 1, Side A.a2r" size="26000460" crc="5b9cec8c" md5="b5e97f64abeec3b260bc42343fc7810c" sha1="78cc7d96c93944668af0a152e54ebbd7bd7eba67"/>
+	</game>
+	<game name="RightWriter - Disk 1 (Alt 2) (Unknown)">
+		<description>RightWriter - Disk 1 (Alt 2) (Unknown)</description>
+		<rom name="RightWriter - Disk 1 (Alt 2) (Unknown).a2r" size="20495027" crc="0a9aa4fa" md5="49d72eb3c570c175a9d2035c105dc8ba" sha1="ab8a23d1821b026d0f8103430436ee30830bfcb9"/>
+	</game>
+	<game name="RightWriter (Disk 1) (Unknown)">
+		<description>RightWriter (Disk 1) (Unknown)</description>
+		<rom name="RightWriter (Disk 1) (Unknown).a2r" size="21453433" crc="a12827c6" md5="4558cfcfc7b334d82565d92a874157fd" sha1="c693107dacfc3950dbfce6deb040ef58fda6561f"/>
+	</game>
+	<game name="RightWriter (Disk 1) (Alt) (Unknown)">
+		<description>RightWriter (Disk 1) (Alt) (Unknown)</description>
+		<rom name="RightWriter (Disk 1) (Alt) (Unknown).a2r" size="22473337" crc="4531ce79" md5="e6779ddf2af1b6c189dd5003b0e9684c" sha1="5e236c240f25efdb7cea64a87b26072467ea2fc9"/>
+	</game>
+	<game name="Rings of Saturn (Disk 1) (Unknown) (Side A)">
+		<description>Rings of Saturn (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Rings of Saturn - Disk 1, Side A.a2r" size="17929793" crc="7505012d" md5="85e9a9b387e7078467409a1d5553e5fc" sha1="f72e7b414e9f8ac26ac9cbeeb11d8c2b177bd69b"/>
+	</game>
+	<game name="Rommel (Disk 1) (Unknown) (Side A)">
+		<description>Rommel (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Rommel (Disk 1) (Unknown) (Side A).a2r" size="21498191" crc="a4913e8f" md5="375df8a16d6676a779f9a528b07acc04" sha1="815844413e51c3eb8a3aaad667240c07361995eb"/>
+	</game>
+	<game name="Rommel (Disk 1) (Unknown) (Side B)">
+		<description>Rommel (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Rommel (Disk 1) (Unknown) (Side B).a2r" size="26804884" crc="251975ac" md5="8469c136adaa5b01c834642a09515975" sha1="de92614b90e4b895e74a99c038f295bae74e10de"/>
+	</game>
+	<game name="Sargon II (Disk 1) (Unknown) (Side A)">
+		<description>Sargon II (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Sargon II (Disk 1) (Unknown) (Side A).a2r" size="21372449" crc="b8e5c373" md5="333e2c8094ec7b9f67e179d0fef673d4" sha1="9548ed55e615abb40f58782e39951451bb397e62"/>
+	</game>
+	<game name="SAT Math 1 (Disk 1) (Unknown) (Side A)">
+		<description>SAT Math 1 (Disk 1) (Unknown) (Side A)</description>
+		<rom name="SAT Math 1 (Disk 1) (Unknown) (Side A).a2r" size="26153181" crc="ae657545" md5="808ce4730f49fe04422ceb15185b1da1" sha1="78955823ab9121f161aabc7a3a337f2a65520e7c"/>
+	</game>
+	<game name="SAT Math 1 (Disk 1) (Unknown) (Side B)">
+		<description>SAT Math 1 (Disk 1) (Unknown) (Side B)</description>
+		<rom name="SAT Math 1 (Disk 1) (Unknown) (Side B).a2r" size="27435704" crc="070677bf" md5="575f59b80dcc019bdc09e7f5790a9ae0" sha1="c39bedd6da83f7eb9e47bc95f17d0af6ae709c5b"/>
+	</game>
+	<game name="Sesame Street Learning LIbrary Vol. 1 (Disk 1) (Unknown) (Side B)">
+		<description>Sesame Street Learning LIbrary Vol. 1 (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Sesame Street Learning LIbrary Vol. 1 - Disk 1, Side B.a2r" size="26538353" crc="9171ce39" md5="ad2f5c7b14d148f1eba991009bf863e2" sha1="0bc0bd8d29a3fe09739bb68181b5e35000ec20ba"/>
+	</game>
+	<game name="Sideways (Disk 1) (Unknown) (Side A)">
+		<description>Sideways (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Sideways (Disk 1) (Unknown) (Side A).a2r" size="23763461" crc="55aac551" md5="e239ae3d32aa24fd3d85ba52578946c8" sha1="daa756650046975ed0e8479b73e7f610b625881e"/>
+	</game>
+	<game name="Sideways (Disk 1) (Unknown) (Side B)">
+		<description>Sideways (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Sideways (Disk 1) (Unknown) (Side B).a2r" size="24342406" crc="5cb86463" md5="9960d920fc64c009f638fcba5c8f2be6" sha1="3133b4d0d9b22d072f08bd0769bbc5227b70f7d3"/>
+	</game>
+	<game name="Silent Service (Disk 1) (Unknown) (Side A)">
+		<description>Silent Service (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Silent Service (Disk 1) (Unknown) (Side A).a2r" size="24969840" crc="81eb1a1e" md5="3e029493307b5fe2894a6dd6b324689b" sha1="b6835ca86ff2f8b1d53bc638791f72fa1a0f78a1"/>
+	</game>
+	<game name="Skyfox (Disk 1) (Unknown) (Side A)">
+		<description>Skyfox (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Skyfox (Disk 1) (Unknown) (Side A).a2r" size="16461366" crc="42dbf025" md5="e54ec5a75a6444a8015020e96129b1f4" sha1="cce646668999faab77137f6a90798e56fa1668e2"/>
+	</game>
+	<game name="Spingboard Clip Art Collection - Clip Art A (Unknown)">
+		<description>Spingboard Clip Art Collection - Clip Art A (Unknown)</description>
+		<rom name="Spingboard Clip Art Collection - Clip Art A (Unknown).a2r" size="24087924" crc="1173a11b" md5="731cf323a1235dc10f40cb27b27e2468" sha1="077cc7a93cb8bcb4df769cd007947f09b2ed4369"/>
+	</game>
+	<game name="Spingboard Clip Art Collection - Clip Art B (Unknown)">
+		<description>Spingboard Clip Art Collection - Clip Art B (Unknown)</description>
+		<rom name="Spingboard Clip Art Collection - Clip Art B (Unknown).a2r" size="25844654" crc="46746b3a" md5="481155ac8362915ba6dae0038e61bd4e" sha1="18f772fad32796e7b47f195e0f41a35cb348cda3"/>
+	</game>
+	<game name="Springboard Clip Art Collection (Disk 1) (Unknown) (Side A)">
+		<description>Springboard Clip Art Collection (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Springboard Clip Art Collection (Disk 1) (Unknown) (Side A).a2r" size="22909285" crc="e0414213" md5="d0562bc2ef545499c3792fa6a0649fcc" sha1="a2f1c3e418d618dfd9a01571077362468dccba9a"/>
+	</game>
+	<game name="Springboard Clip Art Collection (Disk 1) (Unknown) (Side B)">
+		<description>Springboard Clip Art Collection (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Springboard Clip Art Collection (Disk 1) (Unknown) (Side B).a2r" size="26334695" crc="955f0cfb" md5="facffeb56f02c078ce8691667b825b5a" sha1="62b880d6086ed64e1c057d6b88399e3fada25dfa"/>
+	</game>
+	<game name="Springboard Graphics Expander (Copy 2) (Disk 1) (Unknown) (Side A)">
+		<description>Springboard Graphics Expander (Copy 2) (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Springboard Graphics Expander (Copy 2) (Disk 1) (Unknown) (Side A).a2r" size="27169121" crc="49ff5934" md5="17b94770603e4ca9013be01c6b507601" sha1="53a0ba4de2ae3de874ce359c3f09b9333c434799"/>
+	</game>
+	<game name="Star Dance (USA)">
+		<description>Star Dance (USA)</description>
+		<rom name="Star Dance (USA).a2r" size="8977045" crc="e86f0663" md5="c61c04d5f16a1c4600d41c55bd50e215" sha1="b014c1a19319dad211eb2348845237a93fe549fe"/>
+	</game>
+	<game name="Sticky Bear Reading (Disk 1) (Unknown) (Side A)">
+		<description>Sticky Bear Reading (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Sticky Bear Reading (Disk 1) (Unknown) (Side A).a2r" size="16079704" crc="f066707a" md5="3761b91fcd7664b00248e03d16ff1f32" sha1="34bea9a8e813e105c1018a7c476e823cdbcac92d"/>
+	</game>
+	<game name="Story Maker - 128K Picture Gallery Disk (Unknown)">
+		<description>Story Maker - 128K Picture Gallery Disk (Unknown)</description>
+		<rom name="Story Maker - 128K Picture Gallery Disk (Unknown).a2r" size="18195202" crc="5c9e1db5" md5="091941ac8985a798a3b6aaa39ee5f689" sha1="5ccce3d5b7eca8582db049da8ed12cde6886af1a"/>
+	</game>
+	<game name="Story Maker - 128K Program Disk (Unknown)">
+		<description>Story Maker - 128K Program Disk (Unknown)</description>
+		<rom name="Story Maker - 128K Program Disk (Unknown).a2r" size="20387497" crc="39aeae06" md5="55ad78641ae1aa53460be7bc9c4ff468" sha1="9b577897fea43424f8731406c18f2c8c3a2bab7f"/>
+	</game>
+	<game name="Story Maker - 64K Picture Gallery Disk (Unknown)">
+		<description>Story Maker - 64K Picture Gallery Disk (Unknown)</description>
+		<rom name="Story Maker - 64K Picture Gallery Disk (Unknown).a2r" size="22765879" crc="94680491" md5="5b98170f1f17083c555c046756da81be" sha1="3371306c4f5d1bedbe527c0b349a0f9cb197f02b"/>
+	</game>
+	<game name="Story Maker - 64K Program Disk (Unknown)">
+		<description>Story Maker - 64K Program Disk (Unknown)</description>
+		<rom name="Story Maker - 64K Program Disk (Unknown).a2r" size="25281440" crc="e960bab6" md5="d6b00caa9375adc50a78f93090b617ac" sha1="8352cfadaddc6e214f9c23e7ea3668e759da067b"/>
+	</game>
+	<game name="Summer Games II (Disk 1) (Unknown) (Side A)">
+		<description>Summer Games II (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Summer Games II (Disk 1) (Unknown) (Side A).a2r" size="17960073" crc="8ac4d5c8" md5="ef38375be90820d4fe4e05fe5ad56367" sha1="2f18777f96c9c4b95d6d399933d5142379c4fb73"/>
+	</game>
+	<game name="Summer Games II (Disk 1) (Unknown) (Side B)">
+		<description>Summer Games II (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Summer Games II (Disk 1) (Unknown) (Side B).a2r" size="24319880" crc="21cfbfe2" md5="c62546fc14644e43f825954db6363125" sha1="70e17964b35a62ec7c4d352543459d473287876e"/>
+	</game>
+	<game name="Super Huey (Disk 1) (Unknown) (Side A)">
+		<description>Super Huey (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Super Huey (Disk 1) (Unknown) (Side A).a2r" size="20673941" crc="4088d21c" md5="08c623a2c2495b6871049d6bdb69be10" sha1="5c3da1826c17eba53c048f4c44804c50d24e8209"/>
+	</game>
+	<game name="Super IOB Collection #2 (Disk 1) (Unknown) (Side A)">
+		<description>Super IOB Collection #2 (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Super IOB Collection #2 (Disk 1) (Unknown) (Side A).a2r" size="23984140" crc="ac02118e" md5="04c0cb41506b5b0bfa77aa588d47770c" sha1="29555f050b5dff3c545f25203769849e718e8581"/>
+	</game>
+	<game name="Super Mario Bros. Print World (Disk 1) (Unknown) (Side A)">
+		<description>Super Mario Bros. Print World (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Super Mario Bros. Print World (Disk 1) (Unknown) (Side A).a2r" size="16907484" crc="765cc660" md5="dc75ee5b8e8a07e33ac113314bf1ced1" sha1="187db2b3d0cc2cfc0b3b2f15d66ffa431452e347"/>
+	</game>
+	<game name="Super Mario Bros. Print World (Disk 1) (Unknown) (Side B)">
+		<description>Super Mario Bros. Print World (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Super Mario Bros. Print World (Disk 1) (Unknown) (Side B).a2r" size="15857430" crc="fb202e47" md5="bd733f5742526ab9c6457aca6b268dd7" sha1="7d98840908ee75b347b3561cdbc87d802c5ffc22"/>
+	</game>
+	<game name="Super-Text II (Disk 1) (Unknown) (Side A)">
+		<description>Super-Text II (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Super-Text II - Disk 1, Side A.a2r" size="25484913" crc="c669c56c" md5="67b09bcc563779bed46a910bdc2cec1d" sha1="537cdacfe8163aafb0005770b3b993b008969b85"/>
+	</game>
+	<game name="SuperCalc3a v1.1 Program (Disk 1) (Unknown) (Side A)">
+		<description>SuperCalc3a v1.1 Program (Disk 1) (Unknown) (Side A)</description>
+		<rom name="SuperCalc3a v1.1 Program - Disk 1, Side A.a2r" size="27748493" crc="1419a669" md5="60617d7464ee0b1545f0dc7dc2e00bff" sha1="13c731382d5db3f2dc69b529766824383d77a1fa"/>
+	</game>
+	<game name="SuperPatch 8.0 (Disk 1) (Unknown) (Side A)">
+		<description>SuperPatch 8.0 (Disk 1) (Unknown) (Side A)</description>
+		<rom name="SuperPatch 8.0 (Disk 1) (Unknown) (Side A).a2r" size="25402681" crc="7f637f24" md5="585b2442afd221a9ca82076622619183" sha1="e464135a7933218fce3ca499ee1fa60441b3a9c2"/>
+	</game>
+	<game name="SuperPatch 8.0 (Disk 1) (Unknown) (Side B)">
+		<description>SuperPatch 8.0 (Disk 1) (Unknown) (Side B)</description>
+		<rom name="SuperPatch 8.0 (Disk 1) (Unknown) (Side B).a2r" size="26038488" crc="aeab3624" md5="a2c9202e705c1928590885f82bcf4ebb" sha1="4132c44771d26f3afa14befeb2606ff99646cc39"/>
+	</game>
+	<game name="SuperPatch 8.0 (Disk 2) (Unknown) (Side A)">
+		<description>SuperPatch 8.0 (Disk 2) (Unknown) (Side A)</description>
+		<rom name="SuperPatch 8.0 (Disk 2) (Unknown) (Side A).a2r" size="18874289" crc="82b09d3d" md5="64224da622013cfe553de32f2a5eeb1a" sha1="f858370595290e5707dd7573f3b93b4640be538f"/>
+	</game>
+	<game name="Suspect (Disk 1) (Unknown) (Side A)">
+		<description>Suspect (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Suspect - Disk 1, Side A.a2r" size="27918340" crc="d433c12d" md5="d29b128b1818ac1e64cbf46ededadc93" sha1="94d3799097d31891442b43ae3739b072f358f3a2"/>
+	</game>
+	<game name="System Master DOS 3.2.1 Plus (Disk 1) (Unknown) (Side A)">
+		<description>System Master DOS 3.2.1 Plus (Disk 1) (Unknown) (Side A)</description>
+		<rom name="System Master DOS 3.2.1 Plus - Disk 1, Side A.a2r" size="15803755" crc="0ff0001a" md5="fb295ccfce187192c0ec2026a7231f25" sha1="e1ddee24f4c29b273f6769a5e498326fd49cb073"/>
+	</game>
+	<game name="System Master DOS 3.2.1 Standard (Disk 1) (Unknown) (Side A)">
+		<description>System Master DOS 3.2.1 Standard (Disk 1) (Unknown) (Side A)</description>
+		<rom name="System Master DOS 3.2.1 Standard - Disk 1, Side A.a2r" size="22528487" crc="2c7de141" md5="f04633278a6155d04c5dce6d0fd1004c" sha1="53fb5d17c3e4fcca10d749a89aac61bd4cbde77d"/>
+	</game>
+	<game name="Tank Attack-Death Run (Disk 1) (Unknown) (Side A)">
+		<description>Tank Attack-Death Run (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Tank Attack-Death Run - Disk 1, Side A.a2r" size="21704106" crc="34a621f3" md5="fa4ecab660d6e9f2f92628ff9874a8b0" sha1="70beaf028d6aa92b5e18aff1ace39ea817a27e8b"/>
+	</game>
+	<game name="Tapper (Disk 1) (Unknown) (Side A)">
+		<description>Tapper (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Tapper - Disk 1, Side A.a2r" size="24555187" crc="38cd0cf3" md5="25ea07220f2732ae5be2d8da7bfcd712" sha1="f98c6682ca27a73d5d1efb26d74e9ecdea9484e2"/>
+	</game>
+	<game name="Teacher's Tool Kit, The - Menu Selection-Startup Disk (Unknown)">
+		<description>Teacher's Tool Kit, The - Menu Selection-Startup Disk (Unknown)</description>
+		<rom name="Teacher's Tool Kit, The - Menu Selection-Startup Disk.a2r" size="19490958" crc="6e11592e" md5="7efbe64560b894bd00cd7baddc4a7468" sha1="0fb5a918660b231d31994f228ffcc0507b6fd0c7"/>
+	</game>
+	<game name="Teacher's Tool Kit, The - Program Disk Multiple Choice (Unknown)">
+		<description>Teacher's Tool Kit, The - Program Disk Multiple Choice (Unknown)</description>
+		<rom name="Teacher's Tool Kit, The - Program Disk Multiple Choice.a2r" size="26054669" crc="171e8fef" md5="c91469d321663a6244e4df1e02e89751" sha1="74e0632e6440e106012bbf7def02de664df32bec"/>
+	</game>
+	<game name="Teacher's Tool Kit, The - Program Disk Word Scramble (Unknown)">
+		<description>Teacher's Tool Kit, The - Program Disk Word Scramble (Unknown)</description>
+		<rom name="Teacher's Tool Kit, The - Program Disk Word Scramble.a2r" size="17208057" crc="b3c43f0c" md5="058e4451b4e753d3c75fbb4df9f43da0" sha1="e34a9b8d233dcb29bab63a73a21038023fa85b34"/>
+	</game>
+	<game name="Teacher's Tool Kit, The - Program Disk Word Search (Unknown)">
+		<description>Teacher's Tool Kit, The - Program Disk Word Search (Unknown)</description>
+		<rom name="Teacher's Tool Kit, The - Program Disk Word Search.a2r" size="25030738" crc="4ba57b08" md5="fc2afd32df6450307034f63cb80eabee" sha1="1e2eefc570eb5138068cef8b86b6e9fa464b269f"/>
+	</game>
+	<game name="Terrapin Logo Language - Language Disk (Unknown)">
+		<description>Terrapin Logo Language - Language Disk (Unknown)</description>
+		<rom name="Terrapin Logo Language - Language Disk.a2r" size="36089924" crc="3e994442" md5="0fb83916b8401c72fbf7fc95ca703076" sha1="595c8b9e446e4800bd9232b5b76df3c0bf5ccccd"/>
+	</game>
+	<game name="The American Heritage Electronic Dictionary (Disk 1) (Unknown)">
+		<description>The American Heritage Electronic Dictionary (Disk 1) (Unknown)</description>
+		<rom name="The American Heritage Electronic Dictionary (Disk 1) (Unknown).a2r" size="22463644" crc="c9466d5a" md5="aab44cf04318c98a97e5aff4af9abd0b" sha1="f489168dde3ecf790f8d064e23ac5d9245c1fc83"/>
+	</game>
+	<game name="The American Heritage Electronic Dictionary (Disk 2) (Unknown)">
+		<description>The American Heritage Electronic Dictionary (Disk 2) (Unknown)</description>
+		<rom name="The American Heritage Electronic Dictionary (Disk 2) (Unknown).a2r" size="22447807" crc="8d9ae233" md5="5d58bd6428c45afe1785fac024312132" sha1="be4b988d745afb123831d1d4cecf1aa45ed99dd1"/>
+	</game>
+	<game name="The American Heritage Electronic Dictionary (Disk 3) (Unknown)">
+		<description>The American Heritage Electronic Dictionary (Disk 3) (Unknown)</description>
+		<rom name="The American Heritage Electronic Dictionary (Disk 3) (Unknown).a2r" size="22416558" crc="ff10a67c" md5="7d8e047e2502726b72fc543651c0493a" sha1="96f14607da46813358c2d3c2330f84507d9abde2"/>
+	</game>
+	<game name="The American Heritage Electronic Dictionary (Disk 4) (Unknown)">
+		<description>The American Heritage Electronic Dictionary (Disk 4) (Unknown)</description>
+		<rom name="The American Heritage Electronic Dictionary (Disk 4) (Unknown).a2r" size="21834801" crc="657f8fc7" md5="0a58045f4b5bdc76d3fc69d3be5fd251" sha1="6b36f24b9ded9db0164e7b863f766a529f8f3e3c"/>
+	</game>
+	<game name="The Dark Heart of Uukrul - Archive (Unknown)">
+		<description>The Dark Heart of Uukrul - Archive (Unknown)</description>
+		<rom name="The Dark Heart of Uukrul - Archive (Unknown).a2r" size="28697635" crc="cc403496" md5="309db5f2a7b782ac25bd8741e2ee37de" sha1="1f8ebf06320b4fb3349ca341a4e8b9302a3a98d4"/>
+	</game>
+	<game name="The Dark Heart of Uukrul - Boot (Unknown)">
+		<description>The Dark Heart of Uukrul - Boot (Unknown)</description>
+		<rom name="The Dark Heart of Uukrul - Boot (Unknown).a2r" size="27741236" crc="4a955c44" md5="92dec43959628308a62eebe3ec10454c" sha1="2096a38d31f35f05d83d483505d5ffa896d85986"/>
+	</game>
+	<game name="The Dark Heart of Uukrul - Scenario A (Unknown)">
+		<description>The Dark Heart of Uukrul - Scenario A (Unknown)</description>
+		<rom name="The Dark Heart of Uukrul - Scenario A (Unknown).a2r" size="29121280" crc="e9ca9f3b" md5="de711b985133828d3f6145e08058d829" sha1="31dffe317569aa72f12d2c292ae7532fe9c90cc8"/>
+	</game>
+	<game name="The Dark Heart of Uukrul - Scenario B (Unknown)">
+		<description>The Dark Heart of Uukrul - Scenario B (Unknown)</description>
+		<rom name="The Dark Heart of Uukrul - Scenario B (Unknown).a2r" size="29360704" crc="b0e622fb" md5="6dcd305cd66daffcdfe1c6b2c1137774" sha1="47296adb0f39d2effa32efec429030640b2dbde6"/>
+	</game>
+	<game name="The Lurking Horror (Disk 1) (Unknown) (Side A)">
+		<description>The Lurking Horror (Disk 1) (Unknown) (Side A)</description>
+		<rom name="The Lurking Horror (Disk 1) (Unknown) (Side A).a2r" size="24220743" crc="1826bf49" md5="b1ac0086cc05aeed48722ba5fe17f8c6" sha1="1ef6e0acd27b679857b543da21beb211a294db62"/>
+	</game>
+	<game name="The NeverEnding Story (Unknown)">
+		<description>The NeverEnding Story (Unknown)</description>
+		<rom name="The NeverEnding Story - Disk 1, Side A.a2r" size="14146838" crc="5601d5a2" md5="3d2eb20419222ecc7fd47be9d0e53259" sha1="f75d066a2cd2439836ea890bda2ffd5ca737d52d"/>
+	</game>
+	<game name="The New Print Shop - Data Disk 1a (Unknown)">
+		<description>The New Print Shop - Data Disk 1a (Unknown)</description>
+		<rom name="The New Print Shop - Data Disk 1a (Unknown).a2r" size="25198866" crc="39d11871" md5="4821f57da4ca1b3ba8d08938f35051ef" sha1="3ecfceb994bee9212c3fbb44cdeb0b8cc40870b7"/>
+	</game>
+	<game name="The New Print Shop - Data Disk 1b (Unknown)">
+		<description>The New Print Shop - Data Disk 1b (Unknown)</description>
+		<rom name="The New Print Shop - Data Disk 1b (Unknown).a2r" size="15529739" crc="c7e5a2d6" md5="e7a56f93a8800296c9652fda44dc8c40" sha1="c15c7d5052ed5b2131ef560753d7e3c516b4e548"/>
+	</game>
+	<game name="The New Print Shop - Data Disk 2a (Unknown)">
+		<description>The New Print Shop - Data Disk 2a (Unknown)</description>
+		<rom name="The New Print Shop - Data Disk 2a (Unknown).a2r" size="21579267" crc="8c662b6c" md5="1f0b10ebf1ec1c49c203e5cb5a75e1ac" sha1="73a838d53cb8b9a788320a8d68de1d5a698e92f7"/>
+	</game>
+	<game name="The New Print Shop - Data Disk 2b (Unknown)">
+		<description>The New Print Shop - Data Disk 2b (Unknown)</description>
+		<rom name="The New Print Shop - Data Disk 2b (Unknown).a2r" size="23264285" crc="57ba17ff" md5="9b2ef271c8fb4f9891c5e77cb7c4957d" sha1="f57f0c9598d70385b3e2ac5ac45a3cbd4d0e8b2e"/>
+	</game>
+	<game name="The New Print Shop - Program Side A (Unknown)">
+		<description>The New Print Shop - Program Side A (Unknown)</description>
+		<rom name="The New Print Shop - Program Side A (Unknown).a2r" size="16426449" crc="ff7432b7" md5="66922fad3ad1be062abe39d521316efc" sha1="4263bac1e6a98d76b223b2f57b68c8fe9e7559a9"/>
+	</game>
+	<game name="The New Print Shop - Program Side b (Unknown)">
+		<description>The New Print Shop - Program Side b (Unknown)</description>
+		<rom name="The New Print Shop - Program Side b (Unknown).a2r" size="15682572" crc="9683f09f" md5="90d3032c4bd833c7a708260b835918c9" sha1="f245f3c34cffc2eb5ca843924f12fa8c52107331"/>
+	</game>
+	<game name="The Newsroom - Clip Art A (Unknown)">
+		<description>The Newsroom - Clip Art A (Unknown)</description>
+		<rom name="The Newsroom - Clip Art A (Unknown).a2r" size="27706836" crc="852fd496" md5="d50a845fbb5e8467d101683ebe813cc7" sha1="730216697446def2c66017176c6e3cd87409067a"/>
+	</game>
+	<game name="The Newsroom - Clip Art B (Unknown)">
+		<description>The Newsroom - Clip Art B (Unknown)</description>
+		<rom name="The Newsroom - Clip Art B (Unknown).a2r" size="24279391" crc="66672117" md5="d7ed67cdbc7bf643b80839e8081a4375" sha1="9ce8790a75ae2169e1363d560b268f76ef014d5d"/>
+	</game>
+	<game name="The Newsroom - Disk 1 Master Program (Unknown)">
+		<description>The Newsroom - Disk 1 Master Program (Unknown)</description>
+		<rom name="The Newsroom - Disk 1 Master Program (Unknown).a2r" size="17129615" crc="a901f551" md5="e3cee09d0c36ced2c6c2fb9977961a65" sha1="78cd8013b64daaaf32c5eed62063b5984a5fba76"/>
+	</game>
+	<game name="The Newsroom - Disk 2 Clip Art A (Unknown)">
+		<description>The Newsroom - Disk 2 Clip Art A (Unknown)</description>
+		<rom name="The Newsroom - Disk 2 Clip Art A (Unknown).a2r" size="25512380" crc="612bba06" md5="a4a98a4c219b32c0b02ce7dfb627c9ee" sha1="a949ed945923129d383ac6e4975391694e91dd3c"/>
+	</game>
+	<game name="The Newsroom - Disk 2 Clip Art B (Unknown)">
+		<description>The Newsroom - Disk 2 Clip Art B (Unknown)</description>
+		<rom name="The Newsroom - Disk 2 Clip Art B (Unknown).a2r" size="16003805" crc="f12ff54e" md5="feee82bcb524f90f592eb6ffcef5c305" sha1="bcf5b1d7ed5abf9f05c05c41ea5640b222aeb6e3"/>
+	</game>
+	<game name="The Newsroom (Disk 1) (Unknown) (Side A)">
+		<description>The Newsroom (Disk 1) (Unknown) (Side A)</description>
+		<rom name="The Newsroom (Disk 1) (Unknown) (Side A).a2r" size="28657418" crc="0b994d34" md5="9b89f7bfec752741a8c48da8a20ff977" sha1="4b3e9864934746e3435d2322066c6924b6ecc68e"/>
+	</game>
+	<game name="The Oregon Trail (Disk 1) (Unknown) (Side A)">
+		<description>The Oregon Trail (Disk 1) (Unknown) (Side A)</description>
+		<rom name="The Oregon Trail (Disk 1) (Unknown) (Side A).a2r" size="27952915" crc="35d826f5" md5="b1dacbbef40366f47e97525e9601142c" sha1="d30bf4ef3642a3c4b6223a14d9e1a3a02c005c32"/>
+	</game>
+	<game name="The Oregon Trail (Disk 1) (Unknown) (Side B)">
+		<description>The Oregon Trail (Disk 1) (Unknown) (Side B)</description>
+		<rom name="The Oregon Trail (Disk 1) (Unknown) (Side B).a2r" size="27642771" crc="857e96eb" md5="aec161808d1a3f61b2b837282d37efbc" sha1="286878eaf7543997953f460bbdb413772bf6d327"/>
+	</game>
+	<game name="The Original Boston Computer Diet (Disk 1) (Unknown) (Side A)">
+		<description>The Original Boston Computer Diet (Disk 1) (Unknown) (Side A)</description>
+		<rom name="The Original Boston Computer Diet (Disk 1) (Unknown) (Side A).a2r" size="26874732" crc="08952f1f" md5="1635f2fd50f502cb44e481e8e7419ba8" sha1="4456e41d36b3b6a29e5c4fa94b5c64103a5d45e4"/>
+	</game>
+	<game name="The Original Boston Computer Diet (Disk 1) (Unknown) (Side B)">
+		<description>The Original Boston Computer Diet (Disk 1) (Unknown) (Side B)</description>
+		<rom name="The Original Boston Computer Diet (Disk 1) (Unknown) (Side B).a2r" size="26692034" crc="089356e6" md5="8000e8a01305bcdf521ef46204ba9f76" sha1="668f0780634e1dbef9f0f85eb1f16085f1752b7c"/>
+	</game>
+	<game name="The Original Boston Computer Diet (Disk 2) (Unknown) (Side A)">
+		<description>The Original Boston Computer Diet (Disk 2) (Unknown) (Side A)</description>
+		<rom name="The Original Boston Computer Diet (Disk 2) (Unknown) (Side A).a2r" size="24824308" crc="ee9b48c2" md5="e88e55f98d7be82ea3acc2b4a1824389" sha1="e52a2d68095cf7436950d8abb6de4ca353c68819"/>
+	</game>
+	<game name="The Original Boston Computer Diet (Disk 2) (Unknown) (Side B)">
+		<description>The Original Boston Computer Diet (Disk 2) (Unknown) (Side B)</description>
+		<rom name="The Original Boston Computer Diet (Disk 2) (Unknown) (Side B).a2r" size="24821178" crc="28c661de" md5="e16558bde97780057d433bb0c2032a70" sha1="bad60aab571e868a9c61704d78eabcaa439a69f5"/>
+	</game>
+	<game name="The Print Shop - 1 (Unknown)">
+		<description>The Print Shop - 1 (Unknown)</description>
+		<rom name="The Print Shop - 1 (Unknown).a2r" size="22330299" crc="22011c82" md5="33c15561a37509d3a109212bd96adbbd" sha1="7662e0ab174017451b51a064286c1aa9b2e872d5"/>
+	</game>
+	<game name="The Print Shop - 2 (Unknown)">
+		<description>The Print Shop - 2 (Unknown)</description>
+		<rom name="The Print Shop - 2 (Unknown).a2r" size="27381196" crc="c89b1be0" md5="f5916d6d8bfa38c92d394069c60a94bd" sha1="d3ae44e9cc2fa360f9426babd80b28b62b354dc1"/>
+	</game>
+	<game name="Tracer Sanction (Disk 1) (Unknown) (Side A)">
+		<description>Tracer Sanction (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Tracer Sanction - Disk 1, Side A.a2r" size="15457187" crc="6b26dd3c" md5="ff9ebfd6079ef45276418294325e0faa" sha1="68d46bd9040660f48a141055e0cf8398dfbfc028"/>
+	</game>
+	<game name="TrainBASE and TrainMOVE (Disk 1) (Unknown) (Side A)">
+		<description>TrainBASE and TrainMOVE (Disk 1) (Unknown) (Side A)</description>
+		<rom name="TrainBASE and TrainMOVE (Disk 1) (Unknown) (Side A).a2r" size="26803479" crc="eb4b1387" md5="8acb25fced4c7bb28b560935d45adf33" sha1="7191d380b29345137e375b470e55b5448eb8529d"/>
+	</game>
+	<game name="TrainBASE and TrainMOVE (Disk 1) (Unknown) (Side B)">
+		<description>TrainBASE and TrainMOVE (Disk 1) (Unknown) (Side B)</description>
+		<rom name="TrainBASE and TrainMOVE (Disk 1) (Unknown) (Side B).a2r" size="23279217" crc="2cf56918" md5="f161fa035a08610372176fac10358a18" sha1="1c11c6824f3cd1c736eec68e7c3930cc21a37230"/>
+	</game>
+	<game name="TransWarp II - SMT Patch (Disk 1) (Unknown) (Side A)">
+		<description>TransWarp II - SMT Patch (Disk 1) (Unknown) (Side A)</description>
+		<rom name="TransWarp II - SMT Patch (Disk 1) (Unknown) (Side A).a2r" size="23436634" crc="3c6a5fe3" md5="365700a7227f84c88a46fb727754dda0" sha1="8e15790a619682dd85bd9ef4121bdcbb834ec0a9"/>
+	</game>
+	<game name="Trial-Size Toolbo (Disk 1) (Unknown) (Side A)">
+		<description>Trial-Size Toolbo (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Trial-Size Toolbo (Disk 1) (Unknown) (Side A).a2r" size="26668075" crc="28b7e42d" md5="ce15df8ef54342bd9ff0e1dd0e831457" sha1="c8706a6f410d514b31705e124eda167ba15ef527"/>
+	</game>
+	<game name="Trial-Size Toolbo (Disk 1) (Unknown) (Side B)">
+		<description>Trial-Size Toolbo (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Trial-Size Toolbo (Disk 1) (Unknown) (Side B).a2r" size="23341185" crc="7e47e870" md5="842e4c3d1336e6b5c71c5c1e768647d9" sha1="1c0045182c0519d7138506ffcdcd04aa38d20d94"/>
+	</game>
+	<game name="Ultima IV - Britannia (Unknown)">
+		<description>Ultima IV - Britannia (Unknown)</description>
+		<rom name="Ultima IV - Britannia (Unknown).a2r" size="16362442" crc="0e3b91d8" md5="0393779ef16557002497df7d603735ff" sha1="8a1c1419fa601a74cb2246372fd65a9f83a6be52"/>
+	</game>
+	<game name="Ultima IV - Program (Unknown)">
+		<description>Ultima IV - Program (Unknown)</description>
+		<rom name="Ultima IV - Program (Unknown).a2r" size="26477615" crc="a8deeb4d" md5="3e02f02a22af50c1ef31cabc23daff26" sha1="977cb3269bdd004a0129b55a13efcd6d227bbbbc"/>
+	</game>
+	<game name="Ultima IV - Towne (Unknown)">
+		<description>Ultima IV - Towne (Unknown)</description>
+		<rom name="Ultima IV - Towne (Unknown).a2r" size="26843344" crc="874f3b59" md5="512ae84000da26571d97b5de295e7a97" sha1="dfd3139953324dd454915d0c38829f014b30c69a"/>
+	</game>
+	<game name="Ultima IV - Underworld (Unknown)">
+		<description>Ultima IV - Underworld (Unknown)</description>
+		<rom name="Ultima IV - Underworld (Unknown).a2r" size="19195262" crc="e888cf18" md5="ef3c82c77fbb2c5d43829e0fc8886f09" sha1="1746978d47eaa4b945e56920360aa4ab83dabdd4"/>
+	</game>
+	<game name="Ultima V - Britannia (Unknown)">
+		<description>Ultima V - Britannia (Unknown)</description>
+		<rom name="Ultima V - Britannia.a2r" size="17844200" crc="2627455c" md5="27f304919e33fdca65b0200d0ff5e5a2" sha1="e444cd528fadd8b3587251580add8c0fe4adea93"/>
+	</game>
+	<game name="Ultima V - Castle (Unknown)">
+		<description>Ultima V - Castle (Unknown)</description>
+		<rom name="Ultima V - Castle.a2r" size="17400659" crc="80e39d3f" md5="617d6fba255d02a402995003cc15f38c" sha1="0883a6b47ff162bcc4815aa7175d9e8220dba200"/>
+	</game>
+	<game name="Ultima V - Dungeon (Unknown)">
+		<description>Ultima V - Dungeon (Unknown)</description>
+		<rom name="Ultima V - Dungeon.a2r" size="21471977" crc="7903cfae" md5="65cd38412698617e0007cdccf2d708ac" sha1="5e513195b810b36de911333ea78229d5b740dfea"/>
+	</game>
+	<game name="Ultima V - Dwelling (Unknown)">
+		<description>Ultima V - Dwelling (Unknown)</description>
+		<rom name="Ultima V - Dwelling.a2r" size="24424621" crc="3ce685d5" md5="d0cfa0dc77096a60b2b0258954cbb164" sha1="e2b57325558bd10a42d5d7fd7c60faa7d4e11590"/>
+	</game>
+	<game name="Ultima V - Keep (Unknown)">
+		<description>Ultima V - Keep (Unknown)</description>
+		<rom name="Ultima V - Keep.a2r" size="26626222" crc="69c99908" md5="b95752a747dd2b61560aacf9e2e43126" sha1="5ee5a73b592793f03c4f05e8128e7aef8e72b948"/>
+	</game>
+	<game name="Ultima V - Program (Unknown)">
+		<description>Ultima V - Program (Unknown)</description>
+		<rom name="Ultima V - Program.a2r" size="26536972" crc="4c0af614" md5="f82855b079d4663e99ad12c744502f7e" sha1="776d91740ea1cc1469064bdd02be0c142245c9f0"/>
+	</game>
+	<game name="Ultima V - Towne (Unknown)">
+		<description>Ultima V - Towne (Unknown)</description>
+		<rom name="Ultima V - Towne.a2r" size="26259489" crc="7fa3f9d5" md5="62500996b58d44d1ef03ae690a61aa6e" sha1="03c21483a32982eccac028f10f868da406c07611"/>
+	</game>
+	<game name="Ultima V - Underworld (Unknown)">
+		<description>Ultima V - Underworld (Unknown)</description>
+		<rom name="Ultima V - Underworld.a2r" size="27503710" crc="f6b1d28e" md5="6497fffebeaef5dbb40146091c802f10" sha1="f11d7b17e65c1707228ff41ff8d11237c5fc7760"/>
+	</game>
+	<game name="Up'N'Down (Disk 1) (Unknown) (Side A)">
+		<description>Up'N'Down (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Up'N'Down - Disk 1, Side A.a2r" size="17299030" crc="38dcad66" md5="16e996898ff09e95cdc167a6ff29e494" sha1="aeefbe6f65316e713f254f990f696e3c1395fc05"/>
+	</game>
+	<game name="Visicalc (Disk 1) (Unknown) (Side A)">
+		<description>Visicalc (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Visicalc - Disk 1, Side A.a2r" size="29458334" crc="3489cb03" md5="045193672bfda866cd6c97d2eba9be21" sha1="fc3f7adc3df89b7eb39a2ed9a371caf73e8ea889"/>
+	</game>
+	<game name="Visicalc (Disk 1) (Alt) (Unknown) (Side A)">
+		<description>Visicalc (Disk 1) (Alt) (Unknown) (Side A)</description>
+		<rom name="Visicalc - Disk 1, Side A (1).a2r" size="35153439" crc="2a76d8cb" md5="0db4be0a48d481a33abc4dfd4750e4a8" sha1="c679af97cfe4252ad9cdf3eb351fa13c3271ab59"/>
+	</game>
+	<game name="Visidex (Disk 1) (Unknown) (Side A)">
+		<description>Visidex (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Visidex - Disk 1, Side A.a2r" size="14241779" crc="b6cb79a5" md5="55b2322b1d7b6487e0dd9ecea6472a25" sha1="1d5984b714b2686c358027c1b3a0969d63940d34"/>
+	</game>
+	<game name="Visidex (Disk 1) (Alt) (Unknown) (Side A)">
+		<description>Visidex (Disk 1) (Alt) (Unknown) (Side A)</description>
+		<rom name="Visidex - Disk 1, Side A (1).a2r" size="21741038" crc="16559af2" md5="a41387acf402b24024442034a7c432a7" sha1="fc30ffdccf7e5ef02d308993c22c3095fcd77230"/>
+	</game>
+	<game name="Webster The Word Game (Disk 1) (Unknown) (Side A)">
+		<description>Webster The Word Game (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Webster The Word Game (Disk 1) (Unknown) (Side A).a2r" size="21628423" crc="a5cde6ba" md5="51719e18699b6fc8cb08cf85a8e2bbd8" sha1="47ba8b11a3a3c0b49dba100253fe76d0d7a3d25b"/>
+	</game>
+	<game name="Where In The World Is Carmen Sandiego (Disk 1) (Unknown) (Side A)">
+		<description>Where In The World Is Carmen Sandiego (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Where In The World Is Carmen Sandiego (Disk 1) (Unknown) (Side A).a2r" size="18959178" crc="9a5239e3" md5="d75f682da0ad944d5866946b8b5f226c" sha1="32dd4607602c63f5f8c20b7f45569f07b50c03ed"/>
+	</game>
+	<game name="Where In The World Is Carmen Sandiego (Disk 1) (Unknown) (Side B)">
+		<description>Where In The World Is Carmen Sandiego (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Where In The World Is Carmen Sandiego (Disk 1) (Unknown) (Side B).a2r" size="18311879" crc="906a7857" md5="82f874a57335cf5a6b905cabe195be56" sha1="676327064704edbd8efc4038694da0add05bf23b"/>
+	</game>
+	<game name="Will O The Wisp (Disk 1) (Unknown) (Side A)">
+		<description>Will O The Wisp (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Will O The Wisp (Disk 1) (Unknown) (Side A).a2r" size="13887522" crc="f3cf4fab" md5="29c4dcab8f037ba7ab3113b02c9299a9" sha1="0e2f45ca02f9172277da956b53de554b561a3fac"/>
+	</game>
+	<game name="Winter Games (Disk 1) (Unknown) (Side A)">
+		<description>Winter Games (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Winter Games (Disk 1) (Unknown) (Side A).a2r" size="27747263" crc="4b058e79" md5="400662997b5ac957c4b00ce4f1987190" sha1="094cca8680fa34ff5ea880b7ca2b62e3888c31d7"/>
+	</game>
+	<game name="Winter Games (Disk 1) (Unknown) (Side B)">
+		<description>Winter Games (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Winter Games (Disk 1) (Unknown) (Side B).a2r" size="28627764" crc="e20997e6" md5="1de0d7a15be0e6d1f5e19b38695a2192" sha1="66d31eb6a889a36eb1d1c8acd30523c1963072db"/>
+	</game>
+	<game name="Wizardry 2 (Disk 1) (Unknown) (Side A)">
+		<description>Wizardry 2 (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Wizardry 2 (Disk 1) (Unknown) (Side A).a2r" size="20028322" crc="c23330e1" md5="9159db5e828e732c670e514c94ec73ce" sha1="1e4cfbfe4f7a8b4e116322b93079544e65d875d5"/>
+	</game>
+	<game name="Wizardry 2 (Disk 1) (Unknown) (Side B)">
+		<description>Wizardry 2 (Disk 1) (Unknown) (Side B)</description>
+		<rom name="Wizardry 2 (Disk 1) (Unknown) (Side B).a2r" size="29318490" crc="1573c696" md5="061e58851d3b34da9857d85a78d83a22" sha1="70663bf883046fffca7d3fb8c91b75fee4fe094c"/>
+	</game>
+	<game name="Zaxxon (Disk 1) (Unknown) (Side A)">
+		<description>Zaxxon (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Zaxxon - Disk 1, Side A.a2r" size="17820981" crc="7e426950" md5="0287c3dabcab581d677aa2e0969bf017" sha1="f19199d0bbff87701f9061419f838f78fe762f68"/>
+	</game>
+	<game name="Zork I (Disk 1) (Unknown) (Side A)">
+		<description>Zork I (Disk 1) (Unknown) (Side A)</description>
+		<rom name="Zork I - Disk 1, Side A.a2r" size="17509401" crc="2dd93387" md5="63f699bab80322fb7edcb097c2c6c8f2" sha1="82c0b57b634e5c73250d1e83c0d78b43ff832ffa"/>
+	</game>
+</datafile>

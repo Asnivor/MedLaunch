@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE datafile PUBLIC "-//Logiqx//DTD ROM Management Datafile//EN" "http://www.logiqx.com/Dats/datafile.dtd">
+<datafile>
+	<header>
+		<name>Apple - II (WOZ) (Parent-Clone)</name>
+		<description>Apple - II (WOZ) (Parent-Clone)</description>
+		<version>20220728-095306</version>
+		<date>20220728-095306</date>
+		<author>FakeShemp, MeguCocoa</author>
+		<url>www.no-intro.org</url>
+	</header>
+	<game name="Beyond Castle Wolfenstein (USA)">
+		<description>Beyond Castle Wolfenstein (USA)</description>
+		<rom name="Beyond Castle Wolfenstein (USA).woz" size="234756" crc="5ef4f4a5" md5="4306f1381455a8723f42fc98679623c6" sha1="e2f48c957dda8117b8069a17e70b5a7b1465e141"/>
+	</game>
+	<game name="Star Dance (USA)">
+		<description>Star Dance (USA)</description>
+		<rom name="Star Dance (USA).woz" size="101683" crc="61551723" md5="350c905adf55e4a39b91bda2266ba143" sha1="fb89e011fff5dccc442362ace2b526d3a9a36816"/>
+	</game>
+</datafile>

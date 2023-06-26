@@ -120,55 +120,65 @@ namespace MedLaunch._Debug.DATDB.Platforms.NOINTRO
             List<string> searchStr = new List<string>();
             switch (systemId)
             {
-                case 5:
-                    searchStr.Add("Nintendo - Game Boy Advance Parent-Clone ");
-                    break;
-                case 4:
-                    searchStr.Add("Nintendo - Game Boy Parent-Clone ");
-                    break;
-                case 41:
-                    searchStr.Add("Nintendo - Game Boy Color Parent-Clone ");
+                case 4956:
+                    searchStr.Add("Apple - II (Parent-Clone)");
                     break;
                 case 4924:
-                    searchStr.Add("Atari - Lynx Parent-Clone ");
+                    searchStr.Add("Atari - Lynx (Parent-Clone) ");
                     break;
-                case 18:
-                    searchStr.Add("Sega - Mega Drive - Genesis Parent-Clone ");
+                case 4925:
+                    searchStr.Add("Bandai - WonderSwan (Parent-Clone)");
                     break;
-                case 20:
-                    searchStr.Add("Sega - Game Gear Parent-Clone ");
-                    break;
-                case 4922:
-                    searchStr.Add("SNK - Neo Geo Pocket P");
-                    break;
-                case 4923:
-                    searchStr.Add("SNK - Neo Geo Pocket Color");
+                case 4926:
+                    searchStr.Add("Bandai - WonderSwan Color (Parent-Clone)");
                     break;
                 case 34:
                     searchStr.Add("NEC - PC Engine - T");
                     searchStr.Add("NEC - PC Engine Su");
                     break;
-                case 35:
-                    searchStr.Add("Sega - Master System ");
+                case 4936:
+                    searchStr.Add("Nintendo - Family Computer Disk");
+                    break;
+                case 4:
+                    searchStr.Add("Nintendo - Game Boy (Parent-Clone)");
+                    break;
+                case 5:
+                    searchStr.Add("Nintendo - Game Boy Advance (Parent-Clone)");
+                    break;
+                case 41:
+                    searchStr.Add("Nintendo - Game Boy Color (Parent-Clone)");
                     break;
                 case 7:
-                    searchStr.Add("Nintendo - Nintendo Entertainment System");
+                    searchStr.Add("Nintendo - Nintendo Entertainment System ");
                     break;
                 case 6:
-                    searchStr.Add("Nintendo - Super Nintendo Entertainment System");
+                    searchStr.Add("Nintendo - Super Nintendo Entertainment System ");
                     break;
                 case 4918:
                     searchStr.Add("Nintendo - Virtual Boy ");
                     break;
-                case 4925:
-                    searchStr.Add("Bandai - WonderSwan P");
+                case 20:
+                    searchStr.Add("Sega - Game Gear (Parent-Clone)");
                     break;
-                case 4926:
-                    searchStr.Add("Bandai - WonderSwan Color");
+                case 35:
+                    searchStr.Add("Sega - Master System -");
                     break;
-                case 4936:
-                    searchStr.Add("Nintendo - Family Computer Disk");
+                case 18:
+                    searchStr.Add("Sega - Mega Drive - Genesis (Parent-Clone) ");
                     break;
+                case 4922:
+                    searchStr.Add("SNK - NeoGeo Pocket (P");
+                    break;
+                case 4923:
+                    searchStr.Add("SNK - NeoGeo Pocket Color");
+                    break;
+                
+                
+                
+                
+                
+                
+                
             }
 
             List<string> data = new List<string>();

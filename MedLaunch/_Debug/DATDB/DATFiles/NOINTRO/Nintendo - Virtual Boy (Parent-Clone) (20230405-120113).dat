@@ -1,0 +1,351 @@
+<?xml version="1.0"?>
+<!DOCTYPE datafile PUBLIC "-//Logiqx//DTD ROM Management Datafile//EN" "http://www.logiqx.com/Dats/datafile.dtd">
+<datafile>
+	<header>
+		<name>Nintendo - Virtual Boy (Parent-Clone)</name>
+		<description>Nintendo - Virtual Boy (Parent-Clone)</description>
+		<version>20230405-120113</version>
+		<date>20230405-120113</date>
+		<author>BigFred, BitLooter, C. V. Reynolds, Flashfire42, Hiccup, NESBrew12, omonim2007, rarenight, Rifu, SonGoku, Tauwasser, xuom2</author>
+		<url>www.no-intro.org</url>
+	</header>
+	<game name="3-D BattleSnake (World) (Aftermarket) (Unl)">
+		<description>3-D BattleSnake (World) (Aftermarket) (Unl)</description>
+		<rom name="3-D BattleSnake (World) (Aftermarket) (Unl).vb" size="1048576" crc="14ee3f7d" md5="0ab33db88ee41f540d968127dc55fa50" sha1="35d8c26e62d64dade68847dd1d8f55a92c6b8058"/>
+	</game>
+	<game name="Tron VB (World) (Demo) (Aftermarket) (Unl)" cloneof="3-D BattleSnake (World) (Aftermarket) (Unl)">
+		<description>Tron VB (World) (Demo) (Aftermarket) (Unl)</description>
+		<rom name="Tron VB (World) (Demo) (Aftermarket) (Unl).vb" size="65536" crc="33c3e3a7" md5="b8cac4425d1a01b949801d81eb268ffb" sha1="43fa6a2c1caf17c3ad0141f8b2c3e6250068695b"/>
+	</game>
+	<game name="3-D Tetris (USA)">
+		<description>3-D Tetris (USA)</description>
+		<release name="3-D Tetris (USA)" region="USA"/>
+		<rom name="3-D Tetris (USA).vb" size="1048576" crc="bb71b522" md5="ecf1218706e9b547eab9e4be58d54e21" sha1="5177015a91442e56bd76af39447bca365e06c272"/>
+	</game>
+	<game name="3D Crosswords (World) (Hardware Version) (Aftermarket) (Unl)">
+		<description>3D Crosswords (World) (Hardware Version) (Aftermarket) (Unl)</description>
+		<rom name="3D Crosswords (World) (Hardware Version) (Aftermarket) (Unl).vb" size="524288" crc="3754e82e" md5="35554dcf602fd2452d7adb033a85cc40" sha1="d02befd9e2269093c45109b91609eefd4b7a2bed"/>
+	</game>
+	<game name="3D Crosswords (World) (Emulator Version) (Aftermarket) (Unl)" cloneof="3D Crosswords (World) (Hardware Version) (Aftermarket) (Unl)">
+		<description>3D Crosswords (World) (Emulator Version) (Aftermarket) (Unl)</description>
+		<rom name="3D Crosswords (World) (Emulator Version) (Aftermarket) (Unl).vb" size="2097152" crc="bb061c9d" md5="cef10df7728f4398af46d51efc89d3d0" sha1="c778106d5c378022bbb078cd303bd0155e9fcabc"/>
+	</game>
+	<game name="Bad Apple (World) (Demo) (Hardware Version) (Aftermarket) (Unl)">
+		<description>Bad Apple (World) (Demo) (Hardware Version) (Aftermarket) (Unl)</description>
+		<rom name="Bad Apple (World) (Demo) (Hardware Version) (Aftermarket) (Unl).vb" size="16777216" crc="043e3634" md5="b01b1f5dc1d84d98688d214ab8734fca" sha1="1d006d0d28ca32b37f2809e5e345c27e9ecead29"/>
+	</game>
+	<game name="Bad Apple (World) (Demo) (Emulator Version) (Aftermarket) (Unl)" cloneof="Bad Apple (World) (Demo) (Hardware Version) (Aftermarket) (Unl)">
+		<description>Bad Apple (World) (Demo) (Emulator Version) (Aftermarket) (Unl)</description>
+		<rom name="Bad Apple (World) (Demo) (Emulator Version) (Aftermarket) (Unl).vb" size="16777216" crc="c97990b8" md5="f8fcc14c7ed3d091fc4bc433bc88acf2" sha1="43e99b9d24766822fa4fd6a1aec4e47f2662dfb1"/>
+	</game>
+	<game name="Ballface (World) (Demo) (Aftermarket) (Unl)">
+		<description>Ballface (World) (Demo) (Aftermarket) (Unl)</description>
+		<rom name="Ballface (World) (Demo) (Aftermarket) (Unl).vb" size="2097152" crc="d6fd48df" md5="2add85e4e285cba673dd93f135eba2cb" sha1="af0c87487c7e2491f290f5d5b1190604b7c169f9"/>
+	</game>
+	<game name="BLOX (World) (v1.1) (Aftermarket) (Unl)">
+		<description>BLOX (World) (v1.1) (Aftermarket) (Unl)</description>
+		<rom name="BLOX (World) (v1.1) (Aftermarket) (Unl).vb" size="1048576" crc="450feab5" md5="f82d4c9fdd81518537d88f70c6602bb5" sha1="f2105349dff09bdc00e4548460991dde9ac7c2af"/>
+	</game>
+	<game name="BLOX (World) (v1.0) (Aftermarket) (Unl)" cloneof="BLOX (World) (v1.1) (Aftermarket) (Unl)">
+		<description>BLOX (World) (v1.0) (Aftermarket) (Unl)</description>
+		<rom name="BLOX (World) (v1.0) (Aftermarket) (Unl).vb" size="1048576" crc="7baf43b0" md5="231145f89792e8399a730612e97ae4df" sha1="e7b28cafb0950969c8f0ea0df2288e0f8d418cc8"/>
+	</game>
+	<game name="BLOX 2 (World) (En,Fr,De,Es,It,Sv,Fi,Cs,Sl) (Aftermarket) (Unl)">
+		<description>BLOX 2 (World) (En,Fr,De,Es,It,Sv,Fi,Cs,Sl) (Aftermarket) (Unl)</description>
+		<rom name="BLOX 2 (World) (En,Fr,De,Es,It,Sv,Fi,Cs,Sl) (Aftermarket) (Unl).vb" size="2097152" crc="85460a25" md5="cc91d6389df2c9777919e8e8ab2c0e66" sha1="66b2a25ef8e1af74bed4bbba4785951a9d6edce0"/>
+	</game>
+	<game name="Bound High (Japan) (En) (Proto)">
+		<description>Bound High (Japan) (En) (Proto)</description>
+		<release name="Bound High (Japan) (En) (Proto)" region="JPN"/>
+		<rom name="Bound High (Japan) (En) (Proto).vb" size="2097152" crc="e81a3703" md5="a460e2660fa951e9d4e3b05aee9f5018" sha1="1196ef8b9a96a0ff2f3634f8eb1c4865c0fb6b01"/>
+	</game>
+	<game name="Capitan Sevilla 2 (World) (Es) (Aftermarket) (Unl)">
+		<description>Capitan Sevilla 2 (World) (Es) (Aftermarket) (Unl)</description>
+		<rom name="Capitan Sevilla 2 (World) (Es) (Aftermarket) (Unl).vb" size="1048576" crc="f18001f0" md5="fe92b28e43edd00c6b9401d81446a0a7" sha1="d971b1621cbea6c90907e65780eb2ed20e13edb5"/>
+	</game>
+	<game name="Capitan Sevilla 3D (World) (En,De,Es) (Demo) (Aftermarket) (Unl)">
+		<description>Capitan Sevilla 3D (World) (En,De,Es) (Demo) (Aftermarket) (Unl)</description>
+		<rom name="Capitan Sevilla 3D (World) (En,De,Es) (Demo) (Aftermarket) (Unl).vb" size="2097152" crc="6ac2c2e7" md5="101479a7e4b20566465ded419eb550b0" sha1="c3b79ab31131f7e8b26664e85dc877aa62ccc5fb"/>
+	</game>
+	<game name="Elevated Speed (World) (High Resolution Version) (Aftermarket) (Unl)">
+		<description>Elevated Speed (World) (High Resolution Version) (Aftermarket) (Unl)</description>
+		<rom name="Elevated Speed (World) (High Resolution Version) (Aftermarket) (Unl).vb" size="4194304" crc="9c93aa2a" md5="8f7bcfdd0f412d9060b06a97a89fe202" sha1="8b08f08f37127621483aa4e204a3e3b2312af196"/>
+	</game>
+	<game name="Elevated Speed (World) (Low Resolution Version) (Aftermarket) (Unl)" cloneof="Elevated Speed (World) (High Resolution Version) (Aftermarket) (Unl)">
+		<description>Elevated Speed (World) (Low Resolution Version) (Aftermarket) (Unl)</description>
+		<rom name="Elevated Speed (World) (Low Resolution Version) (Aftermarket) (Unl).vb" size="2097152" crc="61d03ccc" md5="0b310032ec2ebfcefb12676e4a8c7414" sha1="8f225d86672a8ba923dd0c262b1e6a1fc22438e5"/>
+	</game>
+	<game name="Fishbone (World) (Aftermarket) (Unl)">
+		<description>Fishbone (World) (Aftermarket) (Unl)</description>
+		<rom name="Fishbone (World) (Aftermarket) (Unl).vb" size="2097152" crc="b5977e82" md5="eee8be03986ddbc3ada91b10a543f17e" sha1="c036c441bb3c16e5b2cc6ea7681f56a8605b932e"/>
+	</game>
+	<game name="Fishbone (World) (Demo 1) (Aftermarket) (Unl)" cloneof="Fishbone (World) (Aftermarket) (Unl)">
+		<description>Fishbone (World) (Demo 1) (Aftermarket) (Unl)</description>
+		<rom name="Fishbone (World) (Demo 1) (Aftermarket) (Unl).vb" size="2097152" crc="9803b3ea" md5="5db98a9e661512105b93268d4f80adfd" sha1="131697f8e08cd30311dd2e220f750de9e0348f38"/>
+	</game>
+	<game name="Fishbone (World) (Demo 2) (Aftermarket) (Unl)" cloneof="Fishbone (World) (Aftermarket) (Unl)">
+		<description>Fishbone (World) (Demo 2) (Aftermarket) (Unl)</description>
+		<rom name="Fishbone (World) (Demo 2) (Aftermarket) (Unl).vb" size="2097152" crc="760b9298" md5="919c64e6a2d4d1d952df1e8e8f5ccb64" sha1="83cd58c219e647c6590b77139dcfd5264ae788c5"/>
+	</game>
+	<game name="Fishbone (World) (Demo 3) (Aftermarket) (Unl)" cloneof="Fishbone (World) (Aftermarket) (Unl)">
+		<description>Fishbone (World) (Demo 3) (Aftermarket) (Unl)</description>
+		<rom name="Fishbone (World) (Demo 3) (Aftermarket) (Unl).vb" size="2097152" crc="6e107a0a" md5="fcb59e8ab2a38ea21f1c7dfb46fa7416" sha1="0d3c6afd2f8b7cd7017c945a088bc58d65c63103"/>
+	</game>
+	<game name="Formula V (World) (Demo) (Hardware Version) (Aftermarket) (Unl)">
+		<description>Formula V (World) (Demo) (Hardware Version) (Aftermarket) (Unl)</description>
+		<rom name="Formula V (World) (Demo) (Hardware Version) (Aftermarket) (Unl).vb" size="4194304" crc="b9715c59" md5="8e7b777e5a5e130d4b6c3b6481426bc8" sha1="b5d64b184e1506f412cf196cca3856e444be5dc8"/>
+	</game>
+	<game name="Formula V (World) (Demo) (Emulator Version) (Aftermarket) (Unl)" cloneof="Formula V (World) (Demo) (Hardware Version) (Aftermarket) (Unl)">
+		<description>Formula V (World) (Demo) (Emulator Version) (Aftermarket) (Unl)</description>
+		<rom name="Formula V (World) (Demo) (Emulator Version) (Aftermarket) (Unl).vb" size="4194304" crc="87b8d4ad" md5="34e9a2ffd60f7ea565caada82d57f29f" sha1="533672b887ec16aa50a5508488d1ab125dd5e749"/>
+	</game>
+	<game name="Galactic Pinball (Japan, USA) (En)">
+		<description>Galactic Pinball (Japan, USA) (En)</description>
+		<release name="Galactic Pinball (Japan, USA) (En)" region="JPN"/>
+		<release name="Galactic Pinball (Japan, USA) (En)" region="USA"/>
+		<rom name="Galactic Pinball (Japan, USA) (En).vb" size="1048576" crc="c9710a36" md5="85260599fdada2e137053a8647aa0d06" sha1="93a25abf4f86e71a49c1c3a470140bb40cb693d6" status="verified"/>
+	</game>
+	<game name="Space Pinball (Japan) (En) (Proto)" cloneof="Galactic Pinball (Japan, USA) (En)">
+		<description>Space Pinball (Japan) (En) (Proto)</description>
+		<rom name="Space Pinball (Japan) (En) (Proto).vb" size="2097152" crc="44c2b723" md5="31073126fad41777357391ecc36d6f7f" sha1="dc182360c7c8d26323db8921f09db76638e81ced"/>
+	</game>
+	<game name="Golf (USA)">
+		<description>Golf (USA)</description>
+		<release name="Golf (USA)" region="USA"/>
+		<rom name="Golf (USA).vb" size="2097152" crc="2199af41" md5="977c4da800dacfac1a1402781670f872" sha1="23ce3c174789cdd306497d86cb2c4e76ba8b06e5"/>
+	</game>
+	<game name="T&amp;E Virtual Golf (Japan)" cloneof="Golf (USA)">
+		<description>T&amp;E Virtual Golf (Japan)</description>
+		<release name="T&amp;E Virtual Golf (Japan)" region="JPN"/>
+		<rom name="T&amp;E Virtual Golf (Japan).vb" size="2097152" crc="6ba07915" md5="c1dc0852af217146f93d701e1da233d4" sha1="c595285d42c69f14b2b418c1edfbe4a7f9a624b6" status="verified"/>
+	</game>
+	<game name="Hamburgers En Route to Switzerland (World) (Aftermarket) (Unl)">
+		<description>Hamburgers En Route to Switzerland (World) (Aftermarket) (Unl)</description>
+		<rom name="Hamburgers En Route to Switzerland (World) (Aftermarket) (Unl).vb" size="524288" crc="efb7577c" md5="45aa19c4b2f10c7ef6782b0cb356e265" sha1="bf426b164378376e11dc0416ffa840a84fd1cd15"/>
+	</game>
+	<game name="Hamburgers En Route to Switzerland (World) (Demo 1) (Aftermarket) (Unl)" cloneof="Hamburgers En Route to Switzerland (World) (Aftermarket) (Unl)">
+		<description>Hamburgers En Route to Switzerland (World) (Demo 1) (Aftermarket) (Unl)</description>
+		<rom name="Hamburgers En Route to Switzerland (World) (Demo 1) (Aftermarket) (Unl).vb" size="262144" crc="a994cb83" md5="32ec901e7ac6f96cf7d15c82afb228b4" sha1="be1c727ee6ec9cc931bcc7cae62b80d77f1bb821"/>
+	</game>
+	<game name="Hamburgers En Route to Switzerland (World) (Demo 2) (Aftermarket) (Unl)" cloneof="Hamburgers En Route to Switzerland (World) (Aftermarket) (Unl)">
+		<description>Hamburgers En Route to Switzerland (World) (Demo 2) (Aftermarket) (Unl)</description>
+		<rom name="Hamburgers En Route to Switzerland (World) (Demo 2) (Aftermarket) (Unl).vb" size="524288" crc="17af6462" md5="2cb4bfe7564f5a1f9edbbd481e9dcbba" sha1="5f3f17652741d8b1268e1e39d590e089f717fb1c"/>
+	</game>
+	<game name="Hyper Fighting (World) (Aftermarket) (Unl)">
+		<description>Hyper Fighting (World) (Aftermarket) (Unl)</description>
+		<rom name="Hyper Fighting (World) (Aftermarket) (Unl).vb" size="4194304" crc="3f2a6ba2" md5="c2047a94dcb0db30794c8533ba625622" sha1="578355de83822ce67522033dd7545631124a71ab"/>
+	</game>
+	<game name="Hyper Fighting (World) (Beta) (Aftermarket) (Unl)" cloneof="Hyper Fighting (World) (Aftermarket) (Unl)">
+		<description>Hyper Fighting (World) (Beta) (Aftermarket) (Unl)</description>
+		<rom name="Hyper Fighting (World) (Beta) (Aftermarket) (Unl).vb" size="2097152" crc="4450ede0" md5="b3e46cdbe57d3995065daa917a858a76" sha1="322dc4c2df74bf19d8a30d43c489401be5e76ca5"/>
+	</game>
+	<game name="Insecticide (World) (Aftermarket) (Unl)">
+		<description>Insecticide (World) (Aftermarket) (Unl)</description>
+		<rom name="Insecticide (World) (Aftermarket) (Unl).vb" size="2097152" crc="de9f669b" md5="f2358ae652afb6a2520cd6df89ee6b7e" sha1="dd7d02cd879584dea3cb9766e44948ae6a4b320f"/>
+	</game>
+	<game name="Insmouth no Yakata (Japan)">
+		<description>Insmouth no Yakata (Japan)</description>
+		<release name="Insmouth no Yakata (Japan)" region="JPN"/>
+		<rom name="Insmouth no Yakata (Japan).vb" size="1048576" crc="83cb6a00" md5="1eb964d0eaa3223cfefdcc99a6265c88" sha1="37e06e53ce2810e870835c48decdd6c72079bfda" status="verified"/>
+	</game>
+	<game name="Jack Bros. (USA)">
+		<description>Jack Bros. (USA)</description>
+		<release name="Jack Bros. (USA)" region="USA"/>
+		<rom name="Jack Bros. (USA).vb" size="1048576" crc="a44de03c" md5="ee873c9969c15e92ca9a0f689c4ce5ea" sha1="0e086d7ef2bd8b97315196943fd0b71da07aa8f1"/>
+	</game>
+	<game name="Jack Bros. no Meiro de Hiihoo! (Japan)" cloneof="Jack Bros. (USA)">
+		<description>Jack Bros. no Meiro de Hiihoo! (Japan)</description>
+		<release name="Jack Bros. no Meiro de Hiihoo! (Japan)" region="JPN"/>
+		<rom name="Jack Bros. no Meiro de Hiihoo! (Japan).vb" size="1048576" crc="cab61e8b" md5="1b177fe2dd12ec1d67f6a43502f8d391" sha1="a973406590382ee503037271330d68d2834b79db" status="verified"/>
+	</game>
+	<game name="Mario Clash (Japan, USA) (En)">
+		<description>Mario Clash (Japan, USA) (En)</description>
+		<release name="Mario Clash (Japan, USA) (En)" region="JPN"/>
+		<release name="Mario Clash (Japan, USA) (En)" region="USA"/>
+		<rom name="Mario Clash (Japan, USA) (En).vb" size="1048576" crc="a47de78c" md5="b1b3a25ce8fb4f406bf82b8765d307d0" sha1="7556a778b60490bdb81774bcbaa7413fc84cb985" status="verified"/>
+	</game>
+	<game name="Mario Combat (World) (Aftermarket) (Unl)">
+		<description>Mario Combat (World) (Aftermarket) (Unl)</description>
+		<rom name="Mario Combat (World) (Aftermarket) (Unl).vb" size="2097152" crc="fb91380f" md5="6fd50c08f16d44da026dca190ade43fe" sha1="2dd53ebf483f20d53473d5e7a2a42e39dd1d8f49"/>
+	</game>
+	<game name="Mario Kart - Virtual Cup (World) (Aftermarket) (Unl)">
+		<description>Mario Kart - Virtual Cup (World) (Aftermarket) (Unl)</description>
+		<rom name="Mario Kart - Virtual Cup (World) (Aftermarket) (Unl).vb" size="1048576" crc="27988ab9" md5="4b8c8b6a7711a005dd896b3ee9b8d0f1" sha1="7743978a58a27b8e05e36d353439a8b11ead5235"/>
+	</game>
+	<game name="Mario VB (World) (Aftermarket) (Unl)">
+		<description>Mario VB (World) (Aftermarket) (Unl)</description>
+		<rom name="Mario VB (World) (Aftermarket) (Unl).vb" size="524288" crc="dd63d32d" md5="03f72468609897a17028823691fc1c56" sha1="ccdc23e4f866e771d15fa480706669003afbde5b"/>
+	</game>
+	<game name="Mario's Tennis (Japan, USA) (En)">
+		<description>Mario's Tennis (Japan, USA) (En)</description>
+		<release name="Mario's Tennis (Japan, USA) (En)" region="JPN"/>
+		<release name="Mario's Tennis (Japan, USA) (En)" region="USA"/>
+		<rom name="Mario's Tennis (Japan, USA) (En).vb" size="524288" crc="7ce7460d" md5="38ecc2c5a745a80d32eb9e8e413358c4" sha1="5162f7fa9e3eae4338c53ccba641ba080c768754" status="verified"/>
+	</game>
+	<game name="Nester's Funky Bowling (USA)">
+		<description>Nester's Funky Bowling (USA)</description>
+		<release name="Nester's Funky Bowling (USA)" region="USA"/>
+		<rom name="Nester's Funky Bowling (USA).vb" size="2097152" crc="df4d56b4" md5="0285dc41d75be8419d12472f20025305" sha1="f4a4c7928f15102cf14c90c5f044e5f7cc7c32f9"/>
+	</game>
+	<game name="Niko-chan Battle (Japan) (Proto)">
+		<description>Niko-chan Battle (Japan) (Proto)</description>
+		<release name="Niko-chan Battle (Japan) (Proto)" region="JPN"/>
+		<rom name="Niko-chan Battle (Japan) (Proto).vb" size="1048576" crc="f3cd40dd" md5="d9a0215782dcacee5a3c4cc83d1c5189" sha1="217ca062f65d4e8b2848085918af5ac4b33b12d4"/>
+	</game>
+	<game name="Null Pointer Mockup (World) (Demo) (Aftermarket) (Unl)">
+		<description>Null Pointer Mockup (World) (Demo) (Aftermarket) (Unl)</description>
+		<rom name="Null Pointer Mockup (World) (Demo) (Aftermarket) (Unl).vb" size="524288" crc="092da01a" md5="39ea7766c44b19461ca8fc2a3484f8f8" sha1="4a9b056488f30e3803c1b5099a64ba773eb1be19"/>
+	</game>
+	<game name="Panic Bomber (USA)">
+		<description>Panic Bomber (USA)</description>
+		<release name="Panic Bomber (USA)" region="USA"/>
+		<rom name="Panic Bomber (USA).vb" size="524288" crc="19bb2dfb" md5="467247d5e3383d066005565bf8218436" sha1="80216b2874cf162f301d571bb8aebc98d80b4f3e"/>
+	</game>
+	<game name="Tobidase! Panibon (Japan)" cloneof="Panic Bomber (USA)">
+		<description>Tobidase! Panibon (Japan)</description>
+		<release name="Tobidase! Panibon (Japan)" region="JPN"/>
+		<rom name="Tobidase! Panibon (Japan).vb" size="524288" crc="40498f5e" md5="44039dfaa0f8fcf8ece03b8cda267e4a" sha1="b8a12a9677afa5cbce6ed43eb0effb5a02875534" status="verified"/>
+	</game>
+	<game name="Red Alarm (USA)">
+		<description>Red Alarm (USA)</description>
+		<release name="Red Alarm (USA)" region="USA"/>
+		<rom name="Red Alarm (USA).vb" size="1048576" crc="aa10a7b4" md5="e56e85761f52a613b34079d5322088ce" sha1="494fa60cb8997880b4e8cd3270b21d6c2768a48a"/>
+	</game>
+	<game name="Red Alarm (Japan)" cloneof="Red Alarm (USA)">
+		<description>Red Alarm (Japan)</description>
+		<release name="Red Alarm (Japan)" region="JPN"/>
+		<rom name="Red Alarm (Japan).vb" size="1048576" crc="7e85c45d" md5="bc469bf797f4774bbb1678c7f500853b" sha1="f5057fa9bfd9d60b9dcfc004cfdd12aa8eb1cb4a" status="verified"/>
+	</game>
+	<game name="Red Square (World) (Aftermarket) (Unl)">
+		<description>Red Square (World) (Aftermarket) (Unl)</description>
+		<rom name="Red Square (World) (Aftermarket) (Unl).vb" size="524288" crc="aa50b353" md5="60cc7855db22ff05c8ed7f18687197fc" sha1="58443bae644d3b777b9cb2dba4d76be582e3e0cf"/>
+	</game>
+	<game name="SD Gundam - Dimension War (Japan)">
+		<description>SD Gundam - Dimension War (Japan)</description>
+		<release name="SD Gundam - Dimension War (Japan)" region="JPN"/>
+		<rom name="SD Gundam - Dimension War (Japan).vb" size="1048576" crc="44788197" md5="1cf8c69d8a740d6ef3aab54deced31c4" sha1="1a67f6bdb45db46e22b8aadea754a68ad379ae29"/>
+	</game>
+	<game name="Snatcher (World) (Demo) (Aftermarket) (Unl)">
+		<description>Snatcher (World) (Demo) (Aftermarket) (Unl)</description>
+		<rom name="Snatcher (World) (Demo) (Aftermarket) (Unl).vb" size="2097152" crc="1afbb29c" md5="2999c7db49198890d5f1d4002563804e" sha1="6f8c0cd07b68fcc78e8c9796439a020180ddc6e4"/>
+	</game>
+	<game name="Snowball Wars (World) (Demo 3) (Aftermarket) (Unl)">
+		<description>Snowball Wars (World) (Demo 3) (Aftermarket) (Unl)</description>
+		<rom name="Snowball Wars (World) (Demo 3) (Aftermarket) (Unl).vb" size="1048576" crc="a19cf939" md5="39f4ded02b9a58c1958f521d27d841af" sha1="54e6d1d3400e0fd850366fb56a9d065ba9d810e5"/>
+	</game>
+	<game name="Snowball Wars (World) (Demo 2) (Aftermarket) (Unl)" cloneof="Snowball Wars (World) (Demo 3) (Aftermarket) (Unl)">
+		<description>Snowball Wars (World) (Demo 2) (Aftermarket) (Unl)</description>
+		<rom name="Snowball Wars (World) (Demo 2) (Aftermarket) (Unl).vb" size="1048576" crc="10848ef3" md5="ccb7a50d7fc23ec2890db7771a077392" sha1="f29c06afb49930b06c81f2e5432bf2df3e4e752d"/>
+	</game>
+	<game name="Snowball Wars (World) (Demo 1) (Aftermarket) (Unl)" cloneof="Snowball Wars (World) (Demo 3) (Aftermarket) (Unl)">
+		<description>Snowball Wars (World) (Demo 1) (Aftermarket) (Unl)</description>
+		<rom name="Snowball Wars (World) (Demo 1) (Aftermarket) (Unl).vb" size="262144" crc="91ce8852" md5="d693a18192cbc1bd4aa678af9a3ae0d1" sha1="5f2fa60d35327bf07847f00617181af2645c3b2b"/>
+	</game>
+	<game name="Soviet Union 2010 (World) (v1.2) (Aftermarket) (Unl)">
+		<description>Soviet Union 2010 (World) (v1.2) (Aftermarket) (Unl)</description>
+		<rom name="Soviet Union 2010 (World) (v1.2) (Aftermarket) (Unl).vb" size="2097152" crc="e7cbc290" md5="74d21ea01f97ac19e018d7f5a3e3bc7c" sha1="f534d323bc838a5f5a25e0bf977ba297708eabe3"/>
+	</game>
+	<game name="Soviet Union 2010 (World) (v1.0) (Aftermarket) (Unl)" cloneof="Soviet Union 2010 (World) (v1.2) (Aftermarket) (Unl)">
+		<description>Soviet Union 2010 (World) (v1.0) (Aftermarket) (Unl)</description>
+		<rom name="Soviet Union 2010 (World) (v1.0) (Aftermarket) (Unl).vb" size="2097152" crc="447ba0c0" md5="90ef8d48eb3178f32e9ef45ac83ef7e1" sha1="328ea332004d6150b4ac8d9bdc4f0e16534907f9"/>
+	</game>
+	<game name="Soviet Union 2011 (World) (v1.2) (Aftermarket) (Unl)">
+		<description>Soviet Union 2011 (World) (v1.2) (Aftermarket) (Unl)</description>
+		<rom name="Soviet Union 2011 (World) (v1.2) (Aftermarket) (Unl).vb" size="2097152" crc="3a2e0413" md5="7209a6bd5d788f12e97b9247d28197ce" sha1="b6f9c7c86ecaaf37f1966c3480752531f9dd5515"/>
+	</game>
+	<game name="Soviet Union 2011 (World) (v1.1) (Aftermarket) (Unl)" cloneof="Soviet Union 2011 (World) (v1.2) (Aftermarket) (Unl)">
+		<description>Soviet Union 2011 (World) (v1.1) (Aftermarket) (Unl)</description>
+		<rom name="Soviet Union 2011 (World) (v1.1) (Aftermarket) (Unl).vb" size="2097152" crc="0cd7390b" md5="9ac4a0beaccd30fc39f34a494e64a8f4" sha1="82067d7326c217d3b5bbb09031a1d51fc5811e56"/>
+	</game>
+	<game name="Soviet Union 2011 (World) (v1.0) (Aftermarket) (Unl)" cloneof="Soviet Union 2011 (World) (v1.2) (Aftermarket) (Unl)">
+		<description>Soviet Union 2011 (World) (v1.0) (Aftermarket) (Unl)</description>
+		<rom name="Soviet Union 2011 (World) (v1.0) (Aftermarket) (Unl).vb" size="2097152" crc="5cde2c56" md5="fad62e87fc51f44d75d17d5f3ffd4e0f" sha1="3c55fc50972fd39105da3fd2bf2df033a5b7c1c3"/>
+	</game>
+	<game name="Soviet Union 2011 (World) (Beta 2) (Aftermarket) (Unl)" cloneof="Soviet Union 2011 (World) (v1.2) (Aftermarket) (Unl)">
+		<description>Soviet Union 2011 (World) (Beta 2) (Aftermarket) (Unl)</description>
+		<rom name="Soviet Union 2011 (World) (Beta 2) (Aftermarket) (Unl).vb" size="2097152" crc="13660731" md5="46434bfb8eccbe7540a4d2a79d471f40" sha1="dc7b74dbb1b4ff185acf086d5bed87560675745f"/>
+	</game>
+	<game name="Soviet Union 2011 (World) (Beta 1) (Aftermarket) (Unl)" cloneof="Soviet Union 2011 (World) (v1.2) (Aftermarket) (Unl)">
+		<description>Soviet Union 2011 (World) (Beta 1) (Aftermarket) (Unl)</description>
+		<rom name="Soviet Union 2011 (World) (Beta 1) (Aftermarket) (Unl).vb" size="2097152" crc="8f013627" md5="83c6752eecfdf94f576f3fcda272b91e" sha1="9c84f75182f372891d2d41f75a32326e1b17ebeb"/>
+	</game>
+	<game name="Space Invaders - Virtual Collection (Japan)">
+		<description>Space Invaders - Virtual Collection (Japan)</description>
+		<release name="Space Invaders - Virtual Collection (Japan)" region="JPN"/>
+		<rom name="Space Invaders - Virtual Collection (Japan).vb" size="524288" crc="fa44402d" md5="7607f6f918615263512b17e56797c9aa" sha1="16ad904faafd24642dfd056d10a768e81f0d9bfa"/>
+	</game>
+	<game name="Space Squash (Japan)">
+		<description>Space Squash (Japan)</description>
+		<release name="Space Squash (Japan)" region="JPN"/>
+		<rom name="Space Squash (Japan).vb" size="524288" crc="60895693" md5="09c5f3143c25d1d30a3470e571653e48" sha1="3f08cae2b6f9e386529949ff954220860db1af64" status="verified"/>
+	</game>
+	<game name="SPONG (World) (En,Fr,De,Es) (Demo) (Aftermarket) (Unl)">
+		<description>SPONG (World) (En,Fr,De,Es) (Demo) (Aftermarket) (Unl)</description>
+		<rom name="SPONG (World) (En,Fr,De,Es) (Demo) (Aftermarket) (Unl).vb" size="2097152" crc="badf2abd" md5="80ae39bc1c74b4c86dd66a072ef773db" sha1="f44f116b3ab71e4b18aef6ac5875e4837bbacb44"/>
+	</game>
+	<game name="StarFox (World) (Demo) (Aftermarket) (Unl)">
+		<description>StarFox (World) (Demo) (Aftermarket) (Unl)</description>
+		<rom name="StarFox (World) (Demo) (Aftermarket) (Unl).vb" size="131072" crc="5475859b" md5="d6df73b477a8408da74c6d79dcaa0d0a" sha1="4546c46d97db415e0d36e1bd8e89b6e050d299b4"/>
+	</game>
+	<game name="Teleroboxer (Japan, USA) (En)">
+		<description>Teleroboxer (Japan, USA) (En)</description>
+		<release name="Teleroboxer (Japan, USA) (En)" region="JPN"/>
+		<release name="Teleroboxer (Japan, USA) (En)" region="USA"/>
+		<rom name="Teleroboxer (Japan, USA) (En).vb" size="1048576" crc="36103000" md5="0742a861a599fe3361aac6ebef6745a7" sha1="c59e020f9674774c5cbc022317ebba0eb1d744f7" status="verified"/>
+	</game>
+	<game name="V-Tetris (Japan)">
+		<description>V-Tetris (Japan)</description>
+		<release name="V-Tetris (Japan)" region="JPN"/>
+		<rom name="V-Tetris (Japan).vb" size="524288" crc="3ccb67ae" md5="262bbae465f851ded3bb7cf46e375224" sha1="ff7d4dfc467e6e0d3fe8517102132a65a9d17589" status="verified"/>
+	</game>
+	<game name="Vertical Force (USA)">
+		<description>Vertical Force (USA)</description>
+		<release name="Vertical Force (USA)" region="USA"/>
+		<rom name="Vertical Force (USA).vb" size="1048576" crc="4c32ba5e" md5="87c38f66d5b9ead72af22f515a3a5f51" sha1="38f9008f60b09deef1151d46b905b090a0338200"/>
+	</game>
+	<game name="Vertical Force (Japan)" cloneof="Vertical Force (USA)">
+		<description>Vertical Force (Japan)</description>
+		<release name="Vertical Force (Japan)" region="JPN"/>
+		<rom name="Vertical Force (Japan).vb" size="1048576" crc="9e9b8b92" md5="fa50ce1effb4ce1d66438f723be5c788" sha1="c7204ba5cfe7d26394b5e22badc580c8ed8c0b37" status="verified"/>
+	</game>
+	<game name="Virtual Bowling (Japan)">
+		<description>Virtual Bowling (Japan)</description>
+		<release name="Virtual Bowling (Japan)" region="JPN"/>
+		<rom name="Virtual Bowling (Japan).vb" size="1048576" crc="20688279" md5="5b11d402f7e322c71a7d4fa6503631fa" sha1="a5be7654037050f0a781e70efea0191f43d26f06"/>
+	</game>
+	<game name="Virtual Boy Wario Land (Japan, USA) (En)">
+		<description>Virtual Boy Wario Land (Japan, USA) (En)</description>
+		<release name="Virtual Boy Wario Land (Japan, USA) (En)" region="JPN"/>
+		<release name="Virtual Boy Wario Land (Japan, USA) (En)" region="USA"/>
+		<rom name="Virtual Boy Wario Land (Japan, USA) (En).vb" size="2097152" crc="133e9372" md5="fb4dc9f4ebd506702eb49e99a62bd803" sha1="274c328fbd904f20e69172ab826bf8f94ced1bdb" status="verified"/>
+	</game>
+	<game name="Virtual Fishing (Japan)">
+		<description>Virtual Fishing (Japan)</description>
+		<release name="Virtual Fishing (Japan)" region="JPN"/>
+		<rom name="Virtual Fishing (Japan).vb" size="1048576" crc="526cc969" md5="c03e792d8628c3c5729fdcae1620fb9a" sha1="583b409b7215159219d08e789db46140062095f2" status="verified"/>
+	</game>
+	<game name="Virtual Lab (Japan)">
+		<description>Virtual Lab (Japan)</description>
+		<release name="Virtual Lab (Japan)" region="JPN"/>
+		<rom name="Virtual Lab (Japan).vb" size="1048576" crc="8989fe0a" md5="1cec316aca8827fdf99c685a1ee49dbc" sha1="d96c9f8aac5b4ea012a8fe659bb68fb1159a9c6d"/>
+	</game>
+	<game name="Virtual League Baseball (USA)">
+		<description>Virtual League Baseball (USA)</description>
+		<release name="Virtual League Baseball (USA)" region="USA"/>
+		<rom name="Virtual League Baseball (USA).vb" size="1048576" crc="736b40d6" md5="2ba914c8aa16f2f9230b3c5b7e17e67b" sha1="266fe615ee3df1160a20b456824699f16810fa28"/>
+	</game>
+	<game name="Virtual Pro Yakyuu '95 (Japan)" cloneof="Virtual League Baseball (USA)">
+		<description>Virtual Pro Yakyuu '95 (Japan)</description>
+		<release name="Virtual Pro Yakyuu '95 (Japan)" region="JPN"/>
+		<rom name="Virtual Pro Yakyuu '95 (Japan).vb" size="1048576" crc="9ba8bb5e" md5="154b76be987a604ff8aafa4d438928f5" sha1="ab8fa82b79512eefefccdccea6768078a374c4aa" status="verified"/>
+	</game>
+	<game name="VUEngine Platformer (World) (En,Fr,De,Es-ES) (Demo) (Aftermarket) (Unl)">
+		<description>VUEngine Platformer (World) (En,Fr,De,Es-ES) (Demo) (Aftermarket) (Unl)</description>
+		<rom name="VUEngine Platformer (World) (En,Fr,De,Es-ES) (Demo) (Aftermarket) (Unl).vb" size="2097152" crc="e2dbbd2e" md5="c96d91fb97572a0af7d53f63b292e0f2" sha1="b1b9893629bbec74e8b58d7b5983e7d35e202fe0"/>
+	</game>
+	<game name="Waterworld (USA)">
+		<description>Waterworld (USA)</description>
+		<release name="Waterworld (USA)" region="USA"/>
+		<rom name="Waterworld (USA).vb" size="2097152" crc="82a95e51" md5="110a83bc070559c5cc5634a8b5cae274" sha1="dcc46484bd0acab0ac1ea178f425a0f5ccfb8dc2"/>
+	</game>
+</datafile>
